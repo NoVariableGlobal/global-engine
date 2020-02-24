@@ -1,0 +1,5 @@
+1. borrar el contenido de ProyectoBase/build
+2. borrar el contenido de ProyectoBase/Dependencias/ogre-1.12.5/build
+3. borrar el contenido de ProyectoBase/Exes (Expecto plugins.cfg y plugins_d.cfg)
+4. borrar el contenido de ProyectoBase/inter
+5. Si el proyecto muere después de seguir los pasos reclamar a Pablo, gracias por vuestra colaboración.
