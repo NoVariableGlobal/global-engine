@@ -33,7 +33,7 @@ namespace OgreBites {
 
 	Ogre::RenderWindow* ApplicationContext::getRenderWindow() const
 	{
-		return false;
+		return nullptr;
 	}
 
 	Ogre::Root* ApplicationContext::getRoot() {

@@ -1,24 +1,35 @@
 cmake_minimum_required(VERSION 3.6)
 project(global_engine)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD 14)
 
-file(GLOB OGRE_DIR "${global_engine_SOURCE_DIR}/deps/ogre-*")
-message("OGRE_DIR = ${OGRE_DIR}")
+# Print the compiler flags for debugging purposes.
+message("CMAKE_CXX_FLAGS = ${CMAKE_CXX_FLAGS}")
+message("CMAKE_CXX_FLAGS_DEBUG = ${CMAKE_CXX_FLAGS_DEBUG}")
+message("CMAKE_CXX_FLAGS_RELEASE = ${CMAKE_CXX_FLAGS_RELEASE}")
 
-# Append _d for debug builds
+# Set the cmake module path.
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${global_engine_SOURCE_DIR}/cmake/")
+set(BIN_DIR ${CMAKE_SOURCE_DIR}/bin)
+
+# Append _d for debug builds.
 set(CMAKE_DEBUG_POSTFIX "_d")
 
-file(GLOB_RECURSE OGRE_LIBRARIES "{OGRE_DIR}/*.lib")
-set(OGRE_INCLUDE_DIR "${OGRE_DIR}/include/OGRE")
-include_directories(${OGRE_INCLUDE_DIR})
+# Find all libraries.
+find_package(OGRE REQUIRED)
 
+# Copy all assets.
+file(COPY plugins DESTINATION "${BIN_DIR}")
+include_directories(src)
+
+# Add all .cpp source files to the global-engine executable.
 file(GLOB_RECURSE global_engine_SOURCES "src/*.cpp")
 add_executable(global_engine ${global_engine_SOURCES})
 
-set(BIN_DIR "${CMAKE_SOURCE_DIR}/bin")
-file (GLOB_RECURSE DEPENDENCY_DLLS "${OGRE_DIR}/*.dll")
+# Copy all the DLLs from OGRE to the BIN_DIR destination.
+file(GLOB_RECURSE DEPENDENCY_DLLS "${OGRE_DIR}/*.dll")
 file(COPY ${DEPENDENCY_DLLS} DESTINATION "${BIN_DIR}")
+
+# Link the libraries and install them
 target_link_libraries(global_engine ${OGRE_LIBRARIES})
+install(TARGETS global_engine RUNTIME DESTINATION ${BIN_DIR})

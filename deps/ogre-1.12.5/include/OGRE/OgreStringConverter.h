@@ -343,7 +343,7 @@ namespace Ogre {
 		*/
 		static StereoModeType parseStereoMode(const String& val, StereoModeType defaultValue = SMT_NONE);
 
-		static locale_t _numLocale;
+		static __locale_t _numLocale;
     protected:
         template<typename T>
         static String _toString(T val, uint16 width, char fill, std::ios::fmtflags flags);

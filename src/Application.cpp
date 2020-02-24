@@ -1,12 +1,8 @@
-#include <OgreRoot.h> // como no lo tenemos metido en nuestro proyecto es mejor poner <> que ""
+#include <OgreRoot.h>
 
+#undef main
 
-#ifdef _DEBUG
 int main()
-#else
-#include <windows.h>
-int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine, int nCmdShow)
-#endif
 {
     Ogre::Root* root;
 
@@ -18,5 +14,3 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine,
 
     return 0;
 }
-
-
