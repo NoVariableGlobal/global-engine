@@ -19,7 +19,8 @@ set(CMAKE_DEBUG_POSTFIX "_d")
 find_package(OGRE REQUIRED)
 
 # Copy all assets.
-file(COPY plugins DESTINATION "${BIN_DIR}")
+file(GLOB global_engine_PLUGIN_FILES "plugins/*")
+file(COPY ${global_engine_PLUGIN_FILES} DESTINATION "${BIN_DIR}")
 include_directories(src)
 
 # Add all .cpp source files to the global-engine executable.
