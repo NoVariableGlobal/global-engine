@@ -1,10 +1,10 @@
 #include <string>
 #include <map>
+#include "ApplicationContext.h"
 
-class ApplicationContext;
 class Scene;
 
-class Game : public ApplicationContext
+class Game : public OgreBites::ApplicationContext
 {
 	private:
 		std::map<std::string, std::string> scenesQueue;

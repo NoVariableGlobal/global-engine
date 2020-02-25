@@ -8,3 +8,7 @@ SoundComponent::SoundComponent() {
 SoundComponent::~SoundComponent() {
 	// TODO Auto-generated destructor stub
 }
+
+void SoundComponent::playSound(Sound* sound, bool loop)
+{
+}

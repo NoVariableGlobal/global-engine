@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "ApplicationContext.h"
 #include "Scene.h"
+#include <string>
 
 Game::Game()
 {
@@ -17,8 +18,8 @@ Game::~Game()
 	currentScene = nullptr;
 	for (int i = 0; i < scenesQueue.size(); i++)
 	{
-		delete scenesQueue[i];
-		scenesQueue[i] = nullptr;
+		// delete scenesQueue[i];
+		// scenesQueue[i] = nullptr;
 	}
 	//...
 }

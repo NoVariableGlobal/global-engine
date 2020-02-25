@@ -21,20 +21,24 @@
   <ItemGroup>
     <ClCompile Include="..\..\Src\Engine\Application.cpp" />
     <ClCompile Include="..\..\Src\Engine\ApplicationContext.cpp" />
+    <ClCompile Include="..\..\Src\Engine\cameraComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\Entity.cpp" />
+    <ClCompile Include="..\..\Src\Engine\Game.cpp" />
+    <ClCompile Include="..\..\Src\Engine\InputComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\PhysicsComponent.cpp" />
+    <ClCompile Include="..\..\Src\Engine\RenderComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\SoundComponent.cpp" />
-    <ClCompile Include="InputComponent.cpp" />
-    <ClCompile Include="RenderComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\ApplicationContext.h" />
+    <ClInclude Include="..\..\Src\Engine\cameraComponent.h" />
     <ClInclude Include="..\..\Src\Engine\Entity.h" />
+    <ClInclude Include="..\..\Src\Engine\Game.h" />
+    <ClInclude Include="..\..\Src\Engine\InputComponent.h" />
     <ClInclude Include="..\..\Src\Engine\PhysicsComponent.h" />
+    <ClInclude Include="..\..\Src\Engine\RenderComponent.h" />
     <ClInclude Include="..\..\Src\Engine\Scene.h" />
     <ClInclude Include="..\..\Src\Engine\SoundComponent.h" />
-    <ClInclude Include="InputComponent.h" />
-    <ClInclude Include="RenderComponent.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
