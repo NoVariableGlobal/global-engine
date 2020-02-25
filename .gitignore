@@ -27,6 +27,7 @@
 # Executables
 *.out
 *.app
+*.exe
 
 bin/
 out/
@@ -34,3 +35,6 @@ cmake-build-debug/
 .idea/
 .vscode/
 .vs/
+
+# Include bins from dependencies
+!deps/**/bin
