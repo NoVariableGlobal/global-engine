@@ -29,3 +29,13 @@
 # Executables
 *.out
 *.app
+
+.idea/
+.vscode/
+.vs/
+build/
+Exes/
+inter/
+
+!Exes/plugins.cfg
+!Exes/plugins_d.cfg
