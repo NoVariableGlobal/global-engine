@@ -1,6 +1,7 @@
-#pragma
+#pragma once
 
 #include "PhysicsComponent.h"
+#include "Factory.h"
 
 // COMPONENT CODE
 class TestComponent : public PhysicsComponent {
@@ -15,12 +16,13 @@ public:
 class TestComponentFactory : public ComponentFactory {
 public:
 	TestComponentFactory() {};
-	TestComponent* create();
+	virtual Component* create();
 };
 
 class TestComponentFactoryRegister
 {
-	TestComponentFactoryRegister() { factory.insert({ "TestComponent", new TestComponentFactory() }); }
+	public:
+		TestComponentFactoryRegister() { factory.insert({ "TestComponent", new TestComponentFactory() }); }
 };
 
 TestComponentFactoryRegister testComponentFactoryRegister;

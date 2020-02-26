@@ -1,15 +1,14 @@
 #include "TestComponent.h"
-#include <iostream>
 
 TestComponent::TestComponent() {}
 
 TestComponent::~TestComponent() {}
 
-void TestComponent::update() override {
+void TestComponent::update() 
+{
   // Whatever
 }
 
-TestComponent* TestComponentFactory::create() override {
-  std::cout << "Created new TestComponent";
+Component* TestComponentFactory::create() {
   return new TestComponent();
 }

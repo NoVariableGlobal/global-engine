@@ -1,21 +1,9 @@
+#pragma once
 #include <string>
-#include <map>
 #include "ApplicationContext.h"
 
 class Scene;
-
-
-
-class ComponentFactory
-{
-	public:
-		ComponentFactory() {};
-		virtual Component* create() = 0;
-};
-
-std::map<std::string, ComponentFactory*> factory;
-
-
+class ComponentFactory;
 
 class Game : public OgreBites::ApplicationContext
 {

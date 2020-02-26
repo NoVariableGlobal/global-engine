@@ -2,20 +2,20 @@
 
 #include "Component.h"
 #include <vector>
+#include "Ogre.h"
 
 class Entity {
 protected:
 	// Position of the entity in the 3D world
-	Vector3 position_;
-	
-	// Rotation of the entity in the 3 axis
-	Vector3 rotation_;
+	Ogre::Vector3* _position;
+		// Rotation of the entity in the 3 axis
+	Ogre::Vector3* _rotation;
 	
 	// Scale of the entity in the 3 axis
-	Vector3 scale_;
+	Ogre::Vector3* _scale;
 	
 	// List of components attached to the entity
-	vector<Component*> components;
+	std::vector<Component*> components;
 	
 public:
 	Entity();
@@ -25,12 +25,12 @@ public:
 	void addComponent(Component* c);
 	
 	// Getters and Setters
-	Vector3 getScale();
-	void setScale(Vector3 s);
+	Ogre::Vector3 getScale();
+	void setScale(Ogre::Vector3 s);
 
-	Vector3 getPosition();
-	void setPosition(Vector3 p);
+	Ogre::Vector3 getPosition();
+	void setPosition(Ogre::Vector3 p);
 
-	Vector3 getRotation();
-	void setRotation(Vector3 r);
+	Ogre::Vector3 getRotation();
+	void setRotation(Ogre::Vector3 r);
 };
