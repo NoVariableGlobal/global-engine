@@ -1,0 +1,7 @@
+OgreMain.dll
+OgreMain_d.dll
+RenderSystem_Direct3D11.dll
+RenderSystem_Direct3D11_d.dll
+RenderSystem_GL.dll
+RenderSystem_GL_d.dll
+zlib.dll
