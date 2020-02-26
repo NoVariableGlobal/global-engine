@@ -11,4 +11,4 @@ class ComponentFactory
 		virtual Component* create() = 0;
 };
 
-extern std::map<std::string, ComponentFactory*> factory;
+std::map<std::string, ComponentFactory*> factory;
