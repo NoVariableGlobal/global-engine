@@ -1,12 +1,29 @@
 #pragma
 
-//#include "Component.h"
+#include "Component.h"
 //#include "sdl_includes.h"
 
-class PhysicsComponent {//: virtual public Component {
+#include "Game.h" // ????
+
+
+class PhysicsComponent : public Component {
 public:
 	PhysicsComponent();
 	virtual ~PhysicsComponent();
 	virtual void update() = 0;
 
 };
+
+class PhysicFactory : public ComponentFactory
+{
+	public:
+		PhysicFactory() {};
+		void create() {/* new PhysicsComponent(); */ }; // No se puede pq PhysicsComponent es abstracto
+};
+
+class PhysicFactoryRegister
+{
+	PhysicFactoryRegister() { factory.insert({ "PhysicsComponent", new PhysicFactory() }); }
+};
+
+PhysicFactoryRegister physicFactoryRegister;

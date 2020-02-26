@@ -4,6 +4,18 @@
 
 class Scene;
 
+
+
+class ComponentFactory
+{
+	public:
+		ComponentFactory() {};
+};
+
+std::map<std::string, ComponentFactory*> factory;
+
+
+
 class Game : public OgreBites::ApplicationContext
 {
 	private:
