@@ -1,4 +1,5 @@
 #include "Entity.h"
+Entity::Entity() {}
 
 Entity::~Entity() {}
 
@@ -6,10 +7,6 @@ void Entity::addComponent(Component* c) {
 	components.push_back(c);
 	// Registrar componente en el manager
 }
-
-bool Entity::isActive() { return active; }
-void Entity::setActive(bool a) { active = a; }
-bool Entity::toggleActive() { active = !active; }
 
 Vector3 Entity::getScale() { return scale; }
 void Entity::setScale(Vector3 s) { scale = s; }

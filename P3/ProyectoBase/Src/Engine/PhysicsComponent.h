@@ -14,11 +14,13 @@ public:
 
 };
 
+// PENDING TO REMOVE
+/*
 class PhysicFactory : public ComponentFactory
 {
 	public:
 		PhysicFactory() {};
-		void create() {/* new PhysicsComponent(); */ }; // No se puede pq PhysicsComponent es abstracto
+		void create(); // No se puede pq PhysicsComponent es abstracto
 };
 
 class PhysicFactoryRegister
@@ -27,3 +29,4 @@ class PhysicFactoryRegister
 };
 
 PhysicFactoryRegister physicFactoryRegister;
+*/

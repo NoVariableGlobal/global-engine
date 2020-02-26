@@ -10,6 +10,7 @@ class ComponentFactory
 {
 	public:
 		ComponentFactory() {};
+		virtual Component* create() = 0;
 };
 
 std::map<std::string, ComponentFactory*> factory;
