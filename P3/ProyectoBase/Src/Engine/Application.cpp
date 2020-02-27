@@ -1,3 +1,5 @@
+#include "Loader.h"
+
 #include <OgreRoot.h> // como no lo tenemos metido en nuestro proyecto es mejor poner <> que ""
 
 
@@ -15,6 +17,11 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine,
 #else
     root = new Ogre::Root("plugins.cfg");
 #endif
+
+    Loader loader;
+
+    std::map<std::string, std::string> scenes;
+    loader.readScenes(scenes);
 
     return 0;
 }

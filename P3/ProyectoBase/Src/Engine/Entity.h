@@ -1,10 +1,16 @@
 #pragma once
 
-#include "Component.h"
 #include <vector>
+#include <string>
+
+class Component;
 
 class Entity {
 protected:
+	// Id attached to the entity
+	std::string id;
+	// List of components attached to the entity
+	std::vector<Component*> components;
 	// Position of the entity in the 3D world
 	//Vector3 position_;
 	//
@@ -14,15 +20,15 @@ protected:
 	//// Scale of the entity in the 3 axis
 	//Vector3 scale_;
 	//
-	//// List of components attached to the entity
-	//vector<Component*> components;
 	
 public:
 	Entity();
 	virtual ~Entity();
 
 	// Adds the component to the entity's list of components and to the Component Manager's
-	void addComponent(Component* c);
+	void addComponent(Component* _c);
+
+	void addId(std::string _id);
 	
 	// Getters and Setters
 	//Vector3 getScale();

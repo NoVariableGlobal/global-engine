@@ -7,6 +7,8 @@ void Entity::addComponent(Component* c) {
 	// Registrar componente en el manager
 }
 
+void Entity::addId(std::string _id) { id = _id; }
+
 //bool Entity::isActive() { return active; }
 //void Entity::setActive(bool a) { active = a; }
 //bool Entity::toggleActive() { active = !active; }
