@@ -7,6 +7,6 @@ class InputComponent {//: virtual public Component {
 public:
 	InputComponent();
 	virtual ~InputComponent();
-	virtual void update() = 0;
+	virtual void handleInput() = 0;
 
 };

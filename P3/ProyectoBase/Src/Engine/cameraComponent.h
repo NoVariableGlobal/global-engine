@@ -22,5 +22,6 @@ class CameraComponent /* : public Component */
 		void setNodeTarget(Ogre::SceneNode* target);
 		// void setPosition(Vector3 pos);
 		// void setDirection(Vector3 dir);
+		virtual void updateCamera() = 0;
 
 };
