@@ -22,7 +22,7 @@ public:
 class TestComponentFactoryRegister
 {
 	public:
-		TestComponentFactoryRegister() { factory.insert({ "TestComponent", new TestComponentFactory() }); }
+		TestComponentFactoryRegister() { ComponentFactory::factory.insert({ "TestComponent", new TestComponentFactory() }); }
 };
 
 TestComponentFactoryRegister testComponentFactoryRegister;

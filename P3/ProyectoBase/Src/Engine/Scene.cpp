@@ -12,7 +12,7 @@ void Scene::load(std::string name) {
 
   // TODO: TEST - REMOVE BEFORE MERGING
   Entity* testEntity = new Entity();
-  testEntity->addComponent(factory.find("TestComponent")->second->create());
+  testEntity->addComponent(ComponentFactory::factory.find("TestComponent")->second->create());
 }
 
 //Entity* Scene::getEntitybyId(Id id) {}
