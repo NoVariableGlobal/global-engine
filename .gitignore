@@ -39,5 +39,5 @@ inter/
 
 !Exes/plugins.cfg
 !Exes/plugins_d.cfg
-!Exes/Files/
-!Exes/Sprites/
+!Exes/Files/*.*
+!Exes/Sprites/*.*
