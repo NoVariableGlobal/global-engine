@@ -1,10 +1,12 @@
 #pragma once
 #include <string>
 #include <map>
-#include <json.h>
 
 class Entity;
-//class Json::Value;
+
+namespace Json {
+	class Value;
+}
 
 class Loader
 {
@@ -12,16 +14,12 @@ class Loader
 		Loader();
 		~Loader();
 
-		/*
-		* Read the scenes from scnes.json file
-		*/
+		//Read the scenes from secnes.json file
 		void readScenes(std::map<std::string, std::string>& _scenesQueue);
-		/*
-		* Read the entities of the scene from the scene file
-		*/
+
+		//Read the entities of the scene from the scene file
 		void readEntities(std::string _fileName, std::map<std::string*, Entity*>& _entities);
-		/*
-		* Create an entity
-		*/
+
+		//Create an entity
 		void createEntity(Json::Value& _data, int _it, std::map<std::string*, Entity*>& _entities);
 };

@@ -49,7 +49,7 @@ void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string*, En
 	Entity* entity = new Entity();
 
 	// Set ID to the Entity
-	entity->addId(_data[_it]["id"].asString());
+	entity->setId(_data[_it]["id"].asString());
 
 	// Set COMPONENTS to the Entity
 	Json::Value components = _data[_it]["components"];

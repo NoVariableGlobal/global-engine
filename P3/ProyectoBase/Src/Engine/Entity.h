@@ -1,42 +1,47 @@
 #pragma once
+#include <vector>   
+#include <string>  
+#include <math.h>
 
-#include <vector>
-#include <string>
+namespace Ogre {
+	typedef float Real;
+	template <int dims, typename T> class Vector;
+	typedef Vector<3, Real> Vector3;
+}
 
 class Component;
 
 class Entity {
 protected:
-	// Id attached to the entity
+	// Position of the entity in the 3D world
+	Ogre::Vector3* _position;
+		// Rotation of the entity in the 3 axis
+	Ogre::Vector3* _rotation;
+	// Scale of the entity in the 3 axis
+	Ogre::Vector3* _scale;
+
+	// ID attached to the entity
 	std::string id;
 	// List of components attached to the entity
 	std::vector<Component*> components;
-	// Position of the entity in the 3D world
-	//Vector3 position_;
-	//
-	//// Rotation of the entity in the 3 axis
-	//Vector3 rotation_;
-	//
-	//// Scale of the entity in the 3 axis
-	//Vector3 scale_;
-	//
 	
 public:
 	Entity();
 	virtual ~Entity();
 
 	// Adds the component to the entity's list of components and to the Component Manager's
-	void addComponent(Component* _c);
+	void addComponent(Component* c);
 
-	void addId(std::string _id);
-	
 	// Getters and Setters
-	//Vector3 getScale();
-	//void setScale(Vector3 s);
+	std::string getId();
+	void setId(std::string _id);
 
-	//Vector3 getPosition();
-	//void setPosition(Vector3 p);
+	Ogre::Vector3 getScale();
+	void setScale(Ogre::Vector3 s);
 
-	//Vector3 getRotation();
-	//void setRotation(Vector3 r);
+	Ogre::Vector3 getPosition();
+	void setPosition(Ogre::Vector3 p);
+
+	Ogre::Vector3 getRotation();
+	void setRotation(Ogre::Vector3 r);
 };
