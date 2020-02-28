@@ -48,14 +48,15 @@ void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string*, En
 {
 	Entity* entity = new Entity();
 
-	// Set ID to the Entity
+	// ID of the Entity
 	entity->setId(_data[_it]["id"].asString());
 
-	// Set COMPONENTS to the Entity
+	// List of COMPONENTS to add to the Entity
 	Json::Value components = _data[_it]["components"];
 
 	int numComponents = components.size();
 	for (int j = 0; j < numComponents; j++)
 	{
+		//LAMAR A FACTORIA
 	}
 }
