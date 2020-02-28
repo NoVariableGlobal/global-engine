@@ -105,8 +105,8 @@
     <OutDir>$(SolutionDir)\Exes\</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
     <IntDir>$(SolutionDir)inter\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
-    <IncludePath>$(SolutionDir)Src\$(ProjectName);$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Depedencias\ogre-1.12.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Src\$(ProjectName);$(SolutionDir)Depedencias\fmod\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Depedencias\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)Depedencias\fmod\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -118,8 +118,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)\Exes\</OutDir>
     <IntDir>$(SolutionDir)inter\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
-    <IncludePath>$(SolutionDir)Src\Saluda;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Depedencias\ogre-1.12.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Src\Saluda;$(SolutionDir)Depedencias\fmod\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Depedencias\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)Depedencias\fmod\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
