@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Src\Engine\Application.cpp" />
     <ClCompile Include="..\..\Src\Engine\ApplicationContext.cpp" />
-    <ClCompile Include="..\..\Src\Engine\cameraComponent.cpp" />
+    <ClCompile Include="..\..\Src\Engine\CameraComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\ComponentsManager.cpp" />
     <ClCompile Include="..\..\Src\Engine\Entity.cpp" />
     <ClCompile Include="..\..\Src\Engine\Game.cpp" />
@@ -32,7 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\ApplicationContext.h" />
-    <ClInclude Include="..\..\Src\Engine\cameraComponent.h" />
+    <ClInclude Include="..\..\Src\Engine\CameraComponent.h" />
     <ClInclude Include="..\..\Src\Engine\ComponentsManager.h" />
     <ClInclude Include="..\..\Src\Engine\Entity.h" />
     <ClInclude Include="..\..\Src\Engine\Game.h" />
