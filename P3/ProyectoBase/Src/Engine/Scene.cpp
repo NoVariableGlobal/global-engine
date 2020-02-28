@@ -1,7 +1,7 @@
 #include "Scene.h"
 #include "Game.h"
 #include "Entity.h"
-#include "Factory.h"
+#include "FactoriesFactory.h"
 
 Scene::Scene() {}
 
@@ -12,7 +12,7 @@ void Scene::load(std::string name) {
 
   // TODO: TEST - REMOVE BEFORE MERGING
   Entity* testEntity = new Entity();
-  testEntity->addComponent(ComponentFactory::factory.find("TestComponent")->second->create());
+  //testEntity->addComponent(FactoriesFactory::instance()->find("TestComponent")->create());
 }
 
 //Entity* Scene::getEntitybyId(Id id) {}

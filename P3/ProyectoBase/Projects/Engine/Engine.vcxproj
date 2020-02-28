@@ -23,6 +23,7 @@
     <ClCompile Include="..\..\Src\Engine\ApplicationContext.cpp" />
     <ClCompile Include="..\..\Src\Engine\cameraComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\Entity.cpp" />
+    <ClCompile Include="..\..\Src\Engine\FactoriesFactory.cpp" />
     <ClCompile Include="..\..\Src\Engine\Factory.cpp" />
     <ClCompile Include="..\..\Src\Engine\Game.cpp" />
     <ClCompile Include="..\..\Src\Engine\InputComponent.cpp" />
@@ -36,6 +37,7 @@
     <ClInclude Include="..\..\Src\Engine\ApplicationContext.h" />
     <ClInclude Include="..\..\Src\Engine\cameraComponent.h" />
     <ClInclude Include="..\..\Src\Engine\Entity.h" />
+    <ClInclude Include="..\..\Src\Engine\FactoriesFactory.h" />
     <ClInclude Include="..\..\Src\Engine\Factory.h" />
     <ClInclude Include="..\..\Src\Engine\Game.h" />
     <ClInclude Include="..\..\Src\Engine\InputComponent.h" />
