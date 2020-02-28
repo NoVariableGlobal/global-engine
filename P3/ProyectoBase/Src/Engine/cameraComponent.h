@@ -9,19 +9,31 @@ class CameraMan;
 class Viewport;
 class SceneManager;
 
-class CameraComponent /* : public Component */
+
+class CameraComponent /*: public Component */
 {
 	private:
 		Ogre::Camera* camera = nullptr;
 		Ogre::SceneNode* mCamNode = nullptr;
 		// OgreBites::CameraMan* mCamMgr = nullptr;
 		Ogre::Viewport* vp = nullptr;
+		Ogre::Light* light = nullptr;
+		Ogre::SceneNode* mLightNode = nullptr;
+		OgreBites::CameraMan* mCamMgr = nullptr;
+
 
 	public:
-		CameraComponent(Ogre::SceneManager* mSM);
-		void setNodeTarget(Ogre::SceneNode* target);
-		// void setPosition(Vector3 pos);
-		// void setDirection(Vector3 dir);
-		virtual void updateCamera() = 0;
+		CameraComponent(Ogre::SceneManager* _mSM);
+		~CameraComponent();
+
+		// camera follows a specific node
+		void setNodeTarget(Ogre::SceneNode* _target);
+		// set camera position
+		void setPosition(Ogre::Vector3 _pos);
+		// set camera direction
+		void lookAt(Ogre::Vector3 _pos);
+
+		// called each frame
+		void updateCamera();
 
 };
