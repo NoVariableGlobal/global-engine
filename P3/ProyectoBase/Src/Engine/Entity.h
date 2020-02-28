@@ -1,8 +1,14 @@
 #pragma once
 
 #include "Component.h"
-#include <vector>
-#include "Ogre.h"
+#include <vector>   
+#include <math.h>
+
+namespace Ogre {
+	typedef float Real;
+	template <int dims, typename T> class Vector;
+	typedef Vector<3, Real> Vector3;
+}
 
 class Entity {
 protected:
