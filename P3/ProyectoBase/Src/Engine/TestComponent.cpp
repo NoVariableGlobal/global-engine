@@ -6,6 +6,8 @@
 #include "Ogre.h"
 #include "OgreVector3.h"
 
+//#define TestComponentRegister() (FactoriesFactory::instance()->insert("TestComponent", new TestComponentFactory()));
+//#define execute TestComponentRegister();
 
 TestComponent::TestComponent() { _color = new Ogre::Vector3(); }
 
