@@ -1,11 +1,14 @@
 #pragma once
 
+namespace Json {
+	class Value;
+}
 class Component;
 
 class ComponentFactory
 {
 	public:
-		ComponentFactory(/*Json::Value&*/) {};
-		virtual Component* create() = 0;
+		ComponentFactory() {};
+		virtual Component* create(Json::Value&) = 0;
 };
 

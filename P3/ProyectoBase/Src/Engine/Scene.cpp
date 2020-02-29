@@ -2,6 +2,9 @@
 #include "Game.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
+#include "Loader.h"
+
+#include <iostream>
 
 Scene::Scene() {}
 
@@ -11,8 +14,16 @@ void Scene::load(std::string name) {
   // Read entities and components from data file and create them
 
   // TODO: TEST - REMOVE BEFORE MERGING
-  Entity* testEntity = new Entity();
-  //testEntity->addComponent(FactoriesFactory::instance()->find("TestComponent")->create());
+    Loader loader;
+    loader.readEntities(name, entities);
+
+    std::cout << entities.find("PlayButton")->second->getPosition();
+
+    int a;
+    a = 5;
 }
 
-//Entity* Scene::getEntitybyId(Id id) {}
+Entity* Scene::getEntitybyId(std::string id)
+{
+    return new Entity();
+}

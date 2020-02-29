@@ -1,4 +1,5 @@
 #include "Loader.h"
+#include "Scene.h"
 
 #include <OgreRoot.h> // como no lo tenemos metido en nuestro proyecto es mejor poner <> que ""
 
@@ -22,6 +23,9 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine,
 
     std::map<std::string, std::string> scenes;
     loader.readScenes(scenes);
+
+    Scene scene;
+    scene.load("menu.json");
 
     return 0;
 }

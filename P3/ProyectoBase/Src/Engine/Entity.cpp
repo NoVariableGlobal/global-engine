@@ -3,7 +3,12 @@
 #include "OgreVector3.h"
 
 
-Entity::Entity() {}
+Entity::Entity() 
+{
+	_position = new Ogre::Vector3();
+	_scale = new Ogre::Vector3();
+	_rotation = new Ogre::Vector3();
+}
 
 Entity::~Entity() {}
 
@@ -16,10 +21,10 @@ std::string Entity::getId() { return id; }
 void Entity::setId(std::string _id) { id = _id; }
 
 Ogre::Vector3 Entity::getScale() { return *_scale; }
-void Entity::setScale(Ogre::Vector3 s) { _scale = &s; }
+void Entity::setScale(Ogre::Vector3 s) { *_scale = s; }
 
 Ogre::Vector3 Entity::getPosition() { return *_position; }
-void Entity::setPosition(Ogre::Vector3 p) { _position = &p; }
+void Entity::setPosition(Ogre::Vector3 p) { *_position = p; }
 
 Ogre::Vector3 Entity::getRotation() { return *_rotation; }
-void Entity::setRotation(Ogre::Vector3 r) { _rotation = &r; }
+void Entity::setRotation(Ogre::Vector3 r) { *_rotation = r; }

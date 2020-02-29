@@ -14,11 +14,11 @@ class Component;
 class Entity {
 protected:
 	// Position of the entity in the 3D world
-	Ogre::Vector3* _position;
+	Ogre::Vector3* _position = nullptr;
 		// Rotation of the entity in the 3 axis
-	Ogre::Vector3* _rotation;
+	Ogre::Vector3* _rotation = nullptr;
 	// Scale of the entity in the 3 axis
-	Ogre::Vector3* _scale;
+	Ogre::Vector3* _scale = nullptr;
 
 	// ID attached to the entity
 	std::string id;
