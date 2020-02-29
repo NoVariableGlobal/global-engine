@@ -12,6 +12,9 @@ void Entity::addComponent(Component* c) {
 	// Registrar componente en el manager
 }
 
+std::string Entity::getId() { return id; }
+void Entity::setId(std::string _id) { id = _id; }
+
 Ogre::Vector3 Entity::getScale() { return *_scale; }
 void Entity::setScale(Ogre::Vector3 s) { _scale = &s; }
 

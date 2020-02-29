@@ -27,6 +27,7 @@
     <ClCompile Include="..\..\Src\Engine\Factory.cpp" />
     <ClCompile Include="..\..\Src\Engine\Game.cpp" />
     <ClCompile Include="..\..\Src\Engine\InputComponent.cpp" />
+    <ClCompile Include="..\..\Src\Engine\Loader.cpp" />
     <ClCompile Include="..\..\Src\Engine\PhysicsComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\RenderComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\Scene.cpp" />
@@ -41,6 +42,7 @@
     <ClInclude Include="..\..\Src\Engine\Factory.h" />
     <ClInclude Include="..\..\Src\Engine\Game.h" />
     <ClInclude Include="..\..\Src\Engine\InputComponent.h" />
+    <ClInclude Include="..\..\Src\Engine\Loader.h" />
     <ClInclude Include="..\..\Src\Engine\PhysicsComponent.h" />
     <ClInclude Include="..\..\Src\Engine\RenderComponent.h" />
     <ClInclude Include="..\..\Src\Engine\Scene.h" />
@@ -102,31 +104,31 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)\Exes\</OutDir>
+    <OutDir>$(SolutionDir)Exes\</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
     <IntDir>$(SolutionDir)inter\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
     <IncludePath>$(SolutionDir)Src\Saluda;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)\Exes\</OutDir>
+    <OutDir>$(SolutionDir)Exes\</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
     <IntDir>$(SolutionDir)inter\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
     <IncludePath>$(SolutionDir)Src\$(ProjectName);$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Depedencias\ogre-1.12.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Depedencias\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)Depedencias\jsoncpp-master\build\src\lib_json\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)\Exes\</OutDir>
+    <OutDir>$(SolutionDir)Exes\</OutDir>
     <IntDir>$(SolutionDir)inter\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
     <IncludePath>$(SolutionDir)Src\Saluda;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)\Exes\</OutDir>
+    <OutDir>$(SolutionDir)Exes\</OutDir>
     <IntDir>$(SolutionDir)inter\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
     <IncludePath>$(SolutionDir)Src\Saluda;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Depedencias\ogre-1.12.5\Build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Depedencias\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)Depedencias\jsoncpp-master\build\src\lib_json\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -136,7 +138,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Src\Saluda;$(SolutionDir)Depedencias\ogre-1.12.4\OgreMain\include;$(SolutionDir)Depedencias\ogre-1.12.4\Build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\jsoncpp-master\include;$(SolutionDir)Src\Saluda;$(SolutionDir)Depedencias\ogre-1.12.4\OgreMain\include;$(SolutionDir)Depedencias\ogre-1.12.4\Build\include;$(SolutionDir)Depedencias\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,12 +153,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Src\Saluda;$(SolutionDir)Depedencias\ogre-1.12.5\OgreMain\include;$(SolutionDir)Depedencias\ogre-1.12.5\Build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\jsoncpp-master\include;$(SolutionDir)Src\Saluda;$(SolutionDir)Depedencias\ogre-1.12.5\OgreMain\include;$(SolutionDir)Depedencias\ogre-1.12.5\Build\include;$(SolutionDir)Depedencias\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OgreMain_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain_d.lib;jsoncpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -169,7 +171,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Src\Saluda;$(SolutionDir)Depedencias\ogre-1.12.4\OgreMain\include;$(SolutionDir)Depedencias\ogre-1.12.4\Build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\jsoncpp-master\include;$(SolutionDir)Src\Saluda;$(SolutionDir)Depedencias\ogre-1.12.4\OgreMain\include;$(SolutionDir)Depedencias\ogre-1.12.4\Build\include;$(SolutionDir)Depedencias\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -188,14 +190,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Src\Saluda;$(SolutionDir)Depedencias\ogre-1.12.5\OgreMain\include;$(SolutionDir)Depedencias\ogre-1.12.5\Build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencias\jsoncpp-master\include;$(SolutionDir)Src\Saluda;$(SolutionDir)Depedencias\ogre-1.12.5\OgreMain\include;$(SolutionDir)Depedencias\ogre-1.12.5\Build\include;$(SolutionDir)Depedencias\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OgreMain.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OgreMain.lib;jsoncpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
