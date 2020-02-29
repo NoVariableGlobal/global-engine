@@ -19,6 +19,8 @@ public:
 	ComponentsManager();
 	~ComponentsManager();
 
+	void clearComponents();
+
 	// add physics component to list
 	void addPC(PhysicsComponent* _physicsComponent);
 	// delete physics component from list

@@ -12,6 +12,11 @@ ComponentsManager::ComponentsManager()
 
 ComponentsManager::~ComponentsManager()
 {
+	clearComponents();
+}
+
+void ComponentsManager::clearComponents()
+{
 	while (!physics.empty())
 		physics.pop_back();
 

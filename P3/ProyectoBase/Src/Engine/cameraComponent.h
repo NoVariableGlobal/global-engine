@@ -8,14 +8,13 @@ class SceneNode;
 class CameraMan;
 class Viewport;
 class SceneManager;
-
+class ApplicationContext;
 
 class CameraComponent /*: public Component */
 {
 	private:
 		Ogre::Camera* camera = nullptr;
 		Ogre::SceneNode* mCamNode = nullptr;
-		// OgreBites::CameraMan* mCamMgr = nullptr;
 		Ogre::Viewport* vp = nullptr;
 		Ogre::Light* light = nullptr;
 		Ogre::SceneNode* mLightNode = nullptr;
