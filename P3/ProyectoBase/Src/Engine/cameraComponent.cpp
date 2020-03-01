@@ -30,6 +30,8 @@ CameraComponent::CameraComponent(Ogre::SceneManager* _mSM) /* : Component() */
 	mCamMgr = new OgreBites::CameraMan(mCamNode);
 	addInputListener(mCamMgr);
 	mCamMgr->setStyle(OgreBites::CS_ORBIT);
+
+	cameraOffset = Ogre::Vector3(0, 0, 0);
 }
 
 CameraComponent::~CameraComponent()
@@ -37,10 +39,15 @@ CameraComponent::~CameraComponent()
 	delete mCamMgr; mCamMgr = nullptr;
 }
 
-void CameraComponent::setNodeTarget(Ogre::SceneNode* target)
+void CameraComponent::setNodeTarget(Ogre::SceneNode* _target)
  {
-	target->attachObject(mCamNode);
+	target = _target;
  }
+
+void CameraComponent::setCameraOffset(Ogre::Vector3(_offset))
+{
+	cameraOffset = _offset;
+}
  
 void CameraComponent::setPosition(Ogre::Vector3 pos)
  {
@@ -54,4 +61,9 @@ void CameraComponent::lookAt(Ogre::Vector3 pos)
 
 void CameraComponent::updateCamera()
 {
+	if (target != nullptr)
+	{
+		setPosition(target->getPosition() + cameraOffset);
+		lookAt(target->getPosition());
+	}
 }

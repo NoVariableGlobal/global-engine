@@ -10,6 +10,7 @@ class Viewport;
 class SceneManager;
 class ApplicationContext;
 
+// TO DO: fix errors related to Ogre libraries and ApplicationContext
 class CameraComponent /*: public Component */
 {
 	private:
@@ -20,6 +21,10 @@ class CameraComponent /*: public Component */
 		Ogre::SceneNode* mLightNode = nullptr;
 		OgreBites::CameraMan* mCamMgr = nullptr;
 
+		// who the camera follows
+		Ogre::SceneNode* target = nullptr;
+		// camera offset relative to followed object
+		Ogre::Vector3 cameraOffset;
 
 	public:
 		CameraComponent(Ogre::SceneManager* _mSM);
@@ -27,6 +32,8 @@ class CameraComponent /*: public Component */
 
 		// camera follows a specific node
 		void setNodeTarget(Ogre::SceneNode* _target);
+		// set camera offset
+		void setCameraOffset(Ogre::Vector3(_offset));
 		// set camera position
 		void setPosition(Ogre::Vector3 _pos);
 		// set camera direction
