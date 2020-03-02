@@ -6,9 +6,6 @@
 #include "Ogre.h"
 #include "OgreVector3.h"
 
-//#define TestComponentRegister() (FactoriesFactory::instance()->insert("TestComponent", new TestComponentFactory()));
-//#define execute TestComponentRegister();
-
 TestComponent::TestComponent() { _color = new Ogre::Vector3(); }
 
 TestComponent::~TestComponent() {}
@@ -38,8 +35,6 @@ Ogre::Vector3* TestComponent::getColor()
 	return _color;
 }
 
-
-
 // FACTORY INFRASTRUCTURE
 class TestComponentFactory : public ComponentFactory {
 public:
@@ -53,11 +48,4 @@ public:
 	};
 };
 
-class TestComponentFactoryRegister
-{
-public:
-	TestComponentFactoryRegister() { FactoriesFactory::instance()->insert("TestComponent", new TestComponentFactory()); }
-};
-
-
-TestComponentFactoryRegister testComponentFactoryRegister;
+REGISTER_FACTORY("TestComponent", TestComponent);
