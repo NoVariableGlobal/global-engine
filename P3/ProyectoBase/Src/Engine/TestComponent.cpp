@@ -5,6 +5,7 @@
 #include "FactoriesFactory.h"
 #include "Ogre.h"
 #include "OgreVector3.h"
+#include "Entity.h"
 
 TestComponent::TestComponent() { _color = new Ogre::Vector3(); }
 
@@ -39,9 +40,10 @@ Ogre::Vector3* TestComponent::getColor()
 class TestComponentFactory : public ComponentFactory {
 public:
 	TestComponentFactory() {};
-	virtual Component* create(Json::Value& _data) 
+	virtual Component* create(Entity* father, Json::Value& _data) 
 	{
 		TestComponent* testComponent = new TestComponent();
+		testComponent->setFather(father);
 		testComponent->setMaterial(_data["material"].asString());
 		testComponent->setColor(Ogre::Vector3(_data["color"][0].asInt(), _data["color"][1].asInt(), _data["color"][2].asInt()));
 		return testComponent;

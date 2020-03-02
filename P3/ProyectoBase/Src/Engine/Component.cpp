@@ -7,10 +7,12 @@ Component::Component() {}
 Component::~Component() {}
 
 // Returns true if the component is active, false otherwise
-bool Entity::isActive() { return active; }
+bool Component::isActive() { return _active; }
 
 // Sets whether or not the component should update
-void Entity::setActive(bool a) { active = a; }
+void Component::setActive(bool a) { _active = a; }
 
 // Activates the component if it is deactivated, deactivates it otherwise
-bool Entity::toggleActive() { active = !active; }
+void Component::toggleActive() { _active = !_active; }
+
+void Component::setFather(Entity* father) { _father = father; }
