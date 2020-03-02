@@ -1,36 +1,32 @@
 #pragma once
+#include<map>
+#include <string>
 
-#include "Component.h"
-#include <vector>
+namespace Ogre {
+	typedef float Real;
+	template <int dims, typename T> class Vector;
+	typedef Vector<3, Real> Vector3;
+}
+
+class Component;
 
 class Entity {
-protected:
-	// Position of the entity in the 3D world
-	Vector3 position_;
-	
-	// Rotation of the entity in the 3 axis
-	Vector3 rotation_;
-	
-	// Scale of the entity in the 3 axis
-	Vector3 scale_;
-	
+private:
+
+	// ID attached to the entity
+	std::string id;
 	// List of components attached to the entity
-	vector<Component*> components;
+	std::map<std::string, Component*> components;
 	
 public:
 	Entity();
 	virtual ~Entity();
 
 	// Adds the component to the entity's list of components and to the Component Manager's
-	void addComponent(Component* c);
-	
+	void addComponent(std::string name, Component* c);
+	Component* getComponent(std::string name);
+
 	// Getters and Setters
-	Vector3 getScale();
-	void setScale(Vector3 s);
-
-	Vector3 getPosition();
-	void setPosition(Vector3 p);
-
-	Vector3 getRotation();
-	void setRotation(Vector3 r);
+	std::string getId();
+	void setId(std::string _id);
 };

@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "ApplicationContext.h"
 #include "Scene.h"
 #include <string>
 
@@ -10,6 +9,9 @@ Game::Game()
 	//...
 	initScenes();
 	//...
+
+	// TODO: TEST - REMOVE BEFORE MERGING
+	//setScene(new Scene());
 }
 
 Game::~Game()
@@ -50,5 +52,7 @@ void Game::update()
 
 void Game::setScene(std::string scene)
 {
-	//...
+	// TODO: TEST - REMOVE BEFORE MERGING
+	//currentScene = scene;
+	//currentScene->load();
 }

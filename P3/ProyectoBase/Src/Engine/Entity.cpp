@@ -1,21 +1,24 @@
 #include "Entity.h"
+#include"Ogre.h"
+#include "OgreVector3.h"
+
+
+Entity::Entity() {}
 
 Entity::~Entity() {}
 
-void Entity::addComponent(Component* c) {
-	components.push_back(c);
+void Entity::addComponent(std::string name, Component* c) 
+{
+	components.insert({ name, c });
 	// Registrar componente en el manager
 }
 
-bool Entity::isActive() { return active; }
-void Entity::setActive(bool a) { active = a; }
-bool Entity::toggleActive() { active = !active; }
+Component* Entity::getComponent(std::string name)
+{ 
+	int a;
+	a = 5;
+	return components.find(name)->second; 
+}
 
-Vector3 Entity::getScale() { return scale; }
-void Entity::setScale(Vector3 s) { scale = s; }
-
-Vector3 Entity::getPosition() { return position; }
-void Entity::setPosition(Vector3 p) { position = p; }
-
-Vector3 Entity::getRotation() { return rotation; }
-void Entity::setRotation(Vector3 r) { rotation = r; }
+std::string Entity::getId() { return id; }
+void Entity::setId(std::string _id) { id = _id; }
