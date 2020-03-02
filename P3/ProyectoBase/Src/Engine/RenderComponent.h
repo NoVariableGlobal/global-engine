@@ -7,6 +7,6 @@ class RenderComponent {//: virtual public Component {
 public:
 	RenderComponent();
 	virtual ~RenderComponent();
-	virtual void update() = 0;
+	virtual void render() = 0;
 
 };
