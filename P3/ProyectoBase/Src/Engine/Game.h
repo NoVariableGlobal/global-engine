@@ -8,7 +8,7 @@ class ComponentFactory;
 class Game : public OgreBites::ApplicationContext
 {
 	private:
-		//Guarda <nombre de la escena, fichero de la escena>
+		// Save <scene name, scene file>
 		std::map<std::string, std::string> scenesQueue;
 		Scene* currentScene = nullptr;
 
