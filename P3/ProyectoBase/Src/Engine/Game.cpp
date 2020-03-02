@@ -27,7 +27,7 @@ Game::~Game()
 void Game::initContext()
 {
 	//...
-	ApplicationContext();
+	//ApplicationContext();
 	//...
 }
 

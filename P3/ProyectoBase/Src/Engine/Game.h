@@ -4,7 +4,7 @@
 
 class Scene;
 
-class Game : public OgreBites::ApplicationContext
+class Game
 {
 	private:
 		std::map<std::string, std::string> scenesQueue;
