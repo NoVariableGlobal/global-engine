@@ -3,12 +3,16 @@
 #include "ApplicationContext.h"
 
 class Scene;
+class ComponentsManager;
 
 class Game : public OgreBites::ApplicationContext
 {
 	private:
 		std::map<std::string, std::string> scenesQueue;
 		Scene* currentScene = nullptr;
+
+		// to manage the game
+		ComponentsManager* componentsManager;
 
 		bool exit = false;
 		bool end = false;

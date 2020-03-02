@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "ApplicationContext.h"
+#include "ComponentsManager.h"
 #include "Scene.h"
 #include <string>
 
@@ -10,6 +11,7 @@ Game::Game()
 	//...
 	initScenes();
 	//...
+	componentsManager = new ComponentsManager();
 }
 
 Game::~Game()
@@ -42,13 +44,20 @@ void Game::update()
 	while (!exit)
 	{
 		//...
-		//currentScene.update();
+		//currentScene->update();
+		componentsManager->update();
+		componentsManager->handleInput();
+		componentsManager->updateSound();
+		componentsManager->updateCamera();
 		//...
 	}
 	//...
 }
 
 void Game::setScene(std::string scene)
-{
+{	
+	componentsManager->clearComponents();
+	
+	currentScene->load(scene);
 	//...
 }

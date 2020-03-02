@@ -6,13 +6,12 @@
 #include <OgreRenderWindow.h>
 #include <OgreViewport.h>
 #include <OgreDataStream.h>
-//#include <OgreBitesConfigDialog.h>
-//#include <OgreWindowEventUtilities.h>
+#include <OgreBitesConfigDialog.h>
+#include <OgreWindowEventUtilities.h>
 
-/*#include <SDL_video.h>
+#include <SDL_video.h>
 #include <SDL_syswm.h>
-#include <SDLInputMapping.h>*/
-
+#include <SDLInputMapping.h>
 
 namespace OgreBites {
 
@@ -20,11 +19,11 @@ namespace OgreBites {
 		mAppName = appName;
 		mFSLayer = new Ogre::FileSystemLayer(mAppName);
 		mRoot = nullptr;
-		//mOverlaySystem = nullptr;
+		mOverlaySystem = nullptr;
 		mFirstRun = true;
 
-		//mShaderGenerator = nullptr;
-		//mMaterialMgrListener = nullptr;
+		mShaderGenerator = nullptr;
+		mMaterialMgrListener = nullptr;
 	}
 
 	ApplicationContext::~ApplicationContext() {
@@ -41,9 +40,9 @@ namespace OgreBites {
 	}
 
 	//getOverlaySystem
-	/*Ogre::OverlaySystem* ApplicationContext::getOverlaySystem() const {
+	Ogre::OverlaySystem* ApplicationContext::getOverlaySystem() const {
 		return mOverlaySystem;
-	}*/
+	}
 
 	void ApplicationContext::initApp() {
 		createRoot();
@@ -67,9 +66,9 @@ namespace OgreBites {
 	}
 
 	bool ApplicationContext::frameRenderingQueued(const Ogre::FrameEvent& evt) {
-		/*for (std::set<InputListener*>::iterator it = mInputListeners.begin(); it != mInputListeners.end(); ++it) {
+		for (std::set<InputListener*>::iterator it = mInputListeners.begin(); it != mInputListeners.end(); ++it) {
 			(*it)->frameRendered(evt);
-		}*/
+		}
 
 		return true;
 	}
@@ -91,7 +90,7 @@ namespace OgreBites {
 	void ApplicationContext::windowFocusChange(Ogre::RenderWindow* rw) {}
 
 	// _fireInputEvent
-	/*void ApplicationContext::_fireInputEvent(const Event& event) const {
+	void ApplicationContext::_fireInputEvent(const Event& event) const {
 		for (std::set<InputListener*>::iterator it = mInputListeners.begin(); it != mInputListeners.end(); ++it) {
 			InputListener& l = **it;
 
@@ -128,10 +127,10 @@ namespace OgreBites {
 			}
 
 		}
-	}*/
+	}
 
 	bool ApplicationContext::initialiseRTShaderSystem() {
-		/*if (Ogre::RTShader::ShaderGenerator::initialize()) {
+		if (Ogre::RTShader::ShaderGenerator::initialize()) {
 			mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
 			// Core shader libs not found -> shader generating will fail.
 			if (mRTShaderLibPath.empty()) {
@@ -142,14 +141,14 @@ namespace OgreBites {
 				mMaterialMgrListener = new SGTechniqueResolverListener(mShaderGenerator);
 				Ogre::MaterialManager::getSingleton().addListener(mMaterialMgrListener);
 			}
-		}*/
+		}
 
 		return true;
 	}
 	
 	void ApplicationContext::destroyRTShaderSystem() {
 		// Restore default scheme.
-		/*Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
+		Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
 
 		// Unregister the material manager listener.
 		if (mMaterialMgrListener != nullptr) {
@@ -162,7 +161,7 @@ namespace OgreBites {
 		if (mShaderGenerator != nullptr) {
 			Ogre::RTShader::ShaderGenerator::destroy();
 			mShaderGenerator = nullptr;
-		}*/
+		}
 	}
 
 	void ApplicationContext::setup() {
@@ -184,7 +183,7 @@ namespace OgreBites {
 
 		if (!Ogre::FileSystemLayer::fileExists(pluginsPath)) {
 			// IG2: OGRE_CONFIG_DIR tiene un valor absoluto no portable
-			//pluginsPath = Ogre::FileSystemLayer::resolveBundlePath(OGRE_CONFIG_DIR "/plugins" OGRE_BUILD_SUFFIX ".cfg");
+			pluginsPath = Ogre::FileSystemLayer::resolveBundlePath(OGRE_CONFIG_DIR "/plugins" OGRE_BUILD_SUFFIX ".cfg");
 			OGRE_EXCEPT(Ogre::Exception::ERR_FILE_NOT_FOUND, "plugins.cfg",	"ApplicationContext::createRoot");
 		}
 
@@ -195,23 +194,23 @@ namespace OgreBites {
 
 		mRoot = new Ogre::Root(pluginsPath, mFSLayer->getWritablePath("ogre.cfg"), mFSLayer->getWritablePath("ogre.log"));
 
-		//mRoot->showConfigDialog(OgreBites::getNativeConfigDialog());
+		mRoot->showConfigDialog(OgreBites::getNativeConfigDialog());
 
-		//mOverlaySystem = new Ogre::OverlaySystem();
+		mOverlaySystem = new Ogre::OverlaySystem();
 	}
 
 	bool ApplicationContext::oneTimeConfig() {
 		if (!mRoot->restoreConfig()) {
-			//return mRoot->showConfigDialog(OgreBites::getNativeConfigDialog());
+			return mRoot->showConfigDialog(OgreBites::getNativeConfigDialog());
 		}
 		else return true;
 	}
 
 	void ApplicationContext::setWindowGrab(bool _grab) {
-		/*SDL_bool grab = SDL_bool(_grab);
+		SDL_bool grab = SDL_bool(_grab);
 		SDL_SetWindowGrab(mWindow.native, grab);
-		//SDL_SetRelativeMouseMode(grab);
-		SDL_ShowCursor(grab);*/
+		SDL_SetRelativeMouseMode(grab);
+		SDL_ShowCursor(grab);
 	}
 
 	void ApplicationContext::locateResources() {
@@ -303,7 +302,7 @@ namespace OgreBites {
 		// Destroy the RT Shader System.
 		destroyRTShaderSystem();
 
-		/*if (mWindow.render != nullptr) {
+		if (mWindow.render != nullptr) {
 			mRoot->destroyRenderTarget(mWindow.render);
 			mWindow.render = nullptr;
 		}
@@ -315,11 +314,11 @@ namespace OgreBites {
 			SDL_DestroyWindow(mWindow.native);
 			SDL_QuitSubSystem(SDL_INIT_VIDEO);
 			mWindow.native = nullptr;
-		}*/
+		}
 	}
 
 	void ApplicationContext::pollEvents() {  // from frameStarted
-		/*if (mWindow.native == nullptr) {
+		if (mWindow.native == nullptr) {
 			return;  // SDL events not initialized
 		}
 
@@ -347,21 +346,21 @@ namespace OgreBites {
 		}
 
 		// just avoid "window not responding"
-		WindowEventUtilities::messagePump();*/
+		WindowEventUtilities::messagePump();
 	}
 
 	//addInputListener
-	/*void ApplicationContext::addInputListener(InputListener* lis) {
+	void ApplicationContext::addInputListener(InputListener* lis) {
 		mInputListeners.insert(lis);
-	}*/
+	}
 
 	//removeInputListener
-	/*void ApplicationContext::removeInputListener(InputListener* lis) {
+	void ApplicationContext::removeInputListener(InputListener* lis) {
 		mInputListeners.erase(lis);
-	}*/
+	}
 
 	//createWindow
-	/*NativeWindowPair ApplicationContext::createWindow(const Ogre::String& name) {
+	NativeWindowPair ApplicationContext::createWindow(const Ogre::String& name) {
 		uint32_t w, h; 
 		Ogre::NameValuePairList miscParams;
 		
@@ -386,7 +385,7 @@ namespace OgreBites {
 		if (ropts["Full Screen"].currentValue == "Yes") {
 			flags = SDL_WINDOW_FULLSCREEN;
 		}
-		//else flags = SDL_WINDOW_RESIZABLE;
+		else flags = SDL_WINDOW_RESIZABLE;
 
 		mWindow.native = SDL_CreateWindow(name.c_str(),	SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, flags);
 
@@ -399,5 +398,5 @@ namespace OgreBites {
 		mWindow.render = mRoot->createRenderWindow(name, w, h, false, &miscParams);
 		
 		return mWindow;
-	}*/
+	}
 }
