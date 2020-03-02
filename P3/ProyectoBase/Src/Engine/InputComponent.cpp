@@ -1,5 +1,5 @@
 #include "InputComponent.h"
 
-InputComponent::InputComponent() {}
+InputComponent::InputComponent() {} // Component()
 
 InputComponent::~InputComponent() {}

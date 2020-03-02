@@ -1,20 +1,15 @@
 #include "Game.h"
 #include "Scene.h"
 #include "Loader.h"
-#include "ComponentsManager.h"
 #include <string>
 
 Game::Game() { }
 
+
 Game::~Game()
 {
-	currentScene = nullptr;
-	componentsManager = nullptr;
-
-	for (auto it = scenesQueue.begin; it != scenesQueue.end; it++) {
-		delete *it;
-		it = nullptr;
-	}
+  delete scene;
+	scene = nullptr;
 }
 
 void Game::initContext()
@@ -24,11 +19,12 @@ void Game::initContext()
 
 void Game::init(std::string firstScene)
 {
-	loader = new Loader();
-
-	initContext();
-
-	componentsManager = new ComponentsManager();
+  initContext();
+  
+	Loader loader;
+	loader.readScenes(scenesQueue);
+  
+  scene = new Scene();
 	setScene(firstScene);
 }
 
@@ -36,19 +32,11 @@ void Game::update()
 {
 	while (!exit)
 	{
-		currentScene->update();
-		componentsManager->update();
-		componentsManager->handleInput();
-		componentsManager->updateSound();
-		componentsManager->updateCamera();
+		scene->update();
 	}
 }
 
 void Game::setScene(std::string scene)
-{	
-	componentsManager->clearComponents();
-
-	loader->readScenes(scenesQueue);
-
-	currentScene->load(scene);
+{
+	scene->load(scenesQueue.find(scene)->second);
 }

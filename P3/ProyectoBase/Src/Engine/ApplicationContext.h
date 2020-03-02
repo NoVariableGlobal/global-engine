@@ -6,7 +6,6 @@
 #include <string>
 
 //#include <OgreBitesPrerequisites.h>
-//#include <OgreBuildSettings.h>
 #include <OgreLogManager.h>
 #include <OgrePlugin.h>
 #include <OgreFileSystemLayer.h>

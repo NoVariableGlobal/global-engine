@@ -1,27 +1,23 @@
+#pragma once
 #include <string>
-#include <map>
 #include "ApplicationContext.h"
 
 class Scene;
-class ComponentsManager;
 class Loader;
 
 class Game : public OgreBites::ApplicationContext
 {
 	private:
+		// Save <scene name, scene file>
 		std::map<std::string, std::string> scenesQueue;
-		Scene* currentScene = nullptr;
-
-		// to manage the game
-		ComponentsManager* componentsManager;
-		Loader* loader;
+		Scene* scene = nullptr;
 
 		bool exit = false;
 		bool end = false;
 		bool win = false;
 
 	public:
-		Game();
+		Game(std::string firtscene);
 		~Game();
 
 		/*

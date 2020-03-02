@@ -1,9 +1,9 @@
-#pragma
+#pragma once
 
-//#include "Component.h"
-//#include "sdl_includes.h"
+#include "Component.h"
 
-class PhysicsComponent {//: virtual public Component {
+
+class PhysicsComponent : public Component {
 public:
 	PhysicsComponent();
 	virtual ~PhysicsComponent();
