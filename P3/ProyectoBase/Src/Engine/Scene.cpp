@@ -23,6 +23,18 @@ void Scene::load(std::string name) {
     a = 5;
 }
 
+void Scene::update()
+{
+	while (!exit) {
+		//UNDO COMMENT BEFORE MERGING
+		/*componentManager.update();
+		componentManager.handleInput();
+		componentManager.render();
+		componentManager.updateSound();
+		componentManager.updateCamera();*/
+	}
+}
+
 Entity* Scene::getEntitybyId(std::string id)
 {
     return new Entity();

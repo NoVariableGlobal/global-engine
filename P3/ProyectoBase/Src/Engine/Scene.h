@@ -5,10 +5,13 @@
 
 class Component;
 class Entity;
+class ComponentsManager;
 
 class Scene {
 
-  std::map<std::string, Entity*> entities;
+  std::map<std::string, Entity*> entities; 
+  bool exit = false;
+  ComponentsManager* componentManager;
 
 public:
   Scene();
