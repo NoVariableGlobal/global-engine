@@ -5,12 +5,16 @@
 	engine component or game component should inherit
 */
 
+class Entity;
+
 class Component {
 private:
-	
 	// Whether or not the component should be updated
-	bool active_ = false;
-	
+	bool _active = false;
+
+protected:
+	Entity* _father = nullptr;
+
 public:
 	Component() {};
 	virtual ~Component() {};
@@ -21,5 +25,7 @@ public:
 	// Getters and setters
 	bool isActive();
 	void setActive(bool active);
-	bool toggleActive();
+	void toggleActive();
+
+	void setFather(Entity* father);
 };

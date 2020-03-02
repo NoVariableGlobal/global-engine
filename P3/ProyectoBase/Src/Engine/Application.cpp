@@ -3,7 +3,6 @@
 
 #include <OgreRoot.h> // como no lo tenemos metido en nuestro proyecto es mejor poner <> que ""
 
-
 #ifdef _DEBUG
 int main()
 #else

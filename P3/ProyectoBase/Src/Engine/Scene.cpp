@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Loader.h"
+#include "TransformComponent.h"
 
 #include <iostream>
 
@@ -13,6 +14,8 @@ Scene::~Scene() {}
 void Scene::load(std::string name) {  
     Loader loader;
     loader.readEntities(name, entities);
+    
+    std::cout << dynamic_cast<TransformComponent*>(entities.find("PlayButton")->second->getComponent("TransformComponent"))->getPosition();
 }
 
 void Scene::update()
