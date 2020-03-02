@@ -6,16 +6,15 @@
 #include <string>
 
 //#include <OgreBitesPrerequisites.h>
-#include <OgreBuildSettings.h>
 #include <OgreLogManager.h>
 #include <OgrePlugin.h>
 #include <OgreFileSystemLayer.h>
 
 #include <OgreFrameListener.h>
-//#include <OgreSGTechniqueResolverListener.h>
-//#include <OgreInput.h>
-//#include <OgreOverlaySystem.h>
-//#include <SDL.h>
+/*#include <OgreSGTechniqueResolverListener.h>
+#include <OgreInput.h>
+#include <OgreOverlaySystem.h>
+#include <SDL.h>*/
 
 namespace OgreBites {
 	//typedef SDL_Window NativeWindowType;
@@ -34,7 +33,7 @@ namespace OgreBites {
 	*/
 	class ApplicationContext : public Ogre::FrameListener {
 	public:
-		explicit ApplicationContext(const Ogre::String& appName = OGRE_VERSION_NAME);
+		explicit ApplicationContext(const Ogre::String& appName);
 
 		virtual ~ApplicationContext();
 		
@@ -79,28 +78,28 @@ namespace OgreBites {
 
 		void pollEvents();
 
-		/*void addInputListener(InputListener* lis);
+		//void addInputListener(InputListener* lis);
 
-		void removeInputListener(InputListener* lis);
+		//void removeInputListener(InputListener* lis);
 
-		virtual NativeWindowPair createWindow(const Ogre::String& name);*/
+		//virtual NativeWindowPair createWindow(const Ogre::String& name);
 
 	protected:
 		Ogre::Root* mRoot;                                  // OGRE root
 		//NativeWindowPair mWindow;                           // the window
 
 		Ogre::FileSystemLayer* mFSLayer;                    // File system abstraction layer
-		//Ogre::OverlaySystem* mOverlaySystem;                // Overlay system
+		Ogre::OverlaySystem* mOverlaySystem;                // Overlay system
 		
-		//std::set<InputListener*> mInputListeners;
+		std::set<InputListener*> mInputListeners;
 
 		bool mFirstRun;
 		Ogre::String mAppName;
 		Ogre::String mSolutionPath;                         // Variable para hacer las rutas relativas al directorio de la solución
 		
 		Ogre::String mRTShaderLibPath;
-		//Ogre::RTShader::ShaderGenerator * mShaderGenerator; // The Shader generator instance.
-		//SGTechniqueResolverListener * mMaterialMgrListener; // Shader generator material manager listener.
+		Ogre::RTShader::ShaderGenerator * mShaderGenerator; // The Shader generator instance.
+		SGTechniqueResolverListener * mMaterialMgrListener; // Shader generator material manager listener.
 
 	};
 }

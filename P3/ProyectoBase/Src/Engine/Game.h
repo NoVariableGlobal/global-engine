@@ -3,14 +3,14 @@
 #include "ApplicationContext.h"
 
 class Scene;
-class ComponentFactory;
+class Loader;
 
 class Game : public OgreBites::ApplicationContext
 {
 	private:
 		// Save <scene name, scene file>
 		std::map<std::string, std::string> scenesQueue;
-		Scene* currentScene = nullptr;
+		Scene* scene = nullptr;
 
 		bool exit = false;
 		bool end = false;
@@ -25,9 +25,9 @@ class Game : public OgreBites::ApplicationContext
 		*/
 		void initContext();
 		/*
-		* Inicializar el mapa de escenas
+		* Inicializa el juego
 		*/
-		void initScenes();
+		void init(std::string firstScene);
 		/*
 		* Maneja el bucle del juego
 		*/
