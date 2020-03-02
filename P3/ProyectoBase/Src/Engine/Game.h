@@ -5,7 +5,7 @@
 class Scene;
 class Loader;
 
-class Game : public OgreBites::ApplicationContext
+class Game
 {
 	private:
 		// Save <scene name, scene file>

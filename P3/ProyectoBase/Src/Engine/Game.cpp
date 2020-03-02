@@ -14,7 +14,9 @@ Game::~Game()
 
 void Game::initContext()
 {
-	ApplicationContext();
+	//...
+	//ApplicationContext();
+	//...
 }
 
 void Game::init(std::string firstScene)
