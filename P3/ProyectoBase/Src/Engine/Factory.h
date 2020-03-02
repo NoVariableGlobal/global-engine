@@ -8,7 +8,6 @@ class Component##FactoryRegister { \
 }; \
 Component##FactoryRegister Component##FactoryRegisterGlobalVar;
 
-
 namespace Json {
 	class Value;
 }

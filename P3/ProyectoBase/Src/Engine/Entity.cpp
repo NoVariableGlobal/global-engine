@@ -13,6 +13,7 @@ void Entity::addComponent(std::string name, Component* c)
 	// Registrar componente en el manager
 }
 
+
 Component* Entity::getComponent(std::string name)
 { 
 	int a;

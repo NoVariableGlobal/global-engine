@@ -40,6 +40,7 @@ Ogre::Vector3* TestComponent::getColor()
 class TestComponentFactory : public ComponentFactory {
 public:
 	TestComponentFactory() {};
+
 	virtual Component* create(Entity* father, Json::Value& _data) 
 	{
 		TestComponent* testComponent = new TestComponent();

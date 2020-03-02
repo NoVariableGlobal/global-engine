@@ -1,18 +1,14 @@
 #pragma once
-#include<map>
+
+#include <map>
 #include <string>
 
-namespace Ogre {
-	typedef float Real;
-	template <int dims, typename T> class Vector;
-	typedef Vector<3, Real> Vector3;
-}
 
 class Component;
 
 class Entity {
-private:
 
+private:
 	// ID attached to the entity
 	std::string id;
 	// List of components attached to the entity
