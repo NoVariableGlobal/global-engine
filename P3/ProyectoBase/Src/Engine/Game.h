@@ -17,7 +17,7 @@ class Game
 		bool win = false;
 
 	public:
-		Game(std::string firtscene);
+		Game();
 		~Game();
 
 		/*
@@ -35,5 +35,5 @@ class Game
 		/*
 		* Cambia la escena actual por la nueva
 		*/
-		void setScene(std::string scene);
+		void setScene(std::string sceneName);
 };

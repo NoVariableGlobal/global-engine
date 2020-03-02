@@ -10,10 +10,8 @@
 #include "OgreViewport.h"
 #include "OgreRenderWindow.h"
 
-ApplicationContext::ApplicationContext() : 
-	mRoot(0),
-	mResourcesCfg(Ogre::BLANKSTRING),
-	mPluginsCfg(Ogre::BLANKSTRING)
+ApplicationContext::ApplicationContext() :
+	mRoot(0), mResourcesCfg(Ogre::BLANKSTRING), mPluginsCfg(Ogre::BLANKSTRING)
 {
 }
 

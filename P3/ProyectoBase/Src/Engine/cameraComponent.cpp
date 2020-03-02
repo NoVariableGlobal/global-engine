@@ -15,7 +15,7 @@ CameraComponent::CameraComponent(Ogre::SceneManager* _mSM) /* : Component() */
 	mCamNode->setPosition(0, 0, 1000);
 	mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 
-	vp = getRenderWindow()->addViewport(camera);
+	//vp = getRenderWindow()->addViewport(camera);
 	vp->setBackgroundColour(Ogre::ColourValue(0.5, 0.5, 1));
 
 	light = _mSM->createLight("Light");
@@ -27,17 +27,10 @@ CameraComponent::CameraComponent(Ogre::SceneManager* _mSM) /* : Component() */
 
 	mLightNode->setDirection(Ogre::Vector3(1, -1, -1));
 
-	mCamMgr = new OgreBites::CameraMan(mCamNode);
-	addInputListener(mCamMgr);
-	mCamMgr->setStyle(OgreBites::CS_ORBIT);
-
 	cameraOffset = Ogre::Vector3(0, 0, 0);
 }
 
-CameraComponent::~CameraComponent()
-{
-	delete mCamMgr; mCamMgr = nullptr;
-}
+CameraComponent::~CameraComponent(){}
 
 void CameraComponent::setNodeTarget(Ogre::SceneNode* _target)
  {

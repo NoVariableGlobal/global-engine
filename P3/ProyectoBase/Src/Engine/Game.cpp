@@ -38,7 +38,7 @@ void Game::update()
 	}
 }
 
-void Game::setScene(std::string scene)
+void Game::setScene(std::string sceneName)
 {
-	scene->load(scenesQueue.find(scene)->second);
+	scene->load(scenesQueue.find(sceneName)->second);
 }

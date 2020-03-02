@@ -18,7 +18,6 @@ class CameraComponent /*: public Component */
 		Ogre::Viewport* vp = nullptr;
 		Ogre::Light* light = nullptr;
 		Ogre::SceneNode* mLightNode = nullptr;
-		OgreBites::CameraMan* mCamMgr = nullptr;
 
 		// who the camera follows
 		Ogre::SceneNode* target = nullptr;

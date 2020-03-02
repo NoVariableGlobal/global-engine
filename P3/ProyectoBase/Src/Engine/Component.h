@@ -16,8 +16,8 @@ protected:
 	Entity* _father = nullptr;
 
 public:
-	Component() {};
-	virtual ~Component() {};
+	Component();
+	virtual ~Component();
 	
 	// Abstract update method for children to implement
 	virtual void update() = 0;

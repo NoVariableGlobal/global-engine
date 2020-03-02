@@ -6,7 +6,7 @@
 
 class ApplicationContext
 {
-	private:
+	protected:
 		Ogre::Root* mRoot = nullptr;
 		Ogre::String mResourcesCfg;
 		Ogre::String mPluginsCfg;
