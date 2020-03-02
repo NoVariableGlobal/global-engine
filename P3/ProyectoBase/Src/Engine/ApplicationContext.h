@@ -13,7 +13,8 @@ class ApplicationContext
 
 		Ogre::RenderWindow* mWindow = nullptr;
 		Ogre::SceneManager* mSM = nullptr;
-		Ogre::SceneNode* mCamNode = nullptr;
+		Ogre::SceneNode* mCam = nullptr;
+		Ogre::SceneNode* mLight = nullptr;
 
 	public:
 		ApplicationContext();

@@ -5,6 +5,7 @@
 #include <OgreConfigFile.h>
 #include <OgreSceneManager.h>
 #include <OgreCamera.h>
+//#include <OgreWindowEventUtilities.h>
 
 #include "OgreViewport.h"
 #include "OgreRenderWindow.h"
@@ -39,7 +40,7 @@ void ApplicationContext::createRoot()
 	mPluginsCfg = "plugins.cfg";
 #endif
 
-	// construct an instance of the root object
+	// create an instance of the root object
 	mRoot = new Ogre::Root(mPluginsCfg);
 }
 
@@ -79,6 +80,12 @@ void ApplicationContext::settingResources()
 void ApplicationContext::createWindow(std::string appName)
 {
 	// create a RenderWindow instance
+	Ogre::RenderSystem* rs = mRoot->getRenderSystemByName("Direct3D11 Rendering Subsystem"); // ----------------------------------------------------------- PREGUNTAR
+
+	mRoot->setRenderSystem(rs);
+	rs->setConfigOption("Full Screen", "No");
+	rs->setConfigOption("Video Mode", "800 x 600 @ 32-bit colour");
+
 	mWindow = mRoot->initialise(true, appName);
 
 	// default number of mipmaps to be used
@@ -89,30 +96,45 @@ void ApplicationContext::createWindow(std::string appName)
 	mSM = mRoot->createSceneManager();
 
 	// add a Camera member
-	Ogre::Camera* mCamera;
-	mCamera = mSM->createCamera("MainCam");
-	mCamera->setNearClipDistance(1);
-	mCamera->setFarClipDistance(10000);
-	mCamera->setAutoAspectRatio(true);
+	Ogre::Camera* camera;
+	camera = mSM->createCamera("MainCam");
+	camera->setNearClipDistance(1);
+	camera->setFarClipDistance(10000);
+	camera->setAutoAspectRatio(true);
 
-	mCamNode = mSM->getRootSceneNode()->createChildSceneNode("mCam");
-	mCamNode->attachObject(mCamera);
+	mCam = mSM->getRootSceneNode()->createChildSceneNode("mCam");
+	mCam->attachObject(camera);
 
-	mCamNode->setPosition(0, 0, 1000);
-	mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
+	mCam->setPosition(0, 0, 1000);
+	mCam->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 
 	//  declare and create the viewport
-	Ogre::Viewport* vp = mWindow->addViewport(mCamera);
+	Ogre::Viewport* vp = mWindow->addViewport(camera);
 	
 	vp->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
 
-	mCamera->setAspectRatio(Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
+	camera->setAspectRatio(Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
+
+	// ambient light
+	//mSM->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
+
+	//Ogre::Light* light = mSM->createLight("MainLight");
+	//light->setType(Ogre::Light::LT_DIRECTIONAL);
+	//light->setDiffuseColour(0.75, 0.75, 0.75);
+
+	//mLight = mSM->getRootSceneNode()->createChildSceneNode("mLight");
+	////mLight = mCam->createChildSceneNode("nLuz");
+	//mLight->attachObject(light);
+
+	//mLight->setDirection(Ogre::Vector3(-1, -1, -1));  //vec3.normalise();
 }
 
 bool ApplicationContext::renderLoop()
 {
 	while (true)
 	{
+		//Ogre::WindowEventUtilities::messagePump();
+
 		if (mWindow->isClosed()) 
 			return false;
 
