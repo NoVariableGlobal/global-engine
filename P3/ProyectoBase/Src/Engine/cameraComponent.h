@@ -1,6 +1,5 @@
 #pragma once
-
-#include <Ogre.h>
+#include "Ogre.h"
 
 class Component;
 class Camera;

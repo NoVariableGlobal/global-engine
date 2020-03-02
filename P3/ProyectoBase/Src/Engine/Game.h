@@ -1,12 +1,14 @@
+#pragma once
 #include <string>
-#include <map>
 #include "ApplicationContext.h"
 
 class Scene;
+class ComponentFactory;
 
 class Game : public OgreBites::ApplicationContext
 {
 	private:
+		// Save <scene name, scene file>
 		std::map<std::string, std::string> scenesQueue;
 		Scene* currentScene = nullptr;
 
@@ -15,7 +17,7 @@ class Game : public OgreBites::ApplicationContext
 		bool win = false;
 
 	public:
-		Game();
+		Game(std::string firtscene);
 		~Game();
 
 		/*

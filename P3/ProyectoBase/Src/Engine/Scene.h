@@ -2,16 +2,16 @@
 #include <map>
 #include <vector>
 #include <string>
-class string;
+
 class Component;
 class Entity;
-
-
-typedef std::string Id;
+class ComponentsManager;
 
 class Scene {
 
-  std::map<Id*, Entity*> entities;
+  std::map<std::string, Entity*> entities; 
+  bool exit = false;
+  ComponentsManager* componentManager;
 
 public:
   Scene();
@@ -19,11 +19,10 @@ public:
 
 
   // Given the name of the scene, reads its respective file and tells the Engine to create all entities and component
-  void load(string name);
+  void load(std::string name);
 
-
-  //void update();
+  void update();
 
   // Search the entity in map and returns a reference to it.
-  Entity* getEntitybyId(Id id);
+  Entity* getEntitybyId(std::string id);
 };
