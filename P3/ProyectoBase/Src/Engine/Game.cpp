@@ -1,63 +1,54 @@
 #include "Game.h"
-#include "ApplicationContext.h"
-#include "ComponentsManager.h"
 #include "Scene.h"
+#include "Loader.h"
+#include "ComponentsManager.h"
 #include <string>
 
-Game::Game()
-{
-	//...
-	initContext();
-	//...
-	initScenes();
-	//...
-	componentsManager = new ComponentsManager();
-}
+Game::Game() { }
 
 Game::~Game()
 {
-	//...
 	currentScene = nullptr;
-	for (int i = 0; i < scenesQueue.size(); i++)
-	{
-		// delete scenesQueue[i];
-		// scenesQueue[i] = nullptr;
+	componentsManager = nullptr;
+
+	for (auto it = scenesQueue.begin; it != scenesQueue.end; it++) {
+		delete *it;
+		it = nullptr;
 	}
-	//...
 }
 
 void Game::initContext()
 {
-	//...
 	ApplicationContext();
-	//...
 }
 
-void Game::initScenes()
+void Game::init(std::string firstScene)
 {
-	//...
+	loader = new Loader();
+
+	initContext();
+
+	componentsManager = new ComponentsManager();
+	setScene(firstScene);
 }
 
 void Game::update()
 {
-	//...
 	while (!exit)
 	{
-		//...
-		//currentScene->update();
+		currentScene->update();
 		componentsManager->update();
 		componentsManager->handleInput();
 		componentsManager->updateSound();
 		componentsManager->updateCamera();
-		//...
 	}
-	//...
 }
 
 void Game::setScene(std::string scene)
 {	
 	componentsManager->clearComponents();
-	
+
+	loader->readScenes(scenesQueue);
+
 	currentScene->load(scene);
-	//...
 }

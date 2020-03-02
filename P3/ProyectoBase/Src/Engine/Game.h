@@ -4,6 +4,7 @@
 
 class Scene;
 class ComponentsManager;
+class Loader;
 
 class Game : public OgreBites::ApplicationContext
 {
@@ -13,6 +14,7 @@ class Game : public OgreBites::ApplicationContext
 
 		// to manage the game
 		ComponentsManager* componentsManager;
+		Loader* loader;
 
 		bool exit = false;
 		bool end = false;
@@ -27,9 +29,9 @@ class Game : public OgreBites::ApplicationContext
 		*/
 		void initContext();
 		/*
-		* Inicializar el mapa de escenas
+		* Inicializa el juego
 		*/
-		void initScenes();
+		void init(std::string firstScene);
 		/*
 		* Maneja el bucle del juego
 		*/

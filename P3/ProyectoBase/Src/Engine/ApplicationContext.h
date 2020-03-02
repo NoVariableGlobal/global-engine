@@ -5,28 +5,28 @@
 
 #include <string>
 
-#include <OgreBitesPrerequisites.h>
-#include <OgreBuildSettings.h>
+//#include <OgreBitesPrerequisites.h>
+//#include <OgreBuildSettings.h>
 #include <OgreLogManager.h>
 #include <OgrePlugin.h>
 #include <OgreFileSystemLayer.h>
 
 #include <OgreFrameListener.h>
-#include <OgreSGTechniqueResolverListener.h>
+/*#include <OgreSGTechniqueResolverListener.h>
 #include <OgreInput.h>
 #include <OgreOverlaySystem.h>
-#include <SDL.h>
+#include <SDL.h>*/
 
 namespace OgreBites {
-	typedef SDL_Window NativeWindowType;
+	//typedef SDL_Window NativeWindowType;
 
 	/**
 	link between a renderwindow and a platform specific window
 	*/
-	struct NativeWindowPair	{
+	/*struct NativeWindowPair	{
 		Ogre::RenderWindow* render = nullptr;
 		NativeWindowType* native = nullptr;
-	};
+	};*/
 
 	/**
 	Base class responsible for setting up a common context for applications.
@@ -34,7 +34,7 @@ namespace OgreBites {
 	*/
 	class ApplicationContext : public Ogre::FrameListener {
 	public:
-		explicit ApplicationContext(const Ogre::String& appName = OGRE_VERSION_NAME);
+		explicit ApplicationContext(const Ogre::String& appName);
 
 		virtual ~ApplicationContext();
 		
@@ -79,11 +79,11 @@ namespace OgreBites {
 
 		void pollEvents();
 
-		void addInputListener(InputListener* lis);
+		//void addInputListener(InputListener* lis);
 
-		void removeInputListener(InputListener* lis);
+		//void removeInputListener(InputListener* lis);
 
-		virtual NativeWindowPair createWindow(const Ogre::String& name);
+		//virtual NativeWindowPair createWindow(const Ogre::String& name);
 
 	protected:
 		Ogre::Root* mRoot;                                  // OGRE root

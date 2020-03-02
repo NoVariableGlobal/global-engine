@@ -6,12 +6,12 @@
 #include <OgreRenderWindow.h>
 #include <OgreViewport.h>
 #include <OgreDataStream.h>
-#include <OgreBitesConfigDialog.h>
+/*#include <OgreBitesConfigDialog.h>
 #include <OgreWindowEventUtilities.h>
 
 #include <SDL_video.h>
 #include <SDL_syswm.h>
-#include <SDLInputMapping.h>
+#include <SDLInputMapping.h>*/
 
 namespace OgreBites {
 
