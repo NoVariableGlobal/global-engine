@@ -1,8 +1,9 @@
+#pragma once
 #include <string>
-#include <map>
 #include "ApplicationContext.h"
 
 class Scene;
+class ComponentFactory;
 
 class Game : public OgreBites::ApplicationContext
 {

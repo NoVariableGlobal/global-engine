@@ -1,5 +1,4 @@
 #include "cameraComponent.h"
-
 //Constructor, se crea la camara se le asocia el viewport y se asocian todos lo sceneNode
 CameraComponent::CameraComponent(Ogre::SceneManager* mSM) /* : Component() */
 {

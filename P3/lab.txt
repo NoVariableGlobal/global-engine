@@ -1,0 +1,1820 @@
+The C compiler identification is MSVC 19.24.28315.0
+The CXX compiler identification is MSVC 19.24.28315.0
+Check for working C compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe
+Check for working C compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe - works
+Detecting C compiler ABI info
+Detecting C compiler ABI info - done
+Detecting C compile features
+Detecting C compile features - done
+Check for working CXX compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe
+Check for working CXX compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe - works
+Detecting CXX compiler ABI info
+Detecting CXX compiler ABI info - done
+Detecting CXX compile features
+Detecting CXX compile features - done
+Configuring OGRE 1.12.5
+Check size of void*
+Check size of void* - done
+Search path: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies;U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/Dependencies;U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/../Dependencies;U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/../Dependencies
+Building zlib
+-- The C compiler identification is MSVC 19.24.28315.0
+
+-- Check for working C compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe
+
+-- Check for working C compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe - works
+
+-- Detecting C compiler ABI info
+
+-- Detecting C compiler ABI info - done
+
+-- Detecting C compile features
+
+-- Detecting C compile features - done
+
+-- Looking for sys/types.h
+
+-- Looking for sys/types.h - found
+
+-- Looking for stdint.h
+
+-- Looking for stdint.h - found
+
+-- Looking for stddef.h
+
+-- Looking for stddef.h - found
+
+-- Check size of off64_t
+
+-- Check size of off64_t - failed
+
+-- Looking for fseeko
+
+-- Looking for fseeko - not found
+
+-- Looking for unistd.h
+
+-- Looking for unistd.h - not found
+
+-- Configuring done
+
+-- Generating done
+
+CMake Warning:
+
+  Manually-specified variables were not used by the project:
+
+    CMAKE_BUILD_TYPE
+
+
+
+-- Build files have been written to: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/zlib-1.2.11
+
+Microsoft (R) Build Engine versi¢n 16.4.0+e901037fe para .NET Framework
+Copyright (C) Microsoft Corporation. Todos los derechos reservados.
+
+
+  Checking Build System
+
+  Building Custom Rule U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/zlib-1.2.11/CMakeLists.txt
+
+  adler32.c
+
+  compress.c
+
+  crc32.c
+
+  deflate.c
+
+  gzclose.c
+
+  gzlib.c
+
+  gzread.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\gzread.c(319,20): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\buil
+d3\zlib-1.2.11\zlib.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\gzread.c(400,35): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\buil
+d3\zlib-1.2.11\zlib.vcxproj]
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\gzread.c(472,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\zlib.vcxproj]
+
+  gzwrite.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\gzwrite.c(212,27): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\bui
+ld3\zlib-1.2.11\zlib.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\gzwrite.c(232,24): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\zlib.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\gzwrite.c(371,36): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-
+1.2.11\zlib.vcxproj]
+
+  inflate.c
+
+  infback.c
+
+  inftrees.c
+
+  inffast.c
+
+  trees.c
+
+  uncompr.c
+
+  zutil.c
+
+  Generating Code...
+
+     Creating library U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/zlib-1.2.11/RelWithDebInfo/zlib.lib and object U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/zlib-1.2.11/RelWithDebInfo/zlib.exp
+
+  zlib.vcxproj -> U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\RelWithDebInfo\zlib.dll
+
+  Building Custom Rule U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/zlib-1.2.11/CMakeLists.txt
+
+  example.c
+
+  example.vcxproj -> U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\RelWithDebInfo\example.exe
+
+  Building Custom Rule U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/zlib-1.2.11/CMakeLists.txt
+
+  minigzip.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\test\minigzip.c(503,1): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias
+\ogre-1.12.5\build3\zlib-1.2.11\minigzip.vcxproj]
+
+  minigzip.vcxproj -> U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\RelWithDebInfo\minigzip.exe
+
+  Building Custom Rule U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/zlib-1.2.11/CMakeLists.txt
+
+  adler32.c
+
+  compress.c
+
+  crc32.c
+
+  deflate.c
+
+  gzclose.c
+
+  gzlib.c
+
+  gzread.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\gzread.c(319,20): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\buil
+d3\zlib-1.2.11\zlibstatic.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\gzread.c(400,35): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\zlibstatic.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\gzread.c(472,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1
+.2.11\zlibstatic.vcxproj]
+
+  gzwrite.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\gzwrite.c(212,27): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\bui
+ld3\zlib-1.2.11\zlibstatic.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\gzwrite.c(232,24): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\bui
+ld3\zlib-1.2.11\zlibstatic.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\gzwrite.c(371,36): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-
+1.2.11\zlibstatic.vcxproj]
+
+  inflate.c
+
+  infback.c
+
+  inftrees.c
+
+  inffast.c
+
+  trees.c
+
+  uncompr.c
+
+  zutil.c
+
+  Generating Code...
+
+  zlibstatic.vcxproj -> U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zlib-1.2.11\RelWithDebInfo\zlibstatic.lib
+
+  Building Custom Rule U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/zlib-1.2.11/CMakeLists.txt
+
+  -- Install configuration: "RelWithDebInfo"
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/lib/zlib.lib
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/bin/zlib.dll
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/lib/zlibstatic.lib
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zconf.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zlib.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/share/man/man3/zlib.3
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/share/pkgconfig/zlib.pc
+
+Building ZZIPlib
+-- The C compiler identification is MSVC 19.24.28315.0
+
+-- Check for working C compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe
+
+-- Check for working C compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe - works
+
+-- Detecting C compiler ABI info
+
+-- Detecting C compiler ABI info - done
+
+-- Detecting C compile features
+
+-- Detecting C compile features - done
+
+-- Looking for include file byteswap.h
+
+-- Looking for include file byteswap.h - not found
+
+-- Looking for include file direct.h
+
+-- Looking for include file direct.h - found
+
+-- Looking for include file dirent.h
+
+-- Looking for include file dirent.h - not found
+
+-- Looking for include file dlfcn.h
+
+-- Looking for include file dlfcn.h - not found
+
+-- Looking for include file fnmatch.h
+
+-- Looking for include file fnmatch.h - not found
+
+-- Looking for include file inttypes.h
+
+-- Looking for include file inttypes.h - found
+
+-- Looking for include file io.h
+
+-- Looking for include file io.h - found
+
+-- Looking for include file memory.h
+
+-- Looking for include file memory.h - found
+
+-- Looking for include file ndir.h
+
+-- Looking for include file ndir.h - not found
+
+-- Looking for include file stdint.h
+
+-- Looking for include file stdint.h - found
+
+-- Looking for include file stdlib.h
+
+-- Looking for include file stdlib.h - found
+
+-- Looking for strcasecmp
+
+-- Looking for strcasecmp - not found
+
+-- Looking for include file strings.h
+
+-- Looking for include file strings.h - not found
+
+-- Looking for include file string.h
+
+-- Looking for include file string.h - found
+
+-- Looking for strndup
+
+-- Looking for strndup - not found
+
+-- Looking for include file sys/dir.h
+
+-- Looking for include file sys/dir.h - not found
+
+-- Looking for include file sys/int_types.h
+
+-- Looking for include file sys/int_types.h - not found
+
+-- Looking for include file sys/mman.h
+
+-- Looking for include file sys/mman.h - not found
+
+-- Looking for include file sys/ndir.h
+
+-- Looking for include file sys/ndir.h - not found
+
+-- Looking for include file sys/param.h
+
+-- Looking for include file sys/param.h - not found
+
+-- Looking for include file sys/stat.h
+
+-- Looking for include file sys/stat.h - found
+
+-- Looking for include file sys/types.h
+
+-- Looking for include file sys/types.h - found
+
+-- Looking for include file unistd.h
+
+-- Looking for include file unistd.h - not found
+
+-- Looking for include file winbase.h
+
+-- Looking for include file winbase.h - not found
+
+-- Looking for include file windows.h
+
+-- Looking for include file windows.h - found
+
+-- Looking for include file winnt.h
+
+-- Looking for include file winnt.h - not found
+
+-- Looking for sys/types.h
+
+-- Looking for sys/types.h - found
+
+-- Looking for stdint.h
+
+-- Looking for stdint.h - found
+
+-- Looking for stddef.h
+
+-- Looking for stddef.h - found
+
+-- Check size of int
+
+-- Check size of int - done
+
+-- Check size of long
+
+-- Check size of long - done
+
+-- Check size of short
+
+-- Check size of short - done
+
+-- Looking for 4 include files stdlib.h, ..., float.h
+
+-- Looking for 4 include files stdlib.h, ..., float.h - found
+
+-- Check if the system is big endian
+
+-- Searching 16 bit integer
+
+-- Check size of unsigned short
+
+-- Check size of unsigned short - done
+
+-- Searching 16 bit integer - Using unsigned short
+
+-- Check if the system is big endian - little endian
+
+-- Check size of off_t_32
+
+-- Check size of off_t_32 - done
+
+-- Check size of off_t_64
+
+-- Check size of off_t_64 - done
+
+-- Check size of off64_t
+
+-- Check size of off64_t - failed
+
+-- found sizeof(off_t/32)=4 and sizeof(off_t/64)=4
+
+CMake Warning (dev) at zzip/CMakeLists.txt:91 (find_package):
+
+  Policy CMP0074 is not set: find_package uses <PackageName>_ROOT variables.
+  Run "cmake --help-policy CMP0074" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+
+  CMake variable ZLIB_ROOT is set to:
+
+    U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies
+
+  For compatibility, CMake is ignoring the variable.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+
+-- Found ZLIB: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/lib/zlib.lib (found version "1.2.11") 
+
+-- Configuring done
+
+-- Generating done
+
+CMake Warning:
+
+  Manually-specified variables were not used by the project:
+
+    BASH
+
+
+
+-- Build files have been written to: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/zziplib-develop
+
+Microsoft (R) Build Engine versi¢n 16.4.0+e901037fe para .NET Framework
+Copyright (C) Microsoft Corporation. Todos los derechos reservados.
+
+
+  Checking Build System
+
+  Building Custom Rule U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/zziplib-develop/zzip/CMakeLists.txt
+
+  dir.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip/__dirent.h(174,12): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WA
+RNINGS. See online help for details. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip/__dirent.h(180,9): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WAR
+NINGS. See online help for details. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip/__dirent.h(184,12): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WA
+RNINGS. See online help for details. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip/__dirent.h(234,63): warning C4244: '=': conversion from 'intptr_t' to 'long', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5
+\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\dir.c(80,11): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS
+. See online help for details. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\dir.c(81,11): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS
+. See online help for details. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\dir.c(82,11): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS
+. See online help for details. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\dir.c(283,1): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strdup. See online help for details. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+C:\Windows Kits\10\Include\10.0.17134.0\ucrt\string.h(536): message : see declaration of 'strdup' [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+  err.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\err.c(70,1): warning C4996: 'strerror': This function or variable may be unsafe. Consider using strerror_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNI
+NGS. See online help for details. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+C:\Windows Kits\10\Include\10.0.17134.0\ucrt\string.h(182): message : see declaration of 'strerror' [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\err.c(75,1): warning C4996: 'strerror': This function or variable may be unsafe. Consider using strerror_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNI
+NGS. See online help for details. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+C:\Windows Kits\10\Include\10.0.17134.0\ucrt\string.h(182): message : see declaration of 'strerror' [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\err.c(87,1): warning C4996: 'strerror': This function or variable may be unsafe. Consider using strerror_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNI
+NGS. See online help for details. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+C:\Windows Kits\10\Include\10.0.17134.0\ucrt\string.h(182): message : see declaration of 'strerror' [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+  file.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\file.c(408,35): warning C4267: '=': conversion from 'size_t' to 'uInt', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build
+3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\file.c(448,42): warning C4267: 'return': conversion from 'size_t' to 'zzip_ssize_t', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre
+-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\file.c(804,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.1
+2.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\file.c(851,1): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strdup. See online help for det
+ails. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+C:\Windows Kits\10\Include\10.0.17134.0\ucrt\string.h(536): message : see declaration of 'strdup' [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\file.c(1022,47): warning C4267: '=': conversion from 'size_t' to 'zzip_off_t', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.
+5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\file.c(1127,37): warning C4267: 'return': conversion from 'size_t' to 'zzip_off_t', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-
+1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+  info.c
+
+  plugin.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\plugin.c(45,1): warning C4996: 'open': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _open. See online help for detail
+s. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+C:\Windows Kits\10\Include\10.0.17134.0\ucrt\corecrt_io.h(516): message : see declaration of 'open' [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\plugin.c(46,1): warning C4996: 'close': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _close. See online help for deta
+ils. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+C:\Windows Kits\10\Include\10.0.17134.0\ucrt\corecrt_io.h(459): message : see declaration of 'close' [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\plugin.c(44,1): warning C4028: formal parameter 3 different from declaration [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop
+\zzip\libzzip.vcxproj]
+
+  stat.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\stat.c(96,30): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\
+zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\stat.c(97,30): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\
+zziplib-develop\zzip\libzzip.vcxproj]
+
+  write.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\write.c(156,44): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build
+3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\write.c(163,42): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\write.c(133,1): warning C4996: 'mkdir': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _mkdir. See online help for deta
+ils. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+C:\Windows Kits\10\Include\10.0.17134.0\ucrt\direct.h(111): message : see declaration of 'mkdir' [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\write.c(140,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.
+12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\write.c(215,1): warning C4996: 'mkdir': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _mkdir. See online help for deta
+ils. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+C:\Windows Kits\10\Include\10.0.17134.0\ucrt\direct.h(111): message : see declaration of 'mkdir' [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\write.c(258,1): warning C4996: 'mkdir': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _mkdir. See online help for deta
+ils. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+C:\Windows Kits\10\Include\10.0.17134.0\ucrt\direct.h(111): message : see declaration of 'mkdir' [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\write.c(316,49): warning C4267: 'function': conversion from 'size_t' to 'unsigned int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\o
+gre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\write.c(316,1): warning C4996: 'write': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _write. See online help for deta
+ils. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+C:\Windows Kits\10\Include\10.0.17134.0\ucrt\corecrt_io.h(558): message : see declaration of 'write' [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+  zip.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\zip.c(324,21): warning C4244: '=': conversion from '__int64' to 'zzip_off_t', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5
+\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\zip.c(477,57): warning C4244: 'function': conversion from 'zzip_off64_t' to 'zzip_off_t', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias
+\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\zip.c(527,52): warning C4244: '=': conversion from 'uint16_t' to 'uint8_t', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\zip.c(808,15): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNING
+S. See online help for details. [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\libzzip.vcxproj]
+
+  fetch.c
+
+  Generating Code...
+
+  libzzip.vcxproj -> U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\zziplib-develop\zzip\RelWithDebInfo\zzip.lib
+
+  Building Custom Rule U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/zziplib-develop/CMakeLists.txt
+
+  -- Install configuration: "RelWithDebInfo"
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zzip/lib.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zzip/zzip.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zzip/format.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zzip/types.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zzip/conf.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zzip/_msvc.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zzip/file.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zzip/info.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zzip/plugin.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zzip/write.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zzip/fetch.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zzip/stdint.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zzip/zzip32.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zzip/autoconf.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/zzip/_config.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/lib/zzip.lib
+
+Building pugixml
+-- The C compiler identification is MSVC 19.24.28315.0
+
+-- The CXX compiler identification is MSVC 19.24.28315.0
+
+-- Check for working C compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe
+
+-- Check for working C compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe - works
+
+-- Detecting C compiler ABI info
+
+-- Detecting C compiler ABI info - done
+
+-- Detecting C compile features
+
+-- Detecting C compile features - done
+
+-- Check for working CXX compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe
+
+-- Check for working CXX compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe - works
+
+-- Detecting CXX compiler ABI info
+
+-- Detecting CXX compiler ABI info - done
+
+-- Detecting CXX compile features
+
+-- Detecting CXX compile features - done
+
+-- Configuring done
+
+-- Generating done
+
+CMake Warning:
+
+  Manually-specified variables were not used by the project:
+
+    CMAKE_BUILD_TYPE
+
+
+
+-- Build files have been written to: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/pugixml-1.10
+
+Microsoft (R) Build Engine versi¢n 16.4.0+e901037fe para .NET Framework
+Copyright (C) Microsoft Corporation. Todos los derechos reservados.
+
+
+  Checking Build System
+
+  Building Custom Rule U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/pugixml-1.10/CMakeLists.txt
+
+  pugixml.cpp
+
+  pugixml.vcxproj -> U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\pugixml-1.10\RelWithDebInfo\pugixml.lib
+
+  Building Custom Rule U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/pugixml-1.10/CMakeLists.txt
+
+  -- Install configuration: "RelWithDebInfo"
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/lib/pugixml.lib
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/pugixml.hpp
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/pugiconfig.hpp
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/lib/cmake/pugixml/pugixml-config.cmake
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/lib/cmake/pugixml/pugixml-config-relwithdebinfo.cmake
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/lib/pkgconfig/pugixml.pc
+
+Building freetype
+-- The C compiler identification is MSVC 19.24.28315.0
+
+-- Check for working C compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe
+
+-- Check for working C compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe - works
+
+-- Detecting C compiler ABI info
+
+-- Detecting C compiler ABI info - done
+
+-- Detecting C compile features
+
+-- Detecting C compile features - done
+
+CMake Warning (dev) at U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/cmake-3.17.0-rc1-win64-x64/share/cmake-3.17/Modules/FindPackageHandleStandardArgs.cmake:272 (message):
+
+  The package name passed to `find_package_handle_standard_args` (PkgConfig)
+  does not match the name of the calling package (HarfBuzz).  This can lead
+  to problems in calling code that expects `find_package` result variables
+  (e.g., `_FOUND`) to follow a certain pattern.
+Call Stack (most recent call first):
+  U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/cmake-3.17.0-rc1-win64-x64/share/cmake-3.17/Modules/FindPkgConfig.cmake:41 (find_package_handle_standard_args)
+  builds/cmake/FindHarfBuzz.cmake:33 (include)
+  CMakeLists.txt:191 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+
+-- Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE) 
+
+CMake Warning (dev) at U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/cmake-3.17.0-rc1-win64-x64/share/cmake-3.17/Modules/FindPackageHandleStandardArgs.cmake:272 (message):
+
+  The package name passed to `find_package_handle_standard_args` (harfbuzz)
+  does not match the name of the calling package (HarfBuzz).  This can lead
+  to problems in calling code that expects `find_package` result variables
+  (e.g., `_FOUND`) to follow a certain pattern.
+Call Stack (most recent call first):
+  builds/cmake/FindHarfBuzz.cmake:62 (FIND_PACKAGE_HANDLE_STANDARD_ARGS)
+  CMakeLists.txt:191 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+
+-- Could NOT find harfbuzz (missing: HARFBUZZ_INCLUDE_DIRS HARFBUZZ_LIBRARIES) 
+
+-- Found ZLIB: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/lib/zlib.lib (found version "1.2.8") 
+
+-- Could NOT find PNG (missing: PNG_LIBRARY PNG_PNG_INCLUDE_DIR) 
+
+-- Configuring done
+
+-- Generating done
+
+CMake Warning:
+
+  Manually-specified variables were not used by the project:
+
+    WITH_PNG
+
+
+
+-- Build files have been written to: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/freetype-2.10.1/objs
+
+Microsoft (R) Build Engine versi¢n 16.4.0+e901037fe para .NET Framework
+Copyright (C) Microsoft Corporation. Todos los derechos reservados.
+
+
+  Checking Build System
+
+  Building Custom Rule U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/freetype-2.10.1/CMakeLists.txt
+
+  autofit.c
+
+  ftbase.c
+
+  ftbbox.c
+
+  ftbdf.c
+
+  ftbitmap.c
+
+  ftcid.c
+
+  ftfstype.c
+
+  ftgasp.c
+
+  ftglyph.c
+
+  ftgxval.c
+
+  ftinit.c
+
+  ftmm.c
+
+  ftotval.c
+
+  ftpatent.c
+
+  ftpfr.c
+
+  ftstroke.c
+
+  ftsynth.c
+
+  ftsystem.c
+
+  fttype1.c
+
+  ftwinfnt.c
+
+  Generating Code...
+
+  Compiling...
+
+  bdf.c
+
+  ftbzip2.c
+
+  ftcache.c
+
+  cff.c
+
+  type1cid.c
+
+  ftgzip.c
+
+C:\software\programacion\haskell\mingw\include\zconf.h(452,14): fatal error C1083: Cannot open include file: 'unistd.h': No such file or directory [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj
+]
+
+  ftlzw.c
+
+  pcf.c
+
+  pfr.c
+
+  psaux.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\psaux\psintrp.c(1005,29): warning C4267: '=': conversion from 'size_t' to 'FT_Fast', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-
+1.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+  pshinter.c
+
+  psnames.c
+
+  raster.c
+
+  sfnt.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\sfnt\sfdriver.c(860,32): warning C4267: '=': conversion from 'size_t' to 'FT_UInt', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1
+.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\sfnt\sfdriver.c(1011,44): warning C4244: 'function': conversion from '__int64' to 'const unsigned int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBas
+e\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\sfnt\ttcolr.c(127,50): warning C4018: '>': signed/unsigned mismatch [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\objs\free
+type.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\sfnt\ttcolr.c(136,40): warning C4018: '>': signed/unsigned mismatch [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\objs\free
+type.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\sfnt\ttcpal.c(121,40): warning C4018: '>': signed/unsigned mismatch [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\objs\free
+type.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\sfnt\ttcpal.c(153,50): warning C4018: '>': signed/unsigned mismatch [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\objs\free
+type.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\sfnt\ttcpal.c(174,50): warning C4018: '>': signed/unsigned mismatch [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\objs\free
+type.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\sfnt\ttcpal.c(195,57): warning C4018: '>': signed/unsigned mismatch [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\objs\free
+type.vcxproj]
+
+  smooth.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\smooth\ftgrays.c(1704,26): warning C4267: '+=': conversion from 'size_t' to 'TCoord', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre
+-1.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+  truetype.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\truetype\ttgload.c(1877,42): warning C4312: 'type cast': conversion from 'unsigned long' to 'void *' of greater size [U:\hlocal\global-engine\P3\ProyectoBase\Depeden
+cias\ogre-1.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+  type1.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\type1\t1driver.c(277,51): warning C4267: '=': conversion from 'size_t' to 'FT_ULong', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre
+-1.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\type1\t1driver.c(298,58): warning C4267: '=': conversion from 'size_t' to 'FT_ULong', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre
+-1.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\type1\t1driver.c(330,65): warning C4267: '=': conversion from 'size_t' to 'FT_ULong', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre
+-1.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\type1\t1driver.c(360,23): warning C4267: '=': conversion from 'size_t' to 'FT_UInt', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-
+1.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\type1\t1driver.c(569,59): warning C4267: '=': conversion from 'size_t' to 'FT_ULong', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre
+-1.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\type1\t1driver.c(578,58): warning C4267: '=': conversion from 'size_t' to 'FT_ULong', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre
+-1.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\type1\t1driver.c(587,61): warning C4267: '=': conversion from 'size_t' to 'FT_ULong', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre
+-1.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\type1\t1driver.c(596,63): warning C4267: '=': conversion from 'size_t' to 'FT_ULong', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre
+-1.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\type1\t1driver.c(606,58): warning C4267: '=': conversion from 'size_t' to 'FT_ULong', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre
+-1.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\type1\t1load.c(1737,68): warning C4244: '=': conversion from '__int64' to 'FT_Int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1
+.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\type1\t1load.c(1907,40): warning C4244: '=': conversion from '__int64' to 'FT_Int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1
+.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+  type42.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\freetype-2.10.1\src\type42\t42parse.c(832,66): warning C4244: '=': conversion from '__int64' to 'FT_Int', possible loss of data [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre
+-1.12.5\build3\freetype-2.10.1\objs\freetype.vcxproj]
+
+  winfnt.c
+
+  ftdebug.c
+
+  Generating Code...
+
+Building SDL2
+-- The C compiler identification is MSVC 19.24.28315.0
+
+-- The CXX compiler identification is MSVC 19.24.28315.0
+
+-- Check for working C compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe
+
+-- Check for working C compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe - works
+
+-- Detecting C compiler ABI info
+
+-- Detecting C compiler ABI info - done
+
+-- Detecting C compile features
+
+-- Detecting C compile features - done
+
+-- Check for working CXX compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe
+
+-- Check for working CXX compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe - works
+
+-- Detecting CXX compiler ABI info
+
+-- Detecting CXX compiler ABI info - done
+
+-- Detecting CXX compile features
+
+-- Detecting CXX compile features - done
+
+-- Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE) 
+
+-- Performing Test HAVE_WIN32_CC
+
+-- Performing Test HAVE_WIN32_CC - Success
+
+-- Performing Test HAVE_XINPUT_H
+
+-- Performing Test HAVE_XINPUT_H - Success
+
+-- Performing Test HAVE_XINPUT_GAMEPAD_EX
+
+-- Performing Test HAVE_XINPUT_GAMEPAD_EX - Failed
+
+-- Performing Test HAVE_XINPUT_STATE_EX
+
+-- Performing Test HAVE_XINPUT_STATE_EX - Failed
+
+-- Looking for d3d9.h
+
+-- Looking for d3d9.h - found
+
+-- Looking for d3d11_1.h
+
+-- Looking for d3d11_1.h - found
+
+-- Looking for ddraw.h
+
+-- Looking for ddraw.h - found
+
+-- Looking for dsound.h
+
+-- Looking for dsound.h - found
+
+-- Looking for dinput.h
+
+-- Looking for dinput.h - found
+
+-- Looking for dxgi.h
+
+-- Looking for dxgi.h - found
+
+-- Looking for mmdeviceapi.h
+
+-- Looking for mmdeviceapi.h - found
+
+-- Looking for audioclient.h
+
+-- Looking for audioclient.h - found
+
+-- Looking for endpointvolume.h
+
+-- Looking for endpointvolume.h - found
+
+-- 
+
+-- SDL2 was configured with the following options:
+-- 
+-- Platform: Windows-10.0.17134
+-- 64-bit:   TRUE
+-- Compiler: c:/software/programacion/MSVStudio2019/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe
+-- 
+-- Subsystems:
+--   Atomic:	ON
+--   Audio:	ON
+--   Video:	ON
+--   Render:	ON
+
+--   Events:	ON
+--   Joystick:	ON
+--   Haptic:	ON
+--   Power:	ON
+
+--   Threads:	ON
+--   Timers:	ON
+--   File:	ON
+--   Loadso:	ON
+--   CPUinfo:	ON
+
+--   Filesystem:	ON
+--   Dlopen:	ON
+--   Sensor:	ON
+-- 
+-- Options:
+
+--   3DNOW                  (Wanted: ON): OFF
+
+--   ALSA                   (Wanted: OFF): OFF
+
+--   ALSA_SHARED            (Wanted: OFF): OFF
+--   ALTIVEC                (Wanted: ON): OFF
+
+--   ARTS                   (Wanted: OFF): OFF
+
+--   ARTS_SHARED            (Wanted: OFF): OFF
+--   ASSEMBLY               (Wanted: ON): OFF
+
+--   ASSERTIONS             (Wanted: auto): auto
+
+--   BACKGROUNDING_SIGNAL   (Wanted: OFF): OFF
+
+--   CLOCK_GETTIME          (Wanted: OFF): OFF
+
+--   DIRECTFB_SHARED        (Wanted: OFF): OFF
+
+--   DIRECTX                (Wanted: ON): ON
+
+--   DISKAUDIO              (Wanted: ON): ON
+
+--   DUMMYAUDIO             (Wanted: ON): ON
+
+--   ESD                    (Wanted: OFF): OFF
+
+--   ESD_SHARED             (Wanted: OFF): OFF
+
+--   FOREGROUNDING_SIGNAL   (Wanted: OFF): OFF
+
+--   FUSIONSOUND            (Wanted: OFF): OFF
+
+--   FUSIONSOUND_SHARED     (Wanted: OFF): OFF
+
+--   GCC_ATOMICS            (Wanted: OFF): OFF
+
+--   HIDAPI                 (Wanted: ON): ON
+
+--   INPUT_TSLIB            (Wanted: OFF): OFF
+
+--   JACK                   (Wanted: OFF): OFF
+
+--   JACK_SHARED            (Wanted: OFF): OFF
+
+--   KMSDRM_SHARED          (Wanted: OFF): OFF
+
+--   LIBC                   (Wanted: OFF): OFF
+
+--   LIBSAMPLERATE          (Wanted: OFF): OFF
+
+--   LIBSAMPLERATE_SHARED   (Wanted: OFF): OFF
+
+--   MMX                    (Wanted: ON): OFF
+
+--   NAS                    (Wanted: OFF): OFF
+
+--   NAS_SHARED             (Wanted: OFF): OFF
+
+--   OSS                    (Wanted: OFF): OFF
+
+--   PTHREADS               (Wanted: OFF): OFF
+
+--   PTHREADS_SEM           (Wanted: OFF): OFF
+
+--   PULSEAUDIO             (Wanted: OFF): OFF
+--   PULSEAUDIO_SHARED      (Wanted: OFF): OFF
+--   RENDER_D3D             (Wanted: ON): ON
+
+--   RPATH                  (Wanted: OFF): OFF
+
+--   SDL_DLOPEN             (Wanted: ON): OFF
+
+--   SDL_STATIC_PIC         (Wanted: OFF): OFF
+
+--   SDL_TEST               (Wanted: OFF): OFF
+
+--   SNDIO                  (Wanted: OFF): OFF
+
+--   SSE                    (Wanted: ON): ON
+
+--   SSE2                   (Wanted: ON): ON
+
+--   SSE3                   (Wanted: ON): ON
+
+--   SSEMATH                (Wanted: ON): OFF
+
+--   VIDEO_COCOA            (Wanted: OFF): OFF
+
+--   VIDEO_DIRECTFB         (Wanted: OFF): OFF
+
+--   VIDEO_DUMMY            (Wanted: ON): ON
+
+--   VIDEO_KMSDRM           (Wanted: OFF): OFF
+
+--   VIDEO_OPENGL           (Wanted: ON): ON
+
+--   VIDEO_OPENGLES         (Wanted: ON): ON
+
+--   VIDEO_RPI              (Wanted: OFF): OFF
+
+--   VIDEO_VIVANTE          (Wanted: OFF): OFF
+
+--   VIDEO_VULKAN           (Wanted: ON): ON
+
+--   VIDEO_WAYLAND          (Wanted: OFF): OFF
+
+--   VIDEO_WAYLAND_QT_TOUCH (Wanted: OFF): OFF
+
+--   VIDEO_X11              (Wanted: OFF): OFF
+
+--   VIDEO_X11_XCURSOR      (Wanted: OFF): OFF
+
+--   VIDEO_X11_XINERAMA     (Wanted: OFF): OFF
+
+--   VIDEO_X11_XINPUT       (Wanted: OFF): OFF
+
+--   VIDEO_X11_XRANDR       (Wanted: OFF): OFF
+
+--   VIDEO_X11_XSCRNSAVER   (Wanted: OFF): OFF
+
+--   VIDEO_X11_XSHAPE       (Wanted: OFF): OFF
+
+--   VIDEO_X11_XVM          (Wanted: OFF): OFF
+
+--   WASAPI                 (Wanted: ON): OFF
+
+--   WAYLAND_SHARED         (Wanted: OFF): OFF
+
+--   X11_SHARED             (Wanted: OFF): OFF
+-- 
+
+--  CFLAGS:        /DWIN32 /D_WINDOWS /W3  -IU:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/SDL2-2.0.10/src/hidapi/hidapi
+--  EXTRA_CFLAGS:  
+
+--  EXTRA_LDFLAGS: 
+--  EXTRA_LIBS:    user32;gdi32;winmm;imm32;ole32;oleaut32;version;uuid;advapi32;setupapi;shell32;dinput8
+-- 
+
+--  Build Shared Library: ON
+--  Build Static Library: FALSE
+-- 
+
+-- Configuring done
+
+-- Generating done
+
+-- Build files have been written to: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/SDL2-build
+
+Microsoft (R) Build Engine versi¢n 16.4.0+e901037fe para .NET Framework
+Copyright (C) Microsoft Corporation. Todos los derechos reservados.
+
+
+  Checking Build System
+
+  Building Custom Rule U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/SDL2-2.0.10/CMakeLists.txt
+
+  SDL.c
+
+  SDL_assert.c
+
+  SDL_dataqueue.c
+
+  SDL_error.c
+
+  SDL_hints.c
+
+  SDL_log.c
+
+  SDL_atomic.c
+
+  SDL_spinlock.c
+
+  SDL_audio.c
+
+  SDL_audiocvt.c
+
+  SDL_audiodev.c
+
+  SDL_audiotypecvt.c
+
+  SDL_mixer.c
+
+  SDL_wave.c
+
+  SDL_cpuinfo.c
+
+  SDL_dynapi.c
+
+  SDL_clipboardevents.c
+
+  SDL_displayevents.c
+
+  SDL_dropevents.c
+
+  SDL_events.c
+
+  Generating Code...
+
+  Compiling...
+
+  SDL_gesture.c
+
+  SDL_keyboard.c
+
+  SDL_mouse.c
+
+  SDL_quit.c
+
+  SDL_touch.c
+
+  SDL_windowevents.c
+
+  SDL_rwops.c
+
+  e_atan2.c
+
+  e_exp.c
+
+  e_fmod.c
+
+  e_log.c
+
+  e_log10.c
+
+  e_pow.c
+
+  e_rem_pio2.c
+
+  e_sqrt.c
+
+  k_cos.c
+
+  k_rem_pio2.c
+
+  k_sin.c
+
+  k_tan.c
+
+  s_atan.c
+
+  Generating Code...
+
+  Compiling...
+
+  s_copysign.c
+
+  s_cos.c
+
+  s_fabs.c
+
+  s_floor.c
+
+  s_scalbn.c
+
+  s_sin.c
+
+  s_tan.c
+
+  SDL_d3dmath.c
+
+  SDL_render.c
+
+  SDL_yuv_sw.c
+
+  SDL_render_d3d.c
+
+  SDL_shaders_d3d.c
+
+  SDL_render_d3d11.c
+
+  SDL_shaders_d3d11.c
+
+  SDL_render_gl.c
+
+  SDL_shaders_gl.c
+
+  SDL_render_gles.c
+
+  SDL_render_gles2.c
+
+  SDL_shaders_gles2.c
+
+  SDL_render_psp.c
+
+  Generating Code...
+
+  Compiling...
+
+  SDL_blendfillrect.c
+
+  SDL_blendline.c
+
+  SDL_blendpoint.c
+
+  SDL_drawline.c
+
+  SDL_drawpoint.c
+
+  SDL_render_sw.c
+
+  SDL_rotate.c
+
+  SDL_getenv.c
+
+  SDL_iconv.c
+
+  SDL_malloc.c
+
+  SDL_qsort.c
+
+  SDL_stdlib.c
+
+  SDL_string.c
+
+  SDL_thread.c
+
+  SDL_timer.c
+
+  SDL_RLEaccel.c
+
+  SDL_blit.c
+
+  SDL_blit_0.c
+
+  SDL_blit_1.c
+
+  SDL_blit_A.c
+
+  Generating Code...
+
+  Compiling...
+
+  SDL_blit_N.c
+
+  SDL_blit_auto.c
+
+  SDL_blit_copy.c
+
+  SDL_blit_slow.c
+
+  SDL_bmp.c
+
+  SDL_clipboard.c
+
+  SDL_egl.c
+
+  SDL_fillrect.c
+
+  SDL_pixels.c
+
+  SDL_rect.c
+
+  SDL_shape.c
+
+  SDL_stretch.c
+
+  SDL_surface.c
+
+  SDL_video.c
+
+  SDL_vulkan_utils.c
+
+  SDL_yuv.c
+
+  yuv_rgb.c
+
+  SDL_gamecontroller.c
+
+  SDL_joystick.c
+
+  SDL_haptic.c
+
+  Generating Code...
+
+  Compiling...
+
+  SDL_sensor.c
+
+  SDL_power.c
+
+  SDL_dummyaudio.c
+
+  SDL_diskaudio.c
+
+  SDL_nullevents.c
+
+  SDL_nullframebuffer.c
+
+  SDL_nullvideo.c
+
+  SDL_windows.c
+
+  SDL_xinput.c
+
+  SDL_winmm.c
+
+  SDL_directsound.c
+
+  SDL_wasapi.c
+
+  SDL_wasapi_win32.c
+
+  SDL_windowsclipboard.c
+
+  SDL_windowsevents.c
+
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\SDL2-2.0.10\src\video\windows\SDL_windowsevents.c(1166,1): warning C4996: 'GetVersion': was declared deprecated [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\S
+DL2-build\SDL2.vcxproj]
+
+C:\Windows Kits\10\Include\10.0.17134.0\um\sysinfoapi.h(135): message : see declaration of 'GetVersion' [U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\SDL2-build\SDL2.vcxproj]
+
+  SDL_windowsframebuffer.c
+
+  SDL_windowskeyboard.c
+
+  SDL_windowsmessagebox.c
+
+  SDL_windowsmodes.c
+
+  SDL_windowsmouse.c
+
+  Generating Code...
+
+  Compiling...
+
+  SDL_windowsopengl.c
+
+  SDL_windowsopengles.c
+
+  SDL_windowsshape.c
+
+  SDL_windowsvideo.c
+
+  SDL_windowsvulkan.c
+
+  SDL_windowswindow.c
+
+  SDL_sysmutex.c
+
+  SDL_syssem.c
+
+  SDL_systhread.c
+
+  SDL_systls.c
+
+  SDL_syscond.c
+
+  SDL_syspower.c
+
+  SDL_sysfilesystem.c
+
+  SDL_systimer.c
+
+  SDL_sysloadso.c
+
+  SDL_hidapi_ps4.c
+
+  SDL_hidapi_switch.c
+
+  SDL_hidapi_xbox360.c
+
+  SDL_hidapi_xboxone.c
+
+  SDL_hidapijoystick.c
+
+  Generating Code...
+
+  Compiling...
+
+  hid.c
+
+  SDL_dinputjoystick.c
+
+  SDL_mmjoystick.c
+
+  SDL_windowsjoystick.c
+
+  SDL_xinputjoystick.c
+
+  SDL_dinputhaptic.c
+
+  SDL_windowshaptic.c
+
+  SDL_xinputhaptic.c
+
+  SDL_dummysensor.c
+
+  Generating Code...
+
+     Creating library U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/SDL2-build/RelWithDebInfo/SDL2.lib and object U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/SDL2-build/RelWithDebInfo/SDL2.exp
+
+  SDL2.vcxproj -> U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\SDL2-build\RelWithDebInfo\SDL2.dll
+
+  Building Custom Rule U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/SDL2-2.0.10/CMakeLists.txt
+
+  SDL_windows_main.c
+
+  SDL2main.vcxproj -> U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\ogre-1.12.5\build3\SDL2-build\RelWithDebInfo\SDL2main.lib
+
+  Building Custom Rule U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/SDL2-2.0.10/CMakeLists.txt
+
+  -- Install configuration: "RelWithDebInfo"
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/lib/SDL2.lib
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/bin/SDL2.dll
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/lib/SDL2main.lib
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/cmake/SDL2Targets.cmake
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/cmake/SDL2Targets-relwithdebinfo.cmake
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/cmake/SDL2Config.cmake
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/cmake/SDL2ConfigVersion.cmake
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_assert.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_atomic.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_audio.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_bits.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_blendmode.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_clipboard.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_config_android.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_config_iphoneos.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_config_macosx.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_config_minimal.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_config_os2.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_config_pandora.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_config_psp.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_config_windows.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_config_winrt.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_config_wiz.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_copying.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_cpuinfo.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_egl.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_endian.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_error.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_events.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_filesystem.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_gamecontroller.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_gesture.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_haptic.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_hints.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_joystick.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_keyboard.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_keycode.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_loadso.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_log.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_main.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_messagebox.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_mouse.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_mutex.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_name.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_opengl.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_opengl_glext.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_opengles.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_opengles2.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_opengles2_gl2.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_opengles2_gl2ext.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_opengles2_gl2platform.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_opengles2_khrplatform.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_pixels.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_platform.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_power.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_quit.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_rect.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_render.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_revision.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_rwops.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_scancode.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_sensor.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_shape.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_stdinc.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_surface.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_system.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_syswm.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_test.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_test_assert.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_test_common.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_test_compare.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_test_crc32.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_test_font.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_test_fuzzer.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_test_harness.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_test_images.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_test_log.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_test_md5.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_test_memory.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_test_random.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_thread.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_timer.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_touch.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_types.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_version.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_video.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_vulkan.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/begin_code.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/close_code.h
+
+  -- Installing: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/include/SDL2/SDL_config.h
+
+Found ZLIB: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/lib/zlib.lib (found version "1.2.11") 
+Looking for ZZip...
+Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE) 
+Found ZZip: U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/lib/zzip.lib
+Looking for FreeImage...
+Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE) 
+Could not locate FreeImage
+Could NOT find Freetype (missing: FREETYPE_LIBRARY FREETYPE_INCLUDE_DIRS) 
+Found OpenGL: opengl32   
+Looking for DirectX9...
+DirectX9_PREFIX_PATH changed.
+Found DirectX9: C:/software/programacion/MSdirectXSDKjun10/Lib/x64/d3d9.lib
+Looking for DirectX11...
+Found DirectX11 headers: C:/Windows Kits/10/Include/10.0.17134.0/um
+Found DirectX11: d3d11.lib;dxgi.lib;dxguid.lib
+Looking for Cg...
+Cg_PREFIX_PATH changed.
+Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE) 
+Could not locate Cg
+Found PythonInterp: C:/software/programacion/python/anaconda3/python.exe (found version "3.7.3") 
+Found PythonLibs: C:/software/programacion/python/anaconda3/libs/python37.lib (found version "3.7.3") 
+Looking for pthread.h
+Looking for pthread.h - not found
+Found Threads: TRUE  
+Found SDL2: winmm;imm32;version;msimg32;U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/lib/SDL2main.lib;U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/ogre-1.12.5/build3/Dependencies/lib/SDL2.lib  
+Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+Looking for Softimage...
+Softimage_PREFIX_PATH changed.
+Could not locate Softimage
+Looking for strtol_l
+Looking for strtol_l - not found
+Performing Test COMPILER_HAS_DEPRECATED_ATTR
+Performing Test COMPILER_HAS_DEPRECATED_ATTR - Failed
+Performing Test COMPILER_HAS_DEPRECATED
+Performing Test COMPILER_HAS_DEPRECATED - Success
+Could NOT find SWIG (missing: SWIG_EXECUTABLE SWIG_DIR) (Required is at least version "3.0.8")
+CMake Warning at Components/Python/CMakeLists.txt:5 (message):
+  Python Component disabled because SWIG or Python was not found
+
+
+Could NOT find SWIG (missing: SWIG_EXECUTABLE SWIG_DIR) (Required is at least version "3.0.8")
+CMake Warning at Components/Csharp/CMakeLists.txt:5 (message):
+  Csharp Component disabled because SWIG or Csharp was not found
+
+
+Could NOT find SWIG (missing: SWIG_EXECUTABLE SWIG_DIR) (Required is at least version "3.0.8")
+Found JNI: C:/JDK/jdk10-64bits/lib/jawt.lib  
+CMake Warning at Components/Java/CMakeLists.txt:15 (message):
+  Java Component disabled because SWIG or Java was not found
+
+
+
+-----------------------------------------------------------------------------
+-- The following external packages were located on your system.
+-- This installation will have the extra features provided by these packages.
++ zlib
++ zziplib
++ OpenGL
++ DirectX9
++ DirectX11
++ Python
++ SDL2
+-----------------------------------------------------------------------------
+-- The following OPTIONAL packages could NOT be located on your system.
+-- Consider installing them to enable more features from this software.
++ freeimage: Support for commonly used graphics image formats <http://freeimage.sourceforge.net>
++ freetype: Portable font engine <http://www.freetype.org>
++ OpenGL ES 2.x: Support for the OpenGL ES 2.x render system <http://www.khronos.org/opengles/>
++ cg: C for graphics shader language <http://developer.nvidia.com/object/cg_toolkit.html>
++ OpenEXR: Load High dynamic range images <http://www.openexr.com/>
++ Doxygen: Tool for building API documentation <http://doxygen.org>
++ Softimage: Softimage SDK needed for building XSIExporter <FALSE>
+-----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+  FEATURE SUMMARY
+----------------------------------------------------------------------------
+
+Building components:
+  + MeshLodGenerator
+  + Paging
+  + Property
+  + RTShader System
+  + RTShader System Shaders
+  + Terrain
+  + Volume
+Building plugins:
+  + BSP scene manager
+  + Octree scene manager
+  + STBI codec (generic)
+  + Portal connected zone scene manager
+  + Particle FX
+  + DotScene loader
+Building rendersystems:
+  + Direct3D 9
+  + Direct3D 11
+  + OpenGL
+  + OpenGL 3+
+Building executables:
+  + Tools
+Building core features:
+  + Mesh Lod
+  + DDS image codec (.dds)
+  + ETC image codec (.pkm, .ktx) 
+  + ZIP archives
+  + Nodeless positioning of Lights and Cameras [DEPRECATED]
+
+Build type:                      shared
+Thread safety:                   none
+ResourceManager behaviour:       strict
+Use double precision:            disabled
+Nodes inherit transform:         disabled
+Assert mode:                     release exceptions
+
+----------------------------------------------------------------------------
+
+Configuring done
