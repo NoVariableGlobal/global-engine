@@ -29,6 +29,7 @@ void ApplicationContext::initApp(std::string appName)
 	createWindow(appName);
 }
 
+
 void ApplicationContext::createRoot()
 {
 	// define the strings that identify the resource and plugin configuration files
@@ -137,8 +138,9 @@ bool ApplicationContext::renderLoop()
 
 		if (mWindow->isClosed()) 
 			return false;
-
+    
 		if (!mRoot->renderOneFrame()) 
 			return false;
 	}
+
 }

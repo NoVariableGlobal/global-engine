@@ -1,27 +1,15 @@
 #include "Game.h"
-#include "ApplicationContext.h"
 #include "Scene.h"
+#include "Loader.h"
 #include <string>
 
-Game::Game()
-{
-	//...
-	initContext();
-	//...
-	initScenes();
-	//...
-}
+Game::Game() { }
+
 
 Game::~Game()
 {
-	//...
-	currentScene = nullptr;
-	for (int i = 0; i < scenesQueue.size(); i++)
-	{
-		// delete scenesQueue[i];
-		// scenesQueue[i] = nullptr;
-	}
-	//...
+  delete scene;
+	scene = nullptr;
 }
 
 void Game::initContext()
@@ -31,24 +19,26 @@ void Game::initContext()
 	//...
 }
 
-void Game::initScenes()
+void Game::init(std::string firstScene)
 {
-	//...
+  initContext();
+  
+	Loader loader;
+	loader.readScenes(scenesQueue);
+  
+  scene = new Scene();
+	setScene(firstScene);
 }
 
 void Game::update()
 {
-	//...
 	while (!exit)
 	{
-		//...
-		//currentScene.update();
-		//...
+		scene->update();
 	}
-	//...
 }
 
 void Game::setScene(std::string scene)
 {
-	//...
+	scene->load(scenesQueue.find(scene)->second);
 }

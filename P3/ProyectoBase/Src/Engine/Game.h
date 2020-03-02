@@ -1,21 +1,23 @@
+#pragma once
 #include <string>
-#include <map>
 #include "ApplicationContext.h"
 
 class Scene;
+class Loader;
 
 class Game
 {
 	private:
+		// Save <scene name, scene file>
 		std::map<std::string, std::string> scenesQueue;
-		Scene* currentScene = nullptr;
+		Scene* scene = nullptr;
 
 		bool exit = false;
 		bool end = false;
 		bool win = false;
 
 	public:
-		Game();
+		Game(std::string firtscene);
 		~Game();
 
 		/*
@@ -23,9 +25,9 @@ class Game
 		*/
 		void initContext();
 		/*
-		* Inicializar el mapa de escenas
+		* Inicializa el juego
 		*/
-		void initScenes();
+		void init(std::string firstScene);
 		/*
 		* Maneja el bucle del juego
 		*/

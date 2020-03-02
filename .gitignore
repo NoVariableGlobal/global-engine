@@ -33,7 +33,7 @@
 .idea/
 .vscode/
 .vs/
-build/
+*/**/build/
 Exes/
 inter/
 
@@ -41,3 +41,5 @@ inter/
 !Exes/plugins_d.cfg
 !Exes/resources.cfg
 !Exes/resources_d.cfg
+!Exes/Files/*.*
+!Exes/Sprites/*.*
