@@ -33,6 +33,7 @@
 .vs/
 */**/build/
 inter/
+test/
 
 */**/bin/*.exe
 */**/bin/*.ilk
