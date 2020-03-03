@@ -10,8 +10,8 @@ int main()
 int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine, int nCmdShow)
 #endif
 {
-    Game game;
-    game.init("Game");
+    //Game game;
+    //game.init("Game");
     ApplicationContext app;
     app.initApp("Test");
     app.renderLoop();
