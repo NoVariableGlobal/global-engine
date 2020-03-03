@@ -3,7 +3,6 @@
 #include "InputComponent.h"
 #include "RenderComponent.h"
 #include "SoundComponent.h"
-#include "CameraComponent.h"
 
 
 ComponentsManager::ComponentsManager()
@@ -28,9 +27,6 @@ void ComponentsManager::clearComponents()
 
 	while (!sound.empty())
 		sound.pop_back();
-
-	while (!camera.empty())
-		camera.pop_back();
 }
 
 void ComponentsManager::addPC(PhysicsComponent* _physicsComponent)
@@ -113,26 +109,6 @@ void ComponentsManager::deleteSC(SoundComponent* _soundComponent)
 	}
 }
 
-void ComponentsManager::addCC(CameraComponent* _cameraComponent)
-{
-	camera.push_back(_cameraComponent);
-}
-
-void ComponentsManager::deleteCC(CameraComponent* _cameraComponent)
-{
-	bool erased = false;
-	auto it = camera.begin();
-	while (it != camera.end() && erased)
-	{
-		if ((*it) == _cameraComponent)
-		{
-			camera.erase(it);
-			erased = true;
-		}
-		++it;
-	}
-}
-
 void ComponentsManager::update()
 {
 	for (auto p : physics)
@@ -156,10 +132,4 @@ void ComponentsManager::updateSound()
 	// TO DO: updateSound method in SoundComponent
 	/* for (auto s : sound)
 		s->updateSound() */
-}
-
-void ComponentsManager::updateCamera()
-{
-	for (auto c : camera)
-		c->updateCamera();
 }
