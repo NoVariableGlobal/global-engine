@@ -17,7 +17,7 @@ Loader::~Loader() {}
 void Loader::readScenes(std::map<std::string, std::string>& _scenesQueue)
 {
 	std::fstream file;
-	file.open("Files/scenes.json");
+	file.open("files/scenes.json");
 
 	if (file.is_open())
 	{
@@ -39,7 +39,7 @@ void Loader::readScenes(std::map<std::string, std::string>& _scenesQueue)
 void Loader::readEntities(std::string _fileName, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager)
 {
 	std::fstream file;
-	file.open("Files/" + _fileName);
+	file.open("files/" + _fileName);
 
 	if (file.is_open())
 	{

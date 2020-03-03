@@ -63,7 +63,7 @@
     <ClCompile Include="..\..\Src\Engine\CameraObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\OgreContext.cpp">
+    <ClCompile Include="..\..\Src\Engine\OgreSDLContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -113,7 +113,7 @@
     <ClInclude Include="..\..\Src\Engine\CameraObject.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\OgreContext.h">
+    <ClInclude Include="..\..\Src\Engine\OgreSDLContext.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\checkML.h">
