@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Application.cpp" />
-    <ClCompile Include="..\..\src\Engine\ApplicationContext.cpp" />
+    <ClCompile Include="..\..\src\Engine\OgreContext.cpp" />
     <ClCompile Include="..\..\src\Engine\CameraObject.cpp" />
     <ClCompile Include="..\..\src\Engine\Component.cpp" />
     <ClCompile Include="..\..\src\Engine\ComponentsManager.cpp" />
@@ -38,7 +38,7 @@
     <ClCompile Include="..\..\src\Engine\TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Engine\ApplicationContext.h" />
+    <ClInclude Include="..\..\src\Engine\OgreContext.h" />
     <ClInclude Include="..\..\src\Engine\CameraObject.h" />
     <ClInclude Include="..\..\src\Engine\Component.h" />
     <ClInclude Include="..\..\src\Engine\ComponentsManager.h" />
