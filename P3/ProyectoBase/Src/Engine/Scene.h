@@ -6,12 +6,14 @@
 class Component;
 class Entity;
 class ComponentsManager;
+class CameraObject;
 
 class Scene {
 
   std::map<std::string, Entity*> entities; 
   bool exit = false;
   ComponentsManager* componentManager;
+  CameraObject* cam;
 
 public:
   Scene();

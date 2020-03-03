@@ -9,7 +9,7 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine,
 #endif
 {
     Game game;
-    game.init("Game");
+    game.init("Menu");
 
     return 0;
 }

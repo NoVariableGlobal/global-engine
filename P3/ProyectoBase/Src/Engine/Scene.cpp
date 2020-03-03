@@ -5,11 +5,13 @@
 #include "Loader.h"
 #include "TransformComponent.h"
 #include "ComponentsManager.h"
+#include "CameraObject.h"
 
 #include <iostream>
 
 Scene::Scene() {
 	componentManager = new ComponentsManager();
+	cam = new CameraObject();
 }
 
 Scene::~Scene() {}
@@ -17,8 +19,6 @@ Scene::~Scene() {}
 void Scene::load(std::string name) {  
     Loader loader;
     loader.readEntities(name, entities, componentManager);
-
-	std::cout << dynamic_cast<TransformComponent*>(entities.find("PlayButton")->second->getComponent("TransformComponent"))->getPosition();
 }
 
 void Scene::update() {

@@ -1,6 +1,9 @@
 {"scenes":
 	[
-
+		{
+			"name": "Menu",
+			"file": "menu.json"
+		},
 		{
 			"name" : "Game",
 			"file" : "game.json"
