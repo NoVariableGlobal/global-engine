@@ -1,19 +1,20 @@
-{
-  "entities": [
-    {
-      "id": "Play_Button",
-      "components": [
-        {
-          "type": "TestComponent",
-          "attributes": [
-            {
-              "material": "material.material",
-              "color": [ 255, 255, 255 ]
-            }
+{"entities" :
+  [
+      {
+          "id" : "PlayButton",
+          "components" :
+          [
+              {
+                  "type" : "TransformComponent",
+                  "attributes" :
+                  {
+                      "position" : [0, 0, 0],
+                      "orientation" : [0, 0, 0],
+                      "scale" : [1, 1, 1]
+                  }
+              }
           ]
-        }
-      ]
-    }
+      }
   ]
 
 }

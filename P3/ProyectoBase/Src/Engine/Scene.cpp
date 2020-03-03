@@ -17,11 +17,11 @@ Scene::~Scene() {}
 void Scene::load(std::string name) {  
     Loader loader;
     loader.readEntities(name, entities, componentManager);
-    
+
+	std::cout << dynamic_cast<TransformComponent*>(entities.find("PlayButton")->second->getComponent("TransformComponent"))->getPosition();
 }
 
-void Scene::update()
-{
+void Scene::update() {
 	while (!exit) {
 		componentManager->update();
 		componentManager->handleInput();

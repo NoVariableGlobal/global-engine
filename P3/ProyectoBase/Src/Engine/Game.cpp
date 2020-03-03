@@ -8,23 +8,23 @@ Game::Game() { }
 
 Game::~Game()
 {
-  delete scene;
+	delete scene;
 	scene = nullptr;
 }
 
 void Game::initContext()
 {
-	ApplicationContext();
+	//ApplicationContext();
 }
 
 void Game::init(std::string firstScene)
 {
-  initContext();
+	initContext();
   
 	Loader loader;
 	loader.readScenes(scenesQueue);
   
-  scene = new Scene();
+	scene = new Scene();
 	setScene(firstScene);
 }
 

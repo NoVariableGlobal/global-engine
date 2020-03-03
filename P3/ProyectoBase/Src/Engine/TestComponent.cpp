@@ -49,7 +49,7 @@ public:
 		testComponent->setMaterial(_data["material"].asString());
 		testComponent->setColor(Ogre::Vector3(_data["color"][0].asInt(), _data["color"][1].asInt(), _data["color"][2].asInt()));
 
-		componentManager->addPC(testComponent);
+		//componentManager->addPC(testComponent);
 		return testComponent;
 	};
 };
