@@ -1,5 +1,4 @@
-#include "ApplicationContext.h"
-#include <SDL.h>
+#include "OgreSDLContext.h"
 
 #ifdef _DEBUG
 int main(int argc, char* args[])
@@ -8,7 +7,7 @@ int main(int argc, char* args[])
 int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine, int nCmdShow)
 #endif
 {
-    ApplicationContext app;
+    OgreSDLContext app;
     app.initApp("Test");
     app.renderLoop();
 

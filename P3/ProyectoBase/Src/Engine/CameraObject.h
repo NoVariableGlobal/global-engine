@@ -7,7 +7,7 @@ class SceneNode;
 class CameraMan;
 class Viewport;
 class SceneManager;
-class ApplicationContext;
+class OgreSDLContext;
 
 // TO DO: fix errors related to Ogre libraries and ApplicationContext
 class CameraObject
