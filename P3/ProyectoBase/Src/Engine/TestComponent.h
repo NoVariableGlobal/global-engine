@@ -10,7 +10,7 @@ namespace Ogre
 }
 
 // COMPONENT CODE
-class TestComponent : public PhysicsComponent 
+class TestComponent : public PhysicsComponent
 {
 	private:
 		std::string _material;

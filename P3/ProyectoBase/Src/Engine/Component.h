@@ -19,9 +19,6 @@ public:
 	Component();
 	virtual ~Component();
 	
-	// Abstract update method for children to implement
-	virtual void update() = 0;
-	
 	// Getters and setters
 	bool isActive();
 	void setActive(bool active);

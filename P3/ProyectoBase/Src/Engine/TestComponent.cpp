@@ -6,6 +6,7 @@
 #include "Ogre.h"
 #include "OgreVector3.h"
 #include "Entity.h"
+#include "ComponentsManager.h"
 
 TestComponent::TestComponent() { _color = new Ogre::Vector3(); }
 
@@ -41,12 +42,14 @@ class TestComponentFactory : public ComponentFactory {
 public:
 	TestComponentFactory() {};
 
-	virtual Component* create(Entity* father, Json::Value& _data) 
+	virtual Component* create(Entity* father, Json::Value& _data, ComponentsManager* componentManager)
 	{
 		TestComponent* testComponent = new TestComponent();
 		testComponent->setFather(father);
 		testComponent->setMaterial(_data["material"].asString());
 		testComponent->setColor(Ogre::Vector3(_data["color"][0].asInt(), _data["color"][1].asInt(), _data["color"][2].asInt()));
+
+		componentManager->addPC(testComponent);
 		return testComponent;
 	};
 };
