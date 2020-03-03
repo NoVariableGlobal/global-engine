@@ -4,6 +4,19 @@
 std::map<std::string, ComponentFactory*> FactoriesFactory::factory;
 FactoriesFactory* FactoriesFactory::_instance = nullptr;
 
+FactoriesFactory::FactoriesFactory()
+{
+}
+
+void FactoriesFactory::erase()
+{
+	for (auto it : factory)
+	{
+		delete it.second;
+	}
+	delete _instance;
+}
+
 FactoriesFactory* FactoriesFactory::instance()
 {
 	if (_instance == nullptr) _instance = new FactoriesFactory();

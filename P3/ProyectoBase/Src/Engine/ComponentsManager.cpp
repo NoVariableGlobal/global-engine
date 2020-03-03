@@ -16,17 +16,33 @@ ComponentsManager::~ComponentsManager()
 
 void ComponentsManager::clearComponents()
 {
-	while (!physics.empty())
+	int size = physics.size();
+	for (int i = size - 1; i >= 0; i--)
+	{
+		delete physics[i];
 		physics.pop_back();
+	}
 
-	while (!input.empty())
+	size = input.size();
+	for (int i = size - 1; i >= 0; i--)
+	{
+		delete input[i];
 		input.pop_back();
+	}
 
-	while (!rend.empty())
+	size = rend.size();
+	for (int i = size - 1; i >= 0; i--)
+	{
+		delete rend[i];
 		rend.pop_back();
+	}
 
-	while (!sound.empty())
+	size = sound.size();
+	for (int i = size - 1; i >= 0; i--)
+	{
+		delete sound[i];
 		sound.pop_back();
+	}
 }
 
 void ComponentsManager::addPC(PhysicsComponent* _physicsComponent)

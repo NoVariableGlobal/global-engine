@@ -2,6 +2,7 @@
 #include <map>
 #include <vector>
 #include <string>
+#include "checkML.h"
 
 class Component;
 class Entity;

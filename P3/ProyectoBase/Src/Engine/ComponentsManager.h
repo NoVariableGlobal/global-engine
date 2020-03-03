@@ -1,6 +1,5 @@
 #pragma once
-
-#include <list>
+#include <vector>
 class InputComponent;
 class PhysicsComponent;
 class RenderComponent;
@@ -9,10 +8,10 @@ class SoundComponent;
 class ComponentsManager
 {
 private:
-	std::list<InputComponent*> input;
-	std::list<PhysicsComponent*> physics;
-	std::list<RenderComponent*> rend;
-	std::list<SoundComponent*> sound;
+	std::vector<InputComponent*> input;
+	std::vector<PhysicsComponent*> physics;
+	std::vector<RenderComponent*> rend;
+	std::vector<SoundComponent*> sound;
 public:
 	ComponentsManager();
 	~ComponentsManager();

@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Engine\CameraObject.h" />
+    <ClInclude Include="..\..\Src\Engine\checkML.h" />
     <ClInclude Include="..\..\src\Engine\Component.h" />
     <ClInclude Include="..\..\src\Engine\ComponentsManager.h" />
     <ClInclude Include="..\..\src\Engine\Entity.h" />

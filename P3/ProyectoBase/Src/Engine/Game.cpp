@@ -2,12 +2,16 @@
 #include "Scene.h"
 #include "Loader.h"
 #include <string>
+#include "FactoriesFactory.h"
+#include "OgreContext.h"
 
 Game::Game() { }
 
 
 Game::~Game()
 {
+	FactoriesFactory::instance()->erase();
+	OgreContext::instance()->erase();
 	delete scene;
 	scene = nullptr;
 }

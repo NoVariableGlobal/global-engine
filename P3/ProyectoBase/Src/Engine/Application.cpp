@@ -1,5 +1,6 @@
 #include "OgreContext.h"
 #include "Game.h"
+#include "checkML.h"
 
 #ifdef _DEBUG
 int main()
@@ -8,6 +9,7 @@ int main()
 int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine, int nCmdShow)
 #endif
 {
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     Game game;
     game.init("Menu");
 

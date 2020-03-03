@@ -25,7 +25,7 @@ private:
 	Ogre::Vector3 cameraOffset;
 
 public:
-	CameraObject(Ogre::SceneManager* _mSM);
+	CameraObject();
 	~CameraObject();
 
 	// camera follows a specific node

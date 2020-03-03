@@ -20,7 +20,6 @@ class OgreContext
 
 	public:
 		OgreContext();
-		virtual ~OgreContext();
 
 		static OgreContext* instance();
 
@@ -38,6 +37,8 @@ class OgreContext
 
 		// Return a pointer to the SceneManager
 		Ogre::SceneManager* getSceneManager();
+
+		void erase();
 
 		bool renderLoop();
 };

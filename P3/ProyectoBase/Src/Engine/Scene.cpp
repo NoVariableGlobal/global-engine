@@ -15,7 +15,15 @@ Scene::Scene() {
 	cam = new CameraObject(OgreContext::instance()->getSceneManager());
 }
 
-Scene::~Scene() {}
+Scene::~Scene() 
+{
+	for (auto it : entities)
+	{
+		delete it.second;
+	}
+	delete componentManager;
+	delete cam;
+}
 
 void Scene::load(std::string name) {  
     Loader loader;
@@ -33,5 +41,5 @@ void Scene::update() {
 
 Entity* Scene::getEntitybyId(std::string id)
 {
-    return new Entity();
+    return entities.find(id)->second;
 }

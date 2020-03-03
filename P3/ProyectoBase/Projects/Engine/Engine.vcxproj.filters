@@ -116,5 +116,8 @@
     <ClInclude Include="..\..\Src\Engine\OgreContext.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\checkML.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

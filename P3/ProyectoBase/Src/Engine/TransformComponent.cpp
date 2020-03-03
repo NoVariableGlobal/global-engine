@@ -13,7 +13,12 @@ TransformComponent::TransformComponent()
 	_orientation = new Ogre::Vector3();
 }
 
-TransformComponent::~TransformComponent() {}
+TransformComponent::~TransformComponent() 
+{
+	delete _position;
+	delete _scale;
+	delete _orientation;
+}
 
 Ogre::Vector3 TransformComponent::getPosition() { return *_position; }
 void TransformComponent::setPosition(Ogre::Vector3 p) { *_position = p; }

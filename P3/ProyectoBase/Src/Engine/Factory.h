@@ -1,5 +1,4 @@
 #pragma once
-
 #define REGISTER_FACTORY(name, Component) \
 class Component##FactoryRegister { \
     public:\

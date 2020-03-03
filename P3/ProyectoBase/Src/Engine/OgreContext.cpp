@@ -15,9 +15,10 @@ OgreContext* OgreContext::_instance = nullptr;
 OgreContext::OgreContext() 
 	:	mRoot(0), mResourcesCfg(Ogre::BLANKSTRING), mPluginsCfg(Ogre::BLANKSTRING) {}
 
-OgreContext::~OgreContext()
+void OgreContext::erase()
 {
 	delete mRoot;
+	delete _instance;
 }
 
 OgreContext* OgreContext::instance()
