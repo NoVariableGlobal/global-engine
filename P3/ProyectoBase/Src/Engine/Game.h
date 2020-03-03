@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "ApplicationContext.h"
+#include "OgreContext.h"
 
 class Scene;
 class Loader;

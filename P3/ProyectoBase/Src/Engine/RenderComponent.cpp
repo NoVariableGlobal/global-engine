@@ -1,5 +1,8 @@
 #include "RenderComponent.h"
+#include "OgreContext.h"
 
-RenderComponent::RenderComponent() {} // Component()
+RenderComponent::RenderComponent() {
+  mSM = OgreContext::instance()->getSceneManager();
+}
 
 RenderComponent::~RenderComponent() {}
