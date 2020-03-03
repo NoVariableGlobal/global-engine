@@ -36,6 +36,7 @@ inter/
 test/
 
 */**/bin/*.exe
+*/**/bin/*.log
 */**/bin/*.ilk
 */**/bin/*.dll
 */**/bin/*.iobj
