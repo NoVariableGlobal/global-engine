@@ -4,6 +4,7 @@
 #include "Factory.h"
 #include "Ogre.h"
 #include "OgreVector3.h"
+#include "ComponentsManager.h"
 
 #include <json.h>
 #include <fstream>
@@ -35,7 +36,7 @@ void Loader::readScenes(std::map<std::string, std::string>& _scenesQueue)
 
 }
 
-void Loader::readEntities(std::string _fileName, std::map<std::string, Entity*>& _entities)
+void Loader::readEntities(std::string _fileName, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager)
 {
 	std::fstream file;
 	file.open("Files/" + _fileName);
@@ -48,7 +49,7 @@ void Loader::readEntities(std::string _fileName, std::map<std::string, Entity*>&
 
 		int numEntities = data.size();
 		for (int i = 0; i < numEntities; i++)
-			createEntity(data[i], i, _entities);
+			createEntity(data[i], i, _entities, componentManager);
 	}
 	else
 	{
@@ -56,7 +57,7 @@ void Loader::readEntities(std::string _fileName, std::map<std::string, Entity*>&
 	}
 }
 
-void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string, Entity*>& _entities)
+void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager)
 {
 	Entity* entity = new Entity();
 
@@ -68,7 +69,7 @@ void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string, Ent
 
 	int numComponents = components.size();
 	for (int i = 0; i < numComponents; i++)
-		entity->addComponent(components[i]["type"].asString(), FactoriesFactory::instance()->find(components[i]["type"].asString())->create(entity, components[i]["attributes"]));
+		entity->addComponent(components[i]["type"].asString(), FactoriesFactory::instance()->find(components[i]["type"].asString())->create(entity, components[i]["attributes"], componentManager));
 
 	_entities.emplace(entity->getId(), entity);
 }

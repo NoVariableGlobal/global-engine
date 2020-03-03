@@ -15,8 +15,6 @@ TransformComponent::TransformComponent()
 
 TransformComponent::~TransformComponent() {}
 
-void TransformComponent::update(){}
-
 Ogre::Vector3 TransformComponent::getPosition() { return *_position; }
 void TransformComponent::setPosition(Ogre::Vector3 p) { *_position = p; }
 
@@ -31,7 +29,7 @@ void TransformComponent::setScale(Ogre::Vector3 s) { *_scale = s; }
 class TransformComponentFactory : public ComponentFactory {
 public:
 	TransformComponentFactory() {};
-	virtual Component* create(Entity* father, Json::Value& _data)
+	virtual Component* create(Entity* father, Json::Value& _data, ComponentsManager* componentManager)
 	{
 		TransformComponent* transformComponent = new TransformComponent();
 		transformComponent->setFather(father);

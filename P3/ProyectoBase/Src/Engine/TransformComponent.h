@@ -20,7 +20,6 @@ private:
 public:
 	TransformComponent();
 	virtual ~TransformComponent();
-	virtual void update();
 
 	Ogre::Vector3 getPosition();
 	void setPosition(Ogre::Vector3 p);
