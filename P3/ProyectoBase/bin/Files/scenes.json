@@ -1,0 +1,10 @@
+{"scenes":
+	[
+
+		{
+			"name" : "Game",
+			"file" : "game.json"
+		}
+	]
+
+}
