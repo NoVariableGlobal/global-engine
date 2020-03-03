@@ -1,0 +1,1 @@
+Copiar SDL.dll en bin/
