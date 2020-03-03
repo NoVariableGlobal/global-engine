@@ -35,9 +35,13 @@
 inter/
 test/
 
+/P3/ProyectoBase/lib/
+
 */**/bin/*.exe
 */**/bin/*.ilk
 */**/bin/*.dll
 */**/bin/*.iobj
 */**/bin/*.ipdb
 */**/bin/*.pdb
+
+*.log

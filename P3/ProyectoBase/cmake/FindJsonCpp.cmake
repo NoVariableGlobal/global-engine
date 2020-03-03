@@ -1,10 +1,17 @@
 file(GLOB JSON_CPP_DIR "${global_engine_SOURCE_DIR}/deps/jsoncpp")
-file(GLOB_RECURSE JSON_CPP_LIBRARIES "${JSON_CPP_DIR}/lib/*.lib")
+
+if (CMAKE_BUILD_TYPE STREQUAL "Release")
+	file(GLOB_RECURSE JSON_CPP_LIBRARIES "${JSON_CPP_DIR}/lib/release/*.lib")
+else ()
+	file(GLOB_RECURSE JSON_CPP_LIBRARIES "${JSON_CPP_DIR}/lib/debug/*.lib")
+endif ()
+
 set(JSON_CPP_INCLUDE_DIR "${JSON_CPP_DIR}/include")
 include_directories(${JSON_CPP_INCLUDE_DIR})
 
 message("JSON_CPP_DIR = ${JSON_CPP_DIR}")
 message("JSON_CPP_INCLUDE_DIR = ${JSON_CPP_INCLUDE_DIR}")
+message("JSON_CPP_LIBRARIES = ${JSON_CPP_LIBRARIES}")
 
 include(FindPackageHandleStandardArgs)
 

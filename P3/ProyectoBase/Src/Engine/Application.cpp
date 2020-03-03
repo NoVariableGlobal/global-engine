@@ -1,6 +1,6 @@
 #include "ApplicationContext.h"
-
-#include <OgreRoot.h> // como no lo tenemos metido en nuestro proyecto es mejor poner <> que ""
+#include <exception>
+#include <iostream>
 
 #ifdef _DEBUG
 int main()
@@ -9,9 +9,13 @@ int main()
 int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine, int nCmdShow)
 #endif
 {
-    ApplicationContext app;
-    app.initApp("Test");
-    app.renderLoop();
+    try {
+        ApplicationContext app;
+        app.initApp("Test");
+        app.renderLoop();
+    } catch (const std::exception& exception) {
+        std::cerr << "FATAL ERROR: " << exception.what() << "\n";
+    }
 
     return 0;
 }
