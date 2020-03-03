@@ -14,7 +14,6 @@
 # Compiled Dynamic libraries
 *.so
 *.dylib
-*.dll
 
 # Fortran module files
 *.mod
@@ -24,7 +23,6 @@
 *.lai
 *.la
 *.a
-*.lib
 
 # Executables
 *.out
@@ -34,12 +32,11 @@
 .vscode/
 .vs/
 */**/build/
-Exes/
 inter/
 
-!Exes/plugins.cfg
-!Exes/plugins_d.cfg
-!Exes/resources.cfg
-!Exes/resources_d.cfg
-!Exes/Files/*.*
-!Exes/Sprites/*.*
+*/**/bin/*.exe
+*/**/bin/*.ilk
+*/**/bin/*.dll
+*/**/bin/*.iobj
+*/**/bin/*.ipdb
+*/**/bin/*.pdb
