@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Application.cpp" />
-    <ClCompile Include="..\..\src\Engine\ApplicationContext.cpp" />
     <ClCompile Include="..\..\src\Engine\CameraObject.cpp" />
     <ClCompile Include="..\..\src\Engine\Component.cpp" />
     <ClCompile Include="..\..\src\Engine\ComponentsManager.cpp" />
@@ -30,6 +29,7 @@
     <ClCompile Include="..\..\src\Engine\Game.cpp" />
     <ClCompile Include="..\..\src\Engine\InputComponent.cpp" />
     <ClCompile Include="..\..\src\Engine\Loader.cpp" />
+    <ClCompile Include="..\..\Src\Engine\OgreContext.cpp" />
     <ClCompile Include="..\..\src\Engine\PhysicsComponent.cpp" />
     <ClCompile Include="..\..\src\Engine\RenderComponent.cpp" />
     <ClCompile Include="..\..\src\Engine\Scene.cpp" />
@@ -38,7 +38,6 @@
     <ClCompile Include="..\..\src\Engine\TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Engine\ApplicationContext.h" />
     <ClInclude Include="..\..\src\Engine\CameraObject.h" />
     <ClInclude Include="..\..\src\Engine\Component.h" />
     <ClInclude Include="..\..\src\Engine\ComponentsManager.h" />
@@ -48,6 +47,7 @@
     <ClInclude Include="..\..\src\Engine\Game.h" />
     <ClInclude Include="..\..\src\Engine\InputComponent.h" />
     <ClInclude Include="..\..\src\Engine\Loader.h" />
+    <ClInclude Include="..\..\Src\Engine\OgreContext.h" />
     <ClInclude Include="..\..\src\Engine\PhysicsComponent.h" />
     <ClInclude Include="..\..\src\Engine\RenderComponent.h" />
     <ClInclude Include="..\..\src\Engine\Scene.h" />

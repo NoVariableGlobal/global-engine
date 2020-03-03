@@ -1,4 +1,4 @@
-#include "ApplicationContext.h"
+#include "OgreContext.h"
 #include "Game.h"
 
 #ifdef _DEBUG

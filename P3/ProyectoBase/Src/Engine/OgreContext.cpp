@@ -1,26 +1,32 @@
-#include "ApplicationContext.h"
+#include "OgreContext.h"
 
-//#include <OgreRoot.h>
 #include <OgreException.h>
 #include <OgreConfigFile.h>
 #include <OgreSceneManager.h>
 #include <OgreCamera.h>
+//#include <OgreRoot.h>
 //#include <OgreWindowEventUtilities.h>
 
 #include "OgreViewport.h"
 #include "OgreRenderWindow.h"
 
-ApplicationContext::ApplicationContext() :
-	mRoot(0), mResourcesCfg(Ogre::BLANKSTRING), mPluginsCfg(Ogre::BLANKSTRING)
-{
-}
+OgreContext* OgreContext::_instance = nullptr;
 
-ApplicationContext::~ApplicationContext()
+OgreContext::OgreContext() 
+	:	mRoot(0), mResourcesCfg(Ogre::BLANKSTRING), mPluginsCfg(Ogre::BLANKSTRING) {}
+
+OgreContext::~OgreContext()
 {
 	delete mRoot;
 }
 
-void ApplicationContext::initApp(std::string appName)
+OgreContext* OgreContext::instance()
+{
+	if (_instance == nullptr) _instance = new OgreContext();
+	return _instance;
+}
+
+void OgreContext::initApp(std::string appName)
 {
 	createRoot();
 	settingResources();
@@ -28,22 +34,22 @@ void ApplicationContext::initApp(std::string appName)
 }
 
 
-void ApplicationContext::createRoot()
+void OgreContext::createRoot()
 {
 	// define the strings that identify the resource and plugin configuration files
-#ifdef _DEBUG
-	mResourcesCfg = "resources_d.cfg";
-	mPluginsCfg = "plugins_d.cfg";
-#else
-	mResourcesCfg = "resources.cfg";
-	mPluginsCfg = "plugins.cfg";
-#endif
+	#ifdef _DEBUG
+		mResourcesCfg = "resources_d.cfg";
+		mPluginsCfg = "plugins_d.cfg";
+	#else
+		mResourcesCfg = "resources.cfg";
+		mPluginsCfg = "plugins.cfg";
+	#endif
 
 	// create an instance of the root object
 	mRoot = new Ogre::Root(mPluginsCfg);
 }
 
-void ApplicationContext::settingResources()
+void OgreContext::settingResources()
 {
 	// create a Ogre::ConfigFile object and use it to parse our cfg file
 	Ogre::ConfigFile cf;
@@ -76,7 +82,7 @@ void ApplicationContext::settingResources()
 	}
 }
 
-void ApplicationContext::createWindow(std::string appName)
+void OgreContext::createWindow(std::string appName)
 {
 	// create a RenderWindow instance
 	Ogre::RenderSystem* rs = mRoot->getRenderSystemByName("Direct3D11 Rendering Subsystem"); // ----------------------------------------------------------- PREGUNTAR
@@ -128,7 +134,12 @@ void ApplicationContext::createWindow(std::string appName)
 	//mLight->setDirection(Ogre::Vector3(-1, -1, -1));  //vec3.normalise();
 }
 
-bool ApplicationContext::renderLoop()
+Ogre::SceneManager* OgreContext::getSceneManager()
+{
+	return mSM;
+}
+
+bool OgreContext::renderLoop()
 {
 	while (true)
 	{

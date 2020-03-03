@@ -6,12 +6,13 @@
 #include "TransformComponent.h"
 #include "ComponentsManager.h"
 #include "CameraObject.h"
+#include "OgreContext.h"
 
 #include <iostream>
 
 Scene::Scene() {
 	componentManager = new ComponentsManager();
-	cam = new CameraObject();
+	cam = new CameraObject(OgreContext::instance()->getSceneManager());
 }
 
 Scene::~Scene() {}
