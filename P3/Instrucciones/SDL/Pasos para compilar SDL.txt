@@ -1,1 +1,1 @@
-Copiar SDL.dll en bin/
+Copiar lib/(Da igual, es el mismo)/SDL.dll en bin/
