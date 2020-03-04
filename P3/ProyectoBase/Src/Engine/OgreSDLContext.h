@@ -3,7 +3,6 @@
 #include <string>
 
 class SDL_Window;
-class SGTechniqueResolverListener;
 
 namespace Ogre
 {
@@ -15,6 +14,11 @@ namespace Ogre
 
 	typedef std::string _StringBase;
 	typedef _StringBase String;
+
+	namespace RTShader
+	{
+		class ShaderGenerator;
+	}
 }
 
 struct NativeWindowPair
@@ -41,8 +45,7 @@ class OgreSDLContext
 		Ogre::SceneNode* mLight = nullptr;
 
 		Ogre::String mRTShaderLibPath;
-		Ogre::RTShader::ShaderGenerator* mShaderGenerator; // The Shader generator instance.
-		SGTechniqueResolverListener* mMaterialMgrListener; // Shader generator material manager listener.
+		Ogre::RTShader::ShaderGenerator* mShaderGenerator = nullptr; // The Shader generator instance.
 
 		bool grab = false, showCursor = true;
 

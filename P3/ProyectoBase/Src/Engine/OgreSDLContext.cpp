@@ -6,6 +6,7 @@
 #include <OgreSceneManager.h>
 #include <OgreCamera.h>
 #include <OgreMaterialManager.h>
+#include <OgreShaderGenerator.h>
 
 #include <SDL.h>
 #include <SDL_syswm.h>
@@ -161,25 +162,18 @@ void OgreSDLContext::setWindowGrab(bool _grab, bool _showCursor)
 
 void OgreSDLContext::initialiseRTShaderSystem()
 {
-	//if (!Ogre::RTShader::ShaderGenerator::initialize())
-	//{
-	//	// LANZAR EXCEPCION
-	//}
+	if (!Ogre::RTShader::ShaderGenerator::getSingleton().initialize())
+	{
+		// LANZAR EXCEPCION
+	}
 
-	//mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
+	mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
 
-	//// Core shader libs not found -> shader generating will fail.
-	//if (mRTShaderLibPath.empty())
-	//{
-	//	// LANZAR EXCEPCION
-	//}
-
-	//// Create and register the material manager listener if it doesn't exist yet.
-	//if (!mMaterialMgrListener) 
-	//{
-	//	mMaterialMgrListener = new SGTechniqueResolverListener(mShaderGenerator);
-	//	Ogre::MaterialManager::getSingleton().addListener(mMaterialMgrListener);
-	//}
+	// Core shader libs not found -> shader generating will fail.
+	if (mRTShaderLibPath.empty())
+	{
+		// LANZAR EXCEPCION
+	}
 }
 
 void OgreSDLContext::closeApp()
@@ -218,18 +212,10 @@ void OgreSDLContext::destroyRTShaderSystem()
 	// restore default scheme.
 	Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
 
-	// unregister the material manager listener.
-	if (mMaterialMgrListener != nullptr)
-	{
-		Ogre::MaterialManager::getSingleton().removeListener(mMaterialMgrListener);
-		delete mMaterialMgrListener;
-		mMaterialMgrListener = nullptr;
-	}
-
 	// destroy RTShader system.
 	if (mShaderGenerator != nullptr)
 	{
-		Ogre::RTShader::ShaderGenerator::destroy();
+		Ogre::RTShader::ShaderGenerator::getSingleton().destroy();
 		mShaderGenerator = nullptr;
 	}
 }
