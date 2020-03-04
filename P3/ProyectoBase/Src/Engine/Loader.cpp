@@ -69,7 +69,7 @@ void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string, Ent
 
 	int numComponents = components.size();
 	for (int i = 0; i < numComponents; i++)
-		entity->addComponent(components[i]["type"].asString(), FactoriesFactory::instance()->find(components[i]["type"].asString())->create(entity, components[i]["attributes"], componentManager));
+		entity->addComponent(components[i]["type"].asString(), FactoriesFactory::getInstance()->find(components[i]["type"].asString())->create(entity, components[i]["attributes"], componentManager));
 
 	_entities.emplace(entity->getId(), entity);
 }

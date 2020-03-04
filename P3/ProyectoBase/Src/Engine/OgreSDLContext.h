@@ -14,7 +14,9 @@ struct NativeWindowPair
 
 class OgreSDLContext
 {
-	protected:
+	private:
+		static OgreSDLContext* _instance;
+
 		Ogre::Root* mRoot = nullptr;
 		Ogre::String mResourcesCfg;
 		Ogre::String mPluginsCfg;
@@ -28,9 +30,13 @@ class OgreSDLContext
 
 		bool grab = false, showCursor = true;
 
+		bool exit = false;
+
 	public:
+		static OgreSDLContext* getInstance();
+
 		OgreSDLContext();
-		virtual ~OgreSDLContext();
+		void erase();
 
 		// initialize the application
 		void initApp(std::string appName);
@@ -51,6 +57,9 @@ class OgreSDLContext
 		// process all window events since last call
 		void pollEvents();
 
+		// Return a pointer to the SceneManager
+		Ogre::SceneManager* getSceneManager();
+
 		//------------------------- ESTO NO ESTARA AQUI
-		void renderLoop();
+		bool renderLoop();
 };

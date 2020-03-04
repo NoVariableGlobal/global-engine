@@ -3,22 +3,22 @@
 #include "Loader.h"
 #include <string>
 #include "FactoriesFactory.h"
-#include "OgreContext.h"
+#include "OgreSDLContext.h"
 
-Game::Game() { }
+Game::Game() {}
 
 
 Game::~Game()
 {
-	FactoriesFactory::instance()->erase();
-	OgreContext::instance()->erase();
+	FactoriesFactory::getInstance()->erase();
+	OgreSDLContext::getInstance()->erase();
 	delete scene;
 	scene = nullptr;
 }
 
 void Game::initContext()
 {
-	//ApplicationContext();
+	OgreSDLContext::getInstance()->initApp("Test");
 }
 
 void Game::init(std::string firstScene)
@@ -30,6 +30,8 @@ void Game::init(std::string firstScene)
   
 	scene = new Scene();
 	setScene(firstScene);
+
+	update();
 }
 
 void Game::update()
@@ -37,6 +39,7 @@ void Game::update()
 	while (!exit)
 	{
 		scene->update();
+		exit = OgreSDLContext::getInstance()->renderLoop();
 	}
 }
 

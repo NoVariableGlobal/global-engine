@@ -11,13 +11,8 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine,
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-    OgreSDLContext app;
-    app.initApp("Test");
-    app.renderLoop();
-
     Game game;
     game.init("Menu");
-
 
     return 0;
 }

@@ -17,7 +17,7 @@ void FactoriesFactory::erase()
 	delete _instance;
 }
 
-FactoriesFactory* FactoriesFactory::instance()
+FactoriesFactory* FactoriesFactory::getInstance()
 {
 	if (_instance == nullptr) _instance = new FactoriesFactory();
 	return _instance;

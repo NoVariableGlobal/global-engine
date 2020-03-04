@@ -15,15 +15,25 @@
 #include "OgreRenderWindow.h"
 #include "OgreEntity.h"
 
+OgreSDLContext* OgreSDLContext::_instance = nullptr;
+
 OgreSDLContext::OgreSDLContext() :
 	mRoot(0), mResourcesCfg(Ogre::BLANKSTRING), mPluginsCfg(Ogre::BLANKSTRING)
 {
 }
 
-OgreSDLContext::~OgreSDLContext()
+void OgreSDLContext::erase()
 {
 	closeApp();
+	delete _instance;
 }
+
+OgreSDLContext* OgreSDLContext::getInstance()
+{
+	if (_instance == nullptr) _instance = new OgreSDLContext();
+	return _instance;
+}
+
 
 void OgreSDLContext::initApp(std::string appName)
 {
@@ -221,7 +231,7 @@ void OgreSDLContext::pollEvents()   // from frameStarted
 		{
 			case SDL_QUIT:
 				mRoot->queueEndRendering();
-				mWindow.render->destroy();
+				exit = true;
 				break;
 
 			case SDL_WINDOWEVENT:
@@ -242,13 +252,14 @@ void OgreSDLContext::pollEvents()   // from frameStarted
 	}
 }
 
-void OgreSDLContext::renderLoop()
+Ogre::SceneManager* OgreSDLContext::getSceneManager()
 {
-	while (!mWindow.render->isClosed())
-	{
-		mRoot->renderOneFrame();
+	return mSM;
+}
 
-		pollEvents();
-	}
-
+bool OgreSDLContext::renderLoop()
+{
+	mRoot->renderOneFrame();
+	pollEvents();
+	return exit;
 }
