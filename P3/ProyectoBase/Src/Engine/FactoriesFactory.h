@@ -14,9 +14,9 @@ class FactoriesFactory
 
 	public:
 		static FactoriesFactory* getInstance();
-		void insert(std::string name, ComponentFactory* fac);
+
 		ComponentFactory* find(std::string name);
-		void erase();
-		
+		void insert(std::string name, ComponentFactory* fac);
+		void clear();	
 };
 

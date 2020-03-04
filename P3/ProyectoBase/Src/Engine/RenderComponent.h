@@ -1,9 +1,8 @@
 #pragma
 
-//#include "Component.h"
-//#include "sdl_includes.h"
+#include "Component.h"
 
-class RenderComponent {//: virtual public Component {
+class RenderComponent : public Component {
 public:
 	RenderComponent();
 	virtual ~RenderComponent();
