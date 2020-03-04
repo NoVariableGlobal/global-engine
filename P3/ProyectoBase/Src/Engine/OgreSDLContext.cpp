@@ -177,6 +177,7 @@ void OgreSDLContext::createWindow(std::string appName)
 
 	// SIMBAD
 	Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
+	ent->setMaterialName("TestMaterial");  //--------------------------------------------------------------- NO FUNCIONA. MIRAR POR QUE
 	Ogre::SceneNode* mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
 	mSinbadNode->attachObject(ent);
 	mSinbadNode->setScale(20, 20, 20);
