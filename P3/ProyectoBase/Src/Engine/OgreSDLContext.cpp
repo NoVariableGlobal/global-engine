@@ -5,6 +5,7 @@
 #include <OgreConfigFile.h>
 #include <OgreSceneManager.h>
 #include <OgreCamera.h>
+#include <OgreRoot.h>
 
 #include <SDL.h>
 #include <SDL_syswm.h>

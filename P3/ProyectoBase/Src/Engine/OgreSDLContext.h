@@ -1,10 +1,19 @@
 #pragma once
 
-#include <OgreRoot.h>
-
 #include <string>
 
 class SDL_Window;
+namespace Ogre
+{
+	class RenderWindow;
+	class Root;
+	class Viewport;
+	class SceneManager;
+	class SceneNode;
+
+	typedef std::string _StringBase;
+	typedef _StringBase String;
+}
 
 struct NativeWindowPair
 {
