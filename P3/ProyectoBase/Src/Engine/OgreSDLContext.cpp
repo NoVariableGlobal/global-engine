@@ -5,6 +5,7 @@
 #include <OgreConfigFile.h>
 #include <OgreSceneManager.h>
 #include <OgreCamera.h>
+#include <OgreMaterialManager.h>
 
 #include <SDL.h>
 #include <SDL_syswm.h>
@@ -41,6 +42,7 @@ void OgreSDLContext::initApp(std::string appName)
 	settingResources();
 	createWindow(appName);
 	setWindowGrab(grab, showCursor);
+	initialiseRTShaderSystem();
 }
 
 void OgreSDLContext::createRoot()
@@ -190,6 +192,29 @@ void OgreSDLContext::setWindowGrab(bool _grab, bool _showCursor)
 	SDL_ShowCursor(_showCursor);
 }
 
+void OgreSDLContext::initialiseRTShaderSystem()
+{
+	//if (!Ogre::RTShader::ShaderGenerator::initialize())
+	//{
+	//	// LANZAR EXCEPCION
+	//}
+
+	//mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
+
+	//// Core shader libs not found -> shader generating will fail.
+	//if (mRTShaderLibPath.empty())
+	//{
+	//	// LANZAR EXCEPCION
+	//}
+
+	//// Create and register the material manager listener if it doesn't exist yet.
+	//if (!mMaterialMgrListener) 
+	//{
+	//	mMaterialMgrListener = new SGTechniqueResolverListener(mShaderGenerator);
+	//	Ogre::MaterialManager::getSingleton().addListener(mMaterialMgrListener);
+	//}
+}
+
 void OgreSDLContext::closeApp()
 {
 	if (mRoot != nullptr)
@@ -205,6 +230,8 @@ void OgreSDLContext::closeApp()
 
 void OgreSDLContext::shutdown()
 {
+	destroyRTShaderSystem();
+
 	if (mWindow.render != nullptr)
 	{
 		mRoot->destroyRenderTarget(mWindow.render);
@@ -219,6 +246,26 @@ void OgreSDLContext::shutdown()
 	}
 }
 
+void OgreSDLContext::destroyRTShaderSystem()
+{
+	// restore default scheme.
+	Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
+
+	// unregister the material manager listener.
+	if (mMaterialMgrListener != nullptr)
+	{
+		Ogre::MaterialManager::getSingleton().removeListener(mMaterialMgrListener);
+		delete mMaterialMgrListener;
+		mMaterialMgrListener = nullptr;
+	}
+
+	// destroy RTShader system.
+	if (mShaderGenerator != nullptr)
+	{
+		Ogre::RTShader::ShaderGenerator::destroy();
+		mShaderGenerator = nullptr;
+	}
+}
 
 void OgreSDLContext::pollEvents()   // from frameStarted
 {

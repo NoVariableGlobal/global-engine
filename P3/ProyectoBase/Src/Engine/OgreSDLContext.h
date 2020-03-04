@@ -1,10 +1,12 @@
 #pragma once
 
 #include <OgreRoot.h>
+#include <OgreShaderRenderState.h>
 
 #include <string>
 
 class SDL_Window;
+class SGTechniqueResolverListener;
 
 struct NativeWindowPair
 {
@@ -28,6 +30,10 @@ class OgreSDLContext
 		Ogre::SceneNode* mCam = nullptr;
 		Ogre::SceneNode* mLight = nullptr;
 
+		Ogre::String mRTShaderLibPath;
+		Ogre::RTShader::ShaderGenerator* mShaderGenerator; // The Shader generator instance.
+		SGTechniqueResolverListener* mMaterialMgrListener; // Shader generator material manager listener.
+
 		bool grab = false, showCursor = true;
 
 		bool exit = false;
@@ -48,11 +54,15 @@ class OgreSDLContext
 		void createWindow(std::string appName);
 		// keep (or not) the mouse inside the window
 		void setWindowGrab(bool _grab, bool _showCursor);
+		// initialize the RT Shader system.
+		void initialiseRTShaderSystem();
 
 		// close the application
 		void closeApp();
 		// cleans up and shuts down the context.
 		void shutdown();
+		// destroy the RT Shader system.
+		void destroyRTShaderSystem();
 
 		// process all window events since last call
 		void pollEvents();
