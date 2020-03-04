@@ -36,7 +36,7 @@
     <ClCompile Include="..\..\src\Engine\SoundComponent.cpp" />
     <ClCompile Include="..\..\src\Engine\TestComponent.cpp" />
     <ClCompile Include="..\..\src\Engine\TransformComponent.cpp" />
-    <ClCompile Include="..\..\Src\Engine\3DObjectRC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\OgreSDLContext.h" />
@@ -56,7 +56,7 @@
     <ClInclude Include="..\..\src\Engine\SoundComponent.h" />
     <ClInclude Include="..\..\src\Engine\TestComponent.h" />
     <ClInclude Include="..\..\src\Engine\TransformComponent.h" />
-    <ClInclude Include="..\..\Src\Engine\3DObjectRC.h" />
+    <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

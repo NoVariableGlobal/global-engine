@@ -3,11 +3,11 @@
 #include <string>
 #include "RenderComponent.h"
 
-class TridimensionalObject : public RenderComponent {
+class TridimensionalObjectRC : public RenderComponent {
 
 public:
-	TridimensionalObject();
-	virtual ~TridimensionalObject();
+	TridimensionalObjectRC();
+	virtual ~TridimensionalObjectRC();
 
 	virtual void render();
 	void setMaterial(std::string material);

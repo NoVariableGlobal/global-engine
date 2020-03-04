@@ -1,6 +1,6 @@
 #include <json.h>
 
-#include "3DObjectRC.h"
+#include "TridimensionalObjectRC.h"
 #include "Entity.h"
 #include "Factory.h"
 #include "FactoriesFactory.h"
@@ -11,13 +11,13 @@
 #include "OgreSceneManager.h"
 
 // COMPONENT CODE
-TridimensionalObject::TridimensionalObject() {}
+TridimensionalObjectRC::TridimensionalObjectRC() {}
 
-TridimensionalObject::~TridimensionalObject() {}
+TridimensionalObjectRC::~TridimensionalObjectRC() {}
 
-void TridimensionalObject::render() {}
+void TridimensionalObjectRC::render() {}
 
-void TridimensionalObject::setMaterial(std::string material) {
+void TridimensionalObjectRC::setMaterial(std::string material) {
 	_entity->setMaterialName(material);
 }
 
@@ -29,7 +29,7 @@ public:
 	virtual Component* create(Entity* father, Json::Value& _data, ComponentsManager* componentManager)
 	{
 		Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
-		TridimensionalObject* tridimensionalObject = new TridimensionalObject();
+		TridimensionalObjectRC* tridimensionalObject = new TridimensionalObjectRC();
 		
 		tridimensionalObject->setFather(father);
 		tridimensionalObject->setOgreEntity(mSM->createEntity(_data["mesh"].asString()));
