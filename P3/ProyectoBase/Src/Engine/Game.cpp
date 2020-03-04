@@ -10,7 +10,7 @@ Game::Game() {}
 
 Game::~Game()
 {
-	FactoriesFactory::getInstance()->erase();
+	FactoriesFactory::getInstance()->clear();
 	OgreSDLContext::getInstance()->erase();
 	delete scene;
 	scene = nullptr;
