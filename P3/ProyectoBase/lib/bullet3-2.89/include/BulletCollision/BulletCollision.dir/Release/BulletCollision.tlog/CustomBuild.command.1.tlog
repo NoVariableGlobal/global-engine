@@ -1,0 +1,10 @@
+^U:\HLOCAL\BULLET3-2.89\SRC\BULLETCOLLISION\CMAKELISTS.TXT
+setlocal
+U:\hlocal\global-engine\P3\ProyectoBase\Depedencias\cmake-3.17.0-rc1-win64-x64\bin\cmake.exe -SU:/hlocal/bullet3-2.89 -BU:/hlocal/global-engine/P3/ProyectoBase/Depedencias/bullet3-2.89 --check-stamp-file U:/hlocal/global-engine/P3/ProyectoBase/Depedencias/bullet3-2.89/src/BulletCollision/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

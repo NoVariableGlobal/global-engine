@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="U:\hlocal\bullet3-2.89\src\BulletInverseDynamics\IDMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="U:\hlocal\bullet3-2.89\src\BulletInverseDynamics\MultiBodyTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="U:\hlocal\bullet3-2.89\src\BulletInverseDynamics\details\MultiBodyTreeInitCache.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="U:\hlocal\bullet3-2.89\src\BulletInverseDynamics\details\MultiBodyTreeImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="U:\hlocal\bullet3-2.89\src\BulletInverseDynamics\IDConfig.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="U:\hlocal\bullet3-2.89\src\BulletInverseDynamics\IDConfigEigen.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="U:\hlocal\bullet3-2.89\src\BulletInverseDynamics\IDMath.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="U:\hlocal\bullet3-2.89\src\BulletInverseDynamics\IDConfigBuiltin.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="U:\hlocal\bullet3-2.89\src\BulletInverseDynamics\IDErrorMessages.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="U:\hlocal\bullet3-2.89\src\BulletInverseDynamics\MultiBodyTree.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="U:\hlocal\bullet3-2.89\src\BulletInverseDynamics\details\IDEigenInterface.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="U:\hlocal\bullet3-2.89\src\BulletInverseDynamics\details\IDMatVec.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="U:\hlocal\bullet3-2.89\src\BulletInverseDynamics\details\IDLinearMathInterface.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="U:\hlocal\bullet3-2.89\src\BulletInverseDynamics\details\MultiBodyTreeImpl.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="U:\hlocal\bullet3-2.89\src\BulletInverseDynamics\details\MultiBodyTreeInitCache.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="U:\hlocal\bullet3-2.89\src\BulletInverseDynamics\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{145AB931-F505-3FA8-B476-6A83D8A035E1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{7CE31F9A-C578-32AD-8FC5-5357AD6D9C7D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
