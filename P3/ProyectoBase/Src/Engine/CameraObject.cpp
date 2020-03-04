@@ -1,33 +1,40 @@
 #include "CameraObject.h"
 #include <OgreSceneManager.h>
+#include "OgreSDLContext.h"
 
 //Constructor, se crea la camara se le asocia el viewport y se asocian todos lo sceneNode
 CameraObject::CameraObject() /* : Component() */
 {
-	//camera = _mSM->createCamera("Cam");
-	//camera->setNearClipDistance(1);
-	//camera->setFarClipDistance(10000);
-	//camera->setAutoAspectRatio(true);
+	_msM = OgreSDLContext::getInstance()->getSceneManager();
+	camera = _msM->createCamera("Cam");
+	camera->setNearClipDistance(1);
+	camera->setFarClipDistance(10000);
+	camera->setAutoAspectRatio(true);
 
-	//mCamNode = _mSM->getRootSceneNode()->createChildSceneNode("nCam");
-	//mCamNode->attachObject(camera);
+	mCamNode = _msM->getRootSceneNode()->createChildSceneNode("nCam");
+	mCamNode->attachObject(camera);
 
-	//mCamNode->setPosition(0, 0, 1000);
-	//mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
+	mCamNode->setPosition(0, 0, 300);
+	mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 
-	////vp = getRenderWindow()->addViewport(camera);
-	//vp->setBackgroundColour(Ogre::ColourValue(0.5, 0.5, 1));
+	vp = OgreSDLContext::getInstance()->getRenderWindow()->addViewport(camera);
+	vp->setBackgroundColour(Ogre::ColourValue(0.5, 0.5, 1));
 
-	//light = _mSM->createLight("Light");
-	//light->setType(Ogre::Light::LT_DIRECTIONAL);
-	//light->setDiffuseColour(1, 1, 1);
+	camera->setAspectRatio(Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
 
-	//mLightNode = _mSM->getRootSceneNode()->createChildSceneNode("nLight");
-	//mLightNode->attachObject(light);
+	// ambient light
+	_msM->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
 
-	//mLightNode->setDirection(Ogre::Vector3(1, -1, -1));
+	light = _msM->createLight("Light");
+	light->setType(Ogre::Light::LT_DIRECTIONAL);
+	light->setDiffuseColour(1, 1, 1);
 
-	//cameraOffset = Ogre::Vector3(0, 0, 0);
+	mLightNode = _msM->getRootSceneNode()->createChildSceneNode("nLight");
+	mLightNode->attachObject(light);
+
+	mLightNode->setDirection(Ogre::Vector3(1, -1, -1));
+
+	cameraOffset = Ogre::Vector3(0, 0, 0);
 }
 
 CameraObject::~CameraObject() {}

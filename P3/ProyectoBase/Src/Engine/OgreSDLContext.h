@@ -20,6 +20,7 @@ class OgreSDLContext
 		Ogre::Root* mRoot = nullptr;
 		Ogre::String mResourcesCfg;
 		Ogre::String mPluginsCfg;
+		Ogre::Viewport* vp = nullptr;
 
 		Ogre::SceneManager* mSM = nullptr;
 
@@ -59,6 +60,9 @@ class OgreSDLContext
 
 		// Return a pointer to the SceneManager
 		Ogre::SceneManager* getSceneManager();
+
+		Ogre::RenderWindow* getRenderWindow();
+
 
 		//------------------------- ESTO NO ESTARA AQUI
 		bool renderLoop();

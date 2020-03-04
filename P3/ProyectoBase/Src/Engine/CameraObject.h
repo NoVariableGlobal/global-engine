@@ -13,6 +13,7 @@ class OgreSDLContext;
 class CameraObject
 {
 private:
+	Ogre::SceneManager* _msM;
 	Ogre::Camera* camera = nullptr;
 	Ogre::SceneNode* mCamNode = nullptr;
 	Ogre::Viewport* vp = nullptr;
