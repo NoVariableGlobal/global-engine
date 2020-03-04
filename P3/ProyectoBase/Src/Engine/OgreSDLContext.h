@@ -35,14 +35,10 @@ class OgreSDLContext
 		Ogre::Root* mRoot = nullptr;
 		Ogre::String mResourcesCfg;
 		Ogre::String mPluginsCfg;
-		Ogre::Viewport* vp = nullptr;
 
 		Ogre::SceneManager* mSM = nullptr;
 
 		NativeWindowPair mWindow;
-
-		Ogre::SceneNode* mCam = nullptr;
-		Ogre::SceneNode* mLight = nullptr;
 
 		Ogre::String mRTShaderLibPath;
 		Ogre::RTShader::ShaderGenerator* mShaderGenerator = nullptr; // The Shader generator instance.
@@ -80,9 +76,9 @@ class OgreSDLContext
 		// process all window events since last call
 		void pollEvents();
 
-		// Return a pointer to the SceneManager
+		// return a pointer to the SceneManager
 		Ogre::SceneManager* getSceneManager();
-
+		// return a pointer to the RenderWindow
 		Ogre::RenderWindow* getRenderWindow();
 
 

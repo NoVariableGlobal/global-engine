@@ -1,6 +1,9 @@
 #include "CameraObject.h"
+
 #include <OgreSceneManager.h>
+
 #include "OgreSDLContext.h"
+#include <OgreShaderGenerator.h>
 #include "Ogre.h"
 
 //Constructor, se crea la camara se le asocia el viewport y se asocian todos lo sceneNode
@@ -19,6 +22,7 @@ CameraObject::CameraObject() /* : Component() */
 	mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 
 	vp = OgreSDLContext::getInstance()->getRenderWindow()->addViewport(camera);
+	//vp->setMaterialScheme(Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME); // use the default material scheme that the RTSS uses
 	vp->setBackgroundColour(Ogre::ColourValue(0.5, 0.5, 1));
 
 	camera->setAspectRatio(Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
