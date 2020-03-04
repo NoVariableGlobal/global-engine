@@ -1,12 +1,21 @@
 #pragma once
 
-#include <OgreRoot.h>
-#include <OgreShaderRenderState.h>
-
 #include <string>
 
 class SDL_Window;
 class SGTechniqueResolverListener;
+
+namespace Ogre
+{
+	class RenderWindow;
+	class Root;
+	class Viewport;
+	class SceneManager;
+	class SceneNode;
+
+	typedef std::string _StringBase;
+	typedef _StringBase String;
+}
 
 struct NativeWindowPair
 {
@@ -22,6 +31,7 @@ class OgreSDLContext
 		Ogre::Root* mRoot = nullptr;
 		Ogre::String mResourcesCfg;
 		Ogre::String mPluginsCfg;
+		Ogre::Viewport* vp = nullptr;
 
 		Ogre::SceneManager* mSM = nullptr;
 
@@ -69,6 +79,9 @@ class OgreSDLContext
 
 		// Return a pointer to the SceneManager
 		Ogre::SceneManager* getSceneManager();
+
+		Ogre::RenderWindow* getRenderWindow();
+
 
 		//------------------------- ESTO NO ESTARA AQUI
 		bool renderLoop();

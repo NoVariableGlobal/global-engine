@@ -1,18 +1,26 @@
 #pragma once
-#include "Ogre.h"
 
-class Component;
-class Camera;
-class SceneNode;
-class CameraMan;
-class Viewport;
-class SceneManager;
-class OgreSDLContext;
+namespace Ogre
+{
+	class Component;
+	class Camera;
+	class SceneNode;
+	class CameraMan;
+	class Viewport;
+	class SceneManager;
+	class OgreSDLContext;
+	class Light;
+
+	typedef float Real;
+	template <int dims, typename T> class Vector;
+	typedef Vector<3, Real> Vector3;
+}
 
 // TO DO: fix errors related to Ogre libraries and ApplicationContext
 class CameraObject
 {
 private:
+	Ogre::SceneManager* _msM;
 	Ogre::Camera* camera = nullptr;
 	Ogre::SceneNode* mCamNode = nullptr;
 	Ogre::Viewport* vp = nullptr;
@@ -22,7 +30,7 @@ private:
 	// who the camera follows
 	Ogre::SceneNode* target = nullptr;
 	// camera offset relative to followed object
-	Ogre::Vector3 cameraOffset;
+	Ogre::Vector3* cameraOffset = nullptr;
 
 public:
 	CameraObject();

@@ -136,7 +136,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)inter\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
-    <IncludePath>$(SolutionDir)lib\SDL2-2.0.10\include;$(SolutionDir)src\Saluda;$(SolutionDir)lib\fmod\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)lib\SDL2-2.0.10\include;$(SolutionDir)src\$(ProjectName);$(SolutionDir)lib\fmod\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)lib\SDL2-2.0.10\lib\$(Platform);$(SolutionDir)lib\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)lib\fmod\lib;$(SolutionDir)lib\jsoncpp-master\build\src\lib_json\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -163,7 +163,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\jsoncpp-master\include;$(SolutionDir)src\Saluda;$(SolutionDir)lib\ogre-1.12.5\OgreMain\include;$(SolutionDir)lib\ogre-1.12.5\Build\include;$(SolutionDir)lib\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\ogre-1.12.5\Components\RTShaderSystem\include;$(SolutionDir)lib\jsoncpp-master\include;$(SolutionDir)lib\ogre-1.12.5\OgreMain\include;$(SolutionDir)lib\ogre-1.12.5\Build\include;$(SolutionDir)lib\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -201,7 +201,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\jsoncpp-master\include;$(SolutionDir)src\Saluda;$(SolutionDir)lib\ogre-1.12.5\OgreMain\include;$(SolutionDir)lib\ogre-1.12.5\Build\include;$(SolutionDir)lib\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\jsoncpp-master\include;$(SolutionDir)lib\ogre-1.12.5\OgreMain\include;$(SolutionDir)lib\ogre-1.12.5\Build\include;$(SolutionDir)lib\ogre-1.12.5\Components\RTShaderSystem\include;$(SolutionDir)lib\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

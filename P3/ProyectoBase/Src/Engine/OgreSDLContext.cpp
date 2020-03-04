@@ -1,6 +1,6 @@
 #include "OgreSDLContext.h"
 
-//#include <OgreRoot.h>
+#include <OgreRoot.h>
 #include <OgreException.h>
 #include <OgreConfigFile.h>
 #include <OgreSceneManager.h>
@@ -144,39 +144,6 @@ void OgreSDLContext::createWindow(std::string appName)
 	// create a SceneManager instance
 	mSM = mRoot->createSceneManager();
 
-	// add a Camera member
-	Ogre::Camera* camera;
-	camera = mSM->createCamera("MainCam");
-	camera->setNearClipDistance(1);
-	camera->setFarClipDistance(10000);
-	camera->setAutoAspectRatio(true);
-
-	mCam = mSM->getRootSceneNode()->createChildSceneNode("mCam");
-	mCam->attachObject(camera);
-
-	mCam->setPosition(0, 0, 300);
-	mCam->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
-
-	//  declare and create the viewport
-	Ogre::Viewport* vp = mWindow.render->addViewport(camera);
-	
-	vp->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
-
-	camera->setAspectRatio(Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
-
-	// ambient light
-	mSM->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
-
-	Ogre::Light* light = mSM->createLight("MainLight");
-	light->setType(Ogre::Light::LT_DIRECTIONAL);
-	light->setDiffuseColour(0.75, 0.75, 0.75);
-
-	mLight = mSM->getRootSceneNode()->createChildSceneNode("mLight");
-	//mLight = mCam->createChildSceneNode("nLuz");
-	mLight->attachObject(light);
-
-	mLight->setDirection(Ogre::Vector3(-1, -1, -1));  //vec3.normalise();
-
 	// SIMBAD
 	Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
 	ent->setMaterialName("TestMaterial");  //--------------------------------------------------------------- NO FUNCIONA. MIRAR POR QUE
@@ -303,6 +270,11 @@ void OgreSDLContext::pollEvents()   // from frameStarted
 Ogre::SceneManager* OgreSDLContext::getSceneManager()
 {
 	return mSM;
+}
+
+Ogre::RenderWindow* OgreSDLContext::getRenderWindow()
+{
+	return mWindow.render;
 }
 
 bool OgreSDLContext::renderLoop()
