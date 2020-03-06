@@ -13,108 +13,135 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{53d69286-45c6-4b2c-8951-e5ee8cec6b91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\RenderComponents">
+      <UniqueIdentifier>{9541b028-78bb-4d16-967f-32858ad504a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\SoundComponents">
+      <UniqueIdentifier>{c54d22d0-dc95-4983-8a23-bf68e23770da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\PhysicsComponents">
+      <UniqueIdentifier>{05745c8d-da25-4d94-83ad-2dbe66538d77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\InputComponents">
+      <UniqueIdentifier>{71e148ac-fa69-480a-9083-0deed74e4cdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\OthersComponents">
+      <UniqueIdentifier>{acab6769-ef10-4aad-ab1e-d5e93ebfa78a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{e5ce9482-38fa-48c7-ae71-8b15179eca73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Factory">
+      <UniqueIdentifier>{c3387327-189e-4785-8090-52f1435cb4e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{74865150-31be-4551-9563-20e2bac60ded}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Src\Engine\Application.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Components\Component.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\Entity.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Components\RenderComponents\RenderComponent.cpp">
+      <Filter>Source Files\Components\RenderComponents</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\ApplicationContext.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Components\SoundComponents\SoundComponent.cpp">
+      <Filter>Source Files\Components\SoundComponents</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\PhysicsComponent.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Components\PhysicsComponents\PhysicsComponent.cpp">
+      <Filter>Source Files\Components\PhysicsComponents</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\SoundComponent.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Components\PhysicsComponents\TestComponent.cpp">
+      <Filter>Source Files\Components\PhysicsComponents</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\Game.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Components\InputComponents\InputComponent.cpp">
+      <Filter>Source Files\Components\InputComponents</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\InputComponent.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Components\OtherComponents\TransformComponent.cpp">
+      <Filter>Source Files\Components\OthersComponents</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\RenderComponent.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Managers\ComponentsManager.cpp">
+      <Filter>Source Files\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\TestComponent.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Managers\Loader.cpp">
+      <Filter>Source Files\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\Scene.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Factory\FactoriesFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\Factory.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Factory\Factory.cpp">
+      <Filter>Source Files\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\FactoriesFactory.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Core\Application.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\Loader.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Core\CameraObject.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\Component.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Core\Entity.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\TransformComponent.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Core\Game.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\ComponentsManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Core\OgreContext.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\CameraObject.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\Engine\Core\Scene.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\Engine\Entity.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\Engine\Components\Component.h">
+      <Filter>Source Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\ApplicationContext.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\Engine\Components\RenderComponents\RenderComponent.h">
+      <Filter>Source Files\Components\RenderComponents</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\PhysicsComponent.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\Engine\Components\SoundComponents\SoundComponent.h">
+      <Filter>Source Files\Components\SoundComponents</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\SoundComponent.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\Engine\Components\PhysicsComponents\PhysicsComponent.h">
+      <Filter>Source Files\Components\PhysicsComponents</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\Scene.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\Engine\Components\PhysicsComponents\TestComponent.h">
+      <Filter>Source Files\Components\PhysicsComponents</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\Game.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\Engine\Components\InputComponents\InputComponent.h">
+      <Filter>Source Files\Components\InputComponents</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\InputComponent.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\Engine\Components\OtherComponents\TransformComponent.h">
+      <Filter>Source Files\Components\OthersComponents</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\RenderComponent.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\Engine\Managers\ComponentsManager.h">
+      <Filter>Source Files\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\TestComponent.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\Engine\Managers\Loader.h">
+      <Filter>Source Files\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\Factory.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\Engine\Factory\FactoriesFactory.h">
+      <Filter>Source Files\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\FactoriesFactory.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\Engine\Factory\Factory.h">
+      <Filter>Source Files\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\Loader.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\Engine\Core\CameraObject.h">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\Component.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\Engine\Core\Entity.h">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\TransformComponent.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\Engine\Core\Game.h">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\ComponentsManager.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\Engine\Core\OgreContext.h">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\CameraObject.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\..\src\Engine\Core\Scene.h">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

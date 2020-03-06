@@ -1,6 +1,6 @@
 #include "Game.h"
 #include "Scene.h"
-#include "Loader.h"
+#include "../Managers/Loader.h"
 #include <string>
 
 Game::Game() { }

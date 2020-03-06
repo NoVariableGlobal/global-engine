@@ -1,9 +1,9 @@
 #include "Scene.h"
 #include "Game.h"
 #include "Entity.h"
-#include "FactoriesFactory.h"
-#include "Loader.h"
-#include "TransformComponent.h"
+#include "../Factory/FactoriesFactory.h"
+#include "../Managers/Loader.h"
+#include "../Components/OtherComponents/TransformComponent.h"
 
 #include <iostream>
 

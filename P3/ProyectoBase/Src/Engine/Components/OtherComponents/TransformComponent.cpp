@@ -3,8 +3,8 @@
 #include <json.h>
 #include "Ogre.h"
 #include "OgreVector3.h"
-#include "Factory.h"
-#include "FactoriesFactory.h"
+#include "../../Factory/Factory.h"
+#include "../../Factory/FactoriesFactory.h"
 
 TransformComponent::TransformComponent() 
 {

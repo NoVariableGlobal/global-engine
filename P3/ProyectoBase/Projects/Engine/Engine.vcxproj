@@ -19,41 +19,41 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Engine\Application.cpp" />
-    <ClCompile Include="..\..\src\Engine\OgreContext.cpp" />
-    <ClCompile Include="..\..\src\Engine\CameraObject.cpp" />
-    <ClCompile Include="..\..\src\Engine\Component.cpp" />
-    <ClCompile Include="..\..\src\Engine\ComponentsManager.cpp" />
-    <ClCompile Include="..\..\src\Engine\Entity.cpp" />
-    <ClCompile Include="..\..\src\Engine\FactoriesFactory.cpp" />
-    <ClCompile Include="..\..\src\Engine\Factory.cpp" />
-    <ClCompile Include="..\..\src\Engine\Game.cpp" />
-    <ClCompile Include="..\..\src\Engine\InputComponent.cpp" />
-    <ClCompile Include="..\..\src\Engine\Loader.cpp" />
-    <ClCompile Include="..\..\src\Engine\PhysicsComponent.cpp" />
-    <ClCompile Include="..\..\src\Engine\RenderComponent.cpp" />
-    <ClCompile Include="..\..\src\Engine\Scene.cpp" />
-    <ClCompile Include="..\..\src\Engine\SoundComponent.cpp" />
-    <ClCompile Include="..\..\src\Engine\TestComponent.cpp" />
-    <ClCompile Include="..\..\src\Engine\TransformComponent.cpp" />
+    <ClCompile Include="..\..\src\Engine\Components\Component.cpp" />
+    <ClCompile Include="..\..\src\Engine\Components\InputComponents\InputComponent.cpp" />
+    <ClCompile Include="..\..\src\Engine\Components\OtherComponents\TransformComponent.cpp" />
+    <ClCompile Include="..\..\src\Engine\Components\PhysicsComponents\PhysicsComponent.cpp" />
+    <ClCompile Include="..\..\src\Engine\Components\PhysicsComponents\TestComponent.cpp" />
+    <ClCompile Include="..\..\src\Engine\Components\RenderComponents\RenderComponent.cpp" />
+    <ClCompile Include="..\..\src\Engine\Components\SoundComponents\SoundComponent.cpp" />
+    <ClCompile Include="..\..\src\Engine\Core\Application.cpp" />
+    <ClCompile Include="..\..\src\Engine\Core\CameraObject.cpp" />
+    <ClCompile Include="..\..\src\Engine\Core\Entity.cpp" />
+    <ClCompile Include="..\..\src\Engine\Core\Game.cpp" />
+    <ClCompile Include="..\..\src\Engine\Core\OgreContext.cpp" />
+    <ClCompile Include="..\..\src\Engine\Core\Scene.cpp" />
+    <ClCompile Include="..\..\src\Engine\Factory\FactoriesFactory.cpp" />
+    <ClCompile Include="..\..\src\Engine\Factory\Factory.cpp" />
+    <ClCompile Include="..\..\src\Engine\Managers\ComponentsManager.cpp" />
+    <ClCompile Include="..\..\src\Engine\Managers\Loader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Engine\OgreContext.h" />
-    <ClInclude Include="..\..\src\Engine\CameraObject.h" />
-    <ClInclude Include="..\..\src\Engine\Component.h" />
-    <ClInclude Include="..\..\src\Engine\ComponentsManager.h" />
-    <ClInclude Include="..\..\src\Engine\Entity.h" />
-    <ClInclude Include="..\..\src\Engine\FactoriesFactory.h" />
-    <ClInclude Include="..\..\src\Engine\Factory.h" />
-    <ClInclude Include="..\..\src\Engine\Game.h" />
-    <ClInclude Include="..\..\src\Engine\InputComponent.h" />
-    <ClInclude Include="..\..\src\Engine\Loader.h" />
-    <ClInclude Include="..\..\src\Engine\PhysicsComponent.h" />
-    <ClInclude Include="..\..\src\Engine\RenderComponent.h" />
-    <ClInclude Include="..\..\src\Engine\Scene.h" />
-    <ClInclude Include="..\..\src\Engine\SoundComponent.h" />
-    <ClInclude Include="..\..\src\Engine\TestComponent.h" />
-    <ClInclude Include="..\..\src\Engine\TransformComponent.h" />
+    <ClInclude Include="..\..\src\Engine\Components\Component.h" />
+    <ClInclude Include="..\..\src\Engine\Components\InputComponents\InputComponent.h" />
+    <ClInclude Include="..\..\src\Engine\Components\OtherComponents\TransformComponent.h" />
+    <ClInclude Include="..\..\src\Engine\Components\PhysicsComponents\PhysicsComponent.h" />
+    <ClInclude Include="..\..\src\Engine\Components\PhysicsComponents\TestComponent.h" />
+    <ClInclude Include="..\..\src\Engine\Components\RenderComponents\RenderComponent.h" />
+    <ClInclude Include="..\..\src\Engine\Components\SoundComponents\SoundComponent.h" />
+    <ClInclude Include="..\..\src\Engine\Core\CameraObject.h" />
+    <ClInclude Include="..\..\src\Engine\Core\Entity.h" />
+    <ClInclude Include="..\..\src\Engine\Core\Game.h" />
+    <ClInclude Include="..\..\src\Engine\Core\OgreContext.h" />
+    <ClInclude Include="..\..\src\Engine\Core\Scene.h" />
+    <ClInclude Include="..\..\src\Engine\Factory\FactoriesFactory.h" />
+    <ClInclude Include="..\..\src\Engine\Factory\Factory.h" />
+    <ClInclude Include="..\..\src\Engine\Managers\ComponentsManager.h" />
+    <ClInclude Include="..\..\src\Engine\Managers\Loader.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -1,12 +1,12 @@
 #include <json.h>
 
 #include "TestComponent.h"
-#include "Factory.h"
-#include "FactoriesFactory.h"
+#include "../../Factory/Factory.h"
+#include "../../Factory/FactoriesFactory.h"
 #include "Ogre.h"
 #include "OgreVector3.h"
-#include "Entity.h"
-#include "ComponentsManager.h"
+#include "../../Core/Entity.h"
+#include "../../Managers/ComponentsManager.h"
 
 TestComponent::TestComponent() { _color = new Ogre::Vector3(); }
 

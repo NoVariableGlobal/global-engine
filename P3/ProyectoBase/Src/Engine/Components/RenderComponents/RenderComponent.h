@@ -1,5 +1,5 @@
 #pragma
-#include "Component.h"
+#include "../Component.h"
 
 namespace Ogre {
 	class SceneManager;

@@ -1,8 +1,8 @@
 #include "ComponentsManager.h"
-#include "PhysicsComponent.h"
-#include "InputComponent.h"
-#include "RenderComponent.h"
-#include "SoundComponent.h"
+#include "../Components/PhysicsComponents/PhysicsComponent.h"
+#include "../Components/InputComponents/InputComponent.h"
+#include "../Components/RenderComponents/RenderComponent.h"
+#include "../Components/SoundComponents/SoundComponent.h"
 
 
 ComponentsManager::ComponentsManager()
