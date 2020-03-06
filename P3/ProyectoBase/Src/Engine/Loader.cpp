@@ -5,6 +5,7 @@
 #include "Ogre.h"
 #include "OgreVector3.h"
 #include "ComponentsManager.h"
+#include "CameraObject.h"
 
 #include <json.h>
 #include <fstream>
@@ -36,7 +37,7 @@ void Loader::readScenes(std::map<std::string, std::string>& _scenesQueue)
 
 }
 
-void Loader::readEntities(std::string _fileName, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager)
+void Loader::readObjects(std::string _fileName, CameraObject* _cam, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager)
 {
 	std::fstream file;
 	file.open("files/" + _fileName);
@@ -45,11 +46,14 @@ void Loader::readEntities(std::string _fileName, std::map<std::string, Entity*>&
 	{
 		Json::Value data;
 		file >> data;
-		data = data["entities"];
 
-		int numEntities = data.size();
+		Json::Value entities = data["entities"];
+		int numEntities = entities.size();
 		for (int i = 0; i < numEntities; i++)
-			createEntity(data[i], i, _entities, componentManager);
+			createEntity(entities[i], i, _entities, componentManager);
+
+		Json::Value camera = data["camera"];
+		createCamera(camera, _cam);
 	}
 	else
 	{
@@ -72,4 +76,13 @@ void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string, Ent
 		entity->addComponent(components[i]["type"].asString(), FactoriesFactory::getInstance()->find(components[i]["type"].asString())->create(entity, components[i]["attributes"], componentManager));
 
 	_entities.emplace(entity->getId(), entity);
+}
+
+void Loader::createCamera(Json::Value& _data, CameraObject* _cam)
+{
+	_cam->setCameraOffset(Ogre::Vector3(_data["offset"][0].asInt(), _data["offset"][1].asInt(), _data["offset"][2].asInt()));
+	_cam->setPosition(Ogre::Vector3(_data["position"][0].asInt(), _data["position"][1].asInt(), _data["position"][2].asInt()));
+
+	if (_data["lookAt"].asString() != "none")
+		_cam->lookAt(Ogre::Vector3(_data["lookAt"][0].asInt(), _data["lookAt"][1].asInt(), _data["lookAt"][2].asInt()));
 }

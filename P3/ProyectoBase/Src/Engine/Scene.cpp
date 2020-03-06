@@ -9,9 +9,10 @@
 
 #include <iostream>
 
-Scene::Scene() {
-	componentManager = new ComponentsManager();
+Scene::Scene() 
+{
 	cam = new CameraObject();
+	componentManager = new ComponentsManager();
 }
 
 Scene::~Scene() 
@@ -24,9 +25,10 @@ Scene::~Scene()
 	delete cam;
 }
 
-void Scene::load(std::string name) {  
-    Loader loader;
-    loader.readEntities(name, entities, componentManager);
+void Scene::load(std::string name) 
+{  
+	Loader loader;
+    loader.readObjects(name, cam, entities, componentManager);
 }
 
 void Scene::update() 
