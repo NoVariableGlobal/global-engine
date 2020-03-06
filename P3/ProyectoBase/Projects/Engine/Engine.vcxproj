@@ -32,6 +32,7 @@
     <ClCompile Include="..\..\src\Engine\Loader.cpp" />
     <ClCompile Include="..\..\src\Engine\PhysicsComponent.cpp" />
     <ClCompile Include="..\..\src\Engine\RenderComponent.cpp" />
+    <ClCompile Include="..\..\Src\Engine\RTSSDefaultTechniqueListener.cpp" />
     <ClCompile Include="..\..\src\Engine\Scene.cpp" />
     <ClCompile Include="..\..\src\Engine\SoundComponent.cpp" />
     <ClCompile Include="..\..\src\Engine\TestComponent.cpp" />
@@ -51,6 +52,7 @@
     <ClInclude Include="..\..\src\Engine\Loader.h" />
     <ClInclude Include="..\..\src\Engine\PhysicsComponent.h" />
     <ClInclude Include="..\..\src\Engine\RenderComponent.h" />
+    <ClInclude Include="..\..\Src\Engine\RTSSDefaultTechniqueListener.h" />
     <ClInclude Include="..\..\src\Engine\Scene.h" />
     <ClInclude Include="..\..\src\Engine\SoundComponent.h" />
     <ClInclude Include="..\..\src\Engine\TestComponent.h" />
@@ -168,7 +170,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain_d.lib;jsoncpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain_d.lib;jsoncpp.lib;OgreRTShaderSystem_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -208,7 +210,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain.lib;jsoncpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain.lib;jsoncpp.lib;OgreRTShaderSystem.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

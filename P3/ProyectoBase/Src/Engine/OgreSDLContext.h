@@ -3,6 +3,7 @@
 #include <string>
 
 class SDL_Window;
+class RTSSDefaultTechniqueListener;
 
 namespace Ogre
 {
@@ -42,6 +43,7 @@ class OgreSDLContext
 
 		Ogre::String mRTShaderLibPath;
 		Ogre::RTShader::ShaderGenerator* mShaderGenerator = nullptr; // The Shader generator instance.
+		RTSSDefaultTechniqueListener* mMaterialListener; // Shader generator material manager listener.
 
 		bool grab = false, showCursor = true;
 

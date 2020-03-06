@@ -5,3 +5,5 @@ RenderSystem_Direct3D11_d.dll
 RenderSystem_GL.dll
 RenderSystem_GL_d.dll
 zlib.dll
+OgreRTShaderSystem_d.dll
+OgreRTShaderSystem.dll
