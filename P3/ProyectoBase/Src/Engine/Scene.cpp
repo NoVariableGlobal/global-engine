@@ -41,3 +41,8 @@ Entity* Scene::getEntitybyId(std::string id)
 {
     return entities.find(id)->second;
 }
+
+void Scene::clearComponentsManager()
+{
+	componentManager->clearComponents();
+}

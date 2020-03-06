@@ -1,9 +1,9 @@
 #include "ComponentsManager.h"
 #include "PhysicsComponent.h"
 #include "InputComponent.h"
-#include "RenderComponent.h"
 #include "SoundComponent.h"
 #include "TransformComponent.h"
+#include "TridimensionalObjectRC.h"
 
 
 ComponentsManager::ComponentsManager()

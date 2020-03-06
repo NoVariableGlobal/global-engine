@@ -28,4 +28,7 @@ public:
 
   // Search the entity in map and returns a reference to it.
   Entity* getEntitybyId(std::string id);
+
+  // Clear the Components Manager
+  void clearComponentsManager();
 };
