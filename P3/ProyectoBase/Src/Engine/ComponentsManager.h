@@ -4,7 +4,7 @@ class InputComponent;
 class PhysicsComponent;
 class RenderComponent;
 class SoundComponent;
-class TransformComponent;
+class Component;
 
 class ComponentsManager
 {
@@ -13,7 +13,7 @@ private:
 	std::vector<PhysicsComponent*> physics;
 	std::vector<RenderComponent*> rend;
 	std::vector<SoundComponent*> sound;
-	std::vector<TransformComponent*> tran;
+	std::vector<Component*> tran;
 public:
 	ComponentsManager();
 	~ComponentsManager();
@@ -41,9 +41,9 @@ public:
 	void deleteSC(SoundComponent* _soundComponent);
 
 	// add sound component to list
-	void addTC(TransformComponent* _transformComponent);
+	void addTC(Component* _transformComponent);
 	// delete sound component from list
-	void deleteTC(TransformComponent* _transformComponent);
+	void deleteTC(Component* _transformComponent);
 
 	// call each physics component in the list
 	void update();

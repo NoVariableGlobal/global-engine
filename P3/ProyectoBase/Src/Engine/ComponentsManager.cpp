@@ -2,8 +2,7 @@
 #include "PhysicsComponent.h"
 #include "InputComponent.h"
 #include "SoundComponent.h"
-#include "TransformComponent.h"
-#include "TridimensionalObjectRC.h"
+#include "RenderComponent.h"
 
 
 ComponentsManager::ComponentsManager()
@@ -133,12 +132,12 @@ void ComponentsManager::deleteSC(SoundComponent* _soundComponent)
 	}
 }
 
-void ComponentsManager::addTC(TransformComponent* _transformComponent)
+void ComponentsManager::addTC(Component* _transformComponent)
 {
 	tran.push_back(_transformComponent);
 }
 
-void ComponentsManager::deleteTC(TransformComponent* _transformComponent)
+void ComponentsManager::deleteTC(Component* _transformComponent)
 {
 	bool erased = false;
 	auto it = tran.begin();
