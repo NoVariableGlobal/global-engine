@@ -2,32 +2,36 @@
 #include "Scene.h"
 #include "Loader.h"
 #include <string>
+#include "FactoriesFactory.h"
+#include "OgreSDLContext.h"
 
-Game::Game() { }
+Game::Game() {}
 
 
 Game::~Game()
 {
-  delete scene;
+	delete scene;
 	scene = nullptr;
+	FactoriesFactory::getInstance()->clear();
+	OgreSDLContext::getInstance()->erase();
 }
 
 void Game::initContext()
 {
-	//...
-	//ApplicationContext();
-	//...
+	OgreSDLContext::getInstance()->initApp("Test");
 }
 
-void Game::init(std::string firstScene)
+void Game::init(std::string _firstScene)
 {
-  initContext();
+	initContext();
   
 	Loader loader;
 	loader.readScenes(scenesQueue);
   
-  scene = new Scene();
-	setScene(firstScene);
+	scene = new Scene();
+	setScene(_firstScene);
+
+	update();
 }
 
 void Game::update()
@@ -35,10 +39,12 @@ void Game::update()
 	while (!exit)
 	{
 		scene->update();
+		exit = OgreSDLContext::getInstance()->renderLoop();
 	}
 }
 
-void Game::setScene(std::string sceneName)
+void Game::setScene(std::string _sceneName)
 {
-	scene->load(scenesQueue.find(sceneName)->second);
+	scene->clearComponentsManager();
+	scene->load(scenesQueue.find(_sceneName)->second);
 }

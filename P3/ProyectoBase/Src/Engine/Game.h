@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
-#include "OgreContext.h"
+#include <map>
+#include "checkML.h"
 
 class Scene;
 class Loader;
@@ -27,7 +28,7 @@ class Game
 		/*
 		* Inicializa el juego
 		*/
-		void init(std::string firstScene);
+		void init(std::string _firstScene);
 		/*
 		* Maneja el bucle del juego
 		*/
@@ -35,5 +36,5 @@ class Game
 		/*
 		* Cambia la escena actual por la nueva
 		*/
-		void setScene(std::string sceneName);
+		void setScene(std::string _sceneName);
 };

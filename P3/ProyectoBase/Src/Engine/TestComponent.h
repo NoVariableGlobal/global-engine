@@ -2,6 +2,7 @@
 #include <string>
 #include "PhysicsComponent.h"
 
+#include "checkML.h"
 namespace Ogre
 {
 	typedef float Real;

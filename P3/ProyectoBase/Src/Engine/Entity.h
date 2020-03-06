@@ -2,7 +2,6 @@
 #include <map>
 #include <string>
 
-
 class Component;
 
 class Entity {

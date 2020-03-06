@@ -63,10 +63,13 @@
     <ClCompile Include="..\..\Src\Engine\CameraObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\OgreContext.cpp">
+    <ClCompile Include="..\..\Src\PhysicsContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PhysicsContext.cpp">
+    <ClCompile Include="..\..\Src\Engine\OgreSDLContext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -116,11 +119,16 @@
     <ClInclude Include="..\..\Src\Engine\CameraObject.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Engine\OgreContext.h">
+    <ClInclude Include="..\..\Src\PhysicsContext.h">
       <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Src\Engine\OgreSDLContext.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="PhysicsContext.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\Src\Engine\checkML.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

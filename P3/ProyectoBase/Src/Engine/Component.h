@@ -1,5 +1,4 @@
 #pragma once
-
 /*
 	This is an abstract superclass from which every 
 	engine component or game component should inherit

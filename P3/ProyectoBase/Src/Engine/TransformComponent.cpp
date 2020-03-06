@@ -1,10 +1,11 @@
 #include "TransformComponent.h"
 
 #include <json.h>
-#include "Ogre.h"
+#include "OgreRoot.h"
 #include "OgreVector3.h"
 #include "Factory.h"
 #include "FactoriesFactory.h"
+#include "ComponentsManager.h"
 
 TransformComponent::TransformComponent() 
 {
@@ -13,7 +14,12 @@ TransformComponent::TransformComponent()
 	_orientation = new Ogre::Vector3();
 }
 
-TransformComponent::~TransformComponent() {}
+TransformComponent::~TransformComponent() 
+{
+	delete _position;
+	delete _scale;
+	delete _orientation;
+}
 
 Ogre::Vector3 TransformComponent::getPosition() { return *_position; }
 void TransformComponent::setPosition(Ogre::Vector3 p) { *_position = p; }
@@ -37,6 +43,7 @@ public:
 		transformComponent->setOrientation(Ogre::Vector3(_data["orientation"][0].asInt(), _data["orientation"][1].asInt(), _data["orientation"][2].asInt()));
 		transformComponent->setScale(Ogre::Vector3(_data["scale"][0].asInt(), _data["scale"][1].asInt(), _data["scale"][2].asInt()));
 
+		componentManager->addTC(transformComponent);
 		return transformComponent;
 	};
 };

@@ -10,12 +10,13 @@ class FactoriesFactory
 	private:
 		static FactoriesFactory* _instance;
 		static std::map<std::string, ComponentFactory*> factory;
-		FactoriesFactory() {};
+		FactoriesFactory();
 
 	public:
-		static FactoriesFactory* instance();
-		void insert(std::string name, ComponentFactory* fac);
+		static FactoriesFactory* getInstance();
+
 		ComponentFactory* find(std::string name);
-		
+		void insert(std::string name, ComponentFactory* fac);
+		void clear();	
 };
 

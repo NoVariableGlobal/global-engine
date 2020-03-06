@@ -10,7 +10,10 @@
 
 TestComponent::TestComponent() { _color = new Ogre::Vector3(); }
 
-TestComponent::~TestComponent() {}
+TestComponent::~TestComponent() 
+{
+	delete _color;
+}
 
 void TestComponent::update() 
 {
