@@ -66,6 +66,9 @@
     <ClCompile Include="..\..\src\Engine\OgreContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicsContext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\Entity.h">
@@ -114,6 +117,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\OgreContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

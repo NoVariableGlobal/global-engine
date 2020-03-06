@@ -36,6 +36,7 @@
     <ClCompile Include="..\..\src\Engine\SoundComponent.cpp" />
     <ClCompile Include="..\..\src\Engine\TestComponent.cpp" />
     <ClCompile Include="..\..\src\Engine\TransformComponent.cpp" />
+    <ClCompile Include="PhysicsContext.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Engine\OgreContext.h" />
@@ -54,6 +55,7 @@
     <ClInclude Include="..\..\src\Engine\SoundComponent.h" />
     <ClInclude Include="..\..\src\Engine\TestComponent.h" />
     <ClInclude Include="..\..\src\Engine\TransformComponent.h" />
+    <ClInclude Include="PhysicsContext.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
