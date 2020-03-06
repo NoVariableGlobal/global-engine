@@ -1,10 +1,10 @@
 1. Abrir cmake-gui.exe
-2. source code -> ProyectoBase/Dependencias/ogre-1.12.5
-3. build the binaries -> ProyectoBase/Dependencias/ogre-1.12.5/build (si no existe la carpeta build se crea)
+2. source code -> ProyectoBase/lib/ogre-1.12.5
+3. build the binaries -> ProyectoBase/lib/ogre-1.12.5/build (si no existe la carpeta build se crea)
 4. configure -> no tocar nada en las opciones y finish
 5. En las casillas rojas desmarcar OGRE_BUILD_COMPONENT_OVERLAY
 6. Generate
-7. Ir a ProyectoBase/Dependencias/ogre-1.12.5/build, abrir OGRE.sln y compliar el proyecto en DEBUG y RELEASE
-8. Copiar los dll indicados en dll_Necesitados.txt del directorio ProyectoBase/Dependencias/ogre-1.12.5/build/bin/debug y
-   ProyectoBase/Dependencias/ogre-1.12.5/build/bin/release al directorio ProyectoBase/Exes. (zlib.dll solo copiarlo 1 vez)
+7. Ir a ProyectoBase/lib/ogre-1.12.5/build, abrir OGRE.sln y compliar el proyecto en DEBUG y RELEASE
+8. Copiar los dll indicados en dll_Necesitados.txt del directorio ProyectoBase/lib/ogre-1.12.5/build/bin/debug y
+   ProyectoBase/lib/ogre-1.12.5/build/bin/release al directorio ProyectoBase/bin. (zlib.dll solo copiarlo 1 vez)
 9. Compilar nuestro proyecto si algo no funciona consultar a Pablo, gracias por vuestra colaboración.
