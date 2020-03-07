@@ -23,6 +23,8 @@ CameraObject::CameraObject() /* : Component() */
 
 	camera->setAspectRatio(Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
 
+	cameraOffset = new Ogre::Vector3(0, 0, 0);
+
 	// ambient light
 	_msM->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
 
@@ -34,8 +36,6 @@ CameraObject::CameraObject() /* : Component() */
 	mLightNode->attachObject(light);
 
 	mLightNode->setDirection(Ogre::Vector3(1, -1, -1));
-
-	cameraOffset = new Ogre::Vector3(0, 0, 0);
 }
 
 CameraObject::~CameraObject() 

@@ -69,6 +69,9 @@
     <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\LightRC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\Entity.h">
@@ -123,6 +126,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\LightRC.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
