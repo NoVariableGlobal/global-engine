@@ -9,7 +9,7 @@ class FactoriesFactory
 {
 	private:
 		static FactoriesFactory* _instance;
-		static std::map<std::string, ComponentFactory*> factory;
+	    std::map<std::string, ComponentFactory*> factory;
 		FactoriesFactory();
 
 	public:
