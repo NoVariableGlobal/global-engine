@@ -38,7 +38,7 @@ class OgreSDLContext
 		Ogre::SceneNode* mCam = nullptr;
 		Ogre::SceneNode* mLight = nullptr;
 
-		bool grab = false, showCursor = true;
+		bool grab = false, showCursor = true, ambientLight = false;
 
 		bool exit = false;
 

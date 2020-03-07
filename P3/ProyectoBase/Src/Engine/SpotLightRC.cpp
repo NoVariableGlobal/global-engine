@@ -19,7 +19,6 @@ void SpotLightRC::setLight(std::string _entityID)
 {
 	_msM = OgreSDLContext::getInstance()->getSceneManager();
 
-	//_msM->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
 
 	light = _msM->createLight(_entityID + "Light");
 	light->setType(Ogre::Light::LT_DIRECTIONAL);
