@@ -1,13 +1,18 @@
 #include "CameraObject.h"
 #include "TransformComponent.h"
+#include "Factory.h"
+#include "FactoriesFactory.h"
+#include "ComponentsManager.h"
+#include "Entity.h"
+#include "OgreSDLContext.h"
 
 #include <OgreSceneManager.h>
+#include <Ogre.h>
 
-#include "OgreSDLContext.h"
-#include "Ogre.h"
+#include <json.h>
 
 //Constructor, se crea la camara se le asocia el viewport y se asocian todos lo sceneNode
-CameraObject::CameraObject() /* : Component() */
+CameraRC::CameraRC() : RenderComponent()
 {
 	_msM = OgreSDLContext::getInstance()->getSceneManager();
 	camera = _msM->createCamera("Cam");
@@ -38,36 +43,61 @@ CameraObject::CameraObject() /* : Component() */
 	mLightNode->setDirection(Ogre::Vector3(1, -1, -1));
 }
 
-CameraObject::~CameraObject() 
+CameraRC::~CameraRC() 
 {
 	delete cameraOffset;
 }
 
-void CameraObject::setTarget(TransformComponent* _target)
+void CameraRC::setTarget(TransformComponent* _target)
 {
 	target = _target;
 }
 
-void CameraObject::setCameraOffset(Ogre::Vector3(_offset))
+void CameraRC::setCameraOffset(Ogre::Vector3(_offset))
 {
 	*cameraOffset = _offset;
 }
 
-void CameraObject::setPosition(Ogre::Vector3 _pos)
-{
-	mCamNode->setPosition(_pos);
-}
-
-void CameraObject::lookAt(Ogre::Vector3 _pos)
+void CameraRC::lookAt(Ogre::Vector3 _pos)
 {
 	mCamNode->lookAt(_pos, Ogre::Node::TS_WORLD);
 }
 
-void CameraObject::updateCamera()
+void CameraRC::render()
 {
 	if (target != nullptr)
 	{
-		setPosition(target->getPosition() + *cameraOffset);
+		//setPosition(target->getPosition() + *cameraOffset);
 		lookAt(target->getPosition());
 	}
 }
+
+// FACTORY INFRASTRUCTURE
+class CameraRCFactory : public ComponentFactory {
+public:
+	CameraRCFactory() {};
+
+	virtual Component* create(Entity* father, Json::Value& _data, ComponentsManager* componentManager)
+	{
+		Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
+		CameraRC* camera = new CameraRC();
+
+		camera->setFather(father);
+		camera->setOgreEntity(mSM->createEntity(_data["mesh"].asString()));
+		camera->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString()));
+		camera->getSceneNode()->attachObject(camera->getOgreEntity());
+
+		TransformComponent* transform = dynamic_cast<TransformComponent*>(father->getComponent("TransformComponent"));
+		camera->getSceneNode()->setPosition(transform->getPosition());
+		camera->getSceneNode()->setScale(transform->getScale());
+
+		// Pendiente de unificar un metodo con las fisicas y otros que necesiten rotacion
+		//Ogre::Vector3 ori = transform->getOrientation();
+		//tridimensionalObject->getSceneNode()->setOrientation(0, ori.x, ori.y, ori.z);
+
+		componentManager->addRC(camera);
+		return camera;
+	};
+};
+
+REGISTER_FACTORY("CameraRC", CameraRC);

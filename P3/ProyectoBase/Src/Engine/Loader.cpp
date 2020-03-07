@@ -38,7 +38,7 @@ void Loader::readScenes(std::map<std::string, std::string>& _scenesQueue)
 
 }
 
-void Loader::readObjects(std::string _fileName, CameraObject* _cam, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager)
+void Loader::readObjects(std::string _fileName, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager)
 {
 	std::fstream file;
 	file.open("files/" + _fileName);
@@ -61,14 +61,6 @@ void Loader::readObjects(std::string _fileName, CameraObject* _cam, std::map<std
 	int numEntities = entities.size();
 	for (int i = 0; i < numEntities; i++)
 		createEntity(entities[i], i, _entities, componentManager);
-
-	if (!data["camera"].isObject())
-	{
-		// EXCEPCION
-	}
-
-	Json::Value camera = data["camera"];
-	createCamera(camera, _cam, _entities);
 }
 
 void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager)
@@ -105,7 +97,7 @@ void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string, Ent
 	_entities.emplace(entity->getId(), entity);
 }
 
-void Loader::createCamera(Json::Value& _data, CameraObject* _cam, std::map<std::string, Entity*>& _entities)
+void Loader::createCamera(Json::Value& _data, CameraRC* _cam, std::map<std::string, Entity*>& _entities)
 {
 	if (_data["offset"].isArray())
 		_cam->setCameraOffset(Ogre::Vector3(_data["offset"][0].asInt(), _data["offset"][1].asInt(), _data["offset"][2].asInt()));

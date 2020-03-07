@@ -1,5 +1,7 @@
 #pragma once
 
+#include <RenderComponent.h>
+
 namespace Ogre
 {
 	class Component;
@@ -19,35 +21,32 @@ namespace Ogre
 class TransformComponent;
 
 // TO DO: fix errors related to Ogre libraries and ApplicationContext
-class CameraObject
+class CameraRC : public RenderComponent
 {
-private:
-	Ogre::SceneManager* _msM;
-	Ogre::Camera* camera = nullptr;
-	Ogre::SceneNode* mCamNode = nullptr;
-	Ogre::Viewport* vp = nullptr;
-	Ogre::Light* light = nullptr;
-	Ogre::SceneNode* mLightNode = nullptr;
+	private:
+		Ogre::SceneManager* _msM;
+		Ogre::Camera* camera = nullptr;
+		Ogre::SceneNode* mCamNode = nullptr;
+		Ogre::Viewport* vp = nullptr;
+		Ogre::Light* light = nullptr;
+		Ogre::SceneNode* mLightNode = nullptr;
 
-	// who the camera follows
-	TransformComponent* target = nullptr;
-	// camera offset relative to followed object
-	Ogre::Vector3* cameraOffset = nullptr;
+		// who the camera follows
+		TransformComponent* target = nullptr;
+		// camera offset relative to followed object
+		Ogre::Vector3* cameraOffset = nullptr;
 
-public:
-	CameraObject();
-	~CameraObject();
+	public:
+		CameraRC();
+		~CameraRC();
 
-	// camera follows a specific node
-	void setTarget(TransformComponent* _target);
-	// set camera offset
-	void setCameraOffset(Ogre::Vector3(_offset));
-	// set camera position
-	void setPosition(Ogre::Vector3 _pos);
-	// set camera direction
-	void lookAt(Ogre::Vector3 _pos);
+		// camera follows a specific node
+		void setTarget(TransformComponent* _target);
+		// set camera offset
+		void setCameraOffset(Ogre::Vector3(_offset));
+		// set camera direction
+		void lookAt(Ogre::Vector3 _pos);
 
-	// called each frame
-	void updateCamera();
-
+		// called each frame
+		virtual void render();
 };

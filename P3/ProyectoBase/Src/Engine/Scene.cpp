@@ -11,7 +11,6 @@
 
 Scene::Scene() 
 {
-	cam = new CameraObject();
 	componentManager = new ComponentsManager();
 }
 
@@ -22,13 +21,12 @@ Scene::~Scene()
 		delete it.second;
 	}
 	delete componentManager;
-	delete cam;
 }
 
 void Scene::load(std::string name) 
 {  
 	Loader loader;
-    loader.readObjects(name, cam, entities, componentManager);
+    loader.readObjects(name, entities, componentManager);
 }
 
 void Scene::update() 
