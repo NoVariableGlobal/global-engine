@@ -25,5 +25,5 @@ class Loader
 		//Create an entity
 		void createEntity(Json::Value& _data, int _it, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager);
 		//Create camera
-		void createCamera(Json::Value& _data, CameraObject* _cam);
+		void createCamera(Json::Value& _data, CameraObject* _cam, std::map<std::string, Entity*>& _entities);
 };

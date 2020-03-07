@@ -1,5 +1,8 @@
 #include "CameraObject.h"
+#include "TransformComponent.h"
+
 #include <OgreSceneManager.h>
+
 #include "OgreSDLContext.h"
 #include "Ogre.h"
 
@@ -40,7 +43,7 @@ CameraObject::~CameraObject()
 	delete cameraOffset;
 }
 
-void CameraObject::setNodeTarget(Ogre::SceneNode* _target)
+void CameraObject::setTarget(TransformComponent* _target)
 {
 	target = _target;
 }

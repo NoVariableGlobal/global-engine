@@ -3,7 +3,8 @@
     {
         "offset" : [0, 0, 0],
         "position" : [0, 0, 1000],
-		"lookAt" : "none"
+        "lookAt" : "none",
+        "target" : "none"
     },
 
     "entities" : 
