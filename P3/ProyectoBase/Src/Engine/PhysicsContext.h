@@ -1,7 +1,11 @@
 #pragma once
 
-#include <btBulletDynamicsCommon.h>
-#include <btBulletCollisionCommon.h>
+class btCollisionDispatcher;
+class btBroadphaseInterface;
+class btSequentialImpulseConstraintSolver;
+class btDefaultCollisionConfiguration;
+class btDiscreteDynamicsWorld;
+class btRigidBody;
 
 class PhysicsContext
 {
@@ -22,5 +26,7 @@ public:
 	void init(float _gravity);
 	void updateSimulation();
 	void checkCollisions();
+
+	btRigidBody* createRB();
 };
 

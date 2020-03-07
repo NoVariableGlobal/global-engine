@@ -6,12 +6,15 @@
 #include "TransformComponent.h"
 #include "ComponentsManager.h"
 #include "CameraObject.h"
+#include "PhysicsContext.h"
 
 #include <iostream>
 
 Scene::Scene() {
 	componentManager = new ComponentsManager();
 	cam = new CameraObject();
+	PhysicsContext::instance()->init(1);
+	PhysicsContext::instance()->createRB();
 }
 
 Scene::~Scene() 
@@ -35,6 +38,7 @@ void Scene::update()
 	componentManager->handleInput();
 	componentManager->render();
 	componentManager->updateSound();
+	PhysicsContext::instance()->updateSimulation();
 }
 
 Entity* Scene::getEntitybyId(std::string id)

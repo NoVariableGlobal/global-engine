@@ -1,5 +1,7 @@
 #include "PhysicsContext.h"
 
+#include <btBulletDynamicsCommon.h>
+#include <btBulletCollisionCommon.h>
 PhysicsContext* PhysicsContext::_instance = nullptr;
 
 PhysicsContext* PhysicsContext::instance()
@@ -37,10 +39,26 @@ void PhysicsContext::init(float _gravity)
 void PhysicsContext::updateSimulation()
 {
 	discreteDynamicsWorld->stepSimulation(1.f / 60.f, 10);
-	// TO DO: discreteDynamicsWorld->debugDrawWorld() renders debug bodies
+	discreteDynamicsWorld->debugDrawWorld();
+	// TO DO: renders debug bodies
 	// TO DO: check collisions
 }
 
 void PhysicsContext::checkCollisions()
 {
+	
+}
+
+btRigidBody* PhysicsContext::createRB()
+{
+	btTransform t;
+	t.setIdentity();
+	btBoxShape* box = new btBoxShape(t.getOrigin());
+	btMotionState* motion = new btDefaultMotionState(t);
+	btRigidBody::btRigidBodyConstructionInfo info(1.0, motion, box);
+	btRigidBody* rb = new btRigidBody(info);
+
+	discreteDynamicsWorld->addRigidBody(rb);
+
+	return rb;
 }
