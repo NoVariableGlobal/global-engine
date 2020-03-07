@@ -13,7 +13,7 @@
 Scene::Scene() {
 	componentManager = new ComponentsManager();
 	cam = new CameraObject();
-	PhysicsContext::instance()->init(1);
+	PhysicsContext::instance()->init(0);
 	PhysicsContext::instance()->createRB();
 }
 

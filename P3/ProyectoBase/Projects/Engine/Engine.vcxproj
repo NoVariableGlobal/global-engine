@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Application.cpp" />
+    <ClCompile Include="..\..\Src\Engine\DebugDrawer.cpp" />
     <ClCompile Include="..\..\Src\Engine\OgreSDLContext.cpp" />
     <ClCompile Include="..\..\src\Engine\CameraObject.cpp" />
     <ClCompile Include="..\..\src\Engine\Component.cpp" />
@@ -38,6 +39,7 @@
     <ClCompile Include="..\..\src\Engine\TestComponent.cpp" />
     <ClCompile Include="..\..\src\Engine\TransformComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp" />
+    <ClInclude Include="..\..\Src\Engine\DebugDrawer.h" />
     <ClInclude Include="..\..\Src\Engine\OgreSDLContext.h" />
     <ClInclude Include="..\..\src\Engine\CameraObject.h" />
     <ClInclude Include="..\..\Src\Engine\checkML.h" />
