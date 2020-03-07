@@ -5,7 +5,6 @@
 #include "Loader.h"
 #include "TransformComponent.h"
 #include "ComponentsManager.h"
-#include "CameraObject.h"
 
 #include <iostream>
 

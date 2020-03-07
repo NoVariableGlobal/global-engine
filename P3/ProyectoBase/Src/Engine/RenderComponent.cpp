@@ -7,13 +7,15 @@ RenderComponent::RenderComponent() : Component() {}
 
 RenderComponent::~RenderComponent() 
 {
-	OgreSDLContext::getInstance()->getSceneManager()->destroyEntity(_entity);
-	OgreSDLContext::getInstance()->getSceneManager()->destroySceneNode(_sceneNode);
+	if(entity != nullptr)
+		OgreSDLContext::getInstance()->getSceneManager()->destroyEntity(entity);
+	if (sceneNode != nullptr)
+		OgreSDLContext::getInstance()->getSceneManager()->destroySceneNode(sceneNode);
 }
 
 // GETTERS AND SETTERS
-Ogre::Entity* RenderComponent::getOgreEntity() { return _entity; }
-void RenderComponent::setOgreEntity(Ogre::Entity* e) { _entity = e; }
+Ogre::Entity* RenderComponent::getOgreEntity() { return entity; }
+void RenderComponent::setOgreEntity(Ogre::Entity* e) { entity = e; }
 
-Ogre::SceneNode* RenderComponent::getSceneNode() { return _sceneNode; }
-void RenderComponent::setSceneNode(Ogre::SceneNode* sn) { _sceneNode = sn; }
+Ogre::SceneNode* RenderComponent::getSceneNode() { return sceneNode; }
+void RenderComponent::setSceneNode(Ogre::SceneNode* sn) { sceneNode = sn; }

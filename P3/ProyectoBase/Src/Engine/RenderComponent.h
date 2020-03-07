@@ -10,8 +10,8 @@ namespace Ogre
 
 class RenderComponent : public Component {
 protected:
-	Ogre::Entity* _entity;
-	Ogre::SceneNode* _sceneNode;
+	Ogre::Entity* entity = nullptr;
+	Ogre::SceneNode* sceneNode = nullptr;
 
 public:
 	RenderComponent();

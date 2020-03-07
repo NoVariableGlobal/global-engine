@@ -60,9 +60,6 @@
     <ClCompile Include="..\..\Src\Engine\ComponentsManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\CameraObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Engine\OgreSDLContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -70,6 +67,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Engine\LightRC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\CameraRC.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -116,9 +116,6 @@
     <ClInclude Include="..\..\Src\Engine\ComponentsManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\CameraObject.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\OgreSDLContext.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -129,6 +126,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\LightRC.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\CameraRC.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

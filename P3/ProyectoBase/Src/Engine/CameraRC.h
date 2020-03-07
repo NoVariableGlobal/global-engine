@@ -2,6 +2,8 @@
 
 #include <RenderComponent.h>
 
+#include <string>
+
 namespace Ogre
 {
 	class Component;
@@ -31,8 +33,6 @@ class CameraRC : public RenderComponent
 		Ogre::Light* light = nullptr;
 		Ogre::SceneNode* mLightNode = nullptr;
 
-		// who the camera follows
-		TransformComponent* target = nullptr;
 		// camera offset relative to followed object
 		Ogre::Vector3* cameraOffset = nullptr;
 
@@ -40,8 +40,12 @@ class CameraRC : public RenderComponent
 		CameraRC();
 		~CameraRC();
 
-		// camera follows a specific node
-		void setTarget(TransformComponent* _target);
+		// set camera
+		void setCamera(std::string _entityID);
+		// get camera
+		Ogre::Camera* getCamera();
+		// set viewport
+		void setViewport();
 		// set camera offset
 		void setCameraOffset(Ogre::Vector3(_offset));
 		// set camera direction

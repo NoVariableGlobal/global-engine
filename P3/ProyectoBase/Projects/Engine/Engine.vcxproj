@@ -22,7 +22,7 @@
     <ClCompile Include="..\..\src\Engine\Application.cpp" />
     <ClCompile Include="..\..\Src\Engine\LightRC.cpp" />
     <ClCompile Include="..\..\Src\Engine\OgreSDLContext.cpp" />
-    <ClCompile Include="..\..\src\Engine\CameraObject.cpp" />
+    <ClCompile Include="..\..\src\Engine\CameraRC.cpp" />
     <ClCompile Include="..\..\src\Engine\Component.cpp" />
     <ClCompile Include="..\..\src\Engine\ComponentsManager.cpp" />
     <ClCompile Include="..\..\src\Engine\Entity.cpp" />
@@ -42,7 +42,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\LightRC.h" />
     <ClInclude Include="..\..\Src\Engine\OgreSDLContext.h" />
-    <ClInclude Include="..\..\src\Engine\CameraObject.h" />
+    <ClInclude Include="..\..\src\Engine\CameraRC.h" />
     <ClInclude Include="..\..\Src\Engine\checkML.h" />
     <ClInclude Include="..\..\src\Engine\Component.h" />
     <ClInclude Include="..\..\src\Engine\ComponentsManager.h" />

@@ -9,10 +9,10 @@ class Entity;
 class Component {
 private:
 	// Whether or not the component should be updated
-	bool _active = false;
+	bool active = false;
 
 protected:
-	Entity* _father = nullptr;
+	Entity* father = nullptr;
 
 public:
 	Component();

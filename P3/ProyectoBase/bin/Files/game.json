@@ -14,7 +14,7 @@
                     "attributes" : {
                         "position" : [0, 0, 1000],
                         "orientation" : [0, 0, 0],
-                        "scale" : [20, 20, 20]
+                        "scale" : [1, 1, 1]
                     }
                 },
                 { 
@@ -23,8 +23,7 @@
                     {
                         "node" : "nCamera",
                         "offset" : [0, 0, 0],
-                        "lookAt" : "none",
-                        "target" : "none"
+                        "lookAt" : "none"
                     }
                 }
             ]
@@ -34,14 +33,16 @@
             "id" : "Simbad",
             "components" : 
             [
-                { "type" : "TransformComponent",
+                { 
+                    "type" : "TransformComponent",
                     "attributes" : {
                         "position" : [0, 0, 0],
                         "orientation" : [0, 0, 0],
                         "scale" : [20, 20, 20]
                     }
                 },
-                { "type" : "TridimensionalObject",
+                { 
+                    "type" : "TridimensionalObjectRC",
                     "attributes" : {
                         "mesh" : "Sinbad.mesh",
                         "node" : "nSimbad",
