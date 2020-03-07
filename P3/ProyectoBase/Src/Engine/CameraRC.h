@@ -28,13 +28,13 @@ class CameraRC : public RenderComponent
 	private:
 		Ogre::SceneManager* _msM;
 		Ogre::Camera* camera = nullptr;
-		Ogre::SceneNode* mCamNode = nullptr;
 		Ogre::Viewport* vp = nullptr;
 		Ogre::Light* light = nullptr;
 		Ogre::SceneNode* mLightNode = nullptr;
 
 		// camera offset relative to followed object
 		Ogre::Vector3* cameraOffset = nullptr;
+		Ogre::Vector3* look = nullptr;
 
 	public:
 		CameraRC();
@@ -45,7 +45,7 @@ class CameraRC : public RenderComponent
 		// get camera
 		Ogre::Camera* getCamera();
 		// set viewport
-		void setViewport();
+		void setViewport(Ogre::Vector3 _color);
 		// set camera offset
 		void setCameraOffset(Ogre::Vector3(_offset));
 		// set camera direction

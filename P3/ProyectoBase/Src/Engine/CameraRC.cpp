@@ -44,10 +44,10 @@ void CameraRC::setCamera(std::string _entityID)
 
 Ogre::Camera* CameraRC::getCamera() { return camera; }
 
-void CameraRC::setViewport()
+void CameraRC::setViewport(Ogre::Vector3 _color)
 {
 	vp = OgreSDLContext::getInstance()->getRenderWindow()->addViewport(camera);
-	vp->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
+	vp->setBackgroundColour(Ogre::ColourValue(_color.x, _color.y, _color.z));
 
 	camera->setAspectRatio(Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
 }
@@ -61,14 +61,16 @@ void CameraRC::setCameraOffset(Ogre::Vector3(_offset))
 
 void CameraRC::lookAt(Ogre::Vector3 _pos)
 {
-	//mCamNode->lookAt(_pos, Ogre::Node::TS_WORLD);
+	look = &_pos;
+	sceneNode->lookAt(_pos, Ogre::Node::TS_WORLD);
 }
 
 void CameraRC::render()
 {
-	Ogre::Vector3* position = &dynamic_cast<TransformComponent*>(father->getComponent("TransformComponent"))->getPosition();
+	Ogre::Vector3* position = &(dynamic_cast<TransformComponent*>(father->getComponent("TransformComponent"))->getPosition() + *cameraOffset);
+
 	sceneNode->setPosition(position->x, position->y, position->z);
-	//lookAt(*position);
+	lookAt(*position);
 }
 
 // FACTORY INFRASTRUCTURE
@@ -87,16 +89,21 @@ public:
 
 		if (!_data["node"].isString()) { /*EXCEPCION*/ }
 		camera->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString()));
-
 		camera->getSceneNode()->attachObject(camera->getCamera());
 
-		camera->setViewport();
+		if (!_data["viewportColor"].isArray()) { /*EXCEPCION*/ }
+		camera->setViewport(Ogre::Vector3(_data["viewportColor"][0].asInt(), _data["viewportColor"][1].asInt(), _data["viewportColor"][2].asInt()));
 
 		if (!_data["offset"].isArray()) { /*EXCEPCION*/ }
 		camera->setCameraOffset(Ogre::Vector3(_data["offset"][0].asInt(), _data["offset"][1].asInt(), _data["offset"][2].asInt()));
 
 		TransformComponent* transform = dynamic_cast<TransformComponent*>(_father->getComponent("TransformComponent"));
 		camera->getSceneNode()->setPosition(transform->getPosition());
+
+		if (!_data["lookAt"].isArray() && !_data["lookAt"].isString()) { /*EXCEPCION*/ }
+		else if(_data["lookAt"].isArray())
+			camera->lookAt(Ogre::Vector3(_data["lookAt"][0].asInt(), _data["lookAt"][1].asInt(), _data["lookAt"][2].asInt()));
+
 
 		_componentManager->addRC(camera);
 
