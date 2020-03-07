@@ -1,19 +1,15 @@
 #pragma once
 
-#include <RenderComponent.h>
+#include "RenderComponent.h"
 
 #include <string>
 
 namespace Ogre
 {
-	class Component;
 	class Camera;
 	class SceneNode;
-	class CameraMan;
 	class Viewport;
 	class SceneManager;
-	class OgreSDLContext;
-	class Light;
 
 	typedef float Real;
 	template <int dims, typename T> class Vector;
@@ -26,11 +22,9 @@ class TransformComponent;
 class CameraRC : public RenderComponent
 {
 	private:
-		Ogre::SceneManager* _msM;
+		Ogre::SceneManager* _msM = nullptr;
 		Ogre::Camera* camera = nullptr;
 		Ogre::Viewport* vp = nullptr;
-		Ogre::Light* light = nullptr;
-		Ogre::SceneNode* mLightNode = nullptr;
 
 		// camera offset relative to followed object
 		Ogre::Vector3* cameraOffset = nullptr;
@@ -45,7 +39,7 @@ class CameraRC : public RenderComponent
 		// get camera
 		Ogre::Camera* getCamera();
 		// set viewport
-		void setViewport(Ogre::Vector3 _color);
+		void setViewport(Ogre::Vector3 _colour);
 		// set camera offset
 		void setCameraOffset(Ogre::Vector3(_offset));
 		// set camera direction
