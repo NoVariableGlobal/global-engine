@@ -25,7 +25,6 @@ public:
 
 	void init(float _gravity);
 	void updateSimulation();
-	void checkCollisions();
 
 	btRigidBody* createRB();
 };
