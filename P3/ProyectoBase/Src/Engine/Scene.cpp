@@ -9,12 +9,13 @@
 #include "PhysicsContext.h"
 
 #include <iostream>
+#include "OgreVector3.h"
 
 Scene::Scene() {
 	componentManager = new ComponentsManager();
 	cam = new CameraObject();
 	PhysicsContext::instance()->init(0);
-	PhysicsContext::instance()->createRB();
+	PhysicsContext::instance()->createRB(Ogre::Vector3(10,10,10), Ogre::Vector3(10, 10, 10), 1);
 }
 
 Scene::~Scene() 
@@ -25,6 +26,7 @@ Scene::~Scene()
 	}
 	delete componentManager;
 	delete cam;
+	PhysicsContext::instance()->destroyWorld();
 }
 
 void Scene::load(std::string name) {  
