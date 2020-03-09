@@ -1,4 +1,5 @@
 #pragma
+#include "Component.h"
 
 #include "Component.h"
 

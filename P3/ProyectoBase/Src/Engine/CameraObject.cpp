@@ -2,6 +2,8 @@
 #include "TransformComponent.h"
 
 #include <OgreSceneManager.h>
+#include "OgreSDLContext.h"
+#include "Ogre.h"
 
 #include "OgreSDLContext.h"
 #include "Ogre.h"
