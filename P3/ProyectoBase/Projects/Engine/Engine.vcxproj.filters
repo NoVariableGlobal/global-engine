@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Application.cpp" />
@@ -23,25 +23,121 @@
     <ClCompile Include="..\..\Src\Engine\DebugDrawer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\Engine\OgreSDLContext.h" />
-    <ClInclude Include="..\..\src\Engine\CameraObject.h" />
-    <ClInclude Include="..\..\Src\Engine\checkML.h" />
-    <ClInclude Include="..\..\src\Engine\Component.h" />
-    <ClInclude Include="..\..\src\Engine\ComponentsManager.h" />
-    <ClInclude Include="..\..\src\Engine\Entity.h" />
-    <ClInclude Include="..\..\src\Engine\FactoriesFactory.h" />
-    <ClInclude Include="..\..\src\Engine\Factory.h" />
-    <ClInclude Include="..\..\src\Engine\Game.h" />
-    <ClInclude Include="..\..\src\Engine\InputComponent.h" />
-    <ClInclude Include="..\..\src\Engine\Loader.h" />
-    <ClInclude Include="..\..\src\Engine\PhysicsComponent.h" />
-    <ClInclude Include="..\..\src\Engine\RenderComponent.h" />
-    <ClInclude Include="..\..\src\Engine\Scene.h" />
-    <ClInclude Include="..\..\src\Engine\SoundComponent.h" />
-    <ClInclude Include="..\..\src\Engine\TestComponent.h" />
-    <ClInclude Include="..\..\src\Engine\TransformComponent.h" />
-    <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h" />
+    <ClCompile Include="..\..\Src\Engine\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\PhysicsComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\SoundComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\InputComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\RenderComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\TestComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\Factory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\FactoriesFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\Loader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\Component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\TransformComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\ComponentsManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\CameraObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\OgreSDLContext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Src\Engine\Entity.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\PhysicsComponent.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\SoundComponent.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\Scene.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\Game.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\InputComponent.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\RenderComponent.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\TestComponent.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\Factory.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\FactoriesFactory.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\Loader.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\Component.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\TransformComponent.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\ComponentsManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\CameraObject.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\OgreSDLContext.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\checkML.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\PhysicsContext.h" />
+      <Filter>Source Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\DebugDrawer.h" />
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

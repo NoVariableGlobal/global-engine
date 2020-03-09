@@ -5,6 +5,8 @@
 #include "Ogre.h"
 #include "OgreVector3.h"
 #include "ComponentsManager.h"
+#include "CameraObject.h"
+#include "TransformComponent.h"
 
 #include <json.h>
 #include <fstream>
@@ -36,25 +38,37 @@ void Loader::readScenes(std::map<std::string, std::string>& _scenesQueue)
 
 }
 
-void Loader::readEntities(std::string _fileName, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager)
+void Loader::readObjects(std::string _fileName, CameraObject* _cam, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager)
 {
 	std::fstream file;
 	file.open("files/" + _fileName);
 
-	if (file.is_open())
+	if (!file.is_open())
 	{
-		Json::Value data;
-		file >> data;
-		data = data["entities"];
+		// EXCEPCION
+	}
 
-		int numEntities = data.size();
-		for (int i = 0; i < numEntities; i++)
-			createEntity(data[i], i, _entities, componentManager);
-	}
-	else
+	Json::Value data;
+	file >> data;
+
+	if (!data["entities"].isArray())
 	{
-		// LANZAR EXCEPCION
+		// EXCEPCION
 	}
+
+	Json::Value entities = data["entities"];
+
+	int numEntities = entities.size();
+	for (int i = 0; i < numEntities; i++)
+		createEntity(entities[i], i, _entities, componentManager);
+
+	if (!data["camera"].isObject())
+	{
+		// EXCEPCION
+	}
+
+	Json::Value camera = data["camera"];
+	createCamera(camera, _cam, _entities);
 }
 
 void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager)
@@ -62,14 +76,58 @@ void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string, Ent
 	Entity* entity = new Entity();
 
 	// ID of the Entity
+	if (!_data["id"].isString())
+	{
+		// EXCEPCION
+	}
+
 	entity->setId(_data["id"].asString());
 
 	// List of COMPONENTS to add to the Entity
+	if (!_data["components"].isArray())
+	{
+		// EXCEPCION
+	}
+
 	Json::Value components = _data["components"];
 
 	int numComponents = components.size();
 	for (int i = 0; i < numComponents; i++)
+	{
+		if (!components[i]["type"].isString() || !components[i]["attributes"].isArray())
+		{
+			// EXCEPCION
+		}
+
 		entity->addComponent(components[i]["type"].asString(), FactoriesFactory::getInstance()->find(components[i]["type"].asString())->create(entity, components[i]["attributes"], componentManager));
+	}
+
 
 	_entities.emplace(entity->getId(), entity);
+}
+
+void Loader::createCamera(Json::Value& _data, CameraObject* _cam, std::map<std::string, Entity*>& _entities)
+{
+	if (_data["offset"].isArray())
+		_cam->setCameraOffset(Ogre::Vector3(_data["offset"][0].asInt(), _data["offset"][1].asInt(), _data["offset"][2].asInt()));
+	else
+	{
+		// EXCEPCION
+	}
+
+	if(_data["position"].isArray())
+		_cam->setPosition(Ogre::Vector3(_data["position"][0].asInt(), _data["position"][1].asInt(), _data["position"][2].asInt()));
+	else
+	{
+		// EXCEPCION
+	}
+
+	if (_data["lookAt"].isArray() && _data["lookAt"].asString() != "none")
+		_cam->lookAt(Ogre::Vector3(_data["lookAt"][0].asInt(), _data["lookAt"][1].asInt(), _data["lookAt"][2].asInt()));
+
+	if (_data["target"].isString() && _data["target"].asString() != "none")
+	{
+		TransformComponent* transform = dynamic_cast<TransformComponent*>(_entities.find(_data["target"].asString())->second->getComponent("TransformComponent"));
+		_cam->setTarget(transform);
+	}
 }

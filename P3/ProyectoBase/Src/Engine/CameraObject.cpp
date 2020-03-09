@@ -1,5 +1,10 @@
 #include "CameraObject.h"
+#include "TransformComponent.h"
+
 #include <OgreSceneManager.h>
+#include "OgreSDLContext.h"
+#include "Ogre.h"
+
 #include "OgreSDLContext.h"
 #include "Ogre.h"
 
@@ -15,11 +20,8 @@ CameraObject::CameraObject() /* : Component() */
 	mCamNode = _msM->getRootSceneNode()->createChildSceneNode("nCam");
 	mCamNode->attachObject(camera);
 
-	mCamNode->setPosition(0, 0, 300);
-	mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
-
 	vp = OgreSDLContext::getInstance()->getRenderWindow()->addViewport(camera);
-	vp->setBackgroundColour(Ogre::ColourValue(0.5, 0.5, 1));
+	vp->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
 
 	camera->setAspectRatio(Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
 
@@ -43,7 +45,7 @@ CameraObject::~CameraObject()
 	delete cameraOffset;
 }
 
-void CameraObject::setNodeTarget(Ogre::SceneNode* _target)
+void CameraObject::setTarget(TransformComponent* _target)
 {
 	target = _target;
 }
@@ -53,14 +55,14 @@ void CameraObject::setCameraOffset(Ogre::Vector3(_offset))
 	*cameraOffset = _offset;
 }
 
-void CameraObject::setPosition(Ogre::Vector3 pos)
+void CameraObject::setPosition(Ogre::Vector3 _pos)
 {
-	mCamNode->setPosition(pos);
+	mCamNode->setPosition(_pos);
 }
 
-void CameraObject::lookAt(Ogre::Vector3 pos)
+void CameraObject::lookAt(Ogre::Vector3 _pos)
 {
-	mCamNode->lookAt(pos, Ogre::Node::TS_WORLD);
+	mCamNode->lookAt(_pos, Ogre::Node::TS_WORLD);
 }
 
 void CameraObject::updateCamera()

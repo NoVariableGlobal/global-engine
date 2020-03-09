@@ -16,6 +16,8 @@ namespace Ogre
 	typedef Vector<3, Real> Vector3;
 }
 
+class TransformComponent;
+
 // TO DO: fix errors related to Ogre libraries and ApplicationContext
 class CameraObject
 {
@@ -28,7 +30,7 @@ private:
 	Ogre::SceneNode* mLightNode = nullptr;
 
 	// who the camera follows
-	Ogre::SceneNode* target = nullptr;
+	TransformComponent* target = nullptr;
 	// camera offset relative to followed object
 	Ogre::Vector3* cameraOffset = nullptr;
 
@@ -37,7 +39,7 @@ public:
 	~CameraObject();
 
 	// camera follows a specific node
-	void setNodeTarget(Ogre::SceneNode* _target);
+	void setTarget(TransformComponent* _target);
 	// set camera offset
 	void setCameraOffset(Ogre::Vector3(_offset));
 	// set camera position

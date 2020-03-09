@@ -7,9 +7,9 @@
 #include "ComponentsManager.h"
 #include "CameraObject.h"
 #include "PhysicsContext.h"
-
 #include <iostream>
 #include "OgreVector3.h"
+
 
 Scene::Scene() {
 	componentManager = new ComponentsManager();
@@ -26,7 +26,8 @@ Scene::~Scene()
 	}
 	delete componentManager;
 	delete cam;
-	PhysicsContext::instance()->destroyWorld();
+  PhysicsContext::instance()->destroyWorld();
+	
 }
 
 void Scene::load(std::string name) {  

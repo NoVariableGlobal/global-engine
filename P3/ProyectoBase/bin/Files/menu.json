@@ -1,20 +1,33 @@
-{"entities" :
+{   
+    "camera" :
+    {
+        "offset" : [0, 0, 0],
+        "position" : [0, 0, 1000],
+        "lookAt" : "none",
+        "target" : "none"
+    },
+
+    "entities" : 
     [
-        {
-            "id" : "Play_Button",
-            "components" :
+        { "id" : "Simbad",
+            "components" : 
             [
-                {
-                    "type" : "TestComponent",
-                    "attributes" :
-                    {
-                        "material" : "material.material",
-                        "color" : [255, 255, 255]
+                { "type" : "TransformComponent",
+                    "attributes" : {
+                        "position" : [0, 0, 0],
+                        "orientation" : [0, 0, 0],
+                        "scale" : [20, 20, 20]
                     }
-                    
+                },
+                { "type" : "TridimensionalObject",
+                    "attributes" : {
+                        "mesh" : "Sinbad.mesh",
+                        "node" : "nSimbad",
+                        "material" : "TestMaterial"
+                    }
+
                 }
             ]
         }
     ]
-
 }
