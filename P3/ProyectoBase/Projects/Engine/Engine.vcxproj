@@ -18,13 +18,14 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
+ <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Application.cpp" />
-    <ClCompile Include="..\..\Src\Engine\DebugDrawer.cpp" />
+    <ClCompile Include="..\..\Src\Engine\SpotLightRC.cpp" />
     <ClCompile Include="..\..\Src\Engine\OgreSDLContext.cpp" />
-    <ClCompile Include="..\..\src\Engine\CameraObject.cpp" />
+    <ClCompile Include="..\..\src\Engine\CameraRC.cpp" />
     <ClCompile Include="..\..\src\Engine\Component.cpp" />
     <ClCompile Include="..\..\src\Engine\ComponentsManager.cpp" />
+    <ClCompile Include="..\..\Src\Engine\DebugDrawer.cpp" />
     <ClCompile Include="..\..\src\Engine\Entity.cpp" />
     <ClCompile Include="..\..\src\Engine\FactoriesFactory.cpp" />
     <ClCompile Include="..\..\src\Engine\Factory.cpp" />
@@ -32,19 +33,22 @@
     <ClCompile Include="..\..\src\Engine\InputComponent.cpp" />
     <ClCompile Include="..\..\src\Engine\Loader.cpp" />
     <ClCompile Include="..\..\src\Engine\PhysicsComponent.cpp" />
-    <ClCompile Include="..\..\Src\Engine\PhysicsContext.cpp" />
     <ClCompile Include="..\..\src\Engine\RenderComponent.cpp" />
     <ClCompile Include="..\..\src\Engine\Scene.cpp" />
     <ClCompile Include="..\..\src\Engine\SoundComponent.cpp" />
+    <ClCompile Include="..\..\Src\Engine\PhysicsContext.cpp" />
     <ClCompile Include="..\..\src\Engine\TestComponent.cpp" />
     <ClCompile Include="..\..\src\Engine\TransformComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp" />
-    <ClInclude Include="..\..\Src\Engine\DebugDrawer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Src\Engine\SpotLightRC.h" />
     <ClInclude Include="..\..\Src\Engine\OgreSDLContext.h" />
-    <ClInclude Include="..\..\src\Engine\CameraObject.h" />
+    <ClInclude Include="..\..\src\Engine\CameraRC.h" />
     <ClInclude Include="..\..\Src\Engine\checkML.h" />
     <ClInclude Include="..\..\src\Engine\Component.h" />
     <ClInclude Include="..\..\src\Engine\ComponentsManager.h" />
+    <ClInclude Include="..\..\Src\Engine\DebugDrawer.h" />
     <ClInclude Include="..\..\src\Engine\Entity.h" />
     <ClInclude Include="..\..\src\Engine\FactoriesFactory.h" />
     <ClInclude Include="..\..\src\Engine\Factory.h" />
@@ -52,10 +56,10 @@
     <ClInclude Include="..\..\src\Engine\InputComponent.h" />
     <ClInclude Include="..\..\src\Engine\Loader.h" />
     <ClInclude Include="..\..\src\Engine\PhysicsComponent.h" />
-    <ClInclude Include="..\..\Src\Engine\PhysicsContext.h" />
     <ClInclude Include="..\..\src\Engine\RenderComponent.h" />
     <ClInclude Include="..\..\src\Engine\Scene.h" />
     <ClInclude Include="..\..\src\Engine\SoundComponent.h" />
+    <ClInclude Include="..\..\Src\Engine\PhysicsContext.h" />
     <ClInclude Include="..\..\src\Engine\TestComponent.h" />
     <ClInclude Include="..\..\src\Engine\TransformComponent.h" />
     <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h" />

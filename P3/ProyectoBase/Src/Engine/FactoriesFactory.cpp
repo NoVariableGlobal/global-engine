@@ -1,7 +1,6 @@
 #include "FactoriesFactory.h"
 #include "Factory.h"
 
-std::map<std::string, ComponentFactory*> FactoriesFactory::factory;
 FactoriesFactory* FactoriesFactory::_instance = nullptr;
 
 FactoriesFactory::FactoriesFactory() {}

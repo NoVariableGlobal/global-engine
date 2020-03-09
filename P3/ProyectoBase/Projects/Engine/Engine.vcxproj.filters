@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\src\Engine\Application.cpp" />
-    <ClCompile Include="..\..\Src\Engine\OgreSDLContext.cpp" />
-    <ClCompile Include="..\..\src\Engine\CameraObject.cpp" />
-    <ClCompile Include="..\..\src\Engine\Component.cpp" />
-    <ClCompile Include="..\..\src\Engine\ComponentsManager.cpp" />
-    <ClCompile Include="..\..\src\Engine\Entity.cpp" />
-    <ClCompile Include="..\..\src\Engine\FactoriesFactory.cpp" />
-    <ClCompile Include="..\..\src\Engine\Factory.cpp" />
-    <ClCompile Include="..\..\src\Engine\Game.cpp" />
-    <ClCompile Include="..\..\src\Engine\InputComponent.cpp" />
-    <ClCompile Include="..\..\src\Engine\Loader.cpp" />
-    <ClCompile Include="..\..\src\Engine\PhysicsComponent.cpp" />
-    <ClCompile Include="..\..\src\Engine\RenderComponent.cpp" />
-    <ClCompile Include="..\..\src\Engine\Scene.cpp" />
-    <ClCompile Include="..\..\src\Engine\SoundComponent.cpp" />
-    <ClCompile Include="..\..\src\Engine\TestComponent.cpp" />
-    <ClCompile Include="..\..\src\Engine\TransformComponent.cpp" />
-    <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp" />
-    <ClCompile Include="..\..\Src\Engine\PhysicsContext.cpp" />
-    <ClCompile Include="..\..\Src\Engine\DebugDrawer.cpp" />
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Src\Engine\Application.cpp">
@@ -68,14 +60,23 @@
     <ClCompile Include="..\..\Src\Engine\ComponentsManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\CameraObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Engine\OgreSDLContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\CameraRC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\SpotLightRC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\PhysicsContext.cpp" />
+          <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\DebugDrawer.cpp" />
+          <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -121,9 +122,6 @@
     <ClInclude Include="..\..\Src\Engine\ComponentsManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\CameraObject.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\OgreSDLContext.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -131,6 +129,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\CameraRC.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\SpotLightRC.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\PhysicsContext.h" />
