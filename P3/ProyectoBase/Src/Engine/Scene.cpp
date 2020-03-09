@@ -27,6 +27,8 @@ Scene::~Scene()
 void Scene::load(std::string name) {  
     Loader loader;
     loader.readEntities(name, entities, componentManager);
+
+
 }
 
 void Scene::update() 

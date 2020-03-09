@@ -1,0 +1,110 @@
+﻿  BitmapAccess.cpp
+  ColorLookup.cpp
+  ConversionRGBA16.cpp
+  ConversionRGBAF.cpp
+  FreeImage.cpp
+  FreeImageIO.cpp
+  GetType.cpp
+  LFPQuantizer.cpp
+  MemoryIO.cpp
+  PixelAccess.cpp
+  J2KHelper.cpp
+  MNGHelper.cpp
+  Plugin.cpp
+  PluginBMP.cpp
+  PluginCUT.cpp
+  PluginDDS.cpp
+  PluginEXR.cpp
+  PluginG3.cpp
+  PluginGIF.cpp
+  PluginHDR.cpp
+  Compilando...
+  PluginICO.cpp
+  PluginIFF.cpp
+  PluginJ2K.cpp
+  PluginJNG.cpp
+  PluginJP2.cpp
+  PluginJPEG.cpp
+  PluginJXR.cpp
+  PluginKOALA.cpp
+  PluginMNG.cpp
+  PluginPCD.cpp
+  PluginPCX.cpp
+  PluginPFM.cpp
+  PluginPICT.cpp
+  PluginPNG.cpp
+  PluginPNM.cpp
+  PluginPSD.cpp
+  PluginRAS.cpp
+  PluginRAW.cpp
+  PluginSGI.cpp
+  PluginTARGA.cpp
+  Compilando...
+  PluginTIFF.cpp
+  PluginWBMP.cpp
+  PluginWebP.cpp
+  PluginXBM.cpp
+  PluginXPM.cpp
+  PSDParser.cpp
+  TIFFLogLuv.cpp
+  Conversion.cpp
+  Conversion16_555.cpp
+  Conversion16_565.cpp
+  Conversion24.cpp
+  Conversion32.cpp
+  Conversion4.cpp
+  Conversion8.cpp
+  ConversionFloat.cpp
+  ConversionRGB16.cpp
+  ConversionRGBF.cpp
+  ConversionType.cpp
+  ConversionUINT16.cpp
+  Halftoning.cpp
+  Compilando...
+  tmoColorConvert.cpp
+  tmoDrago03.cpp
+  tmoFattal02.cpp
+  tmoReinhard05.cpp
+  ToneMapping.cpp
+  NNQuantizer.cpp
+  WuQuantizer.cpp
+  CacheFile.cpp
+  MultiPage.cpp
+  ZLibInterface.cpp
+  Exif.cpp
+  FIRational.cpp
+  FreeImageTag.cpp
+  IPTC.cpp
+  TagConversion.cpp
+  TagLib.cpp
+  XTIFF.cpp
+  Background.cpp
+  BSplineRotate.cpp
+  Channels.cpp
+  Compilando...
+  ClassicRotate.cpp
+  Colors.cpp
+  CopyPaste.cpp
+  Display.cpp
+  Flip.cpp
+  JPEGTransform.cpp
+  MultigridPoissonSolver.cpp
+  Rescale.cpp
+  Resize.cpp
+  FreeImageC.c
+     Creando biblioteca .\x64\Release\FreeImage.lib y objeto .\x64\Release\FreeImage.exp
+  Generando código
+E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\Utilities.h(352): warning C4789: se producirá una saturación del búfer 'pxlSrc' con un tamaño de 8 bytes; se escribirán 4 bytes empezando en el desplazamiento 12
+E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\Utilities.h(351): warning C4789: se producirá una saturación del búfer 'pxlSrc' con un tamaño de 8 bytes; se escribirán 4 bytes empezando en el desplazamiento 8
+E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\Utilities.h(345): warning C4789: se producirá una saturación del búfer 'pxlSrc' con un tamaño de 8 bytes; se escribirán 4 bytes empezando en el desplazamiento 8
+E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\Utilities.h(352): warning C4789: se producirá una saturación del búfer 'pxlSrc' con un tamaño de 12 bytes; se escribirán 4 bytes empezando en el desplazamiento 12
+E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\Utilities.h(352): warning C4789: se producirá una saturación del búfer 'pxlSrc' con un tamaño de 8 bytes; se escribirán 4 bytes empezando en el desplazamiento 12
+E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\Utilities.h(351): warning C4789: se producirá una saturación del búfer 'pxlSrc' con un tamaño de 8 bytes; se escribirán 4 bytes empezando en el desplazamiento 8
+E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\Utilities.h(345): warning C4789: se producirá una saturación del búfer 'pxlSrc' con un tamaño de 8 bytes; se escribirán 4 bytes empezando en el desplazamiento 8
+E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\Utilities.h(352): warning C4789: se producirá una saturación del búfer 'pxlSrc' con un tamaño de 12 bytes; se escribirán 4 bytes empezando en el desplazamiento 12
+  Generación de código finalizada
+  FreeImage.2017.vcxproj -> E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\.\x64\Release\FreeImage.dll
+  Ya existe el subdirectorio o el archivo Dist\x64.
+          1 archivo(s) copiado(s).
+          1 archivo(s) copiado(s).
+          1 archivo(s) copiado(s).

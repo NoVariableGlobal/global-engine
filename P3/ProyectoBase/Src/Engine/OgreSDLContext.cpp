@@ -45,6 +45,13 @@ void OgreSDLContext::initApp(std::string appName)
 	createWindow(appName);
 	setWindowGrab(grab, showCursor);
 	initialiseRTShaderSystem();
+
+	// SIMBAD
+	Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
+	ent->setMaterialName("TestMaterial");  //--------------------------------------------------------------- NO FUNCIONA. MIRAR POR QUE
+	Ogre::SceneNode* mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
+	mSinbadNode->attachObject(ent);
+	mSinbadNode->setScale(20, 20, 20);
 }
 
 void OgreSDLContext::createRoot()
@@ -61,6 +68,7 @@ void OgreSDLContext::createRoot()
 	// create an instance of the root object
 	mRoot = new Ogre::Root(mPluginsCfg, "ogre.cfg");
 	mRoot->restoreConfig();
+	mRoot->initialise(false);
 }
 
 void OgreSDLContext::settingResources()
@@ -79,6 +87,7 @@ void OgreSDLContext::settingResources()
 	// iterate through all of the results.
 	for (auto it : secIt)
 	{
+		Ogre::String secName = it.first;
 		// ask for another iterator that will let us iterate through the items in each section
 		Ogre::ConfigFile::SettingsMultiMap* settings = &it.second;
 		Ogre::ConfigFile::SettingsMultiMap::iterator it2;
@@ -91,14 +100,14 @@ void OgreSDLContext::settingResources()
 			name = it2->second; // the path
 
 			// add this location to our ResourceGroupManager
-			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(name, locType);
+			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(name, locType, secName);
 		}
 	}
+	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
 void OgreSDLContext::createWindow(std::string appName)
 {
-	mRoot->initialise(false);
 
 	Ogre::ConfigOptionMap ropts = mRoot->getRenderSystem()->getConfigOptions();
 
@@ -139,13 +148,6 @@ void OgreSDLContext::createWindow(std::string appName)
 
 	// create a SceneManager instance
 	mSM = mRoot->createSceneManager();
-
-	// SIMBAD
-	Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
-	ent->setMaterialName("TestMaterial");  //--------------------------------------------------------------- NO FUNCIONA. MIRAR POR QUE
-	Ogre::SceneNode* mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
-	mSinbadNode->attachObject(ent);
-	mSinbadNode->setScale(20, 20, 20);
 }
 
 void OgreSDLContext::setWindowGrab(bool _grab, bool _showCursor)

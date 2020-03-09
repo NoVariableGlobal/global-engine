@@ -1,4 +1,4 @@
-material TestTexture
+material TestMaterial
 {
     technique 
     { // first, preferred technique
