@@ -5,12 +5,15 @@
 #include "Loader.h"
 #include "TransformComponent.h"
 #include "ComponentsManager.h"
-
 #include <iostream>
+#include "PhysicsContext.h"
+#include "OgreVector3.h"
 
-Scene::Scene() 
-{
+
+Scene::Scene() {
 	componentManager = new ComponentsManager();
+	PhysicsContext::instance()->init(0);
+	PhysicsContext::instance()->createRB(Ogre::Vector3(10,10,10), Ogre::Vector3(10, 10, 10), 1);
 }
 
 Scene::~Scene() 
@@ -20,6 +23,7 @@ Scene::~Scene()
 		delete it.second;
 	}
 	delete componentManager;
+	PhysicsContext::instance()->destroyWorld();
 }
 
 void Scene::load(std::string name) 
@@ -34,6 +38,7 @@ void Scene::update()
 	componentManager->handleInput();
 	componentManager->render();
 	componentManager->updateSound();
+	PhysicsContext::instance()->updateSimulation();
 }
 
 Entity* Scene::getEntitybyId(std::string id)

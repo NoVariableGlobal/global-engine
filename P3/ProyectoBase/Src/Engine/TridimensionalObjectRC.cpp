@@ -1,15 +1,13 @@
+#include <json.h>
 #include "TridimensionalObjectRC.h"
 #include "Entity.h"
 #include "Factory.h"
 #include "FactoriesFactory.h"
 #include "ComponentsManager.h"
 #include "TransformComponent.h"
-
 #include "OgreEntity.h"
 #include "OgreSDLContext.h"
 #include "OgreSceneManager.h"
-
-#include <json.h>
 
 // COMPONENT CODE
 TridimensionalObjectRC::TridimensionalObjectRC() {}

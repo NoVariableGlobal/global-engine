@@ -72,6 +72,12 @@
     <ClCompile Include="..\..\Src\Engine\SpotLightRC.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\PhysicsContext.cpp" />
+          <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\DebugDrawer.cpp" />
+          <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\Entity.h">
@@ -129,6 +135,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\SpotLightRC.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\PhysicsContext.h" />
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\DebugDrawer.h" />
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
