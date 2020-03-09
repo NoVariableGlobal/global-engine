@@ -1,4 +1,4 @@
-#pragma
+#pragma once
 
 //#include "Component.h"
 //#include "sdl_includes.h"

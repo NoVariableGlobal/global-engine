@@ -2,16 +2,19 @@
 #include <map>
 #include <vector>
 #include <string>
+#include "checkML.h"
 
 class Component;
 class Entity;
 class ComponentsManager;
+class CameraObject;
 
 class Scene {
 
   std::map<std::string, Entity*> entities; 
   bool exit = false;
   ComponentsManager* componentManager;
+  CameraObject* cam;
 
 public:
   Scene();
@@ -25,4 +28,7 @@ public:
 
   // Search the entity in map and returns a reference to it.
   Entity* getEntitybyId(std::string id);
+
+  // Clear the Components Manager
+  void clearComponentsManager();
 };

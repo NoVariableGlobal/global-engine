@@ -4,7 +4,18 @@
 std::map<std::string, ComponentFactory*> FactoriesFactory::factory;
 FactoriesFactory* FactoriesFactory::_instance = nullptr;
 
-FactoriesFactory* FactoriesFactory::instance()
+FactoriesFactory::FactoriesFactory() {}
+
+void FactoriesFactory::clear()
+{
+	for (auto it : factory)
+	{
+		delete it.second;
+	}
+	delete _instance;
+}
+
+FactoriesFactory* FactoriesFactory::getInstance()
 {
 	if (_instance == nullptr) _instance = new FactoriesFactory();
 	return _instance;

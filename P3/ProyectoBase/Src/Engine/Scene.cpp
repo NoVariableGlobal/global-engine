@@ -4,33 +4,51 @@
 #include "FactoriesFactory.h"
 #include "Loader.h"
 #include "TransformComponent.h"
+#include "ComponentsManager.h"
+#include "CameraObject.h"
+#include "PhysicsContext.h"
 
 #include <iostream>
+#include "OgreVector3.h"
 
-Scene::Scene() {}
+Scene::Scene() {
+	componentManager = new ComponentsManager();
+	cam = new CameraObject();
+	PhysicsContext::instance()->init(0);
+	PhysicsContext::instance()->createRB(Ogre::Vector3(10,10,10), Ogre::Vector3(10, 10, 10), 1);
+}
 
-Scene::~Scene() {}
+Scene::~Scene() 
+{
+	for (auto it : entities)
+	{
+		delete it.second;
+	}
+	delete componentManager;
+	delete cam;
+	PhysicsContext::instance()->destroyWorld();
+}
 
 void Scene::load(std::string name) {  
     Loader loader;
     loader.readEntities(name, entities, componentManager);
-    
-    std::cout << dynamic_cast<TransformComponent*>(entities.find("PlayButton")->second->getComponent("TransformComponent"))->getPosition();
 }
 
-void Scene::update()
+void Scene::update() 
 {
-	while (!exit) {
-		//UNDO COMMENT BEFORE MERGING
-		/*componentManager.update();
-		componentManager.handleInput();
-		componentManager.render();
-		componentManager.updateSound();
-		componentManager.updateCamera();*/
-	}
+	componentManager->update();
+	componentManager->handleInput();
+	componentManager->render();
+	componentManager->updateSound();
+	PhysicsContext::instance()->updateSimulation();
 }
 
 Entity* Scene::getEntitybyId(std::string id)
 {
-    return new Entity();
+    return entities.find(id)->second;
+}
+
+void Scene::clearComponentsManager()
+{
+	componentManager->clearComponents();
 }
