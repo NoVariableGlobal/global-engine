@@ -1,8 +1,8 @@
 #include "ComponentsManager.h"
 #include "PhysicsComponent.h"
 #include "InputComponent.h"
-#include "RenderComponent.h"
 #include "SoundComponent.h"
+#include "RenderComponent.h"
 
 
 ComponentsManager::ComponentsManager()
@@ -42,6 +42,13 @@ void ComponentsManager::clearComponents()
 	{
 		delete sound[i];
 		sound.pop_back();
+	}
+
+	size = tran.size();
+	for (int i = size - 1; i >= 0; i--)
+	{
+		delete tran[i];
+		tran.pop_back();
 	}
 }
 
@@ -119,6 +126,26 @@ void ComponentsManager::deleteSC(SoundComponent* _soundComponent)
 		if ((*it) == _soundComponent)
 		{
 			sound.erase(it);
+			erased = true;
+		}
+		++it;
+	}
+}
+
+void ComponentsManager::addTC(Component* _transformComponent)
+{
+	tran.push_back(_transformComponent);
+}
+
+void ComponentsManager::deleteTC(Component* _transformComponent)
+{
+	bool erased = false;
+	auto it = tran.begin();
+	while (it != tran.end() && erased)
+	{
+		if ((*it) == _transformComponent)
+		{
+			tran.erase(it);
 			erased = true;
 		}
 		++it;

@@ -104,7 +104,6 @@ void OgreSDLContext::settingResources()
 
 void OgreSDLContext::createWindow(std::string appName)
 {
-
 	Ogre::ConfigOptionMap ropts = mRoot->getRenderSystem()->getConfigOptions();
 
 	std::istringstream mode(ropts["Video Mode"].currentValue);
@@ -138,8 +137,11 @@ void OgreSDLContext::createWindow(std::string appName)
 
 	mWindow.render = mRoot->createRenderWindow(appName, w, h, false, &miscParams);
 
+
 	// create a SceneManager instance
 	mSM = mRoot->createSceneManager();
+	if(ambientLight)
+		mSM->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
 }
 
 void OgreSDLContext::setWindowGrab(bool _grab, bool _showCursor)

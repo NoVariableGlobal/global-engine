@@ -6,9 +6,9 @@
 6. Mover de ProyectoBase\lib\FreeImage\Dist\x64   FreeImage.lib y FreeImaged.lib a 
    ProyectoBase\lib\ogre-1.12.5\build\Dependencies\lib tambien mover FreeImage.h a ProyectoBase\lib\ogre-1.12.5\build\Dependencies\include
 7. Pulsar configure de nuevo
-5. En las casillas rojas desmarcar OGRE_BUILD_COMPONENT_OVERLAY y comprobar que sale marcado OGRE_BUILD_PLUGIN_FREEIMAGE
-6. Generate
-7. Ir a ProyectoBase/lib/ogre-1.12.5/build, abrir OGRE.sln y compliar el proyecto en DEBUG y RELEASE
-8. Copiar los dll indicados en dll_Necesitados.txt del directorio ProyectoBase/lib/ogre-1.12.5/build/bin/debug y
-   ProyectoBase/lib/ogre-1.12.5/build/bin/release al directorio ProyectoBase/Exes. (zlib.dll solo copiarlo 1 vez)
-9. Compilar nuestro proyecto si algo no funciona consultar a Pablo, gracias por vuestra colaboración.
+8. En las casillas rojas desmarcar OGRE_BUILD_COMPONENT_OVERLAY y comprobar que sale marcado OGRE_BUILD_PLUGIN_FREEIMAGE
+9. Generate
+10. Ir a ProyectoBase/lib/ogre-1.12.5/build, abrir OGRE.sln y compliar el proyecto en DEBUG y RELEASE
+11. Copiar los dll indicados en dll_Necesitados.txt del directorio ProyectoBase/lib/ogre-1.12.5/build/bin/debug y
+   ProyectoBase/lib/ogre-1.12.5/build/bin/release al directorio ProyectoBase/bin. (zlib.dll solo copiarlo 1 vez)
+12. Compilar nuestro proyecto si algo no funciona consultar a Pablo, gracias por vuestra colaboración.

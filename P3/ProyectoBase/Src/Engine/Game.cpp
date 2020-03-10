@@ -10,10 +10,10 @@ Game::Game() {}
 
 Game::~Game()
 {
-	FactoriesFactory::getInstance()->erase();
-	OgreSDLContext::getInstance()->erase();
 	delete scene;
 	scene = nullptr;
+	FactoriesFactory::getInstance()->clear();
+	OgreSDLContext::getInstance()->erase();
 }
 
 void Game::initContext()
@@ -21,7 +21,7 @@ void Game::initContext()
 	OgreSDLContext::getInstance()->initApp("Test");
 }
 
-void Game::init(std::string firstScene)
+void Game::init(std::string _firstScene)
 {
 	initContext();
   
@@ -29,7 +29,7 @@ void Game::init(std::string firstScene)
 	loader.readScenes(scenesQueue);
   
 	scene = new Scene();
-	setScene(firstScene);
+	setScene(_firstScene);
 }
 
 void Game::update()
@@ -41,7 +41,8 @@ void Game::update()
 	}
 }
 
-void Game::setScene(std::string sceneName)
+void Game::setScene(std::string _sceneName)
 {
-	scene->load(scenesQueue.find(sceneName)->second);
+	scene->clearComponentsManager();
+	scene->load(scenesQueue.find(_sceneName)->second);
 }

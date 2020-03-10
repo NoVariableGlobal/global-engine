@@ -5,6 +5,7 @@
 #include "Ogre.h"
 #include "OgreVector3.h"
 #include "ComponentsManager.h"
+#include "TransformComponent.h"
 
 #include <json.h>
 #include <fstream>
@@ -19,57 +20,57 @@ void Loader::readScenes(std::map<std::string, std::string>& _scenesQueue)
 	std::fstream file;
 	file.open("files/scenes.json");
 
-	if (file.is_open())
-	{
-		Json::Value data;
-		file >> data;
-		data = data["scenes"];
+	if (!file.is_open()) { /*EXCEPCION*/ }
 
-		int numScenes = data.size();
-		for (int i = 0; i < numScenes; i++)
-			_scenesQueue.emplace(data[i]["name"].asString(), data[i]["file"].asString());
-	}
-	else
+	Json::Value data;
+	file >> data;
+
+	if (!data["scenes"].isArray()) { /*EXCEPCION*/ }
+	data = data["scenes"];
+
+	int numScenes = data.size();
+	for (int i = 0; i < numScenes; i++)
 	{
-		// LANZAR EXCEPCION
+		if (!data[i]["name"].isString() || !data[i]["file"].isString()) { /*EXCEPCION*/ }
+		_scenesQueue.emplace(data[i]["name"].asString(), data[i]["file"].asString());
 	}
 
 }
 
-void Loader::readEntities(std::string _fileName, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager)
+void Loader::readObjects(std::string _fileName, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager)
 {
 	std::fstream file;
 	file.open("files/" + _fileName);
 
-	if (file.is_open())
-	{
-		Json::Value data;
-		file >> data;
-		data = data["entities"];
+	if (!file.is_open()) { /*EXCEPCION*/ }
 
-		int numEntities = data.size();
-		for (int i = 0; i < numEntities; i++)
-			createEntity(data[i], i, _entities, componentManager);
-	}
-	else
-	{
-		// LANZAR EXCEPCION
-	}
+	Json::Value data;
+	file >> data;
+
+	if (!data["entities"].isArray()) { /*EXCEPCION*/ }
+	Json::Value entities = data["entities"];
+
+	int numEntities = entities.size();
+	for (int i = 0; i < numEntities; i++)
+		createEntity(entities[i], i, _entities, componentManager);
 }
 
 void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager)
 {
 	Entity* entity = new Entity();
 
-	// ID of the Entity
+	if (!_data["id"].isString()) { /*EXCEPCION*/ }
 	entity->setId(_data["id"].asString());
 
-	// List of COMPONENTS to add to the Entity
+	if (!_data["components"].isArray()) { /*EXCEPCION*/ }
 	Json::Value components = _data["components"];
 
 	int numComponents = components.size();
 	for (int i = 0; i < numComponents; i++)
+	{
+		if (!components[i]["type"].isString() || !components[i]["attributes"].isArray()) { /*EXCEPCION*/ }
 		entity->addComponent(components[i]["type"].asString(), FactoriesFactory::getInstance()->find(components[i]["type"].asString())->create(entity, components[i]["attributes"], componentManager));
+	}
 
 	_entities.emplace(entity->getId(), entity);
 }

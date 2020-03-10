@@ -60,11 +60,23 @@
     <ClCompile Include="..\..\Src\Engine\ComponentsManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\CameraObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Engine\OgreSDLContext.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\CameraRC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\SpotLightRC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\PhysicsContext.cpp" />
+          <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\DebugDrawer.cpp" />
+          <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Engine\RTSSDefaultTechniqueListener.cpp">
       <Filter>Source Files</Filter>
@@ -113,13 +125,25 @@
     <ClInclude Include="..\..\Src\Engine\ComponentsManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\CameraObject.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\OgreSDLContext.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\checkML.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\CameraRC.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\SpotLightRC.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\PhysicsContext.h" />
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\DebugDrawer.h" />
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\RTSSDefaultTechniqueListener.h">

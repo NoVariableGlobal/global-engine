@@ -1,10 +1,11 @@
 #include "TransformComponent.h"
 
 #include <json.h>
-#include "Ogre.h"
+#include "OgreRoot.h"
 #include "OgreVector3.h"
 #include "Factory.h"
 #include "FactoriesFactory.h"
+#include "ComponentsManager.h"
 
 TransformComponent::TransformComponent() 
 {
@@ -34,14 +35,22 @@ void TransformComponent::setScale(Ogre::Vector3 s) { *_scale = s; }
 class TransformComponentFactory : public ComponentFactory {
 public:
 	TransformComponentFactory() {};
-	virtual Component* create(Entity* father, Json::Value& _data, ComponentsManager* componentManager)
+	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
 	{
 		TransformComponent* transformComponent = new TransformComponent();
-		transformComponent->setFather(father);
+
+		transformComponent->setFather(_father);
+
+		if (!_data["position"].isArray()) { /*EXCEPCION*/ }
 		transformComponent->setPosition(Ogre::Vector3(_data["position"][0].asInt(), _data["position"][1].asInt(), _data["position"][2].asInt()));
+
+		if (!_data["orientation"].isArray()) { /*EXCEPCION*/ }
 		transformComponent->setOrientation(Ogre::Vector3(_data["orientation"][0].asInt(), _data["orientation"][1].asInt(), _data["orientation"][2].asInt()));
+
+		if (!_data["scale"].isArray()) { /*EXCEPCION*/ }
 		transformComponent->setScale(Ogre::Vector3(_data["scale"][0].asInt(), _data["scale"][1].asInt(), _data["scale"][2].asInt()));
 
+		_componentManager->addTC(transformComponent);
 		return transformComponent;
 	};
 };
