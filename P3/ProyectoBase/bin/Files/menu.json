@@ -1,48 +1,56 @@
-{   
-    "entities" : 
-    [
-        { 
-            "id" : "Camera",
-            "components" : 
-            [
-                { 
-                    "type" : "TransformComponent",
-                    "attributes" : {
-                        "position" : [0, 0, 1000],
-                        "orientation" : [0, 0, 0],
-                        "scale" : [1, 1, 1]
-                    }
-                },
-                { 
-                    "type" : "CameraRC",
-                    "attributes" : 
-                    {
-                        "node" : "nCamera",
-                        "offset" : [0, 0, 0],
-                        "lookAt" : "none"
-                    }
-                }
-            ]
+{
+  "entities": [
+    {
+      "id": "Camera",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 300 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+          }
         },
-        { "id" : "Simbad",
-            "components" : 
-            [
-                { "type" : "TransformComponent",
-                    "attributes" : {
-                        "position" : [0, 0, 0],
-                        "orientation" : [0, 0, 0],
-                        "scale" : [20, 20, 20]
-                    }
-                },
-                { "type" : "TridimensionalObject",
-                    "attributes" : {
-                        "mesh" : "Sinbad.mesh",
-                        "node" : "nSimbad",
-                        "material" : "TestMaterial"
-                    }
-
-                }
-            ]
+        {
+          "type": "CameraRC",
+          "attributes": {
+            "node": "nCamera",
+            "viewportColour": [ 0, 0, 0 ],
+            "offset": [ 0, 0, 0 ],
+            "lookAt": [ 0, 0, 0 ]
+          }
+        },
+        {
+          "type": "SpotLightRC",
+          "attributes": {
+            "node": "nSpotLight",
+            "colour": [ 1, 0, 1 ],
+            "direction": [ 0, -1, -1 ]
+          }
         }
-    ]
+      ]
+    },
+
+    {
+      "id": "Simbad",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 20, 20, 20 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "Sinbad.mesh",
+            "node": "nSimbad",
+            "material": "TestMaterial"
+          }
+        }
+      ]
+    }
+  ]
 }

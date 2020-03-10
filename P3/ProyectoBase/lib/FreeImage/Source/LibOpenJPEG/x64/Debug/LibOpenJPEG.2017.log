@@ -1,0 +1,21 @@
+﻿  bio.c
+  cio.c
+  dwt.c
+  event.c
+  function_list.c
+  image.c
+  invert.c
+  j2k.c
+  jp2.c
+  mct.c
+  mqc.c
+  openjpeg.c
+  opj_clock.c
+  pi.c
+  raw.c
+  t1.c
+  t2.c
+  tcd.c
+  tgt.c
+  Generating Code...
+  LibOpenJPEG.2017.vcxproj -> U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibOpenJPEG\.\x64\Debug\LibOpenJPEG.lib
