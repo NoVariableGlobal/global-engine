@@ -17,6 +17,8 @@
 #include "OgreRenderWindow.h"
 #include "OgreEntity.h"
 #include "RTSSDefaultTechniqueListener.h"
+#pragma warning(disable : 4996)
+#include "OgreFreeImageCodec.h"
 
 OgreSDLContext* OgreSDLContext::_instance = nullptr;
 
@@ -67,6 +69,7 @@ void OgreSDLContext::createRoot()
 
 	// create an instance of the root object
 	mRoot = new Ogre::Root(mPluginsCfg, "ogre.cfg");
+	Ogre::FreeImageCodec::startup();
 	mRoot->restoreConfig();
 	mRoot->initialise(false);
 }
@@ -141,10 +144,6 @@ void OgreSDLContext::createWindow(std::string appName)
 	miscParams["externalWindowHandle"] = Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
 
 	mWindow.render = mRoot->createRenderWindow(appName, w, h, false, &miscParams);
-
-
-	//---------------------------------------------------------------------------------------------------- MIRAR PARA CAMERA, RENDERCOMPONENT....
-
 
 	// create a SceneManager instance
 	mSM = mRoot->createSceneManager();

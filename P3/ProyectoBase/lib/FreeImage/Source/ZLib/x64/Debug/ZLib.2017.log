@@ -5,13 +5,13 @@
   gzclose.c
   gzlib.c
   gzread.c
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\ZLib\gzread.c(319,20): warning C4267: '=': conversión de 'size_t' a 'unsigned int'; posible pérdida de datos
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\ZLib\gzread.c(400,35): warning C4267: '=': conversión de 'size_t' a 'unsigned int'; posible pérdida de datos
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\ZLib\gzread.c(472,33): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\ZLib\gzread.c(319,20): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\ZLib\gzread.c(400,35): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\ZLib\gzread.c(472,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   gzwrite.c
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\ZLib\gzwrite.c(212,27): warning C4267: '=': conversión de 'size_t' a 'unsigned int'; posible pérdida de datos
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\ZLib\gzwrite.c(232,24): warning C4267: '=': conversión de 'size_t' a 'unsigned int'; posible pérdida de datos
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\ZLib\gzwrite.c(371,36): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\ZLib\gzwrite.c(212,27): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\ZLib\gzwrite.c(232,24): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\ZLib\gzwrite.c(371,36): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   infback.c
   inffast.c
   inflate.c
@@ -19,5 +19,5 @@ E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImag
   trees.c
   uncompr.c
   zutil.c
-  Generando código...
-  ZLib.2017.vcxproj -> E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\ZLib\.\x64\Debug\ZLib.lib
+  Generating Code...
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\ZLib\uncompr.c : fatal error C1090: PDB API call failed, error code '3': U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\ZLib\x64\Debug\ZLib.pdb

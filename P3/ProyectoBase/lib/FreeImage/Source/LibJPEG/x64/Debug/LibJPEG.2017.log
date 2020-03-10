@@ -18,10 +18,10 @@
   jdapimin.c
   jdapistd.c
   jdarith.c
-  Generando código...
-  Compilando...
+  Generating Code...
+  Compiling...
   jdatadst.c
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibJPEG\jdatadst.c(185,60): warning C4267: '=': conversión de 'size_t' a 'unsigned long'; posible pérdida de datos
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibJPEG\jdatadst.c(185,60): warning C4267: '=': conversion from 'size_t' to 'unsigned long', possible loss of data
   jdatasrc.c
   jdcoefct.c
   jdcolor.c
@@ -41,18 +41,18 @@ E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImag
   jfdctint.c
   jidctflt.c
   jidctfst.c
-  Generando código...
-  Compilando...
+  Generating Code...
+  Compiling...
   jidctint.c
   jmemmgr.c
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibJPEG\jmemmgr.c(307,53): warning C4267: '+=': conversión de 'size_t' a 'long'; posible pérdida de datos
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibJPEG\jmemmgr.c(367,70): warning C4267: '+=': conversión de 'size_t' a 'long'; posible pérdida de datos
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibJPEG\jmemmgr.c(977,46): warning C4267: '-=': conversión de 'size_t' a 'long'; posible pérdida de datos
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibJPEG\jmemmgr.c(991,46): warning C4267: '-=': conversión de 'size_t' a 'long'; posible pérdida de datos
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibJPEG\jmemmgr.c(307,53): warning C4267: '+=': conversion from 'size_t' to 'long', possible loss of data
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibJPEG\jmemmgr.c(367,70): warning C4267: '+=': conversion from 'size_t' to 'long', possible loss of data
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibJPEG\jmemmgr.c(977,46): warning C4267: '-=': conversion from 'size_t' to 'long', possible loss of data
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibJPEG\jmemmgr.c(991,46): warning C4267: '-=': conversion from 'size_t' to 'long', possible loss of data
   jmemnobs.c
   jquant1.c
   jquant2.c
   jutils.c
   transupp.c
-  Generando código...
-  LibJPEG.2017.vcxproj -> E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibJPEG\.\x64\Debug\LibJPEG.lib
+  Generating Code...
+  LibJPEG.2017.vcxproj -> U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibJPEG\.\x64\Debug\LibJPEG.lib

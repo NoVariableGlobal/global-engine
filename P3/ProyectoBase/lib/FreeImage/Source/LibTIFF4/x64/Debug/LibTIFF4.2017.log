@@ -18,30 +18,30 @@
   tif_luv.c
   tif_lzma.c
   tif_lzw.c
-  Generando código...
-  Compilando...
+  Generating Code...
+  Compiling...
   tif_next.c
   tif_ojpeg.c
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(617,14): warning C4477: 'fprintf' : la cadena de formato '%lu' requiere un argumento de tipo 'unsigned long', pero el argumento variádico 1 tiene el tipo 'uint64'
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(617,14): message : considere el uso de ' %llu' en la cadena de formato
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(617,14): message : considere el uso de ' %Iu' en la cadena de formato
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(617,14): message : considere el uso de ' %I64u' en la cadena de formato
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(619,14): warning C4477: 'fprintf' : la cadena de formato '%lu' requiere un argumento de tipo 'unsigned long', pero el argumento variádico 1 tiene el tipo 'uint64'
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(619,14): message : considere el uso de ' %llu' en la cadena de formato
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(619,14): message : considere el uso de ' %Iu' en la cadena de formato
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(619,14): message : considere el uso de ' %I64u' en la cadena de formato
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(624,15): warning C4477: 'fprintf' : la cadena de formato '%lu' requiere un argumento de tipo 'unsigned long', pero el argumento variádico 1 tiene el tipo 'uint64'
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(624,15): message : considere el uso de ' %llu' en la cadena de formato
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(624,15): message : considere el uso de ' %Iu' en la cadena de formato
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(624,15): message : considere el uso de ' %I64u' en la cadena de formato
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(631,15): warning C4477: 'fprintf' : la cadena de formato '%lu' requiere un argumento de tipo 'unsigned long', pero el argumento variádico 1 tiene el tipo 'uint64'
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(631,15): message : considere el uso de ' %llu' en la cadena de formato
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(631,15): message : considere el uso de ' %Iu' en la cadena de formato
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(631,15): message : considere el uso de ' %I64u' en la cadena de formato
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(638,15): warning C4477: 'fprintf' : la cadena de formato '%lu' requiere un argumento de tipo 'unsigned long', pero el argumento variádico 1 tiene el tipo 'uint64'
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(638,15): message : considere el uso de ' %llu' en la cadena de formato
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(638,15): message : considere el uso de ' %Iu' en la cadena de formato
-E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(638,15): message : considere el uso de ' %I64u' en la cadena de formato
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(617,14): warning C4477: 'fprintf' : format string '%lu' requires an argument of type 'unsigned long', but variadic argument 1 has type 'uint64'
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(617,14): message : consider using '%llu' in the format string
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(617,14): message : consider using '%Iu' in the format string
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(617,14): message : consider using '%I64u' in the format string
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(619,14): warning C4477: 'fprintf' : format string '%lu' requires an argument of type 'unsigned long', but variadic argument 1 has type 'uint64'
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(619,14): message : consider using '%llu' in the format string
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(619,14): message : consider using '%Iu' in the format string
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(619,14): message : consider using '%I64u' in the format string
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(624,15): warning C4477: 'fprintf' : format string '%lu' requires an argument of type 'unsigned long', but variadic argument 1 has type 'uint64'
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(624,15): message : consider using '%llu' in the format string
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(624,15): message : consider using '%Iu' in the format string
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(624,15): message : consider using '%I64u' in the format string
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(631,15): warning C4477: 'fprintf' : format string '%lu' requires an argument of type 'unsigned long', but variadic argument 1 has type 'uint64'
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(631,15): message : consider using '%llu' in the format string
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(631,15): message : consider using '%Iu' in the format string
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(631,15): message : consider using '%I64u' in the format string
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(638,15): warning C4477: 'fprintf' : format string '%lu' requires an argument of type 'unsigned long', but variadic argument 1 has type 'uint64'
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(638,15): message : consider using '%llu' in the format string
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(638,15): message : consider using '%Iu' in the format string
+U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\tif_ojpeg.c(638,15): message : consider using '%I64u' in the format string
   tif_open.c
   tif_packbits.c
   tif_pixarlog.c
@@ -56,5 +56,5 @@ E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImag
   tif_warning.c
   tif_write.c
   tif_zip.c
-  Generando código...
-  LibTIFF4.2017.vcxproj -> E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\.\x64\Debug\LibTIFF4.lib
+  Generating Code...
+  LibTIFF4.2017.vcxproj -> U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibTIFF4\.\x64\Debug\LibTIFF4.lib

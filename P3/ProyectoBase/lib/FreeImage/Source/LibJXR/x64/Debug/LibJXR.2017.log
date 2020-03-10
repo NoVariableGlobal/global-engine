@@ -1,4 +1,4 @@
-﻿cl : línea de comandos warning D9035: La opción 'Gm' está desusada y se quitará en próximas versiones
+﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
   JXRMeta.c
   JXRGluePFC.c
   JXRGlueJxr.c
@@ -19,10 +19,10 @@
   strdec_x86.c
   strdec.c
   segdec.c
-  Generando código...
-  Compilando...
+  Generating Code...
+  Compiling...
   postprocess.c
   JXRTranscode.c
   decode.c
-  Generando código...
-  LibJXR.2017.vcxproj -> E:\Documentos\Tareas\AÑO 3\Proyecto3\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibJXR\.\x64\Debug\LibJXR.lib
+  Generating Code...
+  LibJXR.2017.vcxproj -> U:\hlocal\global-engine\P3\ProyectoBase\lib\FreeImage\Source\LibJXR\.\x64\Debug\LibJXR.lib
