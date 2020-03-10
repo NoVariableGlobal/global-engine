@@ -48,7 +48,7 @@ void OgreSDLContext::closeApp()
 	if (mMaterialListener != nullptr)
 		delete mMaterialListener;
 
-	Ogre::FreeImageCodec::shutdown();
+	//Ogre::FreeImageCodec::shutdown();
 }
 
 void OgreSDLContext::shutdown()
@@ -111,7 +111,7 @@ void OgreSDLContext::createRoot()
 
 	// create an instance of the root object
 	mRoot = new Ogre::Root(mPluginsCfg, "ogre.cfg");
-	Ogre::FreeImageCodec::startup();
+	//Ogre::FreeImageCodec::startup();
 	mRoot->restoreConfig();
 	mRoot->initialise(false);
 }
