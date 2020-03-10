@@ -43,7 +43,7 @@ class OgreSDLContext
 
 		Ogre::String mRTShaderLibPath;
 		Ogre::RTShader::ShaderGenerator* mShaderGenerator = nullptr; // The Shader generator instance.
-		RTSSDefaultTechniqueListener* mMaterialListener; // Shader generator material manager listener.
+		RTSSDefaultTechniqueListener* mMaterialListener = nullptr; // Shader generator material manager listener.
 
 		bool grab = false, showCursor = true, ambientLight = false;
 
@@ -83,7 +83,5 @@ class OgreSDLContext
 		// return a pointer to the RenderWindow
 		Ogre::RenderWindow* getRenderWindow();
 
-
-		//------------------------- ESTO NO ESTARA AQUI
 		bool renderLoop();
 };

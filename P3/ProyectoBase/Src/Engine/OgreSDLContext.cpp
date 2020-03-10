@@ -12,7 +12,7 @@
 #include <SDL_syswm.h>
 
 #include <iostream>
-
+#include "checkML.h"
 #include "OgreViewport.h"
 #include "OgreRenderWindow.h"
 #include "OgreEntity.h"
@@ -31,6 +31,55 @@ void OgreSDLContext::erase()
 {
 	closeApp();
 	delete _instance;
+}
+
+void OgreSDLContext::closeApp()
+{
+	if (mRoot != nullptr)
+		mRoot->saveConfig();
+
+	shutdown();
+
+	mRoot->destroySceneManager(mSM);
+
+	delete mRoot;
+	mRoot = nullptr;
+
+	if (mMaterialListener != nullptr)
+		delete mMaterialListener;
+
+	Ogre::FreeImageCodec::shutdown();
+}
+
+void OgreSDLContext::shutdown()
+{
+	destroyRTShaderSystem();
+
+	if (mWindow.render != nullptr)
+	{
+		mRoot->destroyRenderTarget(mWindow.render);
+		mWindow.render = nullptr;
+	}
+
+	if (mWindow.native != nullptr)
+	{
+		SDL_DestroyWindow(mWindow.native);
+		SDL_QuitSubSystem(SDL_INIT_VIDEO);
+		mWindow.native = nullptr;
+	}
+}
+
+void OgreSDLContext::destroyRTShaderSystem()
+{
+	// restore default scheme.
+	Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
+
+	// destroy RTShader system.
+	if (mShaderGenerator != nullptr)
+	{
+		Ogre::RTShader::ShaderGenerator::getSingleton().destroy();
+		mShaderGenerator = nullptr;
+	}
 }
 
 OgreSDLContext* OgreSDLContext::getInstance()
@@ -170,53 +219,6 @@ void OgreSDLContext::initialiseRTShaderSystem()
 	else
 	{
 		// LANZAR EXCEPCION
-	}
-}
-
-void OgreSDLContext::closeApp()
-{
-	if (mRoot != nullptr)
-		mRoot->saveConfig();
-
-	shutdown();
-
-	mRoot->destroySceneManager(mSM);
-
-	delete mRoot;
-	mRoot = nullptr;
-
-	if (mMaterialListener != nullptr)
-		delete mMaterialListener;
-}
-
-void OgreSDLContext::shutdown()
-{
-	destroyRTShaderSystem();
-
-	if (mWindow.render != nullptr)
-	{
-		mRoot->destroyRenderTarget(mWindow.render);
-		mWindow.render = nullptr;
-	}
-
-	if (mWindow.native != nullptr)
-	{
-		SDL_DestroyWindow(mWindow.native);
-		SDL_QuitSubSystem(SDL_INIT_VIDEO);
-		mWindow.native = nullptr;
-	}
-}
-
-void OgreSDLContext::destroyRTShaderSystem()
-{
-	// restore default scheme.
-	Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
-
-	// destroy RTShader system.
-	if (mShaderGenerator != nullptr)
-	{
-		Ogre::RTShader::ShaderGenerator::getSingleton().destroy();
-		mShaderGenerator = nullptr;
 	}
 }
 
