@@ -47,13 +47,6 @@ void OgreSDLContext::initApp(std::string appName)
 	createWindow(appName);
 	setWindowGrab(grab, showCursor);
 	initialiseRTShaderSystem();
-
-	// SIMBAD
-	Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
-	ent->setMaterialName("TestMaterial");  //--------------------------------------------------------------- NO FUNCIONA. MIRAR POR QUE
-	Ogre::SceneNode* mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
-	mSinbadNode->attachObject(ent);
-	mSinbadNode->setScale(20, 20, 20);
 }
 
 void OgreSDLContext::createRoot()
@@ -166,26 +159,11 @@ void OgreSDLContext::initialiseRTShaderSystem()
 		// Add the shader libs resource location.
 		Ogre::ResourceGroupManager::getSingleton().addResourceLocation("media", "FileSystem");
 
-		// Set shader cache path.
-		//mShaderGenerator->setShaderCachePath(shaderCachePath);
-
 		// Set the scene manager.
 		mShaderGenerator->addSceneManager(mSM);
 
 		mMaterialListener = new RTSSDefaultTechniqueListener(mShaderGenerator);
 		Ogre::MaterialManager::getSingleton().addListener(mMaterialListener);
-
-		// Create shader based technique from the default technique of the given material.
-		// mShaderGenerator->createShaderBasedTechnique("Examples/BeachStones", Ogre::MaterialManager::DEFAULT_SCHEME_NAME, Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME);
-
-
-		// Add a specialized sub-render (per-pixel lighting) state to the default scheme render state
-		//Ogre::RTShader::RenderState* pMainRenderState;
-		//pMainRenderState = mShaderGenerator->createOrRetrieveRenderState(Ogre::RTShader::ShaderGenerator::DEFAULT_SCHEME_NAME).first;
-		//pMainRenderState->reset();
-
-		//mShaderGenerator->addSubRenderStateFactory(new Ogre::RTShader::PerPixelLightingFactory());
-		//pMainRenderState->addTemplateSubRenderState(mShaderGenerator->createSubRenderState(Ogre::RTShader::PerPixelLightingFactory::Type));
 	}
 	else
 	{
@@ -204,6 +182,9 @@ void OgreSDLContext::closeApp()
 
 	delete mRoot;
 	mRoot = nullptr;
+
+	if (mMaterialListener != nullptr)
+		delete mMaterialListener;
 }
 
 void OgreSDLContext::shutdown()
@@ -226,15 +207,15 @@ void OgreSDLContext::shutdown()
 
 void OgreSDLContext::destroyRTShaderSystem()
 {
-	//// restore default scheme.
-	//Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
+	// restore default scheme.
+	Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
 
-	//// destroy RTShader system.
-	//if (mShaderGenerator != nullptr)
-	//{
-	//	Ogre::RTShader::ShaderGenerator::getSingleton().destroy();
-	//	mShaderGenerator = nullptr;
-	//}
+	// destroy RTShader system.
+	if (mShaderGenerator != nullptr)
+	{
+		Ogre::RTShader::ShaderGenerator::getSingleton().destroy();
+		mShaderGenerator = nullptr;
+	}
 }
 
 void OgreSDLContext::pollEvents()   // from frameStarted

@@ -10,7 +10,7 @@ material TestMaterial
 
             texture_unit 
             {
-                texture ../textures/grass_1024.jpg
+                texture grass_1024.jpg
                 colour_op add
             }
         }
