@@ -30,8 +30,6 @@ void Game::init(std::string _firstScene)
   
 	scene = new Scene();
 	setScene(_firstScene);
-
-	update();
 }
 
 void Game::update()

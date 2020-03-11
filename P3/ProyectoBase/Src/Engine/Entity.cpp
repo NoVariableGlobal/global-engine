@@ -3,7 +3,10 @@
 
 Entity::Entity() {}
 
-Entity::~Entity() {}
+Entity::~Entity() 
+{
+	//delete getComponent("TransformComponent");
+}
 
 void Entity::addComponent(std::string name, Component* c) 
 {

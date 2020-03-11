@@ -3,6 +3,8 @@
 #include <string>
 
 class SDL_Window;
+class RTSSDefaultTechniqueListener;
+
 namespace Ogre
 {
 	class RenderWindow;
@@ -13,6 +15,11 @@ namespace Ogre
 
 	typedef std::string _StringBase;
 	typedef _StringBase String;
+
+	namespace RTShader
+	{
+		class ShaderGenerator;
+	}
 }
 
 struct NativeWindowPair
@@ -29,14 +36,14 @@ class OgreSDLContext
 		Ogre::Root* mRoot = nullptr;
 		Ogre::String mResourcesCfg;
 		Ogre::String mPluginsCfg;
-		Ogre::Viewport* vp = nullptr;
 
 		Ogre::SceneManager* mSM = nullptr;
 
 		NativeWindowPair mWindow;
 
-		Ogre::SceneNode* mCam = nullptr;
-		Ogre::SceneNode* mLight = nullptr;
+		Ogre::String mRTShaderLibPath;
+		Ogre::RTShader::ShaderGenerator* mShaderGenerator = nullptr; // The Shader generator instance.
+		RTSSDefaultTechniqueListener* mMaterialListener = nullptr; // Shader generator material manager listener.
 
 		bool grab = false, showCursor = true, ambientLight = false;
 
@@ -58,21 +65,23 @@ class OgreSDLContext
 		void createWindow(std::string appName);
 		// keep (or not) the mouse inside the window
 		void setWindowGrab(bool _grab, bool _showCursor);
+		// initialize the RT Shader system.
+		void initialiseRTShaderSystem();
 
 		// close the application
 		void closeApp();
 		// cleans up and shuts down the context.
 		void shutdown();
+		// destroy the RT Shader system.
+		void destroyRTShaderSystem();
 
 		// process all window events since last call
 		void pollEvents();
 
-		// Return a pointer to the SceneManager
+		// return a pointer to the SceneManager
 		Ogre::SceneManager* getSceneManager();
-
+		// return a pointer to the RenderWindow
 		Ogre::RenderWindow* getRenderWindow();
 
-
-		//------------------------- ESTO NO ESTARA AQUI
 		bool renderLoop();
 };

@@ -7,6 +7,7 @@
 class Component;
 class Entity;
 class ComponentsManager;
+class CameraObject;
 
 class Scene 
 {
