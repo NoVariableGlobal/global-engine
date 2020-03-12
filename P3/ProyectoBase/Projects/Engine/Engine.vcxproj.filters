@@ -23,6 +23,7 @@
     <ClCompile Include="..\..\src\Engine\TestComponent.cpp" />
     <ClCompile Include="..\..\src\Engine\TransformComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\EventContext.cpp" />
     <ClCompile Include="..\..\Src\Engine\RigidbodyPC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerEnemies.cpp" />
     <ClCompile Include="..\..\Src\Engine\Spawner.cpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="..\..\src\Engine\TestComponent.h" />
     <ClInclude Include="..\..\src\Engine\TransformComponent.h" />
     <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h" />
+    <ClInclude Include="..\..\Src\Engine\EventComponent.h" />
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerEnemies.h" />
     <ClInclude Include="..\..\Src\Engine\Spawner.h" />
