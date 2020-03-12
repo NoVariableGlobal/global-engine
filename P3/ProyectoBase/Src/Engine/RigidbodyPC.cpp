@@ -6,15 +6,17 @@
 RigidbodyPC::RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape, float _mass, PhysicsContext* _physics, bool _trigger)
 {
 	body = _physics->createRB(_pos, _shape, _mass);
-	trigger = _trigger;
+	setTrigger(_trigger);
 }
 
 RigidbodyPC::~RigidbodyPC()
 {
+	body = nullptr;
 }
 
 void RigidbodyPC::update()
 {
+	//body->checkCollideWith()
 }
 
 void RigidbodyPC::addForce(const Ogre::Vector3& _force, Ogre::Vector3 _relative_pos)
@@ -33,4 +35,32 @@ void RigidbodyPC::setGravity(const Ogre::Vector3& _g)
 bool RigidbodyPC::isTrigger() const
 {
 	return trigger;
+}
+
+bool RigidbodyPC::isKinematic() const
+{
+	return kinematic;
+}
+
+bool RigidbodyPC::isTriggerStatic() const
+{
+	return stat;
+}
+
+void RigidbodyPC::setTrigger(bool _trigger)
+{
+	body->setCollisionFlags(body->getCollisionFlags() & (body->CF_NO_CONTACT_RESPONSE * trigger));
+	trigger = _trigger;
+}
+
+void RigidbodyPC::setKinematic(bool _kinematic)
+{
+	body->setCollisionFlags(body->getCollisionFlags() & (body->CF_KINEMATIC_OBJECT * _kinematic));
+	kinematic = _kinematic;
+}
+
+void RigidbodyPC::setStatic(bool _static)
+{
+	body->setCollisionFlags(body->getCollisionFlags() & (body->CF_STATIC_OBJECT * _static));
+	stat = _static;
 }
