@@ -11,6 +11,8 @@
 
 #include <json.h>
 
+#include <stdexcept>
+
 //Constructor, se crea la camara se le asocia el viewport y se asocian todos lo sceneNode
 CameraRC::CameraRC() : RenderComponent() {}
 
@@ -71,34 +73,56 @@ public:
 
 	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
 	{
-		Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
-		CameraRC* camera = new CameraRC();
+		try {
+			Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
+			CameraRC* camera = new CameraRC();
 
-		camera->setFather(_father);
+			camera->setFather(_father);
 
-		camera->setCamera(_father->getId());
+			camera->setCamera(_father->getId());
 
-		if (!_data["node"].isString()) { /*EXCEPCION*/ }
-		camera->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString()));
-		camera->getSceneNode()->attachObject(camera->getCamera());
+			if (!_data["node"].isString())
+			{
+				throw std::invalid_argument("Invalid argument. data is not an array");
+			}
 
-		if (!_data["viewportColour"].isArray()) { /*EXCEPCION*/ }
-		camera->setViewport(Ogre::Vector3(_data["viewportColour"][0].asInt(), _data["viewportColour"][1].asInt(), _data["viewportColour"][2].asInt()));
+			camera->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString()));
+			camera->getSceneNode()->attachObject(camera->getCamera());
 
-		if (!_data["offset"].isArray()) { /*EXCEPCION*/ }
-		camera->setCameraOffset(Ogre::Vector3(_data["offset"][0].asInt(), _data["offset"][1].asInt(), _data["offset"][2].asInt()));
+			if (!_data["viewportColour"].isArray())
+			{
+				throw std::invalid_argument("Invalid argument. data is not an array");
+			}
 
-		TransformComponent* transform = dynamic_cast<TransformComponent*>(_father->getComponent("TransformComponent"));
-		camera->getSceneNode()->setPosition(transform->getPosition());
+			camera->setViewport(Ogre::Vector3(_data["viewportColour"][0].asInt(), _data["viewportColour"][1].asInt(), _data["viewportColour"][2].asInt()));
 
-		if (!_data["lookAt"].isArray() && !_data["lookAt"].isString()) { /*EXCEPCION*/ }
-		else if(_data["lookAt"].isArray())
-			camera->lookAt(Ogre::Vector3(_data["lookAt"][0].asInt(), _data["lookAt"][1].asInt(), _data["lookAt"][2].asInt()));
+			if (!_data["offset"].isArray()) 
+			{
+				throw std::invalid_argument("Invalid argument. data is not an array");
+			}
+
+			camera->setCameraOffset(Ogre::Vector3(_data["offset"][0].asInt(), _data["offset"][1].asInt(), _data["offset"][2].asInt()));
+
+			TransformComponent* transform = dynamic_cast<TransformComponent*>(_father->getComponent("TransformComponent"));
+			camera->getSceneNode()->setPosition(transform->getPosition());
+
+			if (!_data["lookAt"].isArray() && !_data["lookAt"].isString())
+			{
+				throw std::invalid_argument("Invalid type value");
+			}
+
+			else if (_data["lookAt"].isArray())
+				camera->lookAt(Ogre::Vector3(_data["lookAt"][0].asInt(), _data["lookAt"][1].asInt(), _data["lookAt"][2].asInt()));
 
 
-		_componentManager->addRC(camera);
+			_componentManager->addRC(camera);
 
-		return camera;
+			return camera;
+		}
+		catch (std::invalid_argument const& invArg) {
+			printf(invArg.what());
+			// TODO -> debe regresar ALGUN valor no?
+		}
 	};
 };
 

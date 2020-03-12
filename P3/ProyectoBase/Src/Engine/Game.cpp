@@ -5,6 +5,8 @@
 #include "FactoriesFactory.h"
 #include "OgreSDLContext.h"
 
+#include <fstream>
+
 Game::Game() {}
 
 
@@ -24,10 +26,10 @@ void Game::initContext()
 void Game::init(std::string _firstScene)
 {
 	initContext();
-  
+
 	Loader loader;
 	loader.readScenes(scenesQueue);
-  
+
 	scene = new Scene();
 	setScene(_firstScene);
 }
@@ -43,6 +45,17 @@ void Game::update()
 
 void Game::setScene(std::string _sceneName)
 {
-	scene->clearComponentsManager();
-	scene->load(scenesQueue.find(_sceneName)->second);
+	try {
+		scene->clearComponentsManager();
+		if (true) { //////////////////////////////////////////////////////////////////////////////AQUI FALTA LA CONDICION PARA QUE LEA
+			scene->load(scenesQueue.find(_sceneName)->second);
+		}
+		else {
+			throw std::invalid_argument("Requested scene does not exist");
+		}
+	}
+	catch (std::invalid_argument const& invArg) {
+		printf(invArg.what());
+		std::exit;
+	}
 }

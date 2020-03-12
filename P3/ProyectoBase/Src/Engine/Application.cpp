@@ -10,10 +10,15 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine,
 #endif
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	try {
+		Game game;
+		game.init("Menu");
+		game.update();
+	}
 
-    Game game;
-    game.init("Menu");
-    game.update();
+	catch (std::exception const& e) {
+
+	}
 
     return 0;
 }
