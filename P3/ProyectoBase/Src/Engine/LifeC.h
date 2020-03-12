@@ -8,15 +8,15 @@ namespace Ogre {
 	typedef Vector<3, Real> Vector3;
 }
 
-class LifeComponent : public Component 
+class LifeC : public Component 
 {
 	private:
 		int totalLife;
 		float currentLife;
 
 	public:
-		LifeComponent();
-		virtual ~LifeComponent();
+		LifeC();
+		virtual ~LifeC();
 
 		// get the current life
 		float getLife();

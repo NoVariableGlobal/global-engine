@@ -23,7 +23,7 @@
     <ClCompile Include="..\..\src\Engine\TestComponent.cpp" />
     <ClCompile Include="..\..\src\Engine\TransformComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp" />
-    <ClCompile Include="..\..\Src\Engine\LifeComponent.cpp" />
+    <ClCompile Include="..\..\Src\Engine\LifeC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\SpotLightRC.h" />
@@ -48,6 +48,6 @@
     <ClInclude Include="..\..\src\Engine\TestComponent.h" />
     <ClInclude Include="..\..\src\Engine\TransformComponent.h" />
     <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h" />
-    <ClInclude Include="..\..\Src\Engine\LifeComponent.h" />
+    <ClInclude Include="..\..\Src\Engine\LifeC.h" />
   </ItemGroup>
 </Project>

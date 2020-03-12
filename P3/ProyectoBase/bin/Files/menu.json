@@ -51,7 +51,7 @@
           }
         },
         {
-          "type": "LifeComponent",
+          "type": "LifeC",
           "attributes": {
             "life": 100
           }
