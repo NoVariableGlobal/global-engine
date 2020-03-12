@@ -52,7 +52,7 @@ public:
 		testComponent->setFather(father);
 		testComponent->setScene(scene);
 		testComponent->setMaterial(_data["material"].asString());
-		testComponent->setColor(Ogre::Vector3(_data["color"][0].asInt(), _data["color"][1].asInt(), _data["color"][2].asInt()));
+		testComponent->setColor(Ogre::Vector3(_data["color"][0].asFloat(), _data["color"][1].asFloat(), _data["color"][2].asFloat()));
 
 		scene->getComponentsManager()->addPC(testComponent);
 		return testComponent;

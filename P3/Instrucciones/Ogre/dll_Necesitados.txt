@@ -9,5 +9,4 @@ OgreRTShaderSystem_d.dll
 OgreRTShaderSystem.dll
 Codec_FreeImage_d.dll
 Codec_FreeImage.dll
-FreeImaged.dll -> ProyectoBase\lib\FreeImage\Dist\x64
-FreeImage.dll -> ProyectoBase\lib\FreeImage\Dist\x64
+Codec_STBI_d.dll

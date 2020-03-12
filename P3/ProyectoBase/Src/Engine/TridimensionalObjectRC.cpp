@@ -41,7 +41,8 @@ public:
 		tridimensionalObject->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString()));
 
 		if (!_data["material"].isString()) { /*EXCEPCION*/ }
-		tridimensionalObject->setMaterial(_data["material"].asString());
+		else if(_data["material"].asString() != "none")
+			tridimensionalObject->setMaterial(_data["material"].asString());
 
 		tridimensionalObject->getSceneNode()->attachObject(tridimensionalObject->getOgreEntity());
 
