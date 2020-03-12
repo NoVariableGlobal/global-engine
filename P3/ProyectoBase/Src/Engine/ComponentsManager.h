@@ -40,9 +40,9 @@ public:
 	// delete sound component from list
 	void deleteSC(SoundComponent* _soundComponent);
 
-	// add sound component to list
+	// add regular components to list
 	void addTC(Component* _transformComponent);
-	// delete sound component from list
+	// delete regular components from list
 	void deleteTC(Component* _transformComponent);
 
 	// call each physics component in the list

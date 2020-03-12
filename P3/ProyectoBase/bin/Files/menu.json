@@ -49,6 +49,12 @@
             "node": "nSimbad",
             "material": "none"
           }
+        },
+        {
+          "type": "LifeComponent",
+          "attributes": {
+            "life": 100
+          }
         }
       ]
     }
