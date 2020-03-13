@@ -1,6 +1,8 @@
 #include "RigidbodyPC.h"
-#include "PhysicsComponent.h"
-
+#include "Factory.h"
+#include "FactoriesFactory.h"
+ 
+#include "ComponentsManager.h"
 #include "PhysicsContext.h"
 #include <btBulletDynamicsCommon.h>
 #include <btBulletCollisionCommon.h>
@@ -93,3 +95,24 @@ void RigidbodyPC::setStatic(bool _static)
 	body->setCollisionFlags(body->getCollisionFlags() & (body->CF_STATIC_OBJECT * _static));
 	stat = _static;
 }
+
+// FACTORY INFRASTRUCTURE
+class RigidbodyPCFactory : public ComponentFactory {
+public:
+	RigidbodyPCFactory() {};
+
+	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
+	{
+		RigidbodyPC* rb;
+		rb->setFather(_father);
+
+		TransformComponent* transform = dynamic_cast<TransformComponent*>(_father->getComponent("TransformComponent"));
+
+		rb = new RigidbodyPC(transform->getPosition(), transform->getPosition(), 1, true);
+
+		_componentManager->addPC(rb);
+		return rb;
+	};
+};
+
+REGISTER_FACTORY("RigidbodyPC", RigidbodyPC);
