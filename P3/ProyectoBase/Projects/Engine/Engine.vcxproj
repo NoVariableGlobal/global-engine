@@ -133,7 +133,7 @@
     <TargetName>$(ProjectName)_d</TargetName>
     <IntDir>$(SolutionDir)inter\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
     <IncludePath>$(SolutionDir)lib\SDL2-2.0.10\include;$(SolutionDir)src\$(ProjectName);$(SolutionDir)lib\fmod\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)lib\bullet3-2.89\build\lib\Debug;$(SolutionDir)lib\SDL2-2.0.10\lib\$(Platform);$(SolutionDir)lib\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)lib\fmod\lib;$(SolutionDir)lib\jsoncpp-master\build\src\lib_json\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib\bullet3-2.89\build\lib\Debug;$(SolutionDir)lib\SDL2-2.0.10\lib\$(Platform);$(SolutionDir)lib\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)lib\fmod\lib;$(SolutionDir)lib\jsoncpp-master\build\src\lib_json\$(Configuration);$(SolutionDir)lib\cegui-0.8.7\build\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -147,7 +147,7 @@
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)inter\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
     <IncludePath>$(SolutionDir)lib\SDL2-2.0.10\include;$(SolutionDir)src\$(ProjectName);$(SolutionDir)lib\fmod\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)lib\bullet3-2.89\build\lib\Release;$(SolutionDir)lib\SDL2-2.0.10\lib\$(Platform);$(SolutionDir)lib\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)lib\fmod\lib;$(SolutionDir)lib\jsoncpp-master\build\src\lib_json\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib\bullet3-2.89\build\lib\Release;$(SolutionDir)lib\SDL2-2.0.10\lib\$(Platform);$(SolutionDir)lib\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)lib\fmod\lib;$(SolutionDir)lib\jsoncpp-master\build\src\lib_json\$(Configuration);$(SolutionDir)lib\cegui-0.8.7\build\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -173,7 +173,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\ogre-1.12.5\Components\RTShaderSystem\include;$(SolutionDir)lib\jsoncpp-master\include;$(SolutionDir)lib\ogre-1.12.5\OgreMain\include;$(SolutionDir)lib\ogre-1.12.5\Build\include;$(SolutionDir)lib\ogre-1.12.5\PlugIns\STBICodec\include;$(SolutionDir)lib\bullet3-2.89\src;$(SolutionDir)lib\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\ogre-1.12.5\Components\RTShaderSystem\include;$(SolutionDir)lib\jsoncpp-master\include;$(SolutionDir)lib\ogre-1.12.5\OgreMain\include;$(SolutionDir)lib\ogre-1.12.5\Build\include;$(SolutionDir)lib\ogre-1.12.5\PlugIns\STBICodec\include;$(SolutionDir)lib\bullet3-2.89\src;$(SolutionDir)lib\jsoncpp-master\include\json;$(SolutionDir)lib\cegui-0.8.7\build\cegui\include;$(SolutionDir)lib\cegui-0.8.7\cegui\include;$(SolutionDir)lib\cegui-0.8.7\dependencies\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -211,7 +211,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\jsoncpp-master\include;$(SolutionDir)lib\ogre-1.12.5\OgreMain\include;$(SolutionDir)lib\ogre-1.12.5\Build\include;$(SolutionDir)lib\ogre-1.12.5\Components\RTShaderSystem\include;$(SolutionDir)lib\bullet3-2.89\src;$(SolutionDir)lib\ogre-1.12.5\PlugIns\STBICodec\include;$(SolutionDir)lib\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\jsoncpp-master\include;$(SolutionDir)lib\ogre-1.12.5\OgreMain\include;$(SolutionDir)lib\ogre-1.12.5\Build\include;$(SolutionDir)lib\ogre-1.12.5\Components\RTShaderSystem\include;$(SolutionDir)lib\bullet3-2.89\src;$(SolutionDir)lib\ogre-1.12.5\PlugIns\STBICodec\include;$(SolutionDir)lib\jsoncpp-master\include\json;$(SolutionDir)lib\cegui-0.8.7\cegui\include;$(SolutionDir)lib\cegui-0.8.7\build\cegui\include;$(SolutionDir)lib\cegui-0.8.7\dependencies\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
