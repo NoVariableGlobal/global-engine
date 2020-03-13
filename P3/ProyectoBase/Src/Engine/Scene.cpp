@@ -35,10 +35,19 @@ void Scene::load(std::string name)
 void Scene::update() 
 {
 	componentManager->update();
-	componentManager->handleInput();
-	componentManager->render();
 	componentManager->updateSound();
+
 	PhysicsContext::instance()->updateSimulation();
+}
+
+void Scene::render()
+{
+	componentManager->render();
+}
+
+void Scene::handleInput(const SDL_Event& _event)
+{
+	componentManager->handleInput(_event);
 }
 
 Entity* Scene::getEntitybyId(std::string id)

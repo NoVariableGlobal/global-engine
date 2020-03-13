@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Component.h"
+#include "InputComponent.h"
 
 namespace Ogre {
 	typedef float Real;
@@ -8,10 +8,12 @@ namespace Ogre {
 	typedef Vector<3, Real> Vector3;
 }
 
-class PlayerShotIC : public Component 
+class PlayerShotIC : public InputComponent
 {
 	private:
 	public:
 		PlayerShotIC();
 		virtual ~PlayerShotIC();
+
+		virtual void handleInput(const SDL_Event& _event);
 };

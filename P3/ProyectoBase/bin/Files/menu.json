@@ -49,6 +49,11 @@
             "node": "nSimbad",
             "material": "none"
           }
+        },
+        {
+          "type": "PlayerShotIC",
+          "attributes": {
+          }
         }
       ]
     }

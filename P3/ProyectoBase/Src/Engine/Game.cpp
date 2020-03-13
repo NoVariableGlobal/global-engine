@@ -1,9 +1,12 @@
 #include "Game.h"
 #include "Scene.h"
 #include "Loader.h"
-#include <string>
 #include "FactoriesFactory.h"
 #include "OgreSDLContext.h"
+
+#include <string>
+
+#include <SDL_events.h>
 
 Game::Game() {}
 
@@ -32,12 +35,34 @@ void Game::init(std::string _firstScene)
 	setScene(_firstScene);
 }
 
-void Game::update()
+void Game::run()
 {
 	while (!exit)
 	{
-		scene->update();
-		exit = OgreSDLContext::getInstance()->renderLoop();
+		update();
+		render();
+		handleInput();
+	}
+
+}
+
+void Game::update()
+{
+	scene->update();
+}
+
+void Game::render()
+{
+	OgreSDLContext::getInstance()->renderLoop();
+}
+
+void Game::handleInput()
+{
+	SDL_Event event;
+	while (SDL_PollEvent(&event) && !exit)
+	{
+		scene->handleInput(event);
+		exit = OgreSDLContext::getInstance()->pollEvents(event);
 	}
 }
 

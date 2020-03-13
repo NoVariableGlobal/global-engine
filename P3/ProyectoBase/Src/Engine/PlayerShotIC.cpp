@@ -1,15 +1,26 @@
 #include "PlayerShotIC.h"
-
-#include <json.h>
-#include "OgreRoot.h"
-#include "OgreVector3.h"
 #include "Factory.h"
 #include "FactoriesFactory.h"
 #include "ComponentsManager.h"
 
+#include "OgreRoot.h"
+
+#include <json.h>
+
+#include <iostream>
+
 PlayerShotIC::PlayerShotIC() {}
 
 PlayerShotIC::~PlayerShotIC() {}
+
+void PlayerShotIC::handleInput(const SDL_Event& _event)
+{
+	if (_event.type == SDL_MOUSEBUTTONDOWN)
+	{
+		if(_event.button.button == SDL_BUTTON_LEFT)
+			std::cout << '\n' << "PIUM PIUM !!" << '\n';
+	}
+}
 
 
 // FACTORY INFRASTRUCTURE
@@ -22,7 +33,7 @@ public:
 
 		playerShot->setFather(_father);
 
-		_componentManager->addTC(playerShot);
+		_componentManager->addIC(playerShot);
 		return playerShot;
 	};
 };

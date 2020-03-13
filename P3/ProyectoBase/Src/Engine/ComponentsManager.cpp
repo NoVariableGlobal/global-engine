@@ -4,6 +4,7 @@
 #include "SoundComponent.h"
 #include "RenderComponent.h"
 
+#include <SDL_events.h>
 
 ComponentsManager::ComponentsManager()
 {
@@ -158,10 +159,10 @@ void ComponentsManager::update()
 		p->update();
 }
 
-void ComponentsManager::handleInput()
+void ComponentsManager::handleInput(const SDL_Event& _event)
 {
 	for (auto i : input)
-		i->handleInput();
+		i->handleInput(_event);
 }
 
 void ComponentsManager::render()
