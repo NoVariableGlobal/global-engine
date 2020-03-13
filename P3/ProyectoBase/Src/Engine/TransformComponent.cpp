@@ -37,21 +37,36 @@ public:
 	TransformComponentFactory() {};
 	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
 	{
-		TransformComponent* transformComponent = new TransformComponent();
+		try {
+			TransformComponent* transformComponent = new TransformComponent();
 
-		transformComponent->setFather(_father);
+			transformComponent->setFather(_father);
 
-		if (!_data["position"].isArray()) { /*EXCEPCION*/ }
-		transformComponent->setPosition(Ogre::Vector3(_data["position"][0].asInt(), _data["position"][1].asInt(), _data["position"][2].asInt()));
+			if (!_data["position"].isArray())
+			{
+				throw std::invalid_argument("Invalid argument is not array");
+			}
+			transformComponent->setPosition(Ogre::Vector3(_data["position"][0].asInt(), _data["position"][1].asInt(), _data["position"][2].asInt()));
 
-		if (!_data["orientation"].isArray()) { /*EXCEPCION*/ }
-		transformComponent->setOrientation(Ogre::Vector3(_data["orientation"][0].asInt(), _data["orientation"][1].asInt(), _data["orientation"][2].asInt()));
+			if (!_data["orientation"].isArray())
+			{
+				throw std::invalid_argument("Invalid argument is not array");
+			}
+			transformComponent->setOrientation(Ogre::Vector3(_data["orientation"][0].asInt(), _data["orientation"][1].asInt(), _data["orientation"][2].asInt()));
 
-		if (!_data["scale"].isArray()) { /*EXCEPCION*/ }
-		transformComponent->setScale(Ogre::Vector3(_data["scale"][0].asInt(), _data["scale"][1].asInt(), _data["scale"][2].asInt()));
+			if (!_data["scale"].isArray())
+			{
+				throw std::invalid_argument("Invalid argument is not array");
+			}
+			transformComponent->setScale(Ogre::Vector3(_data["scale"][0].asInt(), _data["scale"][1].asInt(), _data["scale"][2].asInt()));
 
-		_componentManager->addTC(transformComponent);
-		return transformComponent;
+			_componentManager->addTC(transformComponent);
+			return transformComponent;
+		}
+		catch (std::invalid_argument const& invArg) {
+			printf("%s \n", invArg.what());
+			return NULL;
+		}
 	};
 };
 

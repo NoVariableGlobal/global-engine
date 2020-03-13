@@ -45,26 +45,41 @@ public:
 
 	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
 	{
-		Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
-		SpotLightRC* light = new SpotLightRC();
+		try {
+			Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
+			SpotLightRC* light = new SpotLightRC();
 
-		light->setFather(_father);
+			light->setFather(_father);
 
-		light->setLight(_father->getId());
+			light->setLight(_father->getId());
 
-		if (!_data["node"].isString()) { /*EXCEPCION*/ }
-		light->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString()));
-		light->getSceneNode()->attachObject(light->getLight());
+			if (!_data["node"].isString())
+			{
+				throw std::invalid_argument("Invalid argument is not string");
+			}
+			light->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString()));
+			light->getSceneNode()->attachObject(light->getLight());
 
-		if (!_data["colour"].isArray()) { /*EXCEPCION*/ }
-		light->setColour(Ogre::Vector3(_data["colour"][0].asInt(), _data["colour"][1].asInt(), _data["colour"][2].asInt()));
+			if (!_data["colour"].isArray())
+			{
+				throw std::invalid_argument("Invalid argument is not string");
+			}
+			light->setColour(Ogre::Vector3(_data["colour"][0].asInt(), _data["colour"][1].asInt(), _data["colour"][2].asInt()));
 
-		if (!_data["direction"].isArray()) { /*EXCEPCION*/ }
-		light->setDirection(Ogre::Vector3(_data["direction"][0].asInt(), _data["direction"][1].asInt(), _data["direction"][2].asInt()));
+			if (!_data["direction"].isArray())
+			{
+				throw std::invalid_argument("Invalid argument is not string");
+			}
+			light->setDirection(Ogre::Vector3(_data["direction"][0].asInt(), _data["direction"][1].asInt(), _data["direction"][2].asInt()));
 
-		_componentManager->addRC(light);
+			_componentManager->addRC(light);
 
-		return light;
+			return light;
+		}
+		catch (std::invalid_argument const& invArg) {
+			printf("%s \n", invArg.what());
+			return NULL;
+		}
 	};
 };
 

@@ -202,23 +202,28 @@ void OgreSDLContext::setWindowGrab(bool _grab, bool _showCursor)
 
 void OgreSDLContext::initialiseRTShaderSystem()
 {
-	if (Ogre::RTShader::ShaderGenerator::initialize())
-	{
-		// Grab the shader generator pointer.
-		mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
+	try {
+		if (Ogre::RTShader::ShaderGenerator::initialize())
+		{
+			// Grab the shader generator pointer.
+			mShaderGenerator = Ogre::RTShader::ShaderGenerator::getSingletonPtr();
 
-		// Add the shader libs resource location.
-		Ogre::ResourceGroupManager::getSingleton().addResourceLocation("media", "FileSystem");
+			// Add the shader libs resource location.
+			Ogre::ResourceGroupManager::getSingleton().addResourceLocation("media", "FileSystem");
 
-		// Set the scene manager.
-		mShaderGenerator->addSceneManager(mSM);
+			// Set the scene manager.
+			mShaderGenerator->addSceneManager(mSM);
 
-		mMaterialListener = new RTSSDefaultTechniqueListener(mShaderGenerator);
-		Ogre::MaterialManager::getSingleton().addListener(mMaterialListener);
+			mMaterialListener = new RTSSDefaultTechniqueListener(mShaderGenerator);
+			Ogre::MaterialManager::getSingleton().addListener(mMaterialListener);
+		}
+		else
+		{
+			throw std::runtime_error("Ogre could not initialize correctly");
+		}
 	}
-	else
-	{
-		// LANZAR EXCEPCION
+	catch (std::runtime_error const& runErr) {
+		printf("%s \n", runErr.what());
 	}
 }
 

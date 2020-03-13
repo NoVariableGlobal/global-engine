@@ -47,7 +47,7 @@ void Game::setScene(std::string _sceneName)
 {
 	try {
 		scene->clearComponentsManager();
-		if (true) { //////////////////////////////////////////////////////////////////////////////AQUI FALTA LA CONDICION PARA QUE LEA
+		if (false) { //////////////////////////////////////////////////////////////////////////////AQUI FALTA LA CONDICION PARA QUE LEA
 			scene->load(scenesQueue.find(_sceneName)->second);
 		}
 		else {
@@ -56,6 +56,9 @@ void Game::setScene(std::string _sceneName)
 	}
 	catch (std::invalid_argument const& invArg) {
 		printf(invArg.what());
-		std::exit;
+		//std::exit;
+		//OgreSDLContext::getInstance()->closeApp();
+		OgreSDLContext::getInstance()->shutdown();
+		//exit;
 	}
 }

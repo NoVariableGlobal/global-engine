@@ -121,7 +121,7 @@ public:
 		}
 		catch (std::invalid_argument const& invArg) {
 			printf(invArg.what());
-			// TODO -> debe regresar ALGUN valor no?
+			return NULL;
 		}
 	};
 };

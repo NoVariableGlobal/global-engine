@@ -51,10 +51,10 @@ void Loader::readScenes(std::map<std::string, std::string>& _scenesQueue)
 
 	catch (std::invalid_argument const& invArg)
 	{
-		printf(invArg.what());
+		printf("%s \n", invArg.what());
 	}
 	catch (std::runtime_error const& runErr) {
-		printf(runErr.what());
+		printf("%s \n", runErr.what());
 	}
 }
 
@@ -84,12 +84,12 @@ void Loader::readObjects(std::string _fileName, std::map<std::string, Entity*>& 
 			createEntity(entities[i], i, _entities, componentManager);
 	}
 
+	catch (std::invalid_argument const& invArg) {
+		printf("%s \n", invArg.what());
+	}
 	catch (std::runtime_error const& runErr)
 	{
-		printf(runErr.what());
-	}
-	catch (std::invalid_argument const& invArg) {
-		printf(invArg.what());
+		printf("%s \n", runErr.what());
 	}
 }
 
@@ -114,9 +114,10 @@ void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string, Ent
 		int numComponents = components.size();
 		for (int i = 0; i < numComponents; i++)
 		{
-			if (!components[i]["type"].isString() || !components[i]["attributes"].isArray())
+			// PREGUNTAR A MIRIAM SOBRE ESTO
+			if (!components[i]["type"].isString() && !components[i]["attributes"].isArray())
 			{
-				throw std::invalid_argument("Incorrect value typw");
+				throw std::invalid_argument("Incorrect value type");
 			}
 
 			entity->addComponent(components[i]["type"].asString(), FactoriesFactory::getInstance()->find(components[i]["type"].asString())->create(entity, components[i]["attributes"], componentManager));
@@ -125,6 +126,6 @@ void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string, Ent
 		_entities.emplace(entity->getId(), entity);
 	}
 	catch (std::invalid_argument const& invArg) {
-		printf(invArg.what());
+		printf("%s \n", invArg.what());
 	}
 }

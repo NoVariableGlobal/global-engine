@@ -17,6 +17,8 @@ class Game
 		bool end = false;
 		bool win = false;
 
+		bool started = false;
+
 	public:
 		Game();
 		~Game();
