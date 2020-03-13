@@ -3,9 +3,9 @@
 #include "PhysicsContext.h"
 
 
-RigidbodyPC::RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape, float _mass, PhysicsContext* _physics, bool _trigger)
+RigidbodyPC::RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape, float _mass, PhysicsContext* _physics, bool _trigger):physics(_physics)
 {
-	body = _physics->createRB(_pos, _shape, _mass);
+	body = physics->createRB(_pos, _shape, _mass);
 	setTrigger(_trigger);
 }
 
@@ -16,7 +16,22 @@ RigidbodyPC::~RigidbodyPC()
 
 void RigidbodyPC::update()
 {
-	//body->checkCollideWith()
+	//Este codigo nos puede servir de ayuda, sirve para detectar las colisiones pero mi duda es las variables "btPersistentManifold" y "btCollisionObject"
+	//no se exactamente su utilidad y como enlazarlo con el rigibdody
+	int numManifolds = physics->discreteDynamicsWorld->getDispatcher()->getNumManifolds();
+	for (int i = 0; i < numManifolds; i++)
+	{
+		btPersistentManifold* contactManifold = physics->discreteDynamicsWorld->getDispatcher()->getManifoldByIndexInternal(i);
+		const btCollisionObject* obA = contactManifold->getBody0();
+		const btCollisionObject* obB = contactManifold->getBody1();
+
+		if (!obA->getCollisionShape()->isNonMoving() && !obB->getCollisionShape()->isNonMoving()) {
+			Collision = true;
+			return;
+		}
+	}
+
+	Collision = false;
 }
 
 void RigidbodyPC::addForce(const Ogre::Vector3& _force, Ogre::Vector3 _relative_pos)

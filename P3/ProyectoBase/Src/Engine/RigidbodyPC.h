@@ -15,6 +15,8 @@ private:
 	bool trigger;
 	bool kinematic;
 	bool stat;
+	bool Collision = false;
+	PhysicsContext* physics;
 public:
 	RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape, float _mass, PhysicsContext* _physics, bool _trigger);
 	~RigidbodyPC();
