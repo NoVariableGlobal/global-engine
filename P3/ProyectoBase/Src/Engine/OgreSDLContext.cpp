@@ -17,8 +17,7 @@
 #include "OgreRenderWindow.h"
 #include "OgreEntity.h"
 #include "RTSSDefaultTechniqueListener.h"
-#pragma warning(disable : 4996)
-#include "OgreFreeImageCodec.h"
+
 
 OgreSDLContext* OgreSDLContext::_instance = nullptr;
 
