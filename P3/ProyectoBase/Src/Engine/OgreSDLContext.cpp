@@ -18,8 +18,7 @@
 #include "OgreEntity.h"
 #include "RTSSDefaultTechniqueListener.h"
 #pragma warning(disable : 4996)
-#include "OgreFreeImageCodec.h"
-
+#include "OgreSTBICodec.h"
 OgreSDLContext* OgreSDLContext::_instance = nullptr;
 
 OgreSDLContext::OgreSDLContext() :
@@ -49,6 +48,7 @@ void OgreSDLContext::closeApp()
 		delete mMaterialListener;
 
 	//Ogre::FreeImageCodec::shutdown();
+	Ogre::STBIImageCodec::shutdown();
 }
 
 void OgreSDLContext::shutdown()
@@ -112,6 +112,7 @@ void OgreSDLContext::createRoot()
 	// create an instance of the root object
 	mRoot = new Ogre::Root(mPluginsCfg, "ogre.cfg");
 	//Ogre::FreeImageCodec::startup();
+	Ogre::STBIImageCodec::startup();
 	mRoot->restoreConfig();
 	mRoot->initialise(false);
 }

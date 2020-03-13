@@ -42,13 +42,13 @@ public:
 		transformComponent->setFather(_father);
 
 		if (!_data["position"].isArray()) { /*EXCEPCION*/ }
-		transformComponent->setPosition(Ogre::Vector3(_data["position"][0].asInt(), _data["position"][1].asInt(), _data["position"][2].asInt()));
+		transformComponent->setPosition(Ogre::Vector3(_data["position"][0].asFloat(), _data["position"][1].asFloat(), _data["position"][2].asFloat()));
 
 		if (!_data["orientation"].isArray()) { /*EXCEPCION*/ }
-		transformComponent->setOrientation(Ogre::Vector3(_data["orientation"][0].asInt(), _data["orientation"][1].asInt(), _data["orientation"][2].asInt()));
+		transformComponent->setOrientation(Ogre::Vector3(_data["orientation"][0].asFloat(), _data["orientation"][1].asFloat(), _data["orientation"][2].asFloat()));
 
 		if (!_data["scale"].isArray()) { /*EXCEPCION*/ }
-		transformComponent->setScale(Ogre::Vector3(_data["scale"][0].asInt(), _data["scale"][1].asInt(), _data["scale"][2].asInt()));
+		transformComponent->setScale(Ogre::Vector3(_data["scale"][0].asFloat(), _data["scale"][1].asFloat(), _data["scale"][2].asFloat()));
 
 		_componentManager->addTC(transformComponent);
 		return transformComponent;
