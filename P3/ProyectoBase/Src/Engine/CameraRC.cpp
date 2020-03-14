@@ -83,7 +83,7 @@ public:
 
 			if (!_data["node"].isString())
 			{
-				throw std::invalid_argument("Invalid argument. data is not an array");
+				throw std::invalid_argument("CameraRC error: value is not string");
 			}
 
 			camera->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString()));
@@ -91,14 +91,14 @@ public:
 
 			if (!_data["viewportColour"].isArray())
 			{
-				throw std::invalid_argument("Invalid argument. data is not an array");
+				throw std::invalid_argument("CameraRC error: not an array");
 			}
 
 			camera->setViewport(Ogre::Vector3(_data["viewportColour"][0].asInt(), _data["viewportColour"][1].asInt(), _data["viewportColour"][2].asInt()));
 
 			if (!_data["offset"].isArray()) 
 			{
-				throw std::invalid_argument("Invalid argument. data is not an array");
+				throw std::invalid_argument("CameraRC error: not an array");
 			}
 
 			camera->setCameraOffset(Ogre::Vector3(_data["offset"][0].asInt(), _data["offset"][1].asInt(), _data["offset"][2].asInt()));
@@ -108,7 +108,7 @@ public:
 
 			if (!_data["lookAt"].isArray() && !_data["lookAt"].isString())
 			{
-				throw std::invalid_argument("Invalid type value");
+				throw std::invalid_argument("CameraRC error: value is not string");
 			}
 
 			else if (_data["lookAt"].isArray())
@@ -120,7 +120,7 @@ public:
 			return camera;
 		}
 		catch (std::invalid_argument const& invArg) {
-			printf(invArg.what());
+			printf("%s \n\n", invArg.what());
 			return NULL;
 		}
 	};

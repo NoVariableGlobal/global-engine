@@ -8,7 +8,7 @@
 #include "TransformComponent.h"
 
 #include <json.h>
-#include <fstream>
+#include <iostream>
 #include <string>
 
 #include <stdexcept>
@@ -25,7 +25,7 @@ void Loader::readScenes(std::map<std::string, std::string>& _scenesQueue)
 
 		if (!file.is_open())
 		{			
-			throw std::runtime_error("files/scenes.json not found");
+			throw std::runtime_error("Loader error: files/scenes.json not found");
 		}
 
 		Json::Value data;
@@ -33,7 +33,7 @@ void Loader::readScenes(std::map<std::string, std::string>& _scenesQueue)
 
 		if (!data["scenes"].isArray())
 		{
-			throw std::invalid_argument("Json::Value data is not an array");
+			throw std::invalid_argument("Loader error: not an array");
 		}
 
 		data = data["scenes"];
@@ -43,7 +43,7 @@ void Loader::readScenes(std::map<std::string, std::string>& _scenesQueue)
 		{
 			if (!data[i]["name"].isString() || !data[i]["file"].isString())
 			{
-				throw std::invalid_argument("value is not a string type");
+				throw std::invalid_argument("Loader error: value is not string");
 			}
 			_scenesQueue.emplace(data[i]["name"].asString(), data[i]["file"].asString());
 		}
@@ -66,7 +66,7 @@ void Loader::readObjects(std::string _fileName, std::map<std::string, Entity*>& 
 
 		if (!file.is_open())
 		{
-			throw std::runtime_error("files/scenes.json not found");
+			throw std::runtime_error("files/");
 		}
 
 		Json::Value data;
@@ -74,7 +74,7 @@ void Loader::readObjects(std::string _fileName, std::map<std::string, Entity*>& 
 
 		if (!data["entities"].isArray()) 
 		{
-			throw std::invalid_argument("Json::Value data is not an array");
+			throw std::invalid_argument("Loader error: not an array");
 		}
 
 		Json::Value entities = data["entities"];
@@ -89,7 +89,7 @@ void Loader::readObjects(std::string _fileName, std::map<std::string, Entity*>& 
 	}
 	catch (std::runtime_error const& runErr)
 	{
-		printf("%s \n", runErr.what());
+		std::cout << runErr.what() << _fileName << " not found\n";
 	}
 }
 
@@ -100,14 +100,14 @@ void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string, Ent
 
 		if (!_data["id"].isString())
 		{
-			throw std::invalid_argument("Incorrect value type");
+			throw std::invalid_argument("Loader error: value is not string");
 		}
 
 		entity->setId(_data["id"].asString());
 
 		if (!_data["components"].isArray())
 		{
-			throw std::invalid_argument("data is not an array");
+			throw std::invalid_argument("Loader error: value is not an array");
 		}
 		Json::Value components = _data["components"];
 
@@ -117,7 +117,7 @@ void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string, Ent
 			// PREGUNTAR A MIRIAM SOBRE ESTO
 			if (!components[i]["type"].isString() && !components[i]["attributes"].isArray())
 			{
-				throw std::invalid_argument("Incorrect value type");
+				throw std::invalid_argument("Loader error: value is not string");
 			}
 
 			entity->addComponent(components[i]["type"].asString(), FactoriesFactory::getInstance()->find(components[i]["type"].asString())->create(entity, components[i]["attributes"], componentManager));

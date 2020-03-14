@@ -5,7 +5,7 @@
 #include "FactoriesFactory.h"
 #include "OgreSDLContext.h"
 
-#include <fstream>
+#include <iostream>
 
 Game::Game() {}
 
@@ -36,29 +36,42 @@ void Game::init(std::string _firstScene)
 
 void Game::update()
 {
-	while (!exit)
+	if (gameStarted)
 	{
-		scene->update();
-		exit = OgreSDLContext::getInstance()->renderLoop();
+		int i = 0;
+		while (!exit)
+		{
+			if (win) {
+				setScene("Menu");
+				std::cout << "\nxxxxxxxxxxxxxxx";
+				win = false;
+			}
+
+			//scene->update();
+			//exit = OgreSDLContext::getInstance()->renderLoop();
+
+			while (i <= 100) {
+				i++;
+				if (i == 99)
+					win = true;
+			}
+		}
 	}
 }
 
 void Game::setScene(std::string _sceneName)
 {
-	try {
-		scene->clearComponentsManager();
-		if (false) { //////////////////////////////////////////////////////////////////////////////AQUI FALTA LA CONDICION PARA QUE LEA
+	try {		
+		if (!scenesQueue[_sceneName].empty()) {
+			scene->clearComponentsManager();
 			scene->load(scenesQueue.find(_sceneName)->second);
+			gameStarted = true;
 		}
 		else {
-			throw std::invalid_argument("Requested scene does not exist");
+			throw std::invalid_argument("\nGame Error: Could not find requested scene ");
 		}
 	}
 	catch (std::invalid_argument const& invArg) {
-		printf(invArg.what());
-		//std::exit;
-		//OgreSDLContext::getInstance()->closeApp();
-		OgreSDLContext::getInstance()->shutdown();
-		//exit;
+		std::cout << invArg.what() << _sceneName << "\n\n";
 	}
 }
