@@ -6,7 +6,8 @@
 #include "Component.h"
 #include "ComponentsManager.h"
 #include <json.h>
-// #include "RigidbodyPC"
+#include "TransformComponent.h"
+#include <Entity.h>
 #include <iostream>
 
 TopDownPlayerMovementIC::TopDownPlayerMovementIC()
@@ -20,25 +21,21 @@ TopDownPlayerMovementIC::~TopDownPlayerMovementIC()
 void TopDownPlayerMovementIC::handleInput(const SDL_Event& _event)
 {
 	if (_event.type == SDL_KEYDOWN) {
-		// TO DO: tell rigidbody to move in a specific direction
-		// RigidbodyPC* rb = dynamic_cast<RigidbodyPC*>(_father->getComponent("RigidbodyPC"));
+		TransformComponent* transform = dynamic_cast<TransformComponent*>(father->getComponent("TransformComponent"));
+		std::cout << transform->getPosition().x << " " << transform->getPosition().y << " " << transform->getPosition().z << "\n";
 		switch (_event.key.keysym.sym)
 		{
 		case SDLK_w:
-			std::cout << '\n' << "MOVE UP SPEED " << _speed <<  '\n';
-			// rb->addForce(Ogre::Vector3(0.0f, 0.0f, -_speed), Ogre::Vector3(0.0f, 0.0f, 0.0f));
+			transform->setPosition(transform->getPosition() + Ogre::Vector3(0.0f, 0.0f, -_speed));
 			break;
 		case SDLK_s:
-			std::cout << '\n' << "MOVE DOWN SPEED " << _speed << '\n';
-			// rb->addForce(Ogre::Vector3(0.0f, 0.0f, _speed), Ogre::Vector3(0.0f, 0.0f, 0.0f);
+			transform->setPosition(transform->getPosition() + Ogre::Vector3(0.0f, 0.0f, _speed));
 			break;
 		case SDLK_a:
-			std::cout << '\n' << "MOVE LEFT SPEED " << _speed << '\n';
-			// rb->addForce(Ogre::Vector3(-_speed, 0.0f, 0.0f), Ogre::Vector3(0.0f, 0.0f, 0.0f);
+			transform->setPosition(transform->getPosition() + Ogre::Vector3(-_speed, 0.0f, 0.0f));
 			break;
 		case SDLK_d:
-			std::cout << '\n' << "MOVE RIGHT SPEED " << _speed << '\n';
-			// rb->addForce(Ogre::Vector3(_speed, 0.0f, 0.0f), Ogre::Vector3(0.0f, 0.0f, 0.0f);
+			transform->setPosition(transform->getPosition() + Ogre::Vector3(_speed, 0.0f, 0.0f));
 			break;
 		}
 	}
@@ -49,7 +46,6 @@ void TopDownPlayerMovementIC::setMovementSpeed(float speed)
 	_speed = speed;
 }
 
-// TO DO: factory isnt called 
 class TopDownPlayerMovementICFactory : public ComponentFactory {
 public:
 	TopDownPlayerMovementICFactory() {};
