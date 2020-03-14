@@ -54,6 +54,7 @@ void Game::update()
 void Game::render()
 {
 	OgreSDLContext::getInstance()->renderLoop();
+	scene->render();
 }
 
 void Game::handleInput()
