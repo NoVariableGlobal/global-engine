@@ -13,7 +13,6 @@
 Scene::Scene() {
 	componentManager = new ComponentsManager();
 	PhysicsContext::instance()->init(0);
-	PhysicsContext::instance()->createRB(Ogre::Vector3(10,10,10), Ogre::Vector3(10, 10, 10), 1);
 }
 
 Scene::~Scene() 
