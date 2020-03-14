@@ -2,7 +2,6 @@
 #include <map>
 #include <vector>
 #include <string>
-#include "checkML.h"
 
 class Component;
 class Entity;
@@ -26,7 +25,11 @@ class Scene
 
       // Search the entity in map and returns a reference to it.
       Entity* getEntitybyId(std::string id);
+      // Add entity into the map.
+      void addEntity(Entity* entity);
 
+      // Get ComponentsManager.
+      ComponentsManager* getComponentsManager();
       // Clear the Components Manager
       void clearComponentsManager();
 };

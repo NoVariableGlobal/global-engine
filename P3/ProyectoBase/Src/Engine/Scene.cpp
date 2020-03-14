@@ -29,7 +29,7 @@ Scene::~Scene()
 void Scene::load(std::string name) 
 {  
 	Loader loader;
-    loader.readObjects(name, entities, componentManager);
+    loader.readObjects(name, this);
 }
 
 void Scene::update() 
@@ -44,6 +44,16 @@ void Scene::update()
 Entity* Scene::getEntitybyId(std::string id)
 {
     return entities.find(id)->second;
+}
+
+void Scene::addEntity(Entity* entity)
+{
+	entities.emplace(entity->getId(), entity);
+}
+
+ComponentsManager* Scene::getComponentsManager()
+{
+	return componentManager;
 }
 
 void Scene::clearComponentsManager()

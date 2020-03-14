@@ -9,6 +9,8 @@
 #include "OgreVector3.h"
 #include "Entity.h"
 #include "TransformComponent.h"
+#include "Scene.h"
+#include <json.h>
 
 
 RigidbodyPC::RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape, float _mass, bool _trigger)
@@ -24,30 +26,18 @@ RigidbodyPC::~RigidbodyPC()
 
 void RigidbodyPC::update()
 {
-	//Este codigo nos puede servir de ayuda, sirve para detectar las colisiones pero mi duda es las variables "btPersistentManifold" y "btCollisionObject"
-	//no se exactamente su utilidad y como enlazarlo con el rigibdody
-	//int numManifolds = PhysicsContext::instance()->discreteDynamicsWorld->getDispatcher()->getNumManifolds();
-	//for (int i = 0; i < numManifolds; i++)
-	//{
-	//	btPersistentManifold* contactManifold = PhysicsContext::instance()->discreteDynamicsWorld->getDispatcher()->getManifoldByIndexInternal(i);
-	//	const btCollisionObject* obA = contactManifold->getBody0();
-	//	const btCollisionObject* obB = contactManifold->getBody1();
-
-	//	if (!obA->getCollisionShape()->isNonMoving() && !obB->getCollisionShape()->isNonMoving()) {
-	//		Collision = true;
-	//		return;
-	//	}
-	//}
-
-	//Collision = false;
-
 	dynamic_cast<TransformComponent*>(father->getComponent("TransformComponent"))->
 		setPosition(Ogre::Vector3(body->getWorldTransform().getOrigin().x(), body->getWorldTransform().getOrigin().y(), body->getWorldTransform().getOrigin().z()));
 }
 
 bool RigidbodyPC::collidesWith(std::string id)
 {
-	return false;
+	Entity* other = scene->getEntitybyId(id);
+
+	if (body->checkCollideWith(dynamic_cast<RigidbodyPC*>(other->getComponent("Rigidbody"))->body))
+		return true;
+	else
+		return false;
 }
 
 void RigidbodyPC::addForce(const Ogre::Vector3 _force, Ogre::Vector3 _relative_pos)
@@ -101,16 +91,18 @@ class RigidbodyPCFactory : public ComponentFactory {
 public:
 	RigidbodyPCFactory() {};
 
-	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
+	virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
 	{
-		RigidbodyPC* rb;
+		RigidbodyPC* rb = new RigidbodyPC(Ogre::Vector3(_data["position"][0].asInt(), _data["position"][1].asInt(), _data["position"][2].asInt()),
+											Ogre::Vector3(_data["shape"][0].asInt(), _data["shape"][1].asInt(), _data["shape"][2].asInt()), _data["mass"].asFloat(), _data["trigger"].asBool());
 		rb->setFather(_father);
+		rb->setScene(scene);
 
 		TransformComponent* transform = dynamic_cast<TransformComponent*>(_father->getComponent("TransformComponent"));
 
 		rb = new RigidbodyPC(transform->getPosition(), transform->getPosition(), 1, true);
 
-		_componentManager->addPC(rb);
+		scene->getComponentsManager()->addPC(rb);
 		return rb;
 	};
 };

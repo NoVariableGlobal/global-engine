@@ -9,6 +9,7 @@
 #include "OgreEntity.h"
 #include "OgreSDLContext.h"
 #include "OgreSceneManager.h"
+#include "Scene.h"
 
 // COMPONENT CODE
 SpotLightRC::SpotLightRC() {}
@@ -43,12 +44,13 @@ class SpotLightRCFactory : public ComponentFactory {
 public:
 	SpotLightRCFactory() {};
 
-	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
+	virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
 	{
 		Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
 		SpotLightRC* light = new SpotLightRC();
 
 		light->setFather(_father);
+		light->setScene(scene);
 
 		light->setLight(_father->getId());
 
@@ -62,7 +64,7 @@ public:
 		if (!_data["direction"].isArray()) { /*EXCEPCION*/ }
 		light->setDirection(Ogre::Vector3(_data["direction"][0].asInt(), _data["direction"][1].asInt(), _data["direction"][2].asInt()));
 
-		_componentManager->addRC(light);
+		scene->getComponentsManager()->addRC(light);
 
 		return light;
 	};

@@ -5,6 +5,7 @@
 class Entity;
 class ComponentsManager;
 class CameraRC;
+class Scene;
 
 namespace Json {
 	class Value;
@@ -20,8 +21,8 @@ class Loader
 		void readScenes(std::map<std::string, std::string>& _scenesQueue);
 
 		//Read the entities of the scene from the scene file
-		void readObjects(std::string _fileName, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager);
+		void readObjects(std::string _fileName, Scene* scene);
 
 		//Create an entity
-		void createEntity(Json::Value& _data, int _it, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager);
+		void createEntity(Json::Value& _data, int _it, Scene* scene);
 };

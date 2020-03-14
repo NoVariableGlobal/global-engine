@@ -6,6 +6,7 @@
 #include "OgreVector3.h"
 #include "ComponentsManager.h"
 #include "TransformComponent.h"
+#include "Scene.h"
 
 #include <json.h>
 #include <fstream>
@@ -37,7 +38,7 @@ void Loader::readScenes(std::map<std::string, std::string>& _scenesQueue)
 
 }
 
-void Loader::readObjects(std::string _fileName, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager)
+void Loader::readObjects(std::string _fileName, Scene* scene)
 {
 	std::fstream file;
 	file.open("files/" + _fileName);
@@ -52,10 +53,10 @@ void Loader::readObjects(std::string _fileName, std::map<std::string, Entity*>& 
 
 	int numEntities = entities.size();
 	for (int i = 0; i < numEntities; i++)
-		createEntity(entities[i], i, _entities, componentManager);
+		createEntity(entities[i], i, scene);
 }
 
-void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string, Entity*>& _entities, ComponentsManager* componentManager)
+void Loader::createEntity(Json::Value& _data, int _it, Scene* scene)
 {
 	Entity* entity = new Entity();
 
@@ -69,8 +70,8 @@ void Loader::createEntity(Json::Value& _data, int _it, std::map<std::string, Ent
 	for (int i = 0; i < numComponents; i++)
 	{
 		if (!components[i]["type"].isString() || !components[i]["attributes"].isArray()) { /*EXCEPCION*/ }
-		entity->addComponent(components[i]["type"].asString(), FactoriesFactory::getInstance()->find(components[i]["type"].asString())->create(entity, components[i]["attributes"], componentManager));
+		entity->addComponent(components[i]["type"].asString(), FactoriesFactory::getInstance()->find(components[i]["type"].asString())->create(entity, components[i]["attributes"], scene));
 	}
 
-	_entities.emplace(entity->getId(), entity);
+	scene->addEntity(entity);
 }
