@@ -54,7 +54,14 @@
           "type": "PlayerShotIC",
           "attributes": {
           }
+        },
+        {
+          "type": "TopDownPlayerMovementIC",
+          "attributes": {
+            "speed" :  2
+          }
         }
+
       ]
     }
   ]

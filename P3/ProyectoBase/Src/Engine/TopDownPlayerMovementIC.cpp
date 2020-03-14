@@ -20,24 +20,24 @@ TopDownPlayerMovementIC::~TopDownPlayerMovementIC()
 void TopDownPlayerMovementIC::handleInput(const SDL_Event& _event)
 {
 	if (_event.type == SDL_KEYDOWN) {
-		// TO DO: send messages to rigidbody to move in a specific direction
+		// TO DO: tell rigidbody to move in a specific direction
 		// RigidbodyPC* rb = dynamic_cast<RigidbodyPC*>(_father->getComponent("RigidbodyPC"));
 		switch (_event.key.keysym.sym)
 		{
 		case SDLK_w:
-			std::cout << '\n' << "MOVE UP" << '\n';
+			std::cout << '\n' << "MOVE UP SPEED " << _speed <<  '\n';
 			// rb->addForce(Ogre::Vector3(0.0f, 0.0f, -_speed), Ogre::Vector3(0.0f, 0.0f, 0.0f));
 			break;
 		case SDLK_s:
-			std::cout << '\n' << "MOVE DOWN" << '\n';
+			std::cout << '\n' << "MOVE DOWN SPEED " << _speed << '\n';
 			// rb->addForce(Ogre::Vector3(0.0f, 0.0f, _speed), Ogre::Vector3(0.0f, 0.0f, 0.0f);
 			break;
 		case SDLK_a:
-			std::cout << '\n' << "MOVE LEFT" << '\n';
+			std::cout << '\n' << "MOVE LEFT SPEED " << _speed << '\n';
 			// rb->addForce(Ogre::Vector3(-_speed, 0.0f, 0.0f), Ogre::Vector3(0.0f, 0.0f, 0.0f);
 			break;
 		case SDLK_d:
-			std::cout << '\n' << "MOVE RIGHT" << '\n';
+			std::cout << '\n' << "MOVE RIGHT SPEED " << _speed << '\n';
 			// rb->addForce(Ogre::Vector3(_speed, 0.0f, 0.0f), Ogre::Vector3(0.0f, 0.0f, 0.0f);
 			break;
 		}
