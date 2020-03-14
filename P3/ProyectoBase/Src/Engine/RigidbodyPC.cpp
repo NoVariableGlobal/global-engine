@@ -63,7 +63,7 @@ bool RigidbodyPC::isKinematic() const
 	return kinematic;
 }
 
-bool RigidbodyPC::isTriggerStatic() const
+bool RigidbodyPC::isStatic() const
 {
 	return stat;
 }
@@ -84,6 +84,16 @@ void RigidbodyPC::setStatic(bool _static)
 {
 	body->setCollisionFlags(body->getCollisionFlags() & (body->CF_STATIC_OBJECT * _static));
 	stat = _static;
+}
+
+void RigidbodyPC::setFriction(float _friction)
+{
+	body->setFriction(_friction);
+}
+
+void RigidbodyPC::setRestitution(float _restitution)
+{
+	body->setRestitution(_restitution);
 }
 
 // FACTORY INFRASTRUCTURE

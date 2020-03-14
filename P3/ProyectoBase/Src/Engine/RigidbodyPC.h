@@ -26,10 +26,11 @@ public:
 	void addForce(const Ogre::Vector3 _force, Ogre::Vector3 _relativePos);
 	bool isTrigger() const;
 	bool isKinematic() const;
-	bool isTriggerStatic() const;
+	bool isStatic() const;
 	void setGravity(const Ogre::Vector3 _g);
 	void setTrigger(bool _trigger);
 	void setKinematic(bool _kinematic);
 	void setStatic(bool _static);
-
+	void setFriction(float _friction);
+	void setRestitution(float _restitution);
 };
