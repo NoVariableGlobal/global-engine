@@ -4,7 +4,7 @@
 4. configure -> no tocar nada en las opciones y finish (puede que salga algún warning, ignorar)
 5. Generate
 6. Ir a ProyectoBase/lib/cegui-dependencies/build, abrir CEGUI-DEPS.sln y compliar el proyecto en DEBUG y RELEASE
-7. Copiar la carpeta ProyectoBase/lib/cegui-dependencies/build a ProyectoBase/lib/cegui-0.8.7
+7. Copiar la carpeta ProyectoBase/lib/cegui-dependencies/build/dependencies a ProyectoBase/lib/cegui-0.8.7
 8. Volver a abrir cmake-gui.exe
 9. source code -> ProyectoBase/lib/cegui-0.8.7
 10. build the binaries -> ProyectoBase/lib/cegui-0.8.7/build (si no existe la carpeta build se crea)
