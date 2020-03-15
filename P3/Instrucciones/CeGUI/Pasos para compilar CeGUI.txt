@@ -8,14 +8,14 @@
 8. Volver a abrir cmake-gui.exe
 9. source code -> ProyectoBase/lib/cegui-0.8.7
 10. build the binaries -> ProyectoBase/lib/cegui-0.8.7/build (si no existe la carpeta build se crea)
-4. configure -> no tocar nada en las opciones y finish (puede que salga algún warning, ignorar)
-x. Asegurarse de que estan marcados CEGUI_BUILD_RENDERER_OPENGL3 y CEGUI_BUILD_RENDERER_OPENGLES
-x. Generar
-11. Ir a ProyectoBase/lib/cegui-0.8.7/build, abrir cegui.sln y compliar el proyecto en DEBUG y RELEASE
-12. Copiar CEGUIBase-0.dll, CEGUIBase-0_d.dll, CEGUIOpenGLRenderer-0.dll y CEGUIOpenGLRenderer-0_d.dll 
+11. configure -> no tocar nada en las opciones y finish (puede que salga algún warning, ignorar)
+12. Asegurarse de que estan marcados CEGUI_BUILD_RENDERER_OPENGL3 y CEGUI_BUILD_RENDERER_OPENGLES
+13. Generar
+14. Ir a ProyectoBase/lib/cegui-0.8.7/build, abrir cegui.sln y compliar el proyecto en DEBUG y RELEASE
+15. Copiar CEGUIBase-0.dll, CEGUIBase-0_d.dll, CEGUIOpenGLRenderer-0.dll y CEGUIOpenGLRenderer-0_d.dll 
 	de ProyectoBase/lib/cegui-0.8.7/build/bin a ProyectoBase\bin
-13. Ir a ProyectoBase/lib/cegui-0.8.7/dependencies/bin y copiar todos los .dll a ProyectoBase\bin
+16. Ir a ProyectoBase/lib/cegui-0.8.7/dependencies/bin y copiar todos los .dll a ProyectoBase\bin
 	(Es posible que algunos no sean necesarios pero el tutorial lo recomienda)
-14. Compilar nuestro proyecto. Si algo no funciona consultar a Omar, gracias por vuestra colaboración.
+17. Compilar nuestro proyecto. Si algo no funciona consultar a Omar, gracias por vuestra colaboración.
 
 Source: https://www.youtube.com/watch?v=mwf_gDVudsE
