@@ -26,8 +26,8 @@ void GUI::init(const std::string& _resourceDirectory) {
 	}
 
 	// TODO - BUG HERE
-	CEGUI::RenderTarget* test = &m_renderer->getDefaultRenderTarget();
-	m_context = &CEGUI::System::getSingleton().createGUIContext(*test);
+	//CEGUI::RenderTarget* test = &m_renderer->getDefaultRenderTarget();
+	//m_context = &CEGUI::System::getSingleton().createGUIContext(*test);
 
 	m_context = &CEGUI::System::getSingleton().createGUIContext(m_renderer->getDefaultRenderTarget());
 	m_root = CEGUI::WindowManager::getSingleton().createWindow("DefaultWindow", "root");
