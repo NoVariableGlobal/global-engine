@@ -4,6 +4,8 @@
 #include "SoundComponent.h"
 #include "RenderComponent.h"
 
+#include <iostream>
+
 
 ComponentsManager::ComponentsManager()
 {

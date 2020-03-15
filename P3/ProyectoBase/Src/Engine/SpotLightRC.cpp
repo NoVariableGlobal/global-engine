@@ -13,7 +13,10 @@
 // COMPONENT CODE
 SpotLightRC::SpotLightRC() {}
 
-SpotLightRC::~SpotLightRC() {}
+SpotLightRC::~SpotLightRC()
+{
+	_msM->destroyLight(light);
+}
 
 void SpotLightRC::setLight(std::string _entityID)
 {

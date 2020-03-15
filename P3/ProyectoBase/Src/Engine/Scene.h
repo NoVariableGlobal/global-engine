@@ -15,6 +15,7 @@ class Scene
       std::map<std::string, Entity*> entities; 
       bool exit = false;
       ComponentsManager* componentManager;
+
     public:
       Scene();
       ~Scene();
@@ -29,4 +30,7 @@ class Scene
 
       // Clear the Components Manager
       void clearComponentsManager();
+
+	  // Clear all entities of the Manager
+	  void clearEntities();
 };

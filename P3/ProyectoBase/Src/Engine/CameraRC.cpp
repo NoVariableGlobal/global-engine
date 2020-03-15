@@ -18,6 +18,9 @@ CameraRC::CameraRC() : RenderComponent() {}
 
 CameraRC::~CameraRC() 
 {
+	_msM->destroyCamera(camera);
+	OgreSDLContext::getInstance()->getRenderWindow()->removeAllViewports();
+
 	delete cameraOffset;
 	delete look;
 }

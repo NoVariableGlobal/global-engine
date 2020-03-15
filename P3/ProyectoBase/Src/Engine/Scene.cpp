@@ -16,8 +16,7 @@ Scene::Scene() {
 	PhysicsContext::instance()->createRB(Ogre::Vector3(10,10,10), Ogre::Vector3(10, 10, 10), 1);
 }
 
-Scene::~Scene() 
-{
+Scene::~Scene() {
 	for (auto it : entities)
 	{
 		delete it.second;
@@ -49,4 +48,14 @@ Entity* Scene::getEntitybyId(std::string id)
 void Scene::clearComponentsManager()
 {
 	componentManager->clearComponents();
+	entities.clear();
+}
+
+void Scene::clearEntities()
+{
+	for (auto it : entities)
+	{
+		delete it.second;
+	}
+	entities.clear();
 }

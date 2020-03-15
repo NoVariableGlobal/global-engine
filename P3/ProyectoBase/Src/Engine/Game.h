@@ -17,7 +17,7 @@ class Game
 		bool end = false;
 		bool win = false;
 
-		bool gameStarted = false;
+		bool forceClose = false;
 
 	public:
 		Game();

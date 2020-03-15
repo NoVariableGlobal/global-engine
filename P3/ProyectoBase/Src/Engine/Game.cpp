@@ -36,24 +36,16 @@ void Game::init(std::string _firstScene)
 
 void Game::update()
 {
-	if (gameStarted)
+	int i = 0;
+	while (!exit && !forceClose)
 	{
-		int i = 0;
-		while (!exit)
-		{
-			if (win) {
-				setScene("Menu");
-				std::cout << "\nxxxxxxxxxxxxxxx";
-				win = false;
-			}
+		scene->update();
+		exit = OgreSDLContext::getInstance()->renderLoop();
 
-			//scene->update();
-			//exit = OgreSDLContext::getInstance()->renderLoop();
-
-			while (i <= 100) {
-				i++;
-				if (i == 99)
-					win = true;
+		while (i <= 100) {
+			i++;
+			if (i == 99) {
+				setScene("Game");
 			}
 		}
 	}
@@ -64,8 +56,8 @@ void Game::setScene(std::string _sceneName)
 	try {		
 		if (!scenesQueue[_sceneName].empty()) {
 			scene->clearComponentsManager();
+			scene->clearEntities();
 			scene->load(scenesQueue.find(_sceneName)->second);
-			gameStarted = true;
 		}
 		else {
 			throw std::invalid_argument("\nGame Error: Could not find requested scene ");
@@ -73,5 +65,6 @@ void Game::setScene(std::string _sceneName)
 	}
 	catch (std::invalid_argument const& invArg) {
 		std::cout << invArg.what() << _sceneName << "\n\n";
+		forceClose = true;
 	}
 }
