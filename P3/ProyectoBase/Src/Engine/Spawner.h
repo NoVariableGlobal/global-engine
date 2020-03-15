@@ -23,6 +23,9 @@ protected:
   float _lastTimeSpawned;
 
 public:
+
+  void setSpawnCooldown(float spawnCooldown) { _spawnCooldown = spawnCooldown; }
+  void setLastTimeSpawned(float lastTimeSpawned) { _lastTimeSpawned = lastTimeSpawned; };
   /*
   Adds a prefab's id and its individual chance for spawning. If the total chance after adding this spawn 
   is greater than 100%, the last spawn will only have the minimal chance to reach a total of 100%.
