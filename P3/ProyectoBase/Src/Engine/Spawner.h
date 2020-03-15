@@ -1,10 +1,12 @@
 #pragma once
-#include "Component.h"
+#include "EventComponent.h"
 #include <vector>
 #include <string>
 
+class Entity;
+
 class Spawner :
-  public Component
+  public EventComponent
 {
 protected:
 
@@ -13,6 +15,7 @@ protected:
     std::string _id;
     float _chance;
     float _additiveChance;
+    unsigned int _count = 0;
   };
 
   std::vector<Spawn> _spawns;
@@ -40,9 +43,14 @@ public:
   */
   void editChance(std::string& id, float newChance);
 
-  void update() override;
+  void checkEvent() override;
 
   bool timeToSpawn();
+
+  Entity* spawnPrefab();
+
+  Spawn binarySearch(int first, int last, float value);
+
 
 };
 
