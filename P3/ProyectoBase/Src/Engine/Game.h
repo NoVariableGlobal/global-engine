@@ -6,6 +6,9 @@
 class Scene;
 class Loader;
 
+// TEMPORARY - This should go in the games
+class GUI;
+
 class Game
 {
 	private:
@@ -16,6 +19,9 @@ class Game
 		bool exit = false;
 		bool end = false;
 		bool win = false;
+
+		// TEMPORARY - This should go in the games
+		GUI* m_gui;
 
 	public:
 		Game();
