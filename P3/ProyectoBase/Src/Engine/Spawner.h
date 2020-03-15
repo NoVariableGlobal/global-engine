@@ -43,7 +43,7 @@ public:
   */
   void editChance(std::string& id, float newChance);
 
-  void checkEvent() override;
+  virtual void checkEvent() override;
 
   bool timeToSpawn();
 

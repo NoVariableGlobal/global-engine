@@ -5,7 +5,8 @@ class SpawnerEnemies :
   public Spawner
 {
 
-  
+public:
+  virtual void checkEvent() override;
 
 };
 
