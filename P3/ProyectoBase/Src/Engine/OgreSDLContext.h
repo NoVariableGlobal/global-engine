@@ -49,10 +49,11 @@ class OgreSDLContext
 
 		bool exit = false;
 
+		OgreSDLContext();
 	public:
 		static OgreSDLContext* getInstance();
+		static void init();
 
-		OgreSDLContext();
 		void erase();
 
 		// initialize the application

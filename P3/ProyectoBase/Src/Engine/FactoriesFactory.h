@@ -14,6 +14,7 @@ class FactoriesFactory
 
 	public:
 		static FactoriesFactory* getInstance();
+		static void init();
 
 		ComponentFactory* find(std::string name);
 		void insert(std::string name, ComponentFactory* fac);

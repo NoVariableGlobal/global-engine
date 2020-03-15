@@ -4,6 +4,7 @@
 #include <string>
 #include "FactoriesFactory.h"
 #include "OgreSDLContext.h"
+#include "PhysicsContext.h"
 
 Game::Game() {}
 
@@ -18,6 +19,9 @@ Game::~Game()
 
 void Game::initContext()
 {
+	FactoriesFactory::init();
+	OgreSDLContext::init();
+	PhysicsContext::init();
 	OgreSDLContext::getInstance()->initApp("Test");
 }
 

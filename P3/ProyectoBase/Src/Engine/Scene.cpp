@@ -12,8 +12,8 @@
 
 Scene::Scene() {
 	componentManager = new ComponentsManager();
-	PhysicsContext::instance()->init(0);
-	PhysicsContext::instance()->createRB(Ogre::Vector3(10,10,10), Ogre::Vector3(10, 10, 10), 1);
+	PhysicsContext::getInstance()->init(0);
+	PhysicsContext::getInstance()->createRB(Ogre::Vector3(10,10,10), Ogre::Vector3(10, 10, 10), 1);
 }
 
 Scene::~Scene() 
@@ -23,7 +23,7 @@ Scene::~Scene()
 		delete it.second;
 	}
 	delete componentManager;
-	PhysicsContext::instance()->destroyWorld();
+	PhysicsContext::getInstance()->destroyWorld();
 }
 
 void Scene::load(std::string name) 
@@ -38,7 +38,7 @@ void Scene::update()
 	componentManager->handleInput();
 	componentManager->render();
 	componentManager->updateSound();
-	PhysicsContext::instance()->updateSimulation();
+	PhysicsContext::getInstance()->updateSimulation();
 }
 
 Entity* Scene::getEntitybyId(std::string id)
