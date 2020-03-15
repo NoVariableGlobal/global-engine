@@ -24,6 +24,7 @@
     <ClCompile Include="..\..\src\Engine\TransformComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp" />
     <ClCompile Include="..\..\Src\Engine\RigidbodyPC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\SpawnerEnemies.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\SpotLightRC.h" />
@@ -49,5 +50,6 @@
     <ClInclude Include="..\..\src\Engine\TransformComponent.h" />
     <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h" />
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
+    <ClInclude Include="..\..\Src\Engine\SpawnerEnemies.h" />
   </ItemGroup>
 </Project>

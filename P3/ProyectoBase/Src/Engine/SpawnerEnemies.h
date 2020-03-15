@@ -1,7 +1,11 @@
 #pragma once
-#include "Component.h"
+#include "Spawner.h"
+
 class SpawnerEnemies :
-  public Component
+  public Spawner
 {
+
+  
+
 };
 
