@@ -1,12 +1,14 @@
 #pragma once
 
-//#include "Component.h"
-//#include "sdl_includes.h"
+#include "Component.h"
 
-class InputComponent {//: virtual public Component {
-public:
-	InputComponent();
-	virtual ~InputComponent();
-	virtual void handleInput() = 0;
+#include <SDL_events.h>
+
+class InputComponent : public Component 
+{
+	public:
+		InputComponent();
+		virtual ~InputComponent();
+		virtual void handleInput(const SDL_Event& _event) = 0;
 
 };

@@ -1,5 +1,9 @@
 #pragma once
+
 #include <vector>
+
+#include <SDL_events.h>
+
 class InputComponent;
 class PhysicsComponent;
 class RenderComponent;
@@ -60,7 +64,7 @@ public:
 	// call each physics component in the list
 	void update();
 	// call each input component in the list
-	void handleInput();
+	void handleInput(const SDL_Event& _event);
 	// call each render component in the list
 	void render();
 	// call each sound component in the list
