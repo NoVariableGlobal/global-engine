@@ -59,10 +59,10 @@ public:
 		light->getSceneNode()->attachObject(light->getLight());
 
 		if (!_data["colour"].isArray()) { /*EXCEPCION*/ }
-		light->setColour(Ogre::Vector3(_data["colour"][0].asInt(), _data["colour"][1].asInt(), _data["colour"][2].asInt()));
+		light->setColour(Ogre::Vector3(_data["colour"][0].asFloat(), _data["colour"][1].asFloat(), _data["colour"][2].asFloat()));
 
 		if (!_data["direction"].isArray()) { /*EXCEPCION*/ }
-		light->setDirection(Ogre::Vector3(_data["direction"][0].asInt(), _data["direction"][1].asInt(), _data["direction"][2].asInt()));
+		light->setDirection(Ogre::Vector3(_data["direction"][0].asFloat(), _data["direction"][1].asFloat(), _data["direction"][2].asFloat()));
 
 		scene->getComponentsManager()->addRC(light);
 

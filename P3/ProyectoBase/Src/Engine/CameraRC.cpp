@@ -85,17 +85,17 @@ public:
 		camera->getSceneNode()->attachObject(camera->getCamera());
 
 		if (!_data["viewportColour"].isArray()) { /*EXCEPCION*/ }
-		camera->setViewport(Ogre::Vector3(_data["viewportColour"][0].asInt(), _data["viewportColour"][1].asInt(), _data["viewportColour"][2].asInt()));
+		camera->setViewport(Ogre::Vector3(_data["viewportColour"][0].asFloat(), _data["viewportColour"][1].asFloat(), _data["viewportColour"][2].asFloat()));
 
 		if (!_data["offset"].isArray()) { /*EXCEPCION*/ }
-		camera->setCameraOffset(Ogre::Vector3(_data["offset"][0].asInt(), _data["offset"][1].asInt(), _data["offset"][2].asInt()));
+		camera->setCameraOffset(Ogre::Vector3(_data["offset"][0].asFloat(), _data["offset"][1].asFloat(), _data["offset"][2].asFloat()));
 
 		TransformComponent* transform = dynamic_cast<TransformComponent*>(_father->getComponent("TransformComponent"));
 		camera->getSceneNode()->setPosition(transform->getPosition());
 
 		if (!_data["lookAt"].isArray() && !_data["lookAt"].isString()) { /*EXCEPCION*/ }
 		else if(_data["lookAt"].isArray())
-			camera->lookAt(Ogre::Vector3(_data["lookAt"][0].asInt(), _data["lookAt"][1].asInt(), _data["lookAt"][2].asInt()));
+			camera->lookAt(Ogre::Vector3(_data["lookAt"][0].asFloat(), _data["lookAt"][1].asFloat(), _data["lookAt"][2].asFloat()));
 
 
 		scene->getComponentsManager()->addRC(camera);

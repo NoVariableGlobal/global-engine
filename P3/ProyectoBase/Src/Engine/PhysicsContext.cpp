@@ -8,10 +8,14 @@
 
 PhysicsContext* PhysicsContext::_instance = nullptr;
 
-PhysicsContext* PhysicsContext::instance()
+PhysicsContext* PhysicsContext::getInstance()
 {
-	if (_instance == nullptr) _instance = new PhysicsContext();
 	return _instance;
+}
+
+void PhysicsContext::init()
+{
+	_instance = new PhysicsContext();
 }
 
 PhysicsContext::PhysicsContext()

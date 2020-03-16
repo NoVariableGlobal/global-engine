@@ -4,7 +4,6 @@
 #include <BulletCollision/NarrowPhaseCollision/btGjkEpaPenetrationDepthSolver.h>
 #include <BulletCollision/NarrowPhaseCollision/btPointCollector.h>
 #include <BulletCollision/NarrowPhaseCollision/btGjkPairDetector.h>
-
 #include "ComponentsManager.h"
 #include "PhysicsContext.h"
 #include <btBulletDynamicsCommon.h>
@@ -121,6 +120,7 @@ public:
 	{
 		RigidbodyPC* rb = new RigidbodyPC(Ogre::Vector3(_data["position"][0].asInt(), _data["position"][1].asInt(), _data["position"][2].asInt()),
 											Ogre::Vector3(_data["shape"][0].asInt(), _data["shape"][1].asInt(), _data["shape"][2].asInt()), _data["mass"].asFloat(), _data["trigger"].asBool());
+    
 		rb->setFather(_father);
 		rb->setScene(scene);
 

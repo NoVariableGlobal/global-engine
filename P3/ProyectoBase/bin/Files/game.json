@@ -28,7 +28,7 @@
                     "attributes" : 
                     {
                         "node" : "nSpotLight",
-                        "colour" : [1, 0, 1],
+                        "colour" : [0.5, 0.5, 0.5],
                         "direction" : [0, -1, -1]
                     }
                 }
@@ -52,7 +52,7 @@
                     "attributes" : {
                         "mesh" : "Sinbad.mesh",
                         "node" : "nSimbad",
-                        "material" : "TestMaterial"
+                        "material" : "none"
                     }
                 }
             ]
