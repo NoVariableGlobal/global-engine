@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Entity.h"
 #include "TransformComponent.h"
+#include "OgreVector3.h"
 
 void SpawnerEnemies::checkEvent()
 {
