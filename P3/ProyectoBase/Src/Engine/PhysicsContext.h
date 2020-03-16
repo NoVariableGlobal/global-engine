@@ -28,11 +28,11 @@ private:
 	btDefaultCollisionConfiguration* defaultCollisionConfiguration;
 	OgreDebugDrawer* mDebugDrawer;
 
-	btDiscreteDynamicsWorld* discreteDynamicsWorld;
 	std::vector<btRigidBody*> ribs;
 	std::vector<btBoxShape*> shapes;
 	std::vector<btMotionState*> states;
 public:
+	btDiscreteDynamicsWorld* discreteDynamicsWorld;
 	static PhysicsContext* instance();
 	PhysicsContext();
 	~PhysicsContext();

@@ -1,9 +1,10 @@
 #include "Game.h"
 #include "Scene.h"
 #include "Loader.h"
-#include <string>
 #include "FactoriesFactory.h"
 #include "OgreSDLContext.h"
+
+#include <string>
 
 Game::Game() {}
 
@@ -11,7 +12,7 @@ Game::Game() {}
 Game::~Game()
 {
 	delete scene;
-	scene = nullptr;
+
 	FactoriesFactory::getInstance()->clear();
 	OgreSDLContext::getInstance()->erase();
 }
@@ -44,5 +45,6 @@ void Game::update()
 void Game::setScene(std::string _sceneName)
 {
 	scene->clearComponentsManager();
+	scene->clearEntities();
 	scene->load(scenesQueue.find(_sceneName)->second);
 }
