@@ -18,7 +18,7 @@ namespace Ogre
 class SpotLightRC : public RenderComponent 
 {
 	private:
-		Ogre::SceneManager* _msM;
+		Ogre::SceneManager* _msM = nullptr;
 		Ogre::Light* light = nullptr;
 
 	public:

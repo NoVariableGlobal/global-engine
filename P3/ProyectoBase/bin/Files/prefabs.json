@@ -1,0 +1,18 @@
+{
+    "prefabs": 
+    [
+        {
+            "id": "MeleeEnemy",
+            "components": [
+            {
+                "type": "TransformComponent",
+                "attributes": {
+                "position": [ 0, 0, 300 ],
+                "orientation": [ 0, 0, 0 ],
+                "scale": [ 1, 1, 1 ]
+                }
+            }
+            ]
+        }
+    ]
+}
