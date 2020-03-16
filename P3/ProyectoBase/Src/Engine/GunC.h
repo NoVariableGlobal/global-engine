@@ -3,9 +3,9 @@
 class GunC : public Component
 {
 private:
-	int bulletchamber;
+	int bulletchamber; //municion en la recamara
 	int bulletchamberMax;
-	int	munition;
+	int	munition; //municion total guardada
 	int	cadence;
 	int	damage;
 	bool semiautomatic;
