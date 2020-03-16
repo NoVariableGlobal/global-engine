@@ -7,14 +7,13 @@
 #include <string>
 
 #include <SDL_events.h>
-
 Game::Game() {}
 
 
 Game::~Game()
 {
 	delete scene;
-	scene = nullptr;
+
 	FactoriesFactory::getInstance()->clear();
 	OgreSDLContext::getInstance()->erase();
 }
@@ -69,5 +68,6 @@ void Game::handleInput()
 void Game::setScene(std::string _sceneName)
 {
 	scene->clearComponentsManager();
+	scene->clearEntities();
 	scene->load(scenesQueue.find(_sceneName)->second);
 }

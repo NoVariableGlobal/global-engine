@@ -51,8 +51,10 @@
           }
         },
         {
-          "type": "PlayerShotIC",
+          "type": "LifeC",
           "attributes": {
+            "life": 100
+
           }
         }
       ]

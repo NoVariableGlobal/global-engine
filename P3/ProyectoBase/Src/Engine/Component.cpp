@@ -16,3 +16,4 @@ void Component::setActive(bool _active) { active = _active; }
 void Component::toggleActive() { active = !active; }
 
 void Component::setFather(Entity* _father) { father = _father; }
+void Component::setScene(Scene* _scene) { scene = _scene; }

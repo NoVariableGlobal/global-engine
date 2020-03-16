@@ -13,7 +13,6 @@
 
 #include <iostream>
 
-#include "checkML.h"
 #include "OgreViewport.h"
 #include "OgreRenderWindow.h"
 #include "OgreEntity.h"
