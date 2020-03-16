@@ -114,4 +114,14 @@ ComponentsManager* Scene::getComponentsManager()
 void Scene::clearComponentsManager()
 {
 	componentManager->clearComponents();
+	entities.clear();
+}
+
+void Scene::clearEntities()
+{
+	for (auto it : entities)
+	{
+		delete it.second;
+	}
+	entities.clear();
 }

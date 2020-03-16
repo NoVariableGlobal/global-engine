@@ -14,7 +14,10 @@
 // COMPONENT CODE
 SpotLightRC::SpotLightRC() {}
 
-SpotLightRC::~SpotLightRC() {}
+SpotLightRC::~SpotLightRC()
+{
+	_msM->destroyLight(light);
+}
 
 void SpotLightRC::setLight(std::string _entityID)
 {
@@ -54,20 +57,20 @@ public:
 
 		light->setLight(_father->getId());
 
-		if (!_data["node"].isString()) { /*EXCEPCION*/ }
+		if (!_data["node"].isString()) throw std::exception("SpotLightRC: node is not a string");
 		light->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString()));
 		light->getSceneNode()->attachObject(light->getLight());
 
-		if (!_data["colour"].isArray()) { /*EXCEPCION*/ }
+		if (!_data["colour"].isArray()) throw std::exception("SpotLightRC: colour is not an array");
 		light->setColour(Ogre::Vector3(_data["colour"][0].asFloat(), _data["colour"][1].asFloat(), _data["colour"][2].asFloat()));
 
-		if (!_data["direction"].isArray()) { /*EXCEPCION*/ }
+		if (!_data["direction"].isArray()) throw std::exception("SpotLightRC: direction is not an array");
 		light->setDirection(Ogre::Vector3(_data["direction"][0].asFloat(), _data["direction"][1].asFloat(), _data["direction"][2].asFloat()));
 
 		scene->getComponentsManager()->addRC(light);
 
 		return light;
-	};
+	}
 };
 
 REGISTER_FACTORY("SpotLightRC", SpotLightRC);

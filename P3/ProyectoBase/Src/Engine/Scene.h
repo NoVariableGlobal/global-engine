@@ -23,9 +23,7 @@ class Scene
       std::map<std::string, Json::Value> prefabs;
 
       ComponentsManager* componentManager;
-
-      bool exit = false;
-
+  
     public:
       Scene();
       ~Scene();
@@ -59,4 +57,7 @@ class Scene
       ComponentsManager* getComponentsManager();
       // Clear the Components Manager
       void clearComponentsManager();
+
+	  // Clear all entities of the Manager
+	  void clearEntities();
 };

@@ -8,6 +8,8 @@
 #include <string>
 #include <SDL_events.h>
 
+#include <iostream>
+
 Game::Game() {}
 
 
@@ -26,19 +28,30 @@ void Game::initContext()
 	OgreSDLContext::getInstance()->initApp("Test");
 }
 
-void Game::init(std::string _firstScene)
+bool Game::init(std::string _firstScene)
 {
-	initContext();
-  
-	Loader loader;
-	loader.readScenes(scenesQueue);
-  
-	scene = new Scene();
-	setScene(_firstScene);
+	try
+	{
+		initContext();
+
+		Loader loader;
+		loader.readScenes(scenesQueue);
+
+		scene = new Scene();
+		setScene(_firstScene);
+
+		return true;
+	}
+	catch (std::exception & e)
+	{
+		throw std::exception("init error");
+		return false;
+	}
 }
 
 void Game::run()
 {
+	int i = 0;
 	while (!exit)
 	{
 		update();

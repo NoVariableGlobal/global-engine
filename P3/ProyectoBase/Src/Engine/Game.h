@@ -22,9 +22,9 @@ class Game
 
 		// initialise OgreSDL
 		void initContext();
+
 		// initialise the game
-		void init(std::string _firstScene);
-		
+		bool init(std::string _firstScene);
 		// loop of the game
 		void run();
 		// update the game

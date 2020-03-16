@@ -12,11 +12,16 @@
 
 #include <json.h>
 
+#include <stdexcept>
+
 //Constructor, se crea la camara se le asocia el viewport y se asocian todos lo sceneNode
 CameraRC::CameraRC() : RenderComponent() {}
 
 CameraRC::~CameraRC() 
 {
+	_msM->destroyCamera(camera);
+	OgreSDLContext::getInstance()->getRenderWindow()->removeAllViewports();
+
 	delete cameraOffset;
 	delete look;
 }
@@ -80,28 +85,28 @@ public:
 
 		camera->setCamera(_father->getId());
 
-		if (!_data["node"].isString()) { /*EXCEPCION*/ }
+		if (!_data["node"].isString()) throw std::exception("CameraRC: node is not a string");
+
 		camera->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString()));
 		camera->getSceneNode()->attachObject(camera->getCamera());
 
-		if (!_data["viewportColour"].isArray()) { /*EXCEPCION*/ }
+		if (!_data["viewportColour"].isArray()) throw std::exception("CameraRC: viewportColour is not an array");
 		camera->setViewport(Ogre::Vector3(_data["viewportColour"][0].asFloat(), _data["viewportColour"][1].asFloat(), _data["viewportColour"][2].asFloat()));
 
-		if (!_data["offset"].isArray()) { /*EXCEPCION*/ }
+		if (!_data["offset"].isArray()) throw std::exception("CameraRC: offset is not an array");
 		camera->setCameraOffset(Ogre::Vector3(_data["offset"][0].asFloat(), _data["offset"][1].asFloat(), _data["offset"][2].asFloat()));
 
 		TransformComponent* transform = dynamic_cast<TransformComponent*>(_father->getComponent("TransformComponent"));
 		camera->getSceneNode()->setPosition(transform->getPosition());
 
-		if (!_data["lookAt"].isArray() && !_data["lookAt"].isString()) { /*EXCEPCION*/ }
+		if (!_data["lookAt"].isArray() && !_data["lookAt"].isString()) throw std::exception("CameraRC: lookAt is not an array. If you do not want an array, use a string 'none'");
 		else if(_data["lookAt"].isArray())
 			camera->lookAt(Ogre::Vector3(_data["lookAt"][0].asFloat(), _data["lookAt"][1].asFloat(), _data["lookAt"][2].asFloat()));
-
 
 		scene->getComponentsManager()->addRC(camera);
 
 		return camera;
-	};
+	}
 };
 
 REGISTER_FACTORY("CameraRC", CameraRC);
