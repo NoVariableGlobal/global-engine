@@ -3,7 +3,9 @@
 #include "InputComponent.h"
 #include "SoundComponent.h"
 #include "RenderComponent.h"
+#include "EventComponent.h"
 
+#include <SDL_events.h>
 
 ComponentsManager::ComponentsManager()
 {
@@ -44,11 +46,18 @@ void ComponentsManager::clearComponents()
 		sound.pop_back();
 	}
 
-	size = tran.size();
+	size = event.size();
 	for (int i = size - 1; i >= 0; i--)
 	{
-		delete tran[i];
-		tran.pop_back();
+		delete event[i];
+		event.pop_back();
+	}
+
+	size = deleteable.size();
+	for (int i = size - 1; i >= 0; i--)
+	{
+		delete deleteable[i];
+		deleteable.pop_back();
 	}
 }
 
@@ -132,25 +141,46 @@ void ComponentsManager::deleteSC(SoundComponent* _soundComponent)
 	}
 }
 
-void ComponentsManager::addTC(Component* _transformComponent)
+void ComponentsManager::addDC(Component* _deleteableComponent)
 {
-	tran.push_back(_transformComponent);
+	deleteable.push_back(_deleteableComponent);
 }
 
-void ComponentsManager::deleteTC(Component* _transformComponent)
+void ComponentsManager::deleteDC(Component* _deleteableComponent)
 {
 	bool erased = false;
-	auto it = tran.begin();
-	while (it != tran.end() && erased)
+	auto it = deleteable.begin();
+	while (it != deleteable.end() && erased)
 	{
-		if ((*it) == _transformComponent)
+		if ((*it) == _deleteableComponent)
 		{
-			tran.erase(it);
+			deleteable.erase(it);
 			erased = true;
 		}
 		++it;
 	}
 }
+
+void ComponentsManager::addEC(EventComponent* _eventComponent)
+{
+	event.push_back(_eventComponent);
+}
+
+void ComponentsManager::deleteEC(EventComponent* _eventComponent)
+{
+	bool erased = false;
+	auto it = event.begin();
+	while (it != event.end() && erased)
+	{
+		if ((*it) == _eventComponent)
+		{
+			event.erase(it);
+			erased = true;
+		}
+		++it;
+	}
+}
+
 
 void ComponentsManager::update()
 {
@@ -158,10 +188,10 @@ void ComponentsManager::update()
 		p->update();
 }
 
-void ComponentsManager::handleInput()
+void ComponentsManager::handleInput(const SDL_Event& _event)
 {
 	for (auto i : input)
-		i->handleInput();
+		i->handleInput(_event);
 }
 
 void ComponentsManager::render()
@@ -175,4 +205,10 @@ void ComponentsManager::updateSound()
 	// TO DO: updateSound method in SoundComponent
 	/* for (auto s : sound)
 		s->updateSound() */
+}
+
+void ComponentsManager::updateEvent()
+{
+	for (auto r : event)
+		r->checkEvent();
 }

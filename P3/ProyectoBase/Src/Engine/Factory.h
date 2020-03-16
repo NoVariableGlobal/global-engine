@@ -13,11 +13,12 @@ namespace Json {
 class Component;
 class Entity;
 class ComponentsManager;
+class Scene;
 
 class ComponentFactory
 {
 	public:
 		ComponentFactory() {};
-		virtual Component* create(Entity* father, Json::Value&, ComponentsManager* componentManager) = 0;
+		virtual Component* create(Entity* father, Json::Value&, Scene* scene) = 0;
 };
 
