@@ -76,57 +76,39 @@ public:
 
 	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
 	{
-		try {
-			Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
-			CameraRC* camera = new CameraRC();
+		Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
+		CameraRC* camera = new CameraRC();
 
-			camera->setFather(_father);
+		camera->setFather(_father);
 
-			camera->setCamera(_father->getId());
+		camera->setCamera(_father->getId());
 
-			if (!_data["node"].isString())
-			{
-				throw std::invalid_argument("CameraRC error: value is not string");
-			}
+		if (!_data["node"].isString()) throw std::exception("CameraRC: node is not a string");
 
-			camera->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString()));
-			camera->getSceneNode()->attachObject(camera->getCamera());
+		camera->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString()));
+		camera->getSceneNode()->attachObject(camera->getCamera());
 
-			if (!_data["viewportColour"].isArray())
-			{
-				throw std::invalid_argument("CameraRC error: not an array");
-			}
+		if (!_data["viewportColour"].isArray()) throw std::exception("CameraRC: viewportColour is not an array");
 
-			camera->setViewport(Ogre::Vector3(_data["viewportColour"][0].asInt(), _data["viewportColour"][1].asInt(), _data["viewportColour"][2].asInt()));
+		camera->setViewport(Ogre::Vector3(_data["viewportColour"][0].asInt(), _data["viewportColour"][1].asInt(), _data["viewportColour"][2].asInt()));
 
-			if (!_data["offset"].isArray()) 
-			{
-				throw std::invalid_argument("CameraRC error: not an array");
-			}
+		if (!_data["offset"].isArray()) throw std::exception("CameraRC: offset is not an array");
 
-			camera->setCameraOffset(Ogre::Vector3(_data["offset"][0].asInt(), _data["offset"][1].asInt(), _data["offset"][2].asInt()));
+		camera->setCameraOffset(Ogre::Vector3(_data["offset"][0].asInt(), _data["offset"][1].asInt(), _data["offset"][2].asInt()));
 
-			TransformComponent* transform = dynamic_cast<TransformComponent*>(_father->getComponent("TransformComponent"));
-			camera->getSceneNode()->setPosition(transform->getPosition());
+		TransformComponent* transform = dynamic_cast<TransformComponent*>(_father->getComponent("TransformComponent"));
+		camera->getSceneNode()->setPosition(transform->getPosition());
 
-			if (!_data["lookAt"].isArray() && !_data["lookAt"].isString())
-			{
-				throw std::invalid_argument("CameraRC error: value is not string");
-			}
+		if (!_data["lookAt"].isArray() && !_data["lookAt"].isString()) throw std::exception("CameraRC: lookAt is not an array. If you do not want an array, use a string 'none'");
 
-			else if (_data["lookAt"].isArray())
-				camera->lookAt(Ogre::Vector3(_data["lookAt"][0].asInt(), _data["lookAt"][1].asInt(), _data["lookAt"][2].asInt()));
+		else if (_data["lookAt"].isArray())
+			camera->lookAt(Ogre::Vector3(_data["lookAt"][0].asInt(), _data["lookAt"][1].asInt(), _data["lookAt"][2].asInt()));
 
 
-			_componentManager->addRC(camera);
+		_componentManager->addRC(camera);
 
-			return camera;
-		}
-		catch (std::invalid_argument const& invArg) {
-			printf("%s \n\n", invArg.what());
-			return NULL;
-		}
-	};
+		return camera;
+	}
 };
 
 REGISTER_FACTORY("CameraRC", CameraRC);

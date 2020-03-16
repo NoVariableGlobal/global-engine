@@ -11,7 +11,6 @@ Entity::~Entity()
 void Entity::addComponent(std::string name, Component* c) 
 {
 	components.insert({ name, c });
-	// Registrar componente en el manager
 }
 
 

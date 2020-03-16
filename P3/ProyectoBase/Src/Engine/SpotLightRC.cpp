@@ -48,42 +48,26 @@ public:
 
 	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
 	{
-		try {
-			Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
-			SpotLightRC* light = new SpotLightRC();
+		Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
+		SpotLightRC* light = new SpotLightRC();
 
-			light->setFather(_father);
+		light->setFather(_father);
 
-			light->setLight(_father->getId());
+		light->setLight(_father->getId());
 
-			if (!_data["node"].isString())
-			{
-				throw std::invalid_argument("Invalid argument is not string");
-			}
-			light->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString()));
-			light->getSceneNode()->attachObject(light->getLight());
+		if (!_data["node"].isString()) throw std::exception("SpotLightRC: node is not a string");
+		light->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString()));
+		light->getSceneNode()->attachObject(light->getLight());
 
-			if (!_data["colour"].isArray())
-			{
-				throw std::invalid_argument("Invalid argument is not string");
-			}
-			light->setColour(Ogre::Vector3(_data["colour"][0].asInt(), _data["colour"][1].asInt(), _data["colour"][2].asInt()));
+		if (!_data["colour"].isArray()) throw std::exception("SpotLightRC: colour is not an array");
+		light->setColour(Ogre::Vector3(_data["colour"][0].asInt(), _data["colour"][1].asInt(), _data["colour"][2].asInt()));
 
-			if (!_data["direction"].isArray())
-			{
-				throw std::invalid_argument("Invalid argument is not string");
-			}
-			light->setDirection(Ogre::Vector3(_data["direction"][0].asInt(), _data["direction"][1].asInt(), _data["direction"][2].asInt()));
+		if (!_data["direction"].isArray()) throw std::exception("SpotLightRC: direction is not an array");
+		light->setDirection(Ogre::Vector3(_data["direction"][0].asInt(), _data["direction"][1].asInt(), _data["direction"][2].asInt()));
 
-			_componentManager->addRC(light);
-
-			return light;
-		}
-		catch (std::invalid_argument const& invArg) {
-			printf("%s \n", invArg.what());
-			return NULL;
-		}
-	};
+		_componentManager->addRC(light);
+		return light;
+	}
 };
 
 REGISTER_FACTORY("SpotLightRC", SpotLightRC);

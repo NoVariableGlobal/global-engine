@@ -1,6 +1,6 @@
 #include "Game.h"
-#include "checkML.h"
-#include "OgreSDLContext.h"
+
+#include <iostream>
 
 #ifdef _DEBUG
 int main(int argc, char* args[])
@@ -10,10 +10,17 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine,
 #endif
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	
-	Game game;
-	game.init("Menu");
-	game.update();
+
+	try
+	{
+		Game game;
+		game.init("Menu");
+		game.update();
+	}
+	catch (std::exception & e)
+	{
+		std::cout << "ERROR: " << e.what();
+	}
 
 	return 0;
 }

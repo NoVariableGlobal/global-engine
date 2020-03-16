@@ -47,8 +47,6 @@ void OgreSDLContext::closeApp()
 
 	if (mMaterialListener != nullptr)
 		delete mMaterialListener;
-
-	//Ogre::FreeImageCodec::shutdown();
 }
 
 void OgreSDLContext::shutdown()
