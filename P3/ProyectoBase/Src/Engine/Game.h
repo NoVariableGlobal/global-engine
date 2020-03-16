@@ -28,7 +28,7 @@ class Game
 		/*
 		* Inicializa el juego
 		*/
-		void init(std::string _firstScene);
+		bool init(std::string _firstScene);
 		/*
 		* Maneja el bucle del juego
 		*/
