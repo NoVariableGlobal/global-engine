@@ -40,6 +40,7 @@ void Scene::update()
 {
 	componentManager->update();
 	componentManager->updateSound();
+
 	PhysicsContext::getInstance()->updateSimulation();
 }
 

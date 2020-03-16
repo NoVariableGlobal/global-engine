@@ -2,13 +2,12 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <SDL_events.h>
 
 namespace Json 
 {
     class Value;
 }
-
-#include <SDL_events.h>
 
 class Component;
 class Entity;

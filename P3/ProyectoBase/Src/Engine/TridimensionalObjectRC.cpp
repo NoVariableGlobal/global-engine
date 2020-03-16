@@ -15,7 +15,11 @@ TridimensionalObjectRC::TridimensionalObjectRC() {}
 
 TridimensionalObjectRC::~TridimensionalObjectRC() {}
 
-void TridimensionalObjectRC::render() {}
+void TridimensionalObjectRC::render() {
+	TransformComponent* transform = dynamic_cast<TransformComponent*>(father->getComponent("TransformComponent"));
+	getSceneNode()->setPosition(transform->getPosition());
+	getSceneNode()->setScale(transform->getScale());
+}
 
 void TridimensionalObjectRC::setMaterial(std::string material) {
 	entity->setMaterialName(material);

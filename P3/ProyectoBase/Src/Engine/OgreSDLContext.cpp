@@ -202,7 +202,6 @@ void OgreSDLContext::closeApp()
 
 	SDL_Quit();
 }
-
 void OgreSDLContext::shutdown()
 {
 	destroyRTShaderSystem();

@@ -6,8 +6,8 @@
 #include "PhysicsContext.h"
 
 #include <string>
-
 #include <SDL_events.h>
+
 Game::Game() {}
 
 
@@ -57,6 +57,7 @@ void Game::update()
 void Game::render()
 {
 	OgreSDLContext::getInstance()->renderLoop();
+	scene->render();
 }
 
 void Game::handleInput()
