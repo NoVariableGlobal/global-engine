@@ -26,16 +26,17 @@ private:
 	btBroadphaseInterface* broadphaseInterface;
 	btSequentialImpulseConstraintSolver* sequentialImpulseConstraintSolver;
 	btDefaultCollisionConfiguration* defaultCollisionConfiguration;
+  btDiscreteDynamicsWorld* discreteDynamicsWorld;
 	OgreDebugDrawer* mDebugDrawer;
 
 	std::vector<btRigidBody*> ribs;
 	std::vector<btBoxShape*> shapes;
 	std::vector<btMotionState*> states;
-public:
-	btDiscreteDynamicsWorld* discreteDynamicsWorld;
-	static PhysicsContext* instance();
 	PhysicsContext();
 	~PhysicsContext();
+public:
+	static PhysicsContext* getInstance();
+	static void init();
 
 	void init(float _gravity);
 	void destroyWorld();

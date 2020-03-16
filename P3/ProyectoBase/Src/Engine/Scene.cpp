@@ -14,8 +14,8 @@
 
 Scene::Scene() {
 	componentManager = new ComponentsManager();
-	PhysicsContext::instance()->init(0);
-	PhysicsContext::instance()->createRB(Ogre::Vector3(10,10,10), Ogre::Vector3(10, 10, 10), 1);
+	PhysicsContext::getInstance()->init(0);
+	PhysicsContext::getInstance()->createRB(Ogre::Vector3(10,10,10), Ogre::Vector3(10, 10, 10), 1);
 
 	Loader loader;
 	loader.readPrefabs(this);
@@ -27,8 +27,7 @@ Scene::~Scene()
 	clearPrefabs();
 
 	delete componentManager;
-
-	PhysicsContext::instance()->destroyWorld();
+	PhysicsContext::getInstance()->destroyWorld();
 }
 
 void Scene::load(std::string name) 
@@ -41,8 +40,7 @@ void Scene::update()
 {
 	componentManager->update();
 	componentManager->updateSound();
-
-	PhysicsContext::instance()->updateSimulation();
+	PhysicsContext::getInstance()->updateSimulation();
 }
 
 void Scene::render()

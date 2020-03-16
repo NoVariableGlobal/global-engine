@@ -16,8 +16,12 @@ void FactoriesFactory::clear()
 
 FactoriesFactory* FactoriesFactory::getInstance()
 {
-	if (_instance == nullptr) _instance = new FactoriesFactory();
 	return _instance;
+}
+
+void FactoriesFactory::init()
+{
+	_instance = new FactoriesFactory();
 }
 
 void FactoriesFactory::insert(std::string name, ComponentFactory* fac)

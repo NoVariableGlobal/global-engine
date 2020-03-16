@@ -29,8 +29,12 @@ OgreSDLContext::OgreSDLContext() :
 
 OgreSDLContext* OgreSDLContext::getInstance()
 {
-	if (_instance == nullptr) _instance = new OgreSDLContext();
 	return _instance;
+}
+
+void OgreSDLContext::init()
+{
+	_instance = new OgreSDLContext();
 }
 
 
