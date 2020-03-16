@@ -3,9 +3,9 @@
 #include "Loader.h"
 #include "FactoriesFactory.h"
 #include "OgreSDLContext.h"
+#include "PhysicsContext.h"
 
 #include <string>
-
 #include <SDL_events.h>
 
 Game::Game() {}
@@ -14,13 +14,16 @@ Game::Game() {}
 Game::~Game()
 {
 	delete scene;
-	scene = nullptr;
+
 	FactoriesFactory::getInstance()->clear();
 	OgreSDLContext::getInstance()->erase();
 }
 
 void Game::initContext()
 {
+	FactoriesFactory::init();
+	OgreSDLContext::init();
+	PhysicsContext::init();
 	OgreSDLContext::getInstance()->initApp("Test");
 }
 
@@ -70,5 +73,6 @@ void Game::handleInput()
 void Game::setScene(std::string _sceneName)
 {
 	scene->clearComponentsManager();
+	scene->clearEntities();
 	scene->load(scenesQueue.find(_sceneName)->second);
 }

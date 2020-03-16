@@ -8,10 +8,14 @@
 
 PhysicsContext* PhysicsContext::_instance = nullptr;
 
-PhysicsContext* PhysicsContext::instance()
+PhysicsContext* PhysicsContext::getInstance()
 {
-	if (_instance == nullptr) _instance = new PhysicsContext();
 	return _instance;
+}
+
+void PhysicsContext::init()
+{
+	_instance = new PhysicsContext();
 }
 
 PhysicsContext::PhysicsContext()
@@ -92,6 +96,11 @@ void PhysicsContext::updateSimulation()
 	// TO DO: check collisions
 }
 
+btDiscreteDynamicsWorld* PhysicsContext::getWorld()
+{
+	return discreteDynamicsWorld;
+}
+
 btRigidBody* PhysicsContext::createRB(Ogre::Vector3 pos, Ogre::Vector3 shape, float mass)
 {
 	btTransform t;
@@ -101,6 +110,7 @@ btRigidBody* PhysicsContext::createRB(Ogre::Vector3 pos, Ogre::Vector3 shape, fl
 	btMotionState* motion = new btDefaultMotionState(t);
 	btRigidBody::btRigidBodyConstructionInfo info(mass, motion, box);
 	btRigidBody* rb = new btRigidBody(info);
+
 
 	discreteDynamicsWorld->addRigidBody(rb);
 	ribs.push_back(rb);

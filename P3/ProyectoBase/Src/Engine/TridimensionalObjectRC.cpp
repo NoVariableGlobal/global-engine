@@ -8,6 +8,7 @@
 #include "OgreEntity.h"
 #include "OgreSDLContext.h"
 #include "OgreSceneManager.h"
+#include "Scene.h"
 
 // COMPONENT CODE
 TridimensionalObjectRC::TridimensionalObjectRC() {}
@@ -29,12 +30,13 @@ class TridimensionalObjectRCFactory : public ComponentFactory {
 public:
 	TridimensionalObjectRCFactory() {};
 
-	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
+	virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
 	{
 		Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
 		TridimensionalObjectRC* tridimensionalObject = new TridimensionalObjectRC();
 		
 		tridimensionalObject->setFather(_father);
+		tridimensionalObject->setScene(scene);
 
 		if (!_data["mesh"].isString()) { /*EXCEPCION*/ }
 		tridimensionalObject->setOgreEntity(mSM->createEntity(_data["mesh"].asString()));
@@ -56,7 +58,7 @@ public:
 		//Ogre::Vector3 ori = transform->getOrientation();
 		//tridimensionalObject->getSceneNode()->setOrientation(0, ori.x, ori.y, ori.z);
 
-		_componentManager->addRC(tridimensionalObject);
+		scene->getComponentsManager()->addRC(tridimensionalObject);
 		return tridimensionalObject;
 	};
 };

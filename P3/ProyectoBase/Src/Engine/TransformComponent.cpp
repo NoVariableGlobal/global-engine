@@ -6,6 +6,7 @@
 #include "Factory.h"
 #include "FactoriesFactory.h"
 #include "ComponentsManager.h"
+#include "Scene.h"
 
 TransformComponent::TransformComponent() 
 {
@@ -35,11 +36,12 @@ void TransformComponent::setScale(Ogre::Vector3 s) { *_scale = s; }
 class TransformComponentFactory : public ComponentFactory {
 public:
 	TransformComponentFactory() {};
-	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
+	virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
 	{
 		TransformComponent* transformComponent = new TransformComponent();
 
 		transformComponent->setFather(_father);
+		transformComponent->setScene(scene);
 
 		if (!_data["position"].isArray()) { /*EXCEPCION*/ }
 		transformComponent->setPosition(Ogre::Vector3(_data["position"][0].asFloat(), _data["position"][1].asFloat(), _data["position"][2].asFloat()));
@@ -50,7 +52,8 @@ public:
 		if (!_data["scale"].isArray()) { /*EXCEPCION*/ }
 		transformComponent->setScale(Ogre::Vector3(_data["scale"][0].asFloat(), _data["scale"][1].asFloat(), _data["scale"][2].asFloat()));
 
-		_componentManager->addTC(transformComponent);
+		scene->getComponentsManager()->addTC(transformComponent);
+
 		return transformComponent;
 	};
 };
