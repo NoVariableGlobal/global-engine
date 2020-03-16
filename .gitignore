@@ -35,10 +35,11 @@
 inter/
 test/
 
-*/**/bin/*.exe
-*/**/bin/*.log
-*/**/bin/*.ilk
-*/**/bin/*.dll
-*/**/bin/*.iobj
-*/**/bin/*.ipdb
-*/**/bin/*.pdb
+*.exe
+*.log
+*.ilk
+*.dll
+*.iobj
+*.ipdb
+*.pdb
+*.lib
