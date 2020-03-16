@@ -7,13 +7,13 @@ namespace Ogre {
 	typedef Vector<3, Real> Vector3;
 }
 
-class TopDownPlayerMovementIC : public InputComponent
+class PlayerMovementIC : public InputComponent
 {
 private:
 	float _speed;
 public:
-	TopDownPlayerMovementIC();
-	virtual ~TopDownPlayerMovementIC();
+	PlayerMovementIC();
+	virtual ~PlayerMovementIC();
 	virtual void handleInput(const SDL_Event& _event);
 
 	void setMovementSpeed(float speed);

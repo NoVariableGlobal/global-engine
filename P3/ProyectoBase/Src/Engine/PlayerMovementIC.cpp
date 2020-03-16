@@ -1,24 +1,25 @@
-#include "TopDownPlayerMovementIC.h"
+#include "PlayerMovementIC.h"
 #include <SDL.h>
 #include "OgreRoot.h"
 #include "Factory.h"
 #include "FactoriesFactory.h"
 #include "Component.h"
 #include "ComponentsManager.h"
+#include "Scene.h"
 #include <json.h>
 #include "TransformComponent.h"
 #include <Entity.h>
 #include <iostream>
 
-TopDownPlayerMovementIC::TopDownPlayerMovementIC()
+PlayerMovementIC::PlayerMovementIC()
 {
 }
 
-TopDownPlayerMovementIC::~TopDownPlayerMovementIC()
+PlayerMovementIC::~PlayerMovementIC()
 {
 }
 
-void TopDownPlayerMovementIC::handleInput(const SDL_Event& _event)
+void PlayerMovementIC::handleInput(const SDL_Event& _event)
 {
 	if (_event.type == SDL_KEYDOWN) {
 		TransformComponent* transform = dynamic_cast<TransformComponent*>(father->getComponent("TransformComponent"));
@@ -41,26 +42,26 @@ void TopDownPlayerMovementIC::handleInput(const SDL_Event& _event)
 	}
 }
 
-void TopDownPlayerMovementIC::setMovementSpeed(float speed)
+void PlayerMovementIC::setMovementSpeed(float speed)
 {
 	_speed = speed;
 }
 
-class TopDownPlayerMovementICFactory : public ComponentFactory {
+class PlayerMovementICFactory : public ComponentFactory {
 public:
-	TopDownPlayerMovementICFactory() {};
-	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
+	PlayerMovementICFactory() {};
+	virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
 	{
-		TopDownPlayerMovementIC* playerMovement = new TopDownPlayerMovementIC();
+		PlayerMovementIC* playerMovement = new PlayerMovementIC();
 
 		playerMovement->setFather(_father);
 
 		playerMovement->setMovementSpeed(_data["speed"].asFloat());
 
-		_componentManager->addIC(playerMovement);
+		scene->getComponentsManager()->addIC(playerMovement);
 		return playerMovement;
 	};
 };
 
-REGISTER_FACTORY("TopDownPlayerMovementIC", TopDownPlayerMovementIC);
+REGISTER_FACTORY("PlayerMovementIC", PlayerMovementIC);
 

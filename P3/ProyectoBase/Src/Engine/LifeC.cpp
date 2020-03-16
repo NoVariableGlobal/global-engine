@@ -5,6 +5,7 @@
 #include "Factory.h"
 #include "FactoriesFactory.h"
 #include "ComponentsManager.h"
+#include "Scene.h"
 
 #include <json.h>
 
@@ -47,7 +48,7 @@ void LifeC::heal(float _heal)
 class LifeCFactory : public ComponentFactory {
 public:
 	LifeCFactory() {};
-	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
+	virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
 	{
 		LifeC* life = new LifeC();
 
@@ -57,7 +58,7 @@ public:
 		life->setTotalLife(_data["life"].asInt());
 		life->setLife(_data["life"].asInt());
 
-		_componentManager->addTC(life);
+		scene->getComponentsManager()->addDC(life);
 		return life;
 	};
 };

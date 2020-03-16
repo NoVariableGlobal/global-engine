@@ -103,7 +103,7 @@
           }
         },
         {
-          "type": "TopDownPlayerMovementIC",
+          "type": "PlayerMovementIC",
           "attributes": {
             "speed": 2
           }

@@ -21,7 +21,6 @@ Game::~Game()
 
 void Game::initContext()
 {
-	FactoriesFactory::init();
 	OgreSDLContext::init();
 	PhysicsContext::init();
 	OgreSDLContext::getInstance()->initApp("Test");

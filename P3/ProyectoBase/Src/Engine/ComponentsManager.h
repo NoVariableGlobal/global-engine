@@ -45,11 +45,6 @@ public:
 	void addSC(SoundComponent* _soundComponent);
 	// delete sound component from list
 	void deleteSC(SoundComponent* _soundComponent);
-
-	// add regular components to list
-	void addTC(Component* _transformComponent);
-	// delete regular components from list
-	void deleteTC(Component* _transformComponent);
   
 	// add deleteable component to list
 	void addDC(Component* _deleteableComponent);

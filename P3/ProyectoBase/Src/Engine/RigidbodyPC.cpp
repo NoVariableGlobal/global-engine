@@ -17,7 +17,7 @@
 
 RigidbodyPC::RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape, float _mass, bool _trigger)
 {
-	body = PhysicsContext::instance()->createRB(_pos, _shape, _mass);
+	body = PhysicsContext::getInstance()->createRB(_pos, _shape, _mass);
 	setTrigger(_trigger);
 }
 
