@@ -11,7 +11,7 @@ GunC::~GunC()
 
 bool GunC::reload() // Boolean method to return if reload has been performed
 {
-	if (bulletchamber != bulletchamberMax && munition > 0) {
+	if (bulletchamber != bulletchamberMax && munition >= 0) {
 		int gunreload = bulletchamberMax - bulletchamber;
 		if (gunreload > munition)
 			gunreload = munition;
