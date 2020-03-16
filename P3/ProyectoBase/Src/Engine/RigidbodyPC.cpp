@@ -15,10 +15,9 @@
 #include <json.h>
 
 
-RigidbodyPC::RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape, float _mass, bool _trigger)
+RigidbodyPC::RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape, float _mass)
 {
 	body = PhysicsContext::getInstance()->createRB(_pos, _shape, _mass);
-	setTrigger(_trigger);
 }
 
 RigidbodyPC::~RigidbodyPC()
@@ -118,13 +117,36 @@ public:
 
 	virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
 	{
-		RigidbodyPC* rb = new RigidbodyPC(Ogre::Vector3(_data["position"][0].asInt(), _data["position"][1].asInt(), _data["position"][2].asInt()),
-											Ogre::Vector3(_data["shape"][0].asInt(), _data["shape"][1].asInt(), _data["shape"][2].asInt()), _data["mass"].asFloat(), _data["trigger"].asBool());
-    
+		if(!_data["position"].isArray() || !_data["shape"].isArray() || !_data["mass"].isInt()) throw std::exception("RigidbodyPC: position/shape is not an array or mass is not an int");
+
+		RigidbodyPC* rb = new RigidbodyPC(Ogre::Vector3(_data["position"][0].asFloat(), _data["position"][1].asFloat(), _data["position"][2].asFloat()),
+											Ogre::Vector3(_data["shape"][0].asFloat(), _data["shape"][1].asFloat(), _data["shape"][2].asFloat()), _data["mass"].asFloat());
+
+		scene->getComponentsManager()->addPC(rb);
+
+		if (!_data["gravity"].isArray()) throw std::exception("RigidbodyPC: gravity is not an array");
+			rb->setGravity(Ogre::Vector3(_data["gravity"][0].asFloat(), _data["gravity"][1].asFloat(), _data["gravity"][2].asFloat()));
+
+
+		if (!_data["trigger"].isBool()) throw std::exception("RigidbodyPC: trigger is not a boolean");
+			rb->setTrigger(_data["trigger"].asBool());
+
+		if (!_data["kinematic"].isBool()) throw std::exception("RigidbodyPC: kinematic is not a boolean");
+			rb->setKinematic(_data["kinematic"].asBool());
+
+		if (!_data["static"].isBool()) throw std::exception("RigidbodyPC: static is not a boolean");
+			rb->setStatic(_data["static"].asBool());
+
+		if (!_data["friction"].isInt()) throw std::exception("RigidbodyPC: friction is not an int");
+			rb->setFriction(_data["friction"].asFloat());
+
+		if (!_data["restitution"].isInt()) throw std::exception("RigidbodyPC: restitution is not an int");
+			rb->setRestitution(_data["restitution"].asFloat());
+
 		rb->setFather(_father);
 		rb->setScene(scene);
 
-		scene->getComponentsManager()->addPC(rb);
+
 		return rb;
 	};
 };

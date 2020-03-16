@@ -34,6 +34,7 @@ public:
 	{
 		Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
 		TridimensionalObjectRC* tridimensionalObject = new TridimensionalObjectRC();
+		scene->getComponentsManager()->addRC(tridimensionalObject);
 
 		tridimensionalObject->setFather(_father);
 		tridimensionalObject->setScene(scene);
@@ -54,11 +55,6 @@ public:
 		tridimensionalObject->getSceneNode()->setPosition(transform->getPosition());
 		tridimensionalObject->getSceneNode()->setScale(transform->getScale());
 
-		// Pendiente de unificar un metodo con las fisicas y otros que necesiten rotacion
-		//Ogre::Vector3 ori = transform->getOrientation();
-		//tridimensionalObject->getSceneNode()->setOrientation(0, ori.x, ori.y, ori.z);
-
-		scene->getComponentsManager()->addRC(tridimensionalObject);
 		return tridimensionalObject;
 	}
 };

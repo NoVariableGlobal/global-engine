@@ -51,6 +51,7 @@ public:
 	{
 		Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
 		SpotLightRC* light = new SpotLightRC();
+		scene->getComponentsManager()->addRC(light);
 
 		light->setFather(_father);
 		light->setScene(scene);
@@ -67,7 +68,7 @@ public:
 		if (!_data["direction"].isArray()) throw std::exception("SpotLightRC: direction is not an array");
 		light->setDirection(Ogre::Vector3(_data["direction"][0].asFloat(), _data["direction"][1].asFloat(), _data["direction"][2].asFloat()));
 
-		scene->getComponentsManager()->addRC(light);
+
 
 		return light;
 	}

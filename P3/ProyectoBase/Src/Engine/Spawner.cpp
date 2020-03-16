@@ -77,7 +77,7 @@ Entity * Spawner::spawnPrefab()
   return scene->getInstanceOf(toInstantiate._id, toInstantiate._count++);
 }
 
-Spawner::Spawn Spawner::binarySearch(int first, int last, float value)
+Spawn Spawner::binarySearch(int first, int last, float value)
 {
   if (last >= first) {
     int center = first + (last - first) / 2;

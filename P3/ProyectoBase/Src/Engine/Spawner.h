@@ -5,18 +5,19 @@
 
 class Entity;
 
-class Spawner :
-  public EventComponent
+struct Spawn
 {
-protected:
-
-  struct Spawn
-  {
     std::string _id;
     float _chance;
     float _additiveChance;
     unsigned int _count = 0;
-  };
+};
+
+class Spawner : public EventComponent
+{
+protected:
+
+    Spawn mySpawn;
 
   std::vector<Spawn> _spawns;
   float _spawnCooldown;

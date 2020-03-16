@@ -79,6 +79,7 @@ public:
 	{
 		Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
 		CameraRC* camera = new CameraRC();
+		scene->getComponentsManager()->addRC(camera);
 
 		camera->setFather(_father);
 		camera->setScene(scene);
@@ -102,8 +103,6 @@ public:
 		if (!_data["lookAt"].isArray() && !_data["lookAt"].isString()) throw std::exception("CameraRC: lookAt is not an array. If you do not want an array, use a string 'none'");
 		else if(_data["lookAt"].isArray())
 			camera->lookAt(Ogre::Vector3(_data["lookAt"][0].asFloat(), _data["lookAt"][1].asFloat(), _data["lookAt"][2].asFloat()));
-
-		scene->getComponentsManager()->addRC(camera);
 
 		return camera;
 	}

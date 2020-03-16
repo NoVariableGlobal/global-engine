@@ -53,12 +53,14 @@ public:
 	virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
 	{
 		PlayerMovementIC* playerMovement = new PlayerMovementIC();
+		scene->getComponentsManager()->addIC(playerMovement);
 
 		playerMovement->setFather(_father);
 
+		if(!_data["speed"].asInt()) throw std::exception("PlayerMovementIC: speed is not an int");
 		playerMovement->setMovementSpeed(_data["speed"].asFloat());
 
-		scene->getComponentsManager()->addIC(playerMovement);
+
 		return playerMovement;
 	};
 };

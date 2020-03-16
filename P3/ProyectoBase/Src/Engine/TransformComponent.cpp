@@ -39,6 +39,7 @@ public:
 	virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
 	{
 		TransformComponent* transformComponent = new TransformComponent();
+		scene->getComponentsManager()->addDC(transformComponent);
 
 		transformComponent->setFather(_father);
 		transformComponent->setScene(scene);
@@ -52,7 +53,7 @@ public:
 		if (!_data["scale"].isArray()) throw std::exception("TransformComponent: scale is not an array");
 		transformComponent->setScale(Ogre::Vector3(_data["scale"][0].asFloat(), _data["scale"][1].asFloat(), _data["scale"][2].asFloat()));
 
-		scene->getComponentsManager()->addDC(transformComponent);
+
 
 		return transformComponent;
 	}

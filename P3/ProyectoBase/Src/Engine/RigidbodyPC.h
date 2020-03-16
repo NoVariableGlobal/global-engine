@@ -13,12 +13,12 @@ class btRigidBody;
 class RigidbodyPC : public PhysicsComponent {
 private:
 	btRigidBody* body = nullptr;
-	bool trigger;
-	bool kinematic;
-	bool stat;
+	bool trigger = false;
+	bool kinematic = false;
+	bool stat = false;
 	bool Collision = false;
 public:
-	RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape, float _mass, bool _trigger);
+	RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape, float _mass);
 	~RigidbodyPC();
 	virtual void update();
 

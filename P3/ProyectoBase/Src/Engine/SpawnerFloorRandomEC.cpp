@@ -1,24 +1,21 @@
-#include "SpawnerFloorRandom.h"
+#include "SpawnerFloorRandomEC.h"
 #include "Entity.h"
 //#include "FloorComponent.h"
 #include "TransformComponent.h"
 #include "Scene.h"
 #include "OgreVector3.h"
 
-void SpawnerFloorRandom::checkEvent()
+void SpawnerFloorRandomEC::checkEvent()
 {
   /*if (first) {
     first = false;
     floorDimensions = staticCast<FloorComponent*>(father->getComponent("FloorComponent"))->getDimensions();
   }*/
 
-  Entity* newEntity;
   if (timeToSpawn()) {
-    newEntity = spawnPrefab();
+    Entity* newEntity = spawnPrefab();
 
     TransformComponent* spawnTransform = static_cast<TransformComponent*> (newEntity->getComponent("TransformComponent"));
-    scene->addEntity(newEntity);
-
 
     float x = floorDimensions.x + static_cast <float> (rand()) / static_cast <float> (RAND_MAX) * floorDimensions.z;
     float z = floorDimensions.y + static_cast <float> (rand()) / static_cast <float> (RAND_MAX) * floorDimensions.w;

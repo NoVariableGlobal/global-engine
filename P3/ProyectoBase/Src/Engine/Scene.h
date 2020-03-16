@@ -57,7 +57,4 @@ class Scene
       ComponentsManager* getComponentsManager();
       // Clear the Components Manager
       void clearComponentsManager();
-
-	  // Clear all entities of the Manager
-	  void clearEntities();
 };

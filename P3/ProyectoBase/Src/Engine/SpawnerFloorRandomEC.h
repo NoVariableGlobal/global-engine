@@ -2,8 +2,7 @@
 #include "Spawner.h"
 #include "OgreVector4.h"
 
-class SpawnerFloorRandom :
-  public Spawner
+class SpawnerFloorRandomEC : public Spawner
 {
 private:
   Ogre::Vector4f floorDimensions = Ogre::Vector4f();

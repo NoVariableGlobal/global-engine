@@ -44,7 +44,7 @@ bool Game::init(std::string _firstScene)
 	}
 	catch (std::exception & e)
 	{
-		throw std::exception("init error");
+		std::cout << "init ERROR: " << e.what();
 		return false;
 	}
 }

@@ -33,7 +33,7 @@ Scene::~Scene()
 void Scene::load(std::string name) 
 {  
 	Loader loader;
-  loader.readObjects(name, this);
+    loader.readObjects(name, this);
 }
 
 void Scene::update() 
@@ -114,14 +114,5 @@ ComponentsManager* Scene::getComponentsManager()
 void Scene::clearComponentsManager()
 {
 	componentManager->clearComponents();
-	entities.clear();
-}
-
-void Scene::clearEntities()
-{
-	for (auto it : entities)
-	{
-		delete it.second;
-	}
 	entities.clear();
 }
