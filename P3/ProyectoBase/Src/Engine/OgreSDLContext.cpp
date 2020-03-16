@@ -12,74 +12,19 @@
 #include <SDL_syswm.h>
 
 #include <iostream>
-#include "checkML.h"
+
 #include "OgreViewport.h"
 #include "OgreRenderWindow.h"
 #include "OgreEntity.h"
 #include "RTSSDefaultTechniqueListener.h"
 #pragma warning(disable : 4996)
 #include "OgreSTBICodec.h"
+
 OgreSDLContext* OgreSDLContext::_instance = nullptr;
 
 OgreSDLContext::OgreSDLContext() :
 	mRoot(0), mResourcesCfg(Ogre::BLANKSTRING), mPluginsCfg(Ogre::BLANKSTRING)
 {
-}
-
-void OgreSDLContext::erase()
-{
-	closeApp();
-	delete _instance;
-}
-
-void OgreSDLContext::closeApp()
-{
-	if (mRoot != nullptr)
-		mRoot->saveConfig();
-
-	shutdown();
-
-	mRoot->destroySceneManager(mSM);
-
-	delete mRoot;
-	mRoot = nullptr;
-
-	if (mMaterialListener != nullptr)
-		delete mMaterialListener;
-
-	//Ogre::FreeImageCodec::shutdown();
-	Ogre::STBIImageCodec::shutdown();
-}
-
-void OgreSDLContext::shutdown()
-{
-	destroyRTShaderSystem();
-
-	if (mWindow.render != nullptr)
-	{
-		mRoot->destroyRenderTarget(mWindow.render);
-		mWindow.render = nullptr;
-	}
-
-	if (mWindow.native != nullptr)
-	{
-		SDL_DestroyWindow(mWindow.native);
-		SDL_QuitSubSystem(SDL_INIT_VIDEO);
-		mWindow.native = nullptr;
-	}
-}
-
-void OgreSDLContext::destroyRTShaderSystem()
-{
-	// restore default scheme.
-	Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
-
-	// destroy RTShader system.
-	if (mShaderGenerator != nullptr)
-	{
-		Ogre::RTShader::ShaderGenerator::getSingleton().destroy();
-		mShaderGenerator = nullptr;
-	}
 }
 
 OgreSDLContext* OgreSDLContext::getInstance()
@@ -115,7 +60,6 @@ void OgreSDLContext::createRoot()
 
 	// create an instance of the root object
 	mRoot = new Ogre::Root(mPluginsCfg, "ogre.cfg");
-	//Ogre::FreeImageCodec::startup();
 	Ogre::STBIImageCodec::startup();
 	mRoot->restoreConfig();
 	mRoot->initialise(false);
@@ -175,13 +119,19 @@ void OgreSDLContext::createWindow(std::string appName)
 	miscParams["vsync"] = ropts["VSync"].currentValue;
 	miscParams["gamma"] = ropts["sRGB Gamma Conversion"].currentValue;
 
-	if (!SDL_WasInit(SDL_INIT_VIDEO)) SDL_InitSubSystem(SDL_INIT_VIDEO);
+
+	if (!SDL_WasInit(SDL_INIT_VIDEO | SDL_INIT_TIMER)) 
+		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) != 0)
+		{
+			SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
+			/*EXCEPCION*/
+		}
 
 	int flags = SDL_WINDOW_RESIZABLE;
 	if (ropts["Full Screen"].currentValue == "Yes")
 		flags = SDL_WINDOW_FULLSCREEN;
 
-	mWindow.native = SDL_CreateWindow(appName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, flags);
+	mWindow.native = SDL_CreateWindow(appName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, flags);
 
 	SDL_SysWMinfo wmInfo;
 	SDL_VERSION(&wmInfo.version);
@@ -227,14 +177,68 @@ void OgreSDLContext::initialiseRTShaderSystem()
 	}
 }
 
-void OgreSDLContext::pollEvents()   // from frameStarted
+void OgreSDLContext::erase()
+{
+	closeApp();
+	delete _instance;
+}
+
+void OgreSDLContext::closeApp()
+{
+	if (mRoot != nullptr)
+		mRoot->saveConfig();
+
+	shutdown();
+
+	mRoot->destroySceneManager(mSM);
+
+	delete mRoot;
+	mRoot = nullptr;
+
+	if (mMaterialListener != nullptr)
+		delete mMaterialListener;
+
+	Ogre::STBIImageCodec::shutdown();
+
+	SDL_Quit();
+}
+
+void OgreSDLContext::shutdown()
+{
+	destroyRTShaderSystem();
+
+	if (mWindow.render != nullptr)
+	{
+		mRoot->destroyRenderTarget(mWindow.render);
+		mWindow.render = nullptr;
+	}
+
+	if (mWindow.native != nullptr)
+	{
+		SDL_DestroyWindow(mWindow.native);
+		SDL_QuitSubSystem(SDL_INIT_VIDEO | SDL_INIT_TIMER);
+		mWindow.native = nullptr;
+	}
+}
+
+void OgreSDLContext::destroyRTShaderSystem()
+{
+	// restore default scheme.
+	Ogre::MaterialManager::getSingleton().setActiveScheme(Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
+
+	// destroy RTShader system.
+	if (mShaderGenerator != nullptr)
+	{
+		Ogre::RTShader::ShaderGenerator::getSingleton().destroy();
+		mShaderGenerator = nullptr;
+	}
+}
+
+bool OgreSDLContext::pollEvents(const SDL_Event event)   // from frameStarted
 {
 	if (mWindow.native == nullptr)
-		return;  // SDL events not initialized
+		return exit;  // SDL events not initialized
 
-	SDL_Event event;
-	while (SDL_PollEvent(&event))
-	{
 		switch (event.type)
 		{
 			case SDL_QUIT:
@@ -248,7 +252,6 @@ void OgreSDLContext::pollEvents()   // from frameStarted
 					if (event.window.event == SDL_WINDOWEVENT_RESIZED)
 					{
 						Ogre::RenderWindow* win = mWindow.render;
-						//win->resize(event.window.data1, event.window.data2);  // IG2: ERROR 
 						win->windowMovedOrResized();
 					}
 				}
@@ -257,7 +260,8 @@ void OgreSDLContext::pollEvents()   // from frameStarted
 			default:
 				break;
 		}
-	}
+
+	return exit;
 }
 
 Ogre::SceneManager* OgreSDLContext::getSceneManager()
@@ -270,9 +274,7 @@ Ogre::RenderWindow* OgreSDLContext::getRenderWindow()
 	return mWindow.render;
 }
 
-bool OgreSDLContext::renderLoop()
+void OgreSDLContext::renderLoop()
 {
 	mRoot->renderOneFrame();
-	pollEvents();
-	return exit;
 }

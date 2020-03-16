@@ -1,8 +1,8 @@
 #pragma once
-#include <string>
 #include "PhysicsComponent.h"
 
-#include "checkML.h"
+#include <string>
+
 namespace Ogre
 {
 	typedef float Real;

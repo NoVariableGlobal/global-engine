@@ -5,6 +5,7 @@
 */
 
 class Entity;
+class Scene;
 
 class Component {
 private:
@@ -13,6 +14,7 @@ private:
 
 protected:
 	Entity* father = nullptr;
+	Scene* scene = nullptr;
 
 public:
 	Component();
@@ -24,4 +26,5 @@ public:
 	void toggleActive();
 
 	void setFather(Entity* father);
+	void setScene(Scene* scene);
 };

@@ -26,9 +26,9 @@ private:
 	btBroadphaseInterface* broadphaseInterface;
 	btSequentialImpulseConstraintSolver* sequentialImpulseConstraintSolver;
 	btDefaultCollisionConfiguration* defaultCollisionConfiguration;
+  btDiscreteDynamicsWorld* discreteDynamicsWorld;
 	OgreDebugDrawer* mDebugDrawer;
 
-	btDiscreteDynamicsWorld* discreteDynamicsWorld;
 	std::vector<btRigidBody*> ribs;
 	std::vector<btBoxShape*> shapes;
 	std::vector<btMotionState*> states;

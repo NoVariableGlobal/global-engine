@@ -5,6 +5,7 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "OgreSDLContext.h"
+#include "Scene.h"
 
 #include <OgreSceneManager.h>
 #include <Ogre.h>
@@ -69,12 +70,13 @@ class CameraRCFactory : public ComponentFactory {
 public:
 	CameraRCFactory() {};
 
-	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
+	virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
 	{
 		Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
 		CameraRC* camera = new CameraRC();
 
 		camera->setFather(_father);
+		camera->setScene(scene);
 
 		camera->setCamera(_father->getId());
 
@@ -96,7 +98,7 @@ public:
 			camera->lookAt(Ogre::Vector3(_data["lookAt"][0].asFloat(), _data["lookAt"][1].asFloat(), _data["lookAt"][2].asFloat()));
 
 
-		_componentManager->addRC(camera);
+		scene->getComponentsManager()->addRC(camera);
 
 		return camera;
 	};

@@ -13,7 +13,7 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine,
 
     Game game;
     game.init("Menu");
-    game.update();
+    game.run();
 
     return 0;
 }

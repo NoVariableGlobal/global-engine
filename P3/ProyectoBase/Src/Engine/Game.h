@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <map>
-#include "checkML.h"
 
 class Scene;
 class Loader;
@@ -21,20 +20,20 @@ class Game
 		Game();
 		~Game();
 
-		/*
-		* Inicializa el contexto de Ogre
-		*/
+		// initialise OgreSDL
 		void initContext();
-		/*
-		* Inicializa el juego
-		*/
+		// initialise the game
 		void init(std::string _firstScene);
-		/*
-		* Maneja el bucle del juego
-		*/
+		
+		// loop of the game
+		void run();
+		// update the game
 		void update();
-		/*
-		* Cambia la escena actual por la nueva
-		*/
+		// render the entities of the game
+		void render();
+		// handle the input of the game
+		void handleInput();
+		
+		// change the current scene
 		void setScene(std::string _sceneName);
 };

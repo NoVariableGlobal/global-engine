@@ -20,6 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Application.cpp" />
+    <ClCompile Include="..\..\Src\Engine\GunC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\PlayerShotIC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\LifeC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\EventContext.cpp" />
+    <ClCompile Include="..\..\Src\Engine\RigidbodyPC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\Spawner.cpp" />
+    <ClCompile Include="..\..\Src\Engine\SpawnerEnemies.cpp" />
+    <ClCompile Include="..\..\Src\Engine\SpawnerFloorRandom.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpotLightRC.cpp" />
     <ClCompile Include="..\..\Src\Engine\OgreSDLContext.cpp" />
     <ClCompile Include="..\..\src\Engine\CameraRC.cpp" />
@@ -43,6 +51,14 @@
     <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\Engine\GunC.h" />
+    <ClInclude Include="..\..\Src\Engine\PlayerShotIC.h" />
+    <ClInclude Include="..\..\Src\Engine\LifeC.h" />
+    <ClInclude Include="..\..\Src\Engine\EventComponent.h" />
+    <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
+    <ClInclude Include="..\..\Src\Engine\Spawner.h" />
+    <ClInclude Include="..\..\Src\Engine\SpawnerEnemies.h" />
+    <ClInclude Include="..\..\Src\Engine\SpawnerFloorRandom.h" />
     <ClInclude Include="..\..\Src\Engine\SpotLightRC.h" />
     <ClInclude Include="..\..\Src\Engine\OgreSDLContext.h" />
     <ClInclude Include="..\..\src\Engine\CameraRC.h" />
@@ -133,7 +149,7 @@
     <TargetName>$(ProjectName)_d</TargetName>
     <IntDir>$(SolutionDir)inter\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
     <IncludePath>$(SolutionDir)lib\SDL2-2.0.10\include;$(SolutionDir)src\$(ProjectName);$(SolutionDir)lib\fmod\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)lib\bullet3-2.89\build\lib\Debug;$(SolutionDir)lib\SDL2-2.0.10\lib\$(Platform);$(SolutionDir)lib\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)lib\fmod\lib;$(SolutionDir)lib\jsoncpp-master\build\src\lib_json\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib\bullet3-2.89\build\lib\$(Configuration);$(SolutionDir)lib\SDL2-2.0.10\lib\$(Platform);$(SolutionDir)lib\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)lib\fmod\lib;$(SolutionDir)lib\jsoncpp-master\build\src\lib_json\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -147,7 +163,7 @@
     <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)inter\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
     <IncludePath>$(SolutionDir)lib\SDL2-2.0.10\include;$(SolutionDir)src\$(ProjectName);$(SolutionDir)lib\fmod\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)lib\bullet3-2.89\build\lib\Release;$(SolutionDir)lib\SDL2-2.0.10\lib\$(Platform);$(SolutionDir)lib\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)lib\fmod\lib;$(SolutionDir)lib\jsoncpp-master\build\src\lib_json\$(Configuration);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib\bullet3-2.89\build\lib\$(Configuration);$(SolutionDir)lib\SDL2-2.0.10\lib\$(Platform);$(SolutionDir)lib\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)lib\fmod\lib;$(SolutionDir)lib\jsoncpp-master\build\src\lib_json\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
