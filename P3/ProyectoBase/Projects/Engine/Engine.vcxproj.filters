@@ -27,6 +27,7 @@
     <ClCompile Include="..\..\Src\Engine\RigidbodyPC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerEnemies.cpp" />
     <ClCompile Include="..\..\Src\Engine\Spawner.cpp" />
+    <ClCompile Include="..\..\Src\Engine\SpawnerFloorRandom.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\SpotLightRC.h" />
@@ -55,5 +56,6 @@
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerEnemies.h" />
     <ClInclude Include="..\..\Src\Engine\Spawner.h" />
+    <ClInclude Include="..\..\Src\Engine\SpawnerFloorRandom.h" />
   </ItemGroup>
 </Project>

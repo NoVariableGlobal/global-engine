@@ -24,6 +24,7 @@
     <ClCompile Include="..\..\Src\Engine\RigidbodyPC.cpp" />
     <ClCompile Include="..\..\Src\Engine\Spawner.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerEnemies.cpp" />
+    <ClCompile Include="..\..\Src\Engine\SpawnerFloorRandom.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpotLightRC.cpp" />
     <ClCompile Include="..\..\Src\Engine\OgreSDLContext.cpp" />
     <ClCompile Include="..\..\src\Engine\CameraRC.cpp" />
@@ -51,6 +52,7 @@
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
     <ClInclude Include="..\..\Src\Engine\Spawner.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerEnemies.h" />
+    <ClInclude Include="..\..\Src\Engine\SpawnerFloorRandom.h" />
     <ClInclude Include="..\..\Src\Engine\SpotLightRC.h" />
     <ClInclude Include="..\..\Src\Engine\OgreSDLContext.h" />
     <ClInclude Include="..\..\src\Engine\CameraRC.h" />
