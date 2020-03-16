@@ -1,7 +1,9 @@
 #include "RigidbodyPC.h"
 #include "Factory.h"
 #include "FactoriesFactory.h"
- 
+#include <BulletCollision/NarrowPhaseCollision/btGjkEpaPenetrationDepthSolver.h>
+#include <BulletCollision/NarrowPhaseCollision/btPointCollector.h>
+#include <BulletCollision/NarrowPhaseCollision/btGjkPairDetector.h>
 #include "ComponentsManager.h"
 #include "PhysicsContext.h"
 #include <btBulletDynamicsCommon.h>
@@ -34,7 +36,20 @@ bool RigidbodyPC::collidesWith(std::string id)
 {
 	Entity* other = scene->getEntitybyId(id);
 
-	if (body->checkCollideWith(dynamic_cast<RigidbodyPC*>(other->getComponent("Rigidbody"))->body))
+	btVoronoiSimplexSolver sGjkSimplexSolver;
+	btGjkEpaPenetrationDepthSolver epaSolver;
+	btPointCollector gjkOutput;
+	
+	btGjkPairDetector convexConvex((btConvexShape*)body->getCollisionShape(), 
+									(btConvexShape*)dynamic_cast<RigidbodyPC*>(other->getComponent("RigidbodyPC"))->body->getCollisionShape(), &sGjkSimplexSolver, &epaSolver);
+
+	btGjkPairDetector::ClosestPointInput input;
+	input.m_transformA = body->getWorldTransform();
+	input.m_transformB = dynamic_cast<RigidbodyPC*>(other->getComponent("RigidbodyPC"))->body->getWorldTransform();
+	convexConvex.getClosestPoints(input, gjkOutput, 0);
+	
+
+	if (gjkOutput.m_hasResult && gjkOutput.m_distance < 0)
 		return true;
 	else
 		return false;
@@ -105,12 +120,9 @@ public:
 	{
 		RigidbodyPC* rb = new RigidbodyPC(Ogre::Vector3(_data["position"][0].asInt(), _data["position"][1].asInt(), _data["position"][2].asInt()),
 											Ogre::Vector3(_data["shape"][0].asInt(), _data["shape"][1].asInt(), _data["shape"][2].asInt()), _data["mass"].asFloat(), _data["trigger"].asBool());
+    
 		rb->setFather(_father);
 		rb->setScene(scene);
-
-		TransformComponent* transform = dynamic_cast<TransformComponent*>(_father->getComponent("TransformComponent"));
-
-		rb = new RigidbodyPC(transform->getPosition(), transform->getPosition(), 1, true);
 
 		scene->getComponentsManager()->addPC(rb);
 		return rb;

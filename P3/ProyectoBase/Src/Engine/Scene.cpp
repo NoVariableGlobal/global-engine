@@ -14,8 +14,8 @@
 
 Scene::Scene() {
 	componentManager = new ComponentsManager();
+  
 	PhysicsContext::getInstance()->init(0);
-	PhysicsContext::getInstance()->createRB(Ogre::Vector3(10,10,10), Ogre::Vector3(10, 10, 10), 1);
 
 	Loader loader;
 	loader.readPrefabs(this);
@@ -33,7 +33,7 @@ Scene::~Scene()
 void Scene::load(std::string name) 
 {  
 	Loader loader;
-    loader.readEntities(name, this);
+  loader.readObjects(name, this);
 }
 
 void Scene::update() 

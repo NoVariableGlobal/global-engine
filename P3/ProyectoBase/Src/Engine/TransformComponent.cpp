@@ -52,7 +52,8 @@ public:
 		if (!_data["scale"].isArray()) { /*EXCEPCION*/ }
 		transformComponent->setScale(Ogre::Vector3(_data["scale"][0].asFloat(), _data["scale"][1].asFloat(), _data["scale"][2].asFloat()));
 
-		_componentManager->addDC(transformComponent);
+		scene->getComponentsManager()->addTC(transformComponent);
+
 		return transformComponent;
 	};
 };

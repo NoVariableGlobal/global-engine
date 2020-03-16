@@ -67,7 +67,7 @@ void Loader::createPrefab(Json::Value& _data, Scene* _scene)
 	_scene->addPrefab(id, components);
 }
 
-void Loader::readEntities(std::string _fileName, Scene* _scene)
+void Loader::readObjects(std::string _fileName, Scene* _scene)
 {
 	std::fstream file;
 	file.open("files/" + _fileName);

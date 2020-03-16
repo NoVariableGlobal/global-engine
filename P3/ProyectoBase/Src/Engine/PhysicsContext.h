@@ -43,6 +43,7 @@ public:
 	void destroyWorldContent();
 	void updateSimulation();
 
+	btDiscreteDynamicsWorld* getWorld();
 	btRigidBody* createRB(Ogre::Vector3 pos, Ogre::Vector3 shape, float mass);
 };
 

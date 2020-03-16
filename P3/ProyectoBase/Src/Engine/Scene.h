@@ -45,6 +45,7 @@ class Scene
       Entity* getEntitybyId(std::string id);
       // Add entity into the map.
       void addEntity(Entity* entity);
+
       // clear the entities of the map.
       void clearEntities();
 
