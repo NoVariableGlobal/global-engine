@@ -2,10 +2,22 @@
 
 class GunC : public Component
 {
+private:
+	int bulletchamber;
+	int bulletchamberMax;
+	int	munition;
+	int	cadence;
+	int	damage;
+	bool semiautomatic;
 public:
-	GunC();
+	GunC(int _bulletchamber, int _munition, int _cadence, int _damage, bool _semiautomatic);
 	~GunC();
-	void reload();
-	void shoot();
-
+	bool reload();
+	bool shoot();
+	int getbulletchamber();
+	int getmunition();
+	int getcadence();
+	int getdamage();
+	bool getsemiautomatic();
+	bool mmunitionleft();
 };
