@@ -5,6 +5,7 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "OgreSDLContext.h"
+#include "Scene.h"
 
 #include <OgreSceneManager.h>
 #include <Ogre.h>
@@ -74,12 +75,13 @@ class CameraRCFactory : public ComponentFactory {
 public:
 	CameraRCFactory() {};
 
-	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
+	virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
 	{
 		Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
 		CameraRC* camera = new CameraRC();
 
 		camera->setFather(_father);
+		camera->setScene(scene);
 
 		camera->setCamera(_father->getId());
 
@@ -89,23 +91,19 @@ public:
 		camera->getSceneNode()->attachObject(camera->getCamera());
 
 		if (!_data["viewportColour"].isArray()) throw std::exception("CameraRC: viewportColour is not an array");
-
-		camera->setViewport(Ogre::Vector3(_data["viewportColour"][0].asInt(), _data["viewportColour"][1].asInt(), _data["viewportColour"][2].asInt()));
+		camera->setViewport(Ogre::Vector3(_data["viewportColour"][0].asFloat(), _data["viewportColour"][1].asFloat(), _data["viewportColour"][2].asFloat()));
 
 		if (!_data["offset"].isArray()) throw std::exception("CameraRC: offset is not an array");
-
-		camera->setCameraOffset(Ogre::Vector3(_data["offset"][0].asInt(), _data["offset"][1].asInt(), _data["offset"][2].asInt()));
+		camera->setCameraOffset(Ogre::Vector3(_data["offset"][0].asFloat(), _data["offset"][1].asFloat(), _data["offset"][2].asFloat()));
 
 		TransformComponent* transform = dynamic_cast<TransformComponent*>(_father->getComponent("TransformComponent"));
 		camera->getSceneNode()->setPosition(transform->getPosition());
 
 		if (!_data["lookAt"].isArray() && !_data["lookAt"].isString()) throw std::exception("CameraRC: lookAt is not an array. If you do not want an array, use a string 'none'");
+		else if(_data["lookAt"].isArray())
+			camera->lookAt(Ogre::Vector3(_data["lookAt"][0].asFloat(), _data["lookAt"][1].asFloat(), _data["lookAt"][2].asFloat()));
 
-		else if (_data["lookAt"].isArray())
-			camera->lookAt(Ogre::Vector3(_data["lookAt"][0].asInt(), _data["lookAt"][1].asInt(), _data["lookAt"][2].asInt()));
-
-
-		_componentManager->addRC(camera);
+		scene->getComponentsManager()->addRC(camera);
 
 		return camera;
 	}

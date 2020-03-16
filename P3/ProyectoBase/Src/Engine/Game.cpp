@@ -1,9 +1,12 @@
 #include "Game.h"
 #include "Scene.h"
 #include "Loader.h"
-#include <string>
 #include "FactoriesFactory.h"
 #include "OgreSDLContext.h"
+#include "PhysicsContext.h"
+
+#include <string>
+#include <SDL_events.h>
 
 #include <iostream>
 
@@ -13,13 +16,15 @@ Game::Game() {}
 Game::~Game()
 {
 	delete scene;
-	scene = nullptr;
+
 	FactoriesFactory::getInstance()->clear();
 	OgreSDLContext::getInstance()->erase();
 }
 
 void Game::initContext()
 {
+	OgreSDLContext::init();
+	PhysicsContext::init();
 	OgreSDLContext::getInstance()->initApp("Test");
 }
 
@@ -44,29 +49,42 @@ bool Game::init(std::string _firstScene)
 	}
 }
 
-void Game::update()
+void Game::run()
 {
 	int i = 0;
 	while (!exit)
 	{
-		scene->update();
-		exit = OgreSDLContext::getInstance()->renderLoop();
+		update();
+		render();
+		handleInput();
+	}
 
-		while (i <= 100) {
-			i++;
-			if (i == 99) {
-				setScene("Game");
-			}
-		}
+}
+
+void Game::update()
+{
+	scene->update();
+}
+
+void Game::render()
+{
+	OgreSDLContext::getInstance()->renderLoop();
+	scene->render();
+}
+
+void Game::handleInput()
+{
+	SDL_Event event;
+	while (SDL_PollEvent(&event) && !exit)
+	{
+		scene->handleInput(event);
+		exit = OgreSDLContext::getInstance()->pollEvents(event);
 	}
 }
 
 void Game::setScene(std::string _sceneName)
 {
-	if (!scenesQueue[_sceneName].empty()) 
-	{
-		scene->clearComponentsManager();
-		scene->clearEntities();
-		scene->load(scenesQueue.find(_sceneName)->second);
-	}
+	scene->clearComponentsManager();
+	scene->clearEntities();
+	scene->load(scenesQueue.find(_sceneName)->second);
 }

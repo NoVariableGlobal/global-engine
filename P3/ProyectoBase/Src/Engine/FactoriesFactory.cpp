@@ -16,7 +16,8 @@ void FactoriesFactory::clear()
 
 FactoriesFactory* FactoriesFactory::getInstance()
 {
-	if (_instance == nullptr) _instance = new FactoriesFactory();
+	if(_instance == nullptr)
+		_instance = new FactoriesFactory();
 	return _instance;
 }
 

@@ -6,6 +6,7 @@
 #include "Factory.h"
 #include "FactoriesFactory.h"
 #include "ComponentsManager.h"
+#include "Scene.h"
 
 TransformComponent::TransformComponent() 
 {
@@ -35,22 +36,24 @@ void TransformComponent::setScale(Ogre::Vector3 s) { *_scale = s; }
 class TransformComponentFactory : public ComponentFactory {
 public:
 	TransformComponentFactory() {};
-	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
+	virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
 	{
 		TransformComponent* transformComponent = new TransformComponent();
 
 		transformComponent->setFather(_father);
+		transformComponent->setScene(scene);
 
 		if (!_data["position"].isArray()) throw std::exception("TransformComponent: position is not an array");
-		transformComponent->setPosition(Ogre::Vector3(_data["position"][0].asInt(), _data["position"][1].asInt(), _data["position"][2].asInt()));
+		transformComponent->setPosition(Ogre::Vector3(_data["position"][0].asFloat(), _data["position"][1].asFloat(), _data["position"][2].asFloat()));
 
-		if (!_data["orientation"].isArray()) throw std::exception("TransformComponent: orientation is not an array");
-		transformComponent->setOrientation(Ogre::Vector3(_data["orientation"][0].asInt(), _data["orientation"][1].asInt(), _data["orientation"][2].asInt()));
+		if (!_data["orientation"].isArray())  throw std::exception("TransformComponent: orientation is not an array");
+		transformComponent->setOrientation(Ogre::Vector3(_data["orientation"][0].asFloat(), _data["orientation"][1].asFloat(), _data["orientation"][2].asFloat()));
 
 		if (!_data["scale"].isArray()) throw std::exception("TransformComponent: scale is not an array");
-		transformComponent->setScale(Ogre::Vector3(_data["scale"][0].asInt(), _data["scale"][1].asInt(), _data["scale"][2].asInt()));
+		transformComponent->setScale(Ogre::Vector3(_data["scale"][0].asFloat(), _data["scale"][1].asFloat(), _data["scale"][2].asFloat()));
 
-		_componentManager->addTC(transformComponent);
+		scene->getComponentsManager()->addDC(transformComponent);
+
 		return transformComponent;
 	}
 };

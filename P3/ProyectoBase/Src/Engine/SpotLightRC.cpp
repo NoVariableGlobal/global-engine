@@ -9,6 +9,7 @@
 #include "OgreEntity.h"
 #include "OgreSDLContext.h"
 #include "OgreSceneManager.h"
+#include "Scene.h"
 
 // COMPONENT CODE
 SpotLightRC::SpotLightRC() {}
@@ -46,12 +47,13 @@ class SpotLightRCFactory : public ComponentFactory {
 public:
 	SpotLightRCFactory() {};
 
-	virtual Component* create(Entity* _father, Json::Value& _data, ComponentsManager* _componentManager)
+	virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
 	{
 		Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
 		SpotLightRC* light = new SpotLightRC();
 
 		light->setFather(_father);
+		light->setScene(scene);
 
 		light->setLight(_father->getId());
 
@@ -60,12 +62,13 @@ public:
 		light->getSceneNode()->attachObject(light->getLight());
 
 		if (!_data["colour"].isArray()) throw std::exception("SpotLightRC: colour is not an array");
-		light->setColour(Ogre::Vector3(_data["colour"][0].asInt(), _data["colour"][1].asInt(), _data["colour"][2].asInt()));
+		light->setColour(Ogre::Vector3(_data["colour"][0].asFloat(), _data["colour"][1].asFloat(), _data["colour"][2].asFloat()));
 
 		if (!_data["direction"].isArray()) throw std::exception("SpotLightRC: direction is not an array");
-		light->setDirection(Ogre::Vector3(_data["direction"][0].asInt(), _data["direction"][1].asInt(), _data["direction"][2].asInt()));
+		light->setDirection(Ogre::Vector3(_data["direction"][0].asFloat(), _data["direction"][1].asFloat(), _data["direction"][2].asFloat()));
 
-		_componentManager->addRC(light);
+		scene->getComponentsManager()->addRC(light);
+
 		return light;
 	}
 };
