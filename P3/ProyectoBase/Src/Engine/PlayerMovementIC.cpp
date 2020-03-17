@@ -11,13 +11,9 @@
 #include <Entity.h>
 #include <iostream>
 
-PlayerMovementIC::PlayerMovementIC()
-{
-}
+PlayerMovementIC::PlayerMovementIC() {}
 
-PlayerMovementIC::~PlayerMovementIC()
-{
-}
+PlayerMovementIC::~PlayerMovementIC() {}
 
 void PlayerMovementIC::handleInput(const SDL_Event& _event)
 {
@@ -47,6 +43,7 @@ void PlayerMovementIC::setMovementSpeed(float speed)
 	_speed = speed;
 }
 
+// FACTORY INFRASTRUCTURE
 class PlayerMovementICFactory : public ComponentFactory {
 public:
 	PlayerMovementICFactory() {};

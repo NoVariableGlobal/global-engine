@@ -1,3 +1,5 @@
+// This script allows for the tracking of garbage during development,
+// so it can be eliminated
 
 #ifdef _DEBUG
 #define _CRTDBG_MAP_ALLOC

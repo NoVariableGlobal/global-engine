@@ -13,7 +13,10 @@ private:
 	bool active = false;
 
 protected:
+	// A pointer to the entity that has the component attached
 	Entity* father = nullptr;
+
+	// A pointer to the game scene
 	Scene* scene = nullptr;
 
 public:

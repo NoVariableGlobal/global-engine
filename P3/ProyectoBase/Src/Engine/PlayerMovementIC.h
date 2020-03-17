@@ -14,8 +14,12 @@ private:
 public:
 	PlayerMovementIC();
 	virtual ~PlayerMovementIC();
+
+	// Updates the entity's transform's 
+	// position upon pressing WASD keys
 	virtual void handleInput(const SDL_Event& _event);
 
+	// Sets the speed the entity moves at
 	void setMovementSpeed(float speed);
 };
 

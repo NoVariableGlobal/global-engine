@@ -1,7 +1,7 @@
 #pragma
 #include "Component.h"
 
-#include "Component.h"
+// Abstract subcomponent from which every graphic component should inherit
 
 namespace Ogre
 {

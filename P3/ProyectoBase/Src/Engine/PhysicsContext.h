@@ -26,7 +26,7 @@ private:
 	btBroadphaseInterface* broadphaseInterface;
 	btSequentialImpulseConstraintSolver* sequentialImpulseConstraintSolver;
 	btDefaultCollisionConfiguration* defaultCollisionConfiguration;
-  btDiscreteDynamicsWorld* discreteDynamicsWorld;
+	btDiscreteDynamicsWorld* discreteDynamicsWorld;
 	OgreDebugDrawer* mDebugDrawer;
 
 	std::vector<btRigidBody*> ribs;
@@ -34,6 +34,7 @@ private:
 	std::vector<btMotionState*> states;
 	PhysicsContext();
 	~PhysicsContext();
+
 public:
 	static PhysicsContext* getInstance();
 	static void init();
