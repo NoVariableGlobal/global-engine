@@ -39,6 +39,7 @@ void Scene::load(std::string name)
 void Scene::update() 
 {
 	componentManager->update();
+	componentManager->updateEvent();
 	componentManager->updateSound();
 
 	PhysicsContext::getInstance()->updateSimulation();
@@ -78,7 +79,7 @@ Entity* Scene::getInstanceOf(std::string id, int num)
 {
 	Entity* instance = new Entity();
 
-	if (num != NULL)
+	if (num != -1)
 		instance->setId(id + std::to_string(num));
 	else
 		instance->setId(id);

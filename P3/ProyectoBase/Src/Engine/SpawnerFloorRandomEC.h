@@ -1,8 +1,8 @@
 #pragma once
-#include "Spawner.h"
+#include "SpawnerEC.h"
 #include "OgreVector4.h"
 
-class SpawnerFloorRandomEC : public Spawner
+class SpawnerFloorRandomEC : public SpawnerEC
 {
 private:
   Ogre::Vector4f floorDimensions = Ogre::Vector4f();

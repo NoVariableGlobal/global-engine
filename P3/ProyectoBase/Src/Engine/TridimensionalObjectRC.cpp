@@ -38,12 +38,12 @@ public:
 
 		tridimensionalObject->setFather(_father);
 		tridimensionalObject->setScene(scene);
-
+		
 		if (!_data["mesh"].isString()) throw std::exception("TridimensionalObjectRC: mesh is not a string");
 		tridimensionalObject->setOgreEntity(mSM->createEntity(_data["mesh"].asString()));
 
 		if (!_data["node"].isString()) throw std::exception("TridimensionalObjectRC: node is not a string");
-		tridimensionalObject->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString()));
+		tridimensionalObject->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString() + _father->getId()));
 
 		if (!_data["material"].isString()) throw std::exception("TridimensionalObjectRC: material is not a string");
 		else if(_data["material"].asString() != "none")

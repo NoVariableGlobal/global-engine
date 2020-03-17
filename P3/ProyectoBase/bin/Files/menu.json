@@ -30,9 +30,8 @@
         }
       ]
     },
-
     {
-      "id": "Cube",
+      "id": "Horda",
       "components": [
         {
           "type": "TransformComponent",
@@ -42,80 +41,13 @@
             "scale": [ 0.5, 0.5, 0.5 ]
           }
         },
-        {
-          "type": "TridimensionalObjectRC",
-          "attributes": {
-            "mesh": "cube.mesh",
-            "node": "nCube",
-            "material": "none"
-          }
-        },
-        {
-          "type": "PlayerMovementIC",
-          "attributes": {
-            "speed": 2
-          }
-        }
-
-      ]
-    },
-    {
-      "id": "Simbad",
-      "components": [
-        {
-          "type": "TransformComponent",
-          "attributes": {
-            "position": [ 0, 0, 0 ],
-            "orientation": [ 0, 0, 0 ],
-            "scale": [ 20, 20, 20 ]
-          }
-        },
 
         {
-          "type": "RigidbodyPC",
+          "type": "SpawnerEnemiesEC",
           "attributes": {
-            "position": [ 0, 0, 0 ],
-            "shape": [ 10, 10, 10 ],
-            "mass": 1,
-            "gravity": [ 0, 0, 0 ],
-            "trigger": false,
-            "kinematic": false,
-            "static": false,
-            "friction": 0,
-            "restitution": 0
-          }
-        }
-      ]
-    },
-    {
-      "id": "Simbad2",
-      "components": [
-        {
-          "type": "TransformComponent",
-          "attributes": {
-            "position": [ 0, 0, 0 ],
-            "orientation": [ 0, 0, 0 ],
-            "scale": [ 20, 20, 20 ]
-          }
-        },
-
-        {
-          "type": "RigidbodyPC",
-          "attributes": {
-            "position": [ 0, 5, 0 ],
-            "shape": [ 10, 10, 10 ],
-            "mass": 1,
-            "gravity": [ 0, 0, 0 ],
-            "trigger": false,
-            "kinematic": false,
-            "static": false,
-            "friction": 0,
-            "restitution": 0
-          }
-        },
-        {
-          "type": "PlayerShotIC",
-          "attributes": {
+            "spawnCooldown": 5,
+            "spawnID": [ "MeleeEnemy" ],
+            "spawnChances": [ 50 ]
           }
         }
       ]

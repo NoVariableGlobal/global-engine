@@ -1,8 +1,8 @@
 #pragma once
-#include "Spawner.h"
+#include "SpawnerEC.h"
 class TransformComponent;
 
-class SpawnerEnemiesEC : public Spawner
+class SpawnerEnemiesEC : public SpawnerEC
 {
 private: 
   TransformComponent* transform = nullptr;

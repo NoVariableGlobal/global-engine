@@ -1,18 +1,25 @@
 {
-    "prefabs": 
-    [
+  "prefabs": [
+    {
+      "id": "MeleeEnemy",
+      "components": [
         {
-            "id": "MeleeEnemy",
-            "components": [
-            {
-                "type": "TransformComponent",
-                "attributes": {
-                "position": [ 0, 0, 300 ],
-                "orientation": [ 0, 0, 0 ],
-                "scale": [ 1, 1, 1 ]
-                }
-            }
-            ]
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nCube",
+            "material": "none"
+          }
         }
-    ]
+      ]
+    }
+  ]
 }

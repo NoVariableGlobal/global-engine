@@ -56,9 +56,6 @@
     <ClCompile Include="..\..\src\Engine\FactoriesFactory.cpp">
       <Filter>Factories</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\Spawner.cpp">
-      <Filter>Components\Events</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Engine\OgreSDLContext.cpp">
       <Filter>Ogre</Filter>
     </ClCompile>
@@ -91,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\ComponentsManager.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\SpawnerEC.cpp">
+      <Filter>Components\Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -155,9 +155,6 @@
     <ClInclude Include="..\..\src\Engine\Factory.h">
       <Filter>Factories</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\Spawner.h">
-      <Filter>Components\Events</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\OgreSDLContext.h">
       <Filter>Ogre</Filter>
     </ClInclude>
@@ -187,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\ComponentsManager.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\SpawnerEC.h">
+      <Filter>Components\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
