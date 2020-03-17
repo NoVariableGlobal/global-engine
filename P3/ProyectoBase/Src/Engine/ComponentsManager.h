@@ -20,6 +20,7 @@ private:
 	std::vector<SoundComponent*> sound;
 	std::vector<Component*> deleteable;
 	std::vector<EventComponent*> event;
+
 public:
 	ComponentsManager();
 	~ComponentsManager();

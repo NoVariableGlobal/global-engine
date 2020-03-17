@@ -4,6 +4,8 @@
 
 #include <SDL_events.h>
 
+// Abstract subcomponent from which every input component should inherit
+
 class InputComponent : public Component 
 {
 	public:

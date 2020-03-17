@@ -18,8 +18,10 @@ void PlayerShotIC::handleInput(const SDL_Event& _event)
 {
 	if (_event.type == SDL_MOUSEBUTTONDOWN)
 	{
-		if(_event.button.button == SDL_BUTTON_LEFT)
+		if (_event.button.button == SDL_BUTTON_LEFT) {
+			// TODO: Tell gun component to fire a shot
 			std::cout << '\n' << "PIUM PIUM !!" << '\n';
+		}
 	}
 }
 

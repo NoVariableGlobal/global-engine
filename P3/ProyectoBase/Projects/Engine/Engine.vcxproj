@@ -36,7 +36,6 @@
     <ClCompile Include="..\..\Src\Engine\DebugDrawer.cpp" />
     <ClCompile Include="..\..\src\Engine\Entity.cpp" />
     <ClCompile Include="..\..\src\Engine\FactoriesFactory.cpp" />
-    <ClCompile Include="..\..\src\Engine\Factory.cpp" />
     <ClCompile Include="..\..\src\Engine\Game.cpp" />
     <ClCompile Include="..\..\src\Engine\InputComponent.cpp" />
     <ClCompile Include="..\..\src\Engine\Loader.cpp" />

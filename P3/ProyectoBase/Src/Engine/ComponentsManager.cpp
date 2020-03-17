@@ -7,9 +7,7 @@
 
 #include <SDL_events.h>
 
-ComponentsManager::ComponentsManager()
-{
-}
+ComponentsManager::ComponentsManager() {}
 
 ComponentsManager::~ComponentsManager()
 {
@@ -202,7 +200,7 @@ void ComponentsManager::render()
 
 void ComponentsManager::updateSound()
 {
-	// TO DO: updateSound method in SoundComponent
+	// TODO: updateSound method in SoundComponent
 	/* for (auto s : sound)
 		s->updateSound() */
 }

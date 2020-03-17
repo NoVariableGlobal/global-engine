@@ -1,15 +1,11 @@
 #include "GunC.h"
 
 GunC::GunC(int _bulletchamber, int _munition, int _cadence, int _damage, bool _semiautomatic): bulletchamber(_bulletchamber), bulletchamberMax(_bulletchamber),
-munition(_munition), cadence(_cadence), damage(_damage), semiautomatic(_semiautomatic)
-{
-}
+munition(_munition), cadence(_cadence), damage(_damage), semiautomatic(_semiautomatic) {}
 
-GunC::~GunC()
-{
-}
+GunC::~GunC() {}
 
-bool GunC::reload() // Boolean method to return if reload has been performed
+bool GunC::reload()
 {
 	if (bulletchamber != bulletchamberMax && munition > 0) {
 		int gunreload = bulletchamberMax - bulletchamber;
@@ -23,7 +19,7 @@ bool GunC::reload() // Boolean method to return if reload has been performed
 		return false;
 }
 
-bool GunC::shoot()// Boolean method to return if shoot has been performed
+bool GunC::shoot()
 {
 	if (bulletchamber > 0) {
 		bulletchamber--;
@@ -57,7 +53,7 @@ bool GunC::getsemiautomatic()
 	return semiautomatic;
 }
 
-bool GunC::mmunitionleft() //returns if ammunition remains from that gun
+bool GunC::mmunitionleft()
 {
 	if (bulletchamber == 0 && munition == 0)
 		return false;

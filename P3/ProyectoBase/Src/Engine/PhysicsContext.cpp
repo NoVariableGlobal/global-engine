@@ -18,15 +18,9 @@ void PhysicsContext::init()
 	_instance = new PhysicsContext();
 }
 
-PhysicsContext::PhysicsContext()
-{
-	
-}
+PhysicsContext::PhysicsContext() {}
 
-PhysicsContext::~PhysicsContext()
-{
-	
-}
+PhysicsContext::~PhysicsContext() {}
 
 void PhysicsContext::init(float _gravity)
 {
