@@ -39,6 +39,7 @@ void Scene::load(std::string name)
 void Scene::update() 
 {
 	componentManager->update();
+	componentManager->updateEvent();
 	componentManager->updateSound();
 
 	PhysicsContext::getInstance()->updateSimulation();

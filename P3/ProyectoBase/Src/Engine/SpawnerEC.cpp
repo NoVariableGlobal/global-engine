@@ -1,4 +1,4 @@
-#include "Spawner.h"
+#include "SpawnerEC.h"
 #include <utility>
 #include <time.h>
 #include "Entity.h"
@@ -8,9 +8,11 @@
 #include "ComponentsManager.h"
 #include <value.h>
 
-bool Spawner::addSpawn(std::string id, float chance)
+bool SpawnerEC::addSpawn(std::string id, float chance)
 {
-  float totalChance = _spawns.back()._additiveChance;
+  float totalChance = 0;
+  if(_spawns.size() != 0)
+    totalChance = _spawns.back()._additiveChance;
   if (totalChance > 99.999)
     return false;
   _spawns.push_back({ id, chance, totalChance + chance });
@@ -21,7 +23,7 @@ bool Spawner::addSpawn(std::string id, float chance)
   return true;
 }
 
-void Spawner::editChance(std::string& id, float newChance)
+void SpawnerEC::editChance(std::string& id, float newChance)
 {
   int i = 0;
   bool found = false;
@@ -49,7 +51,7 @@ void Spawner::editChance(std::string& id, float newChance)
     _spawns.back()._additiveChance = 100;
 }
 
-void Spawner::checkEvent()
+void SpawnerEC::checkEvent()
 {
   Entity* newEntity;
   if (timeToSpawn()) {
@@ -58,7 +60,7 @@ void Spawner::checkEvent()
   }
 }
 
-bool Spawner::timeToSpawn()
+bool SpawnerEC::timeToSpawn()
 {
   float seconds = clock() / static_cast <float> (CLOCKS_PER_SEC);
 
@@ -70,7 +72,7 @@ bool Spawner::timeToSpawn()
   return false;
 }
 
-Entity * Spawner::spawnPrefab()
+Entity * SpawnerEC::spawnPrefab()
 {
   Spawn toInstantiate;
   
@@ -81,7 +83,7 @@ Entity * Spawner::spawnPrefab()
   return scene->getInstanceOf(toInstantiate._id, toInstantiate._count++);
 }
 
-Spawn Spawner::binarySearch(int first, int last, float value)
+Spawn SpawnerEC::binarySearch(int first, int last, float value)
 {
   if (last >= first) {
     int center = first + (last - first) / 2;
@@ -101,31 +103,33 @@ Spawn Spawner::binarySearch(int first, int last, float value)
 
 
 // FACTORY INFRASTRUCTURE
-class SpawnerFactory : public ComponentFactory {
+class SpawnerECFactory : public ComponentFactory {
 public:
-  SpawnerFactory() {};
+  SpawnerECFactory() {};
   virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
   {
-    Spawner* spawner = new Spawner();
+    SpawnerEC* spawnerEC = new SpawnerEC();
 
-    spawner->setFather(_father);
-    scene->getComponentsManager()->addEC(spawner);
+    spawnerEC->setFather(_father);
+    scene->getComponentsManager()->addEC(spawnerEC);
     
     if (!_data["spawnCooldown"].isDouble()) throw std::exception("Spawner: spawnCooldown is not a double");
-    spawner->setSpawnCooldown(_data["spawnCooldown"].asDouble());
+    spawnerEC->setSpawnCooldown(_data["spawnCooldown"].asDouble());
     if (!_data["spawnID"].isArray()) throw std::exception("Spawner: spawnID is not an array");
     else if(!_data["spawnID"][0].isString()) throw std::exception("Spawner: spawnID is not an array of strings");
     if (!_data["spawnChances"].isArray()) throw std::exception("Spawner: spawnChances is not an array");
     else if(!_data["spawnChances"][0].isDouble()) throw std::exception("Spawner: spawnChances is not an array of doubles");
     for (int i = 0; i < _data["spawnID"].size(); ++i) {
-      if (!spawner->addSpawn(_data["spawnID"][i].asString(), _data["spawnChances"][i].asDouble())) {
+      if (!spawnerEC->addSpawn(_data["spawnID"][i].asString(), _data["spawnChances"][i].asDouble())) {
         printf(("No se pudo añadir " + _data["spawnID"][i].asString() + ": Ya se llegó al 100% de probabilidad./n").c_str());
         break;
       }
     }
 
-    return spawner;
+    spawnerEC->setActive(true);
+
+    return spawnerEC;
   };
 };
 
-REGISTER_FACTORY("Spawner", Spawner);
+REGISTER_FACTORY("SpawnerEC", SpawnerEC);

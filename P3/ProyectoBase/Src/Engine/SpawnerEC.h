@@ -13,7 +13,7 @@ struct Spawn
     unsigned int _count = 0;
 };
 
-class Spawner : public EventComponent
+class SpawnerEC : public EventComponent
 {
 protected:
 

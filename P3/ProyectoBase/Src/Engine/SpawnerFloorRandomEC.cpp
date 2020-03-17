@@ -3,7 +3,13 @@
 //#include "FloorComponent.h"
 #include "TransformComponent.h"
 #include "OgreVector3.h"
-#include "Spawner.cpp"
+#include "FactoriesFactory.h"
+#include "Scene.h"
+#include "ComponentsManager.h"
+
+#include "Factory.h"
+#include <json.h>
+
 
 void SpawnerFloorRandomEC::checkEvent()
 {
@@ -25,13 +31,33 @@ void SpawnerFloorRandomEC::checkEvent()
 
 
 // FACTORY INFRASTRUCTURE
-class SpawnerFloorRandomFactory : public SpawnerFactory {
+class SpawnerFloorRandomECFactory : public ComponentFactory {
 public:
-  SpawnerFloorRandomFactory() {};
+  SpawnerFloorRandomECFactory() {};
   virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
   {
-    return SpawnerFactory::create(_father, _data, scene);
+    SpawnerFloorRandomEC* spawnerFloorRandomEC = new SpawnerFloorRandomEC();
+
+    spawnerFloorRandomEC->setFather(_father);
+    scene->getComponentsManager()->addEC(spawnerFloorRandomEC);
+
+    if (!_data["spawnCooldown"].isDouble()) throw std::exception("Spawner: spawnCooldown is not a double");
+    spawnerFloorRandomEC->setSpawnCooldown(_data["spawnCooldown"].asDouble());
+    if (!_data["spawnID"].isArray()) throw std::exception("Spawner: spawnID is not an array");
+    else if (!_data["spawnID"][0].isString()) throw std::exception("Spawner: spawnID is not an array of strings");
+    if (!_data["spawnChances"].isArray()) throw std::exception("Spawner: spawnChances is not an array");
+    else if (!_data["spawnChances"][0].isDouble()) throw std::exception("Spawner: spawnChances is not an array of doubles");
+    for (int i = 0; i < _data["spawnID"].size(); ++i) {
+      if (!spawnerFloorRandomEC->addSpawn(_data["spawnID"][i].asString(), _data["spawnChances"][i].asDouble())) {
+        printf(("No se pudo añadir " + _data["spawnID"][i].asString() + ": Ya se llegó al 100% de probabilidad./n").c_str());
+        break;
+      }
+    }
+
+    spawnerFloorRandomEC->setActive(true);
+
+    return spawnerFloorRandomEC;
   };
 };
 
-REGISTER_FACTORY("SpawnerFloorRandom", SpawnerFloorRandom);
+REGISTER_FACTORY("SpawnerFloorRandomEC", SpawnerFloorRandomEC);
