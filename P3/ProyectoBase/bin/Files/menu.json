@@ -119,6 +119,27 @@
           }
         }
       ]
+    },
+    {
+      "id": "Horda",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.5, 0.5, 0.5 ]
+          }
+        },
+        {
+          "type": "SpawnerEnemies",
+          "attributes": {
+            "spawnCooldown": 5,
+            "spawnID": [ "MeleeEnemy" ],
+            "spawnChances": [50]
+          }
+        }
+      ]
     }
   ]
 }

@@ -1,10 +1,14 @@
 #include "Spawner.h"
 #include <utility>
-#include "Scene.h"
 #include <time.h>
 #include "Entity.h"
+#include "Factory.h"
+#include "FactoriesFactory.h"
+#include "Scene.h"
+#include "ComponentsManager.h"
+#include <value.h>
 
-bool Spawner::addSpawn(std::string& id, float chance)
+bool Spawner::addSpawn(std::string id, float chance)
 {
   float totalChance = _spawns.back()._additiveChance;
   if (totalChance > 99.999)
@@ -96,3 +100,32 @@ Spawn Spawner::binarySearch(int first, int last, float value)
 }
 
 
+// FACTORY INFRASTRUCTURE
+class SpawnerFactory : public ComponentFactory {
+public:
+  SpawnerFactory() {};
+  virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
+  {
+    Spawner* spawner = new Spawner();
+
+    spawner->setFather(_father);
+    scene->getComponentsManager()->addEC(spawner);
+    
+    if (!_data["spawnCooldown"].isDouble()) throw std::exception("Spawner: spawnCooldown is not a double");
+    spawner->setSpawnCooldown(_data["spawnCooldown"].asDouble());
+    if (!_data["spawnID"].isArray()) throw std::exception("Spawner: spawnID is not an array");
+    else if(!_data["spawnID"][0].isString()) throw std::exception("Spawner: spawnID is not an array of strings");
+    if (!_data["spawnChances"].isArray()) throw std::exception("Spawner: spawnChances is not an array");
+    else if(!_data["spawnChances"][0].isDouble()) throw std::exception("Spawner: spawnChances is not an array of doubles");
+    for (int i = 0; i < _data["spawnID"].size(); ++i) {
+      if (!spawner->addSpawn(_data["spawnID"][i].asString(), _data["spawnChances"][i].asDouble())) {
+        printf(("No se pudo añadir " + _data["spawnID"][i].asString() + ": Ya se llegó al 100% de probabilidad./n").c_str());
+        break;
+      }
+    }
+
+    return spawner;
+  };
+};
+
+REGISTER_FACTORY("Spawner", Spawner);

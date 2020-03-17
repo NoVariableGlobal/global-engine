@@ -2,8 +2,8 @@
 #include "Entity.h"
 //#include "FloorComponent.h"
 #include "TransformComponent.h"
-#include "Scene.h"
 #include "OgreVector3.h"
+#include "Spawner.cpp"
 
 void SpawnerFloorRandomEC::checkEvent()
 {
@@ -22,3 +22,16 @@ void SpawnerFloorRandomEC::checkEvent()
     spawnTransform->setPosition(Ogre::Vector3(x, static_cast<TransformComponent*>(father->getComponent("TransformComponent"))->getPosition().y, z));
   }
 }
+
+
+// FACTORY INFRASTRUCTURE
+class SpawnerFloorRandomFactory : public SpawnerFactory {
+public:
+  SpawnerFloorRandomFactory() {};
+  virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
+  {
+    return SpawnerFactory::create(_father, _data, scene);
+  };
+};
+
+REGISTER_FACTORY("SpawnerFloorRandom", SpawnerFloorRandom);
