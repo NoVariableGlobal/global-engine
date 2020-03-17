@@ -80,7 +80,7 @@ Entity * SpawnerEC::spawnPrefab()
     float random = static_cast <float> (rand()) / static_cast <float> (RAND_MAX) * 100;
     toInstantiate = binarySearch(0, _spawns.size() - 1, random);
   }
-  return scene->getInstanceOf(toInstantiate._id, toInstantiate._count++);
+  return scene->getInstanceOf(toInstantiate._id, _count++);
 }
 
 Spawn SpawnerEC::binarySearch(int first, int last, float value)

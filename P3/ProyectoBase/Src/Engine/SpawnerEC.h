@@ -10,11 +10,12 @@ struct Spawn
     std::string _id;
     float _chance;
     float _additiveChance;
-    unsigned int _count = 0;
 };
 
 class SpawnerEC : public EventComponent
 {
+private:
+    int _count = 0;
 protected:
 
     Spawn mySpawn;

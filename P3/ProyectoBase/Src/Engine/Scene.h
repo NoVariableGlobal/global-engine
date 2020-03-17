@@ -47,7 +47,7 @@ class Scene
       void clearEntities();
 
       // Search the prefab in the map and returns a new instance of it.
-      Entity* getInstanceOf(std::string id, int num = NULL);
+      Entity* getInstanceOf(std::string id, int num = -1);
       // Add prefab into the map.
       void addPrefab(std::string id, Json::Value components);
       // clear the entities of the map.

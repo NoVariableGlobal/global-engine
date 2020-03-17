@@ -13,11 +13,6 @@
 
 void SpawnerFloorRandomEC::checkEvent()
 {
-  /*if (first) {
-    first = false;
-    floorDimensions = staticCast<FloorComponent*>(father->getComponent("FloorComponent"))->getDimensions();
-  }*/
-
   if (timeToSpawn()) {
     Entity* newEntity = spawnPrefab();
 
@@ -39,14 +34,17 @@ public:
     SpawnerFloorRandomEC* spawnerFloorRandomEC = new SpawnerFloorRandomEC();
 
     spawnerFloorRandomEC->setFather(_father);
+    spawnerFloorRandomEC->setScene(scene);
     scene->getComponentsManager()->addEC(spawnerFloorRandomEC);
 
     if (!_data["spawnCooldown"].isDouble()) throw std::exception("Spawner: spawnCooldown is not a double");
     spawnerFloorRandomEC->setSpawnCooldown(_data["spawnCooldown"].asDouble());
     if (!_data["spawnID"].isArray()) throw std::exception("Spawner: spawnID is not an array");
     else if (!_data["spawnID"][0].isString()) throw std::exception("Spawner: spawnID is not an array of strings");
+
     if (!_data["spawnChances"].isArray()) throw std::exception("Spawner: spawnChances is not an array");
     else if (!_data["spawnChances"][0].isDouble()) throw std::exception("Spawner: spawnChances is not an array of doubles");
+
     for (int i = 0; i < _data["spawnID"].size(); ++i) {
       if (!spawnerFloorRandomEC->addSpawn(_data["spawnID"][i].asString(), _data["spawnChances"][i].asDouble())) {
         printf(("No se pudo añadir " + _data["spawnID"][i].asString() + ": Ya se llegó al 100% de probabilidad./n").c_str());
