@@ -17,6 +17,7 @@ PlayerMovementIC::~PlayerMovementIC() {}
 
 void PlayerMovementIC::handleInput(const SDL_Event& _event)
 {
+	//Moves the player depending on which key is pressed
 	if (_event.type == SDL_KEYDOWN) {
 		TransformComponent* transform = dynamic_cast<TransformComponent*>(father->getComponent("TransformComponent"));
 		std::cout << transform->getPosition().x << " " << transform->getPosition().y << " " << transform->getPosition().z << "\n";

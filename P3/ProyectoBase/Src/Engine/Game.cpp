@@ -12,7 +12,7 @@
 
 Game::Game() {}
 
-
+//Deletes the scene and clears the constexts
 Game::~Game()
 {
 	delete scene;
@@ -21,13 +21,14 @@ Game::~Game()
 	OgreSDLContext::getInstance()->erase();
 }
 
+//Inits all context
 void Game::initContext()
 {
 	OgreSDLContext::init();
 	PhysicsContext::init();
 	OgreSDLContext::getInstance()->initApp("Test");
 }
-
+//Reads the scenes and sets the first one
 bool Game::init(std::string _firstScene)
 {
 	try

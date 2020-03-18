@@ -27,12 +27,14 @@ RigidbodyPC::~RigidbodyPC()
 
 void RigidbodyPC::update()
 {
+	//Updates the transform of the father as the position of the rigidbody
 	dynamic_cast<TransformComponent*>(father->getComponent("TransformComponent"))->
 		setPosition(Ogre::Vector3(body->getWorldTransform().getOrigin().x(), body->getWorldTransform().getOrigin().y(), body->getWorldTransform().getOrigin().z()));
 }
 
 bool RigidbodyPC::collidesWith(std::string id)
 {
+	//Recieves an id of an entity and checks if our father is colliding with it
 	Entity* other = scene->getEntitybyId(id);
 
 	btVoronoiSimplexSolver sGjkSimplexSolver;

@@ -15,6 +15,7 @@ TridimensionalObjectRC::TridimensionalObjectRC() {}
 
 TridimensionalObjectRC::~TridimensionalObjectRC() {}
 
+//Updates the node position as our father transform
 void TridimensionalObjectRC::render() {
 	TransformComponent* transform = dynamic_cast<TransformComponent*>(father->getComponent("TransformComponent"));
 	getSceneNode()->setPosition(transform->getPosition());

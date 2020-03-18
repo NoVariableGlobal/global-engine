@@ -17,7 +17,7 @@
 //Constructor, se crea la camara se le asocia el viewport y se asocian todos lo sceneNode
 CameraRC::CameraRC() : RenderComponent() {}
 
-CameraRC::~CameraRC() 
+CameraRC::~CameraRC() //Destroys the camera and every viewport
 {
 	_msM->destroyCamera(camera);
 	OgreSDLContext::getInstance()->getRenderWindow()->removeAllViewports();
@@ -26,7 +26,8 @@ CameraRC::~CameraRC()
 	delete look;
 }
 
-void CameraRC::setCamera(std::string _entityID)
+//Creates the camera 
+void CameraRC::setCamera(std::string _entityID) 
 {
 	_msM = OgreSDLContext::getInstance()->getSceneManager();
 
@@ -38,6 +39,7 @@ void CameraRC::setCamera(std::string _entityID)
 
 Ogre::Camera* CameraRC::getCamera() { return camera; }
 
+//Sets the viewport
 void CameraRC::setViewport(Ogre::Vector3 _colour)
 {
 	vp = OgreSDLContext::getInstance()->getRenderWindow()->addViewport(camera);
