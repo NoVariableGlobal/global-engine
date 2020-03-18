@@ -38,6 +38,8 @@ void PhysicsContext::init(float _gravity)
 
 void PhysicsContext::destroyWorld()
 {
+	destroyWorldContent();
+
 	delete discreteDynamicsWorld;
 	discreteDynamicsWorld = nullptr;
 	delete defaultCollisionConfiguration;
@@ -50,8 +52,6 @@ void PhysicsContext::destroyWorld()
 	sequentialImpulseConstraintSolver = nullptr;
 	delete mDebugDrawer;
 	mDebugDrawer = nullptr;
-
-	destroyWorldContent();
 
 	delete _instance;
 	_instance = nullptr;
