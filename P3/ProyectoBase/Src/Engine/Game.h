@@ -16,6 +16,9 @@ class Game
 		bool end = false;
 		bool win = false;
 
+		std::string sceneToChange;
+		bool sceneChange = false;
+
 	public:
 		Game();
 		~Game();
@@ -33,7 +36,9 @@ class Game
 		void render();
 		// handle the input of the game
 		void handleInput();
-		
+
+		// tells if the scene is going to be change
+		void setChangeScene(bool _change, std::string _sceneName);
 		// change the current scene
 		void setScene(std::string _sceneName);
 };

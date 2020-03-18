@@ -24,8 +24,6 @@ class Scene
       ComponentsManager* componentManager;
 
       Game* game = nullptr;
-
-      bool sceneChange = false;
   
     public:
       Scene(Game* _game);

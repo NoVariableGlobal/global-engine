@@ -62,6 +62,8 @@ void PhysicsContext::destroyWorldContent()
 	int size = ribs.size();
 	for (int i = size - 1; i >= 0; i--)
 	{
+		discreteDynamicsWorld->removeCollisionObject(ribs[i]);
+
 		delete ribs[i];
 		ribs.pop_back();
 	}
