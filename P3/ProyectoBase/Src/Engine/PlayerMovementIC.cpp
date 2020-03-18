@@ -17,24 +17,19 @@ PlayerMovementIC::~PlayerMovementIC() {}
 
 void PlayerMovementIC::handleInput(const SDL_Event& _event)
 {
-	if (_event.type == SDL_KEYDOWN) {
+	if (_event.type == SDL_KEYDOWN) 
+	{
 		TransformComponent* transform = dynamic_cast<TransformComponent*>(father->getComponent("TransformComponent"));
-		std::cout << transform->getPosition().x << " " << transform->getPosition().y << " " << transform->getPosition().z << "\n";
-		switch (_event.key.keysym.sym)
-		{
-		case SDLK_w:
+
+		if(_event.key.keysym.sym == SDLK_w)
 			transform->setPosition(transform->getPosition() + Ogre::Vector3(0.0f, 0.0f, -_speed));
-			break;
-		case SDLK_s:
+		if (_event.key.keysym.sym == SDLK_s)
 			transform->setPosition(transform->getPosition() + Ogre::Vector3(0.0f, 0.0f, _speed));
-			break;
-		case SDLK_a:
+
+		if (_event.key.keysym.sym == SDLK_a)
 			transform->setPosition(transform->getPosition() + Ogre::Vector3(-_speed, 0.0f, 0.0f));
-			break;
-		case SDLK_d:
+		if (_event.key.keysym.sym == SDLK_d)
 			transform->setPosition(transform->getPosition() + Ogre::Vector3(_speed, 0.0f, 0.0f));
-			break;
-		}
 	}
 }
 
@@ -53,6 +48,7 @@ public:
 		scene->getComponentsManager()->addIC(playerMovement);
 
 		playerMovement->setFather(_father);
+		playerMovement->setScene(scene);
 
 		if(!_data["speed"].asInt()) throw std::exception("PlayerMovementIC: speed is not an int");
 		playerMovement->setMovementSpeed(_data["speed"].asFloat());

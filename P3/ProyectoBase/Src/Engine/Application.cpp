@@ -13,7 +13,7 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine,
 	try
 	{
 		Game game;
-		if(game.init("Menu"))
+		if(game.init("Game"))
 			game.run();
 	}
 	catch (std::exception & e)

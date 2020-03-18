@@ -1,61 +1,79 @@
 {   
-    "entities" : 
-    [
-        { 
-            "id" : "Camera",
-            "components" : 
-            [
-                { 
-                    "type" : "TransformComponent",
-                    "attributes" : {
-                        "position" : [0, 0, 300],
-                        "orientation" : [0, 0, 0],
-                        "scale" : [1, 1, 1]
-                    }
-                },
-                { 
-                    "type" : "CameraRC",
-                    "attributes" : 
-                    {
-                        "node" : "nCamera",
-                        "viewportColour" : [0, 0, 0],
-                        "offset" : [0, 0, 0],
-                        "lookAt" : [0, 0, 0]
-                    }
-                },
-                { 
-                    "type" : "SpotLightRC",
-                    "attributes" : 
-                    {
-                        "node" : "nSpotLight",
-                        "colour" : [0.5, 0.5, 0.5],
-                        "direction" : [0, -1, -1]
-                    }
-                }
-            ]
-        },
-
-        { 
-            "id" : "Simbad",
-            "components" : 
-            [
-                { 
-                    "type" : "TransformComponent",
-                    "attributes" : {
-                        "position" : [0, 0, 0],
-                        "orientation" : [0, 0, 0],
-                        "scale" : [20, 20, 20]
-                    }
-                },
-                { 
-                    "type" : "TridimensionalObjectRC",
-                    "attributes" : {
-                        "mesh" : "Sinbad.mesh",
-                        "node" : "nSimbad",
-                        "material" : "none"
-                    }
-                }
-            ]
-        }
+    "entities": [
+      {
+        "id": "Scene",
+        "components": [
+          {
+            "type": "SpotLightRC",
+            "attributes": {
+              "node": "nSpotLight",
+              "colour": [ 0.5, 0.5, 0.5 ],
+              "direction": [ 0, -1, 0 ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "Simbad",
+        "components": [
+          {
+            "type": "TransformComponent",
+            "attributes": {
+              "position": [ 0, 0, 0 ],
+              "orientation": [ 0, 0, 0 ],
+              "scale": [ 3, 3, 3 ]
+            }
+          },
+          {
+            "type": "TridimensionalObjectRC",
+            "attributes": {
+              "mesh": "Sinbad.mesh",
+              "node": "nPlayer",
+              "material": "none"
+            }
+          },
+          {
+            "type": "PlayerMovementIC",
+            "attributes": {
+                "speed" : 5
+            }
+          },
+          {
+            "type": "PlayerShotIC",
+            "attributes": {
+            }
+          },
+          {
+            "type": "CameraRC",
+            "attributes": {
+              "node": "nCamera",
+              "viewportColour": [ 0, 0, 0 ],
+              "offset": [ 0, 200, 0 ],
+              "lookAt": [ 0, -1, 0 ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "Referencia",
+        "components": [
+          {
+            "type": "TransformComponent",
+            "attributes": {
+              "position": [ -10, 0, 0 ],
+              "orientation": [ 0, 0, 0 ],
+              "scale": [ 0.05, 0.05, 0.05 ]
+            }
+          },
+          {
+            "type": "TridimensionalObjectRC",
+            "attributes": {
+              "mesh": "cube.mesh",
+              "node": "nCube",
+              "material": "GrassMaterial"
+            }
+          }
+        ]
+      }
     ]
 }

@@ -1,12 +1,13 @@
 {
-  "entities": [
+  "entities": 
+  [
     {
       "id": "Camera",
       "components": [
         {
           "type": "TransformComponent",
           "attributes": {
-            "position": [ 0, 0, 300 ],
+            "position": [ 0, 0, 0 ],
             "orientation": [ 0, 0, 0 ],
             "scale": [ 1, 1, 1 ]
           }
@@ -16,7 +17,7 @@
           "attributes": {
             "node": "nCamera",
             "viewportColour": [ 0, 0, 0 ],
-            "offset": [ 0, 0, 0 ],
+            "offset": [ 0, 0, 300 ],
             "lookAt": [ 0, 0, 0 ]
           }
         },
@@ -27,27 +28,39 @@
             "colour": [ 0.5, 0.5, 0.5 ],
             "direction": [ 0, -1, -1 ]
           }
+        },
+        {
+          "type": "TestChangeSceneIC",
+          "attributes": {
+          }
         }
       ]
     },
     {
-      "id": "Horda",
+      "id": "Generador",
       "components": [
         {
           "type": "TransformComponent",
           "attributes": {
             "position": [ 0, 0, 0 ],
             "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.5, 0.5, 0.5 ]
+            "scale": [ 0.05, 0.05, 0.05 ]
           }
         },
-
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nCube",
+            "material": "GrassMaterial"
+          }
+        },
         {
           "type": "SpawnerEnemiesEC",
           "attributes": {
             "spawnCooldown": 5,
-            "spawnID": [ "MeleeEnemy" ],
-            "spawnChances": [ 50 ]
+            "spawnID": [ "Penguin" ],
+            "spawnChances": [ 100 ]
           }
         }
       ]

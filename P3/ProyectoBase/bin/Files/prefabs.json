@@ -1,7 +1,7 @@
 {
   "prefabs": [
     {
-      "id": "MeleeEnemy",
+      "id": "Penguin",
       "components": [
         {
           "type": "TransformComponent",
@@ -14,9 +14,9 @@
         {
           "type": "TridimensionalObjectRC",
           "attributes": {
-            "mesh": "cube.mesh",
-            "node": "nCube",
-            "material": "none"
+            "mesh": "penguin.mesh",
+            "node": "nPenguin",
+            "material": "PenguinMaterial"
           }
         }
       ]

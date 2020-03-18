@@ -37,7 +37,7 @@ bool Game::init(std::string _firstScene)
 		Loader loader;
 		loader.readScenes(scenesQueue);
 
-		scene = new Scene();
+		scene = new Scene(this);
 		setScene(_firstScene);
 
 		return true;
