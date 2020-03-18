@@ -35,6 +35,7 @@ Scene::~Scene()
 void Scene::changeScene(std::string _sceneName)
 {
 	game->setScene(_sceneName);
+	sceneChange = true;
 }
 
 void Scene::load(std::string name) 

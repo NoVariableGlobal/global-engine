@@ -32,6 +32,7 @@
         {
           "type": "TestChangeSceneIC",
           "attributes": {
+            "sceneToChange" : "Game"
           }
         }
       ]

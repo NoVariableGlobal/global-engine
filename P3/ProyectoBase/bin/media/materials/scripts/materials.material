@@ -15,6 +15,17 @@ material GrassMaterial
     }
 }
 
+material PurpleColourMaterial
+{
+    technique 
+    {
+        pass 
+        { // first pass                //OPCIONAL CON LAS TEXTURAS. SI LO QUITAS, DEBES QUITAR COLOUR_OP (EJ ABAJO DE ESTA TEXTURA). AUN ASI, LO UNICO IMPORTANTE ES DIFFUSE
+            diffuse 0.57 0.09 0.53 1.00
+        }
+    }
+}
+
 material PenguinMaterial
 {
     technique 

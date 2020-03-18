@@ -14,12 +14,14 @@ TestChangeSceneIC::TestChangeSceneIC() {}
 
 TestChangeSceneIC::~TestChangeSceneIC() {}
 
+void TestChangeSceneIC::setSceneToChange(std::string scene) { sceneToChange = scene; }
+
 void TestChangeSceneIC::handleInput(const SDL_Event& _event)
 {
 	if (_event.type == SDL_KEYDOWN)
 	{
 		if (_event.key.keysym.sym == SDLK_SPACE)
-			scene->changeScene("Game");
+			scene->changeScene(sceneToChange);
 	}
 }
 
@@ -35,6 +37,9 @@ public:
 
 		change->setFather(_father);
 		change->setScene(_scene);
+
+		if (!_data["sceneToChange"].isString()) throw std::exception("TestChangeSceneIC: sceneToChange is not a string.");
+		change->setSceneToChange(_data["sceneToChange"].asString());
 
 		return change;
 	};
