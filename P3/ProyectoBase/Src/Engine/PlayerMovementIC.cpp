@@ -17,20 +17,65 @@ PlayerMovementIC::~PlayerMovementIC() {}
 
 void PlayerMovementIC::handleInput(const SDL_Event& _event)
 {
+	TransformComponent* transform = dynamic_cast<TransformComponent*>(father->getComponent("TransformComponent"));
+
 	if (_event.type == SDL_KEYDOWN) 
 	{
-		TransformComponent* transform = dynamic_cast<TransformComponent*>(father->getComponent("TransformComponent"));
+		switch (_event.key.keysym.sym)
+		{
+			case SDLK_w:
+				wDown = true;
+				break;
 
-		if(_event.key.keysym.sym == SDLK_w)
-			transform->setPosition(transform->getPosition() + Ogre::Vector3(0.0f, 0.0f, -_speed));
-		if (_event.key.keysym.sym == SDLK_s)
-			transform->setPosition(transform->getPosition() + Ogre::Vector3(0.0f, 0.0f, _speed));
+			case SDLK_s:
+				sDown = true;
+				break;
 
-		if (_event.key.keysym.sym == SDLK_a)
-			transform->setPosition(transform->getPosition() + Ogre::Vector3(-_speed, 0.0f, 0.0f));
-		if (_event.key.keysym.sym == SDLK_d)
-			transform->setPosition(transform->getPosition() + Ogre::Vector3(_speed, 0.0f, 0.0f));
+			case SDLK_a:
+				aDown = true;
+				break;
+
+			case SDLK_d:
+				dDown = true;
+				break;
+
+			default:
+				break;
+		}
 	}
+	else if (_event.type == SDL_KEYUP)
+	{
+		switch (_event.key.keysym.sym)
+		{
+			case SDLK_w:
+					wDown = false;
+					break;
+
+			case SDLK_s:
+					sDown = false;
+					break;
+
+			case SDLK_a:
+					aDown = false;
+					break;
+
+			case SDLK_d:
+					dDown = false;
+					break;
+
+			default:
+				break;
+		}
+	}
+
+	if (wDown)
+		transform->setPosition(transform->getPosition() + Ogre::Vector3(0.0f, 0.0f, -_speed));
+	if (sDown)
+		transform->setPosition(transform->getPosition() + Ogre::Vector3(0.0f, 0.0f, _speed));
+	if (aDown)
+		transform->setPosition(transform->getPosition() + Ogre::Vector3(-_speed, 0.0f, 0.0f));
+	if (dDown)
+		transform->setPosition(transform->getPosition() + Ogre::Vector3(_speed, 0.0f, 0.0f));
 }
 
 void PlayerMovementIC::setMovementSpeed(float speed)
