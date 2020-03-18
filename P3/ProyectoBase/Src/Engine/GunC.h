@@ -4,11 +4,11 @@ class GunC : public Component
 {
 private:
 	int bulletchamber; // Ammunition in chamber
-	int bulletchamberMax;
+	int bulletchamberMax; // Total ammunition in chamber
 	int	munition; // Total ammunition stored
-	int	cadence;
-	int	damage;
-	bool semiautomatic;
+	int	cadence; // Gun cadence
+	int	damage; // Gun damage by bullet
+	bool semiautomatic; // One shot or multiple shot gun
 
 public:
 	GunC(int _bulletchamber, int _munition, int _cadence, int _damage, bool _semiautomatic);
