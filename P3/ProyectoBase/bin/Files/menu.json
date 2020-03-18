@@ -16,7 +16,7 @@
           "type": "CameraRC",
           "attributes": {
             "node": "nCamera",
-            "viewportColour": [ 0, 0, 0 ],
+            "viewportColour": [ 0.5, 0, 0.3 ],
             "offset": [ 0, 0, 300 ],
             "lookAt": [ 0, 0, 0 ]
           }
