@@ -10,6 +10,7 @@ namespace Ogre {
 class PlayerMovementIC : public InputComponent
 {
 private:
+	// speed at which the player moves each frame
 	float _speed;
 public:
 	PlayerMovementIC();
