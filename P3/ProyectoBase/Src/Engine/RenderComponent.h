@@ -3,28 +3,27 @@
 
 // Abstract subcomponent from which every graphic component should inherit
 
-namespace Ogre
-{
-	typedef class Entity;
-	typedef class SceneNode;
-}
+namespace Ogre {
+    typedef class Entity;
+    typedef class SceneNode;
+} // namespace Ogre
 
 class RenderComponent : public Component {
-protected:
-	// entity and scene node of the object this render component belongs to
-	Ogre::Entity* entity = nullptr;
-	Ogre::SceneNode* sceneNode = nullptr;
+  protected:
+    // entity and scene node of the object this render component belongs to
+    Ogre::Entity* entity = nullptr;
+    Ogre::SceneNode* sceneNode = nullptr;
 
-public:
-	RenderComponent();
-	virtual ~RenderComponent();
-	// interface for each render component render method
-	virtual void render() = 0;
+  public:
+    RenderComponent();
+    virtual ~RenderComponent();
+    // interface for each render component render method
+    virtual void render() = 0;
 
-	// Getters and setters
-	Ogre::Entity* getOgreEntity();
-	void setOgreEntity(Ogre::Entity* e);
+    // Getters and setters
+    Ogre::Entity* getOgreEntity();
+    void setOgreEntity(Ogre::Entity* e);
 
-	Ogre::SceneNode* getSceneNode();
-	void setSceneNode(Ogre::SceneNode* sn);
+    Ogre::SceneNode* getSceneNode();
+    void setSceneNode(Ogre::SceneNode* sn);
 };

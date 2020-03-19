@@ -33,52 +33,46 @@ void PhysicsContext::init(float _gravity) {
     mDebugDrawer->setDebugMode(btIDebugDraw::DBG_DrawWireframe);
     discreteDynamicsWorld->setDebugDrawer(mDebugDrawer);
 }
-void PhysicsContext::destroyWorld()
-{
-	destroyWorldContent();
+void PhysicsContext::destroyWorld() {
+    destroyWorldContent();
 
-	delete discreteDynamicsWorld;
-	discreteDynamicsWorld = nullptr;
-	delete defaultCollisionConfiguration;
-	defaultCollisionConfiguration = nullptr;
-	delete collisionDispatcher;
-	collisionDispatcher = nullptr;
-	delete broadphaseInterface;
-	broadphaseInterface = nullptr;
-	delete sequentialImpulseConstraintSolver;
-	sequentialImpulseConstraintSolver = nullptr;
-	delete mDebugDrawer;
-	mDebugDrawer = nullptr;
+    delete discreteDynamicsWorld;
+    discreteDynamicsWorld = nullptr;
+    delete defaultCollisionConfiguration;
+    defaultCollisionConfiguration = nullptr;
+    delete collisionDispatcher;
+    collisionDispatcher = nullptr;
+    delete broadphaseInterface;
+    broadphaseInterface = nullptr;
+    delete sequentialImpulseConstraintSolver;
+    sequentialImpulseConstraintSolver = nullptr;
+    delete mDebugDrawer;
+    mDebugDrawer = nullptr;
 
-	delete _instance;
-	_instance = nullptr;
+    delete _instance;
+    _instance = nullptr;
 }
 
-void PhysicsContext::destroyWorldContent()
-{
-	int size = ribs.size();
-	for (int i = size - 1; i >= 0; i--)
-	{
-		discreteDynamicsWorld->removeCollisionObject(ribs[i]);
+void PhysicsContext::destroyWorldContent() {
+    int size = ribs.size();
+    for (int i = size - 1; i >= 0; i--) {
+        discreteDynamicsWorld->removeCollisionObject(ribs[i]);
 
-		delete ribs[i];
-		ribs.pop_back();
-	}
+        delete ribs[i];
+        ribs.pop_back();
+    }
 
-	size = shapes.size();
-	for (int i = size - 1; i >= 0; i--)
-	{
-		delete shapes[i];
-		shapes.pop_back();
-	}
+    size = shapes.size();
+    for (int i = size - 1; i >= 0; i--) {
+        delete shapes[i];
+        shapes.pop_back();
+    }
 
-	size = states.size();
-	for (int i = size - 1; i >= 0; i--)
-	{
-		delete states[i];
-		states.pop_back();
-	}
-
+    size = states.size();
+    for (int i = size - 1; i >= 0; i--) {
+        delete states[i];
+        states.pop_back();
+    }
 }
 
 void PhysicsContext::updateSimulation() {

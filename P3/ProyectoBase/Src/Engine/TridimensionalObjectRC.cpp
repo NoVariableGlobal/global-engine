@@ -1,63 +1,78 @@
-#include <json.h>
 #include "TridimensionalObjectRC.h"
-#include "Entity.h"
-#include "Factory.h"
-#include "FactoriesFactory.h"
 #include "ComponentsManager.h"
-#include "TransformComponent.h"
+#include "Entity.h"
+#include "FactoriesFactory.h"
+#include "Factory.h"
 #include "OgreEntity.h"
 #include "OgreSDLContext.h"
 #include "OgreSceneManager.h"
 #include "Scene.h"
+#include "TransformComponent.h"
+#include <json.h>
 
 // COMPONENT CODE
 TridimensionalObjectRC::TridimensionalObjectRC() {}
 
 TridimensionalObjectRC::~TridimensionalObjectRC() {}
 
-//Updates the node position as our father transform
+// Updates the node position as our father transform
 void TridimensionalObjectRC::render() {
-	TransformComponent* transform = dynamic_cast<TransformComponent*>(father->getComponent("TransformComponent"));
-	getSceneNode()->setPosition(transform->getPosition());
-	getSceneNode()->setScale(transform->getScale());
+    TransformComponent* transform = dynamic_cast<TransformComponent*>(
+        father->getComponent("TransformComponent"));
+    getSceneNode()->setPosition(transform->getPosition());
+    getSceneNode()->setScale(transform->getScale());
 }
 
 void TridimensionalObjectRC::setMaterial(std::string material) {
-	entity->setMaterialName(material);
+    entity->setMaterialName(material);
 }
 
 // FACTORY INFRASTRUCTURE
 class TridimensionalObjectRCFactory : public ComponentFactory {
-public:
-	TridimensionalObjectRCFactory() {};
+  public:
+    TridimensionalObjectRCFactory(){};
 
-	virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
-	{
-		Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
-		TridimensionalObjectRC* tridimensionalObject = new TridimensionalObjectRC();
-		scene->getComponentsManager()->addRC(tridimensionalObject);
+    virtual Component* create(Entity* _father, Json::Value& _data,
+                              Scene* scene) {
+        Ogre::SceneManager* mSM =
+            OgreSDLContext::getInstance()->getSceneManager();
+        TridimensionalObjectRC* tridimensionalObject =
+            new TridimensionalObjectRC();
+        scene->getComponentsManager()->addRC(tridimensionalObject);
 
-		tridimensionalObject->setFather(_father);
-		tridimensionalObject->setScene(scene);
-		
-		if (!_data["mesh"].isString()) throw std::exception("TridimensionalObjectRC: mesh is not a string");
-		tridimensionalObject->setOgreEntity(mSM->createEntity(_data["mesh"].asString()));
+        tridimensionalObject->setFather(_father);
+        tridimensionalObject->setScene(scene);
 
-		if (!_data["node"].isString()) throw std::exception("TridimensionalObjectRC: node is not a string");
-		tridimensionalObject->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString() + _father->getId()));
+        if (!_data["mesh"].isString())
+            throw std::exception(
+                "TridimensionalObjectRC: mesh is not a string");
+        tridimensionalObject->setOgreEntity(
+            mSM->createEntity(_data["mesh"].asString()));
 
-		if (!_data["material"].isString()) throw std::exception("TridimensionalObjectRC: material is not a string");
-		else if(_data["material"].asString() != "none")
-			tridimensionalObject->setMaterial(_data["material"].asString());
+        if (!_data["node"].isString())
+            throw std::exception(
+                "TridimensionalObjectRC: node is not a string");
+        tridimensionalObject->setSceneNode(
+            mSM->getRootSceneNode()->createChildSceneNode(
+                _data["node"].asString() + _father->getId()));
 
-		tridimensionalObject->getSceneNode()->attachObject(tridimensionalObject->getOgreEntity());
+        if (!_data["material"].isString())
+            throw std::exception(
+                "TridimensionalObjectRC: material is not a string");
+        else if (_data["material"].asString() != "none")
+            tridimensionalObject->setMaterial(_data["material"].asString());
 
-		TransformComponent* transform = dynamic_cast<TransformComponent*>(_father->getComponent("TransformComponent"));
-		tridimensionalObject->getSceneNode()->setPosition(transform->getPosition());
-		tridimensionalObject->getSceneNode()->setScale(transform->getScale());
+        tridimensionalObject->getSceneNode()->attachObject(
+            tridimensionalObject->getOgreEntity());
 
-		return tridimensionalObject;
-	}
+        TransformComponent* transform = dynamic_cast<TransformComponent*>(
+            _father->getComponent("TransformComponent"));
+        tridimensionalObject->getSceneNode()->setPosition(
+            transform->getPosition());
+        tridimensionalObject->getSceneNode()->setScale(transform->getScale());
+
+        return tridimensionalObject;
+    }
 };
 
 REGISTER_FACTORY("TridimensionalObjectRC", TridimensionalObjectRC);
