@@ -42,3 +42,4 @@ test/
 */**/bin/*.iobj
 */**/bin/*.ipdb
 */**/bin/*.pdb
+*/**/bin/*.looknfeel
