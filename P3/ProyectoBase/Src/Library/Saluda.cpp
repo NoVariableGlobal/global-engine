@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "saluda.h"
+#include "Saluda.h"
 
 void saluda(const char* nombre)
 {

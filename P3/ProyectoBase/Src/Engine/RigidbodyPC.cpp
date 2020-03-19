@@ -105,12 +105,12 @@ void RigidbodyPC::setRestitution(float _restitution) {
 }
 
 // FACTORY INFRASTRUCTURE
-class RigidbodyPCFactory : public ComponentFactory {
+class RigidbodyPCFactory final : public ComponentFactory {
   public:
-    RigidbodyPCFactory(){};
+    RigidbodyPCFactory() = default;
 
-    virtual Component* create(Entity* _father, Json::Value& _data,
-                              Scene* scene) {
+    Component* create(Entity* _father, Json::Value& _data,
+                      Scene* scene) override {
         if (!_data["position"].isArray() || !_data["shape"].isArray() ||
             !_data["mass"].isInt())
             throw std::exception("RigidbodyPC: position/shape is not an array "

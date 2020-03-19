@@ -26,11 +26,12 @@ void TestChangeSceneIC::handleInput(const SDL_Event& _event) {
 }
 
 // FACTORY INFRASTRUCTURE
-class TestChangeSceneICFactory : public ComponentFactory {
+class TestChangeSceneICFactory final : public ComponentFactory {
   public:
-    TestChangeSceneICFactory(){};
-    virtual Component* create(Entity* _father, Json::Value& _data,
-                              Scene* _scene) {
+    TestChangeSceneICFactory() = default;
+
+    Component* create(Entity* _father, Json::Value& _data,
+                      Scene* _scene) override {
         TestChangeSceneIC* change = new TestChangeSceneIC();
         _scene->getComponentsManager()->addIC(change);
 

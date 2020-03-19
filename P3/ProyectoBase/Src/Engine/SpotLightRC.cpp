@@ -37,12 +37,12 @@ void SpotLightRC::setDirection(Ogre::Vector3 _dir) {
 void SpotLightRC::render() {}
 
 // FACTORY INFRASTRUCTURE
-class SpotLightRCFactory : public ComponentFactory {
+class SpotLightRCFactory final : public ComponentFactory {
   public:
-    SpotLightRCFactory(){};
+    SpotLightRCFactory() = default;
 
-    virtual Component* create(Entity* _father, Json::Value& _data,
-                              Scene* scene) {
+    Component* create(Entity* _father, Json::Value& _data,
+                      Scene* scene) override {
         Ogre::SceneManager* mSM =
             OgreSDLContext::getInstance()->getSceneManager();
         SpotLightRC* light = new SpotLightRC();

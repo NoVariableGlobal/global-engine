@@ -25,6 +25,7 @@ class Scene;
 
 class ComponentFactory {
   public:
-    ComponentFactory(){};
+    ComponentFactory() = default;
+    virtual ~ComponentFactory() = default;
     virtual Component* create(Entity* father, Json::Value&, Scene* scene) = 0;
 };

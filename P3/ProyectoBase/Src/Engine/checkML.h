@@ -1,3 +1,5 @@
+#pragma once
+
 // This script allows for the tracking of garbage during development,
 // so it can be eliminated
 

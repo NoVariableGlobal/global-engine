@@ -1,18 +1,13 @@
 #include "Loader.h"
-#include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
 #include "Ogre.h"
-#include "OgreVector3.h"
 #include "Scene.h"
-#include "TransformComponent.h"
 
 #include <iostream>
 #include <json.h>
 #include <string>
-
-#include <stdexcept>
 
 Loader::Loader() {}
 

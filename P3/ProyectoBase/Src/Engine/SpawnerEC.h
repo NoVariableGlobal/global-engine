@@ -19,7 +19,7 @@ class SpawnerEC : public EventComponent {
     Spawn mySpawn;
 
     std::vector<Spawn> _spawns;
-    float _spawnCooldown;
+    float _spawnCooldown = 0;
     float _lastTimeSpawned = 0;
 
   public:

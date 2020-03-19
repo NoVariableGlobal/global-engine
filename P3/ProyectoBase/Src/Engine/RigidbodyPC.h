@@ -28,7 +28,7 @@ class RigidbodyPC : public PhysicsComponent {
     bool collidesWith(std::string id);
 
     // Applies a force to the entity this component is attached to
-    void addForce(const Ogre::Vector3 _force, Ogre::Vector3 _relativePos);
+    void addForce(Ogre::Vector3 _force, Ogre::Vector3 _relativePos);
 
     // Getters
     bool isTrigger() const;   // Returns if an object is trigger
@@ -36,7 +36,7 @@ class RigidbodyPC : public PhysicsComponent {
     bool isStatic() const;    // Returns if an object is static
 
     // Setters
-    void setGravity(const Ogre::Vector3 _g); // Gives gravity to the body
+    void setGravity(Ogre::Vector3 _g); // Gives gravity to the body
     void
     setTrigger(bool _trigger); // It gets if a body we want it to be trigger
     void

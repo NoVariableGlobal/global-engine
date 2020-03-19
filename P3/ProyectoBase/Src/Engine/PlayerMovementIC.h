@@ -10,7 +10,7 @@ namespace Ogre {
 class PlayerMovementIC : public InputComponent {
 
   private:
-    float _speed;
+    float _speed = 0;
 
     bool wDown = false, sDown = false, aDown = false, dDown = false;
 

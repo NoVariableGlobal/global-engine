@@ -1,11 +1,11 @@
-#pragma
+#pragma once
 #include "Component.h"
 
 // Abstract subcomponent from which every graphic component should inherit
 
 namespace Ogre {
-    typedef class Entity;
-    typedef class SceneNode;
+    class Entity;
+    class SceneNode;
 } // namespace Ogre
 
 class RenderComponent : public Component {

@@ -25,11 +25,12 @@ void SpawnerEnemiesEC::setTransform(TransformComponent* trans) {
 }
 
 // FACTORY INFRASTRUCTURE
-class SpawnerEnemiesECFactory : public ComponentFactory {
+class SpawnerEnemiesECFactory final : public ComponentFactory {
   public:
-    SpawnerEnemiesECFactory(){};
-    virtual Component* create(Entity* _father, Json::Value& _data,
-                              Scene* scene) {
+    SpawnerEnemiesECFactory() = default;
+
+    Component* create(Entity* _father, Json::Value& _data,
+                      Scene* scene) override {
         SpawnerEnemiesEC* spawnerEnemies = new SpawnerEnemiesEC();
 
         spawnerEnemies->setFather(_father);

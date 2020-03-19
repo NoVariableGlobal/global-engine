@@ -22,7 +22,7 @@ class TransformComponent : public Component {
     virtual ~TransformComponent();
 
     // Getters and setters
-    Ogre::Vector3 getPosition();
+    Ogre::Vector3 getPosition() const;
     void setPosition(Ogre::Vector3 p);
 
     Ogre::Vector3 getOrientation();

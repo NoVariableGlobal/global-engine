@@ -80,11 +80,12 @@ void PlayerMovementIC::handleInput(const SDL_Event& _event) {
 void PlayerMovementIC::setMovementSpeed(float speed) { _speed = speed; }
 
 // FACTORY INFRASTRUCTURE
-class PlayerMovementICFactory : public ComponentFactory {
+class PlayerMovementICFactory final : public ComponentFactory {
   public:
-    PlayerMovementICFactory(){};
-    virtual Component* create(Entity* _father, Json::Value& _data,
-                              Scene* scene) {
+    PlayerMovementICFactory() = default;
+
+    Component* create(Entity* _father, Json::Value& _data,
+                      Scene* scene) override {
         PlayerMovementIC* playerMovement = new PlayerMovementIC();
         scene->getComponentsManager()->addIC(playerMovement);
 

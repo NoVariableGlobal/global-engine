@@ -46,7 +46,6 @@ bool Game::init(std::string _firstScene) {
 }
 
 void Game::run() {
-    int i = 0;
     while (!exit) {
         update();
         render();

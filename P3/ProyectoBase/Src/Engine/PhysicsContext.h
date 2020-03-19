@@ -21,12 +21,13 @@ class PhysicsContext {
   private:
     static PhysicsContext* _instance;
 
-    btCollisionDispatcher* collisionDispatcher;
-    btBroadphaseInterface* broadphaseInterface;
-    btSequentialImpulseConstraintSolver* sequentialImpulseConstraintSolver;
-    btDefaultCollisionConfiguration* defaultCollisionConfiguration;
-    btDiscreteDynamicsWorld* discreteDynamicsWorld;
-    OgreDebugDrawer* mDebugDrawer;
+    btCollisionDispatcher* collisionDispatcher = nullptr;
+    btBroadphaseInterface* broadphaseInterface = nullptr;
+    btSequentialImpulseConstraintSolver* sequentialImpulseConstraintSolver =
+        nullptr;
+    btDefaultCollisionConfiguration* defaultCollisionConfiguration = nullptr;
+    btDiscreteDynamicsWorld* discreteDynamicsWorld = nullptr;
+    OgreDebugDrawer* mDebugDrawer = nullptr;
 
     std::vector<btRigidBody*> ribs;
     std::vector<btBoxShape*> shapes;
