@@ -1,11 +1,10 @@
 #pragma once
-#include <map>
-#include <vector>
-#include <string>
 #include <SDL_events.h>
+#include <map>
+#include <string>
+#include <vector>
 
-namespace Json 
-{
+namespace Json {
     class Value;
 }
 
@@ -13,52 +12,52 @@ class Entity;
 class ComponentsManager;
 class Game;
 
-class Scene 
-{
-    private:
-      // id, entity
-      std::map<std::string, Entity*> entities;
-      // id, components
-      std::map<std::string, Json::Value> prefabs;
+class Scene {
+  private:
+    // id, entity
+    std::map<std::string, Entity*> entities;
+    // id, components
+    std::map<std::string, Json::Value> prefabs;
 
-      ComponentsManager* componentManager;
+    ComponentsManager* componentManager;
 
-      Game* game = nullptr;
-  
-    public:
-      Scene(Game* _game);
-      ~Scene();
+    Game* game = nullptr;
 
-      // calls to game->setScene() 
-      void changeScene(std::string _sceneName);
+  public:
+    Scene(Game* _game);
+    ~Scene();
 
-      // Given the name of the scene, reads its respective file and tells the Engine to create all entities and component
-      void load(std::string name);
+    // calls to game->setScene()
+    void changeScene(std::string _sceneName);
 
-      // update the scene
-      void update();
-      // render the entities of the scene
-      void render();
-      // handle the input of the game
-      void handleInput(const SDL_Event& _event);
+    // Given the name of the scene, reads its respective file and tells the
+    // Engine to create all entities and component
+    void load(std::string name);
 
-      // Search the entity in map and returns a reference to it.
-      Entity* getEntitybyId(std::string id);
-      // Add entity into the map.
-      void addEntity(Entity* entity);
+    // update the scene
+    void update();
+    // render the entities of the scene
+    void render();
+    // handle the input of the game
+    void handleInput(const SDL_Event& _event);
 
-      // clear the entities of the map.
-      void clearEntities();
+    // Search the entity in map and returns a reference to it.
+    Entity* getEntitybyId(std::string id);
+    // Add entity into the map.
+    void addEntity(Entity* entity);
 
-      // Search the prefab in the map and returns a new instance of it.
-      Entity* getInstanceOf(std::string id, int num = -1);
-      // Add prefab into the map.
-      void addPrefab(std::string id, Json::Value components);
-      // clear the entities of the map.
-      void clearPrefabs();
+    // clear the entities of the map.
+    void clearEntities();
 
-      // Get ComponentsManager.
-      ComponentsManager* getComponentsManager();
-      // Clear the Components Manager
-      void clearComponentsManager();
+    // Search the prefab in the map and returns a new instance of it.
+    Entity* getInstanceOf(std::string id, int num = -1);
+    // Add prefab into the map.
+    void addPrefab(std::string id, Json::Value components);
+    // clear the entities of the map.
+    void clearPrefabs();
+
+    // Get ComponentsManager.
+    ComponentsManager* getComponentsManager();
+    // Clear the Components Manager
+    void clearComponentsManager();
 };

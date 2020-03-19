@@ -8,43 +8,42 @@ inline Ogre::Vector3 cvt(const btVector3& V) {
     return Ogre::Vector3(V.x(), V.y(), V.z());
 }
 
-inline btQuaternion cvt(const Ogre::Quaternion& Q)
-{
+inline btQuaternion cvt(const Ogre::Quaternion& Q) {
     return btQuaternion(Q.x, Q.y, Q.z, Q.w);
 };
 
-inline Ogre::Quaternion cvt(const btQuaternion& Q)
-{
+inline Ogre::Quaternion cvt(const btQuaternion& Q) {
     return Ogre::Quaternion(Q.w(), Q.x(), Q.y(), Q.z());
 };
 
 using namespace Ogre;
 
-OgreDebugDrawer::OgreDebugDrawer(SceneManager* scm)
-{
+OgreDebugDrawer::OgreDebugDrawer(SceneManager* scm) {
     mContactPoints = &mContactPoints1;
     mLines = new ManualObject("physics lines");
-    //ASSERT(mLines);
+    // ASSERT(mLines);
     mTriangles = new ManualObject("physics triangles");
-    //ASSERT(mTriangles);
+    // ASSERT(mTriangles);
     mLines->setDynamic(true);
     mTriangles->setDynamic(true);
-    //mLines->estimateVertexCount( 100000 );
-    //mLines->estimateIndexCount( 0 );
+    // mLines->estimateVertexCount( 100000 );
+    // mLines->estimateIndexCount( 0 );
 
     scm->getRootSceneNode()->attachObject(mLines);
     scm->getRootSceneNode()->attachObject(mTriangles);
 
     static const char* matName = "OgreBulletCollisionsDebugDefault";
-    MaterialPtr mtl = MaterialManager::getSingleton().getDefaultSettings()->clone(matName);
+    MaterialPtr mtl =
+        MaterialManager::getSingleton().getDefaultSettings()->clone(matName);
     mtl->setReceiveShadows(false);
     mtl->setSceneBlending(SBT_TRANSPARENT_ALPHA);
     mtl->setDepthBias(0.1, 0);
-    TextureUnitState* tu = mtl->getTechnique(0)->getPass(0)->createTextureUnitState();
-   // ASSERT(tu);
+    TextureUnitState* tu =
+        mtl->getTechnique(0)->getPass(0)->createTextureUnitState();
+    // ASSERT(tu);
     tu->setColourOperationEx(LBX_SOURCE1, LBS_DIFFUSE);
     mtl->getTechnique(0)->setLightingEnabled(false);
-    //mtl->getTechnique(0)->setSelfIllumination( ColourValue::White ); 
+    // mtl->getTechnique(0)->setSelfIllumination( ColourValue::White );
 
     mLines->begin(matName, RenderOperation::OT_LINE_LIST);
     mLines->position(Vector3::ZERO);
@@ -64,15 +63,14 @@ OgreDebugDrawer::OgreDebugDrawer(SceneManager* scm)
     Root::getSingleton().addFrameListener(this);
 }
 
-OgreDebugDrawer::~OgreDebugDrawer()
-{
+OgreDebugDrawer::~OgreDebugDrawer() {
     Root::getSingleton().removeFrameListener(this);
     delete mLines;
     delete mTriangles;
 }
 
-void OgreDebugDrawer::drawLine(const btVector3& from, const btVector3& to, const btVector3& color)
-{
+void OgreDebugDrawer::drawLine(const btVector3& from, const btVector3& to,
+                               const btVector3& color) {
     ColourValue c(color.getX(), color.getY(), color.getZ());
     c.saturate();
     mLines->position(cvt(from));
@@ -81,8 +79,9 @@ void OgreDebugDrawer::drawLine(const btVector3& from, const btVector3& to, const
     mLines->colour(c);
 }
 
-void OgreDebugDrawer::drawTriangle(const btVector3& v0, const btVector3& v1, const btVector3& v2, const btVector3& color, btScalar alpha)
-{
+void OgreDebugDrawer::drawTriangle(const btVector3& v0, const btVector3& v1,
+                                   const btVector3& v2, const btVector3& color,
+                                   btScalar alpha) {
     ColourValue c(color.getX(), color.getY(), color.getZ(), alpha);
     c.saturate();
     mTriangles->position(cvt(v0));
@@ -93,8 +92,10 @@ void OgreDebugDrawer::drawTriangle(const btVector3& v0, const btVector3& v1, con
     mTriangles->colour(c);
 }
 
-void OgreDebugDrawer::drawContactPoint(const btVector3& PointOnB, const btVector3& normalOnB, btScalar distance, int lifeTime, const btVector3& color)
-{
+void OgreDebugDrawer::drawContactPoint(const btVector3& PointOnB,
+                                       const btVector3& normalOnB,
+                                       btScalar distance, int lifeTime,
+                                       const btVector3& color) {
     mContactPoints->resize(mContactPoints->size() + 1);
     ContactPoint p = mContactPoints->back();
     p.from = cvt(PointOnB);
@@ -105,11 +106,13 @@ void OgreDebugDrawer::drawContactPoint(const btVector3& PointOnB, const btVector
     p.color.b = color.z();
 }
 
-bool OgreDebugDrawer::frameStarted(const Ogre::FrameEvent& evt)
-{
+bool OgreDebugDrawer::frameStarted(const Ogre::FrameEvent& evt) {
     size_t now = Root::getSingleton().getTimer()->getMilliseconds();
-    std::vector< ContactPoint >* newCP = mContactPoints == &mContactPoints1 ? &mContactPoints2 : &mContactPoints1;
-    for (std::vector< ContactPoint >::iterator i = mContactPoints->begin(); i < mContactPoints->end(); i++) {
+    std::vector<ContactPoint>* newCP = mContactPoints == &mContactPoints1
+                                           ? &mContactPoints2
+                                           : &mContactPoints1;
+    for (std::vector<ContactPoint>::iterator i = mContactPoints->begin();
+         i < mContactPoints->end(); i++) {
         ContactPoint& cp = *i;
         mLines->position(cp.from);
         mLines->colour(cp.color);
@@ -126,29 +129,21 @@ bool OgreDebugDrawer::frameStarted(const Ogre::FrameEvent& evt)
     return true;
 }
 
-bool OgreDebugDrawer::frameEnded(const Ogre::FrameEvent& evt)
-{
+bool OgreDebugDrawer::frameEnded(const Ogre::FrameEvent& evt) {
     mLines->beginUpdate(0);
     mTriangles->beginUpdate(0);
     return true;
 }
 
-void OgreDebugDrawer::reportErrorWarning(const char* warningString)
-{
+void OgreDebugDrawer::reportErrorWarning(const char* warningString) {
     LogManager::getSingleton().getDefaultLog()->logMessage(warningString);
 }
 
-void OgreDebugDrawer::draw3dText(const btVector3& location, const char* textString)
-{
+void OgreDebugDrawer::draw3dText(const btVector3& location,
+                                 const char* textString) {}
 
-}
-
-void OgreDebugDrawer::setDebugMode(int debugMode)
-{
+void OgreDebugDrawer::setDebugMode(int debugMode) {
     mDebugModes = (DebugDrawModes)debugMode;
 }
 
-int OgreDebugDrawer::getDebugMode() const
-{
-    return mDebugModes;
-}
+int OgreDebugDrawer::getDebugMode() const { return mDebugModes; }

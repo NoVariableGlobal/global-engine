@@ -2,13 +2,12 @@
 #include "SpawnerEC.h"
 class TransformComponent;
 
-class SpawnerEnemiesEC : public SpawnerEC
-{
-private: 
-  TransformComponent* transform = nullptr;
-public:
-  virtual void checkEvent() override;
+class SpawnerEnemiesEC : public SpawnerEC {
+  private:
+    TransformComponent* transform = nullptr;
 
-  void setTransform(TransformComponent* trans);
+  public:
+    virtual void checkEvent() override;
+
+    void setTransform(TransformComponent* trans);
 };
-

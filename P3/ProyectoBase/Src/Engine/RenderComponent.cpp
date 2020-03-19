@@ -1,16 +1,16 @@
 #include "RenderComponent.h"
 #include "OgreEntity.h"
-#include "OgreSceneManager.h"
 #include "OgreSDLContext.h"
+#include "OgreSceneManager.h"
 
 RenderComponent::RenderComponent() : Component() {}
 
-RenderComponent::~RenderComponent() 
-{
-	if(entity != nullptr)
-		OgreSDLContext::getInstance()->getSceneManager()->destroyEntity(entity);
-	if (sceneNode != nullptr)
-		OgreSDLContext::getInstance()->getSceneManager()->destroySceneNode(sceneNode);
+RenderComponent::~RenderComponent() {
+    if (entity != nullptr)
+        OgreSDLContext::getInstance()->getSceneManager()->destroyEntity(entity);
+    if (sceneNode != nullptr)
+        OgreSDLContext::getInstance()->getSceneManager()->destroySceneNode(
+            sceneNode);
 }
 
 // GETTERS AND SETTERS
