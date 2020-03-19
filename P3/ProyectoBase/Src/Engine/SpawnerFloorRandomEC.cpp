@@ -13,6 +13,7 @@
 
 void SpawnerFloorRandomEC::checkEvent()
 {
+    //Spawnea un prefab en una posicion random del mapa cada cierto tiempo
   if (timeToSpawn()) {
     Entity* newEntity = spawnPrefab();
 

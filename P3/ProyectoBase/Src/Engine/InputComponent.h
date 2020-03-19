@@ -11,6 +11,7 @@ class InputComponent : public Component
 	public:
 		InputComponent();
 		virtual ~InputComponent();
+		// interface for each input component handle method
 		virtual void handleInput(const SDL_Event& _event) = 0;
 
 };

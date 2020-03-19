@@ -11,6 +11,7 @@
 
 void SpawnerEnemiesEC::checkEvent()
 {
+    //Spawnea un enemigo cada cierto tiempo en la posicion del spawn
   if (timeToSpawn()) {
     Entity* newEntity = spawnPrefab();
 

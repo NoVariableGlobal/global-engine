@@ -14,11 +14,12 @@
 // COMPONENT CODE
 SpotLightRC::SpotLightRC() {}
 
+//Destroys the light
 SpotLightRC::~SpotLightRC()
 {
 	_msM->destroyLight(light);
 }
-
+//Creates the light
 void SpotLightRC::setLight(std::string _entityID)
 {
 	_msM = OgreSDLContext::getInstance()->getSceneManager();
