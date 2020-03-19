@@ -21,6 +21,7 @@ public:
 	TransformComponent();
 	virtual ~TransformComponent();
 
+	// Getters and setters
 	Ogre::Vector3 getPosition();
 	void setPosition(Ogre::Vector3 p);
 
