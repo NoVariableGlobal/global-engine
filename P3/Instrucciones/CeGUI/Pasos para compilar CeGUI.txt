@@ -16,6 +16,8 @@
 	de ProyectoBase/lib/cegui-0.8.7/build/bin a ProyectoBase\bin
 16. Ir a ProyectoBase/lib/cegui-0.8.7/dependencies/bin y copiar todos los .dll a ProyectoBase\bin
 	(Es posible que algunos no sean necesarios pero el tutorial lo recomienda)
-17. Compilar nuestro proyecto. Si algo no funciona consultar a Omar, gracias por vuestra colaboración.
+17. Ir a Proyecto 3\global-engine\P3\ProyectoBase\lib\cegui-0.8.7\datafiles\looknfeel y
+	copiar TaharezLook.looknfeel a ProyectoBase\bin
+18. Compilar nuestro proyecto. Si algo no funciona consultar a Omar, gracias por vuestra colaboración.
 
 Source: https://www.youtube.com/watch?v=mwf_gDVudsE
