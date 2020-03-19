@@ -39,9 +39,8 @@ void Game::init(std::string _firstScene)
 	m_gui = new GUI();
 
 	// TEMPORARY - This should go in the games
-	m_gui->init("GUI");
 	try {    
-		
+		m_gui->init("GUI");
 		m_gui->loadScheme("TaharezLook.scheme");
 		m_gui->setFont("DejaVuSans-10");
 		m_gui->createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f), glm::vec4(0.0f), "TestButton");
