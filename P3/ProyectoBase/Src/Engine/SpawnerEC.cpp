@@ -23,8 +23,8 @@ bool SpawnerEC::addSpawn(std::string id, float chance) {
 }
 
 void SpawnerEC::editChance(std::string& id, float newChance) {
-    int i = 0;
-    bool found = false;
+    size_t i = 0;
+    auto found = false;
     float totalChance;
     for (; i < _spawns.size(); ++i) {
         if (!found)
@@ -50,9 +50,8 @@ void SpawnerEC::editChance(std::string& id, float newChance) {
 }
 
 void SpawnerEC::checkEvent() {
-    Entity* newEntity;
     if (timeToSpawn()) {
-        newEntity = spawnPrefab();
+        spawnPrefab();
     }
 }
 
@@ -96,11 +95,12 @@ Spawn SpawnerEC::binarySearch(int first, int last, float value) {
 }
 
 // FACTORY INFRASTRUCTURE
-class SpawnerECFactory : public ComponentFactory {
+class SpawnerECFactory final : public ComponentFactory {
   public:
-    SpawnerECFactory(){};
-    virtual Component* create(Entity* _father, Json::Value& _data,
-                              Scene* scene) {
+    SpawnerECFactory() = default;
+
+    Component* create(Entity* _father, Json::Value& _data,
+                      Scene* scene) override {
         SpawnerEC* spawnerEC = new SpawnerEC();
 
         spawnerEC->setFather(_father);
@@ -111,11 +111,11 @@ class SpawnerECFactory : public ComponentFactory {
         spawnerEC->setSpawnCooldown(_data["spawnCooldown"].asDouble());
         if (!_data["spawnID"].isArray())
             throw std::exception("Spawner: spawnID is not an array");
-        else if (!_data["spawnID"][0].isString())
+        if (!_data["spawnID"][0].isString())
             throw std::exception("Spawner: spawnID is not an array of strings");
         if (!_data["spawnChances"].isArray())
             throw std::exception("Spawner: spawnChances is not an array");
-        else if (!_data["spawnChances"][0].isDouble())
+        if (!_data["spawnChances"][0].isDouble())
             throw std::exception(
                 "Spawner: spawnChances is not an array of doubles");
         for (int i = 0; i < _data["spawnID"].size(); ++i) {

@@ -2,7 +2,6 @@
 #include <SDL_events.h>
 #include <map>
 #include <string>
-#include <vector>
 
 namespace Json {
     class Value;

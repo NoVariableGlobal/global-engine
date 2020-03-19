@@ -28,12 +28,12 @@ void TridimensionalObjectRC::setMaterial(std::string material) {
 }
 
 // FACTORY INFRASTRUCTURE
-class TridimensionalObjectRCFactory : public ComponentFactory {
+class TridimensionalObjectRCFactory final : public ComponentFactory {
   public:
-    TridimensionalObjectRCFactory(){};
+    TridimensionalObjectRCFactory() = default;
 
-    virtual Component* create(Entity* _father, Json::Value& _data,
-                              Scene* scene) {
+    Component* create(Entity* _father, Json::Value& _data,
+                      Scene* scene) override {
         Ogre::SceneManager* mSM =
             OgreSDLContext::getInstance()->getSceneManager();
         TridimensionalObjectRC* tridimensionalObject =

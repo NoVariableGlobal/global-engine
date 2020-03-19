@@ -1,8 +1,6 @@
 #include "OgreSDLContext.h"
 
-#include <OgreCamera.h>
 #include <OgreConfigFile.h>
-#include <OgreException.h>
 #include <OgreMaterialManager.h>
 #include <OgreRoot.h>
 #include <OgreSceneManager.h>
@@ -15,7 +13,6 @@
 
 #include "OgreEntity.h"
 #include "OgreRenderWindow.h"
-#include "OgreViewport.h"
 #include "RTSSDefaultTechniqueListener.h"
 #pragma warning(disable : 4996)
 #include "OgreSTBICodec.h"
@@ -23,8 +20,7 @@
 OgreSDLContext* OgreSDLContext::_instance = nullptr;
 
 OgreSDLContext::OgreSDLContext()
-    : mRoot(0), mResourcesCfg(Ogre::BLANKSTRING),
-      mPluginsCfg(Ogre::BLANKSTRING) {}
+    : mResourcesCfg(Ogre::BLANKSTRING), mPluginsCfg(Ogre::BLANKSTRING) {}
 
 OgreSDLContext* OgreSDLContext::getInstance() { return _instance; }
 
@@ -61,10 +57,7 @@ void OgreSDLContext::settingResources() {
     Ogre::ConfigFile cf;
     cf.load(mResourcesCfg);
 
-    // use to gather information from the parsed config file
-    Ogre::String name;    // path to the resources (i.e. "../media")
-    Ogre::String locType; // defines what kind of location this is (i.e.
-                          // Filesystem, Zip, etc.)
+    // Filesystem, Zip, etc.)
 
     // allow us to iterate through all of the sections discovered by the parser
     Ogre::ConfigFile::SettingsBySection_ secIt = cf.getSettingsBySection();
@@ -80,8 +73,8 @@ void OgreSDLContext::settingResources() {
         // scan through each item with this iterator
         for (it2 = settings->begin(); it2 != settings->end(); ++it2) {
             // unpack each pair
-            locType = it2->first; // location type of this resource
-            name = it2->second;   // the path
+            Ogre::String locType = it2->first; // location type of this resource
+            Ogre::String name = it2->second;   // the path
 
             // add this location to our ResourceGroupManager
             Ogre::ResourceGroupManager::getSingleton().addResourceLocation(

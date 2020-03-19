@@ -35,11 +35,12 @@ void SpawnerFloorRandomEC::checkEvent() {
 }
 
 // FACTORY INFRASTRUCTURE
-class SpawnerFloorRandomECFactory : public ComponentFactory {
+class SpawnerFloorRandomECFactory final : public ComponentFactory {
   public:
-    SpawnerFloorRandomECFactory(){};
-    virtual Component* create(Entity* _father, Json::Value& _data,
-                              Scene* scene) {
+    SpawnerFloorRandomECFactory() = default;
+
+    Component* create(Entity* _father, Json::Value& _data,
+                      Scene* scene) override {
         SpawnerFloorRandomEC* spawnerFloorRandomEC = new SpawnerFloorRandomEC();
 
         spawnerFloorRandomEC->setFather(_father);

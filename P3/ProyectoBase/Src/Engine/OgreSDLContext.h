@@ -4,7 +4,6 @@
 
 #include <SDL_events.h>
 
-class SDL_Window;
 class RTSSDefaultTechniqueListener;
 
 namespace Ogre {
@@ -79,7 +78,7 @@ class OgreSDLContext {
     void destroyRTShaderSystem();
 
     // process all window events since last call
-    bool pollEvents(const SDL_Event event);
+    bool pollEvents(SDL_Event event);
 
     // return a pointer to the SceneManager
     Ogre::SceneManager* getSceneManager();

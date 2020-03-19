@@ -5,7 +5,6 @@
 #include "FactoriesFactory.h"
 #include "Factory.h"
 #include "Ogre.h"
-#include "OgreVector3.h"
 #include "Scene.h"
 #include "TestComponent.h"
 
@@ -26,12 +25,12 @@ std::string TestComponent::getMaterial() { return _material; }
 Ogre::Vector3* TestComponent::getColor() { return _color; }
 
 // FACTORY INFRASTRUCTURE
-class TestComponentFactory : public ComponentFactory {
+class TestComponentFactory final : public ComponentFactory {
   public:
-    TestComponentFactory(){};
+    TestComponentFactory() = default;
 
-    virtual Component* create(Entity* father, Json::Value& _data,
-                              Scene* scene) {
+    Component* create(Entity* father, Json::Value& _data,
+                      Scene* scene) override {
         TestComponent* testComponent = new TestComponent();
         testComponent->setFather(father);
         testComponent->setScene(scene);

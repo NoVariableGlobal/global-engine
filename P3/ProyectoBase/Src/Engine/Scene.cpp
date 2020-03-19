@@ -1,12 +1,10 @@
 #include "Scene.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
-#include "FactoriesFactory.h"
 #include "Game.h"
 #include "Loader.h"
 #include "OgreVector3.h"
 #include "PhysicsContext.h"
-#include "TransformComponent.h"
 
 #include <iostream>
 #include <json.h>

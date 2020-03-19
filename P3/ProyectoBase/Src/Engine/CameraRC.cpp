@@ -12,8 +12,6 @@
 
 #include <json.h>
 
-#include <stdexcept>
-
 // Constructor, se crea la camara se le asocia el viewport y se asocian todos lo
 // sceneNode
 CameraRC::CameraRC() : RenderComponent() {}
@@ -63,22 +61,21 @@ void CameraRC::lookAt(Ogre::Vector3 _pos) {
 }
 
 void CameraRC::render() {
-    Ogre::Vector3* position = &(dynamic_cast<TransformComponent*>(
-                                    father->getComponent("TransformComponent"))
-                                    ->getPosition() +
-                                *cameraOffset);
+    const auto transform = dynamic_cast<TransformComponent*>(
+        father->getComponent("TransformComponent"));
+    const auto position = transform->getPosition() + *cameraOffset;
 
-    sceneNode->setPosition(position->x, position->y, position->z);
-    lookAt(*position);
+    sceneNode->setPosition(position.x, position.y, position.z);
+    lookAt(position);
 }
 
 // FACTORY INFRASTRUCTURE
-class CameraRCFactory : public ComponentFactory {
+class CameraRCFactory final : public ComponentFactory {
   public:
-    CameraRCFactory(){};
+    CameraRCFactory() = default;
 
-    virtual Component* create(Entity* _father, Json::Value& _data,
-                              Scene* scene) {
+    Component* create(Entity* _father, Json::Value& _data,
+                      Scene* scene) override {
         Ogre::SceneManager* mSM =
             OgreSDLContext::getInstance()->getSceneManager();
         CameraRC* camera = new CameraRC();

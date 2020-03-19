@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Component.h"
 
 class GunC : public Component {

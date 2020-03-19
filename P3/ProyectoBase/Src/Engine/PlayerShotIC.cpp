@@ -24,11 +24,12 @@ void PlayerShotIC::handleInput(const SDL_Event& _event) {
 }
 
 // FACTORY INFRASTRUCTURE
-class PlayerShotICFactory : public ComponentFactory {
+class PlayerShotICFactory final : public ComponentFactory {
   public:
-    PlayerShotICFactory(){};
-    virtual Component* create(Entity* _father, Json::Value& _data,
-                              Scene* scene) {
+    PlayerShotICFactory() = default;
+
+    Component* create(Entity* _father, Json::Value& _data,
+                      Scene* scene) override {
         PlayerShotIC* playerShot = new PlayerShotIC();
         scene->getComponentsManager()->addIC(playerShot);
 
