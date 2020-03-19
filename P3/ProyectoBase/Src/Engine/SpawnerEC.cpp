@@ -24,7 +24,7 @@ bool SpawnerEC::addSpawn(std::string id, float chance) {
 
 void SpawnerEC::editChance(std::string& id, float newChance) {
     size_t i = 0;
-    auto found = false;
+    bool found = false;
     float totalChance;
     for (; i < _spawns.size(); ++i) {
         if (!found)
@@ -121,8 +121,8 @@ class SpawnerECFactory final : public ComponentFactory {
         for (int i = 0; i < _data["spawnID"].size(); ++i) {
             if (!spawnerEC->addSpawn(_data["spawnID"][i].asString(),
                                      _data["spawnChances"][i].asDouble())) {
-                printf(("No se pudo añadir " + _data["spawnID"][i].asString() +
-                        ": Ya se llegó al 100% de probabilidad./n")
+                printf(("No se pudo aÃ±adir " + _data["spawnID"][i].asString() +
+                        ": Ya se llegÃ³ al 100% de probabilidad./n")
                            .c_str());
                 break;
             }
