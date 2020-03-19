@@ -38,7 +38,7 @@ bool Game::init(std::string _firstScene)
 		Loader loader;
 		loader.readScenes(scenesQueue);
 
-		scene = new Scene();
+		scene = new Scene(this);
 		setScene(_firstScene);
 
 		return true;
@@ -58,6 +58,9 @@ void Game::run()
 		update();
 		render();
 		handleInput();
+
+		if (sceneChange)
+			setScene(sceneToChange);
 	}
 
 }
@@ -83,9 +86,19 @@ void Game::handleInput()
 	}
 }
 
+void Game::setChangeScene(bool _change, std::string _sceneName) 
+{
+	sceneChange = _change; 
+	sceneToChange = _sceneName;
+}
+
 void Game::setScene(std::string _sceneName)
 {
 	scene->clearComponentsManager();
 	scene->clearEntities();
+	PhysicsContext::getInstance()->destroyWorldContent();
+
 	scene->load(scenesQueue.find(_sceneName)->second);
+
+	sceneChange = false;
 }

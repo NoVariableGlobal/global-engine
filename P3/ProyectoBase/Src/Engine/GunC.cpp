@@ -8,24 +8,33 @@ GunC::GunC(int _bulletchamber, int _munition, int _cadence, int _damage,
 
 GunC::~GunC() {}
 
-bool GunC::reload() {
-    if (bulletchamber != bulletchamberMax && munition > 0) {
-        int gunreload = bulletchamberMax - bulletchamber;
-        if (gunreload > munition)
-            gunreload = munition;
-        bulletchamber += gunreload;
-        munition -= gunreload;
-        return true;
-    } else
-        return false;
+bool GunC::reload()
+{
+	if (bulletchamber < bulletchamberMax && munition > 0) 
+	{
+		int gunreload = bulletchamberMax - bulletchamber;
+
+		if (gunreload > munition)
+			gunreload = munition;
+
+		bulletchamber += gunreload;
+		munition -= gunreload;
+
+		return true;
+	}
+	else
+		return false;
 }
 
-bool GunC::shoot() {
-    if (bulletchamber > 0) {
-        bulletchamber--;
-        return true;
-    } else
-        return false;
+bool GunC::shoot()
+{
+	if (bulletchamber > 0) 
+	{
+		bulletchamber--;
+
+		return true;
+	}
+	else return false;
 }
 
 int GunC::getbulletchamber() { return bulletchamber; }

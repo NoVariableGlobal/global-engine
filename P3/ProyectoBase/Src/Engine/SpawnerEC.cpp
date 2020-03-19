@@ -56,7 +56,6 @@ void SpawnerEC::checkEvent()
   Entity* newEntity;
   if (timeToSpawn()) {
     newEntity = spawnPrefab();
-    scene->addEntity(newEntity);
   }
 }
 

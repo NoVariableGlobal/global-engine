@@ -12,13 +12,15 @@
 #include <iostream>
 
 
-Scene::Scene() {
+Scene::Scene(Game* _game) {
 	componentManager = new ComponentsManager();
   
 	PhysicsContext::getInstance()->init(0);
 
 	Loader loader;
 	loader.readPrefabs(this);
+
+	game = _game;
 }
 
 Scene::~Scene() 
@@ -28,6 +30,11 @@ Scene::~Scene()
 
 	delete componentManager;
 	PhysicsContext::getInstance()->destroyWorld();
+}
+
+void Scene::changeScene(std::string _sceneName)
+{
+	game->setChangeScene(true, _sceneName);
 }
 
 void Scene::load(std::string name) 
@@ -115,5 +122,4 @@ ComponentsManager* Scene::getComponentsManager()
 void Scene::clearComponentsManager()
 {
 	componentManager->clearComponents();
-	entities.clear();
 }

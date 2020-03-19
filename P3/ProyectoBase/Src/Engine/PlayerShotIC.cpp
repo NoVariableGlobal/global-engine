@@ -33,10 +33,11 @@ public:
 	virtual Component* create(Entity* _father, Json::Value& _data, Scene* scene)
 	{
 		PlayerShotIC* playerShot = new PlayerShotIC();
+		scene->getComponentsManager()->addIC(playerShot);
 
 		playerShot->setFather(_father);
+		playerShot->setScene(scene);
 
-		scene->getComponentsManager()->addIC(playerShot);
 		return playerShot;
 	};
 };

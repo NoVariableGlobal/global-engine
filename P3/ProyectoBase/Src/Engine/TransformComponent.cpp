@@ -23,7 +23,12 @@ TransformComponent::~TransformComponent()
 }
 
 Ogre::Vector3 TransformComponent::getPosition() { return *_position; }
-void TransformComponent::setPosition(Ogre::Vector3 p) { *_position = p; }
+void TransformComponent::setPosition(Ogre::Vector3 p) {
+	int a;
+	a = 5;
+	*_position = p; 
+	a = 5;
+}
 
 Ogre::Vector3 TransformComponent::getOrientation() { return *_orientation; }
 void TransformComponent::setOrientation(Ogre::Vector3 r) { *_orientation = r; }

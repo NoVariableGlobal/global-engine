@@ -9,10 +9,9 @@ namespace Json
     class Value;
 }
 
-class Component;
 class Entity;
 class ComponentsManager;
-class CameraObject;
+class Game;
 
 class Scene 
 {
@@ -23,10 +22,15 @@ class Scene
       std::map<std::string, Json::Value> prefabs;
 
       ComponentsManager* componentManager;
+
+      Game* game = nullptr;
   
     public:
-      Scene();
+      Scene(Game* _game);
       ~Scene();
+
+      // calls to game->setScene() 
+      void changeScene(std::string _sceneName);
 
       // Given the name of the scene, reads its respective file and tells the Engine to create all entities and component
       void load(std::string name);
