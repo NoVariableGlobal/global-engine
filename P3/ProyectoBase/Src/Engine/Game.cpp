@@ -40,9 +40,17 @@ void Game::init(std::string _firstScene)
 
 	// TEMPORARY - This should go in the games
 	m_gui->init("GUI");
-	m_gui->loadScheme("TaharezLook.scheme");
-	m_gui->setFont("DejaVuSans-10");
-	m_gui->createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f), glm::vec4(0.0f), "TestButton");
+	try {    
+		
+		m_gui->loadScheme("TaharezLook.scheme");
+		m_gui->setFont("DejaVuSans-10");
+		m_gui->createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f), glm::vec4(0.0f), "TestButton");
+		}catch(CEGUI::Exception &e){   
+			auto message = e.getMessage().c_str();
+			throw std::exception(message);
+		}
+
+	
 }
 
 void Game::update()
