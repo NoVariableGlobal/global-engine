@@ -15,6 +15,8 @@ Game::~Game()
 {
 	delete scene;
 	scene = nullptr;
+	m_gui->destroy();
+	delete m_gui;
 	FactoriesFactory::getInstance()->clear();
 	OgreSDLContext::getInstance()->erase();
 }
@@ -33,6 +35,8 @@ void Game::init(std::string _firstScene)
   
 	scene = new Scene();
 	setScene(_firstScene);
+
+	m_gui = new GUI();
 
 	// TEMPORARY - This should go in the games
 	m_gui->init("GUI");
