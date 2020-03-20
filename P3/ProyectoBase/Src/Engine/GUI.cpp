@@ -1,12 +1,14 @@
 #include "GUI.h"
+#include <iostream>
 
 CEGUI::OpenGL3Renderer* GUI::m_renderer = nullptr;
 
 void GUI::init(const std::string& _resourceDirectory) {
 	if (m_renderer == nullptr) {
+
 		m_renderer = &CEGUI::OpenGL3Renderer::bootstrapSystem();
 
-		CEGUI::DefaultResourceProvider* rp = 
+		CEGUI::DefaultResourceProvider* rp =
 			static_cast<CEGUI::DefaultResourceProvider*>(
 				CEGUI::System::getSingleton().getResourceProvider());
 
@@ -14,20 +16,16 @@ void GUI::init(const std::string& _resourceDirectory) {
 		rp->setResourceGroupDirectory("schemes", _resourceDirectory + "/schemes/");
 		rp->setResourceGroupDirectory("fonts", _resourceDirectory + "/fonts/");
 		rp->setResourceGroupDirectory("layouts", _resourceDirectory + "/layouts/");
-		rp->setResourceGroupDirectory("looknfeels", _resourceDirectory + "/looknfeels/");
+		rp->setResourceGroupDirectory("looknfeels", _resourceDirectory + "/looknfeel/");
 		rp->setResourceGroupDirectory("lua_scripts", _resourceDirectory + "/lua_scripts/");
 
 		CEGUI::ImageManager::setImagesetDefaultResourceGroup("imagesets");
 		CEGUI::Scheme::setDefaultResourceGroup("schemes");
 		CEGUI::Font::setDefaultResourceGroup("fonts");
+		CEGUI::WidgetLookManager::setDefaultResourceGroup("looknfeels");
 		CEGUI::WindowManager::setDefaultResourceGroup("layouts");
-		CEGUI::WidgetLookManager::setDefaultResourceGroup("looknfeel");
 		CEGUI::ScriptModule::setDefaultResourceGroup("lua_scripts");
 	}
-
-	// TODO - BUG HERE
-	//CEGUI::RenderTarget* test = &m_renderer->getDefaultRenderTarget();
-	//m_context = &CEGUI::System::getSingleton().createGUIContext(*test);
 
 	m_context = &CEGUI::System::getSingleton().createGUIContext(m_renderer->getDefaultRenderTarget());
 	m_root = CEGUI::WindowManager::getSingleton().createWindow("DefaultWindow", "root");
@@ -35,7 +33,8 @@ void GUI::init(const std::string& _resourceDirectory) {
 }
 
 void GUI::destroy() {
-	CEGUI::System::getSingleton().destroyGUIContext(*m_context);
+	m_renderer->destroySystem();
+	//CEGUI::System::getSingleton().destroyGUIContext(*m_context);
 }
 
 void GUI::draw() {

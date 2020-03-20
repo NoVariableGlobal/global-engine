@@ -29,27 +29,31 @@ void Game::initContext()
 void Game::init(std::string _firstScene)
 {
 	initContext();
-  
+
 	Loader loader;
 	loader.readScenes(scenesQueue);
-  
+
 	scene = new Scene();
 	setScene(_firstScene);
 
 	m_gui = new GUI();
 
 	// TEMPORARY - This should go in the games
-	try {    
+	try {
 		m_gui->init("GUI");
 		m_gui->loadScheme("TaharezLook.scheme");
 		m_gui->setFont("DejaVuSans-10");
-		m_gui->createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f), glm::vec4(0.0f), "TestButton");
-		}catch(CEGUI::Exception &e){   
-			auto message = e.getMessage().c_str();
-			throw std::exception(message);
-		}
+		CEGUI::PushButton* testButton =
+			static_cast<CEGUI::PushButton*>(
+				m_gui->createWidget("TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f), glm::vec4(0.0f), "TestButton"));
+		testButton->setText("Hello World!");
+	}
+	catch (CEGUI::Exception & e) {
+		auto message = e.getMessage().c_str();
+		throw std::exception(message);
+	}
 
-	
+
 }
 
 void Game::update()
@@ -58,10 +62,10 @@ void Game::update()
 	{
 		scene->update();
 		exit = OgreSDLContext::getInstance()->renderLoop();
+		// TEMPORARY - This should go in the games
+		m_gui->draw();
 	}
 
-	// TEMPORARY - This should go in the games
-	m_gui->draw();
 }
 
 void Game::setScene(std::string _sceneName)
