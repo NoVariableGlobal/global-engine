@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Application.cpp" />
     <ClCompile Include="..\..\Src\Engine\GunC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\OrientateToMouseIC.cpp" />
     <ClCompile Include="..\..\Src\Engine\PlayerShotIC.cpp" />
     <ClCompile Include="..\..\Src\Engine\LifeC.cpp" />
     <ClCompile Include="..\..\Src\Engine\EventComponent.cpp" />
@@ -50,10 +51,10 @@
     <ClCompile Include="..\..\Src\Engine\PlayerMovementIC.cpp" />
     <ClCompile Include="..\..\src\Engine\TransformComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp" />
-    <ClCompile Include="OrientationIC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\GunC.h" />
+    <ClInclude Include="..\..\Src\Engine\OrientateToMouseIC.h" />
     <ClInclude Include="..\..\Src\Engine\PlayerShotIC.h" />
     <ClInclude Include="..\..\Src\Engine\LifeC.h" />
     <ClInclude Include="..\..\Src\Engine\EventComponent.h" />
@@ -85,7 +86,6 @@
     <ClInclude Include="..\..\Src\Engine\PlayerMovementIC.h" />
     <ClInclude Include="..\..\src\Engine\TransformComponent.h" />
     <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h" />
-    <ClInclude Include="OrientationIC.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -84,6 +84,8 @@ class OgreSDLContext {
     Ogre::SceneManager* getSceneManager();
     // return a pointer to the RenderWindow
     Ogre::RenderWindow* getRenderWindow();
+    // return a pointer to SDL_Window
+    SDL_Window* getSDLWindow();
 
     void renderLoop();
 };
