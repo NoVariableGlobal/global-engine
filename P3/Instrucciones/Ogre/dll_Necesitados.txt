@@ -7,6 +7,4 @@ RenderSystem_GL_d.dll
 zlib.dll
 OgreRTShaderSystem_d.dll
 OgreRTShaderSystem.dll
-Codec_FreeImage_d.dll
-Codec_FreeImage.dll
 Codec_STBI_d.dll
