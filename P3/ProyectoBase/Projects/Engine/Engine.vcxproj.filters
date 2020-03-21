@@ -92,7 +92,7 @@
     <ClCompile Include="..\..\Src\Engine\SpawnerEC.cpp">
       <Filter>Components\Events</Filter>
     </ClCompile>
-    <ClCompile Include="OrientationIC.cpp">
+    <ClCompile Include="..\..\Src\Engine\OrientateToMouseIC.cpp">
       <Filter>Components\Input</Filter>
     </ClCompile>
   </ItemGroup>
@@ -191,7 +191,7 @@
     <ClInclude Include="..\..\Src\Engine\SpawnerEC.h">
       <Filter>Components\Events</Filter>
     </ClInclude>
-    <ClInclude Include="OrientationIC.h">
+    <ClInclude Include="..\..\Src\Engine\OrientateToMouseIC.h">
       <Filter>Components\Input</Filter>
     </ClInclude>
   </ItemGroup>
