@@ -12,7 +12,7 @@
 12. Asegurarse de que estan marcados CEGUI_BUILD_RENDERER_OPENGL3 y CEGUI_BUILD_RENDERER_OPENGLES
 13. Generar
 
-Ir a ProyectoBase\lib\cegui-0.8.7\build\cegui\include\CEGUI\config.h y cambiar 
+NEW - 14. Ir a ProyectoBase\lib\cegui-0.8.7\build\cegui\include\CEGUI\config.h y cambiar 
 	#ifndef CEGUI_OGRE_VERSION_MAJOR
     #   define CEGUI_OGRE_VERSION_MAJOR 0
     #endif
@@ -32,10 +32,12 @@ por
     #ifndef CEGUI_OGRE_VERSION_PATCH
     #   define CEGUI_OGRE_VERSION_PATCH 0
 	
-14. Ir a ProyectoBase/lib/cegui-0.8.7/build, abrir cegui.sln y compliar el proyecto en DEBUG y RELEASE
-15. Copiar CEGUIBase-0.dll, CEGUIBase-0_d.dll, CEGUIOpenGLRenderer-0.dll y CEGUIOpenGLRenderer-0_d.dll 
+15. Ir a ProyectoBase/lib/cegui-0.8.7/build, abrir cegui.sln y compliar el proyecto en DEBUG y RELEASE
+16. Copiar CEGUIBase-0.dll, CEGUIBase-0_d.dll, 
+	CEGUIOpenGLRenderer-0.dll, CEGUIOpenGLRenderer-0_d.dll,
+NEW - CEGUIOgreGLRenderer-0.dll y CEGUIOgreGLRenderer-0_d.dll
 	de ProyectoBase/lib/cegui-0.8.7/build/bin a ProyectoBase\bin
-16. Ir a ProyectoBase/lib/cegui-0.8.7/dependencies/bin y copiar todos los .dll a ProyectoBase\bin
+17. Ir a ProyectoBase/lib/cegui-0.8.7/dependencies/bin y copiar todos los .dll a ProyectoBase\bin
 	(Es posible que algunos no sean necesarios pero el tutorial lo recomienda)
 18. Compilar nuestro proyecto. Si algo no funciona consultar a Omar, gracias por vuestra colaboración.
 
