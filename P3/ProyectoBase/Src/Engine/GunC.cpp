@@ -1,5 +1,4 @@
 #include "GunC.h"
-#include "Scene.h"
 
 GunC::GunC() {}
 
@@ -15,16 +14,6 @@ bool GunC::reload() {
         _bulletchamber += gunreload;
         _munition -= gunreload;
 
-        return true;
-    } else
-        return false;
-}
-
-bool GunC::shoot() {
-    if (_bulletchamber > 0) 
-    {
-        _bulletchamber--;
-       // scene->getEntitybyId("pool").createBullet(myBulletType);
         return true;
     } else
         return false;
@@ -54,7 +43,7 @@ void GunC::setsemiautomatic(bool semiautomatic) {
     _semiautomatic = semiautomatic;
 }
 
-
+void GunC::setTransform(TransformComponent* trans) { myTransform = trans; }
 
 bool GunC::mmunitionleft() {
     if (_bulletchamber == 0 && _munition == 0)

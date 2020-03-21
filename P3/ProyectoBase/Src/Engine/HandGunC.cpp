@@ -1,13 +1,34 @@
 #include "HandGunC.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
+#include "SpawnerBulletsC.h"
 #include "Scene.h"
+#include "Entity.h"
 #include "ComponentsManager.h"
+#include "TransformComponent.h"
 #include <json.h>
 
 HandGunC::HandGunC() : GunC() {}
 
 HandGunC::~HandGunC() {}
+
+bool GunC::shoot() {
+    if (_bulletchamber > 0) {
+        _bulletchamber--;
+        Entity* newBullet = dynamic_cast<SpawnerBulletsC*>(
+                                scene->getEntitybyId("GameManager")
+                                    ->getComponent("SpawnerBulletsC"))
+                                ->getBullet("HandgunBullet");
+
+       TransformComponent* bulletTransform = dynamic_cast<TransformComponent*>(
+            newBullet->getComponent("TransformComponent"));
+
+       bulletTransform->setPosition(myTransform->getPosition());
+       bulletTransform->setOrientation(myTransform->getOrientation());
+
+    } else
+        return false;
+}
 
 // FACTORY INFRASTRUCTURE
 class HandGunCFactory final : public ComponentFactory {
@@ -43,6 +64,7 @@ class HandGunCFactory final : public ComponentFactory {
 
         hg->setFather(_father);
         hg->setScene(scene);
+        hg->setTransform(dynamic_cast<TransformComponent*>(_father->getComponent("TransformComponent")));
 
         return hg;
     };

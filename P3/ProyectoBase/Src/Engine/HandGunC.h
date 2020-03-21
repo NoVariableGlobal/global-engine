@@ -5,8 +5,9 @@
 class HandGunC : public GunC {
   private:
 
-
   public:
     HandGunC();
     ~HandGunC();
+
+    virtual bool shoot();
 };

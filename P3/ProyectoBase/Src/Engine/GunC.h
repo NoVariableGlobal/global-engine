@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include <string>
+class TransformComponent;
 
 class GunC : public Component {
   protected:
@@ -11,7 +12,7 @@ class GunC : public Component {
     float _damage;         // Gun damage by bullet
     bool _semiautomatic;   // One shot or multiple shot gun
     std::string _myBulletType;
-
+    TransformComponent* myTransform;
   public:
     GunC();
     ~GunC();
@@ -20,7 +21,7 @@ class GunC : public Component {
     bool reload();
 
     // Tries to fire a shot, returns false if gun is empty
-    bool shoot();
+    virtual bool shoot() = 0;
 
     // Returns wheter or not there is ammunition left in the gun
     bool mmunitionleft();
@@ -37,4 +38,6 @@ class GunC : public Component {
     void setcadence(float cadence);    
     void setdamage(float damage);         
     void setsemiautomatic(bool semiautomatic);
+
+    void setTransform(TransformComponent* trans);
 };
