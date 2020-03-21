@@ -9,7 +9,7 @@
 #include "OgreRoot.h"
 #include "RigidbodyPC.h"
 
-EnemyBehaviourPC::EnemyBehaviourPC() {}
+EnemyBehaviourPC::EnemyBehaviourPC(): speed(0.0f), playerSpeedPercentage(0.0f), attack(0) {}
 
 EnemyBehaviourPC::~EnemyBehaviourPC() {}
 
@@ -41,11 +41,19 @@ void EnemyBehaviourPC::update() {
     transform->setOrientation(directionToPlayer);
 }
 
+bool EnemyBehaviourPC::getCollisionWithPlayer() { return collisionWithPlayer; }
+
+void EnemyBehaviourPC::setCollisionWithPlayer(bool _collisionWithPlayer) {
+    collisionWithPlayer = _collisionWithPlayer;
+}
+
 float EnemyBehaviourPC::getSpeed() { return speed; }
 
 float EnemyBehaviourPC::getPlayerSpeedPercentage() {
     return playerSpeedPercentage;
 }
+
+int EnemyBehaviourPC::getAttack() { return attack; }
 
 void EnemyBehaviourPC::setSpeed(float _speed) { speed = _speed; }
 
@@ -54,31 +62,5 @@ void EnemyBehaviourPC::setPlayerSpeedPercentage(
     playerSpeedPercentage = _playerSpeedPercentage;
 }
 
-// FACTORY INFRASTRUCTURE
-class EnemyBehaviourPCFactory final : public ComponentFactory {
-  public:
-    EnemyBehaviourPCFactory() = default;
+void EnemyBehaviourPC::setAttack(float _attack) { attack = _attack; }
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
-        EnemyBehaviourPC* enemyBehaviour = new EnemyBehaviourPC();
-        scene->getComponentsManager()->addPC(enemyBehaviour);
-
-        enemyBehaviour->setFather(_father);
-        enemyBehaviour->setScene(scene);
-
-        if (!_data["playerSpeedPercentage"].asFloat())
-            throw std::exception(
-                "EnemyBehaviourPC: playerSpeedPercentage is not a float");
-        enemyBehaviour->setPlayerSpeedPercentage(
-            _data["playerSpeedPercentage"].asFloat());
-
-		// TO DO: obtain player speed
-        // enemyBehaviour->setSpeed(playerSpeed *
-        // enemyBehaviour->getPlayerSpeedPercentage());
-
-        return enemyBehaviour;
-    };
-};
-
-REGISTER_FACTORY("EnemyBehaviourPC", EnemyBehaviourPC);

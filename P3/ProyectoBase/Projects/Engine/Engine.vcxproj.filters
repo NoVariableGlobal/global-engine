@@ -98,6 +98,9 @@
     <ClCompile Include="..\..\Src\Engine\EnemyBehaviourPC.cpp">
       <Filter>Components\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\MeleeEnemyBehaviourPC.cpp">
+      <Filter>Components\Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
@@ -198,6 +201,9 @@
       <Filter>Components\Input</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\EnemyBehaviourPC.h">
+      <Filter>Components\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\MeleeEnemyBehaviourPC.h">
       <Filter>Components\Physics</Filter>
     </ClInclude>
   </ItemGroup>
