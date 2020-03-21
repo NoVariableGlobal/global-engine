@@ -53,96 +53,156 @@ void ComponentsManager::addPC(PhysicsComponent* _physicsComponent) {
     physics.push_back(_physicsComponent);
 }
 
-void ComponentsManager::deletePC(PhysicsComponent* _physicsComponent) {
-    bool erased = false;
-    auto it = physics.begin();
-    while (it != physics.end() && erased) {
-        if ((*it) == _physicsComponent) {
-            physics.erase(it);
-            erased = true;
+void ComponentsManager::deletePC() {
+    if (deletePhysics.size() > 0) {
+        bool erased = false;
+        auto itDelete = deletePhysics.begin();
+        while (itDelete != deletePhysics.end()) {
+            auto it = physics.begin();
+            while (it != physics.end() && !erased) {
+                if ((*it) == (*itDelete)) {
+                    physics.erase(it);
+                    erased = true;
+                }
+                ++it;
+            }
+            ++itDelete;
         }
-        ++it;
     }
+}
+
+void ComponentsManager::erasePC(PhysicsComponent* _physicsComponent) {
+    deletePhysics.push_back(_physicsComponent);
 }
 
 void ComponentsManager::addIC(InputComponent* _inputComponent) {
     input.push_back(_inputComponent);
 }
 
-void ComponentsManager::deleteIC(InputComponent* _inputComponent) {
-    bool erased = false;
-    auto it = input.begin();
-    while (it != input.end() && erased) {
-        if ((*it) == _inputComponent) {
-            input.erase(it);
-            erased = true;
+void ComponentsManager::deleteIC() {
+    if (deleteInput.size() > 0) {
+        bool erased = false;
+        auto itDelete = deleteInput.begin();
+        while (itDelete != deleteInput.end()) {
+            auto it = input.begin();
+            while (it != input.end() && !erased) {
+                if ((*it) == (*itDelete)) {
+                    input.erase(it);
+                    erased = true;
+                }
+                ++it;
+            }
+            ++itDelete;
         }
-        ++it;
     }
+}
+
+void ComponentsManager::eraseIC(InputComponent* _inputComponent) {
+    deleteInput.push_back(_inputComponent);
 }
 
 void ComponentsManager::addRC(RenderComponent* _renderComponent) {
     rend.push_back(_renderComponent);
 }
 
-void ComponentsManager::deleteRC(RenderComponent* _renderComponent) {
-    bool erased = false;
-    auto it = rend.begin();
-    while (it != rend.end() && erased) {
-        if ((*it) == _renderComponent) {
-            rend.erase(it);
-            erased = true;
+void ComponentsManager::deleteRC() {
+    if (deleteRend.size() > 0) {
+        bool erased = false;
+        auto itDelete = deleteRend.begin();
+        while (itDelete != deleteRend.end()) {
+            auto it = rend.begin();
+            while (it != rend.end() && !erased) {
+                if ((*it) == (*itDelete)) {
+                    rend.erase(it);
+                    erased = true;
+                }
+                ++it;
+            }
+            ++itDelete;
         }
-        ++it;
     }
+}
+
+void ComponentsManager::eraseRC(RenderComponent* _renderComponent) {
+    deleteRend.push_back(_renderComponent);
 }
 
 void ComponentsManager::addSC(SoundComponent* _soundComponent) {
     sound.push_back(_soundComponent);
 }
 
-void ComponentsManager::deleteSC(SoundComponent* _soundComponent) {
-    bool erased = false;
-    auto it = sound.begin();
-    while (it != sound.end() && erased) {
-        if ((*it) == _soundComponent) {
-            sound.erase(it);
-            erased = true;
+void ComponentsManager::deleteSC() {
+    if (deleteSound.size() > 0) {
+        bool erased = false;
+        auto itDelete = deleteSound.begin();
+        while (itDelete != deleteSound.end()) {
+            auto it = sound.begin();
+            while (it != sound.end() && !erased) {
+                if ((*it) == (*itDelete)) {
+                    sound.erase(it);
+                    erased = true;
+                }
+                ++it;
+            }
+            ++itDelete;
         }
-        ++it;
     }
+}
+
+void ComponentsManager::eraseSC(SoundComponent* _soundComponent) {
+    deleteSound.push_back(_soundComponent);
 }
 
 void ComponentsManager::addDC(Component* _deleteableComponent) {
     deleteable.push_back(_deleteableComponent);
 }
 
-void ComponentsManager::deleteDC(Component* _deleteableComponent) {
-    bool erased = false;
-    auto it = deleteable.begin();
-    while (it != deleteable.end() && erased) {
-        if ((*it) == _deleteableComponent) {
-            deleteable.erase(it);
-            erased = true;
+void ComponentsManager::deleteDC() {
+    if (deleteDeleteable.size() > 0) {
+        bool erased = false;
+        auto itDelete = deleteDeleteable.begin();
+        while (itDelete != deleteDeleteable.end()) {
+            auto it = deleteable.begin();
+            while (it != deleteable.end() && !erased) {
+                if ((*it) == (*itDelete)) {
+                    deleteable.erase(it);
+                    erased = true;
+                }
+                ++it;
+            }
+            ++itDelete;
         }
-        ++it;
     }
+}
+
+void ComponentsManager::eraseDC(Component* _deleteableComponent) {
+    deleteDeleteable.push_back(_deleteableComponent);
 }
 
 void ComponentsManager::addEC(EventComponent* _eventComponent) {
     event.push_back(_eventComponent);
 }
 
-void ComponentsManager::deleteEC(EventComponent* _eventComponent) {
-    bool erased = false;
-    auto it = event.begin();
-    while (it != event.end() && erased) {
-        if ((*it) == _eventComponent) {
-            event.erase(it);
-            erased = true;
+void ComponentsManager::deleteEC() {
+    if (deleteEvent.size() > 0) {
+        bool erased = false;
+        auto itDelete = deleteEvent.begin();
+        while (itDelete != deleteEvent.end()) {
+            auto it = event.begin();
+            while (it != event.end() && !erased) {
+                if ((*it) == (*itDelete)) {
+                    event.erase(it);
+                    erased = true;
+                }
+                ++it;
+            }
+            ++itDelete;
         }
-        ++it;
     }
+}
+
+void ComponentsManager::eraseEC(EventComponent* _eventComponent) {
+    deleteEvent.push_back(_eventComponent);
 }
 
 void ComponentsManager::update() {
@@ -169,4 +229,13 @@ void ComponentsManager::updateSound() {
 void ComponentsManager::updateEvent() {
     for (auto r : event)
         r->checkEvent();
+}
+
+void ComponentsManager::deleteComponents() {
+    deletePC();
+    deleteIC();
+    deleteRC();
+    deleteSC();
+    deleteDC();
+    deleteEC();
 }

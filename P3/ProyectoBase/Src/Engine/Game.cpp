@@ -50,6 +50,7 @@ void Game::run() {
         update();
         render();
         handleInput();
+        scene->deleteComponents();
 
         if (sceneChange)
             setScene(sceneToChange);

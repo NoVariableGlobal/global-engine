@@ -1,7 +1,7 @@
 {
   "prefabs": [
     {
-      "id": "Penguin",
+      "id": "HandgunBullet",
       "components": [
         {
           "type": "TransformComponent",
@@ -14,9 +14,9 @@
         {
           "type": "TridimensionalObjectRC",
           "attributes": {
-            "mesh": "penguin.mesh",
-            "node": "nPenguin",
-            "material": "PenguinMaterial"
+            "mesh": "cube.mesh",
+            "node": "nGunBullet",
+            "material": "PurpleColourMaterial"
           }
         },
         {

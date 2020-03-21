@@ -67,20 +67,21 @@ void Scene::clearEntities() {
     entities.clear();
 }
 
-Entity* Scene::getInstanceOf(std::string id, int num) {
+Entity* Scene::getInstanceOf(std::string _prefab, std::string _id) {
     Entity* instance = new Entity();
 
-    if (num != -1)
-        instance->setId(id + std::to_string(num));
-    else
-        instance->setId(id);
+    instance->setId(_id);
 
-    Loader loader;
-    loader.setComponents(prefabs.find(id)->second, instance, this);
+    clonePrefabInfo(_prefab, instance);
 
     entities.emplace(instance->getId(), instance);
 
     return instance;
+}
+
+void Scene::clonePrefabInfo(std::string _prefab, Entity* _entity) {
+    Loader loader;
+    loader.setComponents(prefabs.find(_prefab)->second, _entity, this);
 }
 
 void Scene::addPrefab(std::string id, Json::Value components) {
@@ -98,3 +99,4 @@ void Scene::clearPrefabs() {
 ComponentsManager* Scene::getComponentsManager() { return componentManager; }
 
 void Scene::clearComponentsManager() { componentManager->clearComponents(); }
+void Scene::deleteComponents() { componentManager->deleteComponents(); }

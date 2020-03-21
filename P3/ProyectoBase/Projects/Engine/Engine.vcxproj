@@ -26,6 +26,7 @@
     <ClCompile Include="..\..\Src\Engine\LifeC.cpp" />
     <ClCompile Include="..\..\Src\Engine\EventComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\RigidbodyPC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\SpawnerBulletsC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerEnemiesEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerFloorRandomEC.cpp" />
@@ -59,6 +60,7 @@
     <ClInclude Include="..\..\Src\Engine\LifeC.h" />
     <ClInclude Include="..\..\Src\Engine\EventComponent.h" />
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
+    <ClInclude Include="..\..\Src\Engine\SpawnerBulletsC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerEC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerEnemiesEC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerFloorRandomEC.h" />

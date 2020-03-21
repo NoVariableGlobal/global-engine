@@ -10,11 +10,15 @@
               "colour": [ 0.5, 0.5, 0.5 ],
               "direction": [ 0, -1, 0 ]
             }
-          },
+          }
+        ]
+      },
+      {
+        "id": "GameManager",
+        "components": [
           {
-            "type": "TestChangeSceneIC",
+            "type": "SpawnerBulletsC",
             "attributes": {
-              "sceneToChange" : "Menu"
             }
           }
         ]
@@ -56,27 +60,6 @@
               "viewportColour": [ 0, 0, 0 ],
               "offset": [ 0, 200, 0 ],
               "lookAt": [ 0, -1, 0 ]
-            }
-          }
-        ]
-      },
-      {
-        "id": "Referencia",
-        "components": [
-          {
-            "type": "TransformComponent",
-            "attributes": {
-              "position": [ -10, 0, 0 ],
-              "orientation": [ 0, 0, 0 ],
-              "scale": [ 0.05, 0.05, 0.05 ]
-            }
-          },
-          {
-            "type": "TridimensionalObjectRC",
-            "attributes": {
-              "mesh": "cube.mesh",
-              "node": "nCube",
-              "material": "PurpleColourMaterial"
             }
           }
         ]
