@@ -20,6 +20,10 @@ void PlayerShotIC::handleInput(const SDL_Event& _event) {
             // TODO: Tell gun component to fire a shot
             std::cout << '\n' << "PIUM PIUM !!" << '\n';
         }
+    } else if (_event.type == SDL_KEYDOWN) {
+        if (_event.key.keysym.sym == SDLK_r) {
+            //reload
+        }
     }
 }
 
