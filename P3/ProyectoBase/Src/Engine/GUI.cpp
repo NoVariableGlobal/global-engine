@@ -1,12 +1,12 @@
 #include "GUI.h"
 #include <iostream>
 
-CEGUI::OpenGL3Renderer* GUI::m_renderer = nullptr;
+CEGUI::OgreRenderer* GUI::m_renderer = nullptr;
 
 void GUI::init(const std::string& _resourceDirectory) {
 	if (m_renderer == nullptr) {
 
-		m_renderer = &CEGUI::OpenGL3Renderer::bootstrapSystem();
+		m_renderer = &CEGUI::OgreRenderer::bootstrapSystem();
 
 		CEGUI::DefaultResourceProvider* rp =
 			static_cast<CEGUI::DefaultResourceProvider*>(
@@ -66,7 +66,7 @@ void GUI::setWidgetDestRect(CEGUI::Window* widget, glm::vec4 destRectPerc, glm::
 	widget->setSize(CEGUI::USize(CEGUI::UDim(destRectPerc.z, destRectPix.z), CEGUI::UDim(destRectPerc.w, destRectPix.w)));
 }
 
-CEGUI::OpenGL3Renderer* GUI::getRenderer() {
+CEGUI::OgreRenderer* GUI::getRenderer() {
 	return m_renderer;
 }
 
