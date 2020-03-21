@@ -1,4 +1,5 @@
 #include "GunC.h"
+#include "Scene.h"
 
 GunC::GunC() {}
 
@@ -45,6 +46,22 @@ void GunC::setsemiautomatic(bool semiautomatic) {
 }
 
 void GunC::setTransform(TransformComponent* trans) { myTransform = trans; }
+
+void GunC::setbulletchamber(int bulletchamberMax) {
+    _bulletchamberMax = bulletchamberMax;
+}
+
+void GunC::setmunition(int munition) { _munition = munition; }
+
+void GunC::setcadence(float cadence) { _cadence = cadence; }
+
+void GunC::setdamage(float damage) { _damage = damage; }
+
+void GunC::setsemiautomatic(bool semiautomatic) {
+    _semiautomatic = semiautomatic;
+}
+
+
 
 bool GunC::mmunitionleft() {
     if (_bulletchamber == 0 && _munition == 0)
