@@ -77,6 +77,12 @@ class OgreSDLContext {
     // destroy the RT Shader system.
     void destroyRTShaderSystem();
 
+		// return a pointer to the SceneManager
+		Ogre::SceneManager* getSceneManager();
+		// return a pointer to the RenderWindow
+		Ogre::RenderWindow* getRenderWindow();
+		// return a pointer to the SDLWindow
+		SDL_Window* getSDLWindow();
     // process all window events since last call
     bool pollEvents(SDL_Event event);
 
