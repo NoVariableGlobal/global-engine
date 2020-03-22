@@ -6,7 +6,12 @@
 #include "Entity.h"
 #include "ComponentsManager.h"
 #include "TransformComponent.h"
+#include "RigidbodyPC.h"
+#include "TridimensionalObjectRC.h"
 #include "OgreVector3.h"
+#include "OgreSceneNode.h"
+#include "OgreQuaternion.h"
+#include "Ogre.h"
 #include <json.h>
 
 HandGunC::HandGunC() : GunC() {}
@@ -25,7 +30,19 @@ bool HandGunC::shoot() {
             newBullet->getComponent("TransformComponent"));
 
        bulletTransform->setPosition(myTransform->getPosition());
-       //bulletTransform->setOrientation(myTransform->getOrientation());
+       bulletTransform->setOrientation(myTransform->getOrientation());
+
+       RigidbodyPC* bulletRb = dynamic_cast<RigidbodyPC*>(
+           newBullet->getComponent("RigidbodyPC"));
+
+       Ogre::Quaternion quat =
+           dynamic_cast<TridimensionalObjectRC*>(
+               father->getComponent("TridimensionalObjectRC"))
+               ->getSceneNode()
+               ->getOrientation();
+
+       bulletRb->setLinearVelocity(-(quat * Ogre::Vector3::NEGATIVE_UNIT_Z) * 50);
+       bulletRb->setPosition(myTransform->getPosition());
 
     } else
         return false;
