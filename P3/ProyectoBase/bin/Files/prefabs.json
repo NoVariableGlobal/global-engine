@@ -34,6 +34,48 @@
           }
         }
       ]
+    },
+	{
+      "id": "Shield",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nCube",
+            "material": "GrassMaterial"
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [0, 0, 0],
+            "shape": [2, 2, 2],
+            "mass": 1,
+            "gravity": [0, 0, 0],
+            "trigger": false,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        },
+		{
+          "type": "InvulnerabilityShield",
+          "attributes": {
+            "probality": 20,
+            "time": 10
+          }
+        }
+      ]
     }
   ]
 }
