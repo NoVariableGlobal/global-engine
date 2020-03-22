@@ -77,6 +77,8 @@ void PlayerMovementIC::handleInput(const SDL_Event& _event) {
                                Ogre::Vector3(_speed, 0.0f, 0.0f));
 }
 
+float PlayerMovementIC::getMovementSpeed() { return _speed; }
+
 void PlayerMovementIC::setMovementSpeed(float speed) { _speed = speed; }
 
 // FACTORY INFRASTRUCTURE

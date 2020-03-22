@@ -16,25 +16,31 @@ EnemyBehaviourPC::~EnemyBehaviourPC() {}
 void EnemyBehaviourPC::update() {
     TransformComponent* transform = dynamic_cast<TransformComponent*>(
         father->getComponent("TransformComponent"));
+    RigidbodyPC* rb =
+        dynamic_cast<RigidbodyPC*>(
+        father->getComponent("RigidbodyPC"));
 
-    // TO DO: obtain player position
-    Ogre::Vector3* playerPosition = nullptr;
+    // obtain player position
+    TransformComponent* playerTransform = dynamic_cast<TransformComponent*>(
+        scene->getEntitybyId("Player")->getComponent("TransformComponent"));
+    Ogre::Vector3 playerPosition = playerTransform->getPosition();
 
     Ogre::Vector3 directionToPlayer =
-        Ogre::Vector3(playerPosition->x - transform->getPosition().x,
-                      playerPosition->y - transform->getPosition().y,
-                      playerPosition->z - transform->getPosition().z)
+        Ogre::Vector3(playerPosition.x - transform->getPosition().x,
+                      playerPosition.y - transform->getPosition().y,
+                      playerPosition.z - transform->getPosition().z)
             .normalisedCopy();
 
-	// TO DO: check collision with player
-	//collisionWithPlayer = checkCollision(player);
+	// check collision with player
+    collisionWithPlayer = rb->collidesWith("Player");
 
 	// if not colliding with player enemy moves towards player
     if (!collisionWithPlayer) {
-        transform->setPosition(Ogre::Vector3(
+        Ogre::Vector3 force = Ogre::Vector3(
             transform->getPosition().x + directionToPlayer.x * speed,
             transform->getPosition().y,
-            transform->getPosition().z + directionToPlayer.z * speed));
+            transform->getPosition().z + directionToPlayer.z * speed);
+        rb->addForce(force, Ogre::Vector3(0.0f,0.0f,0.0f));
 	}
 
 	// set orientation towards player

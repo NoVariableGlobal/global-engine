@@ -7,6 +7,8 @@
 #include "Scene.h"
 #include <Entity.h>
 #include <json.h>
+#include "PlayerMovementIC.h"
+#include "LifeC.h"
 
 MeleeEnemyBehaviourPC::MeleeEnemyBehaviourPC(): EnemyBehaviourPC() {}
 
@@ -16,8 +18,10 @@ void MeleeEnemyBehaviourPC::update() {
     EnemyBehaviourPC::update();
 
     if (getCollisionWithPlayer()) {
-		// TO DO: attack player
-		// player->takeDamage(attack);
+		// attack player
+        LifeC* playerHealth = dynamic_cast<LifeC*>(
+            scene->getEntitybyId("Player")->getComponent("LifeC"));
+                playerHealth->doDamage(getAttack());
 	}
 }
 
@@ -40,9 +44,11 @@ class MeleeEnemyBehaviourPCFactory final : public ComponentFactory {
         meleeEnemyBehaviour->setPlayerSpeedPercentage(
             _data["playerSpeedPercentage"].asFloat());
 
-        // TO DO: obtain player speed
-        // meleeEnemyBehaviour->setSpeed(playerSpeed *
-        // meleeEnemyBehaviour->getPlayerSpeedPercentage());
+		PlayerMovementIC* playerMovement = dynamic_cast<PlayerMovementIC*>(
+            scene->getEntitybyId("Player")->getComponent("PlayerMovementIC"));
+
+        // enemy speed depends on player speed and player speed percentage
+        meleeEnemyBehaviour->setSpeed(playerMovement->getMovementSpeed() * meleeEnemyBehaviour->getPlayerSpeedPercentage());
 
 		if (!_data["attack"].asInt())
             throw std::exception(
