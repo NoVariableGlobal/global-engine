@@ -21,13 +21,16 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Application.cpp" />
     <ClCompile Include="..\..\Src\Engine\GunC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\MedkitEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\PlayerShotIC.cpp" />
     <ClCompile Include="..\..\Src\Engine\LifeC.cpp" />
     <ClCompile Include="..\..\Src\Engine\EventComponent.cpp" />
+    <ClCompile Include="..\..\Src\Engine\PowerUpC.cpp" />
     <ClCompile Include="..\..\Src\Engine\RigidbodyPC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerEnemiesEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerFloorRandomEC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\SpawnerPowerUpEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpotLightRC.cpp" />
     <ClCompile Include="..\..\Src\Engine\OgreSDLContext.cpp" />
     <ClCompile Include="..\..\src\Engine\CameraRC.cpp" />
@@ -53,13 +56,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\GunC.h" />
+    <ClInclude Include="..\..\Src\Engine\MedkitEC.h" />
     <ClInclude Include="..\..\Src\Engine\PlayerShotIC.h" />
     <ClInclude Include="..\..\Src\Engine\LifeC.h" />
     <ClInclude Include="..\..\Src\Engine\EventComponent.h" />
+    <ClInclude Include="..\..\Src\Engine\PowerUpC.h" />
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerEC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerEnemiesEC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerFloorRandomEC.h" />
+    <ClInclude Include="..\..\Src\Engine\SpawnerPowerUpEC.h" />
     <ClInclude Include="..\..\Src\Engine\SpotLightRC.h" />
     <ClInclude Include="..\..\Src\Engine\OgreSDLContext.h" />
     <ClInclude Include="..\..\src\Engine\CameraRC.h" />
@@ -192,7 +198,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\ogre-1.12.5\Components\RTShaderSystem\include;$(SolutionDir)lib\jsoncpp-master\include;$(SolutionDir)lib\ogre-1.12.5\OgreMain\include;$(SolutionDir)lib\ogre-1.12.5\Build\include;$(SolutionDir)lib\ogre-1.12.5\PlugIns\STBICodec\include;$(SolutionDir)lib\bullet3-2.89\src;$(SolutionDir)lib\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\ogre-1.12.5\Components\RTShaderSystem\include;$(SolutionDir)lib\jsoncpp-master\include;$(SolutionDir)lib\ogre-1.12.5\OgreMain\include;$(SolutionDir)lib\ogre-1.12.5\Build\include;$(SolutionDir)lib\ogre-1.12.5\PlugIns\STBICodec\include;$(SolutionDir)lib\bullet3-2.89\src;$(SolutionDir)lib\build\libs\Debug;$(SolutionDir)lib\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -63,7 +63,17 @@
             "spawnID": [ "Penguin" ],
             "spawnChances": [ 100 ]
           }
-        }
+        },
+		{
+		  "type": "SpawnerPowerUpEC",
+		  "attributes": {
+			"spawnCooldown": 5,
+			"spawnID": ["Medkit"],
+			"spawnChances": [20],
+			"duration": [0],
+			"isInstant": ["true"]
+		  }
+		}
       ]
     }
   ]
