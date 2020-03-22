@@ -100,14 +100,14 @@ class CameraRCFactory final : public ComponentFactory {
     CameraRCFactory() = default;
 
     Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
+                      Scene* _scene) override {
         Ogre::SceneManager* mSM =
             OgreSDLContext::getInstance()->getSceneManager();
         CameraRC* camera = new CameraRC();
-        scene->getComponentsManager()->addRC(camera);
+        _scene->getComponentsManager()->addRC(camera);
 
         camera->setFather(_father);
-        camera->setScene(scene);
+        camera->setScene(_scene);
 
         camera->setCamera(_father->getId());
 
