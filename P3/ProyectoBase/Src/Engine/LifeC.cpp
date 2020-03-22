@@ -41,6 +41,7 @@ class LifeCFactory : public ComponentFactory {
     virtual Component* create(Entity* _father, Json::Value& _data,
                               Scene* _scene) {
         LifeC* life = new LifeC();
+        _scene->getComponentsManager()->addDC(life);
 
         life->setFather(_father);
         life->setScene(_scene);
@@ -50,7 +51,6 @@ class LifeCFactory : public ComponentFactory {
         life->setTotalLife(_data["life"].asInt());
         life->setLife(_data["life"].asInt());
 
-        _scene->getComponentsManager()->addDC(life);
         return life;
     };
 };

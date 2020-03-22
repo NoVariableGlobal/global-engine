@@ -47,8 +47,6 @@
     <ClCompile Include="..\..\Src\Engine\RTSSDefaultTechniqueListener.cpp" />
     <ClCompile Include="..\..\src\Engine\SoundComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\PhysicsContext.cpp" />
-    <ClCompile Include="..\..\Src\Engine\TestChangeSceneIC.cpp" />
-    <ClCompile Include="..\..\src\Engine\TestComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\PlayerMovementIC.cpp" />
     <ClCompile Include="..\..\src\Engine\TransformComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp" />
@@ -84,8 +82,6 @@
     <ClInclude Include="..\..\Src\Engine\RTSSDefaultTechniqueListener.h" />
     <ClInclude Include="..\..\src\Engine\SoundComponent.h" />
     <ClInclude Include="..\..\Src\Engine\PhysicsContext.h" />
-    <ClInclude Include="..\..\Src\Engine\TestChangeSceneIC.h" />
-    <ClInclude Include="..\..\src\Engine\TestComponent.h" />
     <ClInclude Include="..\..\Src\Engine\PlayerMovementIC.h" />
     <ClInclude Include="..\..\src\Engine\TransformComponent.h" />
     <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h" />

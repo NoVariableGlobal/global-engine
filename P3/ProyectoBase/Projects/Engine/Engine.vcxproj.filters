@@ -83,9 +83,6 @@
     <ClCompile Include="..\..\Src\Engine\PhysicsContext.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Engine\TestComponent.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Engine\ComponentsManager.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -190,9 +187,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\PhysicsContext.h">
       <Filter>Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Engine\TestComponent.h">
-      <Filter>Components\Other</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\ComponentsManager.h">
       <Filter>Core</Filter>
