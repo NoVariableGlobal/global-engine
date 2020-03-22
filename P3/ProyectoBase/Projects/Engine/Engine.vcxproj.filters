@@ -89,6 +89,9 @@
     <ClCompile Include="..\..\Src\Engine\SpawnerEC.cpp">
       <Filter>Components\Events</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\ChangeGravityIC.cpp">
+      <Filter>Components\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
@@ -181,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\SpawnerEC.h">
       <Filter>Components\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\ChangeGravityIC.h">
+      <Filter>Components\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
