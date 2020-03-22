@@ -57,7 +57,11 @@
               "offset": [ 0, 200, 0 ],
               "lookAt": [ 0, -1, 0 ]
             }
-          }
+          },
+		  {
+			"type": "OrientateToMouseIC",
+			"attributes": {}
+		  }
         ]
       },
       {
