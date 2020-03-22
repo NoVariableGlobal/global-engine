@@ -4,6 +4,7 @@
 #include "FactoriesFactory.h"
 #include "Factory.h"
 #include "RigidbodyPC.h"
+#include "TridimensionalObjectRC.h"
 #include "Scene.h"
 
 #include "OgreRoot.h"
@@ -19,12 +20,24 @@ ChangeGravityIC::~ChangeGravityIC() {}
 void ChangeGravityIC::handleInput(const SDL_Event& _event) {
     if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_SPACE) {
         movingIzq = !movingIzq;
-        dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"))
-            ->setGravity(!movingIzq ? Ogre::Vector3(speed, 0.0f, 0.0f) : Ogre::Vector3(-speed, 0.0f, 0.0f));
+
+        RigidbodyPC* body = dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"));
+
+        body->setGravity(!movingIzq ? Ogre::Vector3(speed, 0.0f, 0.0f)
+                                    : Ogre::Vector3(-speed, 0.0f, 0.0f));
+
+        body->setLinearVelocity(Ogre::Vector3(0.0f, 0.0f, 0.0f));
+
+    
+        dynamic_cast<TridimensionalObjectRC*>(father->getComponent("TridimensionalObjectRC"))->setMaterial(!movingIzq ? mRight : mLeft);
     }
 }
 
 void ChangeGravityIC::setSpeed(float _speed) { speed = _speed; }
+
+void ChangeGravityIC::setMaterialLeft(std::string _mLeft) { mLeft = _mLeft; }
+
+void ChangeGravityIC::setMaterialRight(std::string _mRight) { mRight = _mRight; }
 
 // FACTORY INFRASTRUCTURE
 class ChangeGravityICFactory final : public ComponentFactory {
@@ -43,6 +56,16 @@ class ChangeGravityICFactory final : public ComponentFactory {
             throw std::exception("ChangeGravityIC: speed is not a double");
 
         changeGravity->setSpeed(_data["speed"].asDouble());
+
+        if (!_data["materialL"].isString())
+            throw std::exception("ChangeGravityIC: materialL is not a string");
+
+        changeGravity->setMaterialLeft(_data["materialL"].asString());
+
+        if (!_data["materialR"].isString())
+            throw std::exception("ChangeGravityIC: materialR is not a string");
+
+        changeGravity->setMaterialRight(_data["materialR"].asString());
 
         return changeGravity;
     };

@@ -2,6 +2,8 @@
 
 #include "InputComponent.h"
 
+#include <string>
+
 namespace Ogre {
     typedef float Real;
     template <int dims, typename T> class Vector;
@@ -11,6 +13,8 @@ namespace Ogre {
 class ChangeGravityIC : public InputComponent {
   private:
     float speed;
+    std::string mLeft;
+    std::string mRight;
 
     bool movingIzq = true;
 
@@ -18,9 +22,13 @@ class ChangeGravityIC : public InputComponent {
     ChangeGravityIC();
     virtual ~ChangeGravityIC();
 
-    // On mouse button down, tells a gun component to fire a shot
+    // On space bar down, change the rigibody gravity
     virtual void handleInput(const SDL_Event& _event);
 
     // Set the speed
     void setSpeed(float _speed);
+    // Set the left material
+    void setMaterialLeft(std::string _mLeft);
+    // Set the right material
+    void setMaterialRight(std::string _mRight);
 };
