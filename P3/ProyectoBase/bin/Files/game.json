@@ -61,6 +61,22 @@
               "offset": [ 0, 200, 0 ],
               "lookAt": [ 0, -1, 0 ]
             }
+          },
+          {
+            "type": "HandGunC",
+            "attributes": {
+              "bulletchamberMax": 20,
+              "munition": 1000,
+              "cadence": 1,
+              "damage": 2,
+              "semiautomatic": false
+            }
+          },
+          {
+            "type": "WeaponControllerIC",
+            "attributes": {
+
+            }
           }
         ]
       }

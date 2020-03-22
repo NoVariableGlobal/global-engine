@@ -52,6 +52,7 @@
     <ClCompile Include="..\..\Src\Engine\PlayerMovementIC.cpp" />
     <ClCompile Include="..\..\src\Engine\TransformComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\WeaponControllerIC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\GunC.h" />
@@ -88,6 +89,7 @@
     <ClInclude Include="..\..\Src\Engine\PlayerMovementIC.h" />
     <ClInclude Include="..\..\src\Engine\TransformComponent.h" />
     <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h" />
+    <ClInclude Include="..\..\Src\Engine\WeaponControllerIC.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

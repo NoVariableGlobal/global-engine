@@ -8,7 +8,7 @@
           "attributes": {
             "position": [ 0, 0, 0 ],
             "orientation": [ 0, 0, 0 ],
-            "scale": [ 1, 1, 1 ]
+            "scale": [ 0.1, 0.1, 0.1 ]
           }
         },
         {
@@ -17,20 +17,6 @@
             "mesh": "cube.mesh",
             "node": "nGunBullet",
             "material": "PurpleColourMaterial"
-          }
-        },
-        {
-          "type": "RigidbodyPC",
-          "attributes": {
-            "position": [0, 0, 0],
-            "shape": [2, 2, 2],
-            "mass": 1,
-            "gravity": [0, 0, 0],
-            "trigger": false,
-            "kinematic": false,
-            "static": false,
-            "friction": 0,
-            "restitution": 0
           }
         }
       ]

@@ -6,13 +6,14 @@
 #include "Entity.h"
 #include "ComponentsManager.h"
 #include "TransformComponent.h"
+#include "OgreVector3.h"
 #include <json.h>
 
 HandGunC::HandGunC() : GunC() {}
 
 HandGunC::~HandGunC() {}
 
-bool GunC::shoot() {
+bool HandGunC::shoot() {
     if (_bulletchamber > 0) {
         _bulletchamber--;
         Entity* newBullet = dynamic_cast<SpawnerBulletsC*>(
@@ -24,7 +25,7 @@ bool GunC::shoot() {
             newBullet->getComponent("TransformComponent"));
 
        bulletTransform->setPosition(myTransform->getPosition());
-       bulletTransform->setOrientation(myTransform->getOrientation());
+       //bulletTransform->setOrientation(myTransform->getOrientation());
 
     } else
         return false;
@@ -36,11 +37,13 @@ class HandGunCFactory final : public ComponentFactory {
     HandGunCFactory() = default;
 
     Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
+                      Scene* _scene) override {
 
         HandGunC* hg = new HandGunC();
 
-        scene->getComponentsManager()->addDC(hg);
+        _scene->getComponentsManager()->addDC(hg);
+        hg->setFather(_father);
+        hg->setScene(_scene);
 
         if (!_data["bulletchamberMax"].isInt())
             throw std::exception("HandGunC: bulletchamberMax is not an int");
@@ -48,22 +51,21 @@ class HandGunCFactory final : public ComponentFactory {
 
         if (!_data["munition"].isInt())
             throw std::exception("HandGunC: munition is not an int");
-        hg->setbulletchamber(_data["munition"].asInt());
+        hg->setmunition(_data["munition"].asInt());
 
-        if (!_data["cadence"].asFloat())
+        if (!_data["cadence"].isDouble())
             throw std::exception("HandGunC: cadence is not an int");
-        hg->setbulletchamber(_data["cadence"].asFloat());
+        hg->setcadence(_data["cadence"].asFloat());
 
-        if (!_data["damage"].asFloat())
+        if (!_data["damage"].isDouble())
             throw std::exception("HandGunC: damage is not an int");
-        hg->setbulletchamber(_data["damage"].asFloat());
+        hg->setdamage(_data["damage"].asFloat());
 
-        if (!_data["semiautomatic"].asBool())
-            throw std::exception("HandGunC: semiautomatic is not an int");
-        hg->setbulletchamber(_data["semiautomatic"].asFloat());
+        if (!_data["semiautomatic"].isBool())
+            throw std::exception("HandGunC: semiautomatic is not an bool");
+        hg->setsemiautomatic(_data["semiautomatic"].asBool());
 
-        hg->setFather(_father);
-        hg->setScene(scene);
+
         hg->setTransform(dynamic_cast<TransformComponent*>(_father->getComponent("TransformComponent")));
 
         return hg;

@@ -31,6 +31,7 @@ bool GunC::getsemiautomatic() { return _semiautomatic; }
 
 void GunC::setbulletchamber(int bulletchamberMax) {
     _bulletchamberMax = bulletchamberMax;
+    _bulletchamber = bulletchamberMax;
 }
 
 void GunC::setmunition(int munition) { _munition = munition; }
