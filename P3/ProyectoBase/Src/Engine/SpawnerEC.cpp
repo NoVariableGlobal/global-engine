@@ -50,6 +50,11 @@ void SpawnerEC::editChance(std::string& id, float newChance) {
 }
 
 void SpawnerEC::checkEvent() {
+    if (firstTime) {
+        firstTime = false;
+        _lastTimeSpawned = clock() / static_cast<float>(CLOCKS_PER_SEC);
+    }
+
     if (timeToSpawn()) {
         spawnPrefab();
     }
