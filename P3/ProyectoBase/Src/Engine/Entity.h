@@ -7,6 +7,8 @@ class Component;
 class Entity {
 
   private:
+    // Shows if the entity is active or not
+    bool active = false;
     // ID attached to the entity
     std::string id;
     // List of components attached to the entity
@@ -24,4 +26,7 @@ class Entity {
     // Getters and Setters
     std::string getId();
     void setId(std::string _id);
+
+    void setActive(bool _active);
+    bool isActive();
 };

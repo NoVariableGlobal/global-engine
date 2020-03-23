@@ -1,5 +1,7 @@
 {
+
   "entities": [
+
     {
       "id": "Camera",
       "components": [
@@ -41,6 +43,7 @@
             "position": [ 0, 0, 0 ],
             "orientation": [ 0, 0, 0 ],
             "scale": [ 0.5, 0.5, 0.5 ]
+
           }
         },
         {

@@ -33,6 +33,16 @@
         ]
       },
       {
+        "id": "GameManager",
+        "components": [
+          {
+            "type": "SpawnerBulletsC",
+            "attributes": {
+            }
+          }
+        ]
+      },
+      {
         "id": "Simbad",
         "components": [
           {
@@ -75,27 +85,26 @@
               "friction": 0,
               "restitution": 0
             }
-          }
-        ]
-      },
-      {
-        "id": "Referencia",
-        "components": [
+          },
           {
-            "type": "TransformComponent",
+            "type": "HandGunC",
             "attributes": {
-              "position": [ -10, 0, 0 ],
-              "orientation": [ 0, 0, 0 ],
-              "scale": [ 0.05, 0.05, 0.05 ]
+              "bulletchamberMax": 20,
+              "munition": 1000,
+              "cadence": 1,
+              "damage": 2,
+              "semiautomatic": false
             }
           },
           {
-            "type": "TridimensionalObjectRC",
+            "type": "WeaponControllerIC",
             "attributes": {
-              "mesh": "cube.mesh",
-              "node": "nCube",
-              "material": "PurpleColourMaterial"
+
             }
+          },
+          {
+            "type": "OrientateToMouseIC",
+            "attributes": {}
           }
         ]
       }

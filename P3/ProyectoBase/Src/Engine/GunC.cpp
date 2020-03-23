@@ -1,49 +1,53 @@
 #include "GunC.h"
 
-GunC::GunC(int _bulletchamber, int _munition, int _cadence, int _damage,
-           bool _semiautomatic)
-    : bulletchamber(_bulletchamber), bulletchamberMax(_bulletchamber),
-      munition(_munition), cadence(_cadence), damage(_damage),
-      semiautomatic(_semiautomatic) {}
+GunC::GunC() {}
 
 GunC::~GunC() {}
 
 bool GunC::reload() {
-    if (bulletchamber < bulletchamberMax && munition > 0) {
-        int gunreload = bulletchamberMax - bulletchamber;
+    if (_bulletchamber < _bulletchamberMax && _munition > 0) {
+        int gunreload = _bulletchamberMax - _bulletchamber;
 
-        if (gunreload > munition)
-            gunreload = munition;
+        if (gunreload > _munition)
+            gunreload = _munition;
 
-        bulletchamber += gunreload;
-        munition -= gunreload;
-
-        return true;
-    } else
-        return false;
-}
-
-bool GunC::shoot() {
-    if (bulletchamber > 0) {
-        bulletchamber--;
+        _bulletchamber += gunreload;
+        _munition -= gunreload;
 
         return true;
     } else
         return false;
 }
 
-int GunC::getbulletchamber() { return bulletchamber; }
+int GunC::getbulletchamber() { return _bulletchamber; }
 
-int GunC::getmunition() { return munition; }
+int GunC::getmunition() { return _munition; }
 
-int GunC::getcadence() { return cadence; }
+float GunC::getcadence() { return _cadence; }
 
-int GunC::getdamage() { return damage; }
+float GunC::getdamage() { return _damage; }
 
-bool GunC::getsemiautomatic() { return semiautomatic; }
+bool GunC::getsemiautomatic() { return _semiautomatic; }
+
+void GunC::setbulletchamber(int bulletchamberMax) {
+    _bulletchamberMax = bulletchamberMax;
+    _bulletchamber = bulletchamberMax;
+}
+
+void GunC::setmunition(int munition) { _munition = munition; }
+
+void GunC::setcadence(float cadence) { _cadence = cadence; }
+
+void GunC::setdamage(float damage) { _damage = damage; }
+
+void GunC::setsemiautomatic(bool semiautomatic) {
+    _semiautomatic = semiautomatic;
+}
+
+void GunC::setTransform(TransformComponent* trans) { myTransform = trans; }
 
 bool GunC::mmunitionleft() {
-    if (bulletchamber == 0 && munition == 0)
+    if (_bulletchamber == 0 && _munition == 0)
         return false;
     else
         return true;
