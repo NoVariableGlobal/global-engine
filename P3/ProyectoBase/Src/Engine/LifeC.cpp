@@ -8,7 +8,7 @@
 
 #include <json.h>
 
-LifeC::LifeC() {}
+LifeC::LifeC(): invulnerability(false) {}
 
 LifeC::~LifeC() {}
 
@@ -21,7 +21,8 @@ int LifeC::getTotalLife() { return totalLife; }
 void LifeC::setTotalLife(int _life) { totalLife = _life; }
 
 void LifeC::doDamage(float _damage) {
-    currentLife -= _damage;
+    if (!invulnerability)
+		currentLife -= _damage;
 
     if (currentLife < 0)
         currentLife = 0;
@@ -32,6 +33,10 @@ void LifeC::heal(float _heal) {
 
     if (currentLife > totalLife)
         currentLife = totalLife;
+}
+
+void LifeC::setInvulnerability(bool _invulnerability) {
+    invulnerability = _invulnerability;
 }
 
 // FACTORY INFRASTRUCTURE

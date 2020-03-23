@@ -12,6 +12,7 @@ class LifeC : public Component {
   private:
     int totalLife;
     float currentLife;
+    bool invulnerability;
 
   public:
     LifeC();
@@ -31,4 +32,5 @@ class LifeC : public Component {
     void doDamage(float _damage);
     // subtract the damage to the life
     void heal(float _heal);
+    void setInvulnerability(bool _invulnerability);
 };
