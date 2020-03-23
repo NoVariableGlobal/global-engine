@@ -108,6 +108,7 @@ void RigidbodyPC::setLinearVelocity(Ogre::Vector3 _v) {
     body->setLinearVelocity(btVector3(_v.x, _v.y, _v.z));
 }
 
+
 void RigidbodyPC::setPosition(Ogre::Vector3 newPos) {
     btTransform initialTransform;
     initialTransform.setOrigin(btVector3(newPos.x, newPos.y, newPos.z));
@@ -115,7 +116,6 @@ void RigidbodyPC::setPosition(Ogre::Vector3 newPos) {
 
     body->setWorldTransform(initialTransform);
 }
-
 // FACTORY INFRASTRUCTURE
 class RigidbodyPCFactory final : public ComponentFactory {
   public:
