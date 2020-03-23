@@ -58,12 +58,6 @@ class SpawnerPowerUpECFactory final : public ComponentFactory {
             throw std::exception(
                 "Spawner: duration is not an array of doubles");
 
-        if (!_data["isInstant"].isArray())
-            throw std::exception("Spawner: isInstant is not an array");
-        else if (!_data["isInstant"][0].isBool())
-            throw std::exception(
-                "Spawner: isInstant is not an array of booleans");
-
         spawnerPowerUpEC->setActive(true);
 
         return spawnerPowerUpEC;
