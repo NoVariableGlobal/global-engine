@@ -65,6 +65,54 @@
           }
         }
       ]
+    },
+	
+	{
+      "id": "Player",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.1, 0, 0.1 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nCube",
+            "material": "PurpleColourMaterial"
+          }
+        },
+        {
+          "type": "PlayerMovementIC",
+          "attributes": {
+            "speed": 50
+          }
+        },
+        {
+          "type": "LifeC",
+          "attributes": {
+            "life": 100
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 5, 5, 5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": false,
+            "kinematic": true,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        }
+      ]
     }
   ]
 }

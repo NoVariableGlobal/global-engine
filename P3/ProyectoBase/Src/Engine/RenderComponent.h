@@ -20,6 +20,7 @@ class RenderComponent : public Component {
   public:
     RenderComponent();
     virtual ~RenderComponent();
+
     // interface for each render component render method
     virtual void render() = 0;
 

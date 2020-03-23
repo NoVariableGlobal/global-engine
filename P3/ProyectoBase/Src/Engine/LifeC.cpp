@@ -8,7 +8,7 @@
 
 #include <json.h>
 
-LifeC::LifeC() {}
+LifeC::LifeC(): invulnerability(false) {}
 
 LifeC::~LifeC() {}
 
@@ -21,7 +21,8 @@ int LifeC::getTotalLife() { return totalLife; }
 void LifeC::setTotalLife(int _life) { totalLife = _life; }
 
 void LifeC::doDamage(float _damage) {
-    currentLife -= _damage;
+    if (!invulnerability)
+		currentLife -= _damage;
 
     if (currentLife < 0)
         currentLife = 0;
@@ -34,22 +35,27 @@ void LifeC::heal(float _heal) {
         currentLife = totalLife;
 }
 
+void LifeC::setInvulnerability(bool _invulnerability) {
+    invulnerability = _invulnerability;
+}
+
 // FACTORY INFRASTRUCTURE
 class LifeCFactory : public ComponentFactory {
   public:
     LifeCFactory(){};
     virtual Component* create(Entity* _father, Json::Value& _data,
-                              Scene* scene) {
+                              Scene* _scene) {
         LifeC* life = new LifeC();
+        _scene->getComponentsManager()->addDC(life);
 
         life->setFather(_father);
+        life->setScene(_scene);
 
         if (!_data["life"].isInt()) { /*EXCEPCION*/
         }
         life->setTotalLife(_data["life"].asInt());
         life->setLife(_data["life"].asInt());
 
-        scene->getComponentsManager()->addDC(life);
         return life;
     };
 };

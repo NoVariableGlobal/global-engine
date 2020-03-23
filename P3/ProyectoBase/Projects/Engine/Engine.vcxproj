@@ -23,10 +23,16 @@
     <ClCompile Include="..\..\Src\Engine\EnemyBehaviourEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\GunC.cpp" />
     <ClCompile Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\ChangeGravityIC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\InvulnerabilityShield.cpp" />
+    <ClCompile Include="..\..\Src\Engine\OrientateToMouseIC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\HandGunC.cpp" />
     <ClCompile Include="..\..\Src\Engine\PlayerShotIC.cpp" />
     <ClCompile Include="..\..\Src\Engine\LifeC.cpp" />
     <ClCompile Include="..\..\Src\Engine\EventComponent.cpp" />
+    <ClCompile Include="..\..\Src\Engine\PowerUpPC.cpp" />
     <ClCompile Include="..\..\Src\Engine\RigidbodyPC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\SpawnerBulletsC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerEnemiesEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerFloorRandomEC.cpp" />
@@ -47,20 +53,24 @@
     <ClCompile Include="..\..\Src\Engine\RTSSDefaultTechniqueListener.cpp" />
     <ClCompile Include="..\..\src\Engine\SoundComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\PhysicsContext.cpp" />
-    <ClCompile Include="..\..\Src\Engine\TestChangeSceneIC.cpp" />
-    <ClCompile Include="..\..\src\Engine\TestComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\PlayerMovementIC.cpp" />
     <ClCompile Include="..\..\src\Engine\TransformComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\WeaponControllerIC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\EnemyBehaviourEC.h" />
-    <ClInclude Include="..\..\Src\Engine\GunC.h" />
     <ClInclude Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.h" />
+    <ClInclude Include="..\..\Src\Engine\ChangeGravityIC.h" />
+    <ClInclude Include="..\..\Src\Engine\GunC.h" />
+    <ClInclude Include="..\..\Src\Engine\OrientateToMouseIC.h" />
+    <ClInclude Include="..\..\Src\Engine\HandGunC.h" />
     <ClInclude Include="..\..\Src\Engine\PlayerShotIC.h" />
     <ClInclude Include="..\..\Src\Engine\LifeC.h" />
     <ClInclude Include="..\..\Src\Engine\EventComponent.h" />
+    <ClInclude Include="..\..\Src\Engine\PowerUpPC.h" />
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
+    <ClInclude Include="..\..\Src\Engine\SpawnerBulletsC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerEC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerEnemiesEC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerFloorRandomEC.h" />
@@ -83,11 +93,10 @@
     <ClInclude Include="..\..\Src\Engine\RTSSDefaultTechniqueListener.h" />
     <ClInclude Include="..\..\src\Engine\SoundComponent.h" />
     <ClInclude Include="..\..\Src\Engine\PhysicsContext.h" />
-    <ClInclude Include="..\..\Src\Engine\TestChangeSceneIC.h" />
-    <ClInclude Include="..\..\src\Engine\TestComponent.h" />
     <ClInclude Include="..\..\Src\Engine\PlayerMovementIC.h" />
     <ClInclude Include="..\..\src\Engine\TransformComponent.h" />
     <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h" />
+    <ClInclude Include="..\..\Src\Engine\WeaponControllerIC.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

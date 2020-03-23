@@ -5,7 +5,7 @@
 #include "Factory.h"
 #include "OgreRoot.h"
 #include "Scene.h"
-#include "TransformComponent.h"
+#include "RigidbodyPC.h"
 #include <Entity.h>
 #include <SDL.h>
 #include <iostream>
@@ -16,8 +16,7 @@ PlayerMovementIC::PlayerMovementIC() {}
 PlayerMovementIC::~PlayerMovementIC() {}
 
 void PlayerMovementIC::handleInput(const SDL_Event& _event) {
-    TransformComponent* transform = dynamic_cast<TransformComponent*>(
-        father->getComponent("TransformComponent"));
+    RigidbodyPC* body = dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"));
 
     if (_event.type == SDL_KEYDOWN) {
         switch (_event.key.keysym.sym) {
@@ -63,18 +62,18 @@ void PlayerMovementIC::handleInput(const SDL_Event& _event) {
         }
     }
 
+    Ogre::Vector3 velocity = Ogre::Vector3(0.0f, 0.0f, 0.0f);
+
     if (wDown)
-        transform->setPosition(transform->getPosition() +
-                               Ogre::Vector3(0.0f, 0.0f, -_speed));
+        velocity += Ogre::Vector3(0.0f, 0.0f, -_speed);
     if (sDown)
-        transform->setPosition(transform->getPosition() +
-                               Ogre::Vector3(0.0f, 0.0f, _speed));
+        velocity += Ogre::Vector3(0.0f, 0.0f, _speed);
     if (aDown)
-        transform->setPosition(transform->getPosition() +
-                               Ogre::Vector3(-_speed, 0.0f, 0.0f));
+        velocity += Ogre::Vector3(-_speed, 0.0f, 0.0f);
     if (dDown)
-        transform->setPosition(transform->getPosition() +
-                               Ogre::Vector3(_speed, 0.0f, 0.0f));
+        velocity += Ogre::Vector3(_speed, 0.0f, 0.0f);
+
+    body->setLinearVelocity(velocity);
 }
 
 float PlayerMovementIC::getMovementSpeed() { return _speed; }
@@ -87,12 +86,12 @@ class PlayerMovementICFactory final : public ComponentFactory {
     PlayerMovementICFactory() = default;
 
     Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
+                      Scene* _scene) override {
         PlayerMovementIC* playerMovement = new PlayerMovementIC();
-        scene->getComponentsManager()->addIC(playerMovement);
+        _scene->getComponentsManager()->addIC(playerMovement);
 
         playerMovement->setFather(_father);
-        playerMovement->setScene(scene);
+        playerMovement->setScene(_scene);
 
         if (!_data["speed"].asInt())
             throw std::exception("PlayerMovementIC: speed is not an int");

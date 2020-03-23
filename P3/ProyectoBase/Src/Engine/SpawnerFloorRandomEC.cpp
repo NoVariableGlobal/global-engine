@@ -11,6 +11,13 @@
 #include <json.h>
 
 void SpawnerFloorRandomEC::checkEvent() {
+
+    if (firstTime) {
+        firstTime = false;
+        _lastTimeSpawned = clock() / static_cast<float>(CLOCKS_PER_SEC);
+    }
+
+
     // Spawnea un prefab en una posicion random del mapa cada cierto tiempo
     if (timeToSpawn()) {
         Entity* newEntity = spawnPrefab();

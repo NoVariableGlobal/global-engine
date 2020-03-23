@@ -42,14 +42,14 @@ class SpotLightRCFactory final : public ComponentFactory {
     SpotLightRCFactory() = default;
 
     Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
+                      Scene* _scene) override {
         Ogre::SceneManager* mSM =
             OgreSDLContext::getInstance()->getSceneManager();
         SpotLightRC* light = new SpotLightRC();
-        scene->getComponentsManager()->addRC(light);
+        _scene->getComponentsManager()->addRC(light);
 
         light->setFather(_father);
-        light->setScene(scene);
+        light->setScene(_scene);
 
         light->setLight(_father->getId());
 

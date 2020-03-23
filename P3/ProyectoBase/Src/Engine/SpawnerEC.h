@@ -21,6 +21,8 @@ class SpawnerEC : public EventComponent {
     std::vector<Spawn> _spawns;
     float _spawnCooldown = 0;
     float _lastTimeSpawned = 0;
+    bool firstTime = true;
+
 
   public:
     void setSpawnCooldown(float spawnCooldown) {

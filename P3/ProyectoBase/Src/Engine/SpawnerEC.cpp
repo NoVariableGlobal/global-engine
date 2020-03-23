@@ -50,6 +50,11 @@ void SpawnerEC::editChance(std::string& id, float newChance) {
 }
 
 void SpawnerEC::checkEvent() {
+    if (firstTime) {
+        firstTime = false;
+        _lastTimeSpawned = clock() / static_cast<float>(CLOCKS_PER_SEC);
+    }
+
     if (timeToSpawn()) {
         spawnPrefab();
     }
@@ -74,7 +79,8 @@ Entity* SpawnerEC::spawnPrefab() {
             static_cast<float>(rand()) / static_cast<float>(RAND_MAX) * 100;
         toInstantiate = binarySearch(0, _spawns.size() - 1, random);
     }
-    return scene->getInstanceOf(toInstantiate._id, _count++);
+    return scene->getInstanceOf(toInstantiate._id,
+                                toInstantiate._id + std::to_string(_count++));
 }
 
 Spawn SpawnerEC::binarySearch(int first, int last, float value) {
