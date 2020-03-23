@@ -172,7 +172,7 @@
           "attributes": {
             "playerSpeedPercentage": 0.7,
             "attack": 10,
-            "attackCooldown": 1
+            "attackCooldown": 2
           }
         }
       ]

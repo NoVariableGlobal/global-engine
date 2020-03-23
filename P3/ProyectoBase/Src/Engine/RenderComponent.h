@@ -6,6 +6,9 @@
 namespace Ogre {
     class Entity;
     class SceneNode;
+    typedef float Real;
+    template <int dims, typename T> class Vector;
+    typedef Vector<3, Real> Vector3;
 } // namespace Ogre
 
 class RenderComponent : public Component {
@@ -19,6 +22,8 @@ class RenderComponent : public Component {
     virtual ~RenderComponent();
     // interface for each render component render method
     virtual void render() = 0;
+
+	void rotate(int degree, Ogre::Vector3 axis);
 
     // Getters and setters
     Ogre::Entity* getOgreEntity();

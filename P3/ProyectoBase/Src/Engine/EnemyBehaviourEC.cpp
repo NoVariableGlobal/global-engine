@@ -10,6 +10,9 @@
 #include "RigidbodyPC.h"
 #include <iostream>
 #include "TridimensionalObjectRC.h"
+#include <time.h>
+#include <utility>
+#include <value.h>
 
 EnemyBehaviourEC::EnemyBehaviourEC()
     : speed(0.0f), playerSpeedPercentage(0.0f), attack(0),

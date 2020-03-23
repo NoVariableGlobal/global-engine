@@ -17,9 +17,12 @@ MeleeEnemyBehaviourEC::~MeleeEnemyBehaviourEC() {}
 void MeleeEnemyBehaviourEC::checkEvent() {
     EnemyBehaviourEC::checkEvent();
 
-    if (getCollisionWithPlayer()) {
-		// attack every attackCooldown seconds
-        if (timeToAttack()) {
+	// attack every attackCooldown seconds
+	if (timeToAttack())
+     {
+		// if enemy is colliding with player
+        if (getCollisionWithPlayer())
+         {
             // attack player
             LifeC* playerHealth = dynamic_cast<LifeC*>(
                 scene->getEntitybyId("Player")->getComponent("LifeC"));
