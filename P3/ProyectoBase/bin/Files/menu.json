@@ -65,35 +65,6 @@
           }
         }
       ]
-    },
-	  {
-		"id": "PowerUpGenerator",
-		"components": [
-			{
-			  "type": "TransformComponent",
-			  "attributes": {
-			   "position": [ 0, 0, 0],
-			   "orientation": [ 0, 0, 0],
-			   "scale": [ 0.5, 0.5, 0.5]
-			  }
-			},
-			{
-			  "type": "TridimensionalObjectRC",
-			  "attributes": {
-			    "mesh": "cube.mesh",
-				"node": "nCube",
-				"material": "GrassMaterial"
-			  }
-			},
-			{
-			  "type": "SpawnerFloorRandomEC",
-			  "attributes": {
-				"spawnCooldown": 5,
-				"spawnID": ["Medkit"],
-				"spawnChances": [100],
-			  }
-			}
-		]
-	  }
+    }
   ]
 }

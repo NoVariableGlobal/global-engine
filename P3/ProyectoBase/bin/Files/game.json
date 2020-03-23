@@ -83,15 +83,3 @@
       }
     ]
 }
-
-
-BORRAR TAMBIEN LO DEL SpawnerPowerUpEC
-
-#Colision
-
-RigidbodyPC* rb =
-        dynamic_cast<RigidbodyPC*>(
-        father->getComponent("RigidbodyPC"));
-y luego
-esto
-collisionWithPlayer = rb->collidesWith("Player");

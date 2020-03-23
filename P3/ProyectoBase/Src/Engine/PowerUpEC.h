@@ -1,21 +1,40 @@
 #pragma once
 
-#include "EventComponent.h"
+#include "Component.h"
 
-class PowerUpEC : public EventComponent {
+class PowerUpEC : public Component {
   private:
-    float durationTotal;
-    float time;
-    bool collisionWithPlayer;
-    bool disappear = false;
+    double
+        timeBeforeDelete; // time before the power up is deleted if not picked
+    double timeOfEffect; // time during which the effect of the power up will be
+                         // applied
+    // bool startEffect; // indicates that the power up has been picked
+
+	// In json files they are called respectively time and timeEffect
+
+    bool picked; // determines if the power up has been picked before being
+                 // deleted
 
   public:
-    PowerUpEC();
-    ~PowerUpEC();
-
+    /*
+     * updates the time on the power up before deleting it if not picked by the
+     * player yet
+     */
     virtual void update();
-    virtual void checkEvent() = 0;
+    /*
+     * method defined by its children
+     */
+    virtual void onPickUp() = 0;
 
-    void setDuration(float _duration);
-    bool getCollisionWithPlayer();
+    // counts the time before deleting the power up if not picked by the player
+    // before
+    bool timeToDisappear();
+
+    // setters
+    void setTimeBeforeDelete(float _timeBeforeDelete);
+    void setTimeOfEffect(float _timeOfEffect);
+    void setPicked(bool _picked);
+
+    // getters
+    bool isPicked();
 };

@@ -99,7 +99,10 @@
       <Filter>Components\Other</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Engine\PowerUpEC.cpp">
-      <Filter>Components\Events</Filter>
+      <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\OnCollisionPickUpIC.cpp">
+      <Filter>Components\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -204,7 +207,10 @@
       <Filter>Components\Other</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\PowerUpEC.h">
-      <Filter>Components\Events</Filter>
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\OnCollisionPickUpIC.h">
+      <Filter>Components\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
