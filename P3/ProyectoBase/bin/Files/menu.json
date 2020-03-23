@@ -86,7 +86,7 @@
 			  }
 			},
 			{
-			  "type": "SpawnerPowerUpEC",
+			  "type": "SpawnerFloorRandomEC",
 			  "attributes": {
 				"spawnCooldown": 5,
 				"spawnID": ["Medkit"],

@@ -1,24 +1,29 @@
 #pragma once
 
-#include "PhysicsComponent.h"
+#include "PowerUpEC.h"
 
 class LifeC;
 
-class MedkitEC : public PhysicsComponent {
+class MedkitEC : public PowerUpEC {
   private:
-    int probability;
-    int duration;
+    double probability;
+    double time;
+    double timeEffect;
+    double currentDuration;
 
+	bool picked;
 
   public:
     MedkitEC();
     ~MedkitEC();
 
-	void update();
+    virtual void update();
+    virtual void checkEvent();
 
-	void setProbability(float _probability);
-    void setDuration(float _duration);
+    void setProbability(float _probability);
+    void setTime(float _time);
+    void setTimeEffect(float _timeEffect);
 
-	void onCollisionActivate();
-	bool checkCollision();
+    void onCollisionActivate();
+    bool checkCollision();
 };

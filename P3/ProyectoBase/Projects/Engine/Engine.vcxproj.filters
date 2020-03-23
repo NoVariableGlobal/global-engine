@@ -95,11 +95,11 @@
     <ClCompile Include="..\..\Src\Engine\TestChangeSceneIC.cpp">
       <Filter>Components\Input</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\PowerUpC.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Engine\MedkitEC.cpp">
       <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\PowerUpEC.cpp">
+      <Filter>Components\Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,11 +200,11 @@
     <ClInclude Include="..\..\Src\Engine\TestChangeSceneIC.h">
       <Filter>Components\Input</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\PowerUpC.h">
-      <Filter>Components\Other</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\MedkitEC.h">
       <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\PowerUpEC.h">
+      <Filter>Components\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
