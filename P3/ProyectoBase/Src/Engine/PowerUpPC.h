@@ -1,20 +1,21 @@
 #pragma once
 
-#include "PhysicsComponent.h"
+#include "EventComponent.h"
 
-class PowerUpPC : public PhysicsComponent {
+class PowerUpPC : public EventComponent {
   private:
     float durationTotal;
     float time;
     float timeStart;
     bool collisionWithPlayer;
-    bool disappear;
     bool start;
 
+  protected:
+    bool picked;
   public:
     PowerUpPC();
     ~PowerUpPC();
-    virtual void update();
+    virtual void checkEvent();
 
     void setDuration(float _duration);
     bool getCollisionWithPlayer();

@@ -66,35 +66,7 @@
         }
       ]
     },
-	{
-      "id": "GeneradorPowerUps",
-      "components": [
-        {
-          "type": "TransformComponent",
-          "attributes": {
-            "position": [ 0, 0, 0 ],
-            "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.05, 0.05, 0.05 ]
-          }
-        },
-        {
-          "type": "TridimensionalObjectRC",
-          "attributes": {
-            "mesh": "cube.mesh",
-            "node": "nCube",
-            "material": "GrassMaterial"
-          }
-        },
-        {
-          "type": "SpawnerFloorRandomEC",
-          "attributes": {
-            "spawnCooldown": 10,
-            "spawnID": [ "Shield" ],
-            "spawnChances": [ 100 ]
-          }
-        }
-      ]
-    },
+	
 	{
       "id": "Player",
       "components": [

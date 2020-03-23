@@ -9,18 +9,20 @@
 #include <Entity.h>
 #include <json.h>
 
-PowerUpPC::PowerUpPC() : disappear(false), start(false) {}
+PowerUpPC::PowerUpPC() : picked(false), start(false) {}
 
 PowerUpPC::~PowerUpPC() {}
 
-void PowerUpPC::update() {
-    TransformComponent* transform = dynamic_cast<TransformComponent*>(
-        father->getComponent("TransformComponent"));
-    RigidbodyPC* rb =
-        dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"));
+void PowerUpPC::checkEvent() {
 
-    // check collision with player
-    collisionWithPlayer = rb->collidesWith("Player");
+    if (!picked) {
+        RigidbodyPC* rb =
+            dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"));
+
+        // check collision with player
+        collisionWithPlayer = rb->collidesWith("Player");
+    }
+
 }
 void PowerUpPC::setDuration(float _duration) {
     durationTotal = _duration;
