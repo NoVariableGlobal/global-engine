@@ -29,20 +29,23 @@ bool HandGunC::shoot() {
        TransformComponent* bulletTransform = dynamic_cast<TransformComponent*>(
             newBullet->getComponent("TransformComponent"));
 
-       bulletTransform->setPosition(myTransform->getPosition());
-       bulletTransform->setOrientation(myTransform->getOrientation());
-
-       RigidbodyPC* bulletRb = dynamic_cast<RigidbodyPC*>(
-           newBullet->getComponent("RigidbodyPC"));
-
        Ogre::Quaternion quat =
            dynamic_cast<TridimensionalObjectRC*>(
                father->getComponent("TridimensionalObjectRC"))
                ->getSceneNode()
                ->getOrientation();
 
-       bulletRb->setLinearVelocity(-(quat * Ogre::Vector3::NEGATIVE_UNIT_Z) * 50);
-       bulletRb->setPosition(myTransform->getPosition());
+       bulletTransform->setPosition(myTransform->getPosition() +
+                                    (quat * Ogre::Vector3::UNIT_Z) *10);
+       bulletTransform->setOrientation(myTransform->getOrientation());
+
+       RigidbodyPC* bulletRb = dynamic_cast<RigidbodyPC*>(
+           newBullet->getComponent("RigidbodyPC"));
+
+
+
+       bulletRb->setLinearVelocity((quat * Ogre::Vector3::UNIT_Z) * 50);
+       bulletRb->setPosition(bulletTransform->getPosition());
 
     } else
         return false;
