@@ -33,15 +33,15 @@ class TridimensionalObjectRCFactory final : public ComponentFactory {
     TridimensionalObjectRCFactory() = default;
 
     Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
+                      Scene* _scene) override {
         Ogre::SceneManager* mSM =
             OgreSDLContext::getInstance()->getSceneManager();
         TridimensionalObjectRC* tridimensionalObject =
             new TridimensionalObjectRC();
-        scene->getComponentsManager()->addRC(tridimensionalObject);
+        _scene->getComponentsManager()->addRC(tridimensionalObject);
 
         tridimensionalObject->setFather(_father);
-        tridimensionalObject->setScene(scene);
+        tridimensionalObject->setScene(_scene);
 
         if (!_data["mesh"].isString())
             throw std::exception(

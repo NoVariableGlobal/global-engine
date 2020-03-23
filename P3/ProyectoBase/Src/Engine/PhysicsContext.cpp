@@ -96,6 +96,7 @@ btRigidBody* PhysicsContext::createRB(Ogre::Vector3 pos, Ogre::Vector3 shape,
     btMotionState* motion = new btDefaultMotionState(t);
     btRigidBody::btRigidBodyConstructionInfo info(mass, motion, box);
     btRigidBody* rb = new btRigidBody(info);
+    rb->forceActivationState(DISABLE_DEACTIVATION);
 
     discreteDynamicsWorld->addRigidBody(rb);
     ribs.push_back(rb);

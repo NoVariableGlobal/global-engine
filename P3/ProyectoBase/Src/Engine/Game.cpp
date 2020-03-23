@@ -50,6 +50,7 @@ void Game::run() {
         update();
         render();
         handleInput();
+        scene->deleteComponents();
 
         if (sceneChange)
             setScene(sceneToChange);
@@ -59,8 +60,9 @@ void Game::run() {
 void Game::update() { scene->update(); }
 
 void Game::render() {
-    OgreSDLContext::getInstance()->renderLoop();
     scene->render();
+    OgreSDLContext::getInstance()->renderLoop();
+
 }
 
 void Game::handleInput() {
