@@ -13,6 +13,10 @@ class EnemyBehaviourPC : public PhysicsComponent {
 	// amount of damage the enemy deals to the player
 	int attack;
 
+	// enemy deals damage every "attackCooldown" seconds
+    float attackCooldown;
+    int attackFrames;
+
  public:
     EnemyBehaviourPC();
    ~EnemyBehaviourPC();
@@ -23,9 +27,13 @@ class EnemyBehaviourPC : public PhysicsComponent {
     float getPlayerSpeedPercentage();
     bool getCollisionWithPlayer();
     int getAttack();
+    float getAttackCooldown();
+    int getAttackFrames();
 
 	void setSpeed(float _speed);
     void setPlayerSpeedPercentage(float _playerSpeedPercentage);
     void setCollisionWithPlayer(bool _collisionWithPlayer);
     void setAttack(float _attack);
+    void setAttackCooldown(float _attackCooldown);
+    void setAttackFrames(int _attackFrames);
 };

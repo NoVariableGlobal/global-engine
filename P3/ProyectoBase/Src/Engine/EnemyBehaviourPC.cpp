@@ -8,8 +8,9 @@
 #include "TransformComponent.h"
 #include "OgreRoot.h"
 #include "RigidbodyPC.h"
+#include <iostream>
 
-EnemyBehaviourPC::EnemyBehaviourPC(): speed(0.0f), playerSpeedPercentage(0.0f), attack(0) {}
+EnemyBehaviourPC::EnemyBehaviourPC(): speed(0.0f), playerSpeedPercentage(0.0f), attack(0), attackCooldown(0.0f), attackFrames(0) {}
 
 EnemyBehaviourPC::~EnemyBehaviourPC() {}
 
@@ -36,15 +37,15 @@ void EnemyBehaviourPC::update() {
 
 	// if not colliding with player enemy moves towards player
     if (!collisionWithPlayer) {
-        Ogre::Vector3 force = Ogre::Vector3(
-            transform->getPosition().x + directionToPlayer.x * speed,
-            transform->getPosition().y,
-            transform->getPosition().z + directionToPlayer.z * speed);
-        rb->addForce(force, Ogre::Vector3(0.0f,0.0f,0.0f));
+        Ogre::Vector3 force = Ogre::Vector3(directionToPlayer.x * speed, 0.0f, directionToPlayer.z * speed);
+        rb->addForce(force, Ogre::Vector3(0.0f,0.0f,0.0f));	
 	}
 
 	// set orientation towards player
     transform->setOrientation(directionToPlayer);
+
+	// attackFrames are incremented every frame
+	attackFrames++;
 }
 
 bool EnemyBehaviourPC::getCollisionWithPlayer() { return collisionWithPlayer; }
@@ -61,6 +62,10 @@ float EnemyBehaviourPC::getPlayerSpeedPercentage() {
 
 int EnemyBehaviourPC::getAttack() { return attack; }
 
+float EnemyBehaviourPC::getAttackCooldown() { return attackCooldown; }
+
+int EnemyBehaviourPC::getAttackFrames() { return attackFrames; }
+
 void EnemyBehaviourPC::setSpeed(float _speed) { speed = _speed; }
 
 void EnemyBehaviourPC::setPlayerSpeedPercentage(
@@ -69,4 +74,12 @@ void EnemyBehaviourPC::setPlayerSpeedPercentage(
 }
 
 void EnemyBehaviourPC::setAttack(float _attack) { attack = _attack; }
+
+void EnemyBehaviourPC::setAttackCooldown(float _attackCooldown) {
+    attackCooldown = _attackCooldown;
+}
+
+void EnemyBehaviourPC::setAttackFrames(int _attackFrames) {
+    attackFrames = _attackFrames;
+}
 
