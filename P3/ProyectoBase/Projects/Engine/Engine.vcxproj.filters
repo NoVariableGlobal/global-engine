@@ -7,6 +7,10 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\InputComponent.cpp">
       <Filter>Components\Input</Filter>
+    /ClCompile>
+    <ClCompile Include="..\..\Src\Engine\InvulnerabilityShield.cpp" />
+    <ClCompile Include="..\..\Src\Engine\PowerUpPC.cpp">
+      <Filter>Components\Physics</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\PhysicsComponent.cpp">
       <Filter>Components\Physics</Filter>
@@ -220,6 +224,10 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\WeaponControllerIC.h">
       <Filter>Components\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\InvulnerabilityShield.h" />
+    <ClInclude Include="..\..\Src\Engine\PowerUpPC.h">
+      <Filter>Components\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -61,13 +61,15 @@ void ComponentsManager::deletePC() {
             auto it = physics.begin();
             while (it != physics.end() && !erased) {
                 if ((*it) == (*itDelete)) {
-                    physics.erase(it);
+                    delete *it;
                     erased = true;
-                }
+                }else
                 ++it;
             }
+            physics.erase(it);
             ++itDelete;
         }
+        deletePhysics.clear();
     }
 }
 
@@ -87,13 +89,15 @@ void ComponentsManager::deleteIC() {
             auto it = input.begin();
             while (it != input.end() && !erased) {
                 if ((*it) == (*itDelete)) {
-                    input.erase(it);
+                    delete *it;
                     erased = true;
-                }
+                } else
                 ++it;
             }
+            input.erase(it);
             ++itDelete;
         }
+        deleteInput.clear();
     }
 }
 
@@ -113,13 +117,15 @@ void ComponentsManager::deleteRC() {
             auto it = rend.begin();
             while (it != rend.end() && !erased) {
                 if ((*it) == (*itDelete)) {
-                    rend.erase(it);
+                    delete *it;
                     erased = true;
-                }
+                } else
                 ++it;
             }
+            rend.erase(it);
             ++itDelete;
         }
+        deleteRend.clear();
     }
 }
 
@@ -139,13 +145,15 @@ void ComponentsManager::deleteSC() {
             auto it = sound.begin();
             while (it != sound.end() && !erased) {
                 if ((*it) == (*itDelete)) {
-                    sound.erase(it);
+                    delete *it;
                     erased = true;
-                }
+                } else
                 ++it;
             }
+            sound.erase(it);
             ++itDelete;
         }
+        deleteSound.clear();
     }
 }
 
@@ -165,13 +173,15 @@ void ComponentsManager::deleteDC() {
             auto it = deleteable.begin();
             while (it != deleteable.end() && !erased) {
                 if ((*it) == (*itDelete)) {
-                    deleteable.erase(it);
+                    delete *it;
                     erased = true;
-                }
-                ++it;
+                } else
+                    ++it;
             }
+            deleteable.erase(it);
             ++itDelete;
         }
+        deleteDeleteable.clear();
     }
 }
 
@@ -191,13 +201,16 @@ void ComponentsManager::deleteEC() {
             auto it = event.begin();
             while (it != event.end() && !erased) {
                 if ((*it) == (*itDelete)) {
-                    event.erase(it);
+                    delete *it;
                     erased = true;
                 }
-                ++it;
+                else
+                    ++it;
             }
+            event.erase(it);
             ++itDelete;
         }
+        deleteEvent.clear();
     }
 }
 
