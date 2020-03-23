@@ -56,12 +56,12 @@ void ComponentsManager::addPC(PhysicsComponent* _physicsComponent) {
 void ComponentsManager::deletePC(PhysicsComponent* _physicsComponent) {
     bool erased = false;
     auto it = physics.begin();
-    while (it != physics.end() && erased) {
+    while (!erased && it != physics.end()) {
         if ((*it) == _physicsComponent) {
             physics.erase(it);
             erased = true;
-        }
-        ++it;
+        } else
+            ++it;
     }
 }
 
@@ -88,12 +88,12 @@ void ComponentsManager::addRC(RenderComponent* _renderComponent) {
 void ComponentsManager::deleteRC(RenderComponent* _renderComponent) {
     bool erased = false;
     auto it = rend.begin();
-    while (it != rend.end() && erased) {
+    while (!erased && it != rend.end()) {
         if ((*it) == _renderComponent) {
             rend.erase(it);
             erased = true;
-        }
-        ++it;
+        } else
+            ++it;
     }
 }
 
