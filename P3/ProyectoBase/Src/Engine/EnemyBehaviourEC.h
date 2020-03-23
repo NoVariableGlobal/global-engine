@@ -1,6 +1,6 @@
-#pragma once
+#pragma once 
 #include "EventComponent.h"
-class EnemyBehaviourPC : public EventComponent {
+class EnemyBehaviourEC : public EventComponent {
   private:
 	// speed at which enemy follows the player
     float speed;
@@ -18,8 +18,8 @@ class EnemyBehaviourPC : public EventComponent {
     float lastTimeAttacked = 0;
 
  public:
-    EnemyBehaviourPC();
-   ~EnemyBehaviourPC();
+    EnemyBehaviourEC();
+   ~EnemyBehaviourEC();
     virtual void checkEvent();
 
 	bool timeToAttack();

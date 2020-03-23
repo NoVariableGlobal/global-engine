@@ -104,6 +104,10 @@ void RigidbodyPC::setRestitution(float _restitution) {
     body->setRestitution(_restitution);
 }
 
+void RigidbodyPC::setLinearVelocity(Ogre::Vector3 _v) {
+    body->setLinearVelocity(btVector3(_v.x, _v.y, _v.z));
+}
+
 // FACTORY INFRASTRUCTURE
 class RigidbodyPCFactory final : public ComponentFactory {
   public:

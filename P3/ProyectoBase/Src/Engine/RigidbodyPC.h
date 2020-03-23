@@ -45,4 +45,5 @@ class RigidbodyPC : public PhysicsComponent {
     void setFriction(float _friction); // We put the friction value of a body
     void setRestitution(
         float _restitution); // We put the restitution value of a body
+    void setLinearVelocity(Ogre::Vector3 _v); // Set linear velocity to the body
 };

@@ -1,6 +1,6 @@
-#include "MeleeEnemyBehaviourPC.h"
+#include "MeleeEnemyBehaviourEC.h"
 #include "ComponentsManager.h"
-#include "EnemyBehaviourPC.h"
+#include "EnemyBehaviourEC.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
 #include "LifeC.h"
@@ -10,12 +10,12 @@
 #include <Entity.h>
 #include <json.h>
 
-MeleeEnemyBehaviourPC::MeleeEnemyBehaviourPC() : EnemyBehaviourPC() {}
+MeleeEnemyBehaviourEC::MeleeEnemyBehaviourEC() : EnemyBehaviourEC() {}
 
-MeleeEnemyBehaviourPC::~MeleeEnemyBehaviourPC() {}
+MeleeEnemyBehaviourEC::~MeleeEnemyBehaviourEC() {}
 
-void MeleeEnemyBehaviourPC::checkEvent() {
-    EnemyBehaviourPC::checkEvent();
+void MeleeEnemyBehaviourEC::checkEvent() {
+    EnemyBehaviourEC::checkEvent();
 
     if (getCollisionWithPlayer()) {
 		// attack every attackCooldown seconds
@@ -29,14 +29,14 @@ void MeleeEnemyBehaviourPC::checkEvent() {
 }
 
 // FACTORY INFRASTRUCTURE
-class MeleeEnemyBehaviourPCFactory final : public ComponentFactory {
+class MeleeEnemyBehaviourECFactory final : public ComponentFactory {
   public:
-    MeleeEnemyBehaviourPCFactory() = default;
+    MeleeEnemyBehaviourECFactory() = default;
 
     Component* create(Entity* _father, Json::Value& _data,
                       Scene* scene) override {
-        MeleeEnemyBehaviourPC* meleeEnemyBehaviour =
-            new MeleeEnemyBehaviourPC();
+        MeleeEnemyBehaviourEC* meleeEnemyBehaviour =
+            new MeleeEnemyBehaviourEC();
         scene->getComponentsManager()->addEC(meleeEnemyBehaviour);
 
         meleeEnemyBehaviour->setFather(_father);
@@ -44,7 +44,7 @@ class MeleeEnemyBehaviourPCFactory final : public ComponentFactory {
 
         if (!_data["playerSpeedPercentage"].asFloat())
             throw std::exception(
-                "EnemyBehaviourPC: playerSpeedPercentage is not a float");
+                "EnemyBehaviourEC: playerSpeedPercentage is not a float");
         meleeEnemyBehaviour->setPlayerSpeedPercentage(
             _data["playerSpeedPercentage"].asFloat());
 
@@ -62,7 +62,7 @@ class MeleeEnemyBehaviourPCFactory final : public ComponentFactory {
 
         if (!_data["attackCooldown"].asFloat())
             throw std::exception(
-                "MeleeEnemyBehaviourPC: attackCooldown is not a float");
+                "MeleeEnemyBehaviourEC: attackCooldown is not a float");
         meleeEnemyBehaviour->setAttackCooldown(
             _data["attackCooldown"].asFloat());
 
@@ -70,4 +70,4 @@ class MeleeEnemyBehaviourPCFactory final : public ComponentFactory {
     };
 };
 
-REGISTER_FACTORY("MeleeEnemyBehaviourPC", MeleeEnemyBehaviourPC);
+REGISTER_FACTORY("MeleeEnemyBehaviourEC", MeleeEnemyBehaviourEC);

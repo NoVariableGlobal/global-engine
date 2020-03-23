@@ -20,9 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Application.cpp" />
-    <ClCompile Include="..\..\Src\Engine\EnemyBehaviourPC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\EnemyBehaviourEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\GunC.cpp" />
-    <ClCompile Include="..\..\Src\Engine\MeleeEnemyBehaviourPC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\PlayerShotIC.cpp" />
     <ClCompile Include="..\..\Src\Engine\LifeC.cpp" />
     <ClCompile Include="..\..\Src\Engine\EventComponent.cpp" />
@@ -54,9 +54,9 @@
     <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\Engine\EnemyBehaviourPC.h" />
+    <ClInclude Include="..\..\Src\Engine\EnemyBehaviourEC.h" />
     <ClInclude Include="..\..\Src\Engine\GunC.h" />
-    <ClInclude Include="..\..\Src\Engine\MeleeEnemyBehaviourPC.h" />
+    <ClInclude Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.h" />
     <ClInclude Include="..\..\Src\Engine\PlayerShotIC.h" />
     <ClInclude Include="..\..\Src\Engine\LifeC.h" />
     <ClInclude Include="..\..\Src\Engine\EventComponent.h" />
