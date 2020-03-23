@@ -1,10 +1,10 @@
-#include "FactoriesFactory.h"
-#include "Factory.h"
 #include "WeaponControllerIC.h"
-#include "Scene.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
+#include "FactoriesFactory.h"
+#include "Factory.h"
 #include "HandGunC.h"
+#include "Scene.h"
 #include <SDL.h>
 #include <iostream>
 #include <json.h>
@@ -33,6 +33,17 @@ void WeaponControllerIC::handleInput(const SDL_Event& _event) {
 
 GunC* WeaponControllerIC::getCurrentGun() { return currentGun; }
 
+void WeaponControllerIC::pickUpGun(std::string _gunName, GunC* _newGun) {
+    // Remove old gun
+    if (secondaryGun != nullptr) {
+        scene->getComponentsManager()->eraseDC(secondaryGun);
+    }
+
+    // Add and equip new gun
+    father->addComponent(_gunName, _newGun);
+    secondaryGun = _newGun;
+    currentGun = _newGun;
+}
 
 // FACTORY INFRASTRUCTURE
 class WeaponControllerICFactory final : public ComponentFactory {
