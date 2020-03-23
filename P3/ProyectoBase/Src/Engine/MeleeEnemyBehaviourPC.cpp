@@ -14,8 +14,8 @@ MeleeEnemyBehaviourPC::MeleeEnemyBehaviourPC() : EnemyBehaviourPC() {}
 
 MeleeEnemyBehaviourPC::~MeleeEnemyBehaviourPC() {}
 
-void MeleeEnemyBehaviourPC::update() {
-    EnemyBehaviourPC::update();
+void MeleeEnemyBehaviourPC::checkEvent() {
+    EnemyBehaviourPC::checkEvent();
 
     if (getCollisionWithPlayer()) {
 		// attack every attackCooldown seconds
@@ -37,7 +37,7 @@ class MeleeEnemyBehaviourPCFactory final : public ComponentFactory {
                       Scene* scene) override {
         MeleeEnemyBehaviourPC* meleeEnemyBehaviour =
             new MeleeEnemyBehaviourPC();
-        scene->getComponentsManager()->addPC(meleeEnemyBehaviour);
+        scene->getComponentsManager()->addEC(meleeEnemyBehaviour);
 
         meleeEnemyBehaviour->setFather(_father);
         meleeEnemyBehaviour->setScene(scene);

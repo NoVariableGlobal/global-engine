@@ -5,5 +5,5 @@ class MeleeEnemyBehaviourPC : public EnemyBehaviourPC {
  public:
     MeleeEnemyBehaviourPC();
    ~MeleeEnemyBehaviourPC();
-    virtual void update();
+    virtual void checkEvent();
 };

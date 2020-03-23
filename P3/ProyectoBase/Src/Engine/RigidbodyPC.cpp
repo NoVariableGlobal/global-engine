@@ -51,7 +51,7 @@ bool RigidbodyPC::collidesWith(std::string id) {
             ->body->getWorldTransform();
     convexConvex.getClosestPoints(input, gjkOutput, 0);
 
-    if (gjkOutput.m_hasResult && gjkOutput.m_distance < 0)
+    if (gjkOutput.m_hasResult && gjkOutput.m_distance <= 0)
         return true;
     else
         return false;

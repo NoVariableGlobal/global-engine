@@ -10,11 +10,11 @@
 #include "RigidbodyPC.h"
 #include <iostream>
 
-EnemyBehaviourPC::EnemyBehaviourPC(): speed(0.0f), playerSpeedPercentage(0.0f), attack(0), attackCooldown(0.0f), attackFrames(0) {}
+EnemyBehaviourPC::EnemyBehaviourPC(): speed(0.0f), playerSpeedPercentage(0.0f), attack(0), attackCooldown(0.0f) {}
 
 EnemyBehaviourPC::~EnemyBehaviourPC() {}
 
-void EnemyBehaviourPC::update() {
+void EnemyBehaviourPC::checkEvent() {
     TransformComponent* transform = dynamic_cast<TransformComponent*>(
         father->getComponent("TransformComponent"));
     RigidbodyPC* rb =
