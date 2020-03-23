@@ -15,12 +15,14 @@ class EnemyBehaviourPC : public PhysicsComponent {
 
 	// enemy deals damage every "attackCooldown" seconds
     float attackCooldown;
-    int attackFrames;
+    float lastTimeAttacked = 0;
 
  public:
     EnemyBehaviourPC();
    ~EnemyBehaviourPC();
     virtual void update();
+
+	bool timeToAttack();
 
 	// getters and setters
 	float getSpeed();
@@ -28,12 +30,12 @@ class EnemyBehaviourPC : public PhysicsComponent {
     bool getCollisionWithPlayer();
     int getAttack();
     float getAttackCooldown();
-    int getAttackFrames();
+    float getLastTimeAttacked();
 
 	void setSpeed(float _speed);
     void setPlayerSpeedPercentage(float _playerSpeedPercentage);
     void setCollisionWithPlayer(bool _collisionWithPlayer);
     void setAttack(float _attack);
     void setAttackCooldown(float _attackCooldown);
-    void setAttackFrames(int _attackFrames);
+    void setLastTimeAttacked(float _lastTimeAttacked);
 };

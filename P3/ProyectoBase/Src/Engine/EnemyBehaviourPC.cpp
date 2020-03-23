@@ -43,9 +43,17 @@ void EnemyBehaviourPC::update() {
 
 	// set orientation towards player
     transform->setOrientation(directionToPlayer);
+}
 
-	// attackFrames are incremented every frame
-	attackFrames++;
+bool EnemyBehaviourPC::timeToAttack() {
+    float seconds = clock() / static_cast<float>(CLOCKS_PER_SEC);
+
+    if (seconds - lastTimeAttacked >= attackCooldown) {
+        lastTimeAttacked = seconds;
+        return true;
+    }
+
+    return false;
 }
 
 bool EnemyBehaviourPC::getCollisionWithPlayer() { return collisionWithPlayer; }
@@ -64,7 +72,7 @@ int EnemyBehaviourPC::getAttack() { return attack; }
 
 float EnemyBehaviourPC::getAttackCooldown() { return attackCooldown; }
 
-int EnemyBehaviourPC::getAttackFrames() { return attackFrames; }
+float EnemyBehaviourPC::getLastTimeAttacked() { return lastTimeAttacked; }
 
 void EnemyBehaviourPC::setSpeed(float _speed) { speed = _speed; }
 
@@ -79,7 +87,7 @@ void EnemyBehaviourPC::setAttackCooldown(float _attackCooldown) {
     attackCooldown = _attackCooldown;
 }
 
-void EnemyBehaviourPC::setAttackFrames(int _attackFrames) {
-    attackFrames = _attackFrames;
+void EnemyBehaviourPC::setLastTimeAttacked(float _lastTimeAttacked) {
+    lastTimeAttacked = _lastTimeAttacked;
 }
 

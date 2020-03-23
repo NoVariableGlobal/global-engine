@@ -18,14 +18,12 @@ void MeleeEnemyBehaviourPC::update() {
     EnemyBehaviourPC::update();
 
     if (getCollisionWithPlayer()) {
-		// if attack frames reach attack cooldown frames the enemy attacks
-        if (getAttackFrames() >= getAttackCooldown()*60) {
+		// attack every attackCooldown seconds
+        if (timeToAttack()) {
             // attack player
             LifeC* playerHealth = dynamic_cast<LifeC*>(
                 scene->getEntitybyId("Player")->getComponent("LifeC"));
             playerHealth->doDamage(getAttack());
-			// reset attack frames
-            setAttackFrames(0);
         }
     }
 }
