@@ -13,7 +13,7 @@ void ShotgunPowerUpC::destroyMyself() { scene->getComponentsManager()->eraseDC(t
 
 void ShotgunPowerUpC::onPickUp() {
     dynamic_cast<WeaponControllerIC*>(
-        scene->getEntitybyId("Simbad")->getComponent("WeaponControllerIC"))
+        scene->getEntitybyId("Player")->getComponent("WeaponControllerIC"))
         ->pickUpGun("ShotgunC");
 }
 

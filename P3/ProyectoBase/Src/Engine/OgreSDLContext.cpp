@@ -246,6 +246,4 @@ Ogre::RenderWindow* OgreSDLContext::getRenderWindow() { return mWindow.render; }
 
 SDL_Window* OgreSDLContext::getSDLWindow() { return mWindow.native; }
 
-SDL_Window* OgreSDLContext::getSDLWindow() { return mWindow.native; }
-
 void OgreSDLContext::renderLoop() { mRoot->renderOneFrame(); }

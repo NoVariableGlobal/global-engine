@@ -18,7 +18,7 @@ void OnEPressPickUpIC::destroyMyself() {
 
 void OnEPressPickUpIC::handleInput(const SDL_Event& _event) {
     rb = dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"));
-    if (rb->collidesWith("Simbad")) {
+    if (rb->collidesWith("Player")) {
         // TODO: Mostrar un icono con la "E" cuando haya interfaz
 
         if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_e) {
