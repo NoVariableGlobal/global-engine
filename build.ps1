@@ -54,7 +54,7 @@ function Find-MsBuild {
 
         # Find from ProgramFiles:
         $local:PossibleMsBuild = Resolve-Path "${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\*\MSBuild\*\Bin\MSBuild.exe" -ErrorAction SilentlyContinue
-        If ($PossibleMsBuild.Length -Ge 0) {
+        If (($PossibleMsBuild) -And ($PossibleMsBuild.Length -Ge 0)) {
             $MsBuild = $PossibleMsBuild[0].Path
             Write-Host "MsBuild not provided, using '" -ForegroundColor Blue -NoNewline
             Write-Host $MsBuild                        -ForegroundColor Cyan -NoNewline
@@ -69,7 +69,7 @@ function Find-MsBuild {
 
 # Asserts that the variable assigned to $MsBuild is a valid file path, discarding files that do not exist and folders.
 function Assert-MsBuildPath([string] $private:MsBuild) {
-    If (!(Test-Path -LiteralPath $MsBuild -PathType Leaf)) {
+    If (($MsBuild -Eq "") -Or !(Test-Path -LiteralPath $MsBuild -PathType Leaf)) {
         Write-Host "I was not able to find MSBuild.exe, please check https://docs.microsoft.com/visualstudio/msbuild/msbuild?view=vs-2019 for more information." -ForegroundColor Red
         Write-Host "  # Please specify the route to the MSBuild.exe by doing " -ForegroundColor Yellow -NoNewline
         Write-Host ".\build.ps1 `"Path\To\MSBuild.exe`""                       -ForegroundColor Cyan   -NoNewline
@@ -112,7 +112,7 @@ function Find-CMake {
 
         # Find from ProgramFiles:
         $local:PossibleCMake = Resolve-Path "${Env:ProgramFiles}\CMake\bin\cmake.exe" -ErrorAction SilentlyContinue
-        If ($PossibleCMake.Length -Ge 0) {
+        If (($PossibleCMake) -And ($PossibleCMake.Length -Ge 0)) {
             $CMake = $PossibleCMake[0].Path
             Write-Host "MsBuild not provided, using '" -ForegroundColor Blue -NoNewline
             Write-Host $CMake                          -ForegroundColor Cyan -NoNewline
@@ -128,7 +128,7 @@ function Find-CMake {
 
 # Asserts that the variable assigned to $CMake is a valid file path, discarding files that do not exist and folders.
 function Assert-CMakePath([string] $private:CMake) {
-    If (!(Test-Path -LiteralPath $CMake -PathType Leaf)) {
+    If (($CMake -Eq "") -Or !(Test-Path -LiteralPath $CMake -PathType Leaf)) {
         Write-Host "I was not able to find cmake.exe, please download the binary at https://cmake.org." -ForegroundColor Red
         Write-Host "  # Please specify the route to the cmake.exe by doing " -ForegroundColor Yellow -NoNewline
         Write-Host ".\build.ps1 -CMake `"Path\To\cmake.exe`""                -ForegroundColor Cyan   -NoNewline
@@ -211,13 +211,13 @@ function Step-CMake([string] $Path, [string[]] $Arguments) {
     $private:duration = $p.ExitTime - $p.StartTime
     If ($p.ExitCode -Eq 0) {
         Write-Host "# Finished generating '" -ForegroundColor Green -NoNewLine
-        Write-Host $Path                       -ForegroundColor Cyan  -NoNewLine
-        Write-Host "'. Took: "                 -ForegroundColor Green -NoNewLine
-        Write-Host ("{0:g}" -f $duration)      -ForegroundColor Cyan  -NoNewLine
-        Write-Host "."                         -ForegroundColor Green
+        Write-Host $Path                     -ForegroundColor Cyan  -NoNewLine
+        Write-Host "'. Took: "               -ForegroundColor Green -NoNewLine
+        Write-Host ("{0:g}" -f $duration)    -ForegroundColor Cyan  -NoNewLine
+        Write-Host "."                       -ForegroundColor Green
     }
     Else {
-        Write-Host "# Errored when generating '"      -ForegroundColor Red  -NoNewLine
+        Write-Host "# Errored when generating '"        -ForegroundColor Red  -NoNewLine
         Write-Host $Path                                -ForegroundColor Cyan -NoNewLine
         Write-Host "'. With code $($p.ExitCode) Took: " -ForegroundColor Red  -NoNewLine
         Write-Host ("{0:g}" -f $duration)               -ForegroundColor Cyan -NoNewLine
