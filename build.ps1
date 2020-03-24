@@ -146,7 +146,7 @@ Assert-MsBuildPath($MsBuild)
 
 # Build a MSVC project given a path and optional arguments
 function Step-VisualStudioRaw([string] $Path, [string[]] $Arguments) {
-    & $MsBuild $Path $Arguments
+    Start-Process $MsBuild (@($Path) + $Arguments) -Wait -NoNewWindow
 }
 
 # Builds a third-party library as debug, ignoring all warnings and verbosity
@@ -181,8 +181,12 @@ Assert-CMakePath($CMake)
 
 # Find and assert CMake
 function Step-CMake([string] $Path, [string[]] $Arguments) {
+    Write-Host "# Now configuring CMake Project for '" -ForegroundColor Blue -NoNewline
+    Write-Host $Path                                   -ForegroundColor Cyan -NoNewline
+    Write-Host "' as $PropertyConfiguration."          -ForegroundColor Blue
+
     New-Item -ItemType Directory -Force -Path "$Path\build"
-    & $CMake -S $Path -B "$Path\build" $Arguments
+    Start-Process $CMake (@("-S", $Path, "-B", "$Path\build") + $Arguments) -Wait -NoNewWindow
 }
 
 $local:RootFolder = "$($PSScriptRoot)"
