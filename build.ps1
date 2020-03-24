@@ -51,7 +51,7 @@ function Find-MsBuild {
         }
 
         # Find from ProgramFiles:
-        $local:PossibleMsBuild = Resolve-Path "${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\*\MSBuild\*\Bin\MSBuild.exe"
+        $local:PossibleMsBuild = Resolve-Path "${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\*\MSBuild\*\Bin\MSBuild.exe" -ErrorAction SilentlyContinue
         If ($PossibleMsBuild.Length -Ge 0) {
             $MsBuild = $PossibleMsBuild[0].Path
             Write-Host "MsBuild not provided, using '" -ForegroundColor Blue -NoNewline
@@ -109,7 +109,7 @@ function Find-CMake {
         }
 
         # Find from ProgramFiles:
-        $local:PossibleCMake = Resolve-Path "${Env:ProgramFiles}\CMake\bin\cmake.exe"
+        $local:PossibleCMake = Resolve-Path "${Env:ProgramFiles}\CMake\bin\cmake.exe" -ErrorAction SilentlyContinue
         If ($PossibleCMake.Length -Ge 0) {
             $CMake = $PossibleCMake[0].Path
             Write-Host "MsBuild not provided, using '" -ForegroundColor Blue -NoNewline
