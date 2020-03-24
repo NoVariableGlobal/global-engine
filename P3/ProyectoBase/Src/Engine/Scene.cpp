@@ -100,3 +100,4 @@ ComponentsManager* Scene::getComponentsManager() { return componentManager; }
 
 void Scene::clearComponentsManager() { componentManager->clearComponents(); }
 void Scene::deleteComponents() { componentManager->deleteComponents(); }
+void Scene::insertComponents() { componentManager->insertComponents(); }
