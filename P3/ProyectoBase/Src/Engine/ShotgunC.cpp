@@ -31,7 +31,7 @@ bool ShotgunC::shoot() {
                 ->getSceneNode();
         Ogre::Quaternion ori = node->getOrientation();
 
-        node->yaw(Ogre::Radian(-10));
+        node->yaw(Ogre::Radian(Ogre::Degree(-20).valueRadians()));
 
         for (int i = 0; i < 5; i++) {
             Entity* newBullet = dynamic_cast<SpawnerBulletsC*>(
@@ -56,7 +56,7 @@ bool ShotgunC::shoot() {
             bulletRb->setPosition(myTransform->getPosition());
 
 			// Rotate the node for the next bullet
-            node->yaw(Ogre::Radian(5));
+            node->yaw(Ogre::Radian(Ogre::Degree(10).valueRadians()));
         }
 
 		// Restore original rotation
