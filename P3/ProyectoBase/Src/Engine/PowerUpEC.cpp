@@ -1,4 +1,4 @@
-#include "PowerUpPC.h"
+#include "PowerUpEC.h"
 #include "ComponentsManager.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
@@ -9,11 +9,11 @@
 #include <Entity.h>
 #include <json.h>
 
-PowerUpPC::PowerUpPC() : picked(false), start(false) {}
+PowerUpEC::PowerUpEC() : picked(false), start(false) {}
 
-PowerUpPC::~PowerUpPC() {}
+PowerUpEC::~PowerUpEC() {}
 
-void PowerUpPC::checkEvent() {
+void PowerUpEC::checkEvent() {
 
     if (!picked) {
         RigidbodyPC* rb =
@@ -24,14 +24,14 @@ void PowerUpPC::checkEvent() {
     }
 
 }
-void PowerUpPC::setDuration(float _duration) {
+void PowerUpEC::setDuration(float _duration) {
     durationTotal = _duration;
     time = 0;
 }
 
-bool PowerUpPC::getCollisionWithPlayer() { return collisionWithPlayer; }
+bool PowerUpEC::getCollisionWithPlayer() { return collisionWithPlayer; }
 
-bool PowerUpPC::timeDisappear() {
+bool PowerUpEC::timeDisappear() {
 
     float seconds = clock() / static_cast<float>(CLOCKS_PER_SEC);
 

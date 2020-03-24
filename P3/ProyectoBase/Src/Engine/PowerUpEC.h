@@ -2,7 +2,7 @@
 
 #include "EventComponent.h"
 
-class PowerUpPC : public EventComponent {
+class PowerUpEC : public EventComponent {
   private:
     float durationTotal;
     float time;
@@ -13,8 +13,8 @@ class PowerUpPC : public EventComponent {
   protected:
     bool picked;
   public:
-    PowerUpPC();
-    ~PowerUpPC();
+    PowerUpEC();
+    ~PowerUpEC();
     virtual void checkEvent();
 
     void setDuration(float _duration);
