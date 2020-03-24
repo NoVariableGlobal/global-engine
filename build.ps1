@@ -30,9 +30,27 @@ if ($MsBuild.Length -Eq 0) {
         Write-Host "MsBuild not providen, using '" -ForegroundColor Blue -NoNewline
         Write-Host $MsBuild                        -ForegroundColor Cyan -NoNewline
         Write-Host "' instead."                    -ForegroundColor Blue
-        Write-Host ""
-    } Else {
-        throw "I could not find MsBuild"
+    }
+    ElseIf ($Env:MSBUILD) {
+        $MsBuild = (Resolve-Path $Env:MSBUILD)[0]
+        Write-Host "MsBuild not providen, using '"           -ForegroundColor Blue -NoNewline
+        Write-Host $MsBuild                                  -ForegroundColor Cyan -NoNewline
+        Write-Host "' from environmental variables instead." -ForegroundColor Blue
+    }
+
+    If (!(Test-Path -LiteralPath $MsBuild -PathType Leaf)) {
+        Write-Host "I was not able to find MSBuild.exe, please check https://docs.microsoft.com/visualstudio/msbuild/msbuild?view=vs-2019 for more information." -ForegroundColor Red
+        Write-Host "  # Please specify the route to the MSBuild.exe by doing " -ForegroundColor Yellow -NoNewline
+        Write-Host ".\build.ps1 `"Path\To\MSBuild.exe`""                       -ForegroundColor Cyan   -NoNewline
+        Write-Host " or "                                                      -ForegroundColor Yellow -NoNewline
+        Write-Host ".\build.ps1 -MsBuild `"Path\To\MSBuild.exe`""              -ForegroundColor Cyan   -NoNewline
+        Write-Host " to set the path."                                         -ForegroundColor Yellow
+        Write-Host "  # Alternatively, do "                                    -ForegroundColor Yellow -NoNewline
+        Write-Host "`$Env:MsBuild=`"Path\To\MSBuild.exe`""                     -ForegroundColor Cyan   -NoNewline
+        Write-Host ", afterwards you will be able to execute "                 -ForegroundColor Yellow -NoNewline
+        Write-Host ".\build.ps1"                                               -ForegroundColor Cyan   -NoNewline
+        Write-Host " normally."                                                -ForegroundColor Yellow
+        Exit 1
     }
 }
 
