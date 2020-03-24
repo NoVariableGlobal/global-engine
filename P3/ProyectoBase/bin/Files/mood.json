@@ -202,9 +202,9 @@
             {
               "type": "SpawnerFloorRandomEC",
               "attributes": {
-                "spawnCooldown": 1,
+                "spawnCooldown": 5,
                 "spawnID": [ "Shotgun" ],
-                "spawnChances": [ 100 ],
+                "spawnChances": [ 12.5 ],
               }
             }
         ]

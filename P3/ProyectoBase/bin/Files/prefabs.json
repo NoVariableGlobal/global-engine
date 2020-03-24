@@ -177,6 +177,41 @@
       ]	  
     },
 	{
+      "id": "ShotgunBullet",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.05, 0.05, 0.05 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nShotgunBullet",
+            "material": "RedColourMaterial"
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 1, 1, 1 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": false,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        }
+      ]
+    },
+	{
       "id": "Shotgun",
       "components": [
         {
