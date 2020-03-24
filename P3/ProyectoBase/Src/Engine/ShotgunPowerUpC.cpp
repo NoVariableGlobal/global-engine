@@ -15,8 +15,6 @@ void ShotgunPowerUpC::onPickUp() {
     dynamic_cast<WeaponControllerIC*>(
         scene->getEntitybyId("Simbad")->getComponent("WeaponControllerIC"))
         ->pickUpGun("ShotgunC");
-
-    std::cout << "SHOTGUN PICKED\n";
 }
 
 // FACTORY INFRASTRUCTURE
