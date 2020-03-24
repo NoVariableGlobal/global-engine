@@ -48,8 +48,10 @@ class Scene {
     // clear the entities of the map.
     void clearEntities();
 
-    // Search the prefab in the map and returns a new instance of it.
-    Entity* getInstanceOf(std::string id, int num = -1);
+    // returns a new instance of a prefab.
+    Entity* getInstanceOf(std::string _prefab, std::string _id);
+    // Search the prefab in the map and equals its info the entity
+    void clonePrefabInfo(std::string _prefab, Entity* _entity);
     // Add prefab into the map.
     void addPrefab(std::string id, Json::Value components);
     // clear the entities of the map.
@@ -59,4 +61,8 @@ class Scene {
     ComponentsManager* getComponentsManager();
     // Clear the Components Manager
     void clearComponentsManager();
+    // delete the components to delete
+    void deleteComponents();
+    // inserts components to insert
+    void insertComponents();
 };

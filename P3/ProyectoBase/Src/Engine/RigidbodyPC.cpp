@@ -51,7 +51,7 @@ bool RigidbodyPC::collidesWith(std::string id) {
             ->body->getWorldTransform();
     convexConvex.getClosestPoints(input, gjkOutput, 0);
 
-    if (gjkOutput.m_hasResult && gjkOutput.m_distance < 0)
+    if (gjkOutput.m_hasResult && gjkOutput.m_distance <= 0)
         return true;
     else
         return false;
@@ -104,13 +104,25 @@ void RigidbodyPC::setRestitution(float _restitution) {
     body->setRestitution(_restitution);
 }
 
+void RigidbodyPC::setLinearVelocity(Ogre::Vector3 _v) {
+    body->setLinearVelocity(btVector3(_v.x, _v.y, _v.z));
+}
+
+
+void RigidbodyPC::setPosition(Ogre::Vector3 newPos) {
+    btTransform initialTransform;
+    initialTransform.setOrigin(btVector3(newPos.x, newPos.y, newPos.z));
+    initialTransform.setRotation(body->getOrientation());
+
+    body->setWorldTransform(initialTransform);
+}
 // FACTORY INFRASTRUCTURE
 class RigidbodyPCFactory final : public ComponentFactory {
   public:
     RigidbodyPCFactory() = default;
 
     Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
+                      Scene* _scene) override {
         if (!_data["position"].isArray() || !_data["shape"].isArray() ||
             !_data["mass"].isInt())
             throw std::exception("RigidbodyPC: position/shape is not an array "
@@ -124,8 +136,10 @@ class RigidbodyPCFactory final : public ComponentFactory {
                                           _data["shape"][1].asFloat(),
                                           _data["shape"][2].asFloat()),
                             _data["mass"].asFloat());
+        _scene->getComponentsManager()->addPC(rb);
 
-        scene->getComponentsManager()->addPC(rb);
+        rb->setFather(_father);
+        rb->setScene(_scene);
 
         if (!_data["gravity"].isArray())
             throw std::exception("RigidbodyPC: gravity is not an array");
@@ -152,9 +166,6 @@ class RigidbodyPCFactory final : public ComponentFactory {
         if (!_data["restitution"].isInt())
             throw std::exception("RigidbodyPC: restitution is not an int");
         rb->setRestitution(_data["restitution"].asFloat());
-
-        rb->setFather(_father);
-        rb->setScene(scene);
 
         return rb;
     };

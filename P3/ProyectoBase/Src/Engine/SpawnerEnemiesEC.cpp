@@ -10,6 +10,13 @@
 #include <json.h>
 
 void SpawnerEnemiesEC::checkEvent() {
+
+    if (firstTime) {
+        firstTime = false;
+        _lastTimeSpawned = clock() / static_cast<float>(CLOCKS_PER_SEC);
+    }
+
+
     // Spawnea un enemigo cada cierto tiempo en la posicion del spawn
     if (timeToSpawn()) {
         Entity* newEntity = spawnPrefab();

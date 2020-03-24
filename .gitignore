@@ -42,3 +42,5 @@ test/
 */**/bin/*.iobj
 */**/bin/*.ipdb
 */**/bin/*.pdb
+
+P3/ProyectoBase/bin/TaharezLook.looknfeel

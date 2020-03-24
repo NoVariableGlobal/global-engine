@@ -35,12 +35,12 @@ class TransformComponentFactory final : public ComponentFactory {
     TransformComponentFactory() = default;
 
     Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
+                      Scene* _scene) override {
         TransformComponent* transformComponent = new TransformComponent();
-        scene->getComponentsManager()->addDC(transformComponent);
+        _scene->getComponentsManager()->addDC(transformComponent);
 
         transformComponent->setFather(_father);
-        transformComponent->setScene(scene);
+        transformComponent->setScene(_scene);
 
         if (!_data["position"].isArray())
             throw std::exception(

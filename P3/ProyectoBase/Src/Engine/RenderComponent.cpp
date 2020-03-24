@@ -13,6 +13,10 @@ RenderComponent::~RenderComponent() {
             sceneNode);
 }
 
+void RenderComponent::rotate(int degree, Ogre::Vector3 axis) {
+    sceneNode->setOrientation(Ogre::Quaternion(Ogre::Degree(degree), axis));
+}
+
 // GETTERS AND SETTERS
 Ogre::Entity* RenderComponent::getOgreEntity() { return entity; }
 void RenderComponent::setOgreEntity(Ogre::Entity* e) { entity = e; }

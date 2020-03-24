@@ -60,10 +60,35 @@ void CameraRC::lookAt(Ogre::Vector3 _pos) {
     sceneNode->lookAt(_pos, Ogre::Node::TS_WORLD);
 }
 
+void CameraRC::setTarget(std::string _target) { target = _target; }
+
+void CameraRC::setFollow(Ogre::Vector3 _follow) {
+    followX = _follow.x;
+    followY = _follow.y;
+    followZ = _follow.z;
+}
+
 void CameraRC::render() {
     const auto transform = dynamic_cast<TransformComponent*>(
         father->getComponent("TransformComponent"));
-    const auto position = transform->getPosition() + *cameraOffset;
+
+    Ogre::Vector3 position;
+
+    if (target != "") {
+        const auto transformTarget = dynamic_cast<TransformComponent*>(
+            scene->getEntitybyId(target)->getComponent("TransformComponent"));
+
+        position =
+            Ogre::Vector3(followX ? transformTarget->getPosition().x
+                                  : transform->getPosition().x,
+                          followY ? transformTarget->getPosition().y
+                                  : transform->getPosition().y,
+                          followZ ? transformTarget->getPosition().z
+                                  : transform->getPosition().z);
+    } else
+        position = transform->getPosition();
+
+    position += *cameraOffset;
 
     sceneNode->setPosition(position.x, position.y, position.z);
     lookAt(position);
@@ -75,14 +100,14 @@ class CameraRCFactory final : public ComponentFactory {
     CameraRCFactory() = default;
 
     Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
+                      Scene* _scene) override {
         Ogre::SceneManager* mSM =
             OgreSDLContext::getInstance()->getSceneManager();
         CameraRC* camera = new CameraRC();
-        scene->getComponentsManager()->addRC(camera);
+        _scene->getComponentsManager()->addRC(camera);
 
         camera->setFather(_father);
-        camera->setScene(scene);
+        camera->setScene(_scene);
 
         camera->setCamera(_father->getId());
 
@@ -117,6 +142,20 @@ class CameraRCFactory final : public ComponentFactory {
             camera->lookAt(Ogre::Vector3(_data["lookAt"][0].asFloat(),
                                          _data["lookAt"][1].asFloat(),
                                          _data["lookAt"][2].asFloat()));
+
+        if (!_data["targetId"].isString())
+            throw std::exception("CameraRC: targetId is not a string.");
+        else if (_data["targetId"].asString() != "none") {
+            camera->setTarget(_data["targetId"].asString());
+
+            if (!_data["follow"].isArray() || !_data["follow"][0].isBool())
+                throw std::exception("CameraRC: follow is not an array or is "
+                                     "not a boolean array.");
+            else
+                camera->setFollow(Ogre::Vector3(_data["follow"][0].asBool(),
+                                                _data["follow"][1].asBool(),
+                                                _data["follow"][2].asBool()));
+        }
 
         return camera;
     }
