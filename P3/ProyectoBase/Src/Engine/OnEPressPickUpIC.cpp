@@ -12,13 +12,16 @@
 #include <iostream>
 #include <json.h>
 
+void OnEPressPickUpIC::destroyMyself() {
+    scene->getComponentsManager()->eraseIC(this);
+}
+
 void OnEPressPickUpIC::handleInput(const SDL_Event& _event) {
     rb = dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"));
     if (rb->collidesWith("Simbad")) {
         // TODO: Mostrar un icono con la "E" cuando haya interfaz
 
         if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_e) {
-            std::cout << "E PRESSED\n";
             dynamic_cast<PowerUpC*>(father->getComponent(objectName))
                 ->onPickUp();
         }

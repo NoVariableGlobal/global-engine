@@ -9,18 +9,13 @@
 
 #include <iostream>
 
-void ShotgunPowerUpC::onPickUp() {
-    HandGunC* shotgun;
-    // TODO:
-    // shotgun = shotgunprefab
-    /*
-    scene->getComponentsManager()->addDC(shotgun);
+void ShotgunPowerUpC::destroyMyself() { scene->getComponentsManager()->eraseDC(this); }
 
+void ShotgunPowerUpC::onPickUp() {
     dynamic_cast<WeaponControllerIC*>(
         scene->getEntitybyId("Simbad")->getComponent("WeaponControllerIC"))
-        ->pickUpGun(
-            "HandGunC", shotgun);
-        */
+        ->pickUpGun("ShotgunC");
+
     std::cout << "SHOTGUN PICKED\n";
 }
 

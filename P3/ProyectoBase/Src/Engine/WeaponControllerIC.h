@@ -20,5 +20,5 @@ class WeaponControllerIC : public InputComponent {
     virtual void handleInput(const SDL_Event& _event);
 
     GunC* getCurrentGun();
-    void pickUpGun(std::string _gunName, GunC* _newGun);
+    void pickUpGun(std::string _gunName);
 };

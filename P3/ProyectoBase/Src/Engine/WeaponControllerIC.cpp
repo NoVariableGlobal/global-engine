@@ -33,16 +33,16 @@ void WeaponControllerIC::handleInput(const SDL_Event& _event) {
 
 GunC* WeaponControllerIC::getCurrentGun() { return currentGun; }
 
-void WeaponControllerIC::pickUpGun(std::string _gunName, GunC* _newGun) {
-    // Remove old gun
+void WeaponControllerIC::pickUpGun(std::string _gunName) {
+    // Deactivate old gun
     if (secondaryGun != nullptr) {
-        scene->getComponentsManager()->eraseDC(secondaryGun);
+        secondaryGun->setActive(false);
     }
 
-    // Add and equip new gun
-    father->addComponent(_gunName, _newGun);
-    secondaryGun = _newGun;
-    currentGun = _newGun;
+	// Activate ned gun and equip it
+    secondaryGun = dynamic_cast<GunC*>(father->getComponent(_gunName));
+    secondaryGun->setActive(true);
+    currentGun = secondaryGun;
 }
 
 // FACTORY INFRASTRUCTURE

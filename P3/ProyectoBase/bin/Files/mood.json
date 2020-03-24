@@ -102,9 +102,19 @@
             "semiautomatic": false
           }
         },
-        {
-          "type": "WeaponControllerIC",
-          "attributes": {
+          {
+            "type": "ShotgunC",
+            "attributes": {
+              "bulletchamberMax": 2,
+              "munition": 14,
+              "cadence": 1,
+              "damage": 5,
+              "semiautomatic": false
+            }
+          },
+          {
+            "type": "WeaponControllerIC",
+            "attributes": {
 
           }
         },
@@ -157,9 +167,9 @@
             {
               "type": "SpawnerFloorRandomEC",
               "attributes": {
-                "spawnCooldown": 1,
+                "spawnCooldown": 5,
                 "spawnID": [ "Shotgun" ],
-                "spawnChances": [ 100 ],
+                "spawnChances": [ 12.5 ],
               }
             }
         ]

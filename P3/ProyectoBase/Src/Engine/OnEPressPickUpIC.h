@@ -7,12 +7,14 @@ class RigidbodyPC;
 
 class OnEPressPickUpIC : public InputComponent {
   private:
-    RigidbodyPC* rb;
+    RigidbodyPC* rb = nullptr;
     std::string objectName;
 
   public:
     OnEPressPickUpIC() = default;
     ~OnEPressPickUpIC() = default;
+
+	virtual void destroyMyself();
 
     void handleInput(const SDL_Event& _event);
 

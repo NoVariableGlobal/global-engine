@@ -20,9 +20,6 @@
     <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp">
       <Filter>Components\Render</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\GunC.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Engine\LifeC.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
@@ -95,9 +92,6 @@
     <ClCompile Include="..\..\Src\Engine\OrientateToMouseIC.cpp">
       <Filter>Components\Input</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\HandGunC.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Engine\SpawnerBulletsC.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
@@ -128,6 +122,18 @@
     <ClCompile Include="..\..\Src\Engine\OnEPressPickUpIC.cpp">
       <Filter>Components\Input</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\GunC.cpp">
+      <Filter>Components\Guns</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\ShotgunPowerUpC.cpp">
+      <Filter>Components\Guns</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\ShotgunC.cpp">
+      <Filter>Components\Guns</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\HandGunC.cpp">
+      <Filter>Components\Guns</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
@@ -148,9 +154,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h">
       <Filter>Components\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\GunC.h">
-      <Filter>Components\Other</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\LifeC.h">
       <Filter>Components\Other</Filter>
@@ -227,9 +230,6 @@
     <ClInclude Include="..\..\Src\Engine\OrientateToMouseIC.h">
       <Filter>Components\Input</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\HandGunC.h">
-      <Filter>Components\Other</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\SpawnerBulletsC.h">
       <Filter>Components\Other</Filter>
     </ClInclude>
@@ -259,6 +259,18 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\OnEPressPickUpIC.h">
       <Filter>Components\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\GunC.h">
+      <Filter>Components\Guns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\ShotgunC.h">
+      <Filter>Components\Guns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\ShotgunPowerUpC.h">
+      <Filter>Components\Guns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\HandGunC.h">
+      <Filter>Components\Guns</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -297,6 +309,9 @@
     </Filter>
     <Filter Include="Physics">
       <UniqueIdentifier>{9189077c-c1bd-4f40-a507-7ed3323e31ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Guns">
+      <UniqueIdentifier>{34232966-a7a6-422e-afb3-f2f5e4693e51}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
