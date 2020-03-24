@@ -8,10 +8,6 @@
     <ClCompile Include="..\..\src\Engine\InputComponent.cpp">
       <Filter>Components\Input</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\InvulnerabilityShield.cpp" />
-    <ClCompile Include="..\..\Src\Engine\PowerUpEC.cpp">
-      <Filter>Components\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Engine\PhysicsComponent.cpp">
       <Filter>Components\Physics</Filter>
     </ClCompile>
@@ -99,9 +95,6 @@
     <ClCompile Include="..\..\Src\Engine\OrientateToMouseIC.cpp">
       <Filter>Components\Input</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\TestChangeSceneIC.cpp">
-      <Filter>Components\Input</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Engine\HandGunC.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
@@ -117,11 +110,14 @@
     <ClCompile Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.cpp">
       <Filter>Components\Events</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\MedkitEC.cpp">
-      <Filter>Components\Other</Filter>
+    <ClCompile Include="..\..\Src\Engine\InvulnerabilityShield.cpp">
+      <Filter>Components\Events</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\OnCollisionPickUpIC.cpp">
-      <Filter>Components\Input</Filter>
+    <ClCompile Include="..\..\Src\Engine\PowerUpEC.cpp">
+      <Filter>Components\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\MedkitEC.cpp">
+      <Filter>Components\Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,16 +212,10 @@
     <ClInclude Include="..\..\Src\Engine\SpawnerEC.h">
       <Filter>Components\Events</Filter>
     </ClInclude>
-
     <ClInclude Include="..\..\Src\Engine\ChangeGravityIC.h">
-          <Filter>Components\Input</Filter>
-
-        </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\OrientateToMouseIC.h">
       <Filter>Components\Input</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\TestChangeSceneIC.h">
-
+    <ClInclude Include="..\..\Src\Engine\OrientateToMouseIC.h">
       <Filter>Components\Input</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\HandGunC.h">
@@ -237,21 +227,20 @@
     <ClInclude Include="..\..\Src\Engine\WeaponControllerIC.h">
       <Filter>Components\Input</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\InvulnerabilityShield.h" />
-    <ClInclude Include="..\..\Src\Engine\PowerUpEC.h">
-      <Filter>Components\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\EnemyBehaviourEC.h">
       <Filter>Components\Events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.h">
       <Filter>Components\Events</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\MedkitEC.h">
-      <Filter>Components\Other</Filter>
+    <ClInclude Include="..\..\Src\Engine\InvulnerabilityShield.h">
+      <Filter>Components\Events</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\OnCollisionPickUpIC.h">
-      <Filter>Components\Input</Filter>
+    <ClInclude Include="..\..\Src\Engine\PowerUpEC.h">
+      <Filter>Components\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\MedkitEC.h">
+      <Filter>Components\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

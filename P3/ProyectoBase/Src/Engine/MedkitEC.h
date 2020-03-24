@@ -6,6 +6,7 @@ class LifeC;
 
 class MedkitEC : public PowerUpEC {
   public:
-    virtual void update();
-    virtual void onPickUp();
+    MedkitEC();
+    virtual ~MedkitEC();
+    virtual void checkEvent();
 };
