@@ -8,5 +8,6 @@ class MedkitEC : public PowerUpEC {
   public:
     MedkitEC();
     virtual ~MedkitEC();
+    virtual void destroyMyself();
     virtual void checkEvent();
 };

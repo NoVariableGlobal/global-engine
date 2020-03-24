@@ -17,6 +17,11 @@ ChangeGravityIC::ChangeGravityIC() {}
 
 ChangeGravityIC::~ChangeGravityIC() {}
 
+void ChangeGravityIC::destroyMyself() {
+    setActive(false);
+    scene->getComponentsManager()->eraseIC(this);
+}
+
 void ChangeGravityIC::handleInput(const SDL_Event& _event) {
     if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_SPACE) {
         movingIzq = !movingIzq;

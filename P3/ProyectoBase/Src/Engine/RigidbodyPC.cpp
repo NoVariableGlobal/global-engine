@@ -21,6 +21,19 @@ RigidbodyPC::RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape,
 
 RigidbodyPC::~RigidbodyPC() { body = nullptr; }
 
+void RigidbodyPC::destroyMyself() {
+    setActive(false);
+    scene->getComponentsManager()->erasePC(this);
+}
+
+void RigidbodyPC::setActive(bool active) { 
+    Component::setActive(active); 
+    if (active)
+        body->forceActivationState(DISABLE_DEACTIVATION);
+    else
+        body->forceActivationState(DISABLE_SIMULATION);
+}
+
 void RigidbodyPC::update() {
     // Updates the transform of the father as the position of the rigidbody
     dynamic_cast<TransformComponent*>(

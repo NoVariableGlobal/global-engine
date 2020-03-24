@@ -13,6 +13,11 @@ WeaponControllerIC::WeaponControllerIC() {}
 
 WeaponControllerIC::~WeaponControllerIC() {}
 
+void WeaponControllerIC::destroyMyself() {
+    setActive(false);
+    scene->getComponentsManager()->eraseIC(this);
+}
+
 void WeaponControllerIC::init() { currentGun = dynamic_cast<HandGunC*>(father->getComponent("HandGunC")); }
 
 void WeaponControllerIC::handleInput(const SDL_Event& _event) {

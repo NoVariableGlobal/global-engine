@@ -9,5 +9,7 @@ class HandGunC : public GunC {
     HandGunC();
     ~HandGunC();
 
+    virtual void destroyMyself();
+
     virtual bool shoot();
 };

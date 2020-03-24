@@ -9,6 +9,8 @@ class TridimensionalObjectRC : public RenderComponent {
     TridimensionalObjectRC();
     virtual ~TridimensionalObjectRC();
 
+    virtual void destroyMyself();
+
     // Updates the position and scale of the object
     virtual void render();
 

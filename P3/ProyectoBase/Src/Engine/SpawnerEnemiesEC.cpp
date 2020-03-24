@@ -9,6 +9,11 @@
 #include "Factory.h"
 #include <json.h>
 
+void SpawnerEnemiesEC::destroyMyself() {
+    setActive(false);
+    scene->getComponentsManager()->eraseEC(this);
+}
+
 void SpawnerEnemiesEC::checkEvent() {
 
     if (firstTime) {

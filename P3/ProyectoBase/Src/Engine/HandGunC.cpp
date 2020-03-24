@@ -18,6 +18,11 @@ HandGunC::HandGunC() : GunC() {}
 
 HandGunC::~HandGunC() {}
 
+void HandGunC::destroyMyself() {
+    setActive(false);
+    scene->getComponentsManager()->eraseDC(this);
+}
+
 bool HandGunC::shoot() {
     if (_bulletchamber > 0) {
         _bulletchamber--;

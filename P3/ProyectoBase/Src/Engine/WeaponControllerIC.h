@@ -10,6 +10,8 @@ class WeaponControllerIC : public InputComponent {
   public:
     WeaponControllerIC();
     virtual ~WeaponControllerIC();
+    virtual void destroyMyself();
+
     void init();
     // Updates the entity's transform's
     // position upon pressing WASD keys

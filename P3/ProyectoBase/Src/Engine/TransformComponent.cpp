@@ -20,6 +20,11 @@ TransformComponent::~TransformComponent() {
     delete _orientation;
 }
 
+void TransformComponent::destroyMyself() {
+    setActive(false);
+    scene->getComponentsManager()->eraseDC(this);
+}
+
 Ogre::Vector3 TransformComponent::getPosition() const { return *_position; }
 void TransformComponent::setPosition(const Ogre::Vector3 p) { *_position = p; }
 

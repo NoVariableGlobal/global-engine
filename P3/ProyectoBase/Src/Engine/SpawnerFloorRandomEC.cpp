@@ -10,6 +10,11 @@
 #include "Factory.h"
 #include <json.h>
 
+void SpawnerFloorRandomEC::destroyMyself() {
+    setActive(false);
+    scene->getComponentsManager()->eraseEC(this);
+}
+
 void SpawnerFloorRandomEC::checkEvent() {
 
     if (firstTime) {

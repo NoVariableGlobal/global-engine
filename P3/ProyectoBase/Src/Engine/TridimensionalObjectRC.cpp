@@ -15,6 +15,11 @@ TridimensionalObjectRC::TridimensionalObjectRC() {}
 
 TridimensionalObjectRC::~TridimensionalObjectRC() {}
 
+void TridimensionalObjectRC::destroyMyself() {
+    setActive(false);
+    scene->getComponentsManager()->eraseRC(this);
+}
+
 // Updates the node position as our father transform
 void TridimensionalObjectRC::render() {
     TransformComponent* transform = dynamic_cast<TransformComponent*>(

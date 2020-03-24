@@ -8,5 +8,6 @@ class SpawnerFloorRandomEC : public SpawnerEC {
     bool first = true;
 
   public:
+    virtual void destroyMyself();
     virtual void checkEvent() override;
 };

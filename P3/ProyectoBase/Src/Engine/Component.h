@@ -10,7 +10,7 @@ class Scene;
 class Component {
   private:
     // Whether or not the component should be updated
-    bool active = false;
+    bool active = true;
 
   protected:
     // A pointer to the entity that has the component attached
@@ -22,10 +22,11 @@ class Component {
   public:
     Component();
     virtual ~Component();
+    virtual void destroyMyself() = 0;
 
     // Getters and setters
     bool isActive();
-    void setActive(bool active);
+    virtual void setActive(bool active);
     void toggleActive();
 
     void setFather(Entity* father);

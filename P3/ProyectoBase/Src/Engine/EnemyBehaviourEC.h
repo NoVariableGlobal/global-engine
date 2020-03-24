@@ -21,7 +21,7 @@ class EnemyBehaviourEC : public EventComponent {
     EnemyBehaviourEC();
    ~EnemyBehaviourEC();
     virtual void checkEvent();
-
+    virtual void destroyMyself();
 	bool timeToAttack();
 
 	// getters and setters

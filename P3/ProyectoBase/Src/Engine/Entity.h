@@ -22,7 +22,7 @@ class Entity {
     // Component Manager's
     void addComponent(std::string name, Component* c);
     Component* getComponent(std::string name);
-
+    std::map<std::string, Component*>& getAllComponents();
     // Getters and Setters
     std::string getId();
     void setId(std::string _id);
