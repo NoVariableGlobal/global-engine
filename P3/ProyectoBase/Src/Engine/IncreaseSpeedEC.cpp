@@ -1,31 +1,33 @@
-#include "MedkitEC.h"
+#include "IncreaseSpeedEC.h"
 
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
-#include "LifeC.h"
+#include "PlayerMovementIC.h"
 #include "OgreVector3.h"
+#include "RigidbodyPC.h"
 #include "Scene.h"
 #include "TransformComponent.h"
-#include "RigidbodyPC.h"
 #include "TridimensionalObjectRC.h"
 
 #include <iostream>
 #include <json.h>
 
-MedkitEC::MedkitEC() {}
+IncreaseSpeedEC::IncreaseSpeedEC() {}
 
-MedkitEC::~MedkitEC(){} 
+IncreaseSpeedEC::~IncreaseSpeedEC() {}
 
-void MedkitEC::checkEvent() {
+void IncreaseSpeedEC::checkEvent() {
     PowerUpEC::checkEvent();
 
     if (!picked && getCollisionWithPlayer()) {
-        LifeC* playerHealth = dynamic_cast<LifeC*>(
-            scene->getEntitybyId("Player")->getComponent("LifeC"));
-        playerHealth->heal(playerHealth->getTotalLife());
+        PlayerMovementIC* playerMovement = dynamic_cast<PlayerMovementIC*>(
+            scene->getEntitybyId("Player")->getComponent("PlayerMovementIC"));
+        playerMovement->setMovementSpeed(playerMovement->getMovementSpeed() +
+                                         playerMovement->getMovementSpeed()*0.5);
         picked = true;
+
         // TODO: Delete the entire object
         scene->getComponentsManager()->eraseRC(
             (dynamic_cast<TridimensionalObjectRC*>(
@@ -51,25 +53,24 @@ void MedkitEC::checkEvent() {
 }
 
 // FACTORY INFRASTRUCTURE
-class MedkitECFactory final : public ComponentFactory {
+class IncreaseSpeedECFactory final : public ComponentFactory {
   public:
-    MedkitECFactory() = default;
+    IncreaseSpeedECFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
-        MedkitEC* medkitEC = new MedkitEC();
-        scene->getComponentsManager()->addEC(medkitEC);
-        medkitEC->setFather(_father);
-        medkitEC->setScene(scene);
+    Component* create(Entity* _father, Json::Value& _data, Scene* scene) {
+        IncreaseSpeedEC* increaseSpeedIC = new IncreaseSpeedEC();
+        scene->getComponentsManager()->addEC(increaseSpeedIC);
+        increaseSpeedIC->setFather(_father);
+        increaseSpeedIC->setScene(scene);
 
         if (!_data["time"].isDouble())
-            throw std::exception("Shield: time is not a double");
-        medkitEC->setDuration(_data["time"].asDouble());
+            throw std::exception("IncreaseSpeed: time is not a double");
+        increaseSpeedIC->setDuration(_data["time"].asDouble());
 
-        medkitEC->setActive(true);
+		increaseSpeedIC->setActive(true);
 
-        return medkitEC;
-    };
+		return increaseSpeedIC;
+	}
 };
 
-REGISTER_FACTORY("MedkitEC", MedkitEC);
+REGISTER_FACTORY("IncreaseSpeedEC", IncreaseSpeedEC);

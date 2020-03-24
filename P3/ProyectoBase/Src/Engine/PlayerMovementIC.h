@@ -1,6 +1,8 @@
 #pragma once
 #include "InputComponent.h"
 
+class PlayerMovementIC;
+
 namespace Ogre {
     typedef float Real;
     template <int dims, typename T> class Vector;
