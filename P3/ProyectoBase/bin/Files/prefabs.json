@@ -71,9 +71,8 @@
 		{
           "type": "InvulnerabilityShield",
           "attributes": {
-            "probality": 20,
             "time": 2,
-			"timeEffect": 5
+			    "timeEffect": 5
           }
         }
       ]
