@@ -42,6 +42,7 @@ class PhysicsContext {
     void init(float _gravity); // Start a world with gravity and physics
     void destroyWorld();       // Destroys all variables related to physics
     void destroyWorldContent();
+    void destroyRigidBody(btRigidBody* body);
     void updateSimulation(); // Update the world's physics
 
     btDiscreteDynamicsWorld* getWorld();
