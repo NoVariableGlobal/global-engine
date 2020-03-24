@@ -7,7 +7,7 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\InputComponent.cpp">
       <Filter>Components\Input</Filter>
-    /ClCompile>
+    </ClCompile>
     <ClCompile Include="..\..\Src\Engine\InvulnerabilityShield.cpp" />
     <ClCompile Include="..\..\Src\Engine\PowerUpPC.cpp">
       <Filter>Components\Physics</Filter>
@@ -110,6 +110,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Src\Engine\WeaponControllerIC.cpp">
       <Filter>Components\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\EnemyBehaviourEC.cpp">
+      <Filter>Components\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.cpp">
+      <Filter>Components\Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +234,12 @@
     <ClInclude Include="..\..\Src\Engine\InvulnerabilityShield.h" />
     <ClInclude Include="..\..\Src\Engine\PowerUpPC.h">
       <Filter>Components\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\EnemyBehaviourEC.h">
+      <Filter>Components\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.h">
+      <Filter>Components\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

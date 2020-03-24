@@ -63,4 +63,6 @@ class Scene {
     void clearComponentsManager();
     // delete the components to delete
     void deleteComponents();
+    // inserts components to insert
+    void insertComponents();
 };

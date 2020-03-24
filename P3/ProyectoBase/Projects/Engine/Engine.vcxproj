@@ -20,8 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Application.cpp" />
-    <ClCompile Include="..\..\Src\Engine\ChangeGravityIC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\EnemyBehaviourEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\GunC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\ChangeGravityIC.cpp" />
     <ClCompile Include="..\..\Src\Engine\InvulnerabilityShield.cpp" />
     <ClCompile Include="..\..\Src\Engine\OrientateToMouseIC.cpp" />
     <ClCompile Include="..\..\Src\Engine\HandGunC.cpp" />
@@ -57,6 +59,8 @@
     <ClCompile Include="..\..\Src\Engine\WeaponControllerIC.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\Engine\EnemyBehaviourEC.h" />
+    <ClInclude Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.h" />
     <ClInclude Include="..\..\Src\Engine\ChangeGravityIC.h" />
     <ClInclude Include="..\..\Src\Engine\GunC.h" />
     <ClInclude Include="..\..\Src\Engine\OrientateToMouseIC.h" />

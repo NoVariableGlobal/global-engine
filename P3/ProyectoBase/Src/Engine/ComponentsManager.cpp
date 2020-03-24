@@ -50,7 +50,15 @@ void ComponentsManager::clearComponents() {
 }
 
 void ComponentsManager::addPC(PhysicsComponent* _physicsComponent) {
-    physics.push_back(_physicsComponent);
+    insertPhysics.push_back(_physicsComponent);
+}
+
+void ComponentsManager::insertPC() {
+    int size = insertPhysics.size();
+    for (int i = size - 1; i >= 0; i--) {
+        physics.push_back(insertPhysics[i]);
+        insertPhysics.pop_back();
+    }
 }
 
 void ComponentsManager::deletePC() {
@@ -78,7 +86,15 @@ void ComponentsManager::erasePC(PhysicsComponent* _physicsComponent) {
 }
 
 void ComponentsManager::addIC(InputComponent* _inputComponent) {
-    input.push_back(_inputComponent);
+    insertInput.push_back(_inputComponent);
+}
+
+void ComponentsManager::insertIC() {
+    int size = insertInput.size();
+    for (int i = size - 1; i >= 0; i--) {
+        input.push_back(insertInput[i]);
+        insertInput.pop_back();
+    }
 }
 
 void ComponentsManager::deleteIC() {
@@ -106,7 +122,15 @@ void ComponentsManager::eraseIC(InputComponent* _inputComponent) {
 }
 
 void ComponentsManager::addRC(RenderComponent* _renderComponent) {
-    rend.push_back(_renderComponent);
+    insertRend.push_back(_renderComponent);
+}
+
+void ComponentsManager::insertRC() {
+    int size = insertRend.size();
+    for (int i = size - 1; i >= 0; i--) {
+        rend.push_back(insertRend[i]);
+        insertRend.pop_back();
+    }
 }
 
 void ComponentsManager::deleteRC() {
@@ -134,7 +158,15 @@ void ComponentsManager::eraseRC(RenderComponent* _renderComponent) {
 }
 
 void ComponentsManager::addSC(SoundComponent* _soundComponent) {
-    sound.push_back(_soundComponent);
+    insertSound.push_back(_soundComponent);
+}
+
+void ComponentsManager::insertSC() {
+    int size = insertSound.size();
+    for (int i = size - 1; i >= 0; i--) {
+        sound.push_back(insertSound[i]);
+        insertSound.pop_back();
+    }
 }
 
 void ComponentsManager::deleteSC() {
@@ -162,7 +194,15 @@ void ComponentsManager::eraseSC(SoundComponent* _soundComponent) {
 }
 
 void ComponentsManager::addDC(Component* _deleteableComponent) {
-    deleteable.push_back(_deleteableComponent);
+    insertDeleteable.push_back(_deleteableComponent);
+}
+
+void ComponentsManager::insertDC() {
+    int size = insertDeleteable.size();
+    for (int i = size - 1; i >= 0; i--) {
+        deleteable.push_back(insertDeleteable[i]);
+        insertDeleteable.pop_back();
+    }
 }
 
 void ComponentsManager::deleteDC() {
@@ -190,7 +230,15 @@ void ComponentsManager::eraseDC(Component* _deleteableComponent) {
 }
 
 void ComponentsManager::addEC(EventComponent* _eventComponent) {
-    event.push_back(_eventComponent);
+    insertEvent.push_back(_eventComponent);
+}
+
+void ComponentsManager::insertEC() {
+    int size = insertEvent.size();
+    for (int i = size - 1; i >= 0; i--) {
+        event.push_back(insertEvent[i]);
+        insertEvent.pop_back();
+    }
 }
 
 void ComponentsManager::deleteEC() {
@@ -251,4 +299,12 @@ void ComponentsManager::deleteComponents() {
     deleteSC();
     deleteDC();
     deleteEC();
+}
+void ComponentsManager::insertComponents() {
+    insertPC();
+    insertIC();
+    insertRC();
+    insertSC();
+    insertDC();
+    insertEC();
 }

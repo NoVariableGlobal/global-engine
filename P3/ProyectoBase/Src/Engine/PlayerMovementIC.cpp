@@ -76,6 +76,8 @@ void PlayerMovementIC::handleInput(const SDL_Event& _event) {
     body->setLinearVelocity(velocity);
 }
 
+float PlayerMovementIC::getMovementSpeed() { return _speed; }
+
 void PlayerMovementIC::setMovementSpeed(float speed) { _speed = speed; }
 
 // FACTORY INFRASTRUCTURE
