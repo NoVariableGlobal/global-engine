@@ -41,10 +41,18 @@ void IncreaseSpeedEC::checkEvent() {
     }
     if (!picked) { // delete item when the effect has passed
         if (timeDisappear()) {
-            // TODO: Delete the entire object
             scene->getComponentsManager()->eraseEC(this);
+
+            scene->getComponentsManager()->eraseRC(
+                (dynamic_cast<TridimensionalObjectRC*>(
+                    father->getComponent("TridimensionalObjectRC"))));
+            scene->getComponentsManager()->erasePC((dynamic_cast<RigidbodyPC*>(
+                father->getComponent("RigidbodyPC"))));
+            scene->getComponentsManager()->eraseDC(
+                (dynamic_cast<TransformComponent*>(
+                    father->getComponent("TransformComponent"))));
         }
-    } else if (timeDisappearEffect()) { // delete item when the effect has
+    } else if (picked && timeDisappearEffect()) { // delete item when the effect has
                                         // passed
         PlayerMovementIC* playerMovement = dynamic_cast<PlayerMovementIC*>(
             scene->getEntitybyId("Player")->getComponent("PlayerMovementIC"));

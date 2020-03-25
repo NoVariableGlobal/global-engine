@@ -64,7 +64,7 @@
         {
           "type": "PlayerMovementIC",
           "attributes": {
-            "speed": 15
+            "speed": 50
           }
         },
         {
