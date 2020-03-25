@@ -155,7 +155,7 @@
             "kinematic": false,
             "static": false,
             "friction": 500,
-            "restitution": 500
+            "restitution": 0
           }
         },
         {
