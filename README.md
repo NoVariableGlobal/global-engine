@@ -116,7 +116,7 @@ encountered. If you found no problem so far, you should be able to compile this 
 [MIT][license] License.
 Authored and maintained by NoVariableGlobal.
 
-> Github [NoVariableGlobal][author] - Twitter [@__NVG__][twitter]
+> Github [NoVariableGlobal][author] - Twitter [@\_\_NVG\_\_][twitter]
 
 [license]: https://github.com/NoVariableGlobal/global-engine/blob/master/LICENSE
 [author]: https://github.com/NoVariableGlobal
