@@ -49,7 +49,8 @@ class Scene {
     void clearEntities();
 
     // returns a new instance of a prefab.
-    Entity* getInstanceOf(std::string _prefab, std::string _id);
+    Entity* getInstanceOf(std::string _prefab,
+                          std::string _id, std::string _tag = "Default");
     // Search the prefab in the map and equals its info the entity
     void clonePrefabInfo(std::string _prefab, Entity* _entity);
     // Add prefab into the map.

@@ -16,6 +16,9 @@ Component* Entity::getComponent(std::string name) {
 std::string Entity::getId() { return id; }
 void Entity::setId(std::string _id) { id = _id; }
 
+std::string Entity::getTag() { return tag; }
+void Entity::setTag(std::string _tag) { tag = _tag; }
+
 void Entity::setActive(bool _active) { 
     active = _active; 
     for (auto c : components)

@@ -10,7 +10,9 @@ class Entity {
     // Shows if the entity is active or not
     bool active = false;
     // ID attached to the entity
-    std::string id;
+    std::string id = "";
+    // TAG attached to the entity
+    std::string tag = "Default";
     // List of components attached to the entity
     std::map<std::string, Component*> components;
 
@@ -26,6 +28,9 @@ class Entity {
     // Getters and Setters
     std::string getId();
     void setId(std::string _id);
+
+    std::string getTag();
+    void setTag(std::string _tag);
 
     void setActive(bool _active);
     bool isActive();

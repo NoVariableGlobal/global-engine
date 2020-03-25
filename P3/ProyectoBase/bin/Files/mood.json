@@ -39,6 +39,15 @@
           "type": "SpawnerBulletsC",
           "attributes": {
           }
+        },
+        {
+          "type": "SpawnerFloorRandomEC",
+          "attributes": {
+            "spawnCooldown": 10,
+            "spawnID": [ "Medkit", "Shield" ],
+            "spawnTag": "PowerUp",
+            "spawnChances": [ 50, 50 ]
+          }
         }
       ]
     },
@@ -115,79 +124,23 @@
       ]
     },
     {
-      "id": "GeneradorPowerUps",
+      "id": "GeneradorEnemigos",
       "components": [
         {
           "type": "TransformComponent",
           "attributes": {
-            "position": [ 0, 0, 0 ],
+            "position": [ 0, 0, 100 ],
             "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.05, 0.05, 0.05 ]
+            "scale": [ 1, 1, 1 ]
           }
         },
         {
-          "type": "TridimensionalObjectRC",
-          "attributes": {
-            "mesh": "cube.mesh",
-            "node": "nCube",
-            "material": "GrassMaterial"
-          }
-        },
-        {
-          "type": "SpawnerFloorRandomEC",
+          "type": "SpawnerEnemiesEC",
           "attributes": {
             "spawnCooldown": 10,
-            "spawnID": [ "Medkit" ],
+            "spawnID": [ "MeleeEnemy" ],
+            "spawnTag": "Enemy",
             "spawnChances": [ 100 ]
-          }
-        }
-      ]
-    },
-    {
-      "id": "Enemy",
-      "components": [
-        {
-          "type": "TransformComponent",
-          "attributes": {
-            "position": [ 50, 0, 50 ],
-            "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.1, 0, 0.1 ]
-          }
-        },
-        {
-          "type": "TridimensionalObjectRC",
-          "attributes": {
-            "mesh": "cube.mesh",
-            "node": "nCube",
-            "material": "GrassMaterial"
-          }
-        },
-        {
-          "type": "LifeC",
-          "attributes": {
-            "life": 150
-          }
-        },
-        {
-          "type": "RigidbodyPC",
-          "attributes": {
-            "position": [ 50, 0, 50 ],
-            "shape": [ 5, 5, 5 ],
-            "mass": 1,
-            "gravity": [ 0, 0, 0 ],
-            "trigger": false,
-            "kinematic": true,
-            "static": false,
-            "friction": 500,
-            "restitution": 500
-          }
-        },
-        {
-          "type": "MeleeEnemyBehaviourEC",
-          "attributes": {
-            "playerSpeedPercentage": 0.7,
-            "attack": 10,
-            "attackCooldown": 2
           }
         }
       ]
