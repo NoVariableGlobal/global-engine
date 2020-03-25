@@ -16,6 +16,8 @@ class IncreaseSpeedEC : public PowerUpEC {
 	  // probabilidad : 20%
     IncreaseSpeedEC();
     virtual ~IncreaseSpeedEC();
+    virtual void destroy();
+
     virtual void checkEvent();
 
 	bool timeDisappearEffect();

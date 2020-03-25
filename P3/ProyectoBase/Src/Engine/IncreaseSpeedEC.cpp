@@ -16,7 +16,9 @@
 
 IncreaseSpeedEC::IncreaseSpeedEC() {}
 
-IncreaseSpeedEC::~IncreaseSpeedEC() {
+IncreaseSpeedEC::~IncreaseSpeedEC() {}
+
+void IncreaseSpeedEC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseEC(this);
 }
@@ -32,38 +34,28 @@ void IncreaseSpeedEC::checkEvent() {
         originalSpeed = playerMovement->getMovementSpeed();
         playerMovement->setMovementSpeed(originalSpeed * (1 + speedIncrement));
 
-        // TODO: Delete the entire object
-        scene->getComponentsManager()->eraseRC(
-            (dynamic_cast<TridimensionalObjectRC*>(
-                father->getComponent("TridimensionalObjectRC"))));
-        scene->getComponentsManager()->erasePC(
-            (dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"))));
-        scene->getComponentsManager()->eraseDC(
-            (dynamic_cast<TransformComponent*>(
-                father->getComponent("TransformComponent"))));
+        dynamic_cast<TridimensionalObjectRC*>(
+            father->getComponent("TridimensionalObjectRC"))
+            ->setActive(false);
+
+        dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"))
+            ->setActive(false);
+
+        dynamic_cast<TransformComponent*>(
+            father->getComponent("TransformComponent"))
+            ->setActive(false);
     }
     if (!picked) { // delete item when the effect has passed
         if (timeDisappear()) {
-            scene->getComponentsManager()->eraseEC(this);
-
-            scene->getComponentsManager()->eraseRC(
-                (dynamic_cast<TridimensionalObjectRC*>(
-                    father->getComponent("TridimensionalObjectRC"))));
-            scene->getComponentsManager()->erasePC((dynamic_cast<RigidbodyPC*>(
-                father->getComponent("RigidbodyPC"))));
-            scene->getComponentsManager()->eraseDC(
-                (dynamic_cast<TransformComponent*>(
-                    father->getComponent("TransformComponent"))));
+            scene->deleteEntity(father);
         }
     } else if (picked && timeDisappearEffect()) { // delete item when the effect has
                                         // passed
         PlayerMovementIC* playerMovement = dynamic_cast<PlayerMovementIC*>(
             scene->getEntitybyId("Player")->getComponent("PlayerMovementIC"));
-
         playerMovement->setMovementSpeed(originalSpeed);
 
-        scene->getComponentsManager()->eraseEC(this);
-        // TODO: Delete the entire object
+        scene->deleteEntity(father);
     }
 }
 
