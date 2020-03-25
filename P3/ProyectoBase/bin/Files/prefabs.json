@@ -188,6 +188,12 @@
           }
         },
         {
+          "type": "DestroyAfterSecsEC",
+          "attributes": {
+            "lifeTime": 1
+          }
+        },
+		{
           "type": "TridimensionalObjectRC",
           "attributes": {
             "mesh": "cube.mesh",
@@ -227,7 +233,7 @@
           "attributes": {
             "mesh": "cube.mesh",
             "node": "nGunBullet",
-            "material": "GrassMaterial"
+            "material": "BlueColourMaterial"
           }
         },
         {
