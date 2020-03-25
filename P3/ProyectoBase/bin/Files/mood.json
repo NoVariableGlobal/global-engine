@@ -109,7 +109,9 @@
               "munition": 14,
               "cadence": 1,
               "damage": 5,
-              "semiautomatic": false
+              "semiautomatic": false,
+			  "nPellets": 3,
+			  "dispersion": 5
             }
           },
           {
