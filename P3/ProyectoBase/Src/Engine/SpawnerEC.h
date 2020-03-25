@@ -7,6 +7,7 @@ class Entity;
 
 struct Spawn {
     std::string _id;
+    std::string _tag;
     float _chance;
     float _additiveChance;
 };
@@ -23,7 +24,6 @@ class SpawnerEC : public EventComponent {
     float _lastTimeSpawned = 0;
     bool firstTime = true;
 
-
   public:
     void setSpawnCooldown(float spawnCooldown) {
         _spawnCooldown = spawnCooldown;
@@ -39,7 +39,7 @@ class SpawnerEC : public EventComponent {
     added. The total chance was already 100%.
     */
     virtual void destroy();
-    bool addSpawn(std::string id, float chance);
+    bool addSpawn(std::string id, float chance, std::string tag = "Default");
 
     /*
     Changes the individual chance of an already added spawn. If the id was not
@@ -48,7 +48,8 @@ class SpawnerEC : public EventComponent {
     @param id: prefab's Id.
     @param newChance: new individual chance of the spawn, in percentage.
     */
-    void editChance(std::string& id, float newChance);
+    void editChance(std::string id, float newChance,
+                    std::string tag = "Default");
 
     virtual void checkEvent() override;
 

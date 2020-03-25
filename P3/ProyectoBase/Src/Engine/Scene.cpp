@@ -78,10 +78,12 @@ void Scene::clearEntities() {
     entities.clear();
 }
 
-Entity* Scene::getInstanceOf(std::string _prefab, std::string _id) {
+Entity* Scene::getInstanceOf(std::string _prefab, std::string _id,
+                             std::string _tag) {
     Entity* instance = new Entity();
 
     instance->setId(_id);
+    instance->setTag(_tag);
 
     clonePrefabInfo(_prefab, instance);
 
