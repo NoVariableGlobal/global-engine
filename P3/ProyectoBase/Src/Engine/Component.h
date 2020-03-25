@@ -8,9 +8,6 @@ class Entity;
 class Scene;
 
 class Component {
-  private:
-    // Whether or not the component should be updated
-    bool active = false;
 
   protected:
     // A pointer to the entity that has the component attached
@@ -18,14 +15,16 @@ class Component {
 
     // A pointer to the game scene
     Scene* scene = nullptr;
+    bool active = true;
 
   public:
     Component();
     virtual ~Component();
+    virtual void destroy() = 0;
 
     // Getters and setters
     bool isActive();
-    void setActive(bool active);
+    virtual void setActive(bool active);
     void toggleActive();
 
     void setFather(Entity* father);

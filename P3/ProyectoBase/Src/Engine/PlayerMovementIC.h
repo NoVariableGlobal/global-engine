@@ -18,6 +18,8 @@ class PlayerMovementIC : public InputComponent {
     PlayerMovementIC();
     virtual ~PlayerMovementIC();
 
+    virtual void destroy();
+
     // Updates the entity's transform's
     // position upon pressing WASD keys
     virtual void handleInput(const SDL_Event& _event);

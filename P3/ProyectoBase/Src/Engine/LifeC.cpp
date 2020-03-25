@@ -12,6 +12,12 @@ LifeC::LifeC(): invulnerability(false) {}
 
 LifeC::~LifeC() {}
 
+void LifeC::destroy() {
+    setActive(false);
+    scene->getComponentsManager()->eraseDC(this);
+}
+
+
 float LifeC::getLife() { return currentLife; }
 
 void LifeC::setLife(int _life) { currentLife = _life; }

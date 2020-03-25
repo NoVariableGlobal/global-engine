@@ -14,6 +14,11 @@ MeleeEnemyBehaviourEC::MeleeEnemyBehaviourEC() : EnemyBehaviourEC() {}
 
 MeleeEnemyBehaviourEC::~MeleeEnemyBehaviourEC() {}
 
+void MeleeEnemyBehaviourEC::destroy() {
+    setActive(false);
+    scene->getComponentsManager()->eraseEC(this);
+}
+
 void MeleeEnemyBehaviourEC::checkEvent() {
     EnemyBehaviourEC::checkEvent();
 

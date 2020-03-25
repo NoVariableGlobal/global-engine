@@ -1,4 +1,4 @@
-#pragma once 
+#pragma once
 #include "EventComponent.h"
 class EnemyBehaviourEC : public EventComponent {
   private:
@@ -21,7 +21,7 @@ class EnemyBehaviourEC : public EventComponent {
     EnemyBehaviourEC();
    ~EnemyBehaviourEC();
     virtual void checkEvent();
-
+    virtual void destroy();
 	bool timeToAttack();
 
 	// getters and setters

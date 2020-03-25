@@ -71,8 +71,8 @@ void ComponentsManager::deletePC() {
                 if ((*it) == (*itDelete)) {
                     delete *it;
                     erased = true;
-                }else
-                ++it;
+                } else
+                    ++it;
             }
             physics.erase(it);
             ++itDelete;
@@ -108,7 +108,7 @@ void ComponentsManager::deleteIC() {
                     delete *it;
                     erased = true;
                 } else
-                ++it;
+                    ++it;
             }
             input.erase(it);
             ++itDelete;
@@ -144,7 +144,7 @@ void ComponentsManager::deleteRC() {
                     delete *it;
                     erased = true;
                 } else
-                ++it;
+                    ++it;
             }
             rend.erase(it);
             ++itDelete;
@@ -180,7 +180,7 @@ void ComponentsManager::deleteSC() {
                     delete *it;
                     erased = true;
                 } else
-                ++it;
+                    ++it;
             }
             sound.erase(it);
             ++itDelete;
@@ -251,8 +251,7 @@ void ComponentsManager::deleteEC() {
                 if ((*it) == (*itDelete)) {
                     delete *it;
                     erased = true;
-                }
-                else
+                } else
                     ++it;
             }
             event.erase(it);
@@ -267,29 +266,40 @@ void ComponentsManager::eraseEC(EventComponent* _eventComponent) {
 }
 
 void ComponentsManager::update() {
-    for (auto p : physics)
-        p->update();
+    for (auto p : physics) {
+        if (p->isActive())
+            p->update();
+    }
+
 }
 
 void ComponentsManager::handleInput(const SDL_Event& _event) {
-    for (auto i : input)
-        i->handleInput(_event);
+    for (auto i : input) {
+        if (i->isActive())
+            i->handleInput(_event);
+    }
 }
 
 void ComponentsManager::render() {
-    for (auto r : rend)
-        r->render();
+    for (auto r : rend) {
+        if (r->isActive())
+            r->render();
+    }
 }
 
 void ComponentsManager::updateSound() {
     // TODO: updateSound method in SoundComponent
-    /* for (auto s : sound)
-            s->updateSound() */
+    /* for (auto s : sound){
+        if (s->isActive())
+            s->updateSound()
+            }*/
 }
 
 void ComponentsManager::updateEvent() {
-    for (auto r : event)
-        r->checkEvent();
+    for (auto e : event) {
+        if (e->isActive())
+            e->checkEvent();
+    }
 }
 
 void ComponentsManager::deleteComponents() {
