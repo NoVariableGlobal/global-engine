@@ -12,8 +12,8 @@ SpawnerBulletsC::SpawnerBulletsC() {}
 
 SpawnerBulletsC::~SpawnerBulletsC() {}
 
-Entity* SpawnerBulletsC::getBullet(std::string _type) { 
-    return scene->getInstanceOf(_type, _type + std::to_string(count++), "Bullet");
+Entity* SpawnerBulletsC::getBullet(std::string _type, std::string _tag) { 
+    return scene->getInstanceOf(_type, _type + std::to_string(count++), _tag);
 }
 
 // FACTORY INFRASTRUCTURE

@@ -10,6 +10,7 @@ material GrassMaterial
             {
                 texture grass_1024.jpg
                 colour_op add
+                tex_address_mode wrap
             }
         }
     }

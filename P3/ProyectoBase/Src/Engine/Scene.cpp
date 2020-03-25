@@ -55,14 +55,16 @@ Entity* Scene::getEntitybyId(std::string id) {
     return entities.find(id)->second;
 }
 
-std::vector<Entity*>& Scene::getEntitiesbyTag(std::string tag) {
+std::vector<Entity*> Scene::getEntitiesbyTag(std::string tag) {
     std::vector<Entity*> tagEntities;
 
-       for (auto it : entities) {
-       if( it.second->getId() == tag);
-            tagEntities.push_back(it.second);
+    for (auto it : entities) {
+        if (it.second->getTag() == tag)    
+        { 
+            tagEntities.push_back(it.second); 
+        }
     }
-       return tagEntities;
+    return tagEntities;
 }
 
 void Scene::addEntity(Entity* entity) {
