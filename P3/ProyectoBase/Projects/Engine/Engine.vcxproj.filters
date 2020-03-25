@@ -119,6 +119,9 @@
     <ClCompile Include="..\..\Src\Engine\MedkitEC.cpp">
       <Filter>Components\Events</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\IncreaseSpeedEC.cpp">
+      <Filter>Components\Events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
@@ -240,6 +243,9 @@
       <Filter>Components\Events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\MedkitEC.h">
+      <Filter>Components\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\IncreaseSpeedEC.h">
       <Filter>Components\Events</Filter>
     </ClInclude>
   </ItemGroup>
