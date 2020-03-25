@@ -24,6 +24,7 @@ class RenderComponent : public Component {
     // interface for each render component render method
     virtual void render() = 0;
 
+    virtual void setActive(bool active);
 	void rotate(int degree, Ogre::Vector3 axis);
 
     // Getters and setters

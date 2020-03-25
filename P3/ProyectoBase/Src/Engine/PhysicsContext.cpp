@@ -75,6 +75,20 @@ void PhysicsContext::destroyWorldContent() {
     }
 }
 
+void PhysicsContext::destroyRigidBody(btRigidBody* body) {
+    auto it = ribs.begin();
+    bool erased = false;
+    while (it != ribs.end() && !erased) {
+        if ((*it) == body) {
+            discreteDynamicsWorld->removeCollisionObject(*it);
+            delete *it;
+            erased = true;
+        } else
+            ++it;
+    }
+    ribs.erase(it);
+}
+
 void PhysicsContext::updateSimulation() {
     discreteDynamicsWorld->stepSimulation(1.f / 60.f, 10);
     discreteDynamicsWorld->debugDrawWorld();

@@ -15,6 +15,11 @@ PlayerMovementIC::PlayerMovementIC() {}
 
 PlayerMovementIC::~PlayerMovementIC() {}
 
+void PlayerMovementIC::destroy() {
+    setActive(false);
+    scene->getComponentsManager()->eraseIC(this);
+}
+
 void PlayerMovementIC::handleInput(const SDL_Event& _event) {
     RigidbodyPC* body = dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"));
 

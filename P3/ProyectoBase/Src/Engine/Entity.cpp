@@ -13,6 +13,10 @@ Component* Entity::getComponent(std::string name) {
     return components.find(name)->second;
 }
 
+std::map<std::string, Component*>& Entity::getAllComponents() {
+    return components;
+}
+
 std::string Entity::getId() { return id; }
 void Entity::setId(std::string _id) { id = _id; }
 

@@ -5,6 +5,7 @@
 #include "Loader.h"
 #include "OgreVector3.h"
 #include "PhysicsContext.h"
+#include "Component.h"
 
 #include <iostream>
 #include <json.h>
@@ -57,6 +58,16 @@ Entity* Scene::getEntitybyId(std::string id) {
 
 void Scene::addEntity(Entity* entity) {
     entities.emplace(entity->getId(), entity);
+}
+
+void Scene::deleteEntity(Entity* entity) {
+    std::map<std::string, Component*> &components = entity->getAllComponents();
+    for (auto it : components) {
+        it.second->destroy();
+    }
+    std::string id = entity->getId();
+    delete entities.find(id)->second;
+    entities.erase(entities.find(id));
 }
 
 void Scene::clearEntities() {

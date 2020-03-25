@@ -9,6 +9,11 @@
 #include "Factory.h"
 #include <json.h>
 
+void SpawnerEnemiesEC::destroy() {
+    setActive(false);
+    scene->getComponentsManager()->eraseEC(this);
+}
+
 void SpawnerEnemiesEC::checkEvent() {
 
     if (firstTime) {
@@ -65,8 +70,8 @@ class SpawnerEnemiesECFactory final : public ComponentFactory {
             if (!spawnerEnemies->addSpawn(
                     _data["spawnID"][i].asString(),
                     _data["spawnChances"][i].asDouble())) {
-                printf(("No se pudo añadir " + _data["spawnID"][i].asString() +
-                        ": Ya se llegó al 100% de probabilidad./n")
+                printf(("No se pudo aï¿½adir " + _data["spawnID"][i].asString() +
+                        ": Ya se llegï¿½ al 100% de probabilidad./n")
                            .c_str());
                 break;
             }

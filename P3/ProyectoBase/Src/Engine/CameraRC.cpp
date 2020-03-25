@@ -25,6 +25,11 @@ CameraRC::~CameraRC() {
     delete look;
 }
 
+void CameraRC::destroy() {
+    setActive(false);
+    scene->getComponentsManager()->eraseRC(this);
+}
+
 // Creates the camera
 void CameraRC::setCamera(std::string _entityID) {
     _msM = OgreSDLContext::getInstance()->getSceneManager();

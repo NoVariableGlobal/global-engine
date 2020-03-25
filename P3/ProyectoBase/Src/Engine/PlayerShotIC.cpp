@@ -15,6 +15,11 @@ PlayerShotIC::PlayerShotIC() {}
 
 PlayerShotIC::~PlayerShotIC() {}
 
+void PlayerShotIC::destroy() {
+    setActive(false);
+    scene->getComponentsManager()->eraseIC(this);
+}
+
 void PlayerShotIC::handleInput(const SDL_Event& _event) {
     if (_event.type == SDL_MOUSEBUTTONDOWN) {
         if (_event.button.button == SDL_BUTTON_LEFT) {

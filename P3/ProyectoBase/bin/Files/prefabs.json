@@ -43,7 +43,7 @@
           "attributes": {
             "position": [ 0, 0, 0 ],
             "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.01, 0.01, 0.01 ]
+            "scale": [ 0.1, 0.1, 0.1 ]
           }
         },
         {
