@@ -16,5 +16,5 @@ class SpawnerBulletsC : public Component {
 
     virtual void destroy();
 
-    Entity* getBullet(std::string _type);
+    Entity* getBullet(std::string _type, std::string _tag);
 };

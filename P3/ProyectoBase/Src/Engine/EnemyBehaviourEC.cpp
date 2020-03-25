@@ -2,14 +2,14 @@
 #include "ComponentsManager.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
-#include "Scene.h"
-#include <Entity.h>
-#include <json.h>
-#include "TransformComponent.h"
 #include "OgreRoot.h"
 #include "RigidbodyPC.h"
-#include <iostream>
+#include "Scene.h"
+#include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
+#include <Entity.h>
+#include <iostream>
+#include <json.h>
 #include <time.h>
 #include <utility>
 #include <value.h>
@@ -29,8 +29,7 @@ void EnemyBehaviourEC::checkEvent() {
     TransformComponent* transform = dynamic_cast<TransformComponent*>(
         father->getComponent("TransformComponent"));
     RigidbodyPC* rb =
-        dynamic_cast<RigidbodyPC*>(
-        father->getComponent("RigidbodyPC"));
+        dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"));
 
     // obtain player position
     TransformComponent* playerTransform = dynamic_cast<TransformComponent*>(
@@ -43,19 +42,25 @@ void EnemyBehaviourEC::checkEvent() {
                       playerPosition.z - transform->getPosition().z)
             .normalisedCopy();
 
-	// check collision with player
+    // check collision with player
     collisionWithPlayer = rb->collidesWith("Player");
 
-	// if not colliding with player enemy moves towards player
+    // if not colliding with player enemy moves towards player
+    Ogre::Vector3 velocity;
     if (!collisionWithPlayer) {
-        Ogre::Vector3 velocity = Ogre::Vector3(directionToPlayer.x * speed, 0.0f, directionToPlayer.z * speed);
-        rb->setLinearVelocity(velocity);
-	}
+        velocity = Ogre::Vector3(
+            directionToPlayer.x * speed, 0.0f, directionToPlayer.z * speed);
+        
+    } else {
+        velocity = Ogre::Vector3(
+           0.0f, 0.0f, 0.0f);
+    }
+    rb->setLinearVelocity(velocity);
 
-	// set orientation towards player
+    // set orientation towards player
     float angleInRad =
-            atan2(transform->getPosition().y - playerTransform->getPosition().y,
-            transform->getPosition().x - playerTransform->getPosition().x);
+        atan2(transform->getPosition().y - playerTransform->getPosition().y,
+              transform->getPosition().x - playerTransform->getPosition().x);
     float angleInDeg = -angleInRad * 180 / M_PI;
     // Make the rotation
     TridimensionalObjectRC* fatherRender =
@@ -95,8 +100,7 @@ float EnemyBehaviourEC::getLastTimeAttacked() { return lastTimeAttacked; }
 
 void EnemyBehaviourEC::setSpeed(float _speed) { speed = _speed; }
 
-void EnemyBehaviourEC::setPlayerSpeedPercentage(
-    float _playerSpeedPercentage) {
+void EnemyBehaviourEC::setPlayerSpeedPercentage(float _playerSpeedPercentage) {
     playerSpeedPercentage = _playerSpeedPercentage;
 }
 

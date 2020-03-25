@@ -51,7 +51,7 @@
           "attributes": {
             "mesh": "cube.mesh",
             "node": "nCube",
-            "material": "GrassMaterial"
+            "material": "PurpleColourMaterial"
           }
         },
         {
@@ -195,7 +195,7 @@
             "mass": 1,
             "gravity": [ 0, 0, 0 ],
             "trigger": false,
-            "kinematic": true,
+            "kinematic": false,
             "static": false,
             "friction": 500,
             "restitution": 500

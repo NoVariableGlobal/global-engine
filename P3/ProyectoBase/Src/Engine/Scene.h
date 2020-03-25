@@ -2,6 +2,7 @@
 #include <SDL_events.h>
 #include <map>
 #include <string>
+#include <vector>
 
 namespace Json {
     class Value;
@@ -43,7 +44,7 @@ class Scene {
     // Search the entity in map and returns a reference to it.
     Entity* getEntitybyId(std::string id);
     // Search entities in map and returns references to them.
-    std::vector<Entity*>& getEntitiesbyTag(std::string tag);
+    std::vector<Entity*> getEntitiesbyTag(std::string tag);
     // Add entity into the map.
     void addEntity(Entity* entity);
     // Delete entity
