@@ -137,6 +137,9 @@
     <ClCompile Include="..\..\Src\Engine\DestroyAfterSecsEC.cpp">
       <Filter>Components\Events</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\RangedEnemyBehaviourEC.cpp">
+      <Filter>Components\Events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
@@ -280,6 +283,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\Util.h">
       <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\RangedEnemyBehaviourEC.h">
+      <Filter>Components\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -35,6 +35,7 @@
     <ClCompile Include="..\..\Src\Engine\LifeC.cpp" />
     <ClCompile Include="..\..\Src\Engine\EventComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\PowerUpEC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\RangedEnemyBehaviourEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\RigidbodyPC.cpp" />
     <ClCompile Include="..\..\Src\Engine\ShotgunC.cpp" />
     <ClCompile Include="..\..\Src\Engine\ShotgunPowerUpC.cpp" />
@@ -80,6 +81,7 @@
     <ClInclude Include="..\..\Src\Engine\LifeC.h" />
     <ClInclude Include="..\..\Src\Engine\EventComponent.h" />
     <ClInclude Include="..\..\Src\Engine\PowerUpEC.h" />
+    <ClInclude Include="..\..\Src\Engine\RangedEnemyBehaviourEC.h" />
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
     <ClInclude Include="..\..\Src\Engine\ShotgunC.h" />
     <ClInclude Include="..\..\Src\Engine\ShotgunPowerUpC.h" />

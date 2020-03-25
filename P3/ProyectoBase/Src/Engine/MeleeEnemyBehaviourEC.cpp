@@ -53,7 +53,7 @@ class MeleeEnemyBehaviourECFactory final : public ComponentFactory {
 
         if (!_data["playerSpeedPercentage"].asFloat())
             throw std::exception(
-                "EnemyBehaviourEC: playerSpeedPercentage is not a float");
+                "MeleeEnemyBehaviourEC: playerSpeedPercentage is not a float");
         meleeEnemyBehaviour->setPlayerSpeedPercentage(
             _data["playerSpeedPercentage"].asFloat());
 
