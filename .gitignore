@@ -35,11 +35,12 @@
 inter/
 test/
 
-*.exe
-*.log
-*.ilk
-*.dll
-*.iobj
-*.ipdb
-*.pdb
-*.lib
+*/**/bin/*.exe
+*/**/bin/*.log
+*/**/bin/*.ilk
+*/**/bin/*.dll
+*/**/bin/*.iobj
+*/**/bin/*.ipdb
+*/**/bin/*.pdb
+
+P3/ProyectoBase/bin/TaharezLook.looknfeel

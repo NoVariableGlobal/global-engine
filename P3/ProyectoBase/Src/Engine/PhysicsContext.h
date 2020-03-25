@@ -12,36 +12,39 @@ class btBoxShape;
 class btMotionState;
 
 namespace Ogre {
-	typedef float Real;
-	template <int dims, typename T> class Vector;
-	typedef Vector<3, Real> Vector3;
-}
+    typedef float Real;
+    template <int dims, typename T> class Vector;
+    typedef Vector<3, Real> Vector3;
+} // namespace Ogre
 
-class PhysicsContext
-{
-private:
-	static PhysicsContext* _instance;
+class PhysicsContext {
+  private:
+    static PhysicsContext* _instance;
 
-	btCollisionDispatcher* collisionDispatcher;
-	btBroadphaseInterface* broadphaseInterface;
-	btSequentialImpulseConstraintSolver* sequentialImpulseConstraintSolver;
-	btDefaultCollisionConfiguration* defaultCollisionConfiguration;
-	OgreDebugDrawer* mDebugDrawer;
+    btCollisionDispatcher* collisionDispatcher = nullptr;
+    btBroadphaseInterface* broadphaseInterface = nullptr;
+    btSequentialImpulseConstraintSolver* sequentialImpulseConstraintSolver =
+        nullptr;
+    btDefaultCollisionConfiguration* defaultCollisionConfiguration = nullptr;
+    btDiscreteDynamicsWorld* discreteDynamicsWorld = nullptr;
+    OgreDebugDrawer* mDebugDrawer = nullptr;
 
-	btDiscreteDynamicsWorld* discreteDynamicsWorld;
-	std::vector<btRigidBody*> ribs;
-	std::vector<btBoxShape*> shapes;
-	std::vector<btMotionState*> states;
-public:
-	static PhysicsContext* instance();
-	PhysicsContext();
-	~PhysicsContext();
+    std::vector<btRigidBody*> ribs;
+    std::vector<btBoxShape*> shapes;
+    std::vector<btMotionState*> states;
+    PhysicsContext();
+    ~PhysicsContext();
 
-	void init(float _gravity);
-	void destroyWorld();
-	void destroyWorldContent();
-	void updateSimulation();
+  public:
+    static PhysicsContext* getInstance();
+    static void init();
 
-	btRigidBody* createRB(Ogre::Vector3 pos, Ogre::Vector3 shape, float mass);
+    void init(float _gravity); // Start a world with gravity and physics
+    void destroyWorld();       // Destroys all variables related to physics
+    void destroyWorldContent();
+    void destroyRigidBody(btRigidBody* body);
+    void updateSimulation(); // Update the world's physics
+
+    btDiscreteDynamicsWorld* getWorld();
+    btRigidBody* createRB(Ogre::Vector3 pos, Ogre::Vector3 shape, float mass);
 };
-

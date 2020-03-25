@@ -1,0 +1,147 @@
+{
+  "entities": [
+    {
+      "id": "Camera",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 3, 3, 3 ]
+          }
+        },
+        {
+          "type": "CameraRC",
+          "attributes": {
+            "node": "nCamera",
+            "viewportColour": [ 0, 0, 0 ],
+            "offset": [ 0, 300, 0 ],
+            "lookAt": [ 0, -1, 0 ],
+            "targetId": "Player",
+            "follow": [ true, true, true ]
+          }
+        },
+        {
+          "type": "SpotLightRC",
+          "attributes": {
+            "node": "nSpotLight",
+            "colour": [ 0.5, 0.5, 0.5 ],
+            "direction": [ 0, -1, 0 ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GameManager",
+      "components": [
+        {
+          "type": "SpawnerBulletsC",
+          "attributes": {
+          }
+        }
+      ]
+    },
+    {
+      "id": "Player",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 3, 3, 3 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "Sinbad.mesh",
+            "node": "nPlayer",
+            "material": "none"
+          }
+        },
+        {
+          "type": "PlayerMovementIC",
+          "attributes": {
+            "speed": 15
+          }
+        },
+        {
+          "type": "PlayerShotIC",
+          "attributes": {
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 5, 10, 5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": false,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        },
+        {
+          "type": "LifeC",
+          "attributes": {
+            "life": 100
+          }
+        },
+        {
+          "type": "HandGunC",
+          "attributes": {
+            "bulletchamberMax": 20,
+            "munition": 1000,
+            "cadence": 1,
+            "damage": 2,
+            "semiautomatic": false
+          }
+        },
+        {
+          "type": "WeaponControllerIC",
+          "attributes": {
+
+          }
+        },
+        {
+          "type": "OrientateToMouseIC",
+          "attributes": {}
+        }
+      ]
+    },
+    {
+      "id": "GeneradorPowerUps",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.05, 0.05, 0.05 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nCube",
+            "material": "GrassMaterial"
+          }
+        },
+        {
+          "type": "SpawnerFloorRandomEC",
+          "attributes": {
+            "spawnCooldown": 10,
+            "spawnID": [ "Shield" ],
+            "spawnChances": [ 100 ]
+          }
+        }
+      ]
+    }
+  ]
+}

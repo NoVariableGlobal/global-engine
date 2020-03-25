@@ -1,40 +1,43 @@
 #pragma once
-#include <string>
 #include <map>
-#include "checkML.h"
+#include <string>
 
 class Scene;
 class Loader;
 
-class Game
-{
-	private:
-		// Save <scene name, scene file>
-		std::map<std::string, std::string> scenesQueue;
-		Scene* scene = nullptr;
+class Game {
+  private:
+    // Save <scene name, scene file>
+    std::map<std::string, std::string> scenesQueue;
+    Scene* scene = nullptr;
 
-		bool exit = false;
-		bool end = false;
-		bool win = false;
+    bool exit = false;
+    bool end = false;
+    bool win = false;
 
-	public:
-		Game();
-		~Game();
+    std::string sceneToChange;
+    bool sceneChange = false;
 
-		/*
-		* Inicializa el contexto de Ogre
-		*/
-		void initContext();
-		/*
-		* Inicializa el juego
-		*/
-		void init(std::string _firstScene);
-		/*
-		* Maneja el bucle del juego
-		*/
-		void update();
-		/*
-		* Cambia la escena actual por la nueva
-		*/
-		void setScene(std::string _sceneName);
+  public:
+    Game();
+    ~Game();
+
+    // initialise OgreSDL
+    void initContext();
+
+    // initialise the game
+    bool init(std::string _firstScene);
+    // loop of the game
+    void run();
+    // update the game
+    void update();
+    // render the entities of the game
+    void render();
+    // handle the input of the game
+    void handleInput();
+
+    // tells if the scene is going to be change
+    void setChangeScene(bool _change, std::string _sceneName);
+    // change the current scene
+    void setScene(std::string _sceneName);
 };

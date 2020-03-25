@@ -1,12 +1,12 @@
 {"scenes":
 	[
 		{
-			"name": "Menu",
-			"file": "menu.json"
+			"name": "MOOD",
+			"file": "mood.json"
 		},
 		{
-			"name" : "Game",
-			"file" : "game.json"
+			"name" : "GSHIFT",
+			"file" : "gshift.json"
 		}
 	]
 
