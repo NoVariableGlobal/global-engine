@@ -156,6 +156,29 @@
           }
         }
       ]
+      },
+      {
+        "id": "GunSpawner",
+        "components": [
+            {
+              "type": "TransformComponent",
+              "attributes": {
+               "position": [ 0, 0, 0],
+               "orientation": [ 0, 0, 0],
+               "scale": [ 0.1, 0.1, 0.1]
+              }
+            },
+            {
+              "type": "SpawnerFloorRandomEC",
+              "attributes": {
+                "spawnCooldown": 5,
+                "spawnID": [ "Shotgun" ],
+                "spawnChances": [ 12.5 ],
+              }
+            }
+        ]
+      }
+    ]
     },
     {
       "id": "Suelo",
