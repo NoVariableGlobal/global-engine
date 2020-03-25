@@ -34,7 +34,11 @@ bool RigidbodyPC::collidesWith(std::string id) {
     // Recieves an id of an entity and checks if our father is colliding with it
     Entity* other = scene->getEntitybyId(id);
 
-    btVoronoiSimplexSolver sGjkSimplexSolver;
+    return collidesWithEntity(other);
+}
+
+bool RigidbodyPC::collidesWithEntity(Entity* other) { 
+        btVoronoiSimplexSolver sGjkSimplexSolver;
     btGjkEpaPenetrationDepthSolver epaSolver;
     btPointCollector gjkOutput;
 
@@ -55,6 +59,18 @@ bool RigidbodyPC::collidesWith(std::string id) {
         return true;
     else
         return false;
+
+    return false; 
+}
+
+Entity* RigidbodyPC::collidesWithTag(std::string tag) {
+    std::vector<Entity*> tagEntities = scene->getEntitiesbyTag(tag);
+
+    for (auto it : tagEntities) {
+        if (collidesWithEntity(it))
+            return it;
+    }
+    return nullptr;
 }
 
 void RigidbodyPC::addForce(const Ogre::Vector3 _force,
@@ -107,7 +123,6 @@ void RigidbodyPC::setRestitution(float _restitution) {
 void RigidbodyPC::setLinearVelocity(Ogre::Vector3 _v) {
     body->setLinearVelocity(btVector3(_v.x, _v.y, _v.z));
 }
-
 
 void RigidbodyPC::setPosition(Ogre::Vector3 newPos) {
     btTransform initialTransform;

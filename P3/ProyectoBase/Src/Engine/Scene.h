@@ -42,6 +42,8 @@ class Scene {
 
     // Search the entity in map and returns a reference to it.
     Entity* getEntitybyId(std::string id);
+    // Search entities in map and returns references to them.
+    std::vector<Entity*>& getEntitiesbyTag(std::string tag);
     // Add entity into the map.
     void addEntity(Entity* entity);
 
