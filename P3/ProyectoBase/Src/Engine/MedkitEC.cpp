@@ -25,6 +25,7 @@ void MedkitEC::checkEvent() {
             scene->getEntitybyId("Player")->getComponent("LifeC"));
         playerHealth->heal(playerHealth->getTotalLife());
         picked = true;
+
         // TODO: Delete the entire object
         scene->getComponentsManager()->eraseRC(
             (dynamic_cast<TridimensionalObjectRC*>(
