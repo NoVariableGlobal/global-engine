@@ -13,7 +13,7 @@ WeaponControllerIC::WeaponControllerIC() {}
 
 WeaponControllerIC::~WeaponControllerIC() {}
 
-void WeaponControllerIC::destroyMyself() {
+void WeaponControllerIC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseIC(this);
 }
@@ -47,7 +47,7 @@ class WeaponControllerICFactory final : public ComponentFactory {
         weaponControllerIC->setFather(_father);
         weaponControllerIC->setScene(_scene);
         weaponControllerIC->init();
-        
+
         return weaponControllerIC;
     };
 };

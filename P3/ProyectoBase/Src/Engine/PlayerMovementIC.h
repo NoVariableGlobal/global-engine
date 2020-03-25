@@ -18,7 +18,7 @@ class PlayerMovementIC : public InputComponent {
     PlayerMovementIC();
     virtual ~PlayerMovementIC();
 
-    virtual void destroyMyself();
+    virtual void destroy();
 
     // Updates the entity's transform's
     // position upon pressing WASD keys

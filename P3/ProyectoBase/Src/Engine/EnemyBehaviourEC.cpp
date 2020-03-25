@@ -20,7 +20,7 @@ EnemyBehaviourEC::EnemyBehaviourEC()
 
 EnemyBehaviourEC::~EnemyBehaviourEC() {}
 
-void EnemyBehaviourEC::destroyMyself() {
+void EnemyBehaviourEC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseEC(this);
 }
@@ -109,4 +109,3 @@ void EnemyBehaviourEC::setAttackCooldown(float _attackCooldown) {
 void EnemyBehaviourEC::setLastTimeAttacked(float _lastTimeAttacked) {
     lastTimeAttacked = _lastTimeAttacked;
 }
-

@@ -21,7 +21,7 @@ class TransformComponent : public Component {
     TransformComponent();
     virtual ~TransformComponent();
 
-    virtual void destroyMyself();
+    virtual void destroy();
 
     // Getters and setters
     Ogre::Vector3 getPosition() const;

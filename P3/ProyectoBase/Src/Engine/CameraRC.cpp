@@ -25,7 +25,7 @@ CameraRC::~CameraRC() {
     delete look;
 }
 
-void CameraRC::destroyMyself() {
+void CameraRC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseRC(this);
 }

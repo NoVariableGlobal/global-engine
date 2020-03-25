@@ -15,7 +15,7 @@ PlayerMovementIC::PlayerMovementIC() {}
 
 PlayerMovementIC::~PlayerMovementIC() {}
 
-void PlayerMovementIC::destroyMyself() {
+void PlayerMovementIC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseIC(this);
 }

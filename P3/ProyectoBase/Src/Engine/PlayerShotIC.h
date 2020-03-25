@@ -14,7 +14,7 @@ class PlayerShotIC : public InputComponent {
     PlayerShotIC();
     virtual ~PlayerShotIC();
 
-    virtual void destroyMyself();
+    virtual void destroy();
 
     // On mouse button down, tells a gun component to fire a shot
     virtual void handleInput(const SDL_Event& _event);

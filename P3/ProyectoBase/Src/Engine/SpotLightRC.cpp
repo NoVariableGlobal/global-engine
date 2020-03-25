@@ -17,7 +17,7 @@ SpotLightRC::SpotLightRC() {}
 // Destroys the light
 SpotLightRC::~SpotLightRC() { _msM->destroyLight(light); }
 
-void SpotLightRC::destroyMyself() {
+void SpotLightRC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseRC(this);
 }

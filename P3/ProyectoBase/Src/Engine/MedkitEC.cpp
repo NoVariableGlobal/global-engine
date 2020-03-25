@@ -15,9 +15,9 @@
 #include <json.h>
 
 MedkitEC::MedkitEC() {}
-MedkitEC::~MedkitEC(){} 
+MedkitEC::~MedkitEC(){}
 
-void MedkitEC::destroyMyself() {
+void MedkitEC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseEC(this);
 }

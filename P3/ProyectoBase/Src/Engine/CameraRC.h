@@ -38,7 +38,7 @@ class CameraRC : public RenderComponent {
     CameraRC();
     ~CameraRC();
 
-    virtual void destroyMyself();
+    virtual void destroy();
     // set camera
     void setCamera(std::string _entityID);
     // get camera

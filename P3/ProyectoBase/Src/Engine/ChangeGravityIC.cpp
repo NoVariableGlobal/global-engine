@@ -17,7 +17,7 @@ ChangeGravityIC::ChangeGravityIC() {}
 
 ChangeGravityIC::~ChangeGravityIC() {}
 
-void ChangeGravityIC::destroyMyself() {
+void ChangeGravityIC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseIC(this);
 }
@@ -33,7 +33,7 @@ void ChangeGravityIC::handleInput(const SDL_Event& _event) {
 
         body->setLinearVelocity(Ogre::Vector3(0.0f, 0.0f, 0.0f));
 
-    
+
         dynamic_cast<TridimensionalObjectRC*>(father->getComponent("TridimensionalObjectRC"))->setMaterial(!movingIzq ? mRight : mLeft);
     }
 }

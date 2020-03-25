@@ -12,7 +12,7 @@ LifeC::LifeC(): invulnerability(false) {}
 
 LifeC::~LifeC() {}
 
-void LifeC::destroyMyself() {
+void LifeC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseDC(this);
 }

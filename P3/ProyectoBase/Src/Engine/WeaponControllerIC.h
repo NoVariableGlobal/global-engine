@@ -10,7 +10,7 @@ class WeaponControllerIC : public InputComponent {
   public:
     WeaponControllerIC();
     virtual ~WeaponControllerIC();
-    virtual void destroyMyself();
+    virtual void destroy();
 
     void init();
     // Updates the entity's transform's

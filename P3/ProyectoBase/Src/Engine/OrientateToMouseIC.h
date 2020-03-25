@@ -4,6 +4,6 @@ class OrientateToMouseIC : public InputComponent {
   public:
     OrientateToMouseIC() = default;
     ~OrientateToMouseIC() = default;
-    virtual void destroyMyself();
+    virtual void destroy();
     void handleInput(const SDL_Event& _event);
 };

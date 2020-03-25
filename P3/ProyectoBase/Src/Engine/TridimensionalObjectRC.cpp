@@ -15,7 +15,7 @@ TridimensionalObjectRC::TridimensionalObjectRC() {}
 
 TridimensionalObjectRC::~TridimensionalObjectRC() {}
 
-void TridimensionalObjectRC::destroyMyself() {
+void TridimensionalObjectRC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseRC(this);
 }

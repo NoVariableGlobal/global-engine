@@ -12,12 +12,12 @@ SpawnerBulletsC::SpawnerBulletsC() {}
 
 SpawnerBulletsC::~SpawnerBulletsC() {}
 
-void SpawnerBulletsC::destroyMyself() {
+void SpawnerBulletsC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseDC(this);
 }
 
-Entity* SpawnerBulletsC::getBullet(std::string _type) { 
+Entity* SpawnerBulletsC::getBullet(std::string _type) {
     return scene->getInstanceOf(_type, _type + std::to_string(count++));
 }
 

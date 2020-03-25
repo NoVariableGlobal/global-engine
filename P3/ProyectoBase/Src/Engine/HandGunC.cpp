@@ -18,7 +18,7 @@ HandGunC::HandGunC() : GunC() {}
 
 HandGunC::~HandGunC() {}
 
-void HandGunC::destroyMyself() {
+void HandGunC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseDC(this);
 }

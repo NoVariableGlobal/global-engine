@@ -15,7 +15,7 @@ PlayerShotIC::PlayerShotIC() {}
 
 PlayerShotIC::~PlayerShotIC() {}
 
-void PlayerShotIC::destroyMyself() {
+void PlayerShotIC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseIC(this);
 }

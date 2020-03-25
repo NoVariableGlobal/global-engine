@@ -14,7 +14,7 @@ MeleeEnemyBehaviourEC::MeleeEnemyBehaviourEC() : EnemyBehaviourEC() {}
 
 MeleeEnemyBehaviourEC::~MeleeEnemyBehaviourEC() {}
 
-void MeleeEnemyBehaviourEC::destroyMyself() {
+void MeleeEnemyBehaviourEC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseEC(this);
 }

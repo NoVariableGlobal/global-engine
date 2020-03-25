@@ -17,7 +17,7 @@
 
 #include <iostream>
 
-void OrientateToMouseIC::destroyMyself() {
+void OrientateToMouseIC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseIC(this);
 }

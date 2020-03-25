@@ -9,7 +9,7 @@
 #include <value.h>
 
 
-void SpawnerEC::destroyMyself() {
+void SpawnerEC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseEC(this);
 }

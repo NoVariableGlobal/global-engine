@@ -21,7 +21,7 @@ RigidbodyPC::RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape,
 
 RigidbodyPC::~RigidbodyPC() { body = nullptr; }
 
-void RigidbodyPC::destroyMyself() {
+void RigidbodyPC::destroy() {
     PhysicsContext::getInstance()->destroyRigidBody(body);
     scene->getComponentsManager()->erasePC(this);
 }
@@ -178,7 +178,7 @@ class RigidbodyPCFactory final : public ComponentFactory {
             throw std::exception("RigidbodyPC: position/shape is not an array "
                                  "or mass is not an int");
         int mass = _data["mass"].asInt();
-                
+
         if (!_data["static"].isBool())
             throw std::exception("RigidbodyPC: static is not a boolean");
         if (_data["static"].asBool())

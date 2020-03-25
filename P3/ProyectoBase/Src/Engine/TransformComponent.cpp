@@ -20,7 +20,7 @@ TransformComponent::~TransformComponent() {
     delete _orientation;
 }
 
-void TransformComponent::destroyMyself() {
+void TransformComponent::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseDC(this);
 }

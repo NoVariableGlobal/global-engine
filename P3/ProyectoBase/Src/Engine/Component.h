@@ -20,7 +20,7 @@ class Component {
   public:
     Component();
     virtual ~Component();
-    virtual void destroyMyself() = 0;
+    virtual void destroy() = 0;
 
     // Getters and setters
     bool isActive();

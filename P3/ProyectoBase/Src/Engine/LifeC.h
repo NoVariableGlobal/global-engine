@@ -18,7 +18,7 @@ class LifeC : public Component {
     LifeC();
     virtual ~LifeC();
 
-    virtual void destroyMyself();
+    virtual void destroy();
 
     // get the current life
     float getLife();
