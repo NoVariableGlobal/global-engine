@@ -156,7 +156,8 @@
 		      "type": "IncreaseSpeedEC",
 		      "attributes": {
 			    "time": 20,
-			    "timeEffect": 10
+			    "timeEffect": 10,
+				"speedIncrement": 0.5
 		      }
 		    }
       ]	  

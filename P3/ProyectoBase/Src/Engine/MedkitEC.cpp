@@ -63,8 +63,8 @@ class MedkitECFactory final : public ComponentFactory {
         medkitEC->setScene(scene);
 
         if (!_data["time"].isDouble())
-            throw std::exception("Shield: time is not a double");
-        medkitEC->setDuration(_data["time"].asDouble());
+            throw std::exception("Medkit: time is not a double");
+        medkitEC->setDuration(_data["time"].asDouble());		
 
         medkitEC->setActive(true);
 

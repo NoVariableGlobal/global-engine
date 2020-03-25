@@ -4,8 +4,8 @@
 #include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
-#include "PlayerMovementIC.h"
 #include "OgreVector3.h"
+#include "PlayerMovementIC.h"
 #include "RigidbodyPC.h"
 #include "Scene.h"
 #include "TransformComponent.h"
@@ -22,11 +22,12 @@ void IncreaseSpeedEC::checkEvent() {
     PowerUpEC::checkEvent();
 
     if (!picked && getCollisionWithPlayer()) {
+        picked = true;
         PlayerMovementIC* playerMovement = dynamic_cast<PlayerMovementIC*>(
             scene->getEntitybyId("Player")->getComponent("PlayerMovementIC"));
-        playerMovement->setMovementSpeed(playerMovement->getMovementSpeed() +
-                                         playerMovement->getMovementSpeed()*0.5);
-        picked = true;
+
+        originalSpeed = playerMovement->getMovementSpeed();
+        playerMovement->setMovementSpeed(originalSpeed * (1 + speedIncrement));
 
         // TODO: Delete the entire object
         scene->getComponentsManager()->eraseRC(
@@ -42,14 +43,39 @@ void IncreaseSpeedEC::checkEvent() {
         if (timeDisappear()) {
             // TODO: Delete the entire object
             scene->getComponentsManager()->eraseEC(this);
-
-            /*RenderComponent* render = dynamic_cast<RenderComponent*>(
-                scene->getEntitybyId("Shield0")->getComponent(
-                    "TridimensionalObjectRC"));
-            compManager->deleteRC(render);
-            delete this;*/
         }
+    } else if (timeDisappearEffect()) { // delete item when the effect has
+                                        // passed
+        PlayerMovementIC* playerMovement = dynamic_cast<PlayerMovementIC*>(
+            scene->getEntitybyId("Player")->getComponent("PlayerMovementIC"));
+
+        playerMovement->setMovementSpeed(originalSpeed);
+
+        scene->getComponentsManager()->eraseEC(this);
+        // TODO: Delete the entire object
     }
+}
+
+bool IncreaseSpeedEC::timeDisappearEffect() {
+    float seconds = clock() / static_cast<float>(CLOCKS_PER_SEC);
+
+    if (!startPicked) {
+        time = seconds;
+        startPicked = true;
+    }
+    if (time + timeEffect <= seconds) {
+        return true;
+    }
+
+    return false;
+}
+
+void IncreaseSpeedEC::setTimeEffect(float _timeEffect) {
+    timeEffect = _timeEffect;
+}
+
+void IncreaseSpeedEC::setSpeedIncrement(float _speedIncrement) {
+    speedIncrement = _speedIncrement;
 }
 
 // FACTORY INFRASTRUCTURE
@@ -66,11 +92,18 @@ class IncreaseSpeedECFactory final : public ComponentFactory {
         if (!_data["time"].isDouble())
             throw std::exception("IncreaseSpeed: time is not a double");
         increaseSpeedIC->setDuration(_data["time"].asDouble());
+        if (!_data["timeEffect"].isDouble())
+            throw std::exception("IncreaseSpeed: timeEffect is not a double");
+        increaseSpeedIC->setTimeEffect(_data["timeEffect"].asDouble());
+        if (!_data["speedIncrement"].isDouble())
+            throw std::exception(
+                "IncreaseSpeed: speedIncrement is not a double");
+        increaseSpeedIC->setSpeedIncrement(_data["speedIncrement"].asDouble());
 
-		increaseSpeedIC->setActive(true);
+        increaseSpeedIC->setActive(true);
 
-		return increaseSpeedIC;
-	}
+        return increaseSpeedIC;
+    }
 };
 
 REGISTER_FACTORY("IncreaseSpeedEC", IncreaseSpeedEC);
