@@ -44,29 +44,29 @@ shell of your preference.
 #### BulletPhysics
 
 1. Open CMake-GUI and set up the following parameters:
-  - Source Code: `P3/ProyectoBase/lib/bullet3-2.89`
-  - Build Folder: `P3/ProyectoBase/lib/bullet3-2.89/build`
+    - Source Code: `P3/ProyectoBase/lib/bullet3-2.89`
+    - Build Folder: `P3/ProyectoBase/lib/bullet3-2.89/build`
 1. Click on the `Configure` button.
 1. Set up the following values:
-  - `BUILD_BULLET2_DEMOS`: `OFF`
-  - `BUILD_BULLET3`: `ON`
-  - `BUILD_CLSOCKET`: `OFF`
-  - `BUILD_CPU_DEMOS`: `OFF`
-  - `BUILD_ENET`: `OFF`
-  - `BUILD_EXTRAS`: `OFF`
-  - `BUILD_OPENGL3_DEMOS`: `OFF`
-  - `BUILD_PYBULLET`: `OFF`
-  - `BUILD_SHARED_LIBS`: `OFF`
-  - `BUILD_UNIT_TESTS`: `OFF`
-  - `USE_MSVC_RUNTIME_LIBRARY_DLL`: `ON`
+    - `BUILD_BULLET2_DEMOS`: `OFF`
+    - `BUILD_BULLET3`: `ON`
+    - `BUILD_CLSOCKET`: `OFF`
+    - `BUILD_CPU_DEMOS`: `OFF`
+    - `BUILD_ENET`: `OFF`
+    - `BUILD_EXTRAS`: `OFF`
+    - `BUILD_OPENGL3_DEMOS`: `OFF`
+    - `BUILD_PYBULLET`: `OFF`
+    - `BUILD_SHARED_LIBS`: `OFF`
+    - `BUILD_UNIT_TESTS`: `OFF`
+    - `USE_MSVC_RUNTIME_LIBRARY_DLL`: `ON`
 1. Click on the `Generate` button.
 1. Compile the project (`ALL_BUILD` by default) in `Debug` and `Release`.
 
 #### JsonCPP
 
 1. Open CMake-GUI and set up the following parameters:
-  - Source Code: `P3/ProyectoBase/jsoncpp-master`
-  - Build Folder: `P3/ProyectoBase/lib/jsoncpp-master/build`
+    - Source Code: `P3/ProyectoBase/jsoncpp-master`
+    - Build Folder: `P3/ProyectoBase/lib/jsoncpp-master/build`
 1. Click on the `Configure` button.
 1. Click on the `Generate` button.
 1. Compile the project (`ALL_BUILD` by default) in `Debug` and `Release`.
@@ -74,30 +74,30 @@ shell of your preference.
 #### Ogre
 
 1. Open CMake-GUI and set up the following parameters:
-  - Source Code: `P3/ProyectoBase/lib/ogre-1.12.5`
-  - Build Folder: `P3/ProyectoBase/lib/ogre-1.12.5/build`
+    - Source Code: `P3/ProyectoBase/lib/ogre-1.12.5`
+    - Build Folder: `P3/ProyectoBase/lib/ogre-1.12.5/build`
 1. Click on the `Configure` button.
 1. Set up the following values:
-  - `OGRE_BUILD_COMPONENT_OVERLAY`: `OFF`
+    - `OGRE_BUILD_COMPONENT_OVERLAY`: `OFF`
 1. Click on the `Generate` button.
 1. Compile the project (`ALL_BUILD` by default) in `Debug` and `Release`.
 1. Copy the following files to `P3/ProyectoBase/bin/`:
-  - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/debug/OgreMain_d.dll`
-  - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/debug/RenderSystem_Direct3D11_d.dll`
-  - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/debug/RenderSystem_GL_d.dll`
-  - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/debug/OgreRTShaderSystem_d.dll`
-  - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/debug/Codec_STBI_d.dll`
-  - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/OgreMain.dll`
-  - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/RenderSystem_Direct3D11.dll`
-  - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/RenderSystem_GL.dll`
-  - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/zlib.dll`
-  - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/OgreRTShaderSystem.dll`
-  - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/Codec_STBI.dll`
+    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/debug/OgreMain_d.dll`
+    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/debug/RenderSystem_Direct3D11_d.dll`
+    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/debug/RenderSystem_GL_d.dll`
+    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/debug/OgreRTShaderSystem_d.dll`
+    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/debug/Codec_STBI_d.dll`
+    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/OgreMain.dll`
+    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/RenderSystem_Direct3D11.dll`
+    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/RenderSystem_GL.dll`
+    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/zlib.dll`
+    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/OgreRTShaderSystem.dll`
+    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/Codec_STBI.dll`
 
 #### SDL2
 
 1. Copy the following files to `P3/ProyectoBase/bin/`:
-  - `P3/ProyectoBase/lib/SDL2-2.0.10/lib/x64/SDL2.dll`
+    - `P3/ProyectoBase/lib/SDL2-2.0.10/lib/x64/SDL2.dll`
 
 > If you encountered any issues, please open an issue including the steps taken and the warnings or errors you
 encountered. If you found no problem so far, you should be able to compile this project without problems.
