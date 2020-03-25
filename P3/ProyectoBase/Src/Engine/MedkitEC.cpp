@@ -16,7 +16,10 @@
 
 MedkitEC::MedkitEC() {}
 
-MedkitEC::~MedkitEC(){} 
+MedkitEC::~MedkitEC() {
+    setActive(false);
+    scene->getComponentsManager()->eraseEC(this);
+}
 
 void MedkitEC::checkEvent() {
     PowerUpEC::checkEvent();
@@ -64,7 +67,7 @@ class MedkitECFactory final : public ComponentFactory {
 
         if (!_data["time"].isDouble())
             throw std::exception("Medkit: time is not a double");
-        medkitEC->setDuration(_data["time"].asDouble());		
+        medkitEC->setDuration(_data["time"].asDouble());
 
         medkitEC->setActive(true);
 
