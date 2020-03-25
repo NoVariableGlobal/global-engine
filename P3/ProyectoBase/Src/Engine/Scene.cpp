@@ -56,6 +56,16 @@ Entity* Scene::getEntitybyId(std::string id) {
     return assert_find(entities, id);
 }
 
+std::vector<Entity*>& Scene::getEntitiesbyTag(std::string tag) {
+    std::vector<Entity*> tagEntities;
+
+       for (auto it : entities) {
+       if( it.second->getId() == tag);
+            tagEntities.push_back(it.second);
+    }
+       return tagEntities;
+}
+
 void Scene::addEntity(Entity* entity) {
     entities.emplace(entity->getId(), entity);
 }
