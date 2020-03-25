@@ -116,11 +116,11 @@ encountered. If you found no problem so far, you should be able to compile this 
 [MIT][license] License.
 Authored and maintained by NoVariableGlobal.
 
-> Github [NoVariableGlobal][author] - Twitter [@FallOfDrakhtar][twitter]
+> Github [NoVariableGlobal][author] - Twitter [@__NVG__][twitter]
 
 [license]: https://github.com/NoVariableGlobal/global-engine/blob/master/LICENSE
 [author]: https://github.com/NoVariableGlobal
-[twitter]: https://twitter.com/FallOfDrakhtar
+[twitter]: https://twitter.com/__NVG__
 
 [Mood]: https://github.com/NoVariableGlobal/mood
 [G.Shift]: https://github.com/NoVariableGlobal/g.shift
