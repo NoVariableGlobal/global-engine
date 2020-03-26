@@ -102,9 +102,21 @@
             "semiautomatic": false
           }
         },
-        {
-          "type": "WeaponControllerIC",
-          "attributes": {
+          {
+            "type": "ShotgunC",
+            "attributes": {
+              "bulletchamberMax": 2,
+              "munition": 14,
+              "cadence": 1,
+              "damage": 5,
+              "semiautomatic": false,
+			  "nPellets": 3,
+			  "dispersion": 5
+            }
+          },
+          {
+            "type": "WeaponControllerIC",
+            "attributes": {
 
           }
         },
@@ -142,6 +154,27 @@
           }
         }
       ]
-    }
-  ]
+      },
+      {
+        "id": "GunSpawner",
+        "components": [
+            {
+              "type": "TransformComponent",
+              "attributes": {
+               "position": [ 0, 0, 0],
+               "orientation": [ 0, 0, 0],
+               "scale": [ 0.1, 0.1, 0.1]
+              }
+            },
+            {
+              "type": "SpawnerFloorRandomEC",
+              "attributes": {
+                "spawnCooldown": 5,
+                "spawnID": [ "Shotgun" ],
+                "spawnChances": [ 12.5 ],
+              }
+            }
+        ]
+      }
+    ]
 }

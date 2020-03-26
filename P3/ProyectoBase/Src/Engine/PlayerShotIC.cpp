@@ -30,6 +30,10 @@ void PlayerShotIC::handleInput(const SDL_Event& _event) {
         if (_event.key.keysym.sym == SDLK_r) {
             (dynamic_cast<WeaponControllerIC*>(father->getComponent("WeaponControllerIC")))->getCurrentGun()->reload();
         }
+    } else if (_event.type == SDL_KEYDOWN) {
+        if (_event.key.keysym.sym == SDLK_r) {
+            //reload
+        }
     }
 }
 
