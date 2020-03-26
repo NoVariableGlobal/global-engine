@@ -10,7 +10,7 @@
 #include <value.h>
 
 void DestroyAfterSecsEC::destroy() {
-    scene->getComponentsManager()->eraseDC(this);
+    scene->getComponentsManager()->eraseEC(this);
 }
 
 void DestroyAfterSecsEC::checkEvent() {

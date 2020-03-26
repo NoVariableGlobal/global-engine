@@ -74,6 +74,7 @@ void ComponentsManager::deletePC() {
                 } else
                     ++it;
             }
+            erased = false;
             physics.erase(it);
             ++itDelete;
         }
@@ -110,6 +111,7 @@ void ComponentsManager::deleteIC() {
                 } else
                     ++it;
             }
+            erased = false;
             input.erase(it);
             ++itDelete;
         }
@@ -146,6 +148,7 @@ void ComponentsManager::deleteRC() {
                 } else
                     ++it;
             }
+            erased = false;
             rend.erase(it);
             ++itDelete;
         }
@@ -182,6 +185,7 @@ void ComponentsManager::deleteSC() {
                 } else
                     ++it;
             }
+            erased = false;
             sound.erase(it);
             ++itDelete;
         }
@@ -218,6 +222,7 @@ void ComponentsManager::deleteDC() {
                 } else
                     ++it;
             }
+            erased = false;
             deleteable.erase(it);
             ++itDelete;
         }
@@ -254,6 +259,7 @@ void ComponentsManager::deleteEC() {
                 } else
                     ++it;
             }
+            erased = false;
             event.erase(it);
             ++itDelete;
         }

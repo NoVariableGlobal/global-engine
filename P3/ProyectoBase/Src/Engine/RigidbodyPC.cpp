@@ -22,6 +22,7 @@ RigidbodyPC::RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape,
 RigidbodyPC::~RigidbodyPC() { body = nullptr; }
 
 void RigidbodyPC::destroy() {
+    active = false;
     PhysicsContext::getInstance()->destroyRigidBody(body);
     scene->getComponentsManager()->erasePC(this);
 }
