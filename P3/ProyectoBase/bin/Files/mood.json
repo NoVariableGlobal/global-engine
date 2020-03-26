@@ -180,6 +180,12 @@
               "semiautomatic": true
             }
           },
+		  {
+            "type": "SemiAutomaticEC",
+			"attributes": {
+				"cadence" : 0.3
+			}
+		  },
           {
             "type": "WeaponControllerIC",
             "attributes": {

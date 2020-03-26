@@ -8,7 +8,7 @@
 #include "Entity.h"
 #include "GunC.h"
 #include <json.h>
-
+#include "SemiAutomaticEC.h"
 #include <iostream>
 
 PlayerShotIC::PlayerShotIC() {}
@@ -21,12 +21,31 @@ void PlayerShotIC::destroy() {
 }
 
 void PlayerShotIC::handleInput(const SDL_Event& _event) {
+    bool automatic = (dynamic_cast<WeaponControllerIC*>(
+                          father->getComponent("WeaponControllerIC")))
+                         ->getCurrentGun()
+                         ->getsemiautomatic();
     if (_event.type == SDL_MOUSEBUTTONDOWN) {
         if (_event.button.button == SDL_BUTTON_LEFT) {
             // TODO: Tell gun component to fire a shot
-            (dynamic_cast<WeaponControllerIC*>(father->getComponent("WeaponControllerIC")))->getCurrentGun()->shoot();
+            if (!automatic)
+                (dynamic_cast<WeaponControllerIC*>(
+                     father->getComponent("WeaponControllerIC")))
+                    ->getCurrentGun()
+                    ->shoot();
+            else
+                (dynamic_cast<SemiAutomaticEC*>(
+                     father->getComponent("SemiAutomaticEC")))
+                    ->setShoot(true);
         }
-    } else if (_event.type == SDL_KEYDOWN) {
+    } else if (_event.type == SDL_MOUSEBUTTONUP) {
+        if (_event.button.button == SDL_BUTTON_LEFT) {
+            (dynamic_cast<SemiAutomaticEC*>(
+                 father->getComponent("SemiAutomaticEC")))
+                ->setShoot(false);
+        }
+    }
+	else if (_event.type == SDL_KEYDOWN) {
         if (_event.key.keysym.sym == SDLK_r) {
             (dynamic_cast<WeaponControllerIC*>(father->getComponent("WeaponControllerIC")))->getCurrentGun()->reload();
         }

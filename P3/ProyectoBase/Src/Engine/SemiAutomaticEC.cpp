@@ -22,7 +22,7 @@ void SemiAutomaticEC::destroy() {
 }
 
 void SemiAutomaticEC::checkEvent() {
-    if (timeCadence()) {
+    if (shoot && timeCadence()) {
         (dynamic_cast<WeaponControllerIC*>(
              father->getComponent("WeaponControllerIC")))
             ->getCurrentGun()
@@ -43,10 +43,12 @@ bool SemiAutomaticEC::timeCadence() {
 
 void SemiAutomaticEC::setCadence(double _cadence) { cadence = _cadence; }
 
+void SemiAutomaticEC::setShoot(bool _shoot) { shoot = _shoot; }
+
 // FACTORY INFRASTRUCTURE
-class SpawnerECFactory final : public ComponentFactory {
+class SemiAutomaticECFactory final : public ComponentFactory {
   public:
-    SpawnerECFactory() = default;
+    SemiAutomaticECFactory() = default;
 
     Component* create(Entity* _father, Json::Value& _data,
                       Scene* scene) override {

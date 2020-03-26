@@ -5,6 +5,7 @@ class SemiAutomaticEC : public EventComponent {
   private:
     double cadence;
     float lastTimecadence = 0;
+    bool shoot = false;
   public:
     SemiAutomaticEC();
     ~SemiAutomaticEC();
@@ -12,4 +13,5 @@ class SemiAutomaticEC : public EventComponent {
     virtual void checkEvent() override;
     bool timeCadence();
     void setCadence(double _cadence);
+    void setShoot(bool _shoot);
 };
