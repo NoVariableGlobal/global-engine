@@ -29,6 +29,8 @@ float GunC::getdamage() { return _damage; }
 
 bool GunC::getsemiautomatic() { return _semiautomatic; }
 
+bool GunC::getInfiniteAmmo() { return infiniteAmmo_; }
+
 void GunC::setbulletchamber(int bulletchamberMax) {
     _bulletchamberMax = bulletchamberMax;
     _bulletchamber = bulletchamberMax;
@@ -43,6 +45,8 @@ void GunC::setdamage(float damage) { _damage = damage; }
 void GunC::setsemiautomatic(bool semiautomatic) {
     _semiautomatic = semiautomatic;
 }
+
+void GunC::setInfiniteAmmo(bool infinite) { infiniteAmmo_ = infinite; }
 
 void GunC::setTransform(TransformComponent* trans) { myTransform = trans; }
 

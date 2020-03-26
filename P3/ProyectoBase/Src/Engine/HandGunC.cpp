@@ -1,17 +1,17 @@
 #include "HandGunC.h"
+#include "ComponentsManager.h"
+#include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
-#include "SpawnerBulletsC.h"
-#include "Scene.h"
-#include "Entity.h"
-#include "ComponentsManager.h"
-#include "TransformComponent.h"
-#include "RigidbodyPC.h"
-#include "TridimensionalObjectRC.h"
-#include "OgreVector3.h"
-#include "OgreSceneNode.h"
-#include "OgreQuaternion.h"
 #include "Ogre.h"
+#include "OgreQuaternion.h"
+#include "OgreSceneNode.h"
+#include "OgreVector3.h"
+#include "RigidbodyPC.h"
+#include "Scene.h"
+#include "SpawnerBulletsC.h"
+#include "TransformComponent.h"
+#include "TridimensionalObjectRC.h"
 #include <json.h>
 
 HandGunC::HandGunC() : GunC() {}
@@ -24,33 +24,32 @@ void HandGunC::destroy() {
 }
 
 bool HandGunC::shoot() {
-    if (_bulletchamber > 0) {
-        _bulletchamber--;
+    if (getInfiniteAmmo() || _bulletchamber > 0) {
+        if (!getInfiniteAmmo())
+            _bulletchamber--;
         Entity* newBullet = dynamic_cast<SpawnerBulletsC*>(
                                 scene->getEntitybyId("GameManager")
                                     ->getComponent("SpawnerBulletsC"))
                                 ->getBullet("HandgunBullet");
 
-       TransformComponent* bulletTransform = dynamic_cast<TransformComponent*>(
+        TransformComponent* bulletTransform = dynamic_cast<TransformComponent*>(
             newBullet->getComponent("TransformComponent"));
 
-       Ogre::Quaternion quat =
-           dynamic_cast<TridimensionalObjectRC*>(
-               father->getComponent("TridimensionalObjectRC"))
-               ->getSceneNode()
-               ->getOrientation();
+        Ogre::Quaternion quat =
+            dynamic_cast<TridimensionalObjectRC*>(
+                father->getComponent("TridimensionalObjectRC"))
+                ->getSceneNode()
+                ->getOrientation();
 
-       bulletTransform->setPosition(myTransform->getPosition() +
-                                    (quat * Ogre::Vector3::UNIT_Z) *10);
-       bulletTransform->setOrientation(myTransform->getOrientation());
+        bulletTransform->setPosition(myTransform->getPosition() +
+                                     (quat * Ogre::Vector3::UNIT_Z) * 10);
+        bulletTransform->setOrientation(myTransform->getOrientation());
 
-       RigidbodyPC* bulletRb = dynamic_cast<RigidbodyPC*>(
-           newBullet->getComponent("RigidbodyPC"));
+        RigidbodyPC* bulletRb =
+            dynamic_cast<RigidbodyPC*>(newBullet->getComponent("RigidbodyPC"));
 
-
-
-       bulletRb->setLinearVelocity((quat * Ogre::Vector3::UNIT_Z) * 50);
-       bulletRb->setPosition(bulletTransform->getPosition());
+        bulletRb->setLinearVelocity((quat * Ogre::Vector3::UNIT_Z) * 50);
+        bulletRb->setPosition(bulletTransform->getPosition());
 
     } else
         return false;
@@ -90,8 +89,8 @@ class HandGunCFactory final : public ComponentFactory {
             throw std::exception("HandGunC: semiautomatic is not an bool");
         hg->setsemiautomatic(_data["semiautomatic"].asBool());
 
-
-        hg->setTransform(dynamic_cast<TransformComponent*>(_father->getComponent("TransformComponent")));
+        hg->setTransform(dynamic_cast<TransformComponent*>(
+            _father->getComponent("TransformComponent")));
 
         return hg;
     };
