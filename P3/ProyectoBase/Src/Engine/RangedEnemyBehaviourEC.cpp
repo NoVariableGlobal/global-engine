@@ -3,12 +3,15 @@
 #include "EnemyBehaviourEC.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
-#include "LifeC.h"
 #include "OgreRoot.h"
 #include "PlayerMovementIC.h"
 #include "Scene.h"
 #include <Entity.h>
 #include <json.h>
+#include "TransformComponent.h"
+#include "SpawnerBulletsC.h"
+#include "TridimensionalObjectRC.h"
+#include "RigidbodyPC.h"
 
 RangedEnemyBehaviourEC::RangedEnemyBehaviourEC() : EnemyBehaviourEC() {}
 
@@ -17,18 +20,78 @@ RangedEnemyBehaviourEC::~RangedEnemyBehaviourEC() {}
 void RangedEnemyBehaviourEC::checkEvent() {
     EnemyBehaviourEC::checkEvent();
 
-	// attack every attackCooldown seconds
-	if (timeToAttack())
-     {
-		// if enemy is colliding with player
-        if (getCollisionWithPlayer())
-         {
-            // attack player
-            LifeC* playerHealth = dynamic_cast<LifeC*>(
-                scene->getEntitybyId("Player")->getComponent("LifeC"));
-            playerHealth->doDamage(getAttack());
-        }
-    }
+    // attack every attackCooldown seconds
+    if (timeToAttack()) {
+		// shoot different bullets depending on weapon equipped
+        if (weaponEquipped == "handgun")
+            shootHandgunBullet();
+        else if (weaponEquipped == "rifle")
+            shootRifleBullet();
+		// TO DO: add more weapon types
+	}
+}
+
+std::string RangedEnemyBehaviourEC::getWeaponEquipped() {
+    return weaponEquipped;
+}
+
+void RangedEnemyBehaviourEC::setWeaponEquipped(std::string _weaponEquipped) {
+    weaponEquipped = _weaponEquipped;
+}
+
+void RangedEnemyBehaviourEC::shootHandgunBullet() {
+    Entity* newBullet =
+        dynamic_cast<SpawnerBulletsC*>(scene->getEntitybyId("GameManager")
+                                           ->getComponent("SpawnerBulletsC"))
+            ->getBullet("EnemyHandgunBullet", "EnemyBullet");
+
+    TransformComponent* bulletTransform = dynamic_cast<TransformComponent*>(
+        newBullet->getComponent("TransformComponent"));
+
+    Ogre::Quaternion quat = dynamic_cast<TridimensionalObjectRC*>(
+                                father->getComponent("TridimensionalObjectRC"))
+                                ->getSceneNode()
+                                ->getOrientation();
+
+	TransformComponent* myTransform = dynamic_cast<TransformComponent*>(father->getComponent("TransformComponent"));
+
+    bulletTransform->setPosition(myTransform->getPosition() +
+                                 (quat * Ogre::Vector3::UNIT_Z) * 10);
+    bulletTransform->setOrientation(myTransform->getOrientation());
+
+    RigidbodyPC* bulletRb =
+        dynamic_cast<RigidbodyPC*>(newBullet->getComponent("RigidbodyPC"));
+
+    bulletRb->setLinearVelocity(getDirectionToPlayer() * 50);
+    bulletRb->setPosition(bulletTransform->getPosition());
+}
+
+void RangedEnemyBehaviourEC::shootRifleBullet() {
+    Entity* newBullet =
+        dynamic_cast<SpawnerBulletsC*>(scene->getEntitybyId("GameManager")
+                                           ->getComponent("SpawnerBulletsC"))
+            ->getBullet("EnemyRifleBullet", "EnemyBullet");
+
+    TransformComponent* bulletTransform = dynamic_cast<TransformComponent*>(
+        newBullet->getComponent("TransformComponent"));
+
+    Ogre::Quaternion quat = dynamic_cast<TridimensionalObjectRC*>(
+                                father->getComponent("TridimensionalObjectRC"))
+                                ->getSceneNode()
+                                ->getOrientation();
+
+    TransformComponent* myTransform = dynamic_cast<TransformComponent*>(
+        father->getComponent("TransformComponent"));
+
+    bulletTransform->setPosition(myTransform->getPosition() +
+                                 (quat * Ogre::Vector3::UNIT_Z) * 10);
+    bulletTransform->setOrientation(myTransform->getOrientation());
+
+    RigidbodyPC* bulletRb =
+        dynamic_cast<RigidbodyPC*>(newBullet->getComponent("RigidbodyPC"));
+
+    bulletRb->setLinearVelocity(getDirectionToPlayer() * 50);
+    bulletRb->setPosition(bulletTransform->getPosition());
 }
 
 // FACTORY INFRASTRUCTURE
@@ -60,7 +123,8 @@ class RangedEnemyBehaviourECFactory final : public ComponentFactory {
             rangedEnemyBehaviour->getPlayerSpeedPercentage());
 
         if (!_data["attack"].asInt())
-            throw std::exception("RangedMeleeEnemyBehaviourPC: attack is not an int");
+            throw std::exception(
+                "RangedMeleeEnemyBehaviourPC: attack is not an int");
         rangedEnemyBehaviour->setAttack(_data["attack"].asInt());
 
         if (!_data["attackCooldown"].asFloat())
@@ -69,7 +133,13 @@ class RangedEnemyBehaviourECFactory final : public ComponentFactory {
         rangedEnemyBehaviour->setAttackCooldown(
             _data["attackCooldown"].asFloat());
 
-        return rangedEnemyBehaviour; 
+		if (!_data["weaponEquipped"].isString())
+            throw std::exception(
+                "RangedEnemyBehaviourEC: weaponEquipped is not a string");
+        rangedEnemyBehaviour->setWeaponEquipped(
+            _data["weaponEquipped"].asString());
+
+        return rangedEnemyBehaviour;
     };
 };
 

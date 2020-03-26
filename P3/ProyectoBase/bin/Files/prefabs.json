@@ -296,6 +296,176 @@
           }
         }
       ]
+    },
+    {
+      "id": "RangedHandgunEnemy",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 50, 0, 50 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.5, 0.5, 0.5 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "penguin.mesh",
+            "node": "nMeleeEnemy",
+            "material": "PenguinMaterial"
+          }
+        },
+        {
+          "type": "LifeC",
+          "attributes": {
+            "life": 150
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 50, 0, 50 ],
+            "shape": [ 5, 5, 5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": false,
+            "kinematic": false,
+            "static": false,
+            "friction": 500,
+            "restitution": 0
+          }
+        },
+        {
+          "type": "RangedEnemyBehaviourEC",
+          "attributes": {
+            "playerSpeedPercentage": 0.3,
+            "attack": 10,
+            "attackCooldown": 2,
+            "weaponEquipped": "handgun"
+          }
+        }
+      ]
+    },
+    {
+      "id": "RangedRifleEnemy",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 50, 0, 50 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.5, 0.5, 0.5 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "penguin.mesh",
+            "node": "nMeleeEnemy",
+            "material": "PenguinMaterial"
+          }
+        },
+        {
+          "type": "LifeC",
+          "attributes": {
+            "life": 150
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 50, 0, 50 ],
+            "shape": [ 5, 5, 5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": false,
+            "kinematic": false,
+            "static": false,
+            "friction": 500,
+            "restitution": 0
+          }
+        },
+        {
+          "type": "RangedEnemyBehaviourEC",
+          "attributes": {
+            "playerSpeedPercentage": 0.3,
+            "attack": 15,
+            "attackCooldown": 0.5,
+            "weaponEquipped": "rifle"
+          }
+        }
+      ]
+    },
+    {
+      "id": "EnemyHandgunBullet",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.05, 0.05, 0.05 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nGunBullet",
+            "material": "EnemyBulletMaterial"
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 2.5, 2.5, 2.5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": false,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "EnemyRifleBullet",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.05, 0.05, 0.05 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nGunBullet",
+            "material": "EnemyBulletMaterial"
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 2.5, 2.5, 2.5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": false,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        }
+      ]
     }
   ]
 }

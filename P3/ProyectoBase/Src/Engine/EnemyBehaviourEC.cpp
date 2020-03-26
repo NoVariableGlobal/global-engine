@@ -36,7 +36,7 @@ void EnemyBehaviourEC::checkEvent() {
         scene->getEntitybyId("Player")->getComponent("TransformComponent"));
     Ogre::Vector3 playerPosition = playerTransform->getPosition();
 
-    Ogre::Vector3 directionToPlayer =
+    directionToPlayer =
         Ogre::Vector3(playerPosition.x - transform->getPosition().x,
                       playerPosition.y - transform->getPosition().y,
                       playerPosition.z - transform->getPosition().z)
@@ -98,6 +98,10 @@ float EnemyBehaviourEC::getAttackCooldown() { return attackCooldown; }
 
 float EnemyBehaviourEC::getLastTimeAttacked() { return lastTimeAttacked; }
 
+Ogre::Vector3 EnemyBehaviourEC::getDirectionToPlayer() {
+    return directionToPlayer;
+}
+
 void EnemyBehaviourEC::setSpeed(float _speed) { speed = _speed; }
 
 void EnemyBehaviourEC::setPlayerSpeedPercentage(float _playerSpeedPercentage) {
@@ -112,4 +116,8 @@ void EnemyBehaviourEC::setAttackCooldown(float _attackCooldown) {
 
 void EnemyBehaviourEC::setLastTimeAttacked(float _lastTimeAttacked) {
     lastTimeAttacked = _lastTimeAttacked;
+}
+
+void EnemyBehaviourEC::setDirectionToPlayer(Ogre::Vector3 _directionToPlayer) {
+    directionToPlayer = _directionToPlayer;
 }

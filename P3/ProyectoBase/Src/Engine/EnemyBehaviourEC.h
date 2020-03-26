@@ -1,5 +1,7 @@
 #pragma once
 #include "EventComponent.h"
+#include "OgreRoot.h"
+
 class EnemyBehaviourEC : public EventComponent {
   private:
 	// speed at which enemy follows the player
@@ -17,6 +19,9 @@ class EnemyBehaviourEC : public EventComponent {
     float attackCooldown;
     float lastTimeAttacked = 0;
 
+	// direction vector from enemy to player
+	Ogre::Vector3 directionToPlayer;
+
  public:
     EnemyBehaviourEC();
    ~EnemyBehaviourEC();
@@ -31,6 +36,7 @@ class EnemyBehaviourEC : public EventComponent {
     int getAttack();
     float getAttackCooldown();
     float getLastTimeAttacked();
+    Ogre::Vector3 getDirectionToPlayer();
 
 	void setSpeed(float _speed);
     void setPlayerSpeedPercentage(float _playerSpeedPercentage);
@@ -38,4 +44,5 @@ class EnemyBehaviourEC : public EventComponent {
     void setAttack(float _attack);
     void setAttackCooldown(float _attackCooldown);
     void setLastTimeAttacked(float _lastTimeAttacked);
+    void setDirectionToPlayer(Ogre::Vector3 _directionToPlayer);
 };
