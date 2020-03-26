@@ -63,7 +63,6 @@ void Game::update() { scene->update(); }
 void Game::render() {
     scene->render();
     OgreSDLContext::getInstance()->renderLoop();
-
 }
 
 void Game::handleInput() {
@@ -84,7 +83,14 @@ void Game::setScene(std::string _sceneName) {
     scene->clearEntities();
     PhysicsContext::getInstance()->destroyWorldContent();
 
-    scene->load(scenesQueue.find(_sceneName)->second);
+	// Safely load the scene
+    auto it = scenesQueue.find(_sceneName);
+    if (it == scenesQueue.end()) {
+        std::cout << "ERROR: Scene '" + _sceneName +
+                         "' could not be found\n";
+        throw std::exception("Scene could not be found");
+    }
+    scene->load(it->second);
 
     sceneChange = false;
 }

@@ -1,11 +1,11 @@
 #include "Scene.h"
+#include "Component.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "Game.h"
 #include "Loader.h"
 #include "OgreVector3.h"
 #include "PhysicsContext.h"
-#include "Component.h"
 
 #include <iostream>
 #include <json.h>
@@ -53,7 +53,12 @@ void Scene::handleInput(const SDL_Event& _event) {
 }
 
 Entity* Scene::getEntitybyId(std::string id) {
-    return entities.find(id)->second;
+    auto it = entities.find(id);
+    if (it == entities.end()) {
+        std::cout << "ERROR: Entity '" + id + "' could not be found\n";
+        throw std::exception("Entity could not be found");
+    }
+    return it->second;
 }
 
 void Scene::addEntity(Entity* entity) {
@@ -61,7 +66,7 @@ void Scene::addEntity(Entity* entity) {
 }
 
 void Scene::deleteEntity(Entity* entity) {
-    std::map<std::string, Component*> &components = entity->getAllComponents();
+    std::map<std::string, Component*>& components = entity->getAllComponents();
     for (auto it : components) {
         it.second->destroy();
     }
@@ -92,7 +97,14 @@ Entity* Scene::getInstanceOf(std::string _prefab, std::string _id) {
 
 void Scene::clonePrefabInfo(std::string _prefab, Entity* _entity) {
     Loader loader;
-    loader.setComponents(prefabs.find(_prefab)->second, _entity, this);
+
+    auto it = prefabs.find(_prefab);
+    if (it == prefabs.end()) {
+        std::cout << "ERROR: Prefab '" + _prefab + "' could not be found\n";
+        throw std::exception("Prefab could not be found");
+    }
+
+    loader.setComponents(it->second, _entity, this);
 }
 
 void Scene::addPrefab(std::string id, Json::Value components) {
