@@ -9,7 +9,10 @@
 
 #include <iostream>
 
-void ShotgunPowerUpC::destroy() { scene->getComponentsManager()->eraseDC(this); }
+void ShotgunPowerUpC::destroy() { 
+	setActive(false);
+	scene->getComponentsManager()->eraseDC(this); 
+}
 
 void ShotgunPowerUpC::onPickUp() {
     dynamic_cast<WeaponControllerIC*>(

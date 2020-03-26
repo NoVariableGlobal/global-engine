@@ -13,6 +13,7 @@
 #include <json.h>
 
 void OnEPressPickUpIC::destroy() {
+	setActive(false);
     scene->getComponentsManager()->eraseIC(this);
 }
 
@@ -24,6 +25,7 @@ void OnEPressPickUpIC::handleInput(const SDL_Event& _event) {
         if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_e) {
             dynamic_cast<PowerUpC*>(father->getComponent(objectName))
                 ->onPickUp();
+            scene->deleteEntity(father);
         }
     }
 }
@@ -38,6 +40,7 @@ class OnEPressPickUpICFactory : public ComponentFactory {
                               Scene* scene) {
         // Create the component
         OnEPressPickUpIC* onEPressPickUpIC = new OnEPressPickUpIC();
+        onEPressPickUpIC->setScene(scene);
         scene->getComponentsManager()->addIC(onEPressPickUpIC);
 
         onEPressPickUpIC->setObjectName(_data["objectName"].asString());

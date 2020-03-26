@@ -10,6 +10,7 @@
 #include <value.h>
 
 void DestroyAfterSecsEC::destroy() {
+    setActive(false);
     scene->getComponentsManager()->eraseEC(this);
 }
 

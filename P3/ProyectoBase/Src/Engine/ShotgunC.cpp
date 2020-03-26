@@ -18,7 +18,10 @@ ShotgunC::ShotgunC() : GunC() {}
 
 ShotgunC::~ShotgunC() {}
 
-void ShotgunC::destroy() { scene->getComponentsManager()->eraseDC(this); }
+void ShotgunC::destroy() {
+    setActive(false);
+    scene->getComponentsManager()->eraseDC(this);
+}
 
 bool ShotgunC::shoot() {
     if (_bulletchamber > 0) {
