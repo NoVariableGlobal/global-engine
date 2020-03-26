@@ -14,7 +14,7 @@ class ShotgunC : public GunC {
     ShotgunC();
     ~ShotgunC();
 
-	virtual void destroyMyself();
+	virtual void destroy();
     virtual bool shoot();
 
 	void setNPellets(int n);

@@ -9,7 +9,7 @@
 #include <time.h>
 #include <value.h>
 
-void DestroyAfterSecsEC::destroyMyself() {
+void DestroyAfterSecsEC::destroy() {
     scene->getComponentsManager()->eraseDC(this);
 }
 
@@ -21,7 +21,7 @@ void DestroyAfterSecsEC::checkEvent() {
 
     float seconds = clock() / static_cast<float>(CLOCKS_PER_SEC);
     if (seconds - creationTime >= lifeTime) {
-        // TODO: Borrar father y todos sus componentes
+        scene->deleteEntity(father);
     }
 }
 

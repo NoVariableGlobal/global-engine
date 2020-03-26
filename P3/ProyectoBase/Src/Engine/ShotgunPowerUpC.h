@@ -5,7 +5,7 @@
 class ShotgunPowerUpC : public PowerUpC {
 
   public:
-    virtual void destroyMyself();
+    virtual void destroy();
 
     void onPickUp();
 };

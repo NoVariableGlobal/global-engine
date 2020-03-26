@@ -12,7 +12,7 @@
 #include <iostream>
 #include <json.h>
 
-void OnEPressPickUpIC::destroyMyself() {
+void OnEPressPickUpIC::destroy() {
     scene->getComponentsManager()->eraseIC(this);
 }
 

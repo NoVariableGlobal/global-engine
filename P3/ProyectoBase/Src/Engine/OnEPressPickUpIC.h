@@ -14,7 +14,7 @@ class OnEPressPickUpIC : public InputComponent {
     OnEPressPickUpIC() = default;
     ~OnEPressPickUpIC() = default;
 
-	virtual void destroyMyself();
+	virtual void destroy();
 
     void handleInput(const SDL_Event& _event);
 

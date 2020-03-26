@@ -4,7 +4,7 @@
 
 class DestroyAfterSecsEC : public EventComponent {
   private:
-    int lifeTime;
+    int lifeTime = 0;
     bool firstTime = true;
     float creationTime = 0;
 
@@ -12,7 +12,7 @@ class DestroyAfterSecsEC : public EventComponent {
     DestroyAfterSecsEC() = default;
     ~DestroyAfterSecsEC() = default;
 
-    virtual void destroyMyself();
+    virtual void destroy();
 
     virtual void checkEvent();
 
