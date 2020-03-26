@@ -158,6 +158,31 @@
         {
           "type": "WeaponControllerIC",
           "attributes": {
+          {
+            "type": "ShotgunC",
+            "attributes": {
+              "bulletchamberMax": 2,
+              "munition": 14,
+              "cadence": 1,
+              "damage": 5,
+              "semiautomatic": false,
+			  "nPellets": 3,
+			  "dispersion": 5
+            }
+          },
+		  {
+            "type": "AutomaticRifleC",
+            "attributes": {
+              "bulletchamberMax": 30,
+              "munition": 90,
+              "cadence": 1,
+              "damage": 15,
+              "semiautomatic": true
+            }
+          },
+          {
+            "type": "WeaponControllerIC",
+            "attributes": {
 
           }
         },
@@ -203,7 +228,7 @@
               "type": "SpawnerFloorRandomEC",
               "attributes": {
                 "spawnCooldown": 5,
-                "spawnID": [ "Shotgun" ],
+                "spawnID": [ "AutomaticRifle" ],
                 "spawnChances": [ 12.5 ],
               }
             }
