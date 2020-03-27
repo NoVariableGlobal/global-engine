@@ -21,6 +21,10 @@ InfiniteAmmoEC::~InfiniteAmmoEC() {}
 void InfiniteAmmoEC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseEC(this);
+
+    if (gun_ != nullptr) {
+        gun_->setInfiniteAmmo(false);
+    }
 }
 
 void InfiniteAmmoEC::checkEvent() {
@@ -29,8 +33,8 @@ void InfiniteAmmoEC::checkEvent() {
     if (!picked && getCollisionWithPlayer()) {
         auto weaponController = dynamic_cast<WeaponControllerIC*>(
             father->getComponent("WeaponControllerIC"));
-        GunC* gun = weaponController->getCurrentGun();
-        gun->setInfiniteAmmo(true);
+        gun_ = weaponController->getCurrentGun();
+        gun_->setInfiniteAmmo(true);
         picked = true;
 
         dynamic_cast<TridimensionalObjectRC*>(
@@ -44,32 +48,6 @@ void InfiniteAmmoEC::checkEvent() {
             father->getComponent("TransformComponent"))
             ->setActive(false);
     }
-    if (!picked) { // delete item when the effect has passed
-        if (timeDisappear()) {
-            scene->deleteEntity(father);
-        }
-    } else if (timeDisappearEffect()) { // delete item when the effect has
-                                        // passed
-        auto weaponController = dynamic_cast<WeaponControllerIC*>(
-            father->getComponent("WeaponControllerIC"));
-        GunC* gun = weaponController->getCurrentGun();
-        gun->setInfiniteAmmo(false);
-
-        scene->deleteEntity(father);
-    }
-}
-
-void InfiniteAmmoEC::setTimeEffect(float _time) { timeEffect = _time; }
-
-bool InfiniteAmmoEC::timeDisappearEffect() {
-    float seconds = clock() / static_cast<float>(CLOCKS_PER_SEC);
-
-    if (!startPicked) {
-        time = seconds;
-        startPicked = true;
-    }
-
-    return time + timeEffect <= seconds;
 }
 
 // FACTORY INFRASTRUCTURE
@@ -89,9 +67,6 @@ class InfiniteAmmoECFactory final : public ComponentFactory {
             throw std::exception("InfiniteAmmo: time is not a double");
         infiniteAmmo->setDuration(_data["time"].asDouble());
 
-        if (!_data["timeEffect"].isDouble())
-            throw std::exception("InfiniteAmmo: timeEffect is not a double");
-        infiniteAmmo->setTimeEffect(_data["timeEffect"].asDouble());
         infiniteAmmo->setActive(true);
 
         return infiniteAmmo;

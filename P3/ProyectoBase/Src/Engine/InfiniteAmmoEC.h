@@ -1,18 +1,15 @@
 #pragma once
 #include "PowerUpEC.h"
 
+class GunC;
+
 class InfiniteAmmoEC : public PowerUpEC {
   private:
-    double time;
-    double timeEffect;
-    bool startPicked;
+    GunC* gun_;
 
   public:
     InfiniteAmmoEC();
     ~InfiniteAmmoEC();
     virtual void destroy();
     virtual void checkEvent();
-
-    void setTimeEffect(float _time);
-    bool timeDisappearEffect();
 };
