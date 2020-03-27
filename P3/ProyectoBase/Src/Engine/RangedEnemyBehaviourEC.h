@@ -16,10 +16,7 @@ private:
 
 	void setWeaponEquipped(std::string _weaponEquipped);
 
-	// shoot bullet with handgun equipped
-	void shootHandgunBullet();
-
-	// shoot bullet with rifle equipped
-    void shootRifleBullet();
+	// shoot bullet in a straight line
+    void shootStraight();
 
 };

@@ -398,7 +398,7 @@
       ]
     },
     {
-      "id": "EnemyHandgunBullet",
+      "id": "EnemyBullet_handgun",
       "components": [
         {
           "type": "TransformComponent",
@@ -433,7 +433,7 @@
       ]
     },
     {
-      "id": "EnemyRifleBullet",
+      "id": "EnemyBullet_rifle",
       "components": [
         {
           "type": "TransformComponent",
