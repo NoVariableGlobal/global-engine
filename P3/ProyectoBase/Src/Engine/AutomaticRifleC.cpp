@@ -8,6 +8,7 @@
 #include "OgreSceneNode.h"
 #include "OgreVector3.h"
 #include "RigidbodyPC.h"
+#include "RigidbodyPC.h"
 #include "Scene.h"
 #include "SpawnerBulletsC.h"
 #include "TransformComponent.h"
@@ -28,7 +29,7 @@ bool AutomaticRifleC::shoot() {
         Entity* newBullet = dynamic_cast<SpawnerBulletsC*>(
                                 scene->getEntitybyId("GameManager")
                                     ->getComponent("SpawnerBulletsC"))
-                                ->getBullet("AutomaticRifleBullet");
+                ->getBullet("AutomaticRifleBullet", _myBulletTag);
 
         TransformComponent* bulletTransform = dynamic_cast<TransformComponent*>(
             newBullet->getComponent("TransformComponent"));
@@ -67,6 +68,10 @@ class AutomaticRifleCFactory final : public ComponentFactory {
         automaticRifle->setFather(_father);
         automaticRifle->setScene(_scene);
 
+		if (!_data["bulletTag"].isString())
+            throw std::exception("ShotgunC: bulletTag is not a string");
+                automaticRifle->setBulletTag(_data["bulletTag"].asString());
+
         if (!_data["bulletchamberMax"].isInt())
             throw std::exception("ShotgunC: bulletchamberMax is not an int");
         automaticRifle->setbulletchamber(_data["bulletchamberMax"].asInt());
@@ -77,11 +82,6 @@ class AutomaticRifleCFactory final : public ComponentFactory {
 
         if (!_data["cadence"].isDouble())
             throw std::exception("ShotgunC: cadence is not an int");
-        automaticRifle->setcadence(_data["cadence"].asFloat());
-
-        if (!_data["damage"].isDouble())
-            throw std::exception("ShotgunC: damage is not an int");
-        automaticRifle->setdamage(_data["damage"].asFloat());
 
         if (!_data["semiautomatic"].isBool())
             throw std::exception("ShotgunC: semiautomatic is not an bool");

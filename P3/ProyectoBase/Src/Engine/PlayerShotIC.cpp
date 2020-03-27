@@ -1,15 +1,15 @@
 #include "PlayerShotIC.h"
 #include "ComponentsManager.h"
+#include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
-#include "Scene.h"
-#include "WeaponControllerIC.h"
-#include "OgreRoot.h"
-#include "Entity.h"
 #include "GunC.h"
-#include <json.h>
+#include "OgreRoot.h"
+#include "Scene.h"
 #include "SemiAutomaticEC.h"
+#include "WeaponControllerIC.h"
 #include <iostream>
+#include <json.h>
 
 PlayerShotIC::PlayerShotIC() {}
 
@@ -38,20 +38,22 @@ void PlayerShotIC::handleInput(const SDL_Event& _event) {
                      father->getComponent("SemiAutomaticEC")))
                     ->setShoot(true);
         }
-    } else if (_event.type == SDL_MOUSEBUTTONUP) {
+    } else if (automatic && _event.type == SDL_MOUSEBUTTONUP) {
         if (_event.button.button == SDL_BUTTON_LEFT) {
             (dynamic_cast<SemiAutomaticEC*>(
                  father->getComponent("SemiAutomaticEC")))
                 ->setShoot(false);
         }
-    }
-	else if (_event.type == SDL_KEYDOWN) {
+    } else if (_event.type == SDL_KEYDOWN) {
         if (_event.key.keysym.sym == SDLK_r) {
-            (dynamic_cast<WeaponControllerIC*>(father->getComponent("WeaponControllerIC")))->getCurrentGun()->reload();
+            (dynamic_cast<WeaponControllerIC*>(
+                 father->getComponent("WeaponControllerIC")))
+                ->getCurrentGun()
+                ->reload();
         }
     } else if (_event.type == SDL_KEYDOWN) {
         if (_event.key.keysym.sym == SDLK_r) {
-            //reload
+            // reload
         }
     }
 }

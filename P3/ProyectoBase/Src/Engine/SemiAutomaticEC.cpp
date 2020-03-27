@@ -3,14 +3,13 @@
 #include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
+#include "GunC.h"
+#include "OgreRoot.h"
 #include "Scene.h"
 #include "WeaponControllerIC.h"
-#include <time.h>
 #include <iostream>
 #include <json.h>
-#include "OgreRoot.h"
-#include "Entity.h"
-#include "GunC.h"
+#include <time.h>
 
 SemiAutomaticEC::SemiAutomaticEC() {}
 
@@ -22,6 +21,10 @@ void SemiAutomaticEC::destroy() {
 }
 
 void SemiAutomaticEC::checkEvent() {
+    cadence = (dynamic_cast<WeaponControllerIC*>(
+                   father->getComponent("WeaponControllerIC")))
+                  ->getCurrentGun()
+                  ->getcadence();
     if (shoot && timeCadence()) {
         (dynamic_cast<WeaponControllerIC*>(
              father->getComponent("WeaponControllerIC")))
@@ -56,10 +59,6 @@ class SemiAutomaticECFactory final : public ComponentFactory {
 
         semiAutomatic->setFather(_father);
         scene->getComponentsManager()->addEC(semiAutomatic);
-
-		if (!_data["cadence"].isDouble())
-            throw std::exception("Shield: time is not a double");
-                semiAutomatic->setCadence(_data["cadence"].asDouble());
 
         semiAutomatic->setActive(true);
 

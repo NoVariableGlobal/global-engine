@@ -53,7 +53,7 @@
           "type": "SpawnerFloorRandomEC",
           "attributes": {
             "spawnCooldown": 5,
-            "spawnID": [ "Shotgun" ],
+            "spawnID": [ "AutomaticRifle" ],
             "spawnTag": "Gun",
             "spawnChances": [ 100 ]
           }
@@ -155,40 +155,24 @@
             "dispersion": 10
           }
         },
+		{
+          "type": "AutomaticRifleC",
+          "attributes": {
+            "bulletTag": "PlayerBullet",
+            "bulletchamberMax": 30,
+            "munition": 90,
+            "cadence": 0.3,
+            "semiautomatic": true
+          }
+        },
+		{
+		  "type": "SemiAutomaticEC",
+          "attributes": {
+          }
+		},			
         {
           "type": "WeaponControllerIC",
           "attributes": {
-          {
-            "type": "ShotgunC",
-            "attributes": {
-              "bulletchamberMax": 2,
-              "munition": 14,
-              "cadence": 1,
-              "damage": 5,
-              "semiautomatic": false,
-			  "nPellets": 3,
-			  "dispersion": 5
-            }
-          },
-		  {
-            "type": "AutomaticRifleC",
-            "attributes": {
-              "bulletchamberMax": 30,
-              "munition": 90,
-              "cadence": 1,
-              "damage": 15,
-              "semiautomatic": true
-            }
-          },
-		  {
-            "type": "SemiAutomaticEC",
-			"attributes": {
-				"cadence" : 0.3
-			}
-		  },
-          {
-            "type": "WeaponControllerIC",
-            "attributes": {
 
           }
         },
@@ -218,27 +202,6 @@
           }
         }
       ]
-      },
-      {
-        "id": "GunSpawner",
-        "components": [
-            {
-              "type": "TransformComponent",
-              "attributes": {
-               "position": [ 0, 0, 0],
-               "orientation": [ 0, 0, 0],
-               "scale": [ 0.1, 0.1, 0.1]
-              }
-            },
-            {
-              "type": "SpawnerFloorRandomEC",
-              "attributes": {
-                "spawnCooldown": 5,
-                "spawnID": [ "AutomaticRifle" ],
-                "spawnChances": [ 12.5 ],
-              }
-            }
-        ]
-      }
-    ]
+    }
+  ]
 }

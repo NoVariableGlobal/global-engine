@@ -1,11 +1,13 @@
 #pragma once
 #include "EventComponent.h"
 
+// class to detect when to fire an automatic weapon depending on its cadence
 class SemiAutomaticEC : public EventComponent {
   private:
     double cadence;
     float lastTimecadence = 0;
     bool shoot = false;
+
   public:
     SemiAutomaticEC();
     ~SemiAutomaticEC();
