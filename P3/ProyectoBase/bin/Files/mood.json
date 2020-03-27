@@ -149,8 +149,8 @@
           "type": "SpawnerFloorRandomEC",
           "attributes": {
             "spawnCooldown": 10,
-            "spawnID": [ "IncreaseSpeed" ],
-            "spawnChances": [ 100 ]
+            "spawnID": [ "IncreaseSpeed", "InfiniteAmmo" ],
+            "spawnChances": [ 1, 99 ]
           }
         }
       ]
@@ -171,7 +171,7 @@
               "attributes": {
                 "spawnCooldown": 5,
                 "spawnID": [ "Shotgun" ],
-                "spawnChances": [ 12.5 ],
+                "spawnChances": [ 12.5 ]
               }
             }
         ]

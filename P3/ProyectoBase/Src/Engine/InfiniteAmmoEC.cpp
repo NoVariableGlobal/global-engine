@@ -4,7 +4,6 @@
 #include "FactoriesFactory.h"
 #include "Factory.h"
 #include "GunC.h"
-#include "LifeC.h"
 #include "OgreVector3.h"
 #include "RigidbodyPC.h"
 #include "Scene.h"
@@ -32,7 +31,7 @@ void InfiniteAmmoEC::checkEvent() {
 
     if (!picked && getCollisionWithPlayer()) {
         auto weaponController = dynamic_cast<WeaponControllerIC*>(
-            father->getComponent("WeaponControllerIC"));
+            scene->getEntitybyId("Player")->getComponent("WeaponControllerIC"));
         gun_ = weaponController->getCurrentGun();
         gun_->setInfiniteAmmo(true);
         picked = true;
@@ -73,4 +72,4 @@ class InfiniteAmmoECFactory final : public ComponentFactory {
     };
 };
 
-REGISTER_FACTORY("InfiniteAmmo", InfiniteAmmoEC);
+REGISTER_FACTORY("InfiniteAmmoEC", InfiniteAmmoEC);
