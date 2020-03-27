@@ -278,6 +278,9 @@
     <ClInclude Include="..\..\Src\Engine\DestroyAfterSecsEC.h">
       <Filter>Components\Events</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\Util.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">

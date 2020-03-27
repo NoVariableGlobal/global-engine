@@ -1,13 +1,13 @@
 #include "Scene.h"
+#include "Component.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "Game.h"
 #include "Loader.h"
 #include "OgreVector3.h"
 #include "PhysicsContext.h"
-#include "Component.h"
+#include "Util.h"
 
-#include <iostream>
 #include <json.h>
 
 Scene::Scene(Game* _game) {
@@ -53,7 +53,7 @@ void Scene::handleInput(const SDL_Event& _event) {
 }
 
 Entity* Scene::getEntitybyId(std::string id) {
-    return entities.find(id)->second;
+    return assert_find(entities, id);
 }
 
 void Scene::addEntity(Entity* entity) {
@@ -61,7 +61,7 @@ void Scene::addEntity(Entity* entity) {
 }
 
 void Scene::deleteEntity(Entity* entity) {
-    std::map<std::string, Component*> &components = entity->getAllComponents();
+    std::map<std::string, Component*>& components = entity->getAllComponents();
     for (auto it : components) {
         it.second->destroy();
     }
@@ -92,7 +92,8 @@ Entity* Scene::getInstanceOf(std::string _prefab, std::string _id) {
 
 void Scene::clonePrefabInfo(std::string _prefab, Entity* _entity) {
     Loader loader;
-    loader.setComponents(prefabs.find(_prefab)->second, _entity, this);
+    Json::Value value = assert_find(prefabs, _prefab);
+    loader.setComponents(value, _entity, this);
 }
 
 void Scene::addPrefab(std::string id, Json::Value components) {
