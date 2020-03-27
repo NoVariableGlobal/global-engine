@@ -8,7 +8,7 @@
           "attributes": {
             "position": [ 0, 0, 0 ],
             "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.1, 0.1, 0.1 ]
+            "scale": [ 0.05, 0.05, 0.05 ]
           }
         },
         {
@@ -16,14 +16,14 @@
           "attributes": {
             "mesh": "cube.mesh",
             "node": "nGunBullet",
-            "material": "PurpleColourMaterial"
+            "material": "RedColourMaterial"
           }
         },
         {
           "type": "RigidbodyPC",
           "attributes": {
             "position": [ 0, 0, 0 ],
-            "shape": [ 1, 1, 1 ],
+            "shape": [ 2.5, 2.5, 2.5 ],
             "mass": 1,
             "gravity": [ 0, 0, 0 ],
             "trigger": true,
@@ -48,6 +48,55 @@
       ]
     },
     {
+      "id": "MeleeEnemy",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.5, 0.5, 0.5 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "penguin.mesh",
+            "node": "nEnemy",
+            "material": "PenguinMaterial"
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 50, 0, 50 ],
+            "shape": [ 20, 20, 20 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": false,
+            "kinematic": false,
+            "static": false,
+            "friction": 500,
+            "restitution": 0
+          }
+        },
+        {
+          "type": "MeleeEnemyBehaviourEC",
+          "attributes": {
+            "playerSpeedPercentage": 0.7,
+            "attack": 10,
+            "attackCooldown": 2
+          }
+        },
+        {
+          "type": "LifeC",
+          "attributes": {
+            "life": 150
+          }
+        }
+      ]
+    },
+    {
       "id": "InvulnerabilityShield",
       "components": [
         {
@@ -55,7 +104,7 @@
           "attributes": {
             "position": [ 0, 0, 0 ],
             "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.1, 0.1, 0.1 ]
+            "scale": [ 0.05, 0.05, 0.05 ]
           }
         },
         {
@@ -63,17 +112,17 @@
           "attributes": {
             "mesh": "cube.mesh",
             "node": "nCube",
-            "material": "GrassMaterial"
+            "material": "PurpleColourMaterial"
           }
         },
         {
           "type": "RigidbodyPC",
           "attributes": {
-            "position": [ 0, 0, 0 ],
-            "shape": [ 0.5, 0.5, 0.5 ],
+            "position": [0, 0, 0],
+            "shape": [2.5, 2.5, 2.5],
             "mass": 1,
             "gravity": [ 0, 0, 0 ],
-            "trigger": false,
+            "trigger": true,
             "kinematic": false,
             "static": false,
             "friction": 0,
@@ -88,8 +137,8 @@
           }
         }
       ]
-    },
-	{
+  	},
+	  {
 	  "id": "Medkit",
       "components": [
         {
@@ -97,7 +146,7 @@
           "attributes": {
             "position": [ 0, 0, 0 ],
             "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.1, 0.1, 0.1 ]
+            "scale": [ 0.05, 0.05, 0.05 ]
           }
         },
         {
@@ -105,14 +154,14 @@
           "attributes": {
             "mesh": "cube.mesh",
             "node": "nCube",
-            "material": "GrassMaterial"
+            "material": "BlueColourMaterial"
           }
         },
         {
           "type": "RigidbodyPC",
           "attributes": {
             "position": [ 0, 0, 0 ],
-            "shape": [ 0.5, 0.5, 0.5 ],
+            "shape": [ 2.5, 2.5, 2.5 ],
             "mass": 1,
             "gravity": [ 0, 0, 0 ],
             "trigger": true,
@@ -147,7 +196,7 @@
           "attributes": {
             "mesh": "cube.mesh",
             "node": "nCube",
-            "material": "GrassMaterial"
+            "material": "OrangeColourMaterial"
           }
         },
         {
@@ -157,7 +206,7 @@
             "shape": [ 2.5, 2.5, 2.5 ],
             "mass": 1,
             "gravity": [ 0, 0, 0 ],
-            "trigger": false,
+            "trigger": true,
             "kinematic": false,
             "static": false,
             "friction": 0,
@@ -169,7 +218,7 @@
 		      "attributes": {
 			    "time": 20,
 			    "timeEffect": 10,
-				"speedIncrement": 0.5
+				  "speedIncrement": 0.5
 		      }
 		    }
       ]	  
@@ -182,7 +231,7 @@
           "attributes": {
             "position": [ 0, 0, 0 ],
             "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.05, 0.05, 0.05 ]
+            "scale": [ 0.01, 0.01, 0.01 ]
           }
         },
         {
@@ -197,7 +246,7 @@
           "type": "RigidbodyPC",
           "attributes": {
             "position": [ 0, 0, 0 ],
-            "shape": [ 1, 1, 1 ],
+            "shape": [ 0.5, 0.5, 0.5 ],
             "mass": 1,
             "gravity": [ 0, 0, 0 ],
             "trigger": true,
@@ -244,7 +293,7 @@
           "type": "RigidbodyPC",
           "attributes": {
             "position": [ 0, 0, 0 ],
-            "shape": [ 2, 2, 2 ],
+            "shape": [ 5, 5, 5 ],
             "mass": 1,
             "gravity": [ 0, 0, 0 ],
             "trigger": true,

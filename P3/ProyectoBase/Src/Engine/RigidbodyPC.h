@@ -18,6 +18,7 @@ class RigidbodyPC : public PhysicsComponent {
     bool stat = false;
     bool Collision = false;
 
+    bool collidesWithEntity(Entity* other);
   public:
     RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape, float _mass);
     ~RigidbodyPC();
@@ -28,6 +29,8 @@ class RigidbodyPC : public PhysicsComponent {
     // returns whether or not the entity this component is
     // attached to is colliding with another given entity
     bool collidesWith(std::string id);
+
+    Entity* collidesWithTag(std::string tag);
 
     // Applies a force to the entity this component is attached to
     void addForce(Ogre::Vector3 _force, Ogre::Vector3 _relativePos);

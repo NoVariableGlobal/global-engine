@@ -97,8 +97,15 @@ void Loader::createEntity(Json::Value& _data, Scene* _scene) {
 
     if (!_data["id"].isString())
         throw std::exception("Loader: id is not string");
-
     entity->setId(_data["id"].asString());
+
+    try {
+        if (_data["tag"].isString())
+            entity->setTag(_data["tag"].asString());
+    } catch (std::exception e) {
+        entity->setTag("Default");
+    }
+
     _scene->addEntity(entity);
 
     if (!_data["components"].isArray())

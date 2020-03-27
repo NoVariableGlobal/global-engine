@@ -56,6 +56,18 @@ Entity* Scene::getEntitybyId(std::string id) {
     return entities.find(id)->second;
 }
 
+std::vector<Entity*> Scene::getEntitiesbyTag(std::string tag) {
+    std::vector<Entity*> tagEntities;
+
+    for (auto it : entities) {
+        if (it.second->getTag() == tag)    
+        { 
+            tagEntities.push_back(it.second); 
+        }
+    }
+    return tagEntities;
+}
+
 void Scene::addEntity(Entity* entity) {
     entities.emplace(entity->getId(), entity);
 }
@@ -78,10 +90,12 @@ void Scene::clearEntities() {
     entities.clear();
 }
 
-Entity* Scene::getInstanceOf(std::string _prefab, std::string _id) {
+Entity* Scene::getInstanceOf(std::string _prefab, std::string _id,
+                             std::string _tag) {
     Entity* instance = new Entity();
 
     instance->setId(_id);
+    instance->setTag(_tag);
 
     clonePrefabInfo(_prefab, instance);
 
