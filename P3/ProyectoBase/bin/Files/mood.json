@@ -119,8 +119,8 @@
               "cadence": 1,
               "damage": 5,
               "semiautomatic": false,
-			  "nPellets": 3,
-			  "dispersion": 5
+			        "nPellets": 3,
+			        "dispersion": 5
             }
           },
           {
