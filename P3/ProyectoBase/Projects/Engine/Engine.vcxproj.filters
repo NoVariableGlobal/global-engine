@@ -137,6 +137,9 @@
     <ClCompile Include="..\..\Src\Engine\DestroyAfterSecsEC.cpp">
       <Filter>Components\Events</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\BulletEC.cpp">
+      <Filter>Components\Events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
@@ -276,6 +279,9 @@
       <Filter>Components\Guns</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\DestroyAfterSecsEC.h">
+      <Filter>Components\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\BulletEC.h">
       <Filter>Components\Events</Filter>
     </ClInclude>
   </ItemGroup>
