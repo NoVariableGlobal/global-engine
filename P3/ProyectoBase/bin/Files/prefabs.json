@@ -32,6 +32,18 @@
             "friction": 0,
             "restitution": 0
           }
+        },
+        {
+          "type": "BulletEC",
+          "attributes": {
+            "damage": 2
+          }
+        },
+        {
+          "type": "DestroyAfterSecsEC",
+          "attributes": {
+            "lifeTime": 2
+          }
         }
       ]
     },
@@ -110,13 +122,13 @@
             "restitution": 0
           }
         },
-		{
-		  "type": "MedkitEC",
-		  "attributes": {
-			"time": 20,
-			"timeEffect": 1
-		  }
-		}
+		    {
+		      "type": "MedkitEC",
+		      "attributes": {
+			    "time": 20,
+			    "timeEffect": 1
+		      }
+		    }
       ]	  
     },
 	{
@@ -162,7 +174,7 @@
 		    }
       ]	  
     },
-	{
+	  {
       "id": "ShotgunBullet",
       "components": [
         {
@@ -174,12 +186,6 @@
           }
         },
         {
-          "type": "DestroyAfterSecsEC",
-          "attributes": {
-            "lifeTime": 1
-          }
-        },
-		{
           "type": "TridimensionalObjectRC",
           "attributes": {
             "mesh": "cube.mesh",
@@ -200,10 +206,22 @@
             "friction": 0,
             "restitution": 0
           }
+        },
+        {
+          "type": "BulletEC",
+          "attributes": {
+            "damage": 5
+          }
+        },
+        {
+          "type": "DestroyAfterSecsEC",
+          "attributes": {
+            "lifeTime": 1
+          }
         }
       ]
     },
-	{
+	  {
       "id": "Shotgun",
       "components": [
         {
@@ -243,8 +261,8 @@
         {
           "type": "OnEPressPickUpIC",
           "attributes": {
-			"objectName" : "ShotgunPowerUpC"
-		  }
+			    "objectName" : "ShotgunPowerUpC"
+		    }
         }
       ]
     }
