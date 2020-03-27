@@ -13,6 +13,7 @@ param (
     [string] $Property,
     [string] $Platform = "x64",
 
+    [switch] $DependenciesOnly,
     [switch] $EngineOnly,
 
     [Alias("Parallel")]
@@ -26,6 +27,21 @@ param (
     [Alias("Parameters", "Params", "P")]
     [string[]] $MsBuildParameters
 )
+
+If ($DependenciesOnly -And $EngineOnly) {
+    Write-Host "You cannot specify " -ForegroundColor Red  -NoNewline
+    Write-Host "-DependenciesOnly"   -ForegroundColor Blue -NoNewline
+    Write-Host " and "               -ForegroundColor Red  -NoNewline
+    Write-Host "-EngineOnly"         -ForegroundColor Blue -NoNewline
+    Write-Host " at the same time."  -ForegroundColor Red
+    Exit 1
+}
+
+function New-Directory([string[]] $Path) {
+    If (!(Test-Path -Path $Path)) {
+        New-Item -Path $Path -Force -ItemType Directory | Out-Null
+    }
+}
 
 # Finds MSBuild.exe from the user's input, falling back in the following order:
 #  - Environmental Variable
@@ -204,7 +220,7 @@ function Step-CMake([string] $Path, [string[]] $Arguments) {
     Write-Host $Path                                   -ForegroundColor Cyan -NoNewline
     Write-Host "' as $PropertyConfiguration."          -ForegroundColor Blue
 
-    New-Item -ItemType Directory -Force -Path "$Path\build"
+    New-Directory -Path "$Path\build"
     $private:p = Start-Process $CMake (@("-S", $Path, "-B", "$Path\build") + $Arguments) -Wait -NoNewWindow -PassThru
 
     # Print information to the screen
@@ -242,24 +258,6 @@ function Step-CopyToBinaryDirectory([string] $From, [string[]] $Paths) {
     Copy-Item -Path $Paths -Destination $BinaryDirectory
 
     Write-Host "Finished!"      -ForegroundColor Green
-}
-
-# Sets up $MsBuildParameters, building one from the other parameters
-If ($MsBuildParameters.Length -Eq 0) {
-    If ($Target -Eq "" -And (!$Build.IsPresent -Or $Build.ToBool())) {
-        $Target = "-t:build"
-    }
-
-    If ($Property -Eq "") {
-        $PropertyConfiguration = If ($Release.ToBool()) { "Release" } Else { "Debug" }
-        $Property = "-p:Configuration=$PropertyConfiguration;Platform=$Platform"
-    }
-
-    $local:BuildInParallelArgument = If ($SequentialBuild.ToBool()) { "" } Else { "-m" }
-    $local:MaxCpuCountArgument = If (!$AllCores.IsPresent -Or $AllCores.ToBool()) { "-maxCpuCount" } Else { "" }
-    $local:NoLogoArgument = If ($DisplayLogo.ToBool()) { "" } Else { "-noLogo" }
-    $local:VerbosityArgument = "-verbosity:$Verbosity"
-    $local:MsBuildParameters = @($Target, $Property, $VerbosityArgument, $BuildInParallelArgument, $MaxCpuCountArgument, $NoLogoArgument)
 }
 
 If (!$EngineOnly.ToBool()) {
@@ -316,6 +314,27 @@ If (!$EngineOnly.ToBool()) {
     )
 }
 
-# Build Global Engine
-Step-VisualStudio "$RootFolder\P3\ProyectoBase\ProyectoBase.sln"
+If (!$DependenciesOnly.ToBool()) {
+    # Sets up $MsBuildParameters, building one from the other parameters
+    If ($MsBuildParameters.Length -Eq 0) {
+        If ($Target -Eq "" -And (!$Build.IsPresent -Or $Build.ToBool())) {
+            $Target = "-t:build"
+        }
+
+        If ($Property -Eq "") {
+            $PropertyConfiguration = If ($Release.ToBool()) { "Release" } Else { "Debug" }
+            $Property = "-p:Configuration=$PropertyConfiguration;Platform=$Platform"
+        }
+
+        $local:BuildInParallelArgument = If ($SequentialBuild.ToBool()) { "" } Else { "-m" }
+        $local:MaxCpuCountArgument = If (!$AllCores.IsPresent -Or $AllCores.ToBool()) { "-maxCpuCount" } Else { "" }
+        $local:NoLogoArgument = If ($DisplayLogo.ToBool()) { "" } Else { "-noLogo" }
+        $local:VerbosityArgument = "-verbosity:$Verbosity"
+        $local:MsBuildParameters = @($Target, $Property, $VerbosityArgument, $BuildInParallelArgument, $MaxCpuCountArgument, $NoLogoArgument)
+    }
+
+    # Build Global Engine
+    Step-VisualStudio "$RootFolder\P3\ProyectoBase\ProyectoBase.sln"
+}
+
 Exit 0

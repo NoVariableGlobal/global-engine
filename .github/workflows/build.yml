@@ -1,0 +1,32 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    name: build
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v2
+      - name: Install MSBuild
+        uses: microsoft/setup-msbuild@v1.0.0
+      - name: Restore CI Cache
+        uses: actions/cache@v1
+        with:
+          path: P3/ProyectoBase/lib
+          key: ${{ runner.os }}-${{ hashFiles('**/P3/ProyectoBase/lib') }}
+      - name: Build Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: build -DependenciesOnly
+        shell: pwsh
+      - name: Build Project (Debug)
+        run: build -EngineOnly
+        shell: pwsh
+      - name: Build Project (Release)
+        run: build -EngineOnly -Release
+        shell: pwsh
