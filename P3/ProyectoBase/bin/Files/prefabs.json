@@ -1,186 +1,12 @@
 {
   "prefabs": [
     {
-      "id": "HandgunBullet",
-      "components": [
-        {
-          "type": "TransformComponent",
-          "attributes": {
-            "position": [ 0, 0, 0 ],
-            "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.05, 0.05, 0.05 ]
-          }
-        },
-        {
-          "type": "TridimensionalObjectRC",
-          "attributes": {
-            "mesh": "cube.mesh",
-            "node": "nGunBullet",
-            "material": "PurpleColourMaterial"
-          }
-        },
-        {
-          "type": "RigidbodyPC",
-          "attributes": {
-            "position": [ 0, 0, 0 ],
-            "shape": [ 2.5, 2.5, 2.5 ],
-            "mass": 1,
-            "gravity": [ 0, 0, 0 ],
-            "trigger": true,
-            "kinematic": false,
-            "static": false,
-            "friction": 0,
-            "restitution": 0
-          }
-        },
-        {
-          "type": "BulletEC",
-          "attributes": {
-            "damage": 2
-          }
-        },
-        {
-          "type": "DestroyAfterSecsEC",
-          "attributes": {
-            "lifeTime": 2
-          }
-        }
-      ]
-    },
-    {
-      "id": "InvulnerabilityShield",
-      "components": [
-        {
-          "type": "TransformComponent",
-          "attributes": {
-            "position": [ 0, 0, 0 ],
-            "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.1, 0.1, 0.1 ]
-          }
-        },
-        {
-          "type": "TridimensionalObjectRC",
-          "attributes": {
-            "mesh": "cube.mesh",
-            "node": "nCube",
-            "material": "PurpleColourMaterial"
-          }
-        },
-        {
-          "type": "RigidbodyPC",
-          "attributes": {
-            "position": [ 0, 0, 0 ],
-            "shape": [ 0.5, 0.5, 0.5 ],
-            "mass": 1,
-            "gravity": [ 0, 0, 0 ],
-            "trigger": false,
-            "kinematic": false,
-            "static": false,
-            "friction": 0,
-            "restitution": 0
-          }
-        },
-        {
-          "type": "InvulnerabilityShield",
-          "attributes": {
-            "time": 2,
-            "timeEffect": 5
-          }
-        }
-      ]
-    },
-	{
-	  "id": "Medkit",
-      "components": [
-        {
-          "type": "TransformComponent",
-          "attributes": {
-            "position": [ 0, 0, 0 ],
-            "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.05, 0.05, 0.05 ]
-          }
-        },
-        {
-          "type": "TridimensionalObjectRC",
-          "attributes": {
-            "mesh": "cube.mesh",
-            "node": "nCube",
-            "material": "BlueColourMaterial"
-          }
-        },
-        {
-          "type": "RigidbodyPC",
-          "attributes": {
-            "position": [ 0, 0, 0 ],
-            "shape": [ 2.5, 2.5, 2.5 ],
-            "mass": 1,
-            "gravity": [ 0, 0, 0 ],
-            "trigger": true,
-            "kinematic": false,
-            "static": false,
-            "friction": 0,
-            "restitution": 0
-          }
-        },
-		    {
-		      "type": "MedkitEC",
-		      "attributes": {
-			    "time": 20,
-			    "timeEffect": 1
-		      }
-		    }
-      ]	  
-    },
-	{
-	  "id": "IncreaseSpeed",
-      "components": [
-        {
-          "type": "TransformComponent",
-          "attributes": {
-            "position": [ 0, 0, 0 ],
-            "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.1, 0.1, 0.1 ]
-          }
-        },
-        {
-          "type": "TridimensionalObjectRC",
-          "attributes": {
-            "mesh": "cube.mesh",
-            "node": "nCube",
-            "material": "GrassMaterial"
-          }
-        },
-        {
-          "type": "RigidbodyPC",
-          "attributes": {
-            "position": [ 0, 0, 0 ],
-            "shape": [ 2.5, 2.5, 2.5 ],
-            "mass": 1,
-            "gravity": [ 0, 0, 0 ],
-            "trigger": false,
-            "kinematic": false,
-            "static": false,
-            "friction": 0,
-            "restitution": 0
-          }
-        },
-		    {
-		      "type": "IncreaseSpeedEC",
-		      "attributes": {
-			    "time": 20,
-			    "timeEffect": 10,
-				"speedIncrement": 0.5
-		      }
-		    }
-      ]	  
-    },
-    {
       "id": "MeleeEnemy",
       "components": [
         {
           "type": "TransformComponent",
           "attributes": {
-            "position": [ 50, 0, 50 ],
+            "position": [ 0, 0, 0 ],
             "orientation": [ 0, 0, 0 ],
             "scale": [ 0.5, 0.5, 0.5 ]
           }
@@ -189,14 +15,8 @@
           "type": "TridimensionalObjectRC",
           "attributes": {
             "mesh": "penguin.mesh",
-            "node": "nMeleeEnemy",
+            "node": "nEnemy",
             "material": "PenguinMaterial"
-          }
-        },
-        {
-          "type": "LifeC",
-          "attributes": {
-            "life": 150
           }
         },
         {
@@ -220,10 +40,190 @@
             "attack": 10,
             "attackCooldown": 2
           }
+        },
+        {
+          "type": "LifeC",
+          "attributes": {
+            "life": 100
+          }
         }
       ]
     },
-	{
+    {
+      "id": "InvulnerabilityShield",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.05, 0.05, 0.05 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nCube",
+            "material": "PurpleColourMaterial"
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 2.5, 2.5, 2.5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": true,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        },
+        {
+          "type": "InvulnerabilityShield",
+          "attributes": {
+            "time": 2,
+            "timeEffect": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "Medkit",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.1, 0.1, 0.1 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nCube",
+            "material": "BlueColourMaterial"
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 2.5, 2.5, 2.5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": false,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        },
+        {
+          "type": "MedkitEC",
+          "attributes": {
+            "time": 20,
+            "timeEffect": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "IncreaseSpeed",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.1, 0.1, 0.1 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nCube",
+            "material": "OrangeColourMaterial"
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 2.5, 2.5, 2.5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": true,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        },
+        {
+          "type": "IncreaseSpeedEC",
+          "attributes": {
+            "time": 20,
+            "timeEffect": 10,
+            "speedIncrement": 0.5
+          }
+        }
+      ]
+    },
+    {
+      "id": "HandgunBullet",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.05, 0.05, 0.05 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nGunBullet",
+            "material": "RedColourMaterial"
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 2.5, 2.5, 2.5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": false,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        },
+        {
+          "type": "BulletC",
+          "attributes": {
+            "damage": 2
+          }
+        },
+        {
+          "type": "DestroyAfterSecsEC",
+          "attributes": {
+            "lifeTime": 20
+          }
+        }
+      ]
+    },
+    {
       "id": "ShotgunBullet",
       "components": [
         {
@@ -257,9 +257,9 @@
           }
         },
         {
-          "type": "BulletEC",
+          "type": "BulletC",
           "attributes": {
-            "damage": 5
+            "damage": 50
           }
         },
         {
@@ -270,7 +270,7 @@
         }
       ]
     },
-	  {
+    {
       "id": "Shotgun",
       "components": [
         {
@@ -286,7 +286,7 @@
           "attributes": {
             "mesh": "cube.mesh",
             "node": "nGunBullet",
-            "material": "BlueColourMaterial"
+            "material": "BrownColourMaterial"
           }
         },
         {
@@ -310,8 +310,8 @@
         {
           "type": "OnEPressPickUpIC",
           "attributes": {
-			    "objectName" : "ShotgunPowerUpC"
-		    }
+            "objectName": "ShotgunPowerUpC"
+          }
         }
       ]
     }

@@ -137,8 +137,8 @@
     <ClCompile Include="..\..\Src\Engine\DestroyAfterSecsEC.cpp">
       <Filter>Components\Events</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\BulletEC.cpp">
-      <Filter>Components\Events</Filter>
+    <ClCompile Include="..\..\Src\Engine\BulletC.cpp">
+      <Filter>Components\Other</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
