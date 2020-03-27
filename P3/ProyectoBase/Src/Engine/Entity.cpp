@@ -1,5 +1,6 @@
 #include "Entity.h"
 #include "Component.h"
+#include "Util.h"
 
 #include <iostream>
 
@@ -12,12 +13,7 @@ void Entity::addComponent(std::string name, Component* c) {
 }
 
 Component* Entity::getComponent(std::string name) {
-    auto it = components.find(name);
-    if (it == components.end()) {
-        std::cout << "ERROR: Component '" + name + "' could not be found\n";
-        throw std::exception("Component could not be found");
-    }
-    return it->second;
+    return assert_find(components, name);
 }
 
 std::map<std::string, Component*>& Entity::getAllComponents() {

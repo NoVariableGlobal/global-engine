@@ -4,6 +4,7 @@
 #include "OgreSDLContext.h"
 #include "PhysicsContext.h"
 #include "Scene.h"
+#include "Util.h"
 
 #include <SDL_events.h>
 #include <string>
@@ -83,14 +84,7 @@ void Game::setScene(std::string _sceneName) {
     scene->clearEntities();
     PhysicsContext::getInstance()->destroyWorldContent();
 
-	// Safely load the scene
-    auto it = scenesQueue.find(_sceneName);
-    if (it == scenesQueue.end()) {
-        std::cout << "ERROR: Scene '" + _sceneName +
-                         "' could not be found\n";
-        throw std::exception("Scene could not be found");
-    }
-    scene->load(it->second);
+    scene->load(assert_find(scenesQueue, _sceneName));
 
     sceneChange = false;
 }

@@ -1,5 +1,6 @@
 #include "FactoriesFactory.h"
 #include "Factory.h"
+#include "Util.h"
 
 #include <iostream>
 
@@ -25,10 +26,5 @@ void FactoriesFactory::insert(std::string name, ComponentFactory* fac) {
 }
 
 ComponentFactory* FactoriesFactory::find(std::string name) {
-    auto it = factory.find(name);
-    if (it == factory.end()) {
-        std::cout << "ERROR: Factory '" + name + "' could not be found\n";
-        throw std::exception("Factory could not be found");
-    }
-    return it->second;
+    return assert_find(factory, name);
 }

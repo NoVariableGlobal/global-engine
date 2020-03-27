@@ -109,6 +109,7 @@
     <ClInclude Include="..\..\Src\Engine\PlayerMovementIC.h" />
     <ClInclude Include="..\..\src\Engine\TransformComponent.h" />
     <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h" />
+    <ClInclude Include="..\..\Src\Engine\Util.h" />
     <ClInclude Include="..\..\Src\Engine\WeaponControllerIC.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -6,6 +6,7 @@
 #include "Loader.h"
 #include "OgreVector3.h"
 #include "PhysicsContext.h"
+#include "Util.h"
 
 #include <iostream>
 #include <json.h>
@@ -97,14 +98,8 @@ Entity* Scene::getInstanceOf(std::string _prefab, std::string _id) {
 
 void Scene::clonePrefabInfo(std::string _prefab, Entity* _entity) {
     Loader loader;
-
-    auto it = prefabs.find(_prefab);
-    if (it == prefabs.end()) {
-        std::cout << "ERROR: Prefab '" + _prefab + "' could not be found\n";
-        throw std::exception("Prefab could not be found");
-    }
-
-    loader.setComponents(it->second, _entity, this);
+	Json::Value value = assert_find(prefabs, _prefab);
+    loader.setComponents(value, _entity, this);
 }
 
 void Scene::addPrefab(std::string id, Json::Value components) {
