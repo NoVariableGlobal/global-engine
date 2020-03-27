@@ -190,7 +190,7 @@ function Step-VisualStudioThirdPartyDebug([string] $Path) {
     Write-Host $Path              -ForegroundColor Cyan -NoNewline
     Write-Host "' as Debug."      -ForegroundColor Blue
 
-    Step-VisualStudioRaw $Path @("-t:build", "-p:Configuration=Debug;Platform=x64", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal")
+    Step-VisualStudioRaw $Path @("-t:build", "-p:Configuration=Debug;Platform=x64", "-noLogo", "-verbosity:minimal")
 }
 
 # Builds a third-party library as release, ignoring all warnings and verbosity
