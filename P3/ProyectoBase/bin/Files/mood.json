@@ -44,9 +44,9 @@
           "type": "SpawnerFloorRandomEC",
           "attributes": {
             "spawnCooldown": 1,
-            "spawnID": [ "Medkit", "InvulnerabilityShield", "IncreaseSpeed" ],
+            "spawnID": [ "Nuke" ],
             "spawnTag": "PowerUp",
-            "spawnChances": [ 50, 30, 20 ]
+            "spawnChances": [ 100 ]
           }
         },
         {
@@ -74,7 +74,7 @@
         {
           "type": "SpawnerEnemiesEC",
           "attributes": {
-            "spawnCooldown": 10,
+            "spawnCooldown": 1,
             "spawnID": [ "MeleeEnemy" ],
             "spawnTag": "Enemy",
             "spawnChances": [ 100 ]
@@ -105,7 +105,7 @@
         {
           "type": "PlayerMovementIC",
           "attributes": {
-            "speed": 15
+            "speed": 35
           }
         },
         {
