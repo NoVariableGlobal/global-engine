@@ -17,5 +17,5 @@ class BulletC : public Component {
 
     // method that specify what the bullet will do if it collide with something
     // in the case of a normal bullet, it will be destroyed
-    void dealCollision();
+    virtual void dealCollision();
 };

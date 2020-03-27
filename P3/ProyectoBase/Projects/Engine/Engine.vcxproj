@@ -39,6 +39,7 @@
     <ClCompile Include="..\..\Src\Engine\RigidbodyPC.cpp" />
     <ClCompile Include="..\..\Src\Engine\ShotgunC.cpp" />
     <ClCompile Include="..\..\Src\Engine\ShotgunPowerUpC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\SniperBulletC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerBulletsC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerEnemiesEC.cpp" />
@@ -85,6 +86,7 @@
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
     <ClInclude Include="..\..\Src\Engine\ShotgunC.h" />
     <ClInclude Include="..\..\Src\Engine\ShotgunPowerUpC.h" />
+    <ClInclude Include="..\..\Src\Engine\SniperBulletC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerBulletsC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerEC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerEnemiesEC.h" />

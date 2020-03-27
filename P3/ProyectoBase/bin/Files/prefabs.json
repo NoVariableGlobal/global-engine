@@ -314,6 +314,53 @@
           }
         }
       ]
+    },
+    {
+      "id": "SniperBullet",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.01, 0.01, 0.01 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nShotgunBullet",
+            "material": "RedColourMaterial"
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 0.5, 0.5, 0.5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": true,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        },
+        {
+          "type": "SniperBulletC",
+          "attributes": {
+            "damage": 50
+          }
+        },
+        {
+          "type": "DestroyAfterSecsEC",
+          "attributes": {
+            "lifeTime": 10
+          }
+        }
+      ]
     }
   ]
 }
