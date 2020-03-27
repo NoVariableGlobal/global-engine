@@ -20,6 +20,7 @@ AutomaticRifleC::AutomaticRifleC() : GunC() {}
 AutomaticRifleC::~AutomaticRifleC() {}
 
 void AutomaticRifleC::destroy () {
+    setActive(false);
     scene->getComponentsManager()->eraseDC(this);
 }
 
@@ -69,22 +70,23 @@ class AutomaticRifleCFactory final : public ComponentFactory {
         automaticRifle->setScene(_scene);
 
 		if (!_data["bulletTag"].isString())
-            throw std::exception("ShotgunC: bulletTag is not a string");
+            throw std::exception("AutomaticRifleC: bulletTag is not a string");
                 automaticRifle->setBulletTag(_data["bulletTag"].asString());
 
         if (!_data["bulletchamberMax"].isInt())
-            throw std::exception("ShotgunC: bulletchamberMax is not an int");
+            throw std::exception("AutomaticRifleC: bulletchamberMax is not an int");
         automaticRifle->setbulletchamber(_data["bulletchamberMax"].asInt());
 
         if (!_data["munition"].isInt())
-            throw std::exception("ShotgunC: munition is not an int");
+            throw std::exception("AutomaticRifleC: munition is not an int");
         automaticRifle->setmunition(_data["munition"].asInt());
 
         if (!_data["cadence"].isDouble())
-            throw std::exception("ShotgunC: cadence is not an int");
+            throw std::exception("AutomaticRifleC: cadence is not an int");
+        automaticRifle->setcadence(_data["cadence"].asFloat());
 
         if (!_data["semiautomatic"].isBool())
-            throw std::exception("ShotgunC: semiautomatic is not an bool");
+            throw std::exception("AutomaticRifleC: semiautomatic is not an bool");
         automaticRifle->setsemiautomatic(_data["semiautomatic"].asBool());
 
         automaticRifle->setTransform(dynamic_cast<TransformComponent*>(

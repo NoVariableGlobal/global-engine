@@ -5,7 +5,7 @@
 class SemiAutomaticEC : public EventComponent {
   private:
     double cadence;
-    float lastTimecadence = 0;
+    double lastTimecadence = 0;
     bool shoot = false;
 
   public:

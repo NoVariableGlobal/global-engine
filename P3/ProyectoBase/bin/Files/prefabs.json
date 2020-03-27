@@ -285,7 +285,7 @@
           "type": "TridimensionalObjectRC",
           "attributes": {
             "mesh": "cube.mesh",
-            "node": "nGunBullet",
+            "node": "nAutomaticRifleBullet",
             "material": "OrangeColourMaterial"
           }
         },
@@ -312,7 +312,7 @@
         {
           "type": "DestroyAfterSecsEC",
           "attributes": {
-            "lifeTime": 1
+            "lifeTime": 3
           }
         }
       ]
