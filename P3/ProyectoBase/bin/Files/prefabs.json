@@ -304,13 +304,15 @@
           }
         },
         {
-          "type": "ShotgunPowerUpC",
-          "attributes": {}
+          "type": "GunPowerUpC",
+          "attributes": {
+              "gunId": "ShotgunC"
+          }
         },
         {
           "type": "OnEPressPickUpIC",
           "attributes": {
-            "objectName": "ShotgunPowerUpC"
+            "objectName": "GunPowerUpC"
           }
         }
       ]
@@ -358,6 +360,53 @@
           "type": "DestroyAfterSecsEC",
           "attributes": {
             "lifeTime": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "SniperGun",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.1, 0.1, 0.1 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nGunBullet",
+            "material": "BrownColourMaterial"
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 5, 5, 5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": true,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        },
+        {
+          "type": "GunPowerUpC",
+          "attributes": {
+            "gunId": "SniperGunC"
+          }
+        },
+        {
+          "type": "OnEPressPickUpIC",
+          "attributes": {
+            "objectName": "GunPowerUpC"
           }
         }
       ]
