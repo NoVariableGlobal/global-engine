@@ -190,7 +190,7 @@ function Step-VisualStudioThirdPartyDebug([string] $Path) {
     Write-Host $Path              -ForegroundColor Cyan -NoNewline
     Write-Host "' as Debug."      -ForegroundColor Blue
 
-    Step-VisualStudioRaw $Path @("-t:build", "-p:Configuration=Debug;Platform=x64", "-noLogo", "-verbosity:minimal")
+    Step-VisualStudioRaw $Path @("-t:build", "-p:Configuration=Debug;Platform=x64", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal", "-nodeReuse:false")
 }
 
 # Builds a third-party library as release, ignoring all warnings and verbosity
@@ -199,7 +199,7 @@ function Step-VisualStudioThirdPartyRelease([string] $Path) {
     Write-Host $Path              -ForegroundColor Cyan -NoNewline
     Write-Host "' as Release."    -ForegroundColor Blue
 
-    Step-VisualStudioRaw $Path @("-t:build", "-p:Configuration=Release;Platform=x64", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal")
+    Step-VisualStudioRaw $Path @("-t:build", "-p:Configuration=Release;Platform=x64", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal", "-nodeReuse:false")
 }
 
 # Builds the project library
@@ -330,7 +330,8 @@ If (!$DependenciesOnly.ToBool()) {
         $local:MaxCpuCountArgument = If (!$AllCores.IsPresent -Or $AllCores.ToBool()) { "-maxCpuCount" } Else { "" }
         $local:NoLogoArgument = If ($DisplayLogo.ToBool()) { "" } Else { "-noLogo" }
         $local:VerbosityArgument = "-verbosity:$Verbosity"
-        $local:MsBuildParameters = @($Target, $Property, $VerbosityArgument, $BuildInParallelArgument, $MaxCpuCountArgument, $NoLogoArgument)
+        $local:NodeReuse = "-nodeReuse:false"
+        $local:MsBuildParameters = @($Target, $Property, $VerbosityArgument, $BuildInParallelArgument, $MaxCpuCountArgument, $NoLogoArgument, $NodeReuse)
     }
 
     # Build Global Engine
