@@ -22,11 +22,11 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/build.ps1') }}
       - name: Build Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: build -DependenciesOnly
+        run: pwsh -File .\build.ps1 -DependenciesOnly
         shell: pwsh
       - name: Build Project (Debug)
-        run: build -EngineOnly
+        run: pwsh -File .\build.ps1 -EngineOnly
         shell: pwsh
       - name: Build Project (Release)
-        run: build -EngineOnly -Release
+        run: pwsh -File .\build.ps1 -EngineOnly -Release
         shell: pwsh
