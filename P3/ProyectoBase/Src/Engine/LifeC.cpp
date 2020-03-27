@@ -8,7 +8,7 @@
 
 #include <json.h>
 
-LifeC::LifeC(): invulnerability(false) {}
+LifeC::LifeC() : invulnerability(false) {}
 
 LifeC::~LifeC() {}
 
@@ -16,7 +16,6 @@ void LifeC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseDC(this);
 }
-
 
 float LifeC::getLife() { return currentLife; }
 
@@ -28,10 +27,11 @@ void LifeC::setTotalLife(int _life) { totalLife = _life; }
 
 void LifeC::doDamage(float _damage) {
     if (!invulnerability)
-		currentLife -= _damage;
+        currentLife -= _damage;
 
-    if (currentLife < 0)
-        currentLife = 0;
+    if (currentLife <= 0) {
+        scene->deleteEntity(father);
+    }
 }
 
 void LifeC::heal(float _heal) {

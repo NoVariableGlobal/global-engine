@@ -4,11 +4,13 @@
 #include "Factory.h"
 #include "OgreRoot.h"
 #include "RigidbodyPC.h"
+#include "LifeC.h"
+#include "BulletC.h"
 #include "Scene.h"
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
-#include <Entity.h>
-#include <iostream>
+#include "Entity.h"
+
 #include <json.h>
 #include <time.h>
 #include <utility>
@@ -48,12 +50,11 @@ void EnemyBehaviourEC::checkEvent() {
     // if not colliding with player enemy moves towards player
     Ogre::Vector3 velocity;
     if (!collisionWithPlayer) {
-        velocity = Ogre::Vector3(
-            directionToPlayer.x * speed, 0.0f, directionToPlayer.z * speed);
-        
+        velocity = Ogre::Vector3(directionToPlayer.x * speed, 0.0f,
+                                 directionToPlayer.z * speed);
+
     } else {
-        velocity = Ogre::Vector3(
-           0.0f, 0.0f, 0.0f);
+        velocity = Ogre::Vector3(0.0f, 0.0f, 0.0f);
     }
     rb->setLinearVelocity(velocity);
 
@@ -61,12 +62,22 @@ void EnemyBehaviourEC::checkEvent() {
     float angleInRad =
         atan2(transform->getPosition().y - playerTransform->getPosition().y,
               transform->getPosition().x - playerTransform->getPosition().x);
+
     float angleInDeg = -angleInRad * 180 / M_PI;
     // Make the rotation
     TridimensionalObjectRC* fatherRender =
         dynamic_cast<TridimensionalObjectRC*>(
             father->getComponent("TridimensionalObjectRC"));
     fatherRender->rotate(angleInDeg - 90, Ogre::Vector3(0, 1, 0));
+
+    Entity* playerBullet = rb->collidesWithTag("PlayerBullet");
+    if (playerBullet != nullptr) {
+        LifeC* life = dynamic_cast<LifeC*>(father->getComponent("LifeC"));
+        BulletC* bullet = dynamic_cast<BulletC*>(playerBullet->getComponent("BulletC"));
+
+        life->doDamage(bullet->getDamage());
+        bullet->dealCollision();
+    }
 }
 
 bool EnemyBehaviourEC::timeToAttack() {
