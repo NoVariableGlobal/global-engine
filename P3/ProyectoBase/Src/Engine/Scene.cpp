@@ -8,7 +8,6 @@
 #include "PhysicsContext.h"
 #include "Util.h"
 
-#include <iostream>
 #include <json.h>
 
 Scene::Scene(Game* _game) {

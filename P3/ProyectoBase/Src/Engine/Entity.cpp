@@ -2,8 +2,6 @@
 #include "Component.h"
 #include "Util.h"
 
-#include <iostream>
-
 Entity::Entity() {}
 
 Entity::~Entity() {}

@@ -2,8 +2,6 @@
 #include "Factory.h"
 #include "Util.h"
 
-#include <iostream>
-
 FactoriesFactory* FactoriesFactory::_instance = nullptr;
 
 FactoriesFactory::FactoriesFactory() {}
