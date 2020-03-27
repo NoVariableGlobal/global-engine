@@ -11,7 +11,11 @@ void Entity::addComponent(std::string name, Component* c) {
 }
 
 Component* Entity::getComponent(std::string name) {
+    try{
     return assert_find(components, name);
+    }catch(std::exception &e){
+        return nullptr;
+    }
 }
 
 std::map<std::string, Component*>& Entity::getAllComponents() {

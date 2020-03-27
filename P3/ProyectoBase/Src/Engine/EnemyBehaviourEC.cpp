@@ -74,6 +74,9 @@ void EnemyBehaviourEC::checkEvent() {
     if (playerBullet != nullptr) {
         LifeC* life = dynamic_cast<LifeC*>(father->getComponent("LifeC"));
         BulletC* bullet = dynamic_cast<BulletC*>(playerBullet->getComponent("BulletC"));
+        if (bullet == nullptr)
+            bullet =
+                dynamic_cast<BulletC*>(playerBullet->getComponent("SniperBulletC"));
 
         life->doDamage(bullet->getDamage());
         bullet->dealCollision();
