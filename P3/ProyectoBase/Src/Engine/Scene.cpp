@@ -54,12 +54,7 @@ void Scene::handleInput(const SDL_Event& _event) {
 }
 
 Entity* Scene::getEntitybyId(std::string id) {
-    auto it = entities.find(id);
-    if (it == entities.end()) {
-        std::cout << "ERROR: Entity '" + id + "' could not be found\n";
-        throw std::exception("Entity could not be found");
-    }
-    return it->second;
+    return assert_find(entities, id);
 }
 
 void Scene::addEntity(Entity* entity) {
@@ -98,7 +93,7 @@ Entity* Scene::getInstanceOf(std::string _prefab, std::string _id) {
 
 void Scene::clonePrefabInfo(std::string _prefab, Entity* _entity) {
     Loader loader;
-	Json::Value value = assert_find(prefabs, _prefab);
+    Json::Value value = assert_find(prefabs, _prefab);
     loader.setComponents(value, _entity, this);
 }
 
