@@ -17,8 +17,8 @@ void SpawnerBulletsC::destroy() {
     scene->getComponentsManager()->eraseDC(this);
 }
 
-Entity* SpawnerBulletsC::getBullet(std::string _type) {
-    return scene->getInstanceOf(_type, _type + std::to_string(count++));
+Entity* SpawnerBulletsC::getBullet(std::string _type, std::string _tag) {
+    return scene->getInstanceOf(_type, _type + std::to_string(count++), _tag);
 }
 
 // FACTORY INFRASTRUCTURE

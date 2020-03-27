@@ -29,7 +29,7 @@ bool HandGunC::shoot() {
         Entity* newBullet = dynamic_cast<SpawnerBulletsC*>(
                                 scene->getEntitybyId("GameManager")
                                     ->getComponent("SpawnerBulletsC"))
-                                ->getBullet("HandgunBullet", "PlayerBullet");
+                                ->getBullet("HandgunBullet", _myBulletTag);
 
        TransformComponent* bulletTransform = dynamic_cast<TransformComponent*>(
             newBullet->getComponent("TransformComponent"));
@@ -70,6 +70,10 @@ class HandGunCFactory final : public ComponentFactory {
         hg->setFather(_father);
         hg->setScene(_scene);
 
+        if (!_data["bulletTag"].isString())
+            throw std::exception("ShotgunC: bulletTag is not a string");
+        hg->setBulletTag(_data["bulletTag"].asString());
+
         if (!_data["bulletchamberMax"].isInt())
             throw std::exception("HandGunC: bulletchamberMax is not an int");
         hg->setbulletchamber(_data["bulletchamberMax"].asInt());
@@ -81,10 +85,6 @@ class HandGunCFactory final : public ComponentFactory {
         if (!_data["cadence"].isDouble())
             throw std::exception("HandGunC: cadence is not an int");
         hg->setcadence(_data["cadence"].asFloat());
-
-        if (!_data["damage"].isDouble())
-            throw std::exception("HandGunC: damage is not an int");
-        hg->setdamage(_data["damage"].asFloat());
 
         if (!_data["semiautomatic"].isBool())
             throw std::exception("HandGunC: semiautomatic is not an bool");
