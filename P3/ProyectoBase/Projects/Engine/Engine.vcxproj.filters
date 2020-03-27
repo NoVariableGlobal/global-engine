@@ -146,7 +146,7 @@
     <ClCompile Include="..\..\Src\Engine\AutomaticRiflePowerUpC.cpp">
       <Filter>Components\Guns</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\SemiAutomaticEC.cpp">
+    <ClCompile Include="..\..\Src\Engine\AutomaticEC.cpp">
       <Filter>Components\Events</Filter>
     </ClCompile>
   </ItemGroup>
@@ -299,7 +299,7 @@
     <ClInclude Include="..\..\Src\Engine\AutomaticRiflePowerUpC.h">
       <Filter>Components\Guns</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\SemiAutomaticEC.h">
+    <ClInclude Include="..\..\Src\Engine\AutomaticEC.h">
       <Filter>Components\Events</Filter>
     </ClInclude>
   </ItemGroup>

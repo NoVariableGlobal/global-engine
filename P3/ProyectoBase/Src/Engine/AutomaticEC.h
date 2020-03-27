@@ -2,15 +2,15 @@
 #include "EventComponent.h"
 
 // class to detect when to fire an automatic weapon depending on its cadence
-class SemiAutomaticEC : public EventComponent {
+class AutomaticEC : public EventComponent {
   private:
     double cadence;
     double lastTimecadence = 0;
     bool shoot = false;
 
   public:
-    SemiAutomaticEC();
-    ~SemiAutomaticEC();
+    AutomaticEC();
+    ~AutomaticEC();
     virtual void destroy();
     virtual void checkEvent() override;
     bool timeCadence();

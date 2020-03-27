@@ -105,9 +105,9 @@ class ShotgunCFactory final : public ComponentFactory {
             throw std::exception("ShotgunC: cadence is not an int");
         shotgun->setcadence(_data["cadence"].asFloat());
 
-        if (!_data["semiautomatic"].isBool())
+        if (!_data["automatic"].isBool())
             throw std::exception("ShotgunC: semiautomatic is not an bool");
-        shotgun->setsemiautomatic(_data["semiautomatic"].asBool());
+        shotgun->setautomatic(_data["automatic"].asBool());
 
         if (!_data["nPellets"].isDouble())
             throw std::exception("ShotgunC: nPellets is not an int");

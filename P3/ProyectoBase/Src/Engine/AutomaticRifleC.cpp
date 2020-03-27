@@ -85,9 +85,9 @@ class AutomaticRifleCFactory final : public ComponentFactory {
             throw std::exception("AutomaticRifleC: cadence is not an int");
         automaticRifle->setcadence(_data["cadence"].asFloat());
 
-        if (!_data["semiautomatic"].isBool())
+        if (!_data["automatic"].isBool())
             throw std::exception("AutomaticRifleC: semiautomatic is not an bool");
-        automaticRifle->setsemiautomatic(_data["semiautomatic"].asBool());
+        automaticRifle->setautomatic(_data["automatic"].asBool());
 
         automaticRifle->setTransform(dynamic_cast<TransformComponent*>(
             _father->getComponent("TransformComponent")));

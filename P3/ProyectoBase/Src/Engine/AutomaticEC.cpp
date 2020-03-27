@@ -1,4 +1,4 @@
-#include "SemiAutomaticEC.h"
+#include "AutomaticEC.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
@@ -11,16 +11,16 @@
 #include <json.h>
 #include <time.h>
 
-SemiAutomaticEC::SemiAutomaticEC() {}
+AutomaticEC::AutomaticEC() {}
 
-SemiAutomaticEC::~SemiAutomaticEC() {}
+AutomaticEC::~AutomaticEC() {}
 
-void SemiAutomaticEC::destroy() {
+void AutomaticEC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseEC(this);
 }
 
-void SemiAutomaticEC::checkEvent() {
+void AutomaticEC::checkEvent() {
     cadence = (dynamic_cast<WeaponControllerIC*>(
                    father->getComponent("WeaponControllerIC")))
                   ->getCurrentGun()
@@ -33,7 +33,7 @@ void SemiAutomaticEC::checkEvent() {
     }
 }
 
-bool SemiAutomaticEC::timeCadence() {
+bool AutomaticEC::timeCadence() {
     float seconds = clock() / static_cast<float>(CLOCKS_PER_SEC);
 
     if (seconds - lastTimecadence >= cadence) {
@@ -44,26 +44,27 @@ bool SemiAutomaticEC::timeCadence() {
     return false;
 }
 
-void SemiAutomaticEC::setCadence(double _cadence) { cadence = _cadence; }
+void AutomaticEC::setCadence(double _cadence) { cadence = _cadence; }
 
-void SemiAutomaticEC::setShoot(bool _shoot) { shoot = _shoot; }
+void AutomaticEC::setShoot(bool _shoot) { shoot = _shoot; }
 
 // FACTORY INFRASTRUCTURE
-class SemiAutomaticECFactory final : public ComponentFactory {
+class AutomaticECFactory final : public ComponentFactory {
   public:
-    SemiAutomaticECFactory() = default;
+    AutomaticECFactory() = default;
 
     Component* create(Entity* _father, Json::Value& _data,
                       Scene* scene) override {
-        SemiAutomaticEC* semiAutomatic = new SemiAutomaticEC();
+        AutomaticEC* automatic = new AutomaticEC();
 
-        semiAutomatic->setFather(_father);
-        scene->getComponentsManager()->addEC(semiAutomatic);
 
-        semiAutomatic->setActive(true);
+        automatic->setFather(_father);
+        scene->getComponentsManager()->addEC(automatic);
 
-        return semiAutomatic;
+        automatic->setActive(true);
+
+        return automatic;
     };
 };
 
-REGISTER_FACTORY("SemiAutomaticEC", SemiAutomaticEC);
+REGISTER_FACTORY("AutomaticEC", AutomaticEC);

@@ -140,7 +140,7 @@
             "bulletchamberMax": 20,
             "munition": 1000,
             "cadence": 1,
-            "semiautomatic": false
+            "automatic": false
           }
         },
         {
@@ -150,7 +150,7 @@
             "bulletchamberMax": 2,
             "munition": 14,
             "cadence": 1,
-            "semiautomatic": false,
+            "automatic": false,
             "nPellets": 3,
             "dispersion": 10
           }
@@ -162,11 +162,11 @@
             "bulletchamberMax": 30,
             "munition": 90,
             "cadence": 0.3,
-            "semiautomatic": true
+            "automatic": true
           }
         },
 		{
-		  "type": "SemiAutomaticEC",
+		  "type": "AutomaticEC",
           "attributes": {
           }
 		},			
