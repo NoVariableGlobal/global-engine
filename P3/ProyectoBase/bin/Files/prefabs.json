@@ -529,6 +529,12 @@
           }
         },
         {
+          "type": "DestroyAfterSecsEC",
+          "attributes": {
+            "lifeTime": 1
+          }
+        },
+        {
           "type": "RigidbodyPC",
           "attributes": {
             "position": [ 0, 0, 0 ],
@@ -561,6 +567,12 @@
             "mesh": "cube.mesh",
             "node": "nGunBullet",
             "material": "EnemyBulletMaterial"
+          }
+        },
+        {
+          "type": "DestroyAfterSecsEC",
+          "attributes": {
+            "lifeTime": 1
           }
         },
         {
@@ -599,6 +611,12 @@
           }
         },
         {
+          "type": "DestroyAfterSecsEC",
+          "attributes": {
+            "lifeTime": 1
+          }
+        },
+        {
           "type": "RigidbodyPC",
           "attributes": {
             "position": [ 0, 0, 0 ],
@@ -631,6 +649,12 @@
             "mesh": "cube.mesh",
             "node": "nShotgunBullet",
             "material": "EnemyBulletMaterial"
+          }
+        },
+        {
+          "type": "DestroyAfterSecsEC",
+          "attributes": {
+            "lifeTime": 1
           }
         },
         {
