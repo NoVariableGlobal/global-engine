@@ -23,12 +23,11 @@ void ConstantMovementPC::destroy() {
 }
 
 void ConstantMovementPC::update() {
-    if (counter >= timer) {
+    /*if (counter >= timer) {
         counter = 0;
         speed += 10;
-        std::cout << "\nspeed increased. Now it is: " << speed << "\n";
 	}
-    counter++;
+    counter++;*/
 }
 
 void ConstantMovementPC::setSpeed(float _speed) { speed = _speed; }

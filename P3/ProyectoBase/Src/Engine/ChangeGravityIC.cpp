@@ -44,8 +44,6 @@ void ChangeGravityIC::handleInput(const SDL_Event& _event) {
         dynamic_cast<TridimensionalObjectRC*>(
             father->getComponent("TridimensionalObjectRC"))
             ->setMaterial(!movingIzq ? mRight : mLeft);
-
-		std::cout << "Player goes at: " << constantMovement->getSpeed() << "\n";
     }
 }
 
