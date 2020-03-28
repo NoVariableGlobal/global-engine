@@ -1,15 +1,17 @@
 #include "MeleeEnemyBehaviourEC.h"
 #include "ComponentsManager.h"
 #include "EnemyBehaviourEC.h"
+#include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
 #include "LifeC.h"
 #include "OgreRoot.h"
 #include "PlayerMovementIC.h"
+#include "RigidbodyPC.h"
 #include "Scene.h"
-#include <Entity.h>
 #include <json.h>
 
+#include <iostream>
 MeleeEnemyBehaviourEC::MeleeEnemyBehaviourEC() : EnemyBehaviourEC() {}
 
 MeleeEnemyBehaviourEC::~MeleeEnemyBehaviourEC() {}
@@ -22,18 +24,17 @@ void MeleeEnemyBehaviourEC::destroy() {
 void MeleeEnemyBehaviourEC::checkEvent() {
     EnemyBehaviourEC::checkEvent();
 
-	// attack every attackCooldown seconds
-	if (timeToAttack())
-     {
-		// if enemy is colliding with player
-        if (getCollisionWithPlayer())
-         {
+    // attack every attackCooldown seconds
+    if (timeToAttack()) {
+        // if enemy is colliding with player
+        if (getCollisionWithPlayer()) {
             // attack player
             LifeC* playerHealth = dynamic_cast<LifeC*>(
                 scene->getEntitybyId("Player")->getComponent("LifeC"));
             playerHealth->doDamage(getAttack());
         }
     }
+
 }
 
 // FACTORY INFRASTRUCTURE
