@@ -155,7 +155,7 @@
             "dispersion": 10
           }
         },
-		{
+		    {
           "type": "AutomaticRifleC",
           "attributes": {
             "bulletTag": "PlayerBullet",
@@ -165,11 +165,11 @@
             "automatic": true
           }
         },
-		{
-		  "type": "AutomaticEC",
-          "attributes": {
-          }
-		},			
+		    {
+		      "type": "AutomaticEC",
+              "attributes": {
+              }
+		    },			
         {
           "type": "WeaponControllerIC",
           "attributes": {

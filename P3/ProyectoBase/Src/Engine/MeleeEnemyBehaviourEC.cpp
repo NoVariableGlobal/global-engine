@@ -51,16 +51,16 @@ class MeleeEnemyBehaviourECFactory final : public ComponentFactory {
         meleeEnemyBehaviour->setFather(_father);
         meleeEnemyBehaviour->setScene(scene);
 
-        if (!_data["speed"].asFloat())
+        if (!_data["speed"].isDouble())
             throw std::exception(
-                "EnemyBehaviourEC: speed is not a float");
+                "MeleeEnemyBehaviourEC: speed is not a float");
         meleeEnemyBehaviour->setSpeed(_data["speed"].asFloat());
 
-        if (!_data["attack"].asInt())
-            throw std::exception("MeleeEnemyBehaviourPC: attack is not an int");
+        if (!_data["attack"].isInt())
+            throw std::exception("MeleeEnemyBehaviourEC: attack is not an int");
         meleeEnemyBehaviour->setAttack(_data["attack"].asInt());
 
-        if (!_data["attackCooldown"].asFloat())
+        if (!_data["attackCooldown"].isDouble())
             throw std::exception(
                 "MeleeEnemyBehaviourEC: attackCooldown is not a float");
         meleeEnemyBehaviour->setAttackCooldown(
