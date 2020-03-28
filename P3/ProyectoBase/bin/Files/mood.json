@@ -74,10 +74,10 @@
         {
           "type": "SpawnerEnemiesEC",
           "attributes": {
-            "spawnCooldown": 10,
-            "spawnID": [ "MeleeEnemy" ],
+            "spawnCooldown": 2,
+            "spawnID": [ "RangedHandgunEnemy", "RangedRifleEnemy", "RangedShotgunEnemy", "RangedSniperEnemy"],
             "spawnTag": "Enemy",
-            "spawnChances": [ 100 ]
+            "spawnChances": [ 25, 25, 25, 25 ]
           }
         }
       ]
@@ -182,7 +182,6 @@
         {
           "type": "WeaponControllerIC",
           "attributes": {
-
           }
         },
         {
@@ -190,7 +189,7 @@
           "attributes": {}
         }
       ]
-    },
+      },
     {
       "id": "Suelo",
       "components": [
