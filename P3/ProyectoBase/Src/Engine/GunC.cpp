@@ -31,6 +31,8 @@ bool GunC::getautomatic() { return _automatic; }
 
 void GunC::setBulletTag(std::string bulletTag) { _myBulletTag = bulletTag; }
 
+bool GunC::getInfiniteAmmo() { return infiniteAmmo_; }
+
 void GunC::setbulletchamber(int bulletchamberMax) {
     _bulletchamberMax = bulletchamberMax;
     _bulletchamber = bulletchamberMax;
@@ -43,6 +45,8 @@ void GunC::setcadence(float cadence) { _cadence = cadence; }
 void GunC::setautomatic(bool automatic) {
     _automatic = automatic;
 }
+
+void GunC::setInfiniteAmmo(bool infinite) { infiniteAmmo_ = infinite; }
 
 void GunC::setTransform(TransformComponent* trans) { myTransform = trans; }
 

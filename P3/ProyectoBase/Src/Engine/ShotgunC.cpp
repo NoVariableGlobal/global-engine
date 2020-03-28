@@ -24,8 +24,9 @@ void ShotgunC::destroy() {
 }
 
 bool ShotgunC::shoot() {
-    if (_bulletchamber > 0) {
-        _bulletchamber--;
+    if (getInfiniteAmmo() || _bulletchamber > 0) {
+        if (!getInfiniteAmmo())
+            _bulletchamber--;
 
         // Save original rotation
         Ogre::SceneNode* node =

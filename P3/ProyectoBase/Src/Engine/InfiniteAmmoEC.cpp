@@ -1,33 +1,35 @@
-#include "InvulnerabilityShield.h"
+#include "InfiniteAmmoEC.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
-#include "LifeC.h"
+#include "GunC.h"
 #include "OgreVector3.h"
 #include "RigidbodyPC.h"
 #include "Scene.h"
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
+#include "WeaponControllerIC.h"
 #include <iostream>
 #include <json.h>
 
-InvulnerabilityShield::InvulnerabilityShield() {}
+InfiniteAmmoEC::InfiniteAmmoEC() {}
 
-InvulnerabilityShield::~InvulnerabilityShield() {}
+InfiniteAmmoEC::~InfiniteAmmoEC() {}
 
-void InvulnerabilityShield::destroy() {
+void InfiniteAmmoEC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseEC(this);
 }
 
-void InvulnerabilityShield::checkEvent() {
+void InfiniteAmmoEC::checkEvent() {
     PowerUpEC::checkEvent();
 
     if (!picked && getCollisionWithPlayer()) {
-        LifeC* playerHealth = dynamic_cast<LifeC*>(
-            scene->getEntitybyId("Player")->getComponent("LifeC"));
-        playerHealth->setInvulnerability(true);
+        auto weaponController = dynamic_cast<WeaponControllerIC*>(
+            scene->getEntitybyId("Player")->getComponent("WeaponControllerIC"));
+        gun_ = weaponController->getCurrentGun();
+        gun_->setInfiniteAmmo(true);
         picked = true;
 
         dynamic_cast<TridimensionalObjectRC*>(
@@ -47,17 +49,16 @@ void InvulnerabilityShield::checkEvent() {
         }
     } else if (timeDisappearEffect()) { // delete item when the effect has
                                         // passed
-        LifeC* playerHealth = dynamic_cast<LifeC*>(
-            scene->getEntitybyId("Player")->getComponent("LifeC"));
-        playerHealth->setInvulnerability(false);
+        if (gun_ != nullptr) {
+            gun_->setInfiniteAmmo(false);
+        }
 
         scene->deleteEntity(father);
     }
 }
+void InfiniteAmmoEC::setTimeEffect(float _time) { timeEffect = _time; }
 
-void InvulnerabilityShield::setTimeEffect(float _time) { timeEffect = _time; }
-
-bool InvulnerabilityShield::timeDisappearEffect() {
+bool InfiniteAmmoEC::timeDisappearEffect() {
     float seconds = clock() / static_cast<float>(CLOCKS_PER_SEC);
 
     if (!startPicked) {
@@ -72,31 +73,30 @@ bool InvulnerabilityShield::timeDisappearEffect() {
 }
 
 // FACTORY INFRASTRUCTURE
-class InvulnerabilityShieldFactory final : public ComponentFactory {
+class InfiniteAmmoECFactory final : public ComponentFactory {
   public:
-    InvulnerabilityShieldFactory() = default;
+    InfiniteAmmoECFactory() = default;
 
     Component* create(Entity* _father, Json::Value& _data,
                       Scene* scene) override {
-        InvulnerabilityShield* invulnerability_Shield =
-            new InvulnerabilityShield();
+        InfiniteAmmoEC* infiniteAmmo = new InfiniteAmmoEC();
 
-        invulnerability_Shield->setFather(_father);
-        invulnerability_Shield->setScene(scene);
-        scene->getComponentsManager()->addEC(invulnerability_Shield);
+        infiniteAmmo->setFather(_father);
+        infiniteAmmo->setScene(scene);
+        scene->getComponentsManager()->addEC(infiniteAmmo);
 
         if (!_data["time"].isDouble())
-            throw std::exception("InvulnerabilityShield: time is not a double");
-        invulnerability_Shield->setDuration(_data["time"].asDouble());
+            throw std::exception("InfiniteAmmo: time is not a double");
+        infiniteAmmo->setDuration(_data["time"].asDouble());
 
         if (!_data["timeEffect"].isDouble())
-            throw std::exception("InvulnerabilityShield: timeEffect is not a double");
-        invulnerability_Shield->setTimeEffect(_data["timeEffect"].asDouble());
+            throw std::exception("Shield: timeEffect is not a double");
+        infiniteAmmo->setTimeEffect(_data["timeEffect"].asDouble());
 
-        invulnerability_Shield->setActive(true);
+        infiniteAmmo->setActive(true);
 
-        return invulnerability_Shield;
+        return infiniteAmmo;
     };
 };
 
-REGISTER_FACTORY("InvulnerabilityShield", InvulnerabilityShield);
+REGISTER_FACTORY("InfiniteAmmoEC", InfiniteAmmoEC);

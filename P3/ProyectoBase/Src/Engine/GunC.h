@@ -10,9 +10,11 @@ class GunC : public Component {
     int _munition;         // Total ammunition stored
     float _cadence;          // Gun cadence
     bool _automatic;   // One shot or multiple shot gun
+    bool infiniteAmmo_;    // Whether or not this gun has infinite ammo
     std::string _myBulletTag;  // Tag of my bullets
     std::string _myBulletType; // Type of my bullets
     TransformComponent* myTransform;
+
   public:
     GunC();
     ~GunC();
@@ -32,12 +34,14 @@ class GunC : public Component {
     int getmunition();       // Return the remaining ammo
     float getcadence();      // Returns the cadence of a bullet
     bool getautomatic(); // Returns if a weapon is semi-automatic
+    bool getInfiniteAmmo();  // Returns if the weapon's ammo is infinite
     //Setters
     void setBulletTag(std::string _bulletTag);
     void setbulletchamber(int bulletchamberMax);  
     void setmunition(int munition);     
     void setcadence(float cadence);    
     void setautomatic(bool semiautomatic);
+    void setInfiniteAmmo(bool infinite);
 
     void setTransform(TransformComponent* trans);
 };
