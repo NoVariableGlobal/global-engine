@@ -2,22 +2,11 @@
 
 #include "PhysicsComponent.h"
 
-namespace Ogre {
-    typedef float Real;
-    template <int dims, typename T> class Vector;
-    typedef Vector<3, Real> Vector3;
-} // namespace Ogre
-
-class RigidBody;
-
 class ConstantMovementPC : public PhysicsComponent {
   private:
-    //btRigidBody* rb = nullptr;
-    /*bool trigger = false;
-    bool kinematic = false;
-    bool stat = false;
-    bool collision = false;*/
-    float speed = 0;
+    float speed;
+    int timer;    // every time the counter resets, speed is increased
+    int counter;  // counter restarts every time it equals the timer
 
   public:
     ConstantMovementPC();
@@ -25,10 +14,11 @@ class ConstantMovementPC : public PhysicsComponent {
 
     virtual void destroy();
 
-	virtual void update();
+    virtual void update();
 
     // getter / Setters
     void setSpeed(float _speed);
+    void setTimer(float _timer);
 
     float getSpeed();
 };

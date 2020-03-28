@@ -23,15 +23,17 @@ void ConstantMovementPC::destroy() {
 }
 
 void ConstantMovementPC::update() {
-    RigidbodyPC* rb =
-        dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"));
-
-    Ogre::Vector3 velocity = Ogre::Vector3(0.0f, speed, 0.0f);
-
-    rb->setLinearVelocity(velocity);
+    if (counter >= timer) {
+        counter = 0;
+        speed += 10;
+        std::cout << "\nspeed increased. Now it is: " << speed << "\n";
+	}
+    counter++;
 }
 
 void ConstantMovementPC::setSpeed(float _speed) { speed = _speed; }
+
+void ConstantMovementPC::setTimer(float _timer) { timer = _timer; }
 
 float ConstantMovementPC::getSpeed() { return speed; }
 
@@ -49,8 +51,12 @@ class ConstantMovementPCFactory final : public ComponentFactory {
         constantMovementPC->setScene(_scene);
 
         if (!_data["speed"].asInt())
-            throw std::exception("constantMovementPC: speed is not an int");
+            throw std::exception("ConstantMovementPC: speed is not an int");
         constantMovementPC->setSpeed(_data["speed"].asFloat());
+
+        if (!_data["timer"].asInt())
+            throw std::exception("ConstantMovementPC: timer is not an int");
+        constantMovementPC->setTimer(_data["timer"].asInt());
 
         return constantMovementPC;
     };

@@ -79,7 +79,8 @@
 		{
 	      "type": "ConstantMovementPC",
 		  "attributes": {
-		    "speed": 500
+		    "speed": 250,
+			"timer": 25
 		  }
 		}
       ]
@@ -116,13 +117,7 @@
             "friction": 0,
             "restitution": 0
           }
-        },
-		{
-	      "type": "ConstantMovementPC",
-		  "attributes": {
-		    "speed": 1000
-		  }
-		}
+        }
       ]
     },
     {
@@ -157,13 +152,7 @@
             "friction": 0,
             "restitution": 0
           }
-        },
-		{
-	      "type": "ConstantMovementPC",
-		  "attributes": {
-		    "speed": 1000
-		  }
-		}
+        }
       ]
     }
   ]
