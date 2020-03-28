@@ -68,7 +68,6 @@ std::vector<Entity*> Scene::getEntitiesbyTag(std::string tag) {
     return tagEntities;
 }
 
-
 void Scene::addEntity(Entity* entity) {
     entities.emplace(entity->getId(), entity);
 }
