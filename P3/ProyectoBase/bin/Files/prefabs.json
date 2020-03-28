@@ -1,54 +1,6 @@
 {
   "prefabs": [
-    {
-      "id": "MeleeEnemy",
-      "components": [
-        {
-          "type": "TransformComponent",
-          "attributes": {
-            "position": [ 0, 0, 0 ],
-            "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.5, 0.5, 0.5 ]
-          }
-        },
-        {
-          "type": "TridimensionalObjectRC",
-          "attributes": {
-            "mesh": "penguin.mesh",
-            "node": "nEnemy",
-            "material": "PenguinMaterial"
-          }
-        },
-        {
-          "type": "RigidbodyPC",
-          "attributes": {
-            "position": [ 50, 0, 50 ],
-            "shape": [ 5, 5, 5 ],
-            "mass": 1,
-            "gravity": [ 0, 0, 0 ],
-            "trigger": false,
-            "kinematic": false,
-            "static": false,
-            "friction": 500,
-            "restitution": 0
-          }
-        },
-        {
-          "type": "MeleeEnemyBehaviourEC",
-          "attributes": {
-            "speed": 0.7,
-            "attack": 10,
-            "attackCooldown": 2
-          }
-        },
-        {
-          "type": "LifeC",
-          "attributes": {
-            "life": 100
-          }
-        }
-      ]
-    },
+
     {
       "id": "InvulnerabilityShield",
       "components": [
@@ -177,47 +129,47 @@
     },
     {
       "id": "InfiniteAmmo",
-        "components": [
-          {
-            "type": "TransformComponent",
-            "attributes": {
-              "position": [ 0, 0, 0 ],
-              "orientation": [ 0, 0, 0 ],
-              "scale": [ 0.1, 0.1, 0.1 ]
-            }
-          },
-          {
-            "type": "TridimensionalObjectRC",
-            "attributes": {
-              "mesh": "cube.mesh",
-              "node": "nCube",
-              "material": "GrassMaterial"
-            }
-          },
-          {
-            "type": "RigidbodyPC",
-            "attributes": {
-              "position": [ 0, 0, 0 ],
-              "shape": [ 2.5, 2.5, 2.5 ],
-              "mass": 1,
-              "gravity": [ 0, 0, 0 ],
-              "trigger": false,
-              "kinematic": false,
-              "static": false,
-              "friction": 0,
-              "restitution": 0
-            }
-          },
-          {
-            "type": "InfiniteAmmoEC",
-            "attributes": {
-              "time": 20,
-              "timeEffect": 10,
-              "speedIncrement": 0.5
-            }
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.1, 0.1, 0.1 ]
           }
-        ]
-      },
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nCube",
+            "material": "GrassMaterial"
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 2.5, 2.5, 2.5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": false,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        },
+        {
+          "type": "InfiniteAmmoEC",
+          "attributes": {
+            "time": 20,
+            "timeEffect": 10,
+            "speedIncrement": 0.5
+          }
+        }
+      ]
+    },
     {
       "id": "IncreaseSpeed",
       "components": [
@@ -596,7 +548,7 @@
         {
           "type": "TransformComponent",
           "attributes": {
-            "position": [ 50, 0, 50 ],
+            "position": [ 0, 0, 0 ],
             "orientation": [ 0, 0, 0 ],
             "scale": [ 0.5, 0.5, 0.5 ]
           }
@@ -605,14 +557,8 @@
           "type": "TridimensionalObjectRC",
           "attributes": {
             "mesh": "penguin.mesh",
-            "node": "nMeleeEnemy",
+            "node": "nEnemy",
             "material": "PenguinMaterial"
-          }
-        },
-        {
-          "type": "LifeC",
-          "attributes": {
-            "life": 150
           }
         },
         {
@@ -632,9 +578,15 @@
         {
           "type": "MeleeEnemyBehaviourEC",
           "attributes": {
-            "playerSpeedPercentage": 0.7,
+            "speed": 0.7,
             "attack": 10,
             "attackCooldown": 2
+          }
+        },
+        {
+          "type": "LifeC",
+          "attributes": {
+            "life": 100
           }
         }
       ]
@@ -681,7 +633,7 @@
         {
           "type": "RangedEnemyBehaviourEC",
           "attributes": {
-            "playerSpeedPercentage": 0.3,
+            "speed": 0.3,
             "attack": 10,
             "attackCooldown": 2,
             "weaponEquipped": "handgun",
@@ -734,7 +686,7 @@
         {
           "type": "RangedEnemyBehaviourEC",
           "attributes": {
-            "playerSpeedPercentage": 0.3,
+            "speed": 0.3,
             "attack": 8,
             "attackCooldown": 0.5,
             "weaponEquipped": "rifle",
@@ -787,7 +739,7 @@
         {
           "type": "RangedEnemyBehaviourEC",
           "attributes": {
-            "playerSpeedPercentage": 0.3,
+            "speed": 0.3,
             "attack": 15,
             "attackCooldown": 3,
             "weaponEquipped": "shotgun",
@@ -840,7 +792,7 @@
         {
           "type": "RangedEnemyBehaviourEC",
           "attributes": {
-            "playerSpeedPercentage": 0.3,
+            "speed": 0.3,
             "attack": 20,
             "attackCooldown": 3,
             "weaponEquipped": "sniper",
