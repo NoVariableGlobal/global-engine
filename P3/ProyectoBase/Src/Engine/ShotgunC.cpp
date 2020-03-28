@@ -43,7 +43,7 @@ bool ShotgunC::shoot() {
             Entity* newBullet = dynamic_cast<SpawnerBulletsC*>(
                                     scene->getEntitybyId("GameManager")
                                         ->getComponent("SpawnerBulletsC"))
-                                    ->getBullet("ShotgunBullet");
+                                    ->getBullet("ShotgunBullet", "tagBullet");
 
             TransformComponent* bulletTransform =
                 dynamic_cast<TransformComponent*>(

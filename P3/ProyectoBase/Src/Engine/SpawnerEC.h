@@ -25,6 +25,7 @@ class SpawnerEC : public EventComponent {
     bool firstTime = true;
 
   public:
+    virtual void destroy();
     void setSpawnCooldown(float spawnCooldown) {
         _spawnCooldown = spawnCooldown;
     }

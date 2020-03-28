@@ -44,7 +44,7 @@
           "type": "SpawnerFloorRandomEC",
           "attributes": {
             "spawnCooldown": 10,
-            "spawnID": [ "Medkit", "Shield" ],
+            "spawnID": [ "Medkit", "InvulnerabilityShield" ],
             "spawnTag": "PowerUp",
             "spawnChances": [ 50, 50 ]
           }
