@@ -29,8 +29,8 @@ class Entity {
     std::string getId();
     void setId(std::string _id);
 
-    std::string getTag();
-    void setTag(std::string _tag);
+    const std::string& getTag() const;
+    void setTag(const std::string &_tag);
 
     void setActive(bool _active);
     bool isActive();

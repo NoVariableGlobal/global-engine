@@ -11,7 +11,11 @@ void Entity::addComponent(std::string name, Component* c) {
 }
 
 Component* Entity::getComponent(std::string name) {
+    try{
     return assert_find(components, name);
+    }catch(std::exception &e){
+        return nullptr;
+    }
 }
 
 std::map<std::string, Component*>& Entity::getAllComponents() {
@@ -21,11 +25,12 @@ std::map<std::string, Component*>& Entity::getAllComponents() {
 std::string Entity::getId() { return id; }
 void Entity::setId(std::string _id) { id = _id; }
 
-std::string Entity::getTag() { return tag; }
-void Entity::setTag(std::string _tag) { tag = _tag; }
+const std::string & Entity::getTag() const { return tag; }
 
-void Entity::setActive(bool _active) { 
-    active = _active; 
+void Entity::setTag(const std::string& _tag) { tag = _tag; }
+
+void Entity::setActive(bool _active) {
+    active = _active;
     for (auto c : components)
         c.second->setActive(active);
 }

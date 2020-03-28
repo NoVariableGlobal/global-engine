@@ -23,7 +23,6 @@
     <ClCompile Include="..\..\Src\Engine\AutomaticEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\BulletC.cpp" />
     <ClCompile Include="..\..\Src\Engine\AutomaticRifleC.cpp" />
-    <ClCompile Include="..\..\Src\Engine\AutomaticRiflePowerUpC.cpp" />
     <ClCompile Include="..\..\Src\Engine\DestroyAfterSecsEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\EnemyBehaviourEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\GunC.cpp" />
@@ -42,7 +41,9 @@
     <ClCompile Include="..\..\Src\Engine\PowerUpEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\RigidbodyPC.cpp" />
     <ClCompile Include="..\..\Src\Engine\ShotgunC.cpp" />
-    <ClCompile Include="..\..\Src\Engine\ShotgunPowerUpC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\GunPowerUpC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\SniperBulletC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\SniperGunC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerBulletsC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerEnemiesEC.cpp" />
@@ -73,7 +74,6 @@
     <ClInclude Include="..\..\Src\Engine\AutomaticEC.h" />
     <ClInclude Include="..\..\Src\Engine\BulletC.h" />
     <ClInclude Include="..\..\Src\Engine\AutomaticRifleC.h" />
-    <ClInclude Include="..\..\Src\Engine\AutomaticRiflePowerUpC.h" />
     <ClInclude Include="..\..\Src\Engine\DestroyAfterSecsEC.h" />
     <ClInclude Include="..\..\Src\Engine\EnemyBehaviourEC.h" />
     <ClInclude Include="..\..\Src\Engine\IncreaseSpeedEC.h" />
@@ -92,7 +92,9 @@
     <ClInclude Include="..\..\Src\Engine\PowerUpEC.h" />
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
     <ClInclude Include="..\..\Src\Engine\ShotgunC.h" />
-    <ClInclude Include="..\..\Src\Engine\ShotgunPowerUpC.h" />
+    <ClInclude Include="..\..\Src\Engine\GunPowerUpC.h" />
+    <ClInclude Include="..\..\Src\Engine\SniperBulletC.h" />
+    <ClInclude Include="..\..\Src\Engine\SniperGunC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerBulletsC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerEC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerEnemiesEC.h" />
