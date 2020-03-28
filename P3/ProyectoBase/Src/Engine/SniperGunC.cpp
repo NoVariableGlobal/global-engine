@@ -79,7 +79,7 @@ class SniperGunCFactory final : public ComponentFactory {
             throw std::exception("SniperGunC: cadence is not an int");
         sniper->setcadence(_data["cadence"].asFloat());
 
-        sniper->setsemiautomatic(false);
+        sniper->setautomatic(false);
 
         sniper->setTransform(dynamic_cast<TransformComponent*>(
             _father->getComponent("TransformComponent")));

@@ -44,18 +44,18 @@
           "type": "SpawnerFloorRandomEC",
           "attributes": {
             "spawnCooldown": 1,
-            "spawnID": [ "Medkit", "InvulnerabilityShield", "IncreaseSpeed","Nuke"],
+            "spawnID": [ "Medkit", "IncreaseSpeed", "InvulnerabilityShield", "Nuke" ],
             "spawnTag": "PowerUp",
-            "spawnChances": [ 50, 20, 20, 10 ]
+            "spawnChances": [ 50, 25, 15, 10 ]
           }
         },
         {
           "type": "SpawnerFloorRandomEC",
           "attributes": {
             "spawnCooldown": 5,
-            "spawnID": [ "AutomaticRifle","Shotgun", "SniperGun"],
+            "spawnID": [ "AutomaticRifle", "Shotgun", "SniperGun" ],
             "spawnTag": "Gun",
-            "spawnChances": [ 50,25, 25 ]
+            "spawnChances": [ 50, 25, 25 ]
           }
         }
       ]
@@ -170,7 +170,7 @@
             "bulletTag": "PlayerBullet",
             "bulletchamberMax": 30,
             "munition": 90,
-            "cadence": 0.3,
+            "cadence": 0.1,
             "automatic": true
           }
         },
