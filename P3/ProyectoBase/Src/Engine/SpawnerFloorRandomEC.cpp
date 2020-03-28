@@ -6,9 +6,10 @@
 #include "OgreVector3.h"
 #include "Scene.h"
 #include "TransformComponent.h"
-
+#include <iostream>
 #include "Factory.h"
 #include <json.h>
+#include "RigidbodyPC.h"
 
 void SpawnerFloorRandomEC::destroy() {
     setActive(false);
@@ -29,6 +30,9 @@ void SpawnerFloorRandomEC::checkEvent() {
 
         TransformComponent* spawnTransform = static_cast<TransformComponent*>(
             newEntity->getComponent("TransformComponent"));
+        RigidbodyPC* rigidbody =
+            static_cast<RigidbodyPC*>(
+            newEntity->getComponent("RigidbodyPC"));
 
         float x = floorDimensions.x + static_cast<float>(rand()) /
                                           static_cast<float>(RAND_MAX) *
@@ -37,7 +41,9 @@ void SpawnerFloorRandomEC::checkEvent() {
                                           static_cast<float>(RAND_MAX) *
                                           floorDimensions.w;
         spawnTransform->setPosition(
-            Ogre::Vector3(x, 0, z));
+            Ogre::Vector3(100, 0, 100));
+        rigidbody->setPosition(Ogre::Vector3(100, 0, 100));
+        std::cout << spawnTransform->getPosition() << "\n";
     }
 }
 

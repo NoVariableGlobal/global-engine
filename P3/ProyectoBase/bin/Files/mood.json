@@ -48,8 +48,8 @@
             "spawnTag": "PowerUp",
             "spawnChances": [ 50, 15, 10, 15, 10 ]
           }
-        },
-        {
+        }
+        /*{
           "type": "SpawnerFloorRandomEC",
           "attributes": {
             "spawnCooldown": 5,
@@ -57,10 +57,10 @@
             "spawnTag": "Gun",
             "spawnChances": [ 50, 25, 25 ]
           }
-        }
+        }*/
       ]
     },
-    {
+    /*{
       "id": "GeneradorEnemigos",
       "components": [
         {
@@ -81,7 +81,7 @@
           }
         }
       ]
-    },
+    },*/
     {
       "id": "Player",
       "tag": "Player",
@@ -189,8 +189,8 @@
           "attributes": {}
         }
       ]
-      },
-    {
+      }
+    /*{
       "id": "Suelo",
       "components": [
         {
@@ -210,6 +210,6 @@
           }
         }
       ]
-    }
+    }*/
   ]
 }
