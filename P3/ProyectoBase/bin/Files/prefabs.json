@@ -260,7 +260,7 @@
         {
           "type": "DestroyAfterSecsEC",
           "attributes": {
-            "lifeTime": 20
+            "lifeTime": 2
           }
         }
       ]
