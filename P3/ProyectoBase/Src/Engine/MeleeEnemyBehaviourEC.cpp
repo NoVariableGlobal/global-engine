@@ -51,19 +51,10 @@ class MeleeEnemyBehaviourECFactory final : public ComponentFactory {
         meleeEnemyBehaviour->setFather(_father);
         meleeEnemyBehaviour->setScene(scene);
 
-        if (!_data["playerSpeedPercentage"].asFloat())
+        if (!_data["speed"].asFloat())
             throw std::exception(
-                "EnemyBehaviourEC: playerSpeedPercentage is not a float");
-        meleeEnemyBehaviour->setPlayerSpeedPercentage(
-            _data["playerSpeedPercentage"].asFloat());
-
-        PlayerMovementIC* playerMovement = dynamic_cast<PlayerMovementIC*>(
-            scene->getEntitybyId("Player")->getComponent("PlayerMovementIC"));
-
-        // enemy speed depends on player speed and player speed percentage
-        meleeEnemyBehaviour->setSpeed(
-            playerMovement->getMovementSpeed() *
-            meleeEnemyBehaviour->getPlayerSpeedPercentage());
+                "EnemyBehaviourEC: speed is not a float");
+        meleeEnemyBehaviour->setSpeed(_data["speed"].asFloat());
 
         if (!_data["attack"].asInt())
             throw std::exception("MeleeEnemyBehaviourPC: attack is not an int");

@@ -36,7 +36,7 @@
         {
           "type": "MeleeEnemyBehaviourEC",
           "attributes": {
-            "playerSpeedPercentage": 0.7,
+            "speed": 10.0,
             "attack": 10,
             "attackCooldown": 2
           }
