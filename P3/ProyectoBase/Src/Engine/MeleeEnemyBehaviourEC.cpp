@@ -51,25 +51,16 @@ class MeleeEnemyBehaviourECFactory final : public ComponentFactory {
         meleeEnemyBehaviour->setFather(_father);
         meleeEnemyBehaviour->setScene(scene);
 
-        if (!_data["playerSpeedPercentage"].asFloat())
+        if (!_data["speed"].isDouble())
             throw std::exception(
-                "MeleeEnemyBehaviourEC: playerSpeedPercentage is not a float");
-        meleeEnemyBehaviour->setPlayerSpeedPercentage(
-            _data["playerSpeedPercentage"].asFloat());
+                "MeleeEnemyBehaviourEC: speed is not a float");
+        meleeEnemyBehaviour->setSpeed(_data["speed"].asFloat());
 
-        PlayerMovementIC* playerMovement = dynamic_cast<PlayerMovementIC*>(
-            scene->getEntitybyId("Player")->getComponent("PlayerMovementIC"));
-
-        // enemy speed depends on player speed and player speed percentage
-        meleeEnemyBehaviour->setSpeed(
-            playerMovement->getMovementSpeed() *
-            meleeEnemyBehaviour->getPlayerSpeedPercentage());
-
-        if (!_data["attack"].asInt())
-            throw std::exception("MeleeEnemyBehaviourPC: attack is not an int");
+        if (!_data["attack"].isInt())
+            throw std::exception("MeleeEnemyBehaviourEC: attack is not an int");
         meleeEnemyBehaviour->setAttack(_data["attack"].asInt());
 
-        if (!_data["attackCooldown"].asFloat())
+        if (!_data["attackCooldown"].isDouble())
             throw std::exception(
                 "MeleeEnemyBehaviourEC: attackCooldown is not a float");
         meleeEnemyBehaviour->setAttackCooldown(

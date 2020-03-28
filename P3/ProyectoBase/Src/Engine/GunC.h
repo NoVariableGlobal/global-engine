@@ -9,10 +9,12 @@ class GunC : public Component {
     int _bulletchamberMax; // Total ammunition in chamber
     int _munition;         // Total ammunition stored
     float _cadence;          // Gun cadence
-    float _damage;         // Gun damage by bullet
-    bool _semiautomatic;   // One shot or multiple shot gun
-    std::string _myBulletType;
+    bool _automatic;   // One shot or multiple shot gun
+    bool infiniteAmmo_;    // Whether or not this gun has infinite ammo
+    std::string _myBulletTag;  // Tag of my bullets
+    std::string _myBulletType; // Type of my bullets
     TransformComponent* myTransform;
+
   public:
     GunC();
     ~GunC();
@@ -27,17 +29,19 @@ class GunC : public Component {
     bool mmunitionleft();
 
     // Getters
+    std::string getBulletTag(); // Return the tag of my bullets
     int getbulletchamber();  // Return the remaining ammunition in the chamber
     int getmunition();       // Return the remaining ammo
     float getcadence();      // Returns the cadence of a bullet
-    float getdamage();       // Returns damage from a bullet
-    bool getsemiautomatic(); // Returns if a weapon is semi-automatic
+    bool getautomatic(); // Returns if a weapon is semi-automatic
+    bool getInfiniteAmmo();  // Returns if the weapon's ammo is infinite
     //Setters
+    void setBulletTag(std::string _bulletTag);
     void setbulletchamber(int bulletchamberMax);  
     void setmunition(int munition);     
     void setcadence(float cadence);    
-    void setdamage(float damage);         
-    void setsemiautomatic(bool semiautomatic);
+    void setautomatic(bool semiautomatic);
+    void setInfiniteAmmo(bool infinite);
 
     void setTransform(TransformComponent* trans);
 };

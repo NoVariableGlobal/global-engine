@@ -49,10 +49,10 @@ bool Game::init(std::string _firstScene) {
 void Game::run() {
     while (!exit) {
         update();
-        render();
         handleInput();
-        scene->deleteComponents();
         scene->insertComponents();
+        scene->deleteComponents();
+        render();
 
         if (sceneChange)
             setScene(sceneToChange);

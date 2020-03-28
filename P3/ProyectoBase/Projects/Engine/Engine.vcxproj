@@ -20,6 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Application.cpp" />
+    <ClCompile Include="..\..\Src\Engine\AutomaticEC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\BulletC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\AutomaticRifleC.cpp" />
     <ClCompile Include="..\..\Src\Engine\DestroyAfterSecsEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\EnemyBehaviourEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\GunC.cpp" />
@@ -28,6 +31,7 @@
     <ClCompile Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\ChangeGravityIC.cpp" />
     <ClCompile Include="..\..\Src\Engine\InvulnerabilityShield.cpp" />
+    <ClCompile Include="..\..\Src\Engine\NukeEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\OrientateToMouseIC.cpp" />
     <ClCompile Include="..\..\Src\Engine\HandGunC.cpp" />
     <ClCompile Include="..\..\Src\Engine\OnEPressPickUpIC.cpp" />
@@ -38,7 +42,9 @@
     <ClCompile Include="..\..\Src\Engine\RangedEnemyBehaviourEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\RigidbodyPC.cpp" />
     <ClCompile Include="..\..\Src\Engine\ShotgunC.cpp" />
-    <ClCompile Include="..\..\Src\Engine\ShotgunPowerUpC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\GunPowerUpC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\SniperBulletC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\SniperGunC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerBulletsC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\SpawnerEnemiesEC.cpp" />
@@ -64,8 +70,12 @@
     <ClCompile Include="..\..\src\Engine\TransformComponent.cpp" />
     <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp" />
     <ClCompile Include="..\..\Src\Engine\WeaponControllerIC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\InfiniteAmmoEC.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\Engine\AutomaticEC.h" />
+    <ClInclude Include="..\..\Src\Engine\BulletC.h" />
+    <ClInclude Include="..\..\Src\Engine\AutomaticRifleC.h" />
     <ClInclude Include="..\..\Src\Engine\DestroyAfterSecsEC.h" />
     <ClInclude Include="..\..\Src\Engine\EnemyBehaviourEC.h" />
     <ClInclude Include="..\..\Src\Engine\IncreaseSpeedEC.h" />
@@ -74,6 +84,7 @@
     <ClInclude Include="..\..\Src\Engine\ChangeGravityIC.h" />
     <ClInclude Include="..\..\Src\Engine\GunC.h" />
     <ClInclude Include="..\..\Src\Engine\MedkitEC.h" />
+    <ClInclude Include="..\..\Src\Engine\NukeEC.h" />
     <ClInclude Include="..\..\Src\Engine\OrientateToMouseIC.h" />
     <ClInclude Include="..\..\Src\Engine\HandGunC.h" />
     <ClInclude Include="..\..\Src\Engine\OnEPressPickUpIC.h" />
@@ -84,7 +95,9 @@
     <ClInclude Include="..\..\Src\Engine\RangedEnemyBehaviourEC.h" />
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
     <ClInclude Include="..\..\Src\Engine\ShotgunC.h" />
-    <ClInclude Include="..\..\Src\Engine\ShotgunPowerUpC.h" />
+    <ClInclude Include="..\..\Src\Engine\GunPowerUpC.h" />
+    <ClInclude Include="..\..\Src\Engine\SniperBulletC.h" />
+    <ClInclude Include="..\..\Src\Engine\SniperGunC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerBulletsC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerEC.h" />
     <ClInclude Include="..\..\Src\Engine\SpawnerEnemiesEC.h" />
@@ -113,6 +126,7 @@
     <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h" />
     <ClInclude Include="..\..\Src\Engine\Util.h" />
     <ClInclude Include="..\..\Src\Engine\WeaponControllerIC.h" />
+    <ClInclude Include="..\..\Src\Engine\InfiniteAmmoEC.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

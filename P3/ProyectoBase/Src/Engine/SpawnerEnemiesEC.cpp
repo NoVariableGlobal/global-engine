@@ -5,6 +5,7 @@
 #include "OgreVector3.h"
 #include "Scene.h"
 #include "TransformComponent.h"
+#include "RigidbodyPC.h"
 
 #include "Factory.h"
 #include <json.h>
@@ -28,6 +29,11 @@ void SpawnerEnemiesEC::checkEvent() {
 
         TransformComponent* spawnTransform = dynamic_cast<TransformComponent*>(
             newEntity->getComponent("TransformComponent"));
+
+        RigidbodyPC* rigid = dynamic_cast<RigidbodyPC*>(
+            newEntity->getComponent("RigidbodyPC"));
+
+        rigid->setPosition(transform->getPosition());
         spawnTransform->setPosition(transform->getPosition());
     }
 }
@@ -75,8 +81,8 @@ class SpawnerEnemiesECFactory final : public ComponentFactory {
             if (!spawnerEnemies->addSpawn(
                     _data["spawnID"][i].asString(),
                     _data["spawnChances"][i].asDouble(), tag)) {
-                printf(("No se pudo a�adir " + _data["spawnID"][i].asString() +
-                        ": Ya se lleg� al 100% de probabilidad./n")
+                printf(("No se pudo aniadir " + _data["spawnID"][i].asString() +
+                        ": Ya se llego al 100% de probabilidad./n")
                            .c_str());
                 break;
             }

@@ -6,8 +6,6 @@ class EnemyBehaviourEC : public EventComponent {
   private:
 	// speed at which enemy follows the player
     float speed;
-	// enemy speed is (player speed * player speed percentage)
-    float playerSpeedPercentage;
 
 	// true if enemy is colliding with player
 	bool collisionWithPlayer = false;
@@ -31,7 +29,6 @@ class EnemyBehaviourEC : public EventComponent {
 
 	// getters and setters
 	float getSpeed();
-    float getPlayerSpeedPercentage();
     bool getCollisionWithPlayer();
     int getAttack();
     float getAttackCooldown();
@@ -39,7 +36,6 @@ class EnemyBehaviourEC : public EventComponent {
     Ogre::Vector3 getDirectionToPlayer();
 
 	void setSpeed(float _speed);
-    void setPlayerSpeedPercentage(float _playerSpeedPercentage);
     void setCollisionWithPlayer(bool _collisionWithPlayer);
     void setAttack(float _attack);
     void setAttackCooldown(float _attackCooldown);
