@@ -179,7 +179,7 @@
           }
         },
         {
-          "type": "SpawnerEnemiesEC",
+          "type": "TridimensionalObjectRC",
           "attributes": {
             "mesh": "cube.mesh",
             "node": "nSuelo",

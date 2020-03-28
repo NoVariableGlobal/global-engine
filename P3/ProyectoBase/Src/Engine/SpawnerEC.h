@@ -39,7 +39,6 @@ class SpawnerEC : public EventComponent {
     @return true if the spawn could be added, false if the spawn could not be
     added. The total chance was already 100%.
     */
-    virtual void destroy();
     bool addSpawn(std::string id, float chance, std::string tag = "Default");
 
     /*
