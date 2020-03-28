@@ -40,8 +40,8 @@ void ChangeGravityIC::handleInput(const SDL_Event& _event) {
                 : Ogre::Vector3(-speed, constantMovement->getSpeed(), 0.0f));
 
         body->setLinearVelocity(
-			!movingIzq
-				? Ogre::Vector3(speed, 0.0f, 0.0f)
+            !movingIzq
+                ? Ogre::Vector3(speed, 0.0f, 0.0f)
                 : Ogre::Vector3(-speed, 0.0f, 0.0f));
 
         dynamic_cast<TridimensionalObjectRC*>(
