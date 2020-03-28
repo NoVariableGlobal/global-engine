@@ -28,6 +28,8 @@ param (
     [string[]] $MsBuildParameters
 )
 
+$ErrorActionPreference = "Stop"
+
 If ($DependenciesOnly -And $EngineOnly) {
     Write-Host "You cannot specify " -ForegroundColor Red  -NoNewline
     Write-Host "-DependenciesOnly"   -ForegroundColor Blue -NoNewline
@@ -163,7 +165,7 @@ $local:MsBuild = Find-MsBuild
 Assert-MsBuildPath($MsBuild)
 
 # Build a MSVC project given a path and optional arguments
-function Step-VisualStudioRaw([string] $Path, [string[]] $Arguments) {
+function Step-VisualStudioRaw([string] $Path, [switch] $ThrowOnError, [string[]] $Arguments) {
     # Run the process
     $private:startTime = Get-Date
     & $MsBuild $Path $Arguments
@@ -180,9 +182,12 @@ function Step-VisualStudioRaw([string] $Path, [string[]] $Arguments) {
     } Else {
         Write-Host "# Errored when building '"         -ForegroundColor Red  -NoNewLine
         Write-Host $Path                               -ForegroundColor Cyan -NoNewLine
-        Write-Host "'. With code $LastExitCode Took: " -ForegroundColor Red  -NoNewLine
+        Write-Host "' with code $LastExitCode Took: " -ForegroundColor Red  -NoNewLine
         Write-Host ("{0:g}" -f $duration)              -ForegroundColor Cyan -NoNewLine
         Write-Host "."                                 -ForegroundColor Red
+        If ($ThrowOnError.ToBool()) {
+            Throw "Failed to build project project, please read the logs above.";
+        }
     }
 }
 
@@ -192,7 +197,7 @@ function Step-VisualStudioThirdPartyDebug([string] $Path) {
     Write-Host $Path              -ForegroundColor Cyan -NoNewline
     Write-Host "' as Debug."      -ForegroundColor Blue
 
-    Step-VisualStudioRaw $Path @("-t:build", "-p:Configuration=Debug;Platform=x64", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal")
+    Step-VisualStudioRaw -Path $Path -Arguments @("-t:build", "-p:Configuration=Debug;Platform=x64", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal")
 }
 
 # Builds a third-party library as release, ignoring all warnings and verbosity
@@ -201,7 +206,7 @@ function Step-VisualStudioThirdPartyRelease([string] $Path) {
     Write-Host $Path              -ForegroundColor Cyan -NoNewline
     Write-Host "' as Release."    -ForegroundColor Blue
 
-    Step-VisualStudioRaw $Path @("-t:build", "-p:Configuration=Release;Platform=x64", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal")
+    Step-VisualStudioRaw -Path $Path -Arguments @("-t:build", "-p:Configuration=Release;Platform=x64", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal")
 }
 
 # Builds the project library
@@ -210,7 +215,7 @@ function Step-VisualStudio([string] $Path) {
     Write-Host $Path                          -ForegroundColor Cyan -NoNewline
     Write-Host "' as $PropertyConfiguration." -ForegroundColor Blue
 
-    Step-VisualStudioRaw $Path $MsBuildParameters
+    Step-VisualStudioRaw -Path $Path -ThrowOnError -Arguments $MsBuildParameters
 }
 
 $local:CMake = Find-CMake
@@ -239,9 +244,10 @@ function Step-CMake([string] $Path, [string[]] $Arguments) {
     Else {
         Write-Host "# Errored when generating '"       -ForegroundColor Red  -NoNewLine
         Write-Host $Path                               -ForegroundColor Cyan -NoNewLine
-        Write-Host "'. With code $LastExitCode Took: " -ForegroundColor Red  -NoNewLine
+        Write-Host "' with code $LastExitCode Took: " -ForegroundColor Red  -NoNewLine
         Write-Host ("{0:g}" -f $duration)              -ForegroundColor Cyan -NoNewLine
         Write-Host "."                                 -ForegroundColor Red
+        Throw "Failed to generate CMake project, please read the logs above.";
     }
 }
 
