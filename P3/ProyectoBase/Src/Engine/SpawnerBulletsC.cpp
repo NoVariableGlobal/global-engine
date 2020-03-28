@@ -12,6 +12,7 @@ SpawnerBulletsC::SpawnerBulletsC() {}
 
 SpawnerBulletsC::~SpawnerBulletsC() {}
 
+
 void SpawnerBulletsC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseDC(this);

@@ -146,6 +146,18 @@
     <ClCompile Include="..\..\Src\Engine\GunPowerUpC.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\AutomaticRifleC.cpp">
+      <Filter>Components\Guns</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\AutomaticRiflePowerUpC.cpp">
+      <Filter>Components\Guns</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\AutomaticEC.cpp">
+      <Filter>Components\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\NukeEC.cpp">
+      <Filter>Components\Events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
@@ -282,6 +294,21 @@
       <Filter>Components\Guns</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\DestroyAfterSecsEC.h">
+      <Filter>Components\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\BulletC.h">
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\AutomaticRifleC.h">
+      <Filter>Components\Guns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\AutomaticRiflePowerUpC.h">
+      <Filter>Components\Guns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\AutomaticEC.h">
+      <Filter>Components\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\NukeEC.h">
       <Filter>Components\Events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\Util.h">
