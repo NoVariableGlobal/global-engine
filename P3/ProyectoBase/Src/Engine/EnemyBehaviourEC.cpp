@@ -62,7 +62,6 @@ void EnemyBehaviourEC::checkEvent() {
     float angleInRad =
         atan2(transform->getPosition().y - playerTransform->getPosition().y,
               transform->getPosition().x - playerTransform->getPosition().x);
-
     float angleInDeg = -angleInRad * 180 / M_PI;
     // Make the rotation
     TridimensionalObjectRC* fatherRender =

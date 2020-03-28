@@ -32,6 +32,7 @@
     <ClCompile Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\ChangeGravityIC.cpp" />
     <ClCompile Include="..\..\Src\Engine\InvulnerabilityShield.cpp" />
+    <ClCompile Include="..\..\Src\Engine\NukeEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\OrientateToMouseIC.cpp" />
     <ClCompile Include="..\..\Src\Engine\HandGunC.cpp" />
     <ClCompile Include="..\..\Src\Engine\OnEPressPickUpIC.cpp" />
@@ -81,6 +82,7 @@
     <ClInclude Include="..\..\Src\Engine\ChangeGravityIC.h" />
     <ClInclude Include="..\..\Src\Engine\GunC.h" />
     <ClInclude Include="..\..\Src\Engine\MedkitEC.h" />
+    <ClInclude Include="..\..\Src\Engine\NukeEC.h" />
     <ClInclude Include="..\..\Src\Engine\OrientateToMouseIC.h" />
     <ClInclude Include="..\..\Src\Engine\HandGunC.h" />
     <ClInclude Include="..\..\Src\Engine\OnEPressPickUpIC.h" />
@@ -117,6 +119,7 @@
     <ClInclude Include="..\..\Src\Engine\PlayerMovementIC.h" />
     <ClInclude Include="..\..\src\Engine\TransformComponent.h" />
     <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h" />
+    <ClInclude Include="..\..\Src\Engine\Util.h" />
     <ClInclude Include="..\..\Src\Engine\WeaponControllerIC.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
