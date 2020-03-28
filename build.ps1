@@ -164,23 +164,25 @@ Assert-MsBuildPath($MsBuild)
 
 # Build a MSVC project given a path and optional arguments
 function Step-VisualStudioRaw([string] $Path, [string[]] $Arguments) {
-    # Run the process, waiting for it to finish
-    $private:p = Start-Process $MsBuild (@($Path) + $Arguments) -Wait -NoNewWindow -PassThru
+    # Run the process
+    $private:startTime = Get-Date
+    & $MsBuild $Path $Arguments
+    $private:exitTime = Get-Date
 
     # Print information to the screen
-    $private:duration = $p.ExitTime - $p.StartTime
-    If ($p.ExitCode -Eq 0) {
+    $private:duration = $exitTime - $startTime
+    If ($LastExitCode -Eq 0) {
         Write-Host "# Finished building '" -ForegroundColor Green -NoNewLine
         Write-Host $Path                   -ForegroundColor Cyan  -NoNewLine
         Write-Host "'. Took: "             -ForegroundColor Green -NoNewLine
         Write-Host ("{0:g}" -f $duration)  -ForegroundColor Cyan  -NoNewLine
         Write-Host "."                     -ForegroundColor Green
     } Else {
-        Write-Host "# Errored when building '"          -ForegroundColor Red  -NoNewLine
-        Write-Host $Path                                -ForegroundColor Cyan -NoNewLine
-        Write-Host "'. With code $($p.ExitCode) Took: " -ForegroundColor Red  -NoNewLine
-        Write-Host ("{0:g}" -f $duration)               -ForegroundColor Cyan -NoNewLine
-        Write-Host "."                                  -ForegroundColor Red
+        Write-Host "# Errored when building '"         -ForegroundColor Red  -NoNewLine
+        Write-Host $Path                               -ForegroundColor Cyan -NoNewLine
+        Write-Host "'. With code $LastExitCode Took: " -ForegroundColor Red  -NoNewLine
+        Write-Host ("{0:g}" -f $duration)              -ForegroundColor Cyan -NoNewLine
+        Write-Host "."                                 -ForegroundColor Red
     }
 }
 
@@ -190,7 +192,7 @@ function Step-VisualStudioThirdPartyDebug([string] $Path) {
     Write-Host $Path              -ForegroundColor Cyan -NoNewline
     Write-Host "' as Debug."      -ForegroundColor Blue
 
-    Step-VisualStudioRaw $Path @("-t:build", "-p:Configuration=Debug;Platform=x64", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal", "-nodeReuse:false")
+    Step-VisualStudioRaw $Path @("-t:build", "-p:Configuration=Debug;Platform=x64", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal")
 }
 
 # Builds a third-party library as release, ignoring all warnings and verbosity
@@ -199,7 +201,7 @@ function Step-VisualStudioThirdPartyRelease([string] $Path) {
     Write-Host $Path              -ForegroundColor Cyan -NoNewline
     Write-Host "' as Release."    -ForegroundColor Blue
 
-    Step-VisualStudioRaw $Path @("-t:build", "-p:Configuration=Release;Platform=x64", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal", "-nodeReuse:false")
+    Step-VisualStudioRaw $Path @("-t:build", "-p:Configuration=Release;Platform=x64", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal")
 }
 
 # Builds the project library
@@ -216,16 +218,18 @@ Assert-CMakePath($CMake)
 
 # Find and assert CMake
 function Step-CMake([string] $Path, [string[]] $Arguments) {
-    Write-Host "# Now configuring CMake Project for '" -ForegroundColor Blue -NoNewline
-    Write-Host $Path                                   -ForegroundColor Cyan -NoNewline
-    Write-Host "' as $PropertyConfiguration."          -ForegroundColor Blue
+    Write-Host "# Generating CMake Project for '" -ForegroundColor Blue -NoNewline
+    Write-Host $Path                              -ForegroundColor Cyan -NoNewline
+    Write-Host "'."                               -ForegroundColor Blue
 
     New-Directory -Path "$Path\build"
-    $private:p = Start-Process $CMake (@("-S", $Path, "-B", "$Path\build") + $Arguments) -Wait -NoNewWindow -PassThru
+    $private:startTime = Get-Date
+    & $CMake -S $Path -B "$Path\build" $Arguments
+    $private:exitTime = Get-Date
 
     # Print information to the screen
-    $private:duration = $p.ExitTime - $p.StartTime
-    If ($p.ExitCode -Eq 0) {
+    $private:duration = $exitTime - $startTime
+    If ($LastExitCode -Eq 0) {
         Write-Host "# Finished generating '" -ForegroundColor Green -NoNewLine
         Write-Host $Path                     -ForegroundColor Cyan  -NoNewLine
         Write-Host "'. Took: "               -ForegroundColor Green -NoNewLine
@@ -233,11 +237,11 @@ function Step-CMake([string] $Path, [string[]] $Arguments) {
         Write-Host "."                       -ForegroundColor Green
     }
     Else {
-        Write-Host "# Errored when generating '"        -ForegroundColor Red  -NoNewLine
-        Write-Host $Path                                -ForegroundColor Cyan -NoNewLine
-        Write-Host "'. With code $($p.ExitCode) Took: " -ForegroundColor Red  -NoNewLine
-        Write-Host ("{0:g}" -f $duration)               -ForegroundColor Cyan -NoNewLine
-        Write-Host "."                                  -ForegroundColor Red
+        Write-Host "# Errored when generating '"       -ForegroundColor Red  -NoNewLine
+        Write-Host $Path                               -ForegroundColor Cyan -NoNewLine
+        Write-Host "'. With code $LastExitCode Took: " -ForegroundColor Red  -NoNewLine
+        Write-Host ("{0:g}" -f $duration)              -ForegroundColor Cyan -NoNewLine
+        Write-Host "."                                 -ForegroundColor Red
     }
 }
 
@@ -260,82 +264,90 @@ function Step-CopyToBinaryDirectory([string] $From, [string[]] $Paths) {
     Write-Host "Finished!"      -ForegroundColor Green
 }
 
-If (!$EngineOnly.ToBool()) {
-    # Build Bullet
-    $private:BulletFolder = "$DependenciesRoot\bullet3-2.89"
-    Step-CMake $BulletFolder  @(
-        "-DBUILD_BULLET2_DEMOS:BOOL=OFF",
-        "-DBUILD_BULLET3:BOOL=ON",
-        "-DBUILD_CLSOCKET:BOOL=OFF",
-        "-DBUILD_CPU_DEMOS:BOOL=OFF",
-        "-DBUILD_ENET:BOOL=OFF",
-        "-DBUILD_EXTRAS:BOOL=OFF",
-        "-DBUILD_OPENGL3_DEMOS:BOOL=OFF",
-        "-DBUILD_PYBULLET:BOOL=OFF",
-        "-DBUILD_SHARED_LIBS:BOOL=OFF",
-        "-DBUILD_UNIT_TESTS:BOOL=OFF",
-        "-DUSE_MSVC_RUNTIME_LIBRARY_DLL:BOOL=ON"
-    )
-    Step-VisualStudioThirdPartyDebug "$BulletFolder\build\BULLET_PHYSICS.sln"
-    Step-VisualStudioThirdPartyRelease "$BulletFolder\build\BULLET_PHYSICS.sln"
+Try {
+    If (!$EngineOnly.ToBool()) {
+        # Build Bullet
+        $private:BulletFolder = "$DependenciesRoot\bullet3-2.89"
+        Step-CMake $BulletFolder  @(
+            "-DBUILD_BULLET2_DEMOS:BOOL=OFF",
+            "-DBUILD_BULLET3:BOOL=ON",
+            "-DBUILD_CLSOCKET:BOOL=OFF",
+            "-DBUILD_CPU_DEMOS:BOOL=OFF",
+            "-DBUILD_ENET:BOOL=OFF",
+            "-DBUILD_EXTRAS:BOOL=OFF",
+            "-DBUILD_OPENGL3_DEMOS:BOOL=OFF",
+            "-DBUILD_PYBULLET:BOOL=OFF",
+            "-DBUILD_SHARED_LIBS:BOOL=OFF",
+            "-DBUILD_UNIT_TESTS:BOOL=OFF",
+            "-DUSE_MSVC_RUNTIME_LIBRARY_DLL:BOOL=ON"
+        )
+        Step-VisualStudioThirdPartyDebug "$BulletFolder\build\BULLET_PHYSICS.sln"
+        Step-VisualStudioThirdPartyRelease "$BulletFolder\build\BULLET_PHYSICS.sln"
 
-    # Build FMod
-    # $private:FModFolder = "$DependenciesRoot\fmod"
+        # Build FMod
+        # $private:FModFolder = "$DependenciesRoot\fmod"
 
-    # Build JsonCPP
-    $private:JsonFolder = "$DependenciesRoot\jsoncpp-master"
-    Step-CMake $JsonFolder @()
-    Step-VisualStudioThirdPartyDebug "$JsonFolder\build\JSONCPP.sln"
-    Step-VisualStudioThirdPartyRelease "$JsonFolder\build\JSONCPP.sln"
+        # Build JsonCPP
+        $private:JsonFolder = "$DependenciesRoot\jsoncpp-master"
+        Step-CMake $JsonFolder @()
+        Step-VisualStudioThirdPartyDebug "$JsonFolder\build\JSONCPP.sln"
+        Step-VisualStudioThirdPartyRelease "$JsonFolder\build\JSONCPP.sln"
 
-    # Build Ogre
-    $private:OgreFolder = "$DependenciesRoot\ogre-1.12.5"
-    Step-CMake $OgreFolder @("-DOGRE_BUILD_COMPONENT_OVERLAY:BOOL=OFF")
-    Step-VisualStudioThirdPartyDebug "$OgreFolder\build\OGRE.sln"
-    Step-VisualStudioThirdPartyRelease "$OgreFolder\build\OGRE.sln"
-    Step-CopyToBinaryDirectory "Ogre" @(
-        "$OgreFolder\build\bin\debug\OgreMain_d.dll",
-        "$OgreFolder\build\bin\debug\RenderSystem_Direct3D11_d.dll",
-        "$OgreFolder\build\bin\debug\RenderSystem_GL_d.dll",
-        "$OgreFolder\build\bin\debug\OgreRTShaderSystem_d.dll",
-        "$OgreFolder\build\bin\debug\Codec_STBI_d.dll",
-        "$OgreFolder\build\bin\release\OgreMain.dll",
-        "$OgreFolder\build\bin\release\RenderSystem_Direct3D11.dll",
-        "$OgreFolder\build\bin\release\RenderSystem_GL.dll",
-        "$OgreFolder\build\bin\release\zlib.dll",
-        "$OgreFolder\build\bin\release\OgreRTShaderSystem.dll",
-        "$OgreFolder\build\bin\release\Codec_STBI.dll"
-    )
+        # Build Ogre
+        $private:OgreFolder = "$DependenciesRoot\ogre-1.12.5"
+        Step-CMake $OgreFolder @("-DOGRE_BUILD_COMPONENT_OVERLAY:BOOL=OFF")
+        Step-VisualStudioThirdPartyDebug "$OgreFolder\build\OGRE.sln"
+        Step-VisualStudioThirdPartyRelease "$OgreFolder\build\OGRE.sln"
+        Step-CopyToBinaryDirectory "Ogre" @(
+            "$OgreFolder\build\bin\debug\OgreMain_d.dll",
+            "$OgreFolder\build\bin\debug\RenderSystem_Direct3D11_d.dll",
+            "$OgreFolder\build\bin\debug\RenderSystem_GL_d.dll",
+            "$OgreFolder\build\bin\debug\OgreRTShaderSystem_d.dll",
+            "$OgreFolder\build\bin\debug\Codec_STBI_d.dll",
+            "$OgreFolder\build\bin\release\OgreMain.dll",
+            "$OgreFolder\build\bin\release\RenderSystem_Direct3D11.dll",
+            "$OgreFolder\build\bin\release\RenderSystem_GL.dll",
+            "$OgreFolder\build\bin\release\zlib.dll",
+            "$OgreFolder\build\bin\release\OgreRTShaderSystem.dll",
+            "$OgreFolder\build\bin\release\Codec_STBI.dll"
+        )
 
-    # Build SDL2
-    $private:Sdl2Folder = "$DependenciesRoot\SDL2-2.0.10"
-    Step-CopyToBinaryDirectory "SDL2" @(
-        "$Sdl2Folder\lib\x64\SDL2.dll"
-    )
-}
-
-If (!$DependenciesOnly.ToBool()) {
-    # Sets up $MsBuildParameters, building one from the other parameters
-    If ($MsBuildParameters.Length -Eq 0) {
-        If ($Target -Eq "" -And (!$Build.IsPresent -Or $Build.ToBool())) {
-            $Target = "-t:build"
-        }
-
-        If ($Property -Eq "") {
-            $PropertyConfiguration = If ($Release.ToBool()) { "Release" } Else { "Debug" }
-            $Property = "-p:Configuration=$PropertyConfiguration;Platform=$Platform"
-        }
-
-        $local:BuildInParallelArgument = If ($SequentialBuild.ToBool()) { "" } Else { "-m" }
-        $local:MaxCpuCountArgument = If (!$AllCores.IsPresent -Or $AllCores.ToBool()) { "-maxCpuCount" } Else { "" }
-        $local:NoLogoArgument = If ($DisplayLogo.ToBool()) { "" } Else { "-noLogo" }
-        $local:VerbosityArgument = "-verbosity:$Verbosity"
-        $local:NodeReuse = "-nodeReuse:false"
-        $local:MsBuildParameters = @($Target, $Property, $VerbosityArgument, $BuildInParallelArgument, $MaxCpuCountArgument, $NoLogoArgument, $NodeReuse)
+        # Build SDL2
+        $private:Sdl2Folder = "$DependenciesRoot\SDL2-2.0.10"
+        Step-CopyToBinaryDirectory "SDL2" @(
+            "$Sdl2Folder\lib\x64\SDL2.dll"
+        )
     }
 
-    # Build Global Engine
-    Step-VisualStudio "$RootFolder\P3\ProyectoBase\ProyectoBase.sln"
-}
+    If (!$DependenciesOnly.ToBool()) {
+        # Sets up $MsBuildParameters, building one from the other parameters
+        If ($MsBuildParameters.Length -Eq 0) {
+            If ($Target -Eq "" -And (!$Build.IsPresent -Or $Build.ToBool())) {
+                $Target = "-t:build"
+            }
 
-Exit 0
+            If ($Property -Eq "") {
+                $PropertyConfiguration = If ($Release.ToBool()) { "Release" } Else { "Debug" }
+                $Property = "-p:Configuration=$PropertyConfiguration;Platform=$Platform"
+            }
+
+            $local:BuildInParallelArgument = If ($SequentialBuild.ToBool()) { "" } Else { "-m" }
+            $local:MaxCpuCountArgument = If (!$AllCores.IsPresent -Or $AllCores.ToBool()) { "-maxCpuCount" } Else { "" }
+            $local:NoLogoArgument = If ($DisplayLogo.ToBool()) { "" } Else { "-noLogo" }
+            $local:VerbosityArgument = "-verbosity:$Verbosity"
+            $local:MsBuildParameters = @($Target, $Property, $VerbosityArgument, $BuildInParallelArgument, $MaxCpuCountArgument, $NoLogoArgument)
+        }
+
+        # Build Global Engine
+        Step-VisualStudio "$RootFolder\P3\ProyectoBase\ProyectoBase.sln"
+    }
+
+    Exit 0
+} Catch {
+    # Write the exception
+    Write-Host -Object $_
+    Write-Host -Object $_.Exception
+    Write-Host -Object $_.ScriptStackTrace
+
+    Exit 1
+}
