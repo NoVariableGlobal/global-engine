@@ -50,8 +50,8 @@ void Game::run() {
     while (!exit) {
         update();
         handleInput();
-        scene->deleteComponents();
         scene->insertComponents();
+        scene->deleteComponents();
         render();
 
         if (sceneChange)

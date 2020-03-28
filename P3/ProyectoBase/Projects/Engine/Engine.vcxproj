@@ -20,7 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Application.cpp" />
+    <ClCompile Include="..\..\Src\Engine\AutomaticEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\BulletC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\AutomaticRifleC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\AutomaticRiflePowerUpC.cpp" />
     <ClCompile Include="..\..\Src\Engine\DestroyAfterSecsEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\EnemyBehaviourEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\GunC.cpp" />
@@ -67,7 +70,10 @@
     <ClCompile Include="..\..\Src\Engine\WeaponControllerIC.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\Engine\AutomaticEC.h" />
     <ClInclude Include="..\..\Src\Engine\BulletC.h" />
+    <ClInclude Include="..\..\Src\Engine\AutomaticRifleC.h" />
+    <ClInclude Include="..\..\Src\Engine\AutomaticRiflePowerUpC.h" />
     <ClInclude Include="..\..\Src\Engine\DestroyAfterSecsEC.h" />
     <ClInclude Include="..\..\Src\Engine\EnemyBehaviourEC.h" />
     <ClInclude Include="..\..\Src\Engine\IncreaseSpeedEC.h" />

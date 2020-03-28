@@ -27,7 +27,7 @@ int GunC::getmunition() { return _munition; }
 
 float GunC::getcadence() { return _cadence; }
 
-bool GunC::getsemiautomatic() { return _semiautomatic; }
+bool GunC::getautomatic() { return _automatic; }
 
 void GunC::setBulletTag(std::string bulletTag) { _myBulletTag = bulletTag; }
 
@@ -40,8 +40,8 @@ void GunC::setmunition(int munition) { _munition = munition; }
 
 void GunC::setcadence(float cadence) { _cadence = cadence; }
 
-void GunC::setsemiautomatic(bool semiautomatic) {
-    _semiautomatic = semiautomatic;
+void GunC::setautomatic(bool automatic) {
+    _automatic = automatic;
 }
 
 void GunC::setTransform(TransformComponent* trans) { myTransform = trans; }

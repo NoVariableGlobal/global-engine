@@ -17,7 +17,7 @@
 #include <value.h>
 
 EnemyBehaviourEC::EnemyBehaviourEC()
-    : speed(0.0f), playerSpeedPercentage(0.0f), attack(0),
+    : speed(0.0f), attack(0),
       attackCooldown(0.0f) {}
 
 EnemyBehaviourEC::~EnemyBehaviourEC() {}
@@ -98,10 +98,6 @@ void EnemyBehaviourEC::setCollisionWithPlayer(bool _collisionWithPlayer) {
 
 float EnemyBehaviourEC::getSpeed() { return speed; }
 
-float EnemyBehaviourEC::getPlayerSpeedPercentage() {
-    return playerSpeedPercentage;
-}
-
 int EnemyBehaviourEC::getAttack() { return attack; }
 
 float EnemyBehaviourEC::getAttackCooldown() { return attackCooldown; }
@@ -109,10 +105,6 @@ float EnemyBehaviourEC::getAttackCooldown() { return attackCooldown; }
 float EnemyBehaviourEC::getLastTimeAttacked() { return lastTimeAttacked; }
 
 void EnemyBehaviourEC::setSpeed(float _speed) { speed = _speed; }
-
-void EnemyBehaviourEC::setPlayerSpeedPercentage(float _playerSpeedPercentage) {
-    playerSpeedPercentage = _playerSpeedPercentage;
-}
 
 void EnemyBehaviourEC::setAttack(float _attack) { attack = _attack; }
 

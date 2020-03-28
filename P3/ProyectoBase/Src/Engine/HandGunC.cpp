@@ -86,9 +86,9 @@ class HandGunCFactory final : public ComponentFactory {
             throw std::exception("HandGunC: cadence is not an int");
         hg->setcadence(_data["cadence"].asFloat());
 
-        if (!_data["semiautomatic"].isBool())
+        if (!_data["automatic"].isBool())
             throw std::exception("HandGunC: semiautomatic is not an bool");
-        hg->setsemiautomatic(_data["semiautomatic"].asBool());
+        hg->setautomatic(_data["automatic"].asBool());
 
 
         hg->setTransform(dynamic_cast<TransformComponent*>(_father->getComponent("TransformComponent")));

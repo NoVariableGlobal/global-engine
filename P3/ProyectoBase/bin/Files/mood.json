@@ -53,9 +53,9 @@
           "type": "SpawnerFloorRandomEC",
           "attributes": {
             "spawnCooldown": 5,
-            "spawnID": [ "Shotgun" ],
+            "spawnID": [ "AutomaticRifle","Shotgun"],
             "spawnTag": "Gun",
-            "spawnChances": [ 100 ]
+            "spawnChances": [ 50,50 ]
           }
         }
       ]
@@ -140,7 +140,7 @@
             "bulletchamberMax": 20,
             "munition": 1000,
             "cadence": 1,
-            "semiautomatic": false
+            "automatic": false
           }
         },
         {
@@ -150,14 +150,30 @@
             "bulletchamberMax": 2,
             "munition": 14,
             "cadence": 1,
-            "semiautomatic": false,
+            "automatic": false,
             "nPellets": 3,
             "dispersion": 10
           }
         },
+		    {
+          "type": "AutomaticRifleC",
+          "attributes": {
+            "bulletTag": "PlayerBullet",
+            "bulletchamberMax": 30,
+            "munition": 90,
+            "cadence": 0.3,
+            "automatic": true
+          }
+        },
+		    {
+		      "type": "AutomaticEC",
+              "attributes": {
+              }
+		    },			
         {
           "type": "WeaponControllerIC",
           "attributes": {
+
           }
         },
         {
