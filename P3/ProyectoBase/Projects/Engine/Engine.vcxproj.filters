@@ -290,6 +290,9 @@
     <ClInclude Include="..\..\Src\Engine\NukeEC.h">
       <Filter>Components\Events</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\Util.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">

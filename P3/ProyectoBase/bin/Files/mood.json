@@ -44,9 +44,9 @@
           "type": "SpawnerFloorRandomEC",
           "attributes": {
             "spawnCooldown": 1,
-            "spawnID": [ "Nuke" ],
+            "spawnID": [ "Medkit", "InvulnerabilityShield", "IncreaseSpeed","Nuke"],
             "spawnTag": "PowerUp",
-            "spawnChances": [ 100 ]
+            "spawnChances": [ 50, 20, 20, 10 ]
           }
         },
         {
@@ -74,7 +74,7 @@
         {
           "type": "SpawnerEnemiesEC",
           "attributes": {
-            "spawnCooldown": 1,
+            "spawnCooldown": 10,
             "spawnID": [ "MeleeEnemy" ],
             "spawnTag": "Enemy",
             "spawnChances": [ 100 ]
