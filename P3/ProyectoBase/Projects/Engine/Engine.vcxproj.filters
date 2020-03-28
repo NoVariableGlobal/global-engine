@@ -140,6 +140,9 @@
     <ClCompile Include="..\..\Src\Engine\BulletC.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\NukeEC.cpp">
+      <Filter>Components\Events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
@@ -283,6 +286,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\BulletC.h">
       <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\NukeEC.h">
+      <Filter>Components\Events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\Util.h">
       <Filter>Misc</Filter>

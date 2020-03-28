@@ -44,9 +44,9 @@
           "type": "SpawnerFloorRandomEC",
           "attributes": {
             "spawnCooldown": 1,
-            "spawnID": [ "Medkit", "InvulnerabilityShield", "IncreaseSpeed" ],
+            "spawnID": [ "Medkit", "InvulnerabilityShield", "IncreaseSpeed","Nuke"],
             "spawnTag": "PowerUp",
-            "spawnChances": [ 50, 30, 20 ]
+            "spawnChances": [ 50, 20, 20, 10 ]
           }
         },
         {
@@ -105,7 +105,7 @@
         {
           "type": "PlayerMovementIC",
           "attributes": {
-            "speed": 15
+            "speed": 35
           }
         },
         {
@@ -158,7 +158,6 @@
         {
           "type": "WeaponControllerIC",
           "attributes": {
-
           }
         },
         {
