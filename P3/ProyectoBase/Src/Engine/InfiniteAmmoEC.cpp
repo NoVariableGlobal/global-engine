@@ -56,6 +56,21 @@ void InfiniteAmmoEC::checkEvent() {
         scene->deleteEntity(father);
     }
 }
+void InfiniteAmmoEC::setTimeEffect(float _time) { timeEffect = _time; }
+
+bool InfiniteAmmoEC::timeDisappearEffect() {
+    float seconds = clock() / static_cast<float>(CLOCKS_PER_SEC);
+
+    if (!startPicked) {
+        time = seconds;
+        startPicked = true;
+    }
+    if (time + timeEffect <= seconds) {
+        return true;
+    }
+
+    return false;
+}
 
 // FACTORY INFRASTRUCTURE
 class InfiniteAmmoECFactory final : public ComponentFactory {
@@ -76,7 +91,7 @@ class InfiniteAmmoECFactory final : public ComponentFactory {
 
         if (!_data["timeEffect"].isDouble())
             throw std::exception("Shield: timeEffect is not a double");
-        invulnerability_Shield->setTimeEffect(_data["timeEffect"].asDouble());
+        infiniteAmmo->setTimeEffect(_data["timeEffect"].asDouble());
 
         infiniteAmmo->setActive(true);
 
