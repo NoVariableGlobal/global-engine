@@ -1,5 +1,6 @@
 #include "FactoriesFactory.h"
 #include "Factory.h"
+#include "Util.h"
 
 FactoriesFactory* FactoriesFactory::_instance = nullptr;
 
@@ -23,5 +24,5 @@ void FactoriesFactory::insert(std::string name, ComponentFactory* fac) {
 }
 
 ComponentFactory* FactoriesFactory::find(std::string name) {
-    return factory.find(name)->second;
+    return assert_find(factory, name);
 }

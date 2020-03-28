@@ -283,6 +283,8 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\BulletC.h">
       <Filter>Components\Other</Filter>
+    <ClInclude Include="..\..\Src\Engine\Util.h">
+      <Filter>Misc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
