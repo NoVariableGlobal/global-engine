@@ -13,7 +13,7 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine,
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     try {
         Game game;
-        if (game.init("MOOD"))
+        if (game.init("GSHIFT"))
             game.run();
     } catch (std::exception& e) {
         std::cout << "ERROR: " << e.what();

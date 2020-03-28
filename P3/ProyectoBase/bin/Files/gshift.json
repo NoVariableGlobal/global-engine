@@ -75,7 +75,13 @@
             "materialL": "PurpleColourMaterial",
             "materialR": "BlueColourMaterial"
           }
-        }
+        },
+		{
+	      "type": "ConstantMovementPC",
+		  "attributes": {
+		    "speed": 500
+		  }
+		}
       ]
     },
     {
@@ -106,11 +112,17 @@
             "gravity": [ 0, 0, 0 ],
             "trigger": false,
             "kinematic": false,
-            "static": true,
+            "static": false,
             "friction": 0,
             "restitution": 0
           }
-        }
+        },
+		{
+	      "type": "ConstantMovementPC",
+		  "attributes": {
+		    "speed": 1000
+		  }
+		}
       ]
     },
     {
@@ -141,11 +153,17 @@
             "gravity": [ 0, 0, 0 ],
             "trigger": false,
             "kinematic": false,
-            "static": true,
+            "static": false,
             "friction": 0,
             "restitution": 0
           }
-        }
+        },
+		{
+	      "type": "ConstantMovementPC",
+		  "attributes": {
+		    "speed": 1000
+		  }
+		}
       ]
     }
   ]
