@@ -19,15 +19,17 @@ bool GunC::reload() {
         return false;
 }
 
+std::string GunC::getBulletTag() { return _myBulletTag; }
+
 int GunC::getbulletchamber() { return _bulletchamber; }
 
 int GunC::getmunition() { return _munition; }
 
 float GunC::getcadence() { return _cadence; }
 
-float GunC::getdamage() { return _damage; }
+bool GunC::getautomatic() { return _automatic; }
 
-bool GunC::getsemiautomatic() { return _semiautomatic; }
+void GunC::setBulletTag(std::string bulletTag) { _myBulletTag = bulletTag; }
 
 void GunC::setbulletchamber(int bulletchamberMax) {
     _bulletchamberMax = bulletchamberMax;
@@ -38,10 +40,8 @@ void GunC::setmunition(int munition) { _munition = munition; }
 
 void GunC::setcadence(float cadence) { _cadence = cadence; }
 
-void GunC::setdamage(float damage) { _damage = damage; }
-
-void GunC::setsemiautomatic(bool semiautomatic) {
-    _semiautomatic = semiautomatic;
+void GunC::setautomatic(bool automatic) {
+    _automatic = automatic;
 }
 
 void GunC::setTransform(TransformComponent* trans) { myTransform = trans; }

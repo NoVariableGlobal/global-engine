@@ -2,20 +2,22 @@
 #include "ComponentsManager.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
-#include "Scene.h"
-#include <Entity.h>
-#include <json.h>
-#include "TransformComponent.h"
 #include "OgreRoot.h"
 #include "RigidbodyPC.h"
-#include <iostream>
+#include "LifeC.h"
+#include "BulletC.h"
+#include "Scene.h"
+#include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
+#include "Entity.h"
+
+#include <json.h>
 #include <time.h>
 #include <utility>
 #include <value.h>
 
 EnemyBehaviourEC::EnemyBehaviourEC()
-    : speed(0.0f), playerSpeedPercentage(0.0f), attack(0),
+    : speed(0.0f), attack(0),
       attackCooldown(0.0f) {}
 
 EnemyBehaviourEC::~EnemyBehaviourEC() {}
@@ -29,8 +31,7 @@ void EnemyBehaviourEC::checkEvent() {
     TransformComponent* transform = dynamic_cast<TransformComponent*>(
         father->getComponent("TransformComponent"));
     RigidbodyPC* rb =
-        dynamic_cast<RigidbodyPC*>(
-        father->getComponent("RigidbodyPC"));
+        dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"));
 
     // obtain player position
     TransformComponent* playerTransform = dynamic_cast<TransformComponent*>(
@@ -43,25 +44,39 @@ void EnemyBehaviourEC::checkEvent() {
                       playerPosition.z - transform->getPosition().z)
             .normalisedCopy();
 
-	// check collision with player
+    // check collision with player
     collisionWithPlayer = rb->collidesWith("Player");
 
-	// if not colliding with player enemy moves towards player
+    // if not colliding with player enemy moves towards player
+    Ogre::Vector3 velocity;
     if (!collisionWithPlayer) {
-        Ogre::Vector3 velocity = Ogre::Vector3(directionToPlayer.x * speed, 0.0f, directionToPlayer.z * speed);
-        rb->setLinearVelocity(velocity);
-	}
+        velocity = Ogre::Vector3(directionToPlayer.x * speed, 0.0f,
+                                 directionToPlayer.z * speed);
 
-	// set orientation towards player
+    } else {
+        velocity = Ogre::Vector3(0.0f, 0.0f, 0.0f);
+    }
+    rb->setLinearVelocity(velocity);
+
+    // set orientation towards player
     float angleInRad =
-            atan2(transform->getPosition().y - playerTransform->getPosition().y,
-            transform->getPosition().x - playerTransform->getPosition().x);
+        atan2(transform->getPosition().y - playerTransform->getPosition().y,
+              transform->getPosition().x - playerTransform->getPosition().x);
     float angleInDeg = -angleInRad * 180 / M_PI;
     // Make the rotation
     TridimensionalObjectRC* fatherRender =
         dynamic_cast<TridimensionalObjectRC*>(
             father->getComponent("TridimensionalObjectRC"));
     fatherRender->rotate(angleInDeg - 90, Ogre::Vector3(0, 1, 0));
+
+    Entity* playerBullet = rb->collidesWithTag("PlayerBullet");
+    if (playerBullet != nullptr) {
+        LifeC* life = dynamic_cast<LifeC*>(father->getComponent("LifeC"));
+        BulletC* bullet = dynamic_cast<BulletC*>(playerBullet->getComponent("BulletC"));
+
+        life->doDamage(bullet->getDamage());
+        bullet->dealCollision();
+    }
 }
 
 bool EnemyBehaviourEC::timeToAttack() {
@@ -83,10 +98,6 @@ void EnemyBehaviourEC::setCollisionWithPlayer(bool _collisionWithPlayer) {
 
 float EnemyBehaviourEC::getSpeed() { return speed; }
 
-float EnemyBehaviourEC::getPlayerSpeedPercentage() {
-    return playerSpeedPercentage;
-}
-
 int EnemyBehaviourEC::getAttack() { return attack; }
 
 float EnemyBehaviourEC::getAttackCooldown() { return attackCooldown; }
@@ -94,11 +105,6 @@ float EnemyBehaviourEC::getAttackCooldown() { return attackCooldown; }
 float EnemyBehaviourEC::getLastTimeAttacked() { return lastTimeAttacked; }
 
 void EnemyBehaviourEC::setSpeed(float _speed) { speed = _speed; }
-
-void EnemyBehaviourEC::setPlayerSpeedPercentage(
-    float _playerSpeedPercentage) {
-    playerSpeedPercentage = _playerSpeedPercentage;
-}
 
 void EnemyBehaviourEC::setAttack(float _attack) { attack = _attack; }
 

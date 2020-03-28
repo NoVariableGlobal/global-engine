@@ -39,11 +39,52 @@
           "type": "SpawnerBulletsC",
           "attributes": {
           }
+        },
+        {
+          "type": "SpawnerFloorRandomEC",
+          "attributes": {
+            "spawnCooldown": 1,
+            "spawnID": [ "Medkit", "InvulnerabilityShield", "IncreaseSpeed","Nuke"],
+            "spawnTag": "PowerUp",
+            "spawnChances": [ 50, 20, 20, 10 ]
+          }
+        },
+        {
+          "type": "SpawnerFloorRandomEC",
+          "attributes": {
+            "spawnCooldown": 5,
+            "spawnID": [ "AutomaticRifle","Shotgun"],
+            "spawnTag": "Gun",
+            "spawnChances": [ 50,50 ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GeneradorEnemigos",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 100 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+          }
+        },
+        {
+          "type": "SpawnerEnemiesEC",
+          "attributes": {
+            "spawnCooldown": 10,
+            "spawnID": [ "MeleeEnemy" ],
+            "spawnTag": "Enemy",
+            "spawnChances": [ 100 ]
+          }
         }
       ]
     },
     {
       "id": "Player",
+      "tag": "Player",
       "components": [
         {
           "type": "TransformComponent",
@@ -64,7 +105,7 @@
         {
           "type": "PlayerMovementIC",
           "attributes": {
-            "speed": 15
+            "speed": 35
           }
         },
         {
@@ -95,28 +136,43 @@
         {
           "type": "HandGunC",
           "attributes": {
+            "bulletTag": "PlayerBullet",
             "bulletchamberMax": 20,
             "munition": 1000,
             "cadence": 1,
-            "damage": 2,
-            "semiautomatic": false
+            "automatic": false
           }
         },
-          {
-            "type": "ShotgunC",
-            "attributes": {
-              "bulletchamberMax": 2,
-              "munition": 14,
-              "cadence": 1,
-              "damage": 5,
-              "semiautomatic": false,
-			  "nPellets": 3,
-			  "dispersion": 5
-            }
-          },
-          {
-            "type": "WeaponControllerIC",
-            "attributes": {
+        {
+          "type": "ShotgunC",
+          "attributes": {
+            "bulletTag": "PlayerBullet",
+            "bulletchamberMax": 2,
+            "munition": 14,
+            "cadence": 1,
+            "automatic": false,
+            "nPellets": 3,
+            "dispersion": 10
+          }
+        },
+		    {
+          "type": "AutomaticRifleC",
+          "attributes": {
+            "bulletTag": "PlayerBullet",
+            "bulletchamberMax": 30,
+            "munition": 90,
+            "cadence": 0.3,
+            "automatic": true
+          }
+        },
+		    {
+		      "type": "AutomaticEC",
+              "attributes": {
+              }
+		    },			
+        {
+          "type": "WeaponControllerIC",
+          "attributes": {
 
           }
         },
@@ -127,54 +183,25 @@
       ]
     },
     {
-      "id": "GeneradorPowerUps",
+      "id": "Suelo",
       "components": [
         {
           "type": "TransformComponent",
           "attributes": {
-            "position": [ 0, 0, 0 ],
+            "position": [ 0, -1, 0 ],
             "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.05, 0.05, 0.05 ]
+            "scale": [ 3, 0.0001, 3 ]
           }
         },
         {
           "type": "TridimensionalObjectRC",
           "attributes": {
             "mesh": "cube.mesh",
-            "node": "nCube",
+            "node": "nSuelo",
             "material": "GrassMaterial"
-          }
-        },
-        {
-          "type": "SpawnerFloorRandomEC",
-          "attributes": {
-            "spawnCooldown": 10,
-            "spawnID": [ "IncreaseSpeed" ],
-            "spawnChances": [ 100 ]
           }
         }
       ]
-      },
-      {
-        "id": "GunSpawner",
-        "components": [
-            {
-              "type": "TransformComponent",
-              "attributes": {
-               "position": [ 0, 0, 0],
-               "orientation": [ 0, 0, 0],
-               "scale": [ 0.1, 0.1, 0.1]
-              }
-            },
-            {
-              "type": "SpawnerFloorRandomEC",
-              "attributes": {
-                "spawnCooldown": 5,
-                "spawnID": [ "Shotgun" ],
-                "spawnChances": [ 12.5 ],
-              }
-            }
-        ]
-      }
-    ]
+    }
+  ]
 }
