@@ -319,7 +319,7 @@
         {
           "type": "LifeC",
           "attributes": {
-            "life": 150
+            "life": 50
           }
         },
         {
@@ -342,7 +342,10 @@
             "playerSpeedPercentage": 0.3,
             "attack": 10,
             "attackCooldown": 2,
-            "weaponEquipped": "handgun"
+            "weaponEquipped": "handgun",
+            "arcPellets": 1,
+            "arcAngleDistance": 1,
+            "bulletSpeed": 50
           }
         }
       ]
@@ -369,7 +372,60 @@
         {
           "type": "LifeC",
           "attributes": {
-            "life": 150
+            "life": 50
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 50, 0, 50 ],
+            "shape": [ 5, 5, 5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": false,
+            "kinematic": false,
+            "static": false,
+            "friction": 500,
+            "restitution": 0
+          }
+        },
+        {
+          "type": "RangedEnemyBehaviourEC",
+          "attributes": {
+            "playerSpeedPercentage": 0.3,
+            "attack": 8,
+            "attackCooldown": 0.5,
+            "weaponEquipped": "rifle",
+            "arcPellets": 1,
+            "arcAngleDistance": 1,
+            "bulletSpeed": 50
+          }
+        }
+      ]
+    },
+    {
+      "id": "RangedShotgunEnemy",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 50, 0, 50 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.5, 0.5, 0.5 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "penguin.mesh",
+            "node": "nMeleeEnemy",
+            "material": "PenguinMaterial"
+          }
+        },
+        {
+          "type": "LifeC",
+          "attributes": {
+            "life": 50
           }
         },
         {
@@ -391,8 +447,64 @@
           "attributes": {
             "playerSpeedPercentage": 0.3,
             "attack": 15,
-            "attackCooldown": 0.5,
-            "weaponEquipped": "rifle"
+            "attackCooldown": 3,
+            "weaponEquipped": "shotgun",
+            "arcPellets": 3,
+            "arcAngleDistance": 30,
+            "bulletSpeed": 50
+          }
+        }
+      ]
+    },
+    {
+      "id": "RangedSniperEnemy",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 50, 0, 50 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.5, 0.5, 0.5 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "penguin.mesh",
+            "node": "nMeleeEnemy",
+            "material": "PenguinMaterial"
+          }
+        },
+        {
+          "type": "LifeC",
+          "attributes": {
+            "life": 50
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 50, 0, 50 ],
+            "shape": [ 5, 5, 5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": false,
+            "kinematic": false,
+            "static": false,
+            "friction": 500,
+            "restitution": 0
+          }
+        },
+        {
+          "type": "RangedEnemyBehaviourEC",
+          "attributes": {
+            "playerSpeedPercentage": 0.3,
+            "attack": 20,
+            "attackCooldown": 3,
+            "weaponEquipped": "sniper",
+            "arcPellets": 1,
+            "arcAngleDistance": 1,
+            "bulletSpeed": 100
           }
         }
       ]
@@ -459,6 +571,76 @@
             "mass": 1,
             "gravity": [ 0, 0, 0 ],
             "trigger": false,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "EnemyBullet_shotgun",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.05, 0.05, 0.05 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nShotgunBullet",
+            "material": "EnemyBulletMaterial"
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 1, 1, 1 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": true,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "EnemyBullet_sniper",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.01, 0.01, 0.01 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nShotgunBullet",
+            "material": "EnemyBulletMaterial"
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 0.5, 0.5, 0.5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": true,
             "kinematic": false,
             "static": false,
             "friction": 0,

@@ -13,6 +13,8 @@
 #include <time.h>
 #include <utility>
 #include <value.h>
+#include <math.h>
+
 
 EnemyBehaviourEC::EnemyBehaviourEC()
     : speed(0.0f), playerSpeedPercentage(0.0f), attack(0),
@@ -59,7 +61,7 @@ void EnemyBehaviourEC::checkEvent() {
 
     // set orientation towards player
     float angleInRad =
-        atan2(transform->getPosition().y - playerTransform->getPosition().y,
+        atan2(transform->getPosition().z - playerTransform->getPosition().z,
               transform->getPosition().x - playerTransform->getPosition().x);
     float angleInDeg = -angleInRad * 180 / M_PI;
     // Make the rotation
