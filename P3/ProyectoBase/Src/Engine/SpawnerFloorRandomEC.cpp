@@ -37,12 +37,7 @@ void SpawnerFloorRandomEC::checkEvent() {
                                           static_cast<float>(RAND_MAX) *
                                           floorDimensions.w;
         spawnTransform->setPosition(
-            Ogre::Vector3(x,
-                          static_cast<TransformComponent*>(
-                              father->getComponent("TransformComponent"))
-                              ->getPosition()
-                              .y,
-                          z));
+            Ogre::Vector3(x, 0, z));
     }
 }
 
@@ -54,19 +49,24 @@ class SpawnerFloorRandomECFactory final : public ComponentFactory {
     Component* create(Entity* _father, Json::Value& _data,
                       Scene* scene) override {
         SpawnerFloorRandomEC* spawnerFloorRandomEC = new SpawnerFloorRandomEC();
+        scene->getComponentsManager()->addEC(spawnerFloorRandomEC);
 
         spawnerFloorRandomEC->setFather(_father);
         spawnerFloorRandomEC->setScene(scene);
-        scene->getComponentsManager()->addEC(spawnerFloorRandomEC);
 
         if (!_data["spawnCooldown"].isDouble())
             throw std::exception("Spawner: spawnCooldown is not a double");
         spawnerFloorRandomEC->setSpawnCooldown(
             _data["spawnCooldown"].asDouble());
+
         if (!_data["spawnID"].isArray())
             throw std::exception("Spawner: spawnID is not an array");
         else if (!_data["spawnID"][0].isString())
             throw std::exception("Spawner: spawnID is not an array of strings");
+
+        if (!_data["spawnTag"].isString())
+            throw std::exception("Spawner: spawnTag is not a string");
+        std::string tag = _data["spawnTag"].asString();
 
         if (!_data["spawnChances"].isArray())
             throw std::exception("Spawner: spawnChances is not an array");
@@ -77,9 +77,9 @@ class SpawnerFloorRandomECFactory final : public ComponentFactory {
         for (int i = 0; i < _data["spawnID"].size(); ++i) {
             if (!spawnerFloorRandomEC->addSpawn(
                     _data["spawnID"][i].asString(),
-                    _data["spawnChances"][i].asDouble())) {
-                printf(("No se pudo a�adir " + _data["spawnID"][i].asString() +
-                        ": Ya se lleg� al 100% de probabilidad./n")
+                    _data["spawnChances"][i].asDouble(), tag)) {
+                printf(("No se pudo aniadir " + _data["spawnID"][i].asString() +
+                        ": Ya se llego al 100% de probabilidad./n")
                            .c_str());
                 break;
             }

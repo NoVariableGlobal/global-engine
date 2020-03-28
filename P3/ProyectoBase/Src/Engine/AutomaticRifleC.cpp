@@ -1,4 +1,4 @@
-#include "HandGunC.h"
+#include "AutomaticRifleC.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
@@ -8,29 +8,29 @@
 #include "OgreSceneNode.h"
 #include "OgreVector3.h"
 #include "RigidbodyPC.h"
+#include "RigidbodyPC.h"
 #include "Scene.h"
 #include "SpawnerBulletsC.h"
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
 #include <json.h>
 
-HandGunC::HandGunC() : GunC() {}
+AutomaticRifleC::AutomaticRifleC() : GunC() {}
 
-HandGunC::~HandGunC() {}
+AutomaticRifleC::~AutomaticRifleC() {}
 
-void HandGunC::destroy() {
+void AutomaticRifleC::destroy () {
     setActive(false);
     scene->getComponentsManager()->eraseDC(this);
 }
 
-bool HandGunC::shoot() {
-    if (getInfiniteAmmo() || _bulletchamber > 0) {
-        if (!getInfiniteAmmo())
-            _bulletchamber--;
+bool AutomaticRifleC::shoot() {
+    if (_bulletchamber > 0) {
+        _bulletchamber--;
         Entity* newBullet = dynamic_cast<SpawnerBulletsC*>(
                                 scene->getEntitybyId("GameManager")
                                     ->getComponent("SpawnerBulletsC"))
-                                ->getBullet("HandgunBullet", _myBulletTag);
+                ->getBullet("AutomaticRifleBullet", _myBulletTag);
 
         TransformComponent* bulletTransform = dynamic_cast<TransformComponent*>(
             newBullet->getComponent("TransformComponent"));
@@ -56,44 +56,44 @@ bool HandGunC::shoot() {
 }
 
 // FACTORY INFRASTRUCTURE
-class HandGunCFactory final : public ComponentFactory {
+class AutomaticRifleCFactory final : public ComponentFactory {
   public:
-    HandGunCFactory() = default;
+    AutomaticRifleCFactory() = default;
 
     Component* create(Entity* _father, Json::Value& _data,
                       Scene* _scene) override {
 
-        HandGunC* hg = new HandGunC();
+        AutomaticRifleC* automaticRifle = new AutomaticRifleC();
 
-        _scene->getComponentsManager()->addDC(hg);
-        hg->setFather(_father);
-        hg->setScene(_scene);
+        _scene->getComponentsManager()->addDC(automaticRifle);
+        automaticRifle->setFather(_father);
+        automaticRifle->setScene(_scene);
 
-        if (!_data["bulletTag"].isString())
-            throw std::exception("ShotgunC: bulletTag is not a string");
-        hg->setBulletTag(_data["bulletTag"].asString());
+		if (!_data["bulletTag"].isString())
+            throw std::exception("AutomaticRifleC: bulletTag is not a string");
+                automaticRifle->setBulletTag(_data["bulletTag"].asString());
 
         if (!_data["bulletchamberMax"].isInt())
-            throw std::exception("HandGunC: bulletchamberMax is not an int");
-        hg->setbulletchamber(_data["bulletchamberMax"].asInt());
+            throw std::exception("AutomaticRifleC: bulletchamberMax is not an int");
+        automaticRifle->setbulletchamber(_data["bulletchamberMax"].asInt());
 
         if (!_data["munition"].isInt())
-            throw std::exception("HandGunC: munition is not an int");
-        hg->setmunition(_data["munition"].asInt());
+            throw std::exception("AutomaticRifleC: munition is not an int");
+        automaticRifle->setmunition(_data["munition"].asInt());
 
         if (!_data["cadence"].isDouble())
-            throw std::exception("HandGunC: cadence is not an int");
-        hg->setcadence(_data["cadence"].asFloat());
+            throw std::exception("AutomaticRifleC: cadence is not an int");
+        automaticRifle->setcadence(_data["cadence"].asFloat());
 
         if (!_data["automatic"].isBool())
-            throw std::exception("HandGunC: semiautomatic is not an bool");
-        hg->setautomatic(_data["automatic"].asBool());
+            throw std::exception("AutomaticRifleC: semiautomatic is not an bool");
+        automaticRifle->setautomatic(_data["automatic"].asBool());
 
-        hg->setTransform(dynamic_cast<TransformComponent*>(
+        automaticRifle->setTransform(dynamic_cast<TransformComponent*>(
             _father->getComponent("TransformComponent")));
 
-        return hg;
+        return automaticRifle;
     };
 };
 
-REGISTER_FACTORY("HandGunC", HandGunC);
+REGISTER_FACTORY("AutomaticRifleC", AutomaticRifleC);

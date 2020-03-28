@@ -1,0 +1,31 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    name: build
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v2
+      - name: Restore CI Cache
+        id: cache-dependencies
+        uses: actions/cache@v1
+        with:
+          path: P3/ProyectoBase/lib
+          key: ${{ runner.os }}-${{ hashFiles('**/build.ps1') }}
+      - name: Build Dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: pwsh -File .\build.ps1 -DependenciesOnly
+        shell: pwsh
+      - name: Build Project (Debug)
+        run: pwsh -File .\build.ps1 -EngineOnly
+        shell: pwsh
+      - name: Build Project (Release)
+        run: pwsh -File .\build.ps1 -EngineOnly -Release
+        shell: pwsh
