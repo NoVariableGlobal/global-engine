@@ -75,8 +75,8 @@ class SpawnerEnemiesECFactory final : public ComponentFactory {
             if (!spawnerEnemies->addSpawn(
                     _data["spawnID"][i].asString(),
                     _data["spawnChances"][i].asDouble(), tag)) {
-                printf(("No se pudo a�adir " + _data["spawnID"][i].asString() +
-                        ": Ya se lleg� al 100% de probabilidad./n")
+                printf(("No se pudo aniadir " + _data["spawnID"][i].asString() +
+                        ": Ya se llego al 100% de probabilidad./n")
                            .c_str());
                 break;
             }

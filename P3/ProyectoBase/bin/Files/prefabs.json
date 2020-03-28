@@ -1,36 +1,50 @@
 {
   "prefabs": [
     {
-      "id": "HandgunBullet",
+      "id": "MeleeEnemy",
       "components": [
         {
           "type": "TransformComponent",
           "attributes": {
             "position": [ 0, 0, 0 ],
             "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.05, 0.05, 0.05 ]
+            "scale": [ 0.5, 0.5, 0.5 ]
           }
         },
         {
           "type": "TridimensionalObjectRC",
           "attributes": {
-            "mesh": "cube.mesh",
-            "node": "nGunBullet",
-            "material": "PurpleColourMaterial"
+            "mesh": "penguin.mesh",
+            "node": "nEnemy",
+            "material": "PenguinMaterial"
           }
         },
         {
           "type": "RigidbodyPC",
           "attributes": {
-            "position": [ 0, 0, 0 ],
-            "shape": [ 2.5, 2.5, 2.5 ],
+            "position": [ 50, 0, 50 ],
+            "shape": [ 5, 5, 5 ],
             "mass": 1,
             "gravity": [ 0, 0, 0 ],
-            "trigger": true,
+            "trigger": false,
             "kinematic": false,
             "static": false,
-            "friction": 0,
+            "friction": 500,
             "restitution": 0
+          }
+        },
+        {
+          "type": "MeleeEnemyBehaviourEC",
+          "attributes": {
+            "playerSpeedPercentage": 0.7,
+            "attack": 10,
+            "attackCooldown": 2
+          }
+        },
+        {
+          "type": "LifeC",
+          "attributes": {
+            "life": 100
           }
         }
       ]
@@ -57,11 +71,11 @@
         {
           "type": "RigidbodyPC",
           "attributes": {
-            "position": [0, 0, 0],
-            "shape": [2.5, 2.5, 2.5],
+            "position": [ 0, 0, 0 ],
+            "shape": [ 2.5, 2.5, 2.5 ],
             "mass": 1,
             "gravity": [ 0, 0, 0 ],
-            "trigger": false,
+            "trigger": true,
             "kinematic": false,
             "static": false,
             "friction": 0,
@@ -76,9 +90,9 @@
           }
         }
       ]
-  	},
-	  {
-	  "id": "Medkit",
+    },
+    {
+      "id": "Medkit",
       "components": [
         {
           "type": "TransformComponent",
@@ -110,60 +124,17 @@
             "restitution": 0
           }
         },
-		{
-		  "type": "MedkitEC",
-		  "attributes": {
-			"time": 20,
-			"timeEffect": 1
-		  }
-		}
-      ]	  
+        {
+          "type": "MedkitEC",
+          "attributes": {
+            "time": 20,
+            "timeEffect": 1
+          }
+        }
+      ]
     },
-	{
-	  "id": "IncreaseSpeed",
-      "components": [
-        {
-          "type": "TransformComponent",
-          "attributes": {
-            "position": [ 0, 0, 0 ],
-            "orientation": [ 0, 0, 0 ],
-            "scale": [ 0.1, 0.1, 0.1 ]
-          }
-        },
-        {
-          "type": "TridimensionalObjectRC",
-          "attributes": {
-            "mesh": "cube.mesh",
-            "node": "nCube",
-            "material": "GrassMaterial"
-          }
-        },
-        {
-          "type": "RigidbodyPC",
-          "attributes": {
-            "position": [ 0, 0, 0 ],
-            "shape": [ 2.5, 2.5, 2.5 ],
-            "mass": 1,
-            "gravity": [ 0, 0, 0 ],
-            "trigger": false,
-            "kinematic": false,
-            "static": false,
-            "friction": 0,
-            "restitution": 0
-          }
-        },
-		    {
-		      "type": "IncreaseSpeedEC",
-		      "attributes": {
-			    "time": 20,
-			    "timeEffect": 10,
-				"speedIncrement": 0.5
-		      }
-		    }
-      ]	  
-    },
-	{
-      "id": "ShotgunBullet",
+    {
+      "id": "IncreaseSpeed",
       "components": [
         {
           "type": "TransformComponent",
@@ -174,12 +145,96 @@
           }
         },
         {
-          "type": "DestroyAfterSecsEC",
+          "type": "TridimensionalObjectRC",
           "attributes": {
-            "lifeTime": 1
+            "mesh": "cube.mesh",
+            "node": "nCube",
+            "material": "OrangeColourMaterial"
           }
         },
-		{
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 2.5, 2.5, 2.5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": true,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        },
+        {
+          "type": "IncreaseSpeedEC",
+          "attributes": {
+            "time": 20,
+            "timeEffect": 10,
+            "speedIncrement": 0.5
+          }
+        }
+      ]
+    },
+    {
+      "id": "HandgunBullet",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.05, 0.05, 0.05 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nGunBullet",
+            "material": "RedColourMaterial"
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 2.5, 2.5, 2.5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": true,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        },
+        {
+          "type": "BulletC",
+          "attributes": {
+            "damage": 2
+          }
+        },
+        {
+          "type": "DestroyAfterSecsEC",
+          "attributes": {
+            "lifeTime": 20
+          }
+        }
+      ]
+    },
+    {
+      "id": "ShotgunBullet",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 0.01, 0.01, 0.01 ]
+          }
+        },
+        {
           "type": "TridimensionalObjectRC",
           "attributes": {
             "mesh": "cube.mesh",
@@ -191,7 +246,7 @@
           "type": "RigidbodyPC",
           "attributes": {
             "position": [ 0, 0, 0 ],
-            "shape": [ 1, 1, 1 ],
+            "shape": [ 0.5, 0.5, 0.5 ],
             "mass": 1,
             "gravity": [ 0, 0, 0 ],
             "trigger": true,
@@ -200,10 +255,22 @@
             "friction": 0,
             "restitution": 0
           }
+        },
+        {
+          "type": "BulletC",
+          "attributes": {
+            "damage": 50
+          }
+        },
+        {
+          "type": "DestroyAfterSecsEC",
+          "attributes": {
+            "lifeTime": 1
+          }
         }
       ]
     },
-	{
+    {
       "id": "Shotgun",
       "components": [
         {
@@ -219,14 +286,14 @@
           "attributes": {
             "mesh": "cube.mesh",
             "node": "nGunBullet",
-            "material": "BlueColourMaterial"
+            "material": "BrownColourMaterial"
           }
         },
         {
           "type": "RigidbodyPC",
           "attributes": {
             "position": [ 0, 0, 0 ],
-            "shape": [ 2, 2, 2 ],
+            "shape": [ 5, 5, 5 ],
             "mass": 1,
             "gravity": [ 0, 0, 0 ],
             "trigger": true,
@@ -243,8 +310,8 @@
         {
           "type": "OnEPressPickUpIC",
           "attributes": {
-			"objectName" : "ShotgunPowerUpC"
-		  }
+            "objectName": "ShotgunPowerUpC"
+          }
         }
       ]
     }
