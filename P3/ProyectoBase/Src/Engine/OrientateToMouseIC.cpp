@@ -17,6 +17,11 @@
 
 #include <iostream>
 
+void OrientateToMouseIC::destroy() {
+    setActive(false);
+    scene->getComponentsManager()->eraseIC(this);
+}
+
 void OrientateToMouseIC::handleInput(const SDL_Event& _event) {
     // Get mouse position
     int xMouse, yMouse;

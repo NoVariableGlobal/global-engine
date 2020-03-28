@@ -1,10 +1,10 @@
-#include "FactoriesFactory.h"
-#include "Factory.h"
 #include "WeaponControllerIC.h"
-#include "Scene.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
+#include "FactoriesFactory.h"
+#include "Factory.h"
 #include "HandGunC.h"
+#include "Scene.h"
 #include <SDL.h>
 #include <iostream>
 #include <json.h>
@@ -12,6 +12,11 @@
 WeaponControllerIC::WeaponControllerIC() {}
 
 WeaponControllerIC::~WeaponControllerIC() {}
+
+void WeaponControllerIC::destroy() {
+    setActive(false);
+    scene->getComponentsManager()->eraseIC(this);
+}
 
 void WeaponControllerIC::init() { currentGun = dynamic_cast<HandGunC*>(father->getComponent("HandGunC")); }
 
@@ -28,6 +33,17 @@ void WeaponControllerIC::handleInput(const SDL_Event& _event) {
 
 GunC* WeaponControllerIC::getCurrentGun() { return currentGun; }
 
+void WeaponControllerIC::pickUpGun(std::string _gunName) {
+    // Deactivate old gun
+    if (secondaryGun != nullptr) {
+        secondaryGun->setActive(false);
+    }
+
+	// Activate ned gun and equip it
+    secondaryGun = dynamic_cast<GunC*>(father->getComponent(_gunName));
+    secondaryGun->setActive(true);
+    currentGun = secondaryGun;
+}
 
 // FACTORY INFRASTRUCTURE
 class WeaponControllerICFactory final : public ComponentFactory {
@@ -42,7 +58,7 @@ class WeaponControllerICFactory final : public ComponentFactory {
         weaponControllerIC->setFather(_father);
         weaponControllerIC->setScene(_scene);
         weaponControllerIC->init();
-        
+
         return weaponControllerIC;
     };
 };

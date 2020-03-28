@@ -15,7 +15,12 @@
 #include <json.h>
 
 MedkitEC::MedkitEC() {}
-MedkitEC::~MedkitEC(){} 
+MedkitEC::~MedkitEC(){}
+
+void MedkitEC::destroy() {
+    setActive(false);
+    scene->getComponentsManager()->eraseEC(this);
+}
 
 void MedkitEC::checkEvent() {
     PowerUpEC::checkEvent();
@@ -26,20 +31,12 @@ void MedkitEC::checkEvent() {
         playerHealth->heal(playerHealth->getTotalLife());
         picked = true;
 
-        // TODO: Delete the entire object
-        scene->getComponentsManager()->eraseRC(
-            (dynamic_cast<TridimensionalObjectRC*>(
-                father->getComponent("TridimensionalObjectRC"))));
-        scene->getComponentsManager()->erasePC(
-            (dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"))));
-        scene->getComponentsManager()->eraseDC(
-            (dynamic_cast<TransformComponent*>(
-                father->getComponent("TransformComponent"))));
+        scene->deleteEntity(father);
     }
     if (!picked) { // delete item when the effect has passed
         if (timeDisappear()) {
             // TODO: Delete the entire object
-            scene->getComponentsManager()->eraseEC(this);
+            scene->deleteEntity(father);
 
             /*RenderComponent* render = dynamic_cast<RenderComponent*>(
                 scene->getEntitybyId("Shield0")->getComponent(
@@ -63,7 +60,7 @@ class MedkitECFactory final : public ComponentFactory {
         medkitEC->setScene(scene);
 
         if (!_data["time"].isDouble())
-            throw std::exception("Shield: time is not a double");
+            throw std::exception("Medkit: time is not a double");
         medkitEC->setDuration(_data["time"].asDouble());
 
         medkitEC->setActive(true);

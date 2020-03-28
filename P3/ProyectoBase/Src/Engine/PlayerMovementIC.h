@@ -1,6 +1,8 @@
 #pragma once
 #include "InputComponent.h"
 
+class PlayerMovementIC;
+
 namespace Ogre {
     typedef float Real;
     template <int dims, typename T> class Vector;
@@ -17,6 +19,8 @@ class PlayerMovementIC : public InputComponent {
   public:
     PlayerMovementIC();
     virtual ~PlayerMovementIC();
+
+    virtual void destroy();
 
     // Updates the entity's transform's
     // position upon pressing WASD keys

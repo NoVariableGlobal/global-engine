@@ -14,7 +14,6 @@ PowerUpEC::PowerUpEC() : picked(false), start(false) {}
 PowerUpEC::~PowerUpEC() {}
 
 void PowerUpEC::checkEvent() {
-
     if (!picked) {
         RigidbodyPC* rb =
             dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"));

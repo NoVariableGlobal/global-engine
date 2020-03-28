@@ -20,6 +20,11 @@ EnemyBehaviourEC::EnemyBehaviourEC()
 
 EnemyBehaviourEC::~EnemyBehaviourEC() {}
 
+void EnemyBehaviourEC::destroy() {
+    setActive(false);
+    scene->getComponentsManager()->eraseEC(this);
+}
+
 void EnemyBehaviourEC::checkEvent() {
     TransformComponent* transform = dynamic_cast<TransformComponent*>(
         father->getComponent("TransformComponent"));

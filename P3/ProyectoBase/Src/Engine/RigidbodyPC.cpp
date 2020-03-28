@@ -21,8 +21,34 @@ RigidbodyPC::RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape,
 
 RigidbodyPC::~RigidbodyPC() { body = nullptr; }
 
+void RigidbodyPC::destroy() {
+    active = false;
+    PhysicsContext::getInstance()->destroyRigidBody(body);
+    scene->getComponentsManager()->erasePC(this);
+}
+
+void RigidbodyPC::setActive(bool active) {
+    Component::setActive(active);
+    if (active) {
+        PhysicsContext::getInstance()->getWorld()->addRigidBody(body);
+        //if (!trigger)
+        //    body->setCollisionFlags(body->getCollisionFlags() &
+        //                            ~btCollisionObject::CF_NO_CONTACT_RESPONSE);
+        //body->forceActivationState(DISABLE_DEACTIVATION);
+    }
+
+    else {
+        PhysicsContext::getInstance()->getWorld()->removeRigidBody(body);
+        //if (!trigger)
+        //    body->setCollisionFlags(body->getCollisionFlags() |
+        //                            btCollisionObject::CF_NO_CONTACT_RESPONSE);
+        //body->forceActivationState(DISABLE_SIMULATION);
+    }
+}
+
 void RigidbodyPC::update() {
     // Updates the transform of the father as the position of the rigidbody
+
     dynamic_cast<TransformComponent*>(
         father->getComponent("TransformComponent"))
         ->setPosition(Ogre::Vector3(body->getWorldTransform().getOrigin().x(),
@@ -32,6 +58,8 @@ void RigidbodyPC::update() {
 
 bool RigidbodyPC::collidesWith(std::string id) {
     // Recieves an id of an entity and checks if our father is colliding with it
+    if (!active)
+        return false;
     Entity* other = scene->getEntitybyId(id);
 
     return collidesWithEntity(other);
@@ -75,6 +103,8 @@ Entity* RigidbodyPC::collidesWithTag(std::string tag) {
 
 void RigidbodyPC::addForce(const Ogre::Vector3 _force,
                            Ogre::Vector3 _relative_pos) {
+    if (!active)
+        return;
     if (_relative_pos == Ogre::Vector3(0.0f, 0.0f, 0.0f))
         body->applyCentralForce((btVector3(
             btScalar(_force.x), btScalar(_force.y), btScalar(_force.z))));
@@ -87,6 +117,8 @@ void RigidbodyPC::addForce(const Ogre::Vector3 _force,
 }
 
 void RigidbodyPC::setGravity(const Ogre::Vector3 _g) {
+    if (!active)
+        return;
     body->setGravity(btVector3(btScalar(_g.x), btScalar(_g.y), btScalar(_g.z)));
 }
 
@@ -97,34 +129,54 @@ bool RigidbodyPC::isKinematic() const { return kinematic; }
 bool RigidbodyPC::isStatic() const { return stat; }
 
 void RigidbodyPC::setTrigger(bool _trigger) {
-    body->setCollisionFlags(body->getCollisionFlags() &
-                            (body->CF_NO_CONTACT_RESPONSE * trigger));
+    if (_trigger)
+        body->setCollisionFlags(body->getCollisionFlags() |
+                                btCollisionObject::CF_NO_CONTACT_RESPONSE);
+    else
+        body->setCollisionFlags(body->getCollisionFlags() &
+                                ~btCollisionObject::CF_NO_CONTACT_RESPONSE);
+
     trigger = _trigger;
 }
 
 void RigidbodyPC::setKinematic(bool _kinematic) {
-    body->setCollisionFlags(body->getCollisionFlags() &
-                            (body->CF_KINEMATIC_OBJECT * _kinematic));
+
+    if (_kinematic)
+        body->setCollisionFlags(body->getCollisionFlags() |
+                                btCollisionObject::CF_KINEMATIC_OBJECT);
+    else
+        body->setCollisionFlags(body->getCollisionFlags() &
+                                ~btCollisionObject::CF_KINEMATIC_OBJECT);
     kinematic = _kinematic;
 }
 
 void RigidbodyPC::setStatic(bool _static) {
-    body->setCollisionFlags(body->getCollisionFlags() &
-                            (body->CF_STATIC_OBJECT * _static));
+    if (_static)
+        body->setCollisionFlags(body->getCollisionFlags() |
+                                btCollisionObject::CF_STATIC_OBJECT);
+    else
+        body->setCollisionFlags(body->getCollisionFlags() &
+                                ~btCollisionObject::CF_STATIC_OBJECT);
     stat = _static;
 }
 
 void RigidbodyPC::setFriction(float _friction) { body->setFriction(_friction); }
 
 void RigidbodyPC::setRestitution(float _restitution) {
+    if (!active)
+        return;
     body->setRestitution(_restitution);
 }
 
 void RigidbodyPC::setLinearVelocity(Ogre::Vector3 _v) {
+    if (!active)
+        return;
     body->setLinearVelocity(btVector3(_v.x, _v.y, _v.z));
 }
 
 void RigidbodyPC::setPosition(Ogre::Vector3 newPos) {
+    if (!active)
+        return;
     btTransform initialTransform;
     initialTransform.setOrigin(btVector3(newPos.x, newPos.y, newPos.z));
     initialTransform.setRotation(body->getOrientation());
@@ -142,6 +194,12 @@ class RigidbodyPCFactory final : public ComponentFactory {
             !_data["mass"].isInt())
             throw std::exception("RigidbodyPC: position/shape is not an array "
                                  "or mass is not an int");
+        int mass = _data["mass"].asInt();
+
+        if (!_data["static"].isBool())
+            throw std::exception("RigidbodyPC: static is not a boolean");
+        if (_data["static"].asBool())
+            mass = 0;
 
         RigidbodyPC* rb =
             new RigidbodyPC(Ogre::Vector3(_data["position"][0].asFloat(),
@@ -150,7 +208,7 @@ class RigidbodyPCFactory final : public ComponentFactory {
                             Ogre::Vector3(_data["shape"][0].asFloat(),
                                           _data["shape"][1].asFloat(),
                                           _data["shape"][2].asFloat()),
-                            _data["mass"].asFloat());
+                            mass);
         _scene->getComponentsManager()->addPC(rb);
 
         rb->setFather(_father);
@@ -170,8 +228,7 @@ class RigidbodyPCFactory final : public ComponentFactory {
             throw std::exception("RigidbodyPC: kinematic is not a boolean");
         rb->setKinematic(_data["kinematic"].asBool());
 
-        if (!_data["static"].isBool())
-            throw std::exception("RigidbodyPC: static is not a boolean");
+
         rb->setStatic(_data["static"].asBool());
 
         if (!_data["friction"].isInt())

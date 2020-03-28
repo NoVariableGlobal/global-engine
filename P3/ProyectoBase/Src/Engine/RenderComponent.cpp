@@ -13,6 +13,11 @@ RenderComponent::~RenderComponent() {
             sceneNode);
 }
 
+void RenderComponent::setActive(bool active) { 
+    Component::setActive(active);
+    sceneNode->setVisible(active);
+}
+
 void RenderComponent::rotate(int degree, Ogre::Vector3 axis) {
     sceneNode->setOrientation(Ogre::Quaternion(Ogre::Degree(degree), axis));
 }

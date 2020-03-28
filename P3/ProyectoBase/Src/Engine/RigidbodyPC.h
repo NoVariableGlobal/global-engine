@@ -22,6 +22,8 @@ class RigidbodyPC : public PhysicsComponent {
   public:
     RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape, float _mass);
     ~RigidbodyPC();
+    virtual void destroy();
+    virtual void setActive(bool active);
     virtual void update();
 
     // returns whether or not the entity this component is

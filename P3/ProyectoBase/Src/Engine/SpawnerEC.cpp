@@ -8,8 +8,15 @@
 #include <utility>
 #include <value.h>
 
+
+void SpawnerEC::destroy() {
+    setActive(false);
+    scene->getComponentsManager()->eraseEC(this);
+}
+
 bool SpawnerEC::addSpawn(std::string id, float chance,
                          std::string tag) {
+
     float totalChance = 0;
     if (_spawns.size() != 0)
         totalChance = _spawns.back()._additiveChance;

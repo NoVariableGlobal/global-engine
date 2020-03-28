@@ -111,9 +111,21 @@
             "semiautomatic": false
           }
         },
-        {
-          "type": "WeaponControllerIC",
-          "attributes": {
+          {
+            "type": "ShotgunC",
+            "attributes": {
+              "bulletchamberMax": 2,
+              "munition": 14,
+              "cadence": 1,
+              "damage": 5,
+              "semiautomatic": false,
+			  "nPellets": 3,
+			  "dispersion": 5
+            }
+          },
+          {
+            "type": "WeaponControllerIC",
+            "attributes": {
 
           }
         },

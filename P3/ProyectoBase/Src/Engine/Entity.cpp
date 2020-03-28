@@ -1,5 +1,6 @@
 #include "Entity.h"
 #include "Component.h"
+#include "Util.h"
 
 Entity::Entity() {}
 
@@ -10,7 +11,11 @@ void Entity::addComponent(std::string name, Component* c) {
 }
 
 Component* Entity::getComponent(std::string name) {
-    return components.find(name)->second;
+    return assert_find(components, name);
+}
+
+std::map<std::string, Component*>& Entity::getAllComponents() {
+    return components;
 }
 
 std::string Entity::getId() { return id; }

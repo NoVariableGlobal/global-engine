@@ -47,7 +47,8 @@ class Scene {
     std::vector<Entity*> getEntitiesbyTag(std::string tag);
     // Add entity into the map.
     void addEntity(Entity* entity);
-
+    // Delete entity
+    void deleteEntity(Entity* entity);
     // clear the entities of the map.
     void clearEntities();
 

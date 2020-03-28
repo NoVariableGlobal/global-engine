@@ -102,7 +102,7 @@
           "attributes": {
             "position": [ -500, 0, 0 ],
             "shape": [ 100, 1000, 50 ],
-            "mass": 1,
+            "mass": 0,
             "gravity": [ 0, 0, 0 ],
             "trigger": false,
             "kinematic": false,
@@ -137,7 +137,7 @@
           "attributes": {
             "position": [ 500, 0, 0 ],
             "shape": [ 100, 1000, 50 ],
-            "mass": 1,
+            "mass": 0,
             "gravity": [ 0, 0, 0 ],
             "trigger": false,
             "kinematic": false,
