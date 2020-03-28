@@ -7,6 +7,7 @@ class InfiniteAmmoEC : public PowerUpEC {
   private:
     GunC* gun_;
 
+    double timeEffect;
   public:
     InfiniteAmmoEC();
     ~InfiniteAmmoEC();

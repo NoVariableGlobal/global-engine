@@ -20,10 +20,6 @@ InfiniteAmmoEC::~InfiniteAmmoEC() {}
 void InfiniteAmmoEC::destroy() {
     setActive(false);
     scene->getComponentsManager()->eraseEC(this);
-
-    if (gun_ != nullptr) {
-        gun_->setInfiniteAmmo(false);
-    }
 }
 
 void InfiniteAmmoEC::checkEvent() {
@@ -47,6 +43,18 @@ void InfiniteAmmoEC::checkEvent() {
             father->getComponent("TransformComponent"))
             ->setActive(false);
     }
+    if (!picked) { // delete item when the effect has passed
+        if (timeDisappear()) {
+            scene->deleteEntity(father);
+        }
+    } else if (timeDisappearEffect()) { // delete item when the effect has
+                                        // passed
+        if (gun_ != nullptr) {
+            gun_->setInfiniteAmmo(false);
+        }
+
+        scene->deleteEntity(father);
+    }
 }
 
 // FACTORY INFRASTRUCTURE
@@ -65,6 +73,10 @@ class InfiniteAmmoECFactory final : public ComponentFactory {
         if (!_data["time"].isDouble())
             throw std::exception("InfiniteAmmo: time is not a double");
         infiniteAmmo->setDuration(_data["time"].asDouble());
+
+        if (!_data["timeEffect"].isDouble())
+            throw std::exception("Shield: timeEffect is not a double");
+        invulnerability_Shield->setTimeEffect(_data["timeEffect"].asDouble());
 
         infiniteAmmo->setActive(true);
 
