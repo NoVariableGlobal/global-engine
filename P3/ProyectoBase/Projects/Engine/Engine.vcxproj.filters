@@ -158,6 +158,9 @@
     <ClCompile Include="..\..\Src\Engine\SniperBulletC.cpp">
       <Filter>Components\Guns</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\InstakillEC.cpp">
+      <Filter>Components\Events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
@@ -281,8 +284,6 @@
     <ClInclude Include="..\..\Src\Engine\InfiniteAmmoEC.h">
       <Filter>Components\Events</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\OnEPressPickUpIC.h">
-    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\GunC.h">
       <Filter>Components\Guns</Filter>
     </ClInclude>
@@ -321,6 +322,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\SniperBulletC.h">
       <Filter>Components\Guns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\InstakillEC.h">
+      <Filter>Components\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\OnEPressPickUpIC.h">
+      <Filter>Components\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
