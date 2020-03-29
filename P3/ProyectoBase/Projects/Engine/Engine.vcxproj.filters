@@ -137,7 +137,7 @@
     <ClCompile Include="..\..\Src\Engine\DestroyAfterSecsEC.cpp">
       <Filter>Components\Events</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\ConstantMovementPC.cpp">
+    <ClCompile Include="..\..\Src\Engine\ConstantMovementC.cpp">
       <Filter>Components\Physics</Filter>
     </ClCompile>
   </ItemGroup>
@@ -281,11 +281,11 @@
     <ClInclude Include="..\..\Src\Engine\DestroyAfterSecsEC.h">
       <Filter>Components\Events</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\ConstantMovementPC.h">
-      <Filter>Components\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\Util.h">
       <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\ConstantMovementC.h">
+      <Filter>Components\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

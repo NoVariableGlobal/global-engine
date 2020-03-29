@@ -76,13 +76,12 @@
             "materialR": "BlueColourMaterial"
           }
         },
-		{
-	      "type": "ConstantMovementPC",
-		  "attributes": {
-		    "speed": 250,
-			"timer": 25
-		  }
-		}
+        {
+          "type": "ConstantMovementC",
+          "attributes": {
+            "speed": 250
+          }
+        }
       ]
     },
     {
@@ -93,7 +92,7 @@
           "attributes": {
             "position": [ 0, 0, 0 ],
             "orientation": [ 0, 0, 0 ],
-            "scale": [ 2, 20, 1 ]
+            "scale": [ 2, 40, 1 ]
           }
         },
         {
@@ -108,12 +107,12 @@
           "type": "RigidbodyPC",
           "attributes": {
             "position": [ -500, 0, 0 ],
-            "shape": [ 100, 1000, 50 ],
+            "shape": [ 100, 2000, 50 ],
             "mass": 0,
             "gravity": [ 0, 0, 0 ],
             "trigger": false,
             "kinematic": false,
-            "static": false,
+            "static": true,
             "friction": 0,
             "restitution": 0
           }
@@ -128,7 +127,7 @@
           "attributes": {
             "position": [ 0, 0, 0 ],
             "orientation": [ 0, 0, 0 ],
-            "scale": [ 2, 20, 1 ]
+            "scale": [ 2, 40, 1 ]
           }
         },
         {
@@ -143,12 +142,12 @@
           "type": "RigidbodyPC",
           "attributes": {
             "position": [ 500, 0, 0 ],
-            "shape": [ 100, 1000, 50 ],
+            "shape": [ 100, 2000, 50 ],
             "mass": 0,
             "gravity": [ 0, 0, 0 ],
             "trigger": false,
             "kinematic": false,
-            "static": false,
+            "static": true,
             "friction": 0,
             "restitution": 0
           }
