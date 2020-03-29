@@ -20,10 +20,14 @@
 
 void InstakillEC::setEffect(bool effect) {
     Entity* player = scene->getEntitybyId("Player");
-    reinterpret_cast<AutomaticRifleC*>("AutomaticRifleC")->setInstakill(effect);
-    reinterpret_cast<HandGunC*>("HandGunC")->setInstakill(effect);
-    reinterpret_cast<ShotgunC*>("ShotgunC")->setInstakill(effect);
-    reinterpret_cast<SniperGunC*>("SniperGunC")->setInstakill(effect);
+    reinterpret_cast<AutomaticRifleC*>(player->getComponent("AutomaticRifleC"))
+        ->setInstakill(effect);
+    reinterpret_cast<HandGunC*>(player->getComponent("HandGunC"))
+        ->setInstakill(effect);
+    reinterpret_cast<ShotgunC*>(player->getComponent("ShotgunC"))
+        ->setInstakill(effect);
+    reinterpret_cast<SniperGunC*>(player->getComponent("SniperGunC"))
+        ->setInstakill(effect);
 }
 
 InstakillEC::InstakillEC() {}
