@@ -60,6 +60,8 @@ class SpawnerFloorRandomECFactory final : public ComponentFactory {
         spawnerFloorRandomEC->setFather(_father);
         spawnerFloorRandomEC->setScene(scene);
 
+        // X and Y are the starting position and Z and W are the maximum that
+        // position can be modified
         if (!_data["floorDimensions[x,y,z,w]"].isArray())
             throw std::exception("random[x,y,z,w]: position is not an array");
         spawnerFloorRandomEC->setFloorDimensions(
