@@ -67,7 +67,7 @@ bool GunC::mmunitionleft() {
         return true;
 }
 
-bool GunC::canShoot() { return infiniteAmmo_ || _bulletchamber == 0; }
+bool GunC::canShoot() { return infiniteAmmo_ || _bulletchamber != 0; }
 
 int GunC::getCalculatedDamage() {
     return infiniteAmmo_ ? std::numeric_limits<int>::max() : _bulletDamage;
