@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Application.cpp" />
+    <ClCompile Include="..\..\Src\Engine\ConstantMovementC.cpp" />
     <ClCompile Include="..\..\Src\Engine\AutomaticEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\AutomaticRifleC.cpp" />
     <ClCompile Include="..\..\Src\Engine\BulletC.cpp" />
@@ -75,6 +76,7 @@
     <ClCompile Include="..\..\Src\Engine\InfiniteAmmoEC.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Src\Engine\ConstantMovementC.h" />
     <ClInclude Include="..\..\Src\Engine\AutomaticEC.h" />
     <ClInclude Include="..\..\Src\Engine\AutomaticRifleC.h" />
     <ClInclude Include="..\..\Src\Engine\BulletC.h" />
