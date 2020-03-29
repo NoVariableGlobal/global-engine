@@ -44,9 +44,9 @@
           "type": "SpawnerFloorRandomEC",
           "attributes": {
             "spawnCooldown": 1,
-            "spawnID": [ "Medkit", "IncreaseSpeed", "InfiniteAmmo", "Instakill", "InvulnerabilityShield", "Nuke" ],
+            "spawnID": [ "Instakill" ],
             "spawnTag": "PowerUp",
-            "spawnChances": [ 50, 15, 10, 10, 15, 10 ]
+            "spawnChances": [ 100 ]
           }
         },
         {
