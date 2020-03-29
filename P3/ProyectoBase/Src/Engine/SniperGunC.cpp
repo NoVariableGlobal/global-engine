@@ -1,14 +1,14 @@
 #include "SniperGunC.h"
-#include "Scene.h"
-#include "ComponentsManager.h"
-#include "SpawnerBulletsC.h"
-#include "Entity.h"
-#include "TridimensionalObjectRC.h"
-#include "TransformComponent.h"
-#include "RigidbodyPC.h"
-#include "Factory.h"
-#include "FactoriesFactory.h"
 #include "BulletC.h"
+#include "ComponentsManager.h"
+#include "Entity.h"
+#include "FactoriesFactory.h"
+#include "Factory.h"
+#include "RigidbodyPC.h"
+#include "Scene.h"
+#include "SpawnerBulletsC.h"
+#include "TransformComponent.h"
+#include "TridimensionalObjectRC.h"
 
 #include <OgreQuaternion.h>
 #include <OgreSceneNode.h>
@@ -19,25 +19,21 @@ void SniperGunC::destroy() {
     scene->getComponentsManager()->eraseDC(this);
 }
 
-
 bool SniperGunC::shoot() {
-    if (_bulletchamber == 0)
+    if (!canShoot())
         return false;
-    
-    _bulletchamber--;
 
-    Entity* newBullet =
-        dynamic_cast<SpawnerBulletsC*>(scene->getEntitybyId("GameManager")
-                                           ->getComponent("SpawnerBulletsC"))
-            ->getBullet("SniperBullet", _myBulletTag);
+    if (!getInfiniteAmmo())
+        _bulletchamber--;
+
+    auto spawner = reinterpret_cast<SpawnerBulletsC*>(
+        scene->getEntitybyId("GameManager")->getComponent("SpawnerBulletsC"));
+    Entity* newBullet = spawner->getBullet("SniperBullet", _myBulletTag);
 
     BulletC* bullet =
-        dynamic_cast<BulletC*>(newBullet->getComponent("BulletC"));
-    if (bullet == nullptr)
-        bullet =
-            dynamic_cast<BulletC*>(newBullet->getComponent("SniperBulletC"));
+        dynamic_cast<BulletC*>(newBullet->getComponent("SniperBulletC"));
 
-    bullet->setDamage(_bulletDamage);
+    bullet->setDamage(getCalculatedDamage());
 
     TransformComponent* bulletTransform = dynamic_cast<TransformComponent*>(
         newBullet->getComponent("TransformComponent"));
@@ -96,6 +92,10 @@ class SniperGunCFactory final : public ComponentFactory {
         if (!_data["cadence"].isDouble())
             throw std::exception("SniperGunC: cadence is not an int");
         sniper->setcadence(_data["cadence"].asFloat());
+
+        if (!_data["instakill"].isBool())
+            throw std::exception("SniperGunC: instakill is not an bool");
+        sniper->setInstakill(_data["instakill"].asBool());
 
         sniper->setautomatic(false);
 

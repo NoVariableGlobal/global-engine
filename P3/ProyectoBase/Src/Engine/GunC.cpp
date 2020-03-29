@@ -37,6 +37,8 @@ void GunC::setBulletTag(std::string bulletTag) { _myBulletTag = bulletTag; }
 
 bool GunC::getInfiniteAmmo() { return infiniteAmmo_; }
 
+bool GunC::getInstakill() { return instakill_; }
+
 void GunC::setbulletchamber(int bulletchamberMax) {
     _bulletchamberMax = bulletchamberMax;
     _bulletchamber = bulletchamberMax;
@@ -50,11 +52,11 @@ void GunC::setbulletspeed(int speed) { _bulletSpeed = speed; }
 
 void GunC::setcadence(float cadence) { _cadence = cadence; }
 
-void GunC::setautomatic(bool automatic) {
-    _automatic = automatic;
-}
+void GunC::setautomatic(bool automatic) { _automatic = automatic; }
 
 void GunC::setInfiniteAmmo(bool infinite) { infiniteAmmo_ = infinite; }
+
+void GunC::setInstakill(bool instakill) { instakill_ = instakill; }
 
 void GunC::setTransform(TransformComponent* trans) { myTransform = trans; }
 
@@ -63,4 +65,10 @@ bool GunC::mmunitionleft() {
         return false;
     else
         return true;
+}
+
+bool GunC::canShoot() { return infiniteAmmo_ || _bulletchamber == 0; }
+
+int GunC::getCalculatedDamage() {
+    return infiniteAmmo_ ? std::numeric_limits<int>::max() : _bulletDamage;
 }

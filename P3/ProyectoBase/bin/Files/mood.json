@@ -142,7 +142,8 @@
             "bulletDamage": 15,
             "bulletSpeed": 50,
             "cadence": 1,
-            "automatic": false
+            "automatic": false,
+            "instakill": false
           }
         },
         {
@@ -156,7 +157,8 @@
             "cadence": 1,
             "automatic": false,
             "nPellets": 3,
-            "dispersion": 10
+            "dispersion": 10,
+            "instakill": false
           }
         },
         {
@@ -167,7 +169,8 @@
             "munition": 5,
             "bulletDamage": 100,
             "bulletSpeed": 100,
-            "cadence": 1
+            "cadence": 1,
+            "instakill": false
           }
         },
 		    {
@@ -179,13 +182,14 @@
             "bulletDamage": 25,
             "bulletSpeed": 50,
             "cadence": 0.1,
-            "automatic": true
+            "automatic": true,
+            "instakill": false
           }
         },
 		    {
 		      "type": "AutomaticEC",
           "attributes": {}
-		    },			
+		    },
         {
           "type": "WeaponControllerIC",
           "attributes": {}
