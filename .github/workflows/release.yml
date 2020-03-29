@@ -1,0 +1,33 @@
+on:
+  release:
+    types: [published]
+
+jobs:
+  artifact:
+    name: Upload Artifact
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Project
+      uses: actions/checkout@v2
+    - name: Restore CI Cache
+      id: cache-dependencies
+      uses: actions/cache@v1
+      with:
+        path: P3/ProyectoBase/lib
+        key: ${{ runner.os }}-${{ hashFiles('**/build.ps1') }}
+    - name: Build Dependencies
+      if: steps.cache-dependencies.outputs.cache-hit != 'true'
+      run: pwsh -File .\build.ps1 -DependenciesOnly
+      shell: pwsh
+    - name: Build Project
+      run: pwsh -File .\build.ps1 -EngineOnly -Release
+      shell: pwsh
+      env:
+        RELEASE_OS: ${{ runner.os }}
+        RELEASE_NAME: ${{ github.event.release.name }}
+    - name: artifact
+      uses: icrawl/action-artifact@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        path: '.release/*.zip'
