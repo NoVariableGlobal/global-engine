@@ -17,4 +17,5 @@ class InfiniteAmmoEC : public PowerUpEC {
     virtual void checkEvent();
     void setTimeEffect(float _time);
     bool timeDisappearEffect();
+    void setPickedTime(float _time);
 };
