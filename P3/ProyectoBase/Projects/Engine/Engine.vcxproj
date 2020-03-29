@@ -21,12 +21,13 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Engine\Application.cpp" />
     <ClCompile Include="..\..\Src\Engine\AutomaticEC.cpp" />
-    <ClCompile Include="..\..\Src\Engine\BulletC.cpp" />
     <ClCompile Include="..\..\Src\Engine\AutomaticRifleC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\BulletC.cpp" />
     <ClCompile Include="..\..\Src\Engine\DestroyAfterSecsEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\EnemyBehaviourEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\GunC.cpp" />
     <ClCompile Include="..\..\Src\Engine\IncreaseSpeedEC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\InstakillEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\MedkitEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\ChangeGravityIC.cpp" />
@@ -74,11 +75,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\Engine\AutomaticEC.h" />
-    <ClInclude Include="..\..\Src\Engine\BulletC.h" />
     <ClInclude Include="..\..\Src\Engine\AutomaticRifleC.h" />
+    <ClInclude Include="..\..\Src\Engine\BulletC.h" />
     <ClInclude Include="..\..\Src\Engine\DestroyAfterSecsEC.h" />
     <ClInclude Include="..\..\Src\Engine\EnemyBehaviourEC.h" />
     <ClInclude Include="..\..\Src\Engine\IncreaseSpeedEC.h" />
+    <ClInclude Include="..\..\Src\Engine\InstakillEC.h" />
     <ClInclude Include="..\..\Src\Engine\InvulnerabilityShield.h" />
     <ClInclude Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.h" />
     <ClInclude Include="..\..\Src\Engine\ChangeGravityIC.h" />
