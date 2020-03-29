@@ -22,7 +22,7 @@ material PurpleColourMaterial
     {
         pass 
         { // first pass                //OPCIONAL CON LAS TEXTURAS. SI LO QUITAS, DEBES QUITAR COLOUR_OP (EJ ABAJO DE ESTA TEXTURA). AUN ASI, LO UNICO IMPORTANTE ES DIFFUSE
-            diffuse 1.00 0.00 1.00 1.00
+            diffuse 0.40 0.02 0.66 1.00
         }
     }
 }
@@ -56,6 +56,17 @@ material BlueColourMaterial
         pass 
         { // first pass                //OPCIONAL CON LAS TEXTURAS. SI LO QUITAS, DEBES QUITAR COLOUR_OP (EJ ABAJO DE ESTA TEXTURA). AUN ASI, LO UNICO IMPORTANTE ES DIFFUSE
             diffuse 0.00 0.68 0.95 1.00
+        }
+    }
+}
+
+material PinkColourMaterial
+{
+    technique 
+    {
+        pass 
+        { // first pass                //OPCIONAL CON LAS TEXTURAS. SI LO QUITAS, DEBES QUITAR COLOUR_OP (EJ ABAJO DE ESTA TEXTURA). AUN ASI, LO UNICO IMPORTANTE ES DIFFUSE
+            diffuse 1.00 0.00 0.83 1.00
         }
     }
 }

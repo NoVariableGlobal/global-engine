@@ -1,19 +1,19 @@
 #pragma once
 #include "PowerUpEC.h"
-
-class InvulnerabilityShield : public PowerUpEC {
+class InstakillEC : public PowerUpEC {
   private:
     double time;
     double timeEffect;
     bool startPicked;
 
+    void setEffect(bool effect);
+
   public:
-    InvulnerabilityShield();
-    ~InvulnerabilityShield();
+    InstakillEC();
+    ~InstakillEC();
     virtual void destroy();
     virtual void checkEvent();
 
     void setTimeEffect(float _time);
     bool timeDisappearEffect();
-    void setPickedTime(float _time);
 };

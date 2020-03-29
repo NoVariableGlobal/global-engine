@@ -35,6 +35,8 @@ void WeaponControllerIC::handleInput(const SDL_Event& _event) {
 
 GunC* WeaponControllerIC::getCurrentGun() { return currentGun; }
 
+GunC* WeaponControllerIC::getSecondaryGun() { return secondaryGun; }
+
 void WeaponControllerIC::pickUpGun(std::string _gunName) {
     // Deactivate old gun
     if (secondaryGun != nullptr) {

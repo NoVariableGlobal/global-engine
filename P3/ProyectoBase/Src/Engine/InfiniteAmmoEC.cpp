@@ -5,11 +5,13 @@
 #include "Factory.h"
 #include "GunC.h"
 #include "OgreVector3.h"
+#include "PowerUpTrackerC.h"
 #include "RigidbodyPC.h"
 #include "Scene.h"
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
 #include "WeaponControllerIC.h"
+
 #include <iostream>
 #include <json.h>
 
@@ -26,25 +28,48 @@ void InfiniteAmmoEC::checkEvent() {
     PowerUpEC::checkEvent();
 
     if (!picked && getCollisionWithPlayer()) {
-        auto weaponController = dynamic_cast<WeaponControllerIC*>(
-            scene->getEntitybyId("Player")->getComponent("WeaponControllerIC"));
-        gun_ = weaponController->getCurrentGun();
-        gun_->setInfiniteAmmo(true);
         picked = true;
 
-        dynamic_cast<TridimensionalObjectRC*>(
-            father->getComponent("TridimensionalObjectRC"))
-            ->setActive(false);
+        PowerUpTrackerC* tracker = dynamic_cast<PowerUpTrackerC*>(
+            scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"));
+        InfiniteAmmoEC* infAmmo = dynamic_cast<InfiniteAmmoEC*>(
+            tracker->getComponent("InfiniteAmmoEC"));
 
-        dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"))
-            ->setActive(false);
+		// If the player already has this powerup refresh it
+        if (infAmmo != nullptr) {
+            infAmmo->setPickedTime(clock() /
+                                   static_cast<float>(CLOCKS_PER_SEC));
+            scene->deleteEntity(father);
+        } else {
+            auto weaponController = dynamic_cast<WeaponControllerIC*>(
+                scene->getEntitybyId("Player")->getComponent(
+                    "WeaponControllerIC"));
+            gun_ = weaponController->getCurrentGun();
+            gun_->setInfiniteAmmo(true);
 
-        dynamic_cast<TransformComponent*>(
-            father->getComponent("TransformComponent"))
-            ->setActive(false);
+            dynamic_cast<TridimensionalObjectRC*>(
+                father->getComponent("TridimensionalObjectRC"))
+                ->setActive(false);
+
+            dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"))
+                ->setActive(false);
+
+            dynamic_cast<TransformComponent*>(
+                father->getComponent("TransformComponent"))
+                ->setActive(false);
+
+            // Add this powerUp to the tracker
+            dynamic_cast<PowerUpTrackerC*>(
+                scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"))
+                ->addPowerUp("InfiniteAmmoEC", this);
+        }
     }
+
     if (!picked) { // delete item when the effect has passed
         if (timeDisappear()) {
+            dynamic_cast<PowerUpTrackerC*>(
+                scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"))
+                ->removePowerUp("InfiniteAmmoEC");
             scene->deleteEntity(father);
         }
     } else if (timeDisappearEffect()) { // delete item when the effect has
@@ -53,6 +78,9 @@ void InfiniteAmmoEC::checkEvent() {
             gun_->setInfiniteAmmo(false);
         }
 
+        dynamic_cast<PowerUpTrackerC*>(
+            scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"))
+            ->removePowerUp("InfiniteAmmoEC");
         scene->deleteEntity(father);
     }
 }
@@ -71,6 +99,8 @@ bool InfiniteAmmoEC::timeDisappearEffect() {
 
     return false;
 }
+
+void InfiniteAmmoEC::setPickedTime(float _time) { time = _time; }
 
 // FACTORY INFRASTRUCTURE
 class InfiniteAmmoECFactory final : public ComponentFactory {

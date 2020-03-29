@@ -3,12 +3,17 @@
 //#include "FloorComponent.h"
 #include "ComponentsManager.h"
 #include "FactoriesFactory.h"
+#include "Factory.h"
 #include "OgreVector3.h"
+#include "RigidbodyPC.h"
 #include "Scene.h"
 #include "TransformComponent.h"
-
-#include "Factory.h"
+#include <iostream>
 #include <json.h>
+
+void SpawnerFloorRandomEC::setFloorDimensions(Ogre::Vector4f _floorDimensions) {
+    floorDimensions = _floorDimensions;
+}
 
 void SpawnerFloorRandomEC::destroy() {
     setActive(false);
@@ -22,13 +27,14 @@ void SpawnerFloorRandomEC::checkEvent() {
         _lastTimeSpawned = clock() / static_cast<float>(CLOCKS_PER_SEC);
     }
 
-
     // Spawnea un prefab en una posicion random del mapa cada cierto tiempo
     if (timeToSpawn()) {
         Entity* newEntity = spawnPrefab();
 
         TransformComponent* spawnTransform = static_cast<TransformComponent*>(
             newEntity->getComponent("TransformComponent"));
+        RigidbodyPC* rigidbody =
+            static_cast<RigidbodyPC*>(newEntity->getComponent("RigidbodyPC"));
 
         float x = floorDimensions.x + static_cast<float>(rand()) /
                                           static_cast<float>(RAND_MAX) *
@@ -36,8 +42,8 @@ void SpawnerFloorRandomEC::checkEvent() {
         float z = floorDimensions.y + static_cast<float>(rand()) /
                                           static_cast<float>(RAND_MAX) *
                                           floorDimensions.w;
-        spawnTransform->setPosition(
-            Ogre::Vector3(x, 0, z));
+        spawnTransform->setPosition(Ogre::Vector3(x, 0, z));
+        rigidbody->setPosition(Ogre::Vector3(x, 0, z));
     }
 }
 
@@ -53,6 +59,16 @@ class SpawnerFloorRandomECFactory final : public ComponentFactory {
 
         spawnerFloorRandomEC->setFather(_father);
         spawnerFloorRandomEC->setScene(scene);
+
+        // X and Y are the starting position and Z and W are the maximum that
+        // position can be modified
+        if (!_data["floorDimensions[x,y,z,w]"].isArray())
+            throw std::exception("random[x,y,z,w]: position is not an array");
+        spawnerFloorRandomEC->setFloorDimensions(
+            Ogre::Vector4f(_data["floorDimensions[x,y,z,w]"][0].asFloat(),
+                           _data["floorDimensions[x,y,z,w]"][1].asFloat(),
+                           _data["floorDimensions[x,y,z,w]"][2].asFloat(),
+                           _data["floorDimensions[x,y,z,w]"][3].asFloat()));
 
         if (!_data["spawnCooldown"].isDouble())
             throw std::exception("Spawner: spawnCooldown is not a double");

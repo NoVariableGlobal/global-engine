@@ -31,18 +31,18 @@ void RigidbodyPC::setActive(bool active) {
     Component::setActive(active);
     if (active) {
         PhysicsContext::getInstance()->getWorld()->addRigidBody(body);
-        //if (!trigger)
+        // if (!trigger)
         //    body->setCollisionFlags(body->getCollisionFlags() &
         //                            ~btCollisionObject::CF_NO_CONTACT_RESPONSE);
-        //body->forceActivationState(DISABLE_DEACTIVATION);
+        // body->forceActivationState(DISABLE_DEACTIVATION);
     }
 
     else {
         PhysicsContext::getInstance()->getWorld()->removeRigidBody(body);
-        //if (!trigger)
+        // if (!trigger)
         //    body->setCollisionFlags(body->getCollisionFlags() |
         //                            btCollisionObject::CF_NO_CONTACT_RESPONSE);
-        //body->forceActivationState(DISABLE_SIMULATION);
+        // body->forceActivationState(DISABLE_SIMULATION);
     }
 }
 
@@ -65,8 +65,8 @@ bool RigidbodyPC::collidesWith(std::string id) {
     return collidesWithEntity(other);
 }
 
-bool RigidbodyPC::collidesWithEntity(Entity* other) { 
-        btVoronoiSimplexSolver sGjkSimplexSolver;
+bool RigidbodyPC::collidesWithEntity(Entity* other) {
+    btVoronoiSimplexSolver sGjkSimplexSolver;
     btGjkEpaPenetrationDepthSolver epaSolver;
     btPointCollector gjkOutput;
 
@@ -88,7 +88,7 @@ bool RigidbodyPC::collidesWithEntity(Entity* other) {
     else
         return false;
 
-    return false; 
+    return false;
 }
 
 Entity* RigidbodyPC::collidesWithTag(std::string tag) {
@@ -173,6 +173,13 @@ void RigidbodyPC::setLinearVelocity(Ogre::Vector3 _v) {
         return;
     body->setLinearVelocity(btVector3(_v.x, _v.y, _v.z));
 }
+Ogre::Vector3 RigidbodyPC::getLinearVelocity() {
+    if (!active)
+        return Ogre::Vector3::NEGATIVE_UNIT_X;
+    btVector3 back = body->getLinearVelocity();
+    
+    return Ogre::Vector3(back.x(), back.y(), back.z());
+}
 
 void RigidbodyPC::setPosition(Ogre::Vector3 newPos) {
     if (!active)
@@ -227,7 +234,6 @@ class RigidbodyPCFactory final : public ComponentFactory {
         if (!_data["kinematic"].isBool())
             throw std::exception("RigidbodyPC: kinematic is not a boolean");
         rb->setKinematic(_data["kinematic"].asBool());
-
 
         rb->setStatic(_data["static"].asBool());
 
