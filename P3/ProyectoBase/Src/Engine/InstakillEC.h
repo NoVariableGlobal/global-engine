@@ -6,6 +6,8 @@ class InstakillEC : public PowerUpEC {
     double timeEffect;
     bool startPicked;
 
+    void setEffect(bool effect);
+
   public:
     InstakillEC();
     ~InstakillEC();

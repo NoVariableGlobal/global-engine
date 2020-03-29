@@ -1,18 +1,30 @@
 #include "InstakillEC.h"
+#include "AutomaticRifleC.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
 #include "GunC.h"
+#include "HandGunC.h"
 #include "LifeC.h"
 #include "OgreVector3.h"
 #include "RigidbodyPC.h"
 #include "Scene.h"
+#include "ShotgunC.h"
+#include "SniperGunC.h"
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
 #include "WeaponControllerIC.h"
 #include <iostream>
 #include <json.h>
+
+void InstakillEC::setEffect(bool effect) {
+    Entity* player = scene->getEntitybyId("Player");
+    reinterpret_cast<AutomaticRifleC*>("AutomaticRifleC")->setInstakill(effect);
+    reinterpret_cast<HandGunC*>("HandGunC")->setInstakill(effect);
+    reinterpret_cast<ShotgunC*>("ShotgunC")->setInstakill(effect);
+    reinterpret_cast<SniperGunC*>("SniperGunC")->setInstakill(effect);
+}
 
 InstakillEC::InstakillEC() {}
 
@@ -27,12 +39,8 @@ void InstakillEC::checkEvent() {
     PowerUpEC::checkEvent();
 
     if (!picked && getCollisionWithPlayer()) {
-        auto weaponController = reinterpret_cast<WeaponControllerIC*>(
-            scene->getEntitybyId("Player")->getComponent("WeaponControllerIC"));
-        if (weaponController->getCurrentGun())
-            weaponController->getCurrentGun()->setInstakill(true);
-        if (weaponController->getSecondaryGun())
-            weaponController->getSecondaryGun()->setInstakill(true);
+        Entity* player = scene->getEntitybyId("Player");
+        setEffect(true);
         picked = true;
 
         dynamic_cast<TridimensionalObjectRC*>(
@@ -52,13 +60,7 @@ void InstakillEC::checkEvent() {
         }
     } else if (timeDisappearEffect()) { // delete item when the effect has
                                         // passed
-        auto weaponController = reinterpret_cast<WeaponControllerIC*>(
-            scene->getEntitybyId("Player")->getComponent("WeaponControllerIC"));
-        if (weaponController->getCurrentGun())
-            weaponController->getCurrentGun()->setInstakill(false);
-        if (weaponController->getSecondaryGun())
-            weaponController->getSecondaryGun()->setInstakill(false);
-
+        setEffect(false);
         scene->deleteEntity(father);
     }
 }
