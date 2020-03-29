@@ -65,19 +65,35 @@ function Find-7Zip {
     throw "I could not find 7-Zip, and installation failed."
 }
 
-$private:7Zip = Find-7Zip
+Try {
+    $private:7Zip = Find-7Zip
 
-$private:RootFolder = "$($PSScriptRoot)"
-$private:BinFolder = Join-Path -Path $RootFolder -ChildPath "P3/ProyectoBase/bin"
+    $private:RootFolder = "$($PSScriptRoot)"
+    $private:BinFolder = Join-Path -Path $RootFolder -ChildPath "P3/ProyectoBase/bin"
 
-$private:ReleaseOS = If ($Env:RELEASE_OS) { $Env:RELEASE_OS } Else { "unknown" }
-$private:ReleaseName = If ($Env:RELEASE_NAME) { $Env:RELEASE_NAME } Else { "unknown" }
-$private:ReleasePath = Join-Path -Path $RootFolder -ChildPath ".release/GlobalEngine-$ReleaseOS-$ReleaseName.zip"
+    $private:ReleaseOS = If ($Env:RELEASE_OS) { $Env:RELEASE_OS } Else { "unknown" }
+    $private:ReleaseName = If ($Env:RELEASE_NAME) { $Env:RELEASE_NAME } Else { "unknown" }
+    $private:ReleasePath = Join-Path -Path $RootFolder -ChildPath ".release/GlobalEngine-$ReleaseOS-$ReleaseName.zip"
 
-Push-Location -Path $BinFolder
-& $7Zip a -tzip $ReleasePath "*"
-Pop-Location
+    Push-Location -Path $BinFolder
+    & $7Zip a -tzip $ReleasePath "*"
+    Pop-Location
 
-Write-Host "Finished all tasks! Release available at: '" -ForegroundColor Green -NoNewline
-Write-Host $ReleasePath                                  -ForegroundColor Cyan  -NoNewline
-Write-Host "'. Enjoy!"                                   -ForegroundColor Green
+    If ($LastExitCode -Eq 0) {
+        Write-Host "Finished all tasks! Release available at: '" -ForegroundColor Green -NoNewline
+        Write-Host $ReleasePath                                  -ForegroundColor Cyan  -NoNewline
+        Write-Host "'. Enjoy!"                                   -ForegroundColor Green
+
+        Exit 0
+    }
+    Else {
+        throw "7-Zip returned an error, please read the logs above."
+    }
+} Catch {
+    # Write the exception
+    Write-Host -Object $_
+    Write-Host -Object $_.Exception
+    Write-Host -Object $_.ScriptStackTrace
+
+    Exit 1
+}
