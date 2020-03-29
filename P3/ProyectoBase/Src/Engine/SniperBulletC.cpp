@@ -21,10 +21,6 @@ class SniperBulletCFactory final : public ComponentFactory {
         bullet->setFather(_father);
         bullet->setScene(_scene);
 
-        if (!_data["damage"].isDouble())
-            throw std::exception("BulletC: damage is not a double");
-        bullet->setDamage(_data["damage"].asDouble());
-
         return bullet;
     };
 };

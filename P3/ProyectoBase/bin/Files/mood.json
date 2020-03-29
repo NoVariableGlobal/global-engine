@@ -43,15 +43,17 @@
         {
           "type": "SpawnerFloorRandomEC",
           "attributes": {
-            "spawnCooldown": 1,
-            "spawnID": [ "Medkit", "IncreaseSpeed", "InfiniteAmmo", "InvulnerabilityShield", "Nuke" ],
+			"floorDimensions[x,y,z,w]": [ -100, -100, 200, 200 ],
+            "spawnCooldown": 5,
+            "spawnID": [ "Medkit", "IncreaseSpeed", "InfiniteAmmo", "InvulnerabilityShield", "Nuke", "Instakill" ],
             "spawnTag": "PowerUp",
-            "spawnChances": [ 50, 15, 10, 15, 10 ]
+            "spawnChances": [ 30, 20, 15, 20, 5, 10 ]
           }
         },
         {
           "type": "SpawnerFloorRandomEC",
           "attributes": {
+			"floorDimensions[x,y,z,w]": [ -100, -100, 200, 200 ],
             "spawnCooldown": 5,
             "spawnID": [ "AutomaticRifle", "Shotgun", "SniperGun" ],
             "spawnTag": "Gun",
@@ -139,8 +141,11 @@
             "bulletTag": "PlayerBullet",
             "bulletchamberMax": 20,
             "munition": 1000,
+            "bulletDamage": 15,
+            "bulletSpeed": 50,
             "cadence": 1,
-            "automatic": false
+            "automatic": false,
+            "instakill": false
           }
         },
         {
@@ -149,10 +154,13 @@
             "bulletTag": "PlayerBullet",
             "bulletchamberMax": 2,
             "munition": 14,
+            "bulletDamage": 50,
+            "bulletSpeed": 50,
             "cadence": 1,
             "automatic": false,
             "nPellets": 3,
-            "dispersion": 10
+            "dispersion": 10,
+            "instakill": false
           }
         },
         {
@@ -161,7 +169,10 @@
             "bulletTag": "PlayerBullet",
             "bulletchamberMax": 1,
             "munition": 5,
-            "cadence": 1
+            "bulletDamage": 100,
+            "bulletSpeed": 100,
+            "cadence": 1,
+            "instakill": false
           }
         },
 		    {
@@ -170,19 +181,20 @@
             "bulletTag": "PlayerBullet",
             "bulletchamberMax": 30,
             "munition": 90,
+            "bulletDamage": 25,
+            "bulletSpeed": 50,
             "cadence": 0.1,
-            "automatic": true
+            "automatic": true,
+            "instakill": false
           }
         },
 		    {
 		      "type": "AutomaticEC",
-              "attributes": {
-              }
-		    },			
+          "attributes": {}
+		    },
         {
           "type": "WeaponControllerIC",
-          "attributes": {
-          }
+          "attributes": {}
         },
         {
           "type": "OrientateToMouseIC",
