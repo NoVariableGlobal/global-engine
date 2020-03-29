@@ -44,7 +44,10 @@ void GunC::setbulletchamber(int bulletchamberMax) {
     _bulletchamber = bulletchamberMax;
 }
 
-void GunC::setmunition(int munition) { _munition = munition; }
+void GunC::setmunition(int munition) {
+    _munition = munition;
+    _munitionMax = munition;
+}
 
 void GunC::setbulletdamage(int damage) { _bulletDamage = damage; }
 
@@ -67,6 +70,10 @@ bool GunC::mmunitionleft() {
         return true;
 }
 
+void GunC::reset() {
+    _bulletchamber = _bulletchamberMax;
+    _munition = _munitionMax;
+}
 bool GunC::canShoot() { return infiniteAmmo_ || _bulletchamber != 0; }
 
 int GunC::getCalculatedDamage() {

@@ -18,7 +18,9 @@ void WeaponControllerIC::destroy() {
     scene->getComponentsManager()->eraseIC(this);
 }
 
-void WeaponControllerIC::init() { currentGun = dynamic_cast<HandGunC*>(father->getComponent("HandGunC")); }
+void WeaponControllerIC::init() {
+    currentGun = dynamic_cast<HandGunC*>(father->getComponent("HandGunC"));
+}
 
 void WeaponControllerIC::handleInput(const SDL_Event& _event) {
 
@@ -38,13 +40,35 @@ GunC* WeaponControllerIC::getSecondaryGun() { return secondaryGun; }
 void WeaponControllerIC::pickUpGun(std::string _gunName) {
     // Deactivate old gun
     if (secondaryGun != nullptr) {
-        secondaryGun->setActive(false);
+        if (secondaryGun == dynamic_cast<HandGunC*>(father->getComponent("HandGunC"))) {
+            currentGun->setActive(false);
+
+            // Activate ned gun and equip it
+            currentGun = dynamic_cast<GunC*>(father->getComponent(_gunName));
+            currentGun->setActive(true);
+            currentGun->reset();
+        }
+
+        else {
+            secondaryGun->setActive(false);
+            secondaryGun = currentGun;
+            // Activate ned gun and equip it
+            currentGun = dynamic_cast<GunC*>(father->getComponent(_gunName));
+            currentGun->setActive(true);
+            
+            currentGun->reset();
+        }
+    } else {
+        secondaryGun = currentGun;
+        // Activate ned gun and equip it
+        currentGun = dynamic_cast<GunC*>(father->getComponent(_gunName));
+        currentGun->setActive(true);
+
+        currentGun->reset();
     }
 
-	// Activate ned gun and equip it
-    secondaryGun = dynamic_cast<GunC*>(father->getComponent(_gunName));
-    secondaryGun->setActive(true);
-    currentGun = secondaryGun;
+
+
 }
 
 // FACTORY INFRASTRUCTURE

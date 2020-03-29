@@ -26,15 +26,17 @@ void MeleeEnemyBehaviourEC::checkEvent() {
 
     // attack every attackCooldown seconds
     if (timeToAttack()) {
-        // if enemy is colliding with player
-        if (getCollisionWithPlayer()) {
-            // attack player
-            LifeC* playerHealth = dynamic_cast<LifeC*>(
-                scene->getEntitybyId("Player")->getComponent("LifeC"));
-            playerHealth->doDamage(getAttack());
+        if (active) {
+            // if enemy is colliding with player
+            if (getCollisionWithPlayer()) {
+                // attack player
+                LifeC* playerHealth = dynamic_cast<LifeC*>(
+                    scene->getEntitybyId("Player")->getComponent("LifeC"));
+                playerHealth->doDamage(getAttack());
+            }
         }
-    }
 
+    }
 }
 
 // FACTORY INFRASTRUCTURE
@@ -52,8 +54,7 @@ class MeleeEnemyBehaviourECFactory final : public ComponentFactory {
         meleeEnemyBehaviour->setScene(scene);
 
         if (!_data["speed"].isDouble())
-            throw std::exception(
-                "MeleeEnemyBehaviourEC: speed is not a float");
+            throw std::exception("MeleeEnemyBehaviourEC: speed is not a float");
         meleeEnemyBehaviour->setSpeed(_data["speed"].asFloat());
 
         if (!_data["attack"].isInt())

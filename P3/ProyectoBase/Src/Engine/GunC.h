@@ -9,6 +9,7 @@ class GunC : public Component {
     int _bulletchamber;       // Ammunition in chamber
     int _bulletchamberMax;    // Total ammunition in chamber
     int _munition;            // Total ammunition stored
+    int _munitionMax;     // Total ammunition stored
     int _bulletDamage;        // Damage of a single bullet
     int _bulletSpeed;         // Speed of a single bullet
     float _cadence;           // Gun cadence
@@ -32,6 +33,7 @@ class GunC : public Component {
     // Returns wheter or not there is ammunition left in the gun
     bool mmunitionleft();
 
+    void reset();
     // Returns whether or not the gun can shoot
     bool canShoot();
 

@@ -19,11 +19,13 @@ RangedEnemyBehaviourEC::~RangedEnemyBehaviourEC() {}
 
 void RangedEnemyBehaviourEC::checkEvent() {
     EnemyBehaviourEC::checkEvent();
-
-    // attack every attackCooldown seconds
-    if (timeToAttack()) {
-        shoot();
+    if (active) {
+        // attack every attackCooldown seconds
+        if (timeToAttack()) {
+            shoot();
+        }
     }
+
 }
 
 std::string RangedEnemyBehaviourEC::getWeaponEquipped() {
@@ -53,7 +55,7 @@ void RangedEnemyBehaviourEC::setBulletSpeed(int _bulletSpeed) {
 }
 
 void RangedEnemyBehaviourEC::shoot() {
-	// Save original rotation
+    // Save original rotation
     Ogre::SceneNode* node = dynamic_cast<TridimensionalObjectRC*>(
                                 father->getComponent("TridimensionalObjectRC"))
                                 ->getSceneNode();
@@ -64,15 +66,16 @@ void RangedEnemyBehaviourEC::shoot() {
     node->yaw(Ogre::Radian(Ogre::Degree(firstPelletAngle).valueRadians()));
 
     for (int i = 0; i < arcPellets; i++) {
-        Entity* newBullet = dynamic_cast<SpawnerBulletsC*>(
-                                scene->getEntitybyId("GameManager")
-                                    ->getComponent("SpawnerBulletsC"))
+        Entity* newBullet =
+            dynamic_cast<SpawnerBulletsC*>(
+                scene->getEntitybyId("GameManager")
+                    ->getComponent("SpawnerBulletsC"))
                 ->getBullet("EnemyBullet_" + weaponEquipped, "EnemyBullet");
 
         TransformComponent* bulletTransform = dynamic_cast<TransformComponent*>(
             newBullet->getComponent("TransformComponent"));
 
-		TransformComponent* myTransform = dynamic_cast<TransformComponent*>(
+        TransformComponent* myTransform = dynamic_cast<TransformComponent*>(
             father->getComponent("TransformComponent"));
 
         bulletTransform->setPosition(myTransform->getPosition());
@@ -85,7 +88,8 @@ void RangedEnemyBehaviourEC::shoot() {
 
         bulletRb->setLinearVelocity(-(quat * Ogre::Vector3::NEGATIVE_UNIT_Z) *
                                     bulletSpeed);
-        bulletRb->setPosition(myTransform->getPosition() + getDirectionToPlayer()*2);
+        bulletRb->setPosition(myTransform->getPosition() +
+                              getDirectionToPlayer() * 2);
 
         // Rotate the node for the next bullet
         node->yaw(Ogre::Radian(Ogre::Degree(arcAngleDistance).valueRadians()));
@@ -127,23 +131,21 @@ class RangedEnemyBehaviourECFactory final : public ComponentFactory {
         rangedEnemyBehaviour->setWeaponEquipped(
             _data["weaponEquipped"].asString());
 
-		if (!_data["arcPellets"].isInt())
+        if (!_data["arcPellets"].isInt())
             throw std::exception(
                 "RangedMeleeEnemyBehaviourPC: arcPellets is not an int");
-                rangedEnemyBehaviour->setArcPellets(
-                    _data["arcPellets"].asInt());
+        rangedEnemyBehaviour->setArcPellets(_data["arcPellets"].asInt());
 
-		if (!_data["arcAngleDistance"].isInt())
+        if (!_data["arcAngleDistance"].isInt())
             throw std::exception(
                 "RangedMeleeEnemyBehaviourPC: arcAngleDistance is not an int");
-                rangedEnemyBehaviour->setArcAngleDistance(
-                    _data["arcAngleDistance"].asInt());
+        rangedEnemyBehaviour->setArcAngleDistance(
+            _data["arcAngleDistance"].asInt());
 
-		if (!_data["bulletSpeed"].isInt())
+        if (!_data["bulletSpeed"].isInt())
             throw std::exception("RangedMeleeEnemyBehaviourPC: "
-                                    "bulletSpeed is not an int");
-                rangedEnemyBehaviour->setBulletSpeed(
-            _data["bulletSpeed"].asInt());
+                                 "bulletSpeed is not an int");
+        rangedEnemyBehaviour->setBulletSpeed(_data["bulletSpeed"].asInt());
 
         return rangedEnemyBehaviour;
     };
