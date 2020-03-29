@@ -104,21 +104,6 @@
     <ClCompile Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.cpp">
       <Filter>Components\Events</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\InvulnerabilityShield.cpp">
-      <Filter>Components\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\PowerUpEC.cpp">
-      <Filter>Components\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\MedkitEC.cpp">
-      <Filter>Components\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\IncreaseSpeedEC.cpp">
-      <Filter>Components\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\InfiniteAmmoEC.cpp">
-      <Filter>Components\Events</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Engine\OnEPressPickUpIC.cpp">
       <Filter>Components\Input</Filter>
     </ClCompile>
@@ -152,11 +137,29 @@
     <ClCompile Include="..\..\Src\Engine\AutomaticEC.cpp">
       <Filter>Components\Events</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\NukeEC.cpp">
-      <Filter>Components\Events</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Engine\GunPowerUpC.cpp">
       <Filter>Components\Guns</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\IncreaseSpeedEC.cpp">
+      <Filter>Components\Events\PowerUps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\InfiniteAmmoEC.cpp">
+      <Filter>Components\Events\PowerUps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\InvulnerabilityShield.cpp">
+      <Filter>Components\Events\PowerUps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\MedkitEC.cpp">
+      <Filter>Components\Events\PowerUps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\NukeEC.cpp">
+      <Filter>Components\Events\PowerUps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\PowerUpEC.cpp">
+      <Filter>Components\Events\PowerUps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\PowerUpTrackerC.cpp">
+      <Filter>Components\Other</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -266,21 +269,6 @@
     <ClInclude Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.h">
       <Filter>Components\Events</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\InvulnerabilityShield.h">
-      <Filter>Components\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\PowerUpEC.h">
-      <Filter>Components\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\MedkitEC.h">
-      <Filter>Components\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\IncreaseSpeedEC.h">
-      <Filter>Components\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\InfiniteAmmoEC.h">
-      <Filter>Components\Events</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\OnEPressPickUpIC.h">
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\GunC.h">
@@ -304,9 +292,6 @@
     <ClInclude Include="..\..\Src\Engine\AutomaticEC.h">
       <Filter>Components\Events</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\NukeEC.h">
-      <Filter>Components\Events</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\Util.h">
       <Filter>Misc</Filter>
     </ClInclude>
@@ -321,6 +306,27 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\GunPowerUpC.h">
       <Filter>Components\Guns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\IncreaseSpeedEC.h">
+      <Filter>Components\Events\PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\InfiniteAmmoEC.h">
+      <Filter>Components\Events\PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\InvulnerabilityShield.h">
+      <Filter>Components\Events\PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\MedkitEC.h">
+      <Filter>Components\Events\PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\NukeEC.h">
+      <Filter>Components\Events\PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\PowerUpEC.h">
+      <Filter>Components\Events\PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\PowerUpTrackerC.h">
+      <Filter>Components\Other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -362,6 +368,9 @@
     </Filter>
     <Filter Include="Components\Guns">
       <UniqueIdentifier>{34232966-a7a6-422e-afb3-f2f5e4693e51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Events\PowerUps">
+      <UniqueIdentifier>{380c9908-479d-4191-835a-eaf9c47fa548}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

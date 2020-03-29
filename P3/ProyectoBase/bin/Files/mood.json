@@ -187,7 +187,11 @@
         {
           "type": "OrientateToMouseIC",
           "attributes": {}
-        }
+        },
+		{
+		  "type": "PowerUpTrackerC",
+		  "attributes": {}
+		}
       ]
       },
     {

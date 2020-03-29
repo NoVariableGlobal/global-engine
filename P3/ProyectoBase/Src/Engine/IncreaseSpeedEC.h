@@ -8,22 +8,23 @@ class IncreaseSpeedEC : public PowerUpEC {
     double timeEffect;
     double speedIncrement;
 
-	double originalSpeed;
+    double originalSpeed;
 
-	bool startPicked;
+    bool startPicked;
 
   public:
-	  // probabilidad : 20%
+    // probabilidad : 20%
     IncreaseSpeedEC();
     virtual ~IncreaseSpeedEC();
     virtual void destroy();
 
     virtual void checkEvent();
 
-	bool timeDisappearEffect();
+    bool timeDisappearEffect();
 
-	void setTimeEffect(float _timeEffect);
-	void setSpeedIncrement(float _speedIncrement);
+    void setTimeEffect(float _timeEffect);
+    void setSpeedIncrement(float _speedIncrement);
+    void setPickedTime(float _time);
 };
 
 /*,
