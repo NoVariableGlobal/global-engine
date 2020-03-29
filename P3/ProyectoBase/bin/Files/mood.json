@@ -43,7 +43,8 @@
         {
           "type": "SpawnerFloorRandomEC",
           "attributes": {
-            "spawnCooldown": 1,
+			"floorDimensions[x,y,z,w]": [ -100, -100, 200, 200 ],
+            "spawnCooldown": 5,
             "spawnID": [ "Medkit", "IncreaseSpeed", "InfiniteAmmo", "InvulnerabilityShield", "Nuke" ],
             "spawnTag": "PowerUp",
             "spawnChances": [ 50, 15, 10, 15, 10 ]
@@ -52,6 +53,7 @@
         {
           "type": "SpawnerFloorRandomEC",
           "attributes": {
+			"floorDimensions[x,y,z,w]": [ -100, -100, 200, 200 ],
             "spawnCooldown": 5,
             "spawnID": [ "AutomaticRifle", "Shotgun", "SniperGun" ],
             "spawnTag": "Gun",
