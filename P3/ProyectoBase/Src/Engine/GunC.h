@@ -7,7 +7,8 @@ class GunC : public Component {
   protected:
     int _bulletchamber;    // Ammunition in chamber
     int _bulletchamberMax; // Total ammunition in chamber
-    int _munition;         // Total ammunition stored
+    int _munition;         // ammunition stored
+    int _munitionMax;     // Total ammunition stored
     float _cadence;          // Gun cadence
     bool _automatic;   // One shot or multiple shot gun
     bool infiniteAmmo_;    // Whether or not this gun has infinite ammo
@@ -28,6 +29,7 @@ class GunC : public Component {
     // Returns wheter or not there is ammunition left in the gun
     bool mmunitionleft();
 
+    void reset();
     // Getters
     std::string getBulletTag(); // Return the tag of my bullets
     int getbulletchamber();  // Return the remaining ammunition in the chamber

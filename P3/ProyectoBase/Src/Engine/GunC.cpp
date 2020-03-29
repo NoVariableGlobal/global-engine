@@ -38,7 +38,10 @@ void GunC::setbulletchamber(int bulletchamberMax) {
     _bulletchamber = bulletchamberMax;
 }
 
-void GunC::setmunition(int munition) { _munition = munition; }
+void GunC::setmunition(int munition) {
+    _munition = munition;
+    _munitionMax = munition;
+}
 
 void GunC::setcadence(float cadence) { _cadence = cadence; }
 
@@ -55,4 +58,9 @@ bool GunC::mmunitionleft() {
         return false;
     else
         return true;
+}
+
+void GunC::reset() {
+    _bulletchamber = _bulletchamberMax;
+    _munition = _munitionMax;
 }
