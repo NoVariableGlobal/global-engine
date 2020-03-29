@@ -28,6 +28,7 @@
 *.out
 *.app
 
+.release/
 .idea/
 .vscode/
 .vs/
