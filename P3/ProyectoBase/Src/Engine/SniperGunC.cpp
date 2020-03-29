@@ -3,14 +3,16 @@
 #include "ComponentsManager.h"
 #include "SpawnerBulletsC.h"
 #include "Entity.h"
-#include  <OgreQuaternion.h>
 #include "TridimensionalObjectRC.h"
 #include "TransformComponent.h"
-#include <OgreSceneNode.h>
 #include "RigidbodyPC.h"
-#include <json.h>
 #include "Factory.h"
 #include "FactoriesFactory.h"
+#include "BulletC.h"
+
+#include <OgreQuaternion.h>
+#include <OgreSceneNode.h>
+#include <json.h>
 
 void SniperGunC::destroy() {
     setActive(false);
@@ -29,6 +31,14 @@ bool SniperGunC::shoot() {
                                            ->getComponent("SpawnerBulletsC"))
             ->getBullet("SniperBullet", _myBulletTag);
 
+    BulletC* bullet =
+        dynamic_cast<BulletC*>(newBullet->getComponent("BulletC"));
+    if (bullet == nullptr)
+        bullet =
+            dynamic_cast<BulletC*>(newBullet->getComponent("SniperBulletC"));
+
+    bullet->setDamage(_bulletDamage);
+
     TransformComponent* bulletTransform = dynamic_cast<TransformComponent*>(
         newBullet->getComponent("TransformComponent"));
 
@@ -44,7 +54,7 @@ bool SniperGunC::shoot() {
     RigidbodyPC* bulletRb =
         dynamic_cast<RigidbodyPC*>(newBullet->getComponent("RigidbodyPC"));
 
-    bulletRb->setLinearVelocity((quat * Ogre::Vector3::UNIT_Z) * 100);
+    bulletRb->setLinearVelocity((quat * Ogre::Vector3::UNIT_Z) * _bulletSpeed);
     bulletRb->setPosition(bulletTransform->getPosition());
     return true;
 }
@@ -74,6 +84,14 @@ class SniperGunCFactory final : public ComponentFactory {
         if (!_data["munition"].isInt())
             throw std::exception("SniperGunC: munition is not an int");
         sniper->setmunition(_data["munition"].asInt());
+
+        if (!_data["bulletDamage"].isDouble())
+            throw std::exception("ShotgunC: bulletDamage is not a double");
+        sniper->setbulletdamage(_data["bulletDamage"].asDouble());
+
+        if (!_data["bulletSpeed"].isDouble())
+            throw std::exception("ShotgunC: bulletSpeed is not a double");
+        sniper->setbulletspeed(_data["bulletSpeed"].asDouble());
 
         if (!_data["cadence"].isDouble())
             throw std::exception("SniperGunC: cadence is not an int");

@@ -25,6 +25,10 @@ int GunC::getbulletchamber() { return _bulletchamber; }
 
 int GunC::getmunition() { return _munition; }
 
+int GunC::getbulletdamage() { return _bulletDamage; }
+
+int GunC::getbulletspeed() { return _bulletSpeed; }
+
 float GunC::getcadence() { return _cadence; }
 
 bool GunC::getautomatic() { return _automatic; }
@@ -39,6 +43,10 @@ void GunC::setbulletchamber(int bulletchamberMax) {
 }
 
 void GunC::setmunition(int munition) { _munition = munition; }
+
+void GunC::setbulletdamage(int damage) { _bulletDamage = damage; }
+
+void GunC::setbulletspeed(int speed) { _bulletSpeed = speed; }
 
 void GunC::setcadence(float cadence) { _cadence = cadence; }
 

@@ -137,14 +137,8 @@
     <ClCompile Include="..\..\Src\Engine\RangedEnemyBehaviourEC.cpp">
       <Filter>Components\Events</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\BulletC.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Engine\SniperGunC.cpp">
       <Filter>Components\Guns</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\SniperBulletC.cpp">
-      <Filter>Components\Other</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Engine\AutomaticRifleC.cpp">
       <Filter>Components\Guns</Filter>
@@ -156,6 +150,12 @@
       <Filter>Components\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Engine\GunPowerUpC.cpp">
+      <Filter>Components\Guns</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\BulletC.cpp">
+      <Filter>Components\Guns</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\SniperBulletC.cpp">
       <Filter>Components\Guns</Filter>
     </ClCompile>
   </ItemGroup>
@@ -295,9 +295,6 @@
     <ClInclude Include="..\..\Src\Engine\DestroyAfterSecsEC.h">
       <Filter>Components\Events</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\BulletC.h">
-      <Filter>Components\Other</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\AutomaticRifleC.h">
       <Filter>Components\Guns</Filter>
     </ClInclude>
@@ -316,10 +313,13 @@
     <ClInclude Include="..\..\Src\Engine\SniperGunC.h">
       <Filter>Components\Guns</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\SniperBulletC.h">
-      <Filter>Components\Other</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\GunPowerUpC.h">
+      <Filter>Components\Guns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\BulletC.h">
+      <Filter>Components\Guns</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\SniperBulletC.h">
       <Filter>Components\Guns</Filter>
     </ClInclude>
   </ItemGroup>

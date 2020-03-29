@@ -12,6 +12,7 @@
 #include "SpawnerBulletsC.h"
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
+#include "BulletC.h"
 #include <json.h>
 
 HandGunC::HandGunC() : GunC() {}
@@ -32,6 +33,14 @@ bool HandGunC::shoot() {
                                     ->getComponent("SpawnerBulletsC"))
                                 ->getBullet("HandgunBullet", _myBulletTag);
 
+        BulletC* bullet =
+            dynamic_cast<BulletC*>(newBullet->getComponent("BulletC"));
+        if (bullet == nullptr)
+            bullet = dynamic_cast<BulletC*>(
+                newBullet->getComponent("SniperBulletC"));
+
+        bullet->setDamage(_bulletDamage);
+
         TransformComponent* bulletTransform = dynamic_cast<TransformComponent*>(
             newBullet->getComponent("TransformComponent"));
 
@@ -48,7 +57,8 @@ bool HandGunC::shoot() {
         RigidbodyPC* bulletRb =
             dynamic_cast<RigidbodyPC*>(newBullet->getComponent("RigidbodyPC"));
 
-        bulletRb->setLinearVelocity((quat * Ogre::Vector3::UNIT_Z) * 50);
+        bulletRb->setLinearVelocity((quat * Ogre::Vector3::UNIT_Z) *
+                                    _bulletSpeed);
         bulletRb->setPosition(bulletTransform->getPosition());
 
     } else
@@ -80,6 +90,14 @@ class HandGunCFactory final : public ComponentFactory {
         if (!_data["munition"].isInt())
             throw std::exception("HandGunC: munition is not an int");
         hg->setmunition(_data["munition"].asInt());
+
+        if (!_data["bulletDamage"].isDouble())
+            throw std::exception("ShotgunC: bulletDamage is not a double");
+        hg->setbulletdamage(_data["bulletDamage"].asDouble());
+
+        if (!_data["bulletSpeed"].isDouble())
+            throw std::exception("ShotgunC: bulletSpeed is not a double");
+        hg->setbulletspeed(_data["bulletSpeed"].asDouble());
 
         if (!_data["cadence"].isDouble())
             throw std::exception("HandGunC: cadence is not an int");
