@@ -10,4 +10,5 @@ class SpawnerFloorRandomEC : public SpawnerEC {
   public:
     virtual void destroy();
     virtual void checkEvent() override;
+    void setFloorDimensions(Ogre::Vector4f _floorDimensions);
 };
