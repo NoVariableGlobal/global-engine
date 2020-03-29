@@ -16,7 +16,8 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine,
         if (game.init("GSHIFT"))
             game.run();
     } catch (std::exception& e) {
-        std::cout << "ERROR: " << e.what();
+        std::cout << '/n' << "================" << '/n' << "ERROR: " << e.what()
+                  << '/n' << "================" << '/n';
     }
 
     return 0;

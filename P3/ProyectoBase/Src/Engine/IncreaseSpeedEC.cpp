@@ -6,6 +6,7 @@
 #include "Factory.h"
 #include "OgreVector3.h"
 #include "PlayerMovementIC.h"
+#include "PowerUpTrackerC.h"
 #include "RigidbodyPC.h"
 #include "Scene.h"
 #include "TransformComponent.h"
@@ -26,35 +27,63 @@ void IncreaseSpeedEC::destroy() {
 void IncreaseSpeedEC::checkEvent() {
     PowerUpEC::checkEvent();
 
+    // Check if the player is colliding with this
     if (!picked && getCollisionWithPlayer()) {
         picked = true;
-        PlayerMovementIC* playerMovement = dynamic_cast<PlayerMovementIC*>(
-            scene->getEntitybyId("Player")->getComponent("PlayerMovementIC"));
 
-        originalSpeed = playerMovement->getMovementSpeed();
-        playerMovement->setMovementSpeed(originalSpeed * (1 + speedIncrement));
+        PowerUpTrackerC* tracker = dynamic_cast<PowerUpTrackerC*>(
+            scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"));
+        IncreaseSpeedEC* incSpeed = dynamic_cast<IncreaseSpeedEC*>(
+            tracker->getComponent("IncreaseSpeedEC"));
 
-        dynamic_cast<TridimensionalObjectRC*>(
-            father->getComponent("TridimensionalObjectRC"))
-            ->setActive(false);
+        // If the player already has this powerup refresh it
+        if (incSpeed != nullptr) {
+            incSpeed->setPickedTime(clock() /
+                                    static_cast<float>(CLOCKS_PER_SEC));
+            scene->deleteEntity(father);
+        } else {
+            PlayerMovementIC* playerMovement = dynamic_cast<PlayerMovementIC*>(
+                scene->getEntitybyId("Player")->getComponent(
+                    "PlayerMovementIC"));
+            originalSpeed = playerMovement->getMovementSpeed();
+            playerMovement->setMovementSpeed(originalSpeed *
+                                             (1 + speedIncrement));
 
-        dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"))
-            ->setActive(false);
+            dynamic_cast<TridimensionalObjectRC*>(
+                father->getComponent("TridimensionalObjectRC"))
+                ->setActive(false);
 
-        dynamic_cast<TransformComponent*>(
-            father->getComponent("TransformComponent"))
-            ->setActive(false);
+            dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"))
+                ->setActive(false);
+
+            dynamic_cast<TransformComponent*>(
+                father->getComponent("TransformComponent"))
+                ->setActive(false);
+
+            // Add this powerUp to the tracker
+            dynamic_cast<PowerUpTrackerC*>(
+                scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"))
+                ->addPowerUp("IncreaseSpeedEC", this);
+        }
     }
-    if (!picked) { // delete item when the effect has passed
+
+    // delete item when the time has passed and the player has not picked it
+    if (!picked) {
         if (timeDisappear()) {
+            dynamic_cast<PowerUpTrackerC*>(
+                scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"))
+                ->removePowerUp("IncreaseSpeedEC");
             scene->deleteEntity(father);
         }
-    } else if (picked && timeDisappearEffect()) { // delete item when the effect has
-                                        // passed
+        // delete item when the effect has passed
+    } else if (picked && timeDisappearEffect()) {
         PlayerMovementIC* playerMovement = dynamic_cast<PlayerMovementIC*>(
             scene->getEntitybyId("Player")->getComponent("PlayerMovementIC"));
         playerMovement->setMovementSpeed(originalSpeed);
 
+        dynamic_cast<PowerUpTrackerC*>(
+            scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"))
+            ->removePowerUp("IncreaseSpeedEC");
         scene->deleteEntity(father);
     }
 }
@@ -80,6 +109,8 @@ void IncreaseSpeedEC::setTimeEffect(float _timeEffect) {
 void IncreaseSpeedEC::setSpeedIncrement(float _speedIncrement) {
     speedIncrement = _speedIncrement;
 }
+
+void IncreaseSpeedEC::setPickedTime(float _time) { time = _time; }
 
 // FACTORY INFRASTRUCTURE
 class IncreaseSpeedECFactory final : public ComponentFactory {

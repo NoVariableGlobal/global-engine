@@ -19,15 +19,25 @@ bool GunC::reload() {
         return false;
 }
 
+std::string GunC::getBulletTag() { return _myBulletTag; }
+
 int GunC::getbulletchamber() { return _bulletchamber; }
 
 int GunC::getmunition() { return _munition; }
 
+int GunC::getbulletdamage() { return _bulletDamage; }
+
+int GunC::getbulletspeed() { return _bulletSpeed; }
+
 float GunC::getcadence() { return _cadence; }
 
-float GunC::getdamage() { return _damage; }
+bool GunC::getautomatic() { return _automatic; }
 
-bool GunC::getsemiautomatic() { return _semiautomatic; }
+void GunC::setBulletTag(std::string bulletTag) { _myBulletTag = bulletTag; }
+
+bool GunC::getInfiniteAmmo() { return infiniteAmmo_; }
+
+bool GunC::getInstakill() { return instakill_; }
 
 void GunC::setbulletchamber(int bulletchamberMax) {
     _bulletchamberMax = bulletchamberMax;
@@ -36,13 +46,17 @@ void GunC::setbulletchamber(int bulletchamberMax) {
 
 void GunC::setmunition(int munition) { _munition = munition; }
 
+void GunC::setbulletdamage(int damage) { _bulletDamage = damage; }
+
+void GunC::setbulletspeed(int speed) { _bulletSpeed = speed; }
+
 void GunC::setcadence(float cadence) { _cadence = cadence; }
 
-void GunC::setdamage(float damage) { _damage = damage; }
+void GunC::setautomatic(bool automatic) { _automatic = automatic; }
 
-void GunC::setsemiautomatic(bool semiautomatic) {
-    _semiautomatic = semiautomatic;
-}
+void GunC::setInfiniteAmmo(bool infinite) { infiniteAmmo_ = infinite; }
+
+void GunC::setInstakill(bool instakill) { instakill_ = instakill; }
 
 void GunC::setTransform(TransformComponent* trans) { myTransform = trans; }
 
@@ -51,4 +65,10 @@ bool GunC::mmunitionleft() {
         return false;
     else
         return true;
+}
+
+bool GunC::canShoot() { return infiniteAmmo_ || _bulletchamber != 0; }
+
+int GunC::getCalculatedDamage() {
+    return instakill_ ? std::numeric_limits<int>::max() : _bulletDamage;
 }
