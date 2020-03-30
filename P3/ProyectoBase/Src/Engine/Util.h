@@ -16,15 +16,15 @@ T try_find(std::map<std::string, T> map, std::string name) {
 
 template <typename T>
 T assert_find(std::map<std::string, T> map, std::string name) {
-    T e = try_find(map, name);
-    if (e == nullptr) {
+    auto it = map.find(name);
+    if (it == map.end()) {
         std::string type = typeid(T).name();
         std::cout << "ERROR: Resource '" + name + "' of type '" + type +
                          "' could not be found\n";
         throw std::exception("Resource could not be found");
-	}
+    }
 
-	return e;
+    return it->second;
 }
 
 template <typename T>

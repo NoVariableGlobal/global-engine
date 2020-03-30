@@ -67,11 +67,9 @@ void EnemyBehaviourEC::checkEvent() {
     Entity* playerBullet = rb->collidesWithTag("PlayerBullet");
     if (playerBullet != nullptr) {
         LifeC* life = dynamic_cast<LifeC*>(father->getComponent("LifeC"));
-        BulletC* bullet =
-            dynamic_cast<BulletC*>(playerBullet->getComponent("BulletC"));
+        BulletC* bullet = dynamic_cast<BulletC*>(playerBullet->findComponent("BulletC"));
         if (bullet == nullptr)
-            bullet = dynamic_cast<BulletC*>(
-                playerBullet->getComponent("SniperBulletC"));
+            bullet = dynamic_cast<BulletC*>(playerBullet->findComponent("SniperBulletC"));
 
         life->doDamage(bullet->getDamage());
         bullet->dealCollision();
