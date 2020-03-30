@@ -1,3 +1,4 @@
+#pragma once
 #include "TransformComponent.h"
 
 #include "ComponentsManager.h"
