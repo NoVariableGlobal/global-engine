@@ -25,11 +25,6 @@ CameraRC::~CameraRC() {
     delete look;
 }
 
-void CameraRC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseRC(this);
-}
-
 // Creates the camera
 void CameraRC::setCamera(std::string _entityID) {
     _msM = OgreSDLContext::getInstance()->getSceneManager();
@@ -83,13 +78,12 @@ void CameraRC::render() {
         const auto transformTarget = dynamic_cast<TransformComponent*>(
             scene->getEntitybyId(target)->getComponent("TransformComponent"));
 
-        position =
-            Ogre::Vector3(followX ? transformTarget->getPosition().x
-                                  : transform->getPosition().x,
-                          followY ? transformTarget->getPosition().y
-                                  : transform->getPosition().y,
-                          followZ ? transformTarget->getPosition().z
-                                  : transform->getPosition().z);
+        position = Ogre::Vector3(followX ? transformTarget->getPosition().x
+                                         : transform->getPosition().x,
+                                 followY ? transformTarget->getPosition().y
+                                         : transform->getPosition().y,
+                                 followZ ? transformTarget->getPosition().z
+                                         : transform->getPosition().z);
     } else
         position = transform->getPosition();
 

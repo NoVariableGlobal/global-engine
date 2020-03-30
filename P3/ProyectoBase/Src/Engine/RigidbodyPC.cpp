@@ -22,9 +22,8 @@ RigidbodyPC::RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape,
 RigidbodyPC::~RigidbodyPC() { body = nullptr; }
 
 void RigidbodyPC::destroy() {
-    active = false;
+    PhysicsComponent::destroy();
     PhysicsContext::getInstance()->destroyRigidBody(body);
-    scene->getComponentsManager()->erasePC(this);
 }
 
 void RigidbodyPC::setActive(bool active) {
@@ -177,7 +176,7 @@ Ogre::Vector3 RigidbodyPC::getLinearVelocity() {
     if (!active)
         return Ogre::Vector3::NEGATIVE_UNIT_X;
     btVector3 back = body->getLinearVelocity();
-    
+
     return Ogre::Vector3(back.x(), back.y(), back.z());
 }
 

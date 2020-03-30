@@ -21,8 +21,8 @@ void PowerUpEC::checkEvent() {
         // check collision with player
         collisionWithPlayer = rb->collidesWith("Player");
     }
-
 }
+
 void PowerUpEC::setDuration(float _duration) {
     durationTotal = _duration;
     time = 0;
@@ -43,4 +43,10 @@ bool PowerUpEC::timeDisappear() {
     }
 
     return false;
+}
+
+void PowerUpEC::destroy() {
+    EventComponent::destroy();
+    // TODO(kyranet): Add virtual method to enable/disable the power-up's
+    // effect, call it here with `false`.
 }

@@ -2,9 +2,8 @@
 #include "EnemyBehaviourEC.h"
 class MeleeEnemyBehaviourEC : public EnemyBehaviourEC {
 
- public:
+  public:
     MeleeEnemyBehaviourEC();
-   ~MeleeEnemyBehaviourEC();
-   virtual void destroy();
+    ~MeleeEnemyBehaviourEC();
     virtual void checkEvent();
 };

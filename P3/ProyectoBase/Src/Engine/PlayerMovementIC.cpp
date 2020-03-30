@@ -4,8 +4,8 @@
 #include "FactoriesFactory.h"
 #include "Factory.h"
 #include "OgreRoot.h"
-#include "Scene.h"
 #include "RigidbodyPC.h"
+#include "Scene.h"
 #include <Entity.h>
 #include <SDL.h>
 #include <iostream>
@@ -15,13 +15,9 @@ PlayerMovementIC::PlayerMovementIC() {}
 
 PlayerMovementIC::~PlayerMovementIC() {}
 
-void PlayerMovementIC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseIC(this);
-}
-
 void PlayerMovementIC::handleInput(const SDL_Event& _event) {
-    RigidbodyPC* body = dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"));
+    RigidbodyPC* body =
+        dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"));
 
     if (_event.type == SDL_KEYDOWN) {
         switch (_event.key.keysym.sym) {

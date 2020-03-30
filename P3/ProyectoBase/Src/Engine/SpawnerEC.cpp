@@ -8,14 +8,7 @@
 #include <utility>
 #include <value.h>
 
-
-void SpawnerEC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseEC(this);
-}
-
-bool SpawnerEC::addSpawn(std::string id, float chance,
-                         std::string tag) {
+bool SpawnerEC::addSpawn(std::string id, float chance, std::string tag) {
     float totalChance = 0;
     if (_spawns.size() != 0)
         totalChance = _spawns.back()._additiveChance;
@@ -87,7 +80,8 @@ Entity* SpawnerEC::spawnPrefab() {
         toInstantiate = binarySearch(0, _spawns.size() - 1, random);
     }
     return scene->getInstanceOf(toInstantiate._id,
-                                toInstantiate._id + std::to_string(_count++), toInstantiate._tag);
+                                toInstantiate._id + std::to_string(_count++),
+                                toInstantiate._tag);
 }
 
 Spawn SpawnerEC::binarySearch(int first, int last, float value) {
@@ -135,11 +129,13 @@ class SpawnerECFactory final : public ComponentFactory {
         if (!_data["spawnChances"].isArray())
             throw std::exception("Spawner: spawnChances is not an array");
         if (!_data["spawnChances"][0].isDouble())
-            throw std::exception("Spawner: spawnChances is not an array of doubles");
+            throw std::exception(
+                "Spawner: spawnChances is not an array of doubles");
 
         for (int i = 0; i < _data["spawnID"].size(); ++i) {
             if (!spawnerEC->addSpawn(_data["spawnID"][i].asString(),
-                                     _data["spawnChances"][i].asDouble(), tag)) {
+                                     _data["spawnChances"][i].asDouble(),
+                                     tag)) {
                 printf(("No se pudo añadir " + _data["spawnID"][i].asString() +
                         ": Ya se llegó al 100% de probabilidad./n")
                            .c_str());

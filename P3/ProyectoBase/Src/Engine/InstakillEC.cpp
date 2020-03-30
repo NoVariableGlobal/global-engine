@@ -34,11 +34,6 @@ InstakillEC::InstakillEC() {}
 
 InstakillEC::~InstakillEC() {}
 
-void InstakillEC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseEC(this);
-}
-
 void InstakillEC::checkEvent() {
     PowerUpEC::checkEvent();
 

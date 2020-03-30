@@ -13,10 +13,8 @@ class IncreaseSpeedEC : public PowerUpEC {
     bool startPicked;
 
   public:
-    // probabilidad : 20%
     IncreaseSpeedEC();
     virtual ~IncreaseSpeedEC();
-    virtual void destroy();
 
     virtual void checkEvent();
 

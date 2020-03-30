@@ -12,11 +12,6 @@
 #include <iostream>
 #include <json.h>
 
-void OnEPressPickUpIC::destroy() {
-	setActive(false);
-    scene->getComponentsManager()->eraseIC(this);
-}
-
 void OnEPressPickUpIC::handleInput(const SDL_Event& _event) {
     rb = dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"));
     if (rb->collidesWith("Player")) {

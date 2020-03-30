@@ -1,4 +1,5 @@
 #include "PlayerShotIC.h"
+#include "AutomaticEC.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
@@ -6,7 +7,6 @@
 #include "GunC.h"
 #include "OgreRoot.h"
 #include "Scene.h"
-#include "AutomaticEC.h"
 #include "WeaponControllerIC.h"
 #include <iostream>
 #include <json.h>
@@ -14,11 +14,6 @@
 PlayerShotIC::PlayerShotIC() {}
 
 PlayerShotIC::~PlayerShotIC() {}
-
-void PlayerShotIC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseIC(this);
-}
 
 void PlayerShotIC::handleInput(const SDL_Event& _event) {
     bool automatic = (dynamic_cast<WeaponControllerIC*>(
@@ -40,8 +35,7 @@ void PlayerShotIC::handleInput(const SDL_Event& _event) {
         }
     } else if (automatic && _event.type == SDL_MOUSEBUTTONUP) {
         if (_event.button.button == SDL_BUTTON_LEFT) {
-            (dynamic_cast<AutomaticEC*>(
-                 father->getComponent("AutomaticEC")))
+            (dynamic_cast<AutomaticEC*>(father->getComponent("AutomaticEC")))
                 ->setShoot(false);
         }
     } else if (_event.type == SDL_KEYDOWN) {

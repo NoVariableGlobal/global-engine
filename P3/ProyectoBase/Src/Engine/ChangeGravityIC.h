@@ -21,7 +21,6 @@ class ChangeGravityIC : public InputComponent {
   public:
     ChangeGravityIC();
     virtual ~ChangeGravityIC();
-    virtual void destroy();
 
     // On space bar down, change the rigibody gravity
     virtual void handleInput(const SDL_Event& _event);

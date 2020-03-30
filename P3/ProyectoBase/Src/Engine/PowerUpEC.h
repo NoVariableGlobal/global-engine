@@ -12,6 +12,7 @@ class PowerUpEC : public EventComponent {
 
   protected:
     bool picked;
+
   public:
     PowerUpEC();
     ~PowerUpEC();
@@ -20,4 +21,8 @@ class PowerUpEC : public EventComponent {
     void setDuration(float _duration);
     bool getCollisionWithPlayer();
     bool timeDisappear();
+
+    // Destroys the PhysicsComponent, setting itself as inactive and
+    // removing itself from the scene.
+    virtual void destroy();
 };

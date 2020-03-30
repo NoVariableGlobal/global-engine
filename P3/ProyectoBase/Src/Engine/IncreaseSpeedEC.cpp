@@ -19,11 +19,6 @@ IncreaseSpeedEC::IncreaseSpeedEC() {}
 
 IncreaseSpeedEC::~IncreaseSpeedEC() {}
 
-void IncreaseSpeedEC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseEC(this);
-}
-
 void IncreaseSpeedEC::checkEvent() {
     PowerUpEC::checkEvent();
 

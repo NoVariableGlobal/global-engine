@@ -1,5 +1,6 @@
 #pragma once
 #include "PowerUpEC.h"
+
 class InstakillEC : public PowerUpEC {
   private:
     double time;
@@ -11,7 +12,6 @@ class InstakillEC : public PowerUpEC {
   public:
     InstakillEC();
     ~InstakillEC();
-    virtual void destroy();
     virtual void checkEvent();
 
     void setTimeEffect(float _time);

@@ -13,11 +13,6 @@ WeaponControllerIC::WeaponControllerIC() {}
 
 WeaponControllerIC::~WeaponControllerIC() {}
 
-void WeaponControllerIC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseIC(this);
-}
-
 void WeaponControllerIC::init() {
     currentGun = dynamic_cast<HandGunC*>(father->getComponent("HandGunC"));
 }
@@ -40,7 +35,8 @@ GunC* WeaponControllerIC::getSecondaryGun() { return secondaryGun; }
 void WeaponControllerIC::pickUpGun(std::string _gunName) {
     // Deactivate old gun
     if (secondaryGun != nullptr) {
-        if (secondaryGun == dynamic_cast<HandGunC*>(father->getComponent("HandGunC"))) {
+        if (secondaryGun ==
+            dynamic_cast<HandGunC*>(father->getComponent("HandGunC"))) {
             currentGun->setActive(false);
 
             // Activate ned gun and equip it
@@ -55,7 +51,7 @@ void WeaponControllerIC::pickUpGun(std::string _gunName) {
             // Activate ned gun and equip it
             currentGun = dynamic_cast<GunC*>(father->getComponent(_gunName));
             currentGun->setActive(true);
-            
+
             currentGun->reset();
         }
     } else {
@@ -66,9 +62,6 @@ void WeaponControllerIC::pickUpGun(std::string _gunName) {
 
         currentGun->reset();
     }
-
-
-
 }
 
 // FACTORY INFRASTRUCTURE

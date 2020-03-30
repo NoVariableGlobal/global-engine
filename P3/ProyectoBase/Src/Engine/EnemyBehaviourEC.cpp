@@ -1,33 +1,26 @@
 #include "EnemyBehaviourEC.h"
+#include "BulletC.h"
 #include "ComponentsManager.h"
+#include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
+#include "LifeC.h"
 #include "OgreRoot.h"
 #include "RigidbodyPC.h"
-#include "LifeC.h"
-#include "BulletC.h"
 #include "Scene.h"
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
-#include "Entity.h"
 
 #include <json.h>
+#include <math.h>
 #include <time.h>
 #include <utility>
 #include <value.h>
-#include <math.h>
-
 
 EnemyBehaviourEC::EnemyBehaviourEC()
-    : speed(0.0f), attack(0),
-      attackCooldown(0.0f) {}
+    : speed(0.0f), attack(0), attackCooldown(0.0f) {}
 
 EnemyBehaviourEC::~EnemyBehaviourEC() {}
-
-void EnemyBehaviourEC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseEC(this);
-}
 
 void EnemyBehaviourEC::checkEvent() {
     TransformComponent* transform = dynamic_cast<TransformComponent*>(
@@ -74,9 +67,11 @@ void EnemyBehaviourEC::checkEvent() {
     Entity* playerBullet = rb->collidesWithTag("PlayerBullet");
     if (playerBullet != nullptr) {
         LifeC* life = dynamic_cast<LifeC*>(father->getComponent("LifeC"));
-        BulletC* bullet = dynamic_cast<BulletC*>(playerBullet->getComponent("BulletC"));
+        BulletC* bullet =
+            dynamic_cast<BulletC*>(playerBullet->getComponent("BulletC"));
         if (bullet == nullptr)
-            bullet = dynamic_cast<BulletC*>(playerBullet->getComponent("SniperBulletC"));
+            bullet = dynamic_cast<BulletC*>(
+                playerBullet->getComponent("SniperBulletC"));
 
         life->doDamage(bullet->getDamage());
         bullet->dealCollision();

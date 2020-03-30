@@ -20,14 +20,12 @@ class PlayerMovementIC : public InputComponent {
     PlayerMovementIC();
     virtual ~PlayerMovementIC();
 
-    virtual void destroy();
-
     // Updates the entity's transform's
     // position upon pressing WASD keys
     virtual void handleInput(const SDL_Event& _event);
 
-	// getter for _speed
-	float getMovementSpeed();
+    // getter for _speed
+    float getMovementSpeed();
 
     // Sets the speed the entity moves at
     void setMovementSpeed(float speed);

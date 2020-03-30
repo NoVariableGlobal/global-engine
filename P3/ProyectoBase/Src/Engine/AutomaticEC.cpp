@@ -15,11 +15,6 @@ AutomaticEC::AutomaticEC() {}
 
 AutomaticEC::~AutomaticEC() {}
 
-void AutomaticEC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseEC(this);
-}
-
 void AutomaticEC::checkEvent() {
     cadence = (dynamic_cast<WeaponControllerIC*>(
                    father->getComponent("WeaponControllerIC")))
@@ -56,7 +51,6 @@ class AutomaticECFactory final : public ComponentFactory {
     Component* create(Entity* _father, Json::Value& _data,
                       Scene* scene) override {
         AutomaticEC* automatic = new AutomaticEC();
-
 
         automatic->setFather(_father);
         scene->getComponentsManager()->addEC(automatic);

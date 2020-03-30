@@ -11,7 +11,6 @@ class AutomaticEC : public EventComponent {
   public:
     AutomaticEC();
     ~AutomaticEC();
-    virtual void destroy();
     virtual void checkEvent() override;
     bool timeCadence();
     void setCadence(double _cadence);
