@@ -1,18 +1,13 @@
 #include "DestroyAfterSecsEC.h"
 #include "ComponentsManager.h"
+#include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
 #include "Scene.h"
-#include "Entity.h"
 
 #include <iostream>
 #include <time.h>
 #include <value.h>
-
-void DestroyAfterSecsEC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseEC(this);
-}
 
 void DestroyAfterSecsEC::checkEvent() {
     if (firstTime) {

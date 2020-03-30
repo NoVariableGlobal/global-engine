@@ -8,6 +8,5 @@ class NukeEC : public PowerUpEC {
   public:
     NukeEC();
     virtual ~NukeEC();
-    virtual void destroy();
     virtual void checkEvent();
 };

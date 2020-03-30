@@ -15,13 +15,7 @@ void SpawnerFloorRandomEC::setFloorDimensions(Ogre::Vector4f _floorDimensions) {
     floorDimensions = _floorDimensions;
 }
 
-void SpawnerFloorRandomEC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseEC(this);
-}
-
 void SpawnerFloorRandomEC::checkEvent() {
-
     if (firstTime) {
         firstTime = false;
         _lastTimeSpawned = clock() / static_cast<float>(CLOCKS_PER_SEC);

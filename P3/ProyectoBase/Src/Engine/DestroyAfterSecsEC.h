@@ -12,9 +12,7 @@ class DestroyAfterSecsEC : public EventComponent {
     DestroyAfterSecsEC() = default;
     ~DestroyAfterSecsEC() = default;
 
-    virtual void destroy();
-
     virtual void checkEvent();
 
-	void setLifeTime(int n);
+    void setLifeTime(int n);
 };

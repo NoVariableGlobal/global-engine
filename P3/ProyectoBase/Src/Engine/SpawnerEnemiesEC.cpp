@@ -3,17 +3,12 @@
 #include "Entity.h"
 #include "FactoriesFactory.h"
 #include "OgreVector3.h"
+#include "RigidbodyPC.h"
 #include "Scene.h"
 #include "TransformComponent.h"
-#include "RigidbodyPC.h"
 
 #include "Factory.h"
 #include <json.h>
-
-void SpawnerEnemiesEC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseEC(this);
-}
 
 void SpawnerEnemiesEC::checkEvent() {
 
@@ -22,7 +17,6 @@ void SpawnerEnemiesEC::checkEvent() {
         _lastTimeSpawned = clock() / static_cast<float>(CLOCKS_PER_SEC);
     }
 
-
     // Spawnea un enemigo cada cierto tiempo en la posicion del spawn
     if (timeToSpawn()) {
         Entity* newEntity = spawnPrefab();
@@ -30,8 +24,8 @@ void SpawnerEnemiesEC::checkEvent() {
         TransformComponent* spawnTransform = dynamic_cast<TransformComponent*>(
             newEntity->getComponent("TransformComponent"));
 
-        RigidbodyPC* rigid = dynamic_cast<RigidbodyPC*>(
-            newEntity->getComponent("RigidbodyPC"));
+        RigidbodyPC* rigid =
+            dynamic_cast<RigidbodyPC*>(newEntity->getComponent("RigidbodyPC"));
 
         rigid->setPosition(transform->getPosition());
         spawnTransform->setPosition(transform->getPosition());
@@ -78,9 +72,9 @@ class SpawnerEnemiesECFactory final : public ComponentFactory {
                 "Spawner: spawnChances is not an array of doubles");
 
         for (int i = 0; i < _data["spawnID"].size(); ++i) {
-            if (!spawnerEnemies->addSpawn(
-                    _data["spawnID"][i].asString(),
-                    _data["spawnChances"][i].asDouble(), tag)) {
+            if (!spawnerEnemies->addSpawn(_data["spawnID"][i].asString(),
+                                          _data["spawnChances"][i].asDouble(),
+                                          tag)) {
                 printf(("No se pudo aniadir " + _data["spawnID"][i].asString() +
                         ": Ya se llego al 100% de probabilidad./n")
                            .c_str());

@@ -6,21 +6,16 @@
 #include "Factory.h"
 #include "LifeC.h"
 #include "OgreVector3.h"
+#include "RigidbodyPC.h"
 #include "Scene.h"
 #include "TransformComponent.h"
-#include "RigidbodyPC.h"
 #include "TridimensionalObjectRC.h"
 
 #include <iostream>
 #include <json.h>
 
 MedkitEC::MedkitEC() {}
-MedkitEC::~MedkitEC(){}
-
-void MedkitEC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseEC(this);
-}
+MedkitEC::~MedkitEC() {}
 
 void MedkitEC::checkEvent() {
     PowerUpEC::checkEvent();

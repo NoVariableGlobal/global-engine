@@ -9,4 +9,8 @@ class PhysicsComponent : public Component {
     PhysicsComponent();
     virtual ~PhysicsComponent();
     virtual void update() = 0;
+
+    // Destroys the PhysicsComponent, setting itself as inactive and
+    // removing itself from the scene.
+    virtual void destroy();
 };

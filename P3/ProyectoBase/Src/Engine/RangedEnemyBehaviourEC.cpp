@@ -25,7 +25,6 @@ void RangedEnemyBehaviourEC::checkEvent() {
             shoot();
         }
     }
-
 }
 
 std::string RangedEnemyBehaviourEC::getWeaponEquipped() {

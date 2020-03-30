@@ -25,7 +25,7 @@ class RenderComponent : public Component {
     virtual void render() = 0;
 
     virtual void setActive(bool active);
-	void rotate(int degree, Ogre::Vector3 axis);
+    void rotate(int degree, Ogre::Vector3 axis);
 
     // Getters and setters
     Ogre::Entity* getOgreEntity();
@@ -33,4 +33,8 @@ class RenderComponent : public Component {
 
     Ogre::SceneNode* getSceneNode();
     void setSceneNode(Ogre::SceneNode* sn);
+
+    // Destroys the PhysicsComponent, setting itself as inactive and
+    // removing itself from the scene.
+    virtual void destroy();
 };

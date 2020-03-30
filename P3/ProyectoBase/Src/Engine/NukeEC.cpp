@@ -17,11 +17,6 @@
 NukeEC::NukeEC() {}
 NukeEC::~NukeEC() {}
 
-void NukeEC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseEC(this);
-}
-
 void NukeEC::checkEvent() {
     PowerUpEC::checkEvent();
 

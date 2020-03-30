@@ -19,11 +19,6 @@ InfiniteAmmoEC::InfiniteAmmoEC() {}
 
 InfiniteAmmoEC::~InfiniteAmmoEC() {}
 
-void InfiniteAmmoEC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseEC(this);
-}
-
 void InfiniteAmmoEC::checkEvent() {
     PowerUpEC::checkEvent();
 
@@ -35,7 +30,7 @@ void InfiniteAmmoEC::checkEvent() {
         InfiniteAmmoEC* infAmmo = dynamic_cast<InfiniteAmmoEC*>(
             tracker->getComponent("InfiniteAmmoEC"));
 
-		// If the player already has this powerup refresh it
+        // If the player already has this powerup refresh it
         if (infAmmo != nullptr) {
             infAmmo->setPickedTime(clock() /
                                    static_cast<float>(CLOCKS_PER_SEC));

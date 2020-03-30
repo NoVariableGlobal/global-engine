@@ -1,7 +1,9 @@
 #include "RenderComponent.h"
+#include "ComponentsManager.h"
 #include "OgreEntity.h"
 #include "OgreSDLContext.h"
 #include "OgreSceneManager.h"
+#include "Scene.h"
 
 RenderComponent::RenderComponent() : Component() {}
 
@@ -13,7 +15,7 @@ RenderComponent::~RenderComponent() {
             sceneNode);
 }
 
-void RenderComponent::setActive(bool active) { 
+void RenderComponent::setActive(bool active) {
     Component::setActive(active);
     sceneNode->setVisible(active);
 }
@@ -28,3 +30,8 @@ void RenderComponent::setOgreEntity(Ogre::Entity* e) { entity = e; }
 
 Ogre::SceneNode* RenderComponent::getSceneNode() { return sceneNode; }
 void RenderComponent::setSceneNode(Ogre::SceneNode* sn) { sceneNode = sn; }
+
+void RenderComponent::destroy() {
+    setActive(false);
+    scene->getComponentsManager()->eraseRC(this);
+}

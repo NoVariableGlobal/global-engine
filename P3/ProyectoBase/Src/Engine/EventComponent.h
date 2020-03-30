@@ -8,4 +8,8 @@ class EventComponent : public Component {
     EventComponent();
     virtual ~EventComponent();
     virtual void checkEvent() = 0;
+
+    // Destroys the PhysicsComponent, setting itself as inactive and
+    // removing itself from the scene.
+    virtual void destroy();
 };
