@@ -29,7 +29,7 @@ void IncreaseSpeedEC::checkEvent() {
         PowerUpTrackerC* tracker = dynamic_cast<PowerUpTrackerC*>(
             scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"));
         IncreaseSpeedEC* incSpeed = dynamic_cast<IncreaseSpeedEC*>(
-            tracker->getComponent("IncreaseSpeedEC"));
+            tracker->findComponent("IncreaseSpeedEC"));
 
         // If the player already has this powerup refresh it
         if (incSpeed != nullptr) {

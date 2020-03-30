@@ -6,15 +6,25 @@
 #include <vector>
 
 template <typename T>
-T assert_find(std::map<std::string, T> map, std::string name) {
+T try_find(std::map<std::string, T> map, std::string name) {
     auto it = map.find(name);
-    if (it == map.end()) {
+    if (it == map.end())
+        return nullptr;
+    else
+        return it->second;
+}
+
+template <typename T>
+T assert_find(std::map<std::string, T> map, std::string name) {
+    T e = try_find(map, name);
+    if (e == nullptr) {
         std::string type = typeid(T).name();
         std::cout << "ERROR: Resource '" + name + "' of type '" + type +
                          "' could not be found\n";
         throw std::exception("Resource could not be found");
-    }
-    return it->second;
+	}
+
+	return e;
 }
 
 template <typename T>

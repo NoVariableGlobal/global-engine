@@ -15,7 +15,7 @@ class PowerUpTrackerC : public Component {
 
     void destroy();
 
-    Component* getComponent(std::string name);
+    Component* findComponent(std::string name);
     void addPowerUp(std::string name, Component* powerUp);
     void removePowerUp(std::string name);
 };
