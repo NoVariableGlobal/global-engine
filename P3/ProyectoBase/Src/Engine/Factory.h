@@ -11,6 +11,7 @@
             FactoriesFactory::getInstance()->insert(name,                      \
                                                     new Component##Factory()); \
         }                                                                      \
+        static void noop() {};                                                  \
     };                                                                         \
     Component##FactoryRegister Component##FactoryRegisterGlobalVar;
 

@@ -4,6 +4,9 @@
 #include "OgreSDLContext.h"
 #include "PhysicsContext.h"
 #include "Scene.h"
+#ifdef _staticlibrary
+#include "TransformComponent.cpp"
+#endif // DEBUG
 
 #include <SDL_events.h>
 #include <string>
@@ -20,12 +23,20 @@ Game::~Game() {
     OgreSDLContext::getInstance()->erase();
 }
 
+
 // Inits all context
 void Game::initContext() {
     OgreSDLContext::init();
     PhysicsContext::init();
     OgreSDLContext::getInstance()->initApp("Test");
+
+    #ifdef _staticlibrary
+    TransformComponentFactoryRegister::noop();
+#endif // DEBUG
+
+
 }
+
 
 // Reads the scenes and sets the first one
 bool Game::init(std::string _firstScene) {
