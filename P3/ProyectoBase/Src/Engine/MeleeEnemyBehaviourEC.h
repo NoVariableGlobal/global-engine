@@ -6,9 +6,8 @@
 DECLARE_FACTORY(MeleeEnemyBehaviourEC);
 class MeleeEnemyBehaviourEC : public EnemyBehaviourEC {
 
- public:
+  public:
     MeleeEnemyBehaviourEC();
-   ~MeleeEnemyBehaviourEC();
-   virtual void destroy();
+    ~MeleeEnemyBehaviourEC();
     virtual void checkEvent();
 };

@@ -13,8 +13,6 @@ class TridimensionalObjectRC : public RenderComponent {
     TridimensionalObjectRC();
     virtual ~TridimensionalObjectRC();
 
-    virtual void destroy();
-
     // Updates the position and scale of the object
     virtual void render();
 

@@ -30,9 +30,7 @@ class CameraRC : public RenderComponent {
     Ogre::Vector3* cameraOffset = nullptr;
     Ogre::Vector3* look = nullptr;
 
-    bool followX = false,
-        followY = false,
-        followZ = false;
+    bool followX = false, followY = false, followZ = false;
 
     std::string target = "";
 
@@ -40,7 +38,6 @@ class CameraRC : public RenderComponent {
     CameraRC();
     ~CameraRC();
 
-    virtual void destroy();
     // set camera
     void setCamera(std::string _entityID);
     // get camera

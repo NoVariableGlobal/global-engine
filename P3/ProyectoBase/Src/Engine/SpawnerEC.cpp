@@ -7,18 +7,13 @@
 #include <utility>
 #include <value.h>
 
-void SpawnerEC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseEC(this);
-}
-
-bool SpawnerEC::addSpawn(std::string id, float chance) {
+bool SpawnerEC::addSpawn(std::string id, float chance, std::string tag) {
     float totalChance = 0;
     if (_spawns.size() != 0)
         totalChance = _spawns.back()._additiveChance;
     if (totalChance > 99.999)
         return false;
-    _spawns.push_back({id, chance, totalChance + chance});
+    _spawns.push_back({id, tag, chance, totalChance + chance});
 
     if (_spawns.back()._additiveChance > 99.999)
         _spawns.back()._additiveChance = 100;
@@ -26,13 +21,13 @@ bool SpawnerEC::addSpawn(std::string id, float chance) {
     return true;
 }
 
-void SpawnerEC::editChance(std::string& id, float newChance) {
+void SpawnerEC::editChance(std::string id, float newChance, std::string tag) {
     size_t i = 0;
     bool found = false;
     float totalChance;
     for (; i < _spawns.size(); ++i) {
         if (!found)
-            found = id == _spawns[i]._id;
+            found = (id == _spawns[i]._id);
         else {
             _spawns[i - 1]._id.swap(_spawns[i]._id);
             std::swap(_spawns[i - 1], _spawns[i]);
@@ -41,7 +36,7 @@ void SpawnerEC::editChance(std::string& id, float newChance) {
     }
 
     if (!found) {
-        addSpawn(id, newChance);
+        addSpawn(id, newChance, tag);
         return;
     }
 
@@ -84,7 +79,8 @@ Entity* SpawnerEC::spawnPrefab() {
         toInstantiate = binarySearch(0, _spawns.size() - 1, random);
     }
     return scene->getInstanceOf(toInstantiate._id,
-                                toInstantiate._id + std::to_string(_count++));
+                                toInstantiate._id + std::to_string(_count++),
+                                toInstantiate._tag);
 }
 
 Spawn SpawnerEC::binarySearch(int first, int last, float value) {
@@ -109,32 +105,40 @@ SpawnerECFactory::SpawnerECFactory() = default;
 
 Component* SpawnerECFactory::create(Entity* _father, Json::Value& _data,
                                     Scene* scene) {
-    SpawnerEC* spawnerEC = new SpawnerEC();
+ SpawnerEC* spawnerEC = new SpawnerEC();
 
-    spawnerEC->setFather(_father);
-    scene->getComponentsManager()->addEC(spawnerEC);
+        spawnerEC->setFather(_father);
+        scene->getComponentsManager()->addEC(spawnerEC);
 
-    if (!_data["spawnCooldown"].isDouble())
-        throw std::exception("Spawner: spawnCooldown is not a double");
-    spawnerEC->setSpawnCooldown(_data["spawnCooldown"].asDouble());
-    if (!_data["spawnID"].isArray())
-        throw std::exception("Spawner: spawnID is not an array");
-    if (!_data["spawnID"][0].isString())
-        throw std::exception("Spawner: spawnID is not an array of strings");
-    if (!_data["spawnChances"].isArray())
-        throw std::exception("Spawner: spawnChances is not an array");
-    if (!_data["spawnChances"][0].isDouble())
-        throw std::exception(
-            "Spawner: spawnChances is not an array of doubles");
-    for (int i = 0; i < _data["spawnID"].size(); ++i) {
-        if (!spawnerEC->addSpawn(_data["spawnID"][i].asString(),
-                                 _data["spawnChances"][i].asDouble())) {
-            printf(("No se pudo añadir " + _data["spawnID"][i].asString() +
-                    ": Ya se llegó al 100% de probabilidad./n")
-                       .c_str());
-            break;
+        if (!_data["spawnCooldown"].isDouble())
+            throw std::exception("Spawner: spawnCooldown is not a double");
+        spawnerEC->setSpawnCooldown(_data["spawnCooldown"].asDouble());
+
+        if (!_data["spawnID"].isArray())
+            throw std::exception("Spawner: spawnID is not an array");
+        if (!_data["spawnID"][0].isString())
+            throw std::exception("Spawner: spawnID is not an array of strings");
+
+        if (!_data["spawnTag"].isString())
+            throw std::exception("Spawner: spawnTag is not a string");
+        std::string tag = _data["spawnTag"].asString();
+
+        if (!_data["spawnChances"].isArray())
+            throw std::exception("Spawner: spawnChances is not an array");
+        if (!_data["spawnChances"][0].isDouble())
+            throw std::exception(
+                "Spawner: spawnChances is not an array of doubles");
+
+        for (int i = 0; i < _data["spawnID"].size(); ++i) {
+            if (!spawnerEC->addSpawn(_data["spawnID"][i].asString(),
+                                     _data["spawnChances"][i].asDouble(),
+                                     tag)) {
+                printf(("No se pudo añadir " + _data["spawnID"][i].asString() +
+                        ": Ya se llegó al 100% de probabilidad./n")
+                           .c_str());
+                break;
+            }
         }
-    }
 
     spawnerEC->setActive(true);
 

@@ -1,34 +1,33 @@
 #include "MeleeEnemyBehaviourEC.h"
 #include "ComponentsManager.h"
 #include "EnemyBehaviourEC.h"
+#include "Entity.h"
 #include "FactoriesFactory.h"
 #include "LifeC.h"
 #include "OgreRoot.h"
 #include "PlayerMovementIC.h"
+#include "RigidbodyPC.h"
 #include "Scene.h"
-#include <Entity.h>
 #include <json.h>
 
+#include <iostream>
 MeleeEnemyBehaviourEC::MeleeEnemyBehaviourEC() : EnemyBehaviourEC() {}
 
 MeleeEnemyBehaviourEC::~MeleeEnemyBehaviourEC() {}
-
-void MeleeEnemyBehaviourEC::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseEC(this);
-}
 
 void MeleeEnemyBehaviourEC::checkEvent() {
     EnemyBehaviourEC::checkEvent();
 
     // attack every attackCooldown seconds
     if (timeToAttack()) {
-        // if enemy is colliding with player
-        if (getCollisionWithPlayer()) {
-            // attack player
-            LifeC* playerHealth = dynamic_cast<LifeC*>(
-                scene->getEntitybyId("Player")->getComponent("LifeC"));
-            playerHealth->doDamage(getAttack());
+        if (active) {
+            // if enemy is colliding with player
+            if (getCollisionWithPlayer()) {
+                // attack player
+                LifeC* playerHealth = dynamic_cast<LifeC*>(
+                    scene->getEntitybyId("Player")->getComponent("LifeC"));
+                playerHealth->doDamage(getAttack());
+            }
         }
     }
 }
@@ -39,36 +38,28 @@ MeleeEnemyBehaviourECFactory::MeleeEnemyBehaviourECFactory() = default;
 Component* MeleeEnemyBehaviourECFactory::create(Entity* _father,
                                                 Json::Value& _data,
                                                 Scene* scene) {
-    MeleeEnemyBehaviourEC* meleeEnemyBehaviour = new MeleeEnemyBehaviourEC();
-    scene->getComponentsManager()->addEC(meleeEnemyBehaviour);
+        MeleeEnemyBehaviourEC* meleeEnemyBehaviour =
+            new MeleeEnemyBehaviourEC();
+        scene->getComponentsManager()->addEC(meleeEnemyBehaviour);
 
-    meleeEnemyBehaviour->setFather(_father);
-    meleeEnemyBehaviour->setScene(scene);
+        meleeEnemyBehaviour->setFather(_father);
+        meleeEnemyBehaviour->setScene(scene);
 
-    if (!_data["playerSpeedPercentage"].asFloat())
-        throw std::exception(
-            "EnemyBehaviourEC: playerSpeedPercentage is not a float");
-    meleeEnemyBehaviour->setPlayerSpeedPercentage(
-        _data["playerSpeedPercentage"].asFloat());
+        if (!_data["speed"].isDouble())
+            throw std::exception("MeleeEnemyBehaviourEC: speed is not a float");
+        meleeEnemyBehaviour->setSpeed(_data["speed"].asFloat());
 
-    PlayerMovementIC* playerMovement = dynamic_cast<PlayerMovementIC*>(
-        scene->getEntitybyId("Player")->getComponent("PlayerMovementIC"));
+        if (!_data["attack"].isInt())
+            throw std::exception("MeleeEnemyBehaviourEC: attack is not an int");
+        meleeEnemyBehaviour->setAttack(_data["attack"].asInt());
 
-    // enemy speed depends on player speed and player speed percentage
-    meleeEnemyBehaviour->setSpeed(
-        playerMovement->getMovementSpeed() *
-        meleeEnemyBehaviour->getPlayerSpeedPercentage());
+        if (!_data["attackCooldown"].isDouble())
+            throw std::exception(
+                "MeleeEnemyBehaviourEC: attackCooldown is not a float");
+        meleeEnemyBehaviour->setAttackCooldown(
+            _data["attackCooldown"].asFloat());
 
-    if (!_data["attack"].asInt())
-        throw std::exception("MeleeEnemyBehaviourPC: attack is not an int");
-    meleeEnemyBehaviour->setAttack(_data["attack"].asInt());
-
-    if (!_data["attackCooldown"].asFloat())
-        throw std::exception(
-            "MeleeEnemyBehaviourEC: attackCooldown is not a float");
-    meleeEnemyBehaviour->setAttackCooldown(_data["attackCooldown"].asFloat());
-
-    return meleeEnemyBehaviour;
+        return meleeEnemyBehaviour;
 };
 
 DEFINE_FACTORY(MeleeEnemyBehaviourEC);

@@ -22,6 +22,8 @@ class RigidbodyPC : public PhysicsComponent {
     bool stat = false;
     bool Collision = false;
 
+    bool collidesWithEntity(Entity* other);
+
   public:
     RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape, float _mass);
     ~RigidbodyPC();
@@ -33,6 +35,8 @@ class RigidbodyPC : public PhysicsComponent {
     // attached to is colliding with another given entity
     bool collidesWith(std::string id);
 
+    Entity* collidesWithTag(std::string tag);
+
     // Applies a force to the entity this component is attached to
     void addForce(Ogre::Vector3 _force, Ogre::Vector3 _relativePos);
 
@@ -43,12 +47,15 @@ class RigidbodyPC : public PhysicsComponent {
 
     // Setters
     void setGravity(Ogre::Vector3 _g); // Gives gravity to the body
-    void setTrigger(bool _trigger); // It gets if a body we want it to be trigger
-    void setKinematic(bool _kinematic); // We say if we want a body to be kinematic
+    void
+    setTrigger(bool _trigger); // It gets if a body we want it to be trigger
+    void
+    setKinematic(bool _kinematic); // We say if we want a body to be kinematic
     void setStatic(bool _static);  // We say if we want a body to be static
     void setFriction(float _friction); // We put the friction value of a body
-    void setRestitution(float _restitution); // We put the restitution value of a body
+    void setRestitution(
+        float _restitution); // We put the restitution value of a body
     void setLinearVelocity(Ogre::Vector3 _v); // Set linear velocity to the body
+    Ogre::Vector3 getLinearVelocity();
     void setPosition(Ogre::Vector3 newPos); // Set up Position
-
 };

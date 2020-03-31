@@ -1,17 +1,11 @@
 #pragma once
-
-#include "PowerUpEC.h"
+#include "ImmediatePowerUpEC.h"
 #include "Factory.h"
-
 
 // FACTORY INFRASTRUCTURE DECLARATION
 DECLARE_FACTORY(MedkitEC);
-class LifeC;
 
-class MedkitEC : public PowerUpEC {
+class MedkitEC final : public ImmediatePowerUpEC {
   public:
-    MedkitEC();
-    virtual ~MedkitEC();
-    virtual void destroy();
-    virtual void checkEvent();
+    void onPick();
 };

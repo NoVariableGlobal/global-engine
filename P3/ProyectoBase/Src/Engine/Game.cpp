@@ -9,6 +9,7 @@
 #include "CameraRC.h"
 #include "SpotLightRC.h"
 #include "TridimensionalObjectRC.h"
+#include "Util.h"
 
 #include <SDL_events.h>
 #include <string>
@@ -62,10 +63,10 @@ bool Game::init(std::string _firstScene) {
 void Game::run() {
     while (!exit) {
         update();
-        render();
         handleInput();
-        scene->deleteComponents();
         scene->insertComponents();
+        scene->deleteComponents();
+        render();
 
         if (sceneChange)
             setScene(sceneToChange);
@@ -77,7 +78,6 @@ void Game::update() { scene->update(); }
 void Game::render() {
     scene->render();
     OgreSDLContext::getInstance()->renderLoop();
-
 }
 
 void Game::handleInput() {
@@ -98,7 +98,7 @@ void Game::setScene(std::string _sceneName) {
     scene->clearEntities();
     PhysicsContext::getInstance()->destroyWorldContent();
 
-    scene->load(scenesQueue.find(_sceneName)->second);
+    scene->load(assert_find(scenesQueue, _sceneName));
 
     sceneChange = false;
 }

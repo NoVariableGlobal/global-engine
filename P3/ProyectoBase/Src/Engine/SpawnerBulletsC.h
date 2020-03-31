@@ -17,8 +17,6 @@ class SpawnerBulletsC : public Component {
   public:
     SpawnerBulletsC();
     virtual ~SpawnerBulletsC();
-
     virtual void destroy();
-
-    Entity* getBullet(std::string _type);
+    Entity* getBullet(std::string _type, std::string _tag);
 };

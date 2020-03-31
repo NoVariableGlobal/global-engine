@@ -243,7 +243,7 @@ bool OgreSDLContext::pollEvents(const SDL_Event event) // from frameStarted
 Ogre::SceneManager* OgreSDLContext::getSceneManager() { return mSM; }
 
 Ogre::RenderWindow* OgreSDLContext::getRenderWindow() { return mWindow.render; }
-
+
 SDL_Window* OgreSDLContext::getSDLWindow() { return mWindow.native; }
 
 void OgreSDLContext::renderLoop() { mRoot->renderOneFrame(); }

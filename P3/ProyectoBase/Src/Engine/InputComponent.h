@@ -12,4 +12,8 @@ class InputComponent : public Component {
     virtual ~InputComponent();
     // interface for each input component handle method
     virtual void handleInput(const SDL_Event& _event) = 0;
+
+    // Destroys the InputComponent, setting itself as inactive and
+    // removing itself from the scene.
+    virtual void destroy();
 };

@@ -26,8 +26,6 @@ class SpotLightRC : public RenderComponent {
     SpotLightRC();
     virtual ~SpotLightRC();
 
-    virtual void destroy();
-
     // set light
     void setLight(std::string _entityID);
     // get light

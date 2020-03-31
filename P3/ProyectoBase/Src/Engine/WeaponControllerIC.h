@@ -1,5 +1,6 @@
 #pragma once
 #include "InputComponent.h"
+#include <string>
 #include "Factory.h"
 
 // FACTORY INFRASTRUCTURE DECLARATION
@@ -11,10 +12,10 @@ class WeaponControllerIC : public InputComponent {
   private:
     GunC* currentGun = nullptr;
     GunC* secondaryGun = nullptr;
+
   public:
     WeaponControllerIC();
     virtual ~WeaponControllerIC();
-    virtual void destroy();
 
     void init();
     // Updates the entity's transform's
@@ -22,5 +23,6 @@ class WeaponControllerIC : public InputComponent {
     virtual void handleInput(const SDL_Event& _event);
 
     GunC* getCurrentGun();
-
+    GunC* getSecondaryGun();
+    void pickUpGun(std::string _gunName);
 };

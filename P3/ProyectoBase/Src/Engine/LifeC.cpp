@@ -28,8 +28,9 @@ void LifeC::doDamage(float _damage) {
     if (!invulnerability)
         currentLife -= _damage;
 
-    if (currentLife < 0)
-        currentLife = 0;
+    if (currentLife <= 0) {
+        scene->deleteEntity(father);
+    }
 }
 
 void LifeC::heal(float _heal) {

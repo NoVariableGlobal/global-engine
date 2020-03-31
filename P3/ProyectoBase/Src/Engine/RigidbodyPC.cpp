@@ -21,8 +21,8 @@ RigidbodyPC::RigidbodyPC(Ogre::Vector3 _pos, Ogre::Vector3 _shape,
 RigidbodyPC::~RigidbodyPC() { body = nullptr; }
 
 void RigidbodyPC::destroy() {
+    PhysicsComponent::destroy();
     PhysicsContext::getInstance()->destroyRigidBody(body);
-    scene->getComponentsManager()->erasePC(this);
 }
 
 void RigidbodyPC::setActive(bool active) {
@@ -60,6 +60,10 @@ bool RigidbodyPC::collidesWith(std::string id) {
         return false;
     Entity* other = scene->getEntitybyId(id);
 
+    return collidesWithEntity(other);
+}
+
+bool RigidbodyPC::collidesWithEntity(Entity* other) {
     btVoronoiSimplexSolver sGjkSimplexSolver;
     btGjkEpaPenetrationDepthSolver epaSolver;
     btPointCollector gjkOutput;
@@ -81,6 +85,18 @@ bool RigidbodyPC::collidesWith(std::string id) {
         return true;
     else
         return false;
+
+    return false;
+}
+
+Entity* RigidbodyPC::collidesWithTag(std::string tag) {
+    std::vector<Entity*> tagEntities = scene->getEntitiesbyTag(tag);
+
+    for (auto it : tagEntities) {
+        if (collidesWithEntity(it))
+            return it;
+    }
+    return nullptr;
 }
 
 void RigidbodyPC::addForce(const Ogre::Vector3 _force,
@@ -155,6 +171,13 @@ void RigidbodyPC::setLinearVelocity(Ogre::Vector3 _v) {
         return;
     body->setLinearVelocity(btVector3(_v.x, _v.y, _v.z));
 }
+Ogre::Vector3 RigidbodyPC::getLinearVelocity() {
+    if (!active)
+        return Ogre::Vector3::NEGATIVE_UNIT_X;
+    btVector3 back = body->getLinearVelocity();
+
+    return Ogre::Vector3(back.x(), back.y(), back.z());
+}
 
 void RigidbodyPC::setPosition(Ogre::Vector3 newPos) {
     if (!active)
@@ -171,54 +194,55 @@ RigidbodyPCFactory::RigidbodyPCFactory() = default;
 
 Component* RigidbodyPCFactory::create(Entity* _father, Json::Value& _data,
                                       Scene* _scene) {
-    if (!_data["position"].isArray() || !_data["shape"].isArray() ||
-        !_data["mass"].isInt())
-        throw std::exception("RigidbodyPC: position/shape is not an array "
-                             "or mass is not an int");
-    int mass = _data["mass"].asInt();
+ if (!_data["position"].isArray() || !_data["shape"].isArray() ||
+            !_data["mass"].isInt())
+            throw std::exception("RigidbodyPC: position/shape is not an array "
+                                 "or mass is not an int");
+        int mass = _data["mass"].asInt();
 
-    if (!_data["static"].isBool())
-        throw std::exception("RigidbodyPC: static is not a boolean");
-    if (_data["static"].asBool())
-        mass = 0;
+        if (!_data["static"].isBool())
+            throw std::exception("RigidbodyPC: static is not a boolean");
+        if (_data["static"].asBool())
+            mass = 0;
 
-    RigidbodyPC* rb = new RigidbodyPC(
-        Ogre::Vector3(_data["position"][0].asFloat(),
-                      _data["position"][1].asFloat(),
-                      _data["position"][2].asFloat()),
-        Ogre::Vector3(_data["shape"][0].asFloat(), _data["shape"][1].asFloat(),
-                      _data["shape"][2].asFloat()),
-        mass);
-    _scene->getComponentsManager()->addPC(rb);
+        RigidbodyPC* rb =
+            new RigidbodyPC(Ogre::Vector3(_data["position"][0].asFloat(),
+                                          _data["position"][1].asFloat(),
+                                          _data["position"][2].asFloat()),
+                            Ogre::Vector3(_data["shape"][0].asFloat(),
+                                          _data["shape"][1].asFloat(),
+                                          _data["shape"][2].asFloat()),
+                            mass);
+        _scene->getComponentsManager()->addPC(rb);
 
-    rb->setFather(_father);
-    rb->setScene(_scene);
+        rb->setFather(_father);
+        rb->setScene(_scene);
 
-    if (!_data["gravity"].isArray())
-        throw std::exception("RigidbodyPC: gravity is not an array");
-    rb->setGravity(Ogre::Vector3(_data["gravity"][0].asFloat(),
-                                 _data["gravity"][1].asFloat(),
-                                 _data["gravity"][2].asFloat()));
+        if (!_data["gravity"].isArray())
+            throw std::exception("RigidbodyPC: gravity is not an array");
+        rb->setGravity(Ogre::Vector3(_data["gravity"][0].asFloat(),
+                                     _data["gravity"][1].asFloat(),
+                                     _data["gravity"][2].asFloat()));
 
-    if (!_data["trigger"].isBool())
-        throw std::exception("RigidbodyPC: trigger is not a boolean");
-    rb->setTrigger(_data["trigger"].asBool());
+        if (!_data["trigger"].isBool())
+            throw std::exception("RigidbodyPC: trigger is not a boolean");
+        rb->setTrigger(_data["trigger"].asBool());
 
-    if (!_data["kinematic"].isBool())
-        throw std::exception("RigidbodyPC: kinematic is not a boolean");
-    rb->setKinematic(_data["kinematic"].asBool());
+        if (!_data["kinematic"].isBool())
+            throw std::exception("RigidbodyPC: kinematic is not a boolean");
+        rb->setKinematic(_data["kinematic"].asBool());
 
-    rb->setStatic(_data["static"].asBool());
+        rb->setStatic(_data["static"].asBool());
 
-    if (!_data["friction"].isInt())
-        throw std::exception("RigidbodyPC: friction is not an int");
-    rb->setFriction(_data["friction"].asFloat());
+        if (!_data["friction"].isInt())
+            throw std::exception("RigidbodyPC: friction is not an int");
+        rb->setFriction(_data["friction"].asFloat());
 
-    if (!_data["restitution"].isInt())
-        throw std::exception("RigidbodyPC: restitution is not an int");
-    rb->setRestitution(_data["restitution"].asFloat());
+        if (!_data["restitution"].isInt())
+            throw std::exception("RigidbodyPC: restitution is not an int");
+        rb->setRestitution(_data["restitution"].asFloat());
 
-    return rb;
+        return rb;
 };
 
 DEFINE_FACTORY(RigidbodyPC);

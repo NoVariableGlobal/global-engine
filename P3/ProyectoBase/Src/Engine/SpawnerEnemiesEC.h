@@ -11,7 +11,6 @@ class SpawnerEnemiesEC : public SpawnerEC {
     TransformComponent* transform = nullptr;
 
   public:
-    virtual void destroy();
     virtual void checkEvent() override;
 
     void setTransform(TransformComponent* trans);

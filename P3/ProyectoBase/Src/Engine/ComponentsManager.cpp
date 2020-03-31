@@ -4,8 +4,10 @@
 #include "PhysicsComponent.h"
 #include "RenderComponent.h"
 #include "SoundComponent.h"
+#include "Util.h"
 
 #include <SDL_events.h>
+#include <iostream>
 
 ComponentsManager::ComponentsManager() {}
 
@@ -62,23 +64,7 @@ void ComponentsManager::insertPC() {
 }
 
 void ComponentsManager::deletePC() {
-    if (deletePhysics.size() > 0) {
-        bool erased = false;
-        auto itDelete = deletePhysics.begin();
-        while (itDelete != deletePhysics.end()) {
-            auto it = physics.begin();
-            while (it != physics.end() && !erased) {
-                if ((*it) == (*itDelete)) {
-                    delete *it;
-                    erased = true;
-                } else
-                    ++it;
-            }
-            physics.erase(it);
-            ++itDelete;
-        }
-        deletePhysics.clear();
-    }
+    assert_deleteComponent(deletePhysics, physics);
 }
 
 void ComponentsManager::erasePC(PhysicsComponent* _physicsComponent) {
@@ -98,23 +84,7 @@ void ComponentsManager::insertIC() {
 }
 
 void ComponentsManager::deleteIC() {
-    if (deleteInput.size() > 0) {
-        bool erased = false;
-        auto itDelete = deleteInput.begin();
-        while (itDelete != deleteInput.end()) {
-            auto it = input.begin();
-            while (it != input.end() && !erased) {
-                if ((*it) == (*itDelete)) {
-                    delete *it;
-                    erased = true;
-                } else
-                    ++it;
-            }
-            input.erase(it);
-            ++itDelete;
-        }
-        deleteInput.clear();
-    }
+    assert_deleteComponent(deleteInput, input);
 }
 
 void ComponentsManager::eraseIC(InputComponent* _inputComponent) {
@@ -133,25 +103,7 @@ void ComponentsManager::insertRC() {
     }
 }
 
-void ComponentsManager::deleteRC() {
-    if (deleteRend.size() > 0) {
-        bool erased = false;
-        auto itDelete = deleteRend.begin();
-        while (itDelete != deleteRend.end()) {
-            auto it = rend.begin();
-            while (it != rend.end() && !erased) {
-                if ((*it) == (*itDelete)) {
-                    delete *it;
-                    erased = true;
-                } else
-                    ++it;
-            }
-            rend.erase(it);
-            ++itDelete;
-        }
-        deleteRend.clear();
-    }
-}
+void ComponentsManager::deleteRC() { assert_deleteComponent(deleteRend, rend); }
 
 void ComponentsManager::eraseRC(RenderComponent* _renderComponent) {
     deleteRend.push_back(_renderComponent);
@@ -170,23 +122,7 @@ void ComponentsManager::insertSC() {
 }
 
 void ComponentsManager::deleteSC() {
-    if (deleteSound.size() > 0) {
-        bool erased = false;
-        auto itDelete = deleteSound.begin();
-        while (itDelete != deleteSound.end()) {
-            auto it = sound.begin();
-            while (it != sound.end() && !erased) {
-                if ((*it) == (*itDelete)) {
-                    delete *it;
-                    erased = true;
-                } else
-                    ++it;
-            }
-            sound.erase(it);
-            ++itDelete;
-        }
-        deleteSound.clear();
-    }
+    assert_deleteComponent(deleteSound, sound);
 }
 
 void ComponentsManager::eraseSC(SoundComponent* _soundComponent) {
@@ -206,23 +142,7 @@ void ComponentsManager::insertDC() {
 }
 
 void ComponentsManager::deleteDC() {
-    if (deleteDeleteable.size() > 0) {
-        bool erased = false;
-        auto itDelete = deleteDeleteable.begin();
-        while (itDelete != deleteDeleteable.end()) {
-            auto it = deleteable.begin();
-            while (it != deleteable.end() && !erased) {
-                if ((*it) == (*itDelete)) {
-                    delete *it;
-                    erased = true;
-                } else
-                    ++it;
-            }
-            deleteable.erase(it);
-            ++itDelete;
-        }
-        deleteDeleteable.clear();
-    }
+    assert_deleteComponent(deleteDeleteable, deleteable);
 }
 
 void ComponentsManager::eraseDC(Component* _deleteableComponent) {
@@ -242,23 +162,7 @@ void ComponentsManager::insertEC() {
 }
 
 void ComponentsManager::deleteEC() {
-    if (deleteEvent.size() > 0) {
-        bool erased = false;
-        auto itDelete = deleteEvent.begin();
-        while (itDelete != deleteEvent.end()) {
-            auto it = event.begin();
-            while (it != event.end() && !erased) {
-                if ((*it) == (*itDelete)) {
-                    delete *it;
-                    erased = true;
-                } else
-                    ++it;
-            }
-            event.erase(it);
-            ++itDelete;
-        }
-        deleteEvent.clear();
-    }
+    assert_deleteComponent(deleteEvent, event);
 }
 
 void ComponentsManager::eraseEC(EventComponent* _eventComponent) {
@@ -270,7 +174,6 @@ void ComponentsManager::update() {
         if (p->isActive())
             p->update();
     }
-
 }
 
 void ComponentsManager::handleInput(const SDL_Event& _event) {
