@@ -10,12 +10,8 @@ void PowerUpTrackerC::destroy() {
     scene->getComponentsManager()->eraseDC(this);
 }
 
-Component* PowerUpTrackerC::getComponent(std::string name) {
-    try {
-        return assert_find(powerUps, name);
-    } catch (std::exception& e) {
-        return nullptr;
-    }
+Component* PowerUpTrackerC::findComponent(std::string name) {
+    return try_find(powerUps, name);
 }
 
 void PowerUpTrackerC::addPowerUp(std::string name, Component* powerUp) {

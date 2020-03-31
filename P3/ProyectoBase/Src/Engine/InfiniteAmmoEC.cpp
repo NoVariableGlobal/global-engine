@@ -28,7 +28,7 @@ void InfiniteAmmoEC::checkEvent() {
         PowerUpTrackerC* tracker = dynamic_cast<PowerUpTrackerC*>(
             scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"));
         InfiniteAmmoEC* infAmmo = dynamic_cast<InfiniteAmmoEC*>(
-            tracker->getComponent("InfiniteAmmoEC"));
+            tracker->findComponent("InfiniteAmmoEC"));
 
         // If the player already has this powerup refresh it
         if (infAmmo != nullptr) {

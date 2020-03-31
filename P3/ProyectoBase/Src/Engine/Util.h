@@ -6,6 +6,15 @@
 #include <vector>
 
 template <typename T>
+T try_find(std::map<std::string, T> map, std::string name) {
+    auto it = map.find(name);
+    if (it == map.end())
+        return nullptr;
+    else
+        return it->second;
+}
+
+template <typename T>
 T assert_find(std::map<std::string, T> map, std::string name) {
     auto it = map.find(name);
     if (it == map.end()) {
@@ -14,6 +23,7 @@ T assert_find(std::map<std::string, T> map, std::string name) {
                          "' could not be found\n";
         throw std::exception("Resource could not be found");
     }
+
     return it->second;
 }
 
