@@ -1,12 +1,7 @@
 #pragma once
+#include "ImmediatePowerUpEC.h"
 
-#include "PowerUpEC.h"
-
-class LifeC;
-
-class MedkitEC : public PowerUpEC {
+class MedkitEC final : public ImmediatePowerUpEC {
   public:
-    MedkitEC();
-    virtual ~MedkitEC();
-    virtual void checkEvent();
+    void onPick();
 };

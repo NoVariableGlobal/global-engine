@@ -1,111 +1,30 @@
 #include "IncreaseSpeedEC.h"
-
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
-#include "OgreVector3.h"
 #include "PlayerMovementIC.h"
-#include "PowerUpTrackerC.h"
-#include "RigidbodyPC.h"
 #include "Scene.h"
-#include "TransformComponent.h"
-#include "TridimensionalObjectRC.h"
-
-#include <iostream>
 #include <json.h>
 
-IncreaseSpeedEC::IncreaseSpeedEC() {}
+void IncreaseSpeedEC::setEffect(bool value) {
+    Entity* player = scene->getEntitybyId("Player");
+    auto movement = reinterpret_cast<PlayerMovementIC*>(
+        player->getComponent("PlayerMovementIC"));
 
-IncreaseSpeedEC::~IncreaseSpeedEC() {}
-
-void IncreaseSpeedEC::checkEvent() {
-    PowerUpEC::checkEvent();
-
-    // Check if the player is colliding with this
-    if (!picked && getCollisionWithPlayer()) {
-        picked = true;
-
-        PowerUpTrackerC* tracker = dynamic_cast<PowerUpTrackerC*>(
-            scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"));
-        IncreaseSpeedEC* incSpeed = dynamic_cast<IncreaseSpeedEC*>(
-            tracker->findComponent("IncreaseSpeedEC"));
-
-        // If the player already has this powerup refresh it
-        if (incSpeed != nullptr) {
-            incSpeed->setPickedTime(clock() /
-                                    static_cast<float>(CLOCKS_PER_SEC));
-            scene->deleteEntity(father);
-        } else {
-            PlayerMovementIC* playerMovement = dynamic_cast<PlayerMovementIC*>(
-                scene->getEntitybyId("Player")->getComponent(
-                    "PlayerMovementIC"));
-            originalSpeed = playerMovement->getMovementSpeed();
-            playerMovement->setMovementSpeed(originalSpeed *
-                                             (1 + speedIncrement));
-
-            dynamic_cast<TridimensionalObjectRC*>(
-                father->getComponent("TridimensionalObjectRC"))
-                ->setActive(false);
-
-            dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"))
-                ->setActive(false);
-
-            dynamic_cast<TransformComponent*>(
-                father->getComponent("TransformComponent"))
-                ->setActive(false);
-
-            // Add this powerUp to the tracker
-            dynamic_cast<PowerUpTrackerC*>(
-                scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"))
-                ->addPowerUp("IncreaseSpeedEC", this);
-        }
-    }
-
-    // delete item when the time has passed and the player has not picked it
-    if (!picked) {
-        if (timeDisappear()) {
-            dynamic_cast<PowerUpTrackerC*>(
-                scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"))
-                ->removePowerUp("IncreaseSpeedEC");
-            scene->deleteEntity(father);
-        }
-        // delete item when the effect has passed
-    } else if (picked && timeDisappearEffect()) {
-        PlayerMovementIC* playerMovement = dynamic_cast<PlayerMovementIC*>(
-            scene->getEntitybyId("Player")->getComponent("PlayerMovementIC"));
-        playerMovement->setMovementSpeed(originalSpeed);
-
-        dynamic_cast<PowerUpTrackerC*>(
-            scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"))
-            ->removePowerUp("IncreaseSpeedEC");
-        scene->deleteEntity(father);
+    if (value) {
+        originalSpeed_ = movement->getMovementSpeed();
+        movement->setMovementSpeed(originalSpeed_ * (1 + speedIncrement_));
+    } else {
+        movement->setMovementSpeed(originalSpeed_);
     }
 }
 
-bool IncreaseSpeedEC::timeDisappearEffect() {
-    float seconds = clock() / static_cast<float>(CLOCKS_PER_SEC);
+std::string IncreaseSpeedEC::getName() { return "IncreaseSpeedEC"; }
 
-    if (!startPicked) {
-        time = seconds;
-        startPicked = true;
-    }
-    if (time + timeEffect <= seconds) {
-        return true;
-    }
-
-    return false;
+void IncreaseSpeedEC::setSpeedIncrement(double value) {
+    speedIncrement_ = value;
 }
-
-void IncreaseSpeedEC::setTimeEffect(float _timeEffect) {
-    timeEffect = _timeEffect;
-}
-
-void IncreaseSpeedEC::setSpeedIncrement(float _speedIncrement) {
-    speedIncrement = _speedIncrement;
-}
-
-void IncreaseSpeedEC::setPickedTime(float _time) { time = _time; }
 
 // FACTORY INFRASTRUCTURE
 class IncreaseSpeedECFactory final : public ComponentFactory {
@@ -123,7 +42,7 @@ class IncreaseSpeedECFactory final : public ComponentFactory {
         increaseSpeedIC->setDuration(_data["time"].asDouble());
         if (!_data["timeEffect"].isDouble())
             throw std::exception("IncreaseSpeed: timeEffect is not a double");
-        increaseSpeedIC->setTimeEffect(_data["timeEffect"].asDouble());
+        increaseSpeedIC->setDuration(_data["timeEffect"].asDouble());
         if (!_data["speedIncrement"].isDouble())
             throw std::exception(
                 "IncreaseSpeed: speedIncrement is not a double");

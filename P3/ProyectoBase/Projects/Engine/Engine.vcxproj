@@ -27,6 +27,7 @@
     <ClCompile Include="..\..\Src\Engine\DestroyAfterSecsEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\EnemyBehaviourEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\GunC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\ImmediatePowerUpEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\IncreaseSpeedEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\InstakillEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\MedkitEC.cpp" />
@@ -37,6 +38,7 @@
     <ClCompile Include="..\..\Src\Engine\OrientateToMouseIC.cpp" />
     <ClCompile Include="..\..\Src\Engine\HandGunC.cpp" />
     <ClCompile Include="..\..\Src\Engine\OnEPressPickUpIC.cpp" />
+    <ClCompile Include="..\..\Src\Engine\PersistentPowerUpEC.cpp" />
     <ClCompile Include="..\..\Src\Engine\PlayerShotIC.cpp" />
     <ClCompile Include="..\..\Src\Engine\PowerUpTrackerC.cpp" />
     <ClCompile Include="..\..\Src\Engine\LifeC.cpp" />
@@ -82,6 +84,7 @@
     <ClInclude Include="..\..\Src\Engine\BulletC.h" />
     <ClInclude Include="..\..\Src\Engine\DestroyAfterSecsEC.h" />
     <ClInclude Include="..\..\Src\Engine\EnemyBehaviourEC.h" />
+    <ClInclude Include="..\..\Src\Engine\ImmediatePowerUpEC.h" />
     <ClInclude Include="..\..\Src\Engine\IncreaseSpeedEC.h" />
     <ClInclude Include="..\..\Src\Engine\InstakillEC.h" />
     <ClInclude Include="..\..\Src\Engine\InvulnerabilityShield.h" />
@@ -93,6 +96,7 @@
     <ClInclude Include="..\..\Src\Engine\OrientateToMouseIC.h" />
     <ClInclude Include="..\..\Src\Engine\HandGunC.h" />
     <ClInclude Include="..\..\Src\Engine\OnEPressPickUpIC.h" />
+    <ClInclude Include="..\..\Src\Engine\PersistentPowerUpEC.h" />
     <ClInclude Include="..\..\Src\Engine\PlayerShotIC.h" />
     <ClInclude Include="..\..\Src\Engine\PowerUpTrackerC.h" />
     <ClInclude Include="..\..\Src\Engine\LifeC.h" />
