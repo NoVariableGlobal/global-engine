@@ -2,7 +2,9 @@
 #include "InputComponent.h"
 
 #include <string>
+#include "Factory.h"
 
+DECLARE_FACTORY(OnEPressPickUpIC);
 class RigidbodyPC;
 
 class OnEPressPickUpIC : public InputComponent {

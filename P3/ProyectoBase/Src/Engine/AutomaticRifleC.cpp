@@ -3,7 +3,6 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
-#include "Factory.h"
 #include "Ogre.h"
 #include "OgreQuaternion.h"
 #include "OgreSceneNode.h"
@@ -62,12 +61,10 @@ bool AutomaticRifleC::shoot() {
 }
 
 // FACTORY INFRASTRUCTURE
-class AutomaticRifleCFactory final : public ComponentFactory {
-  public:
-    AutomaticRifleCFactory() = default;
+AutomaticRifleCFactory::AutomaticRifleCFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* _scene) override {
+    Component* AutomaticRifleCFactory::create(Entity* _father, Json::Value& _data,
+                      Scene* _scene)  {
 
         AutomaticRifleC* automaticRifle = new AutomaticRifleC();
 
@@ -113,6 +110,5 @@ class AutomaticRifleCFactory final : public ComponentFactory {
 
         return automaticRifle;
     };
-};
 
-REGISTER_FACTORY("AutomaticRifleC", AutomaticRifleC);
+DEFINE_FACTORY(AutomaticRifleC);

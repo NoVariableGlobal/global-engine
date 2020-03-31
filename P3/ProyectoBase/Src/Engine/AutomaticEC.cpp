@@ -44,21 +44,18 @@ void AutomaticEC::setCadence(double _cadence) { cadence = _cadence; }
 void AutomaticEC::setShoot(bool _shoot) { shoot = _shoot; }
 
 // FACTORY INFRASTRUCTURE
-class AutomaticECFactory final : public ComponentFactory {
-  public:
-    AutomaticECFactory() = default;
+AutomaticECFactory::AutomaticECFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
-        AutomaticEC* automatic = new AutomaticEC();
+Component* AutomaticECFactory::create(Entity* _father, Json::Value& _data,
+                                      Scene* scene) {
+    AutomaticEC* automatic = new AutomaticEC();
 
-        automatic->setFather(_father);
-        scene->getComponentsManager()->addEC(automatic);
+    automatic->setFather(_father);
+    scene->getComponentsManager()->addEC(automatic);
 
-        automatic->setActive(true);
+    automatic->setActive(true);
 
-        return automatic;
-    };
+    return automatic;
 };
 
-REGISTER_FACTORY("AutomaticEC", AutomaticEC);
+DEFINE_FACTORY(AutomaticEC);

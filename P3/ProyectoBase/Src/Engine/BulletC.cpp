@@ -1,7 +1,6 @@
 #include "BulletC.h"
 #include "ComponentsManager.h"
 #include "FactoriesFactory.h"
-#include "Factory.h"
 #include "Scene.h"
 #include "Entity.h"
 #include "TransformComponent.h"
@@ -30,12 +29,10 @@ float BulletC::getDamage() { return damage; }
 void BulletC::dealCollision() { scene->deleteEntity(father); }
 
 // FACTORY INFRASTRUCTURE
-class BulletCFactory final : public ComponentFactory {
-  public:
-    BulletCFactory() = default;
+BulletCFactory::BulletCFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* _scene) override {
+    Component* BulletCFactory::create(Entity* _father, Json::Value& _data,
+                      Scene* _scene)  {
 
         BulletC* bullet = new BulletC();
         _scene->getComponentsManager()->addDC(bullet);
@@ -45,6 +42,5 @@ class BulletCFactory final : public ComponentFactory {
 
         return bullet;
     };
-};
 
-REGISTER_FACTORY("BulletC", BulletC);
+DEFINE_FACTORY(BulletC);

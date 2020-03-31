@@ -4,7 +4,9 @@
 
 #include <map>
 #include <string>
+#include "Factory.h"
 
+DECLARE_FACTORY(PowerUpTrackerC);
 class PowerUpTrackerC : public Component {
   private:
     std::map<std::string, Component*> powerUps;

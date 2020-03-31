@@ -2,7 +2,6 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
-#include "Factory.h"
 #include "HandGunC.h"
 #include "Scene.h"
 #include "WeaponControllerIC.h"
@@ -23,13 +22,11 @@ void GunPowerUpC::onPickUp() {
 void GunPowerUpC::setGunId(const std::string& gunId) { _gunId = gunId; }
 
 // FACTORY INFRASTRUCTURE
-class GunPowerUpCFactory final : public ComponentFactory {
-  public:
-    GunPowerUpCFactory() = default;
+GunPowerUpCFactory::GunPowerUpCFactory() = default;
 
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* _scene) override {
+    Component* GunPowerUpCFactory::create(Entity* _father, Json::Value& _data,
+                      Scene* _scene) {
 
 
         GunPowerUpC* gunPowerUpC = new GunPowerUpC();
@@ -44,6 +41,5 @@ class GunPowerUpCFactory final : public ComponentFactory {
 
         return gunPowerUpC;
     };
-};
 
-REGISTER_FACTORY("GunPowerUpC", GunPowerUpC);
+DEFINE_FACTORY(GunPowerUpC);

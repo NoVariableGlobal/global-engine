@@ -2,7 +2,6 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
-#include "Factory.h"
 #include "GunC.h"
 #include "PowerUpC.h"
 #include "RigidbodyPC.h"
@@ -28,23 +27,21 @@ void OnEPressPickUpIC::handleInput(const SDL_Event& _event) {
 void OnEPressPickUpIC::setObjectName(std::string _name) { objectName = _name; }
 
 // FACTORY INFRASTRUCTURE
-class OnEPressPickUpICFactory : public ComponentFactory {
-  public:
-    OnEPressPickUpICFactory() = default;
-    virtual Component* create(Entity* _father, Json::Value& _data,
-                              Scene* scene) {
-        // Create the component
-        OnEPressPickUpIC* onEPressPickUpIC = new OnEPressPickUpIC();
-        onEPressPickUpIC->setScene(scene);
-        scene->getComponentsManager()->addIC(onEPressPickUpIC);
+OnEPressPickUpICFactory::OnEPressPickUpICFactory() = default;
+Component* OnEPressPickUpICFactory::create(Entity* _father,
+                                                   Json::Value& _data,
+                                                   Scene* scene) {
+    // Create the component
+    OnEPressPickUpIC* onEPressPickUpIC = new OnEPressPickUpIC();
+    onEPressPickUpIC->setScene(scene);
+    scene->getComponentsManager()->addIC(onEPressPickUpIC);
 
-        onEPressPickUpIC->setObjectName(_data["objectName"].asString());
+    onEPressPickUpIC->setObjectName(_data["objectName"].asString());
 
-        // Set the component's father as the entity it was instanced for
-        onEPressPickUpIC->setFather(_father);
+    // Set the component's father as the entity it was instanced for
+    onEPressPickUpIC->setFather(_father);
 
-        return onEPressPickUpIC;
-    };
+    return onEPressPickUpIC;
 };
 
-REGISTER_FACTORY("OnEPressPickUpIC", OnEPressPickUpIC);
+DEFINE_FACTORY(OnEPressPickUpIC);

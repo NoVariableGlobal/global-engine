@@ -3,7 +3,6 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
-#include "Factory.h"
 #include "RigidbodyPC.h"
 #include "Scene.h"
 #include "SpawnerBulletsC.h"
@@ -56,12 +55,10 @@ bool SniperGunC::shoot() {
 }
 
 // FACTORY INFRASTRUCTURE
-class SniperGunCFactory final : public ComponentFactory {
-  public:
-    SniperGunCFactory() = default;
+SniperGunCFactory::SniperGunCFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* _scene) override {
+    Component* SniperGunCFactory::create(Entity* _father, Json::Value& _data,
+                      Scene* _scene) {
 
         SniperGunC* sniper = new SniperGunC();
 
@@ -104,6 +101,4 @@ class SniperGunCFactory final : public ComponentFactory {
 
         return sniper;
     };
-};
-
-REGISTER_FACTORY("SniperGunC", SniperGunC);
+DEFINE_FACTORY(SniperGunC);

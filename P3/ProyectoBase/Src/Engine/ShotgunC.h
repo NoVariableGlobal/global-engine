@@ -1,7 +1,9 @@
 #pragma once
 #include "GunC.h"
 #include <string>
+#include "Factory.h"
 
+DECLARE_FACTORY(ShotgunC);
 class ShotgunC : public GunC {
   private:
 	// Number of pellets each shot fires

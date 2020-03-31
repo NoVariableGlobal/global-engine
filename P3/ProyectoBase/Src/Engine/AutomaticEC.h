@@ -1,6 +1,8 @@
 #pragma once
 #include "EventComponent.h"
+#include "Factory.h"
 
+DECLARE_FACTORY(AutomaticEC);
 // class to detect when to fire an automatic weapon depending on its cadence
 class AutomaticEC : public EventComponent {
   private:

@@ -1,6 +1,9 @@
 #pragma once
 #include "EnemyBehaviourEC.h"
 #include <string>
+#include "Factory.h"
+
+DECLARE_FACTORY(RangedEnemyBehaviourEC);
 class RangedEnemyBehaviourEC : public EnemyBehaviourEC {
 
   private:

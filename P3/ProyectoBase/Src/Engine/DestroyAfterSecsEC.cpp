@@ -2,7 +2,6 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
-#include "Factory.h"
 #include "Scene.h"
 
 #include <iostream>
@@ -24,27 +23,24 @@ void DestroyAfterSecsEC::checkEvent() {
 void DestroyAfterSecsEC::setLifeTime(int n) { lifeTime = n; }
 
 // FACTORY INFRASTRUCTURE
-class DestroyAfterSecsECFactory final : public ComponentFactory {
-  public:
-    DestroyAfterSecsECFactory() = default;
+DestroyAfterSecsECFactory::DestroyAfterSecsECFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* _scene) override {
-        DestroyAfterSecsEC* destroyAfterSecsEC = new DestroyAfterSecsEC();
+Component* DestroyAfterSecsECFactory::create(Entity* _father,
+                                             Json::Value& _data,
+                                             Scene* _scene) {
+    DestroyAfterSecsEC* destroyAfterSecsEC = new DestroyAfterSecsEC();
 
-        destroyAfterSecsEC->setFather(_father);
-        destroyAfterSecsEC->setScene(_scene);
-        _scene->getComponentsManager()->addEC(destroyAfterSecsEC);
+    destroyAfterSecsEC->setFather(_father);
+    destroyAfterSecsEC->setScene(_scene);
+    _scene->getComponentsManager()->addEC(destroyAfterSecsEC);
 
-        if (!_data["lifeTime"].isDouble())
-            throw std::exception(
-                "DestroyAfterSecsEC: lifeTime is not a double");
-        destroyAfterSecsEC->setLifeTime(_data["lifeTime"].asDouble());
+    if (!_data["lifeTime"].isDouble())
+        throw std::exception("DestroyAfterSecsEC: lifeTime is not a double");
+    destroyAfterSecsEC->setLifeTime(_data["lifeTime"].asDouble());
 
-        destroyAfterSecsEC->setActive(true);
+    destroyAfterSecsEC->setActive(true);
 
-        return destroyAfterSecsEC;
-    };
+    return destroyAfterSecsEC;
 };
 
-REGISTER_FACTORY("DestroyAfterSecsEC", DestroyAfterSecsEC);
+DEFINE_FACTORY(DestroyAfterSecsEC);

@@ -69,40 +69,41 @@ Component* HandGunCFactory::create(Entity* _father, Json::Value& _data,
     _scene->getComponentsManager()->addDC(hg);
     hg->setFather(_father);
     hg->setScene(_scene);
+
     if (!_data["bulletTag"].isString())
         throw std::exception("ShotgunC: bulletTag is not a string");
-        hg->setBulletTag(_data["bulletTag"].asString());
-
+    hg->setBulletTag(_data["bulletTag"].asString());
 
     if (!_data["bulletchamberMax"].isInt())
         throw std::exception("HandGunC: bulletchamberMax is not an int");
-        hg->setbulletchamber(_data["bulletchamberMax"].asInt());
+    hg->setbulletchamber(_data["bulletchamberMax"].asInt());
 
     if (!_data["munition"].isInt())
         throw std::exception("HandGunC: munition is not an int");
     hg->setmunition(_data["munition"].asInt());
-        if (!_data["bulletDamage"].isDouble())
-            throw std::exception("ShotgunC: bulletDamage is not a double");
-        hg->setbulletdamage(_data["bulletDamage"].asDouble());
 
-        if (!_data["bulletSpeed"].isDouble())
-            throw std::exception("ShotgunC: bulletSpeed is not a double");
-        hg->setbulletspeed(_data["bulletSpeed"].asDouble());
+    if (!_data["bulletDamage"].isDouble())
+        throw std::exception("ShotgunC: bulletDamage is not a double");
+    hg->setbulletdamage(_data["bulletDamage"].asDouble());
 
-        if (!_data["cadence"].isDouble())
-            throw std::exception("HandGunC: cadence is not an int");
-        hg->setcadence(_data["cadence"].asFloat());
+    if (!_data["bulletSpeed"].isDouble())
+        throw std::exception("ShotgunC: bulletSpeed is not a double");
+    hg->setbulletspeed(_data["bulletSpeed"].asDouble());
 
-        if (!_data["automatic"].isBool())
-            throw std::exception("HandGunC: semiautomatic is not an bool");
-        hg->setautomatic(_data["automatic"].asBool());
+    if (!_data["cadence"].isDouble())
+        throw std::exception("HandGunC: cadence is not an int");
+    hg->setcadence(_data["cadence"].asFloat());
 
-        if (!_data["instakill"].isBool())
-            throw std::exception("HandGunC: instakill is not an bool");
-        hg->setInstakill(_data["instakill"].asBool());
+    if (!_data["automatic"].isBool())
+        throw std::exception("HandGunC: semiautomatic is not an bool");
+    hg->setautomatic(_data["automatic"].asBool());
 
-        hg->setTransform(dynamic_cast<TransformComponent*>(
-            _father->getComponent("TransformComponent")));
+    if (!_data["instakill"].isBool())
+        throw std::exception("HandGunC: instakill is not an bool");
+    hg->setInstakill(_data["instakill"].asBool());
+
+    hg->setTransform(dynamic_cast<TransformComponent*>(
+        _father->getComponent("TransformComponent")));
 
     return hg;
 };

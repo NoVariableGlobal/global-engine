@@ -1,6 +1,8 @@
 #pragma once
-
 #include "Component.h"
+#include "Factory.h"
+
+DECLARE_FACTORY(BulletC);
 
 class BulletC : public Component {
   private:

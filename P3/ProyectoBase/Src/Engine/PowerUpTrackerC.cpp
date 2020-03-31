@@ -1,7 +1,6 @@
 #include "PowerUpTrackerC.h"
 #include "ComponentsManager.h"
 #include "FactoriesFactory.h"
-#include "Factory.h"
 #include "Scene.h"
 #include "Util.h"
 
@@ -29,20 +28,17 @@ void PowerUpTrackerC::removePowerUp(std::string name) {
 }
 
 // FACTORY INFRASTRUCTURE
-class PowerUpTrackerCFactory final : public ComponentFactory {
-  public:
-    PowerUpTrackerCFactory() = default;
+PowerUpTrackerCFactory::PowerUpTrackerCFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* _scene) override {
-        PowerUpTrackerC* powerUpTracker = new PowerUpTrackerC();
-        _scene->getComponentsManager()->addDC(powerUpTracker);
+Component* PowerUpTrackerCFactory::create(Entity* _father, Json::Value& _data,
+                                          Scene* _scene) {
+    PowerUpTrackerC* powerUpTracker = new PowerUpTrackerC();
+    _scene->getComponentsManager()->addDC(powerUpTracker);
 
-        powerUpTracker->setFather(_father);
-        powerUpTracker->setScene(_scene);
+    powerUpTracker->setFather(_father);
+    powerUpTracker->setScene(_scene);
 
-        return powerUpTracker;
-    };
+    return powerUpTracker;
 };
 
-REGISTER_FACTORY("PowerUpTrackerC", PowerUpTrackerC);
+DEFINE_FACTORY(PowerUpTrackerC);

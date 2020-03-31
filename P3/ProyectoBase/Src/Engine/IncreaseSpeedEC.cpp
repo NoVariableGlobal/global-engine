@@ -2,7 +2,6 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
-#include "Factory.h"
 #include "PlayerMovementIC.h"
 #include "Scene.h"
 #include <json.h>
@@ -27,11 +26,10 @@ void IncreaseSpeedEC::setSpeedIncrement(double value) {
 }
 
 // FACTORY INFRASTRUCTURE
-class IncreaseSpeedECFactory final : public ComponentFactory {
-  public:
-    IncreaseSpeedECFactory() = default;
+IncreaseSpeedECFactory::IncreaseSpeedECFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data, Scene* scene) {
+    Component* IncreaseSpeedECFactory::create(Entity* _father, Json::Value& _data,
+                                        Scene* scene) {
         IncreaseSpeedEC* increaseSpeedIC = new IncreaseSpeedEC();
         scene->getComponentsManager()->addEC(increaseSpeedIC);
         increaseSpeedIC->setFather(_father);
@@ -52,6 +50,5 @@ class IncreaseSpeedECFactory final : public ComponentFactory {
 
         return increaseSpeedIC;
     }
-};
 
-REGISTER_FACTORY("IncreaseSpeedEC", IncreaseSpeedEC);
+DEFINE_FACTORY(IncreaseSpeedEC);

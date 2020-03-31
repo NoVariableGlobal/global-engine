@@ -1,5 +1,8 @@
 #pragma once
 #include "PersistentPowerUpEC.h"
+#include "Factory.h"
+
+DECLARE_FACTORY(InstakillEC);
 
 class InstakillEC final : public PersistentPowerUpEC {
   public:

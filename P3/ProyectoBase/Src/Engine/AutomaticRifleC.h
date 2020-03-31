@@ -1,6 +1,9 @@
 #pragma once
 #include "GunC.h"
 #include <string>
+#include "Factory.h"
+
+DECLARE_FACTORY(AutomaticRifleC);
 
 class AutomaticRifleC : public GunC {
   public:

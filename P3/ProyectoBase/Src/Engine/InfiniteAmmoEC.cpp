@@ -3,7 +3,6 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
-#include "Factory.h"
 #include "GunC.h"
 #include "HandGunC.h"
 #include "Scene.h"
@@ -26,12 +25,10 @@ void InfiniteAmmoEC::setEffect(bool value) {
 std::string InfiniteAmmoEC::getName() { return "InfiniteAmmoEC"; }
 
 // FACTORY INFRASTRUCTURE
-class InfiniteAmmoECFactory final : public ComponentFactory {
-  public:
-    InfiniteAmmoECFactory() = default;
+InfiniteAmmoECFactory::InfiniteAmmoECFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
+    Component* InfiniteAmmoECFactory::create(Entity* _father, Json::Value& _data,
+                      Scene* scene) {
         InfiniteAmmoEC* infiniteAmmo = new InfiniteAmmoEC();
 
         infiniteAmmo->setFather(_father);
@@ -50,6 +47,5 @@ class InfiniteAmmoECFactory final : public ComponentFactory {
 
         return infiniteAmmo;
     };
-};
 
-REGISTER_FACTORY("InfiniteAmmoEC", InfiniteAmmoEC);
+DEFINE_FACTORY(InfiniteAmmoEC);

@@ -2,7 +2,6 @@
 #include "ComponentsManager.h"
 #include "EnemyBehaviourEC.h"
 #include "FactoriesFactory.h"
-#include "Factory.h"
 #include "OgreRoot.h"
 #include "PlayerMovementIC.h"
 #include "RigidbodyPC.h"
@@ -96,12 +95,11 @@ void RangedEnemyBehaviourEC::shoot() {
 }
 
 // FACTORY INFRASTRUCTURE
-class RangedEnemyBehaviourECFactory final : public ComponentFactory {
-  public:
-    RangedEnemyBehaviourECFactory() = default;
+RangedEnemyBehaviourECFactory::RangedEnemyBehaviourECFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
+    Component* RangedEnemyBehaviourECFactory::create(Entity* _father,
+                                               Json::Value& _data,
+                      Scene* scene) {
         RangedEnemyBehaviourEC* rangedEnemyBehaviour =
             new RangedEnemyBehaviourEC();
         scene->getComponentsManager()->addEC(rangedEnemyBehaviour);
@@ -148,6 +146,5 @@ class RangedEnemyBehaviourECFactory final : public ComponentFactory {
 
         return rangedEnemyBehaviour;
     };
-};
 
-REGISTER_FACTORY("RangedEnemyBehaviourEC", RangedEnemyBehaviourEC);
+DEFINE_FACTORY(RangedEnemyBehaviourEC);

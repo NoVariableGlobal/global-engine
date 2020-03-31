@@ -3,7 +3,6 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
-#include "Factory.h"
 #include "GunC.h"
 #include "HandGunC.h"
 #include "Scene.h"
@@ -26,12 +25,10 @@ void InstakillEC::setEffect(bool effect) {
 std::string InstakillEC::getName() { return "InstakillEC"; }
 
 // FACTORY INFRASTRUCTURE
-class InstakillECFactory final : public ComponentFactory {
-  public:
-    InstakillECFactory() = default;
+InstakillECFactory::InstakillECFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
+    Component* InstakillECFactory::create(Entity* _father, Json::Value& _data,
+                      Scene* scene) {
         InstakillEC* instakill = new InstakillEC();
 
         instakill->setFather(_father);
@@ -50,6 +47,5 @@ class InstakillECFactory final : public ComponentFactory {
 
         return instakill;
     };
-};
 
-REGISTER_FACTORY("InstakillEC", InstakillEC);
+DEFINE_FACTORY(InstakillEC);

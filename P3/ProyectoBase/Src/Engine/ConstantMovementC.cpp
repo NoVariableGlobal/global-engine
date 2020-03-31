@@ -2,12 +2,11 @@
 
 #include "Component.h"
 #include "ComponentsManager.h"
+#include "Entity.h"
 #include "FactoriesFactory.h"
-#include "Factory.h"
 #include "OgreRoot.h"
 #include "RigidbodyPC.h"
 #include "Scene.h"
-#include "Entity.h"
 
 #include <json.h>
 
@@ -32,24 +31,22 @@ void ConstantMovementC::setSpeed(float _speed) {
 float ConstantMovementC::getSpeed() { return speed; }
 
 // FACTORY INFRASTRUCTURE
-class ConstantMovementCFactory final : public ComponentFactory {
-  public:
-    ConstantMovementCFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* _scene) override {
-        ConstantMovementC* constantMovementPC = new ConstantMovementC();
-        _scene->getComponentsManager()->addDC(constantMovementPC);
+ConstantMovementCFactory::ConstantMovementCFactory() = default;
 
-        constantMovementPC->setFather(_father);
-        constantMovementPC->setScene(_scene);
+Component* ConstantMovementCFactory::create(Entity* _father, Json::Value& _data,
+                                            Scene* _scene) {
+    ConstantMovementC* constantMovementPC = new ConstantMovementC();
+    _scene->getComponentsManager()->addDC(constantMovementPC);
 
-        if (!_data["speed"].asInt())
-            throw std::exception("ConstantMovementC: speed is not an int");
-        constantMovementPC->setSpeed(_data["speed"].asFloat());
+    constantMovementPC->setFather(_father);
+    constantMovementPC->setScene(_scene);
 
-        return constantMovementPC;
-    };
+    if (!_data["speed"].asInt())
+        throw std::exception("ConstantMovementC: speed is not an int");
+    constantMovementPC->setSpeed(_data["speed"].asFloat());
+
+    return constantMovementPC;
 };
 
-REGISTER_FACTORY("ConstantMovementC", ConstantMovementC);
+DEFINE_FACTORY(ConstantMovementC);

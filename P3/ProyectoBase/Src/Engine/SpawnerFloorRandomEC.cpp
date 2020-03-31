@@ -93,7 +93,6 @@ Component* SpawnerFloorRandomECFactory::create(Entity* _father,
                 break;
             }
         }
-    }
 
     spawnerFloorRandomEC->setActive(true);
 

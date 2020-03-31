@@ -2,7 +2,6 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
-#include "Factory.h"
 #include "Scene.h"
 #include <json.h>
 
@@ -15,12 +14,10 @@ void NukeEC::onPick() {
 }
 
 // FACTORY INFRASTRUCTURE
-class NukeECFactory final : public ComponentFactory {
-  public:
-    NukeECFactory() = default;
+NukeECFactory::NukeECFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
+    Component* NukeECFactory::create(Entity* _father, Json::Value& _data,
+                      Scene* scene) {
         NukeEC* nukeEC = new NukeEC();
         scene->getComponentsManager()->addEC(nukeEC);
         nukeEC->setFather(_father);
@@ -34,6 +31,5 @@ class NukeECFactory final : public ComponentFactory {
 
         return nukeEC;
     };
-};
 
-REGISTER_FACTORY("NukeEC", NukeEC);
+DEFINE_FACTORY(NukeEC);

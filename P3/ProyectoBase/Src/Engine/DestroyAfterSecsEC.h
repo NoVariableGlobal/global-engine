@@ -1,6 +1,8 @@
 #pragma once
-
 #include "EventComponent.h"
+#include "Factory.h"
+
+DECLARE_FACTORY(DestroyAfterSecsEC);
 
 class DestroyAfterSecsEC : public EventComponent {
   private:

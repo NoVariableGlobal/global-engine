@@ -1,5 +1,8 @@
 #pragma once
 #include "PersistentPowerUpEC.h"
+#include "Factory.h"
+
+DECLARE_FACTORY(IncreaseSpeedEC);
 
 class IncreaseSpeedEC final : public PersistentPowerUpEC {
   private:

@@ -82,12 +82,10 @@ void ShotgunC::setNPellets(int n) { nPellets = n; }
 void ShotgunC::setDispersion(int n) { dispAngle = n; }
 
 // FACTORY INFRASTRUCTURE
-class ShotgunCFactory final : public ComponentFactory {
-  public:
-    ShotgunCFactory() = default;
+    ShotgunCFactory::ShotgunCFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* _scene) override {
+    Component* ShotgunCFactory::create(Entity* _father, Json::Value& _data,
+                      Scene* _scene) {
 
         ShotgunC* shotgun = new ShotgunC();
 
@@ -140,6 +138,4 @@ class ShotgunCFactory final : public ComponentFactory {
 
         return shotgun;
     };
-};
-
-REGISTER_FACTORY("ShotgunC", ShotgunC);
+DEFINE_FACTORY(ShotgunC);
