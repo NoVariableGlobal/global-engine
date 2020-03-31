@@ -69,4 +69,4 @@ class MedkitECFactory final : public ComponentFactory {
     };
 };
 
-REGISTER_FACTORY("MedkitEC", MedkitEC);
+REGISTER_FACTORY(MedkitEC);

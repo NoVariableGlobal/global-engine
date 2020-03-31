@@ -4,9 +4,11 @@
 #include "OgreSDLContext.h"
 #include "PhysicsContext.h"
 #include "Scene.h"
-#ifdef _staticlibrary
-#include "TransformComponent.cpp"
-#endif // DEBUG
+#include "TransformComponent.h"
+#include "RigidbodyPC.h"
+#include "CameraRC.h"
+#include "SpotLightRC.h"
+#include "TridimensionalObjectRC.h"
 
 #include <SDL_events.h>
 #include <string>
@@ -30,10 +32,11 @@ void Game::initContext() {
     PhysicsContext::init();
     OgreSDLContext::getInstance()->initApp("Test");
 
-    #ifdef _staticlibrary
-    TransformComponentFactoryRegister::noop();
-#endif // DEBUG
-
+    TransformComponentFactoryRegisterGlobalVar.noop();
+    RigidbodyPCFactoryRegisterGlobalVar.noop();
+    CameraRCFactoryRegisterGlobalVar.noop();
+    SpotLightRCFactoryRegisterGlobalVar.noop();
+    TridimensionalObjectRCFactoryRegisterGlobalVar.noop();
 
 }
 

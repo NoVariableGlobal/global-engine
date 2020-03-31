@@ -106,4 +106,4 @@ class PlayerMovementICFactory final : public ComponentFactory {
     };
 };
 
-REGISTER_FACTORY("PlayerMovementIC", PlayerMovementIC);
+REGISTER_FACTORY(PlayerMovementIC);

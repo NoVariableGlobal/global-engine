@@ -83,4 +83,4 @@ class SpawnerEnemiesECFactory final : public ComponentFactory {
     };
 };
 
-REGISTER_FACTORY("SpawnerEnemiesEC", SpawnerEnemiesEC);
+REGISTER_FACTORY(SpawnerEnemiesEC);

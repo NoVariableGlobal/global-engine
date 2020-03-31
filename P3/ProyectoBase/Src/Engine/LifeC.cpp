@@ -66,4 +66,4 @@ class LifeCFactory : public ComponentFactory {
     };
 };
 
-REGISTER_FACTORY("LifeC", LifeC);
+REGISTER_FACTORY(LifeC);

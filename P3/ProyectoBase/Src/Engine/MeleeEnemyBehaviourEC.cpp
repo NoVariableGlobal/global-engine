@@ -78,4 +78,4 @@ class MeleeEnemyBehaviourECFactory final : public ComponentFactory {
     };
 };
 
-REGISTER_FACTORY("MeleeEnemyBehaviourEC", MeleeEnemyBehaviourEC);
+REGISTER_FACTORY(MeleeEnemyBehaviourEC);

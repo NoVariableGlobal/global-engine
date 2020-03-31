@@ -4,16 +4,39 @@
    component's factory must inherit */
 
 // Macro for components to register their factory themselves
-#define REGISTER_FACTORY(name, Component)                                      \
-    class Component##FactoryRegister {                                         \
+#define DECLARE_FACTORY(ComponentName)                                         \
+    class ComponentName##Factory final : public ComponentFactory {             \
       public:                                                                  \
-        Component##FactoryRegister() {                                         \
-            FactoriesFactory::getInstance()->insert(name,                      \
-                                                    new Component##Factory()); \
-        }                                                                      \
-        static void noop() {};                                                  \
+        ComponentName##Factory();                                              \
+                                                                               \
+        Component* create(Entity* _father, Json::Value& _data,                 \
+                          Scene* _scene) override;                             \
     };                                                                         \
-    Component##FactoryRegister Component##FactoryRegisterGlobalVar;
+                                                                               \
+    class ComponentName##FactoryRegister {                                     \
+      public:                                                                  \
+        ComponentName##FactoryRegister() {                                     \
+            FactoriesFactory::getInstance()->insert(                           \
+                #ComponentName, new ComponentName##Factory());                 \
+        }                                                                      \
+        void noop(){};                                                         \
+    };                                                                         \
+    extern ComponentName##FactoryRegister                                      \
+        ComponentName##FactoryRegisterGlobalVar;
+
+#define DEFINE_FACTORY(ComponentName)                                          \
+    ComponentName##FactoryRegister ComponentName##FactoryRegisterGlobalVar;
+
+//ONLY FOR COMPONENTS NOT IMPLEMENTED IN ENGINE
+#define REGISTER_FACTORY(ComponentName)                                        \
+    class ComponentName##FactoryRegister {                                     \
+      public:                                                                  \
+        ComponentName##FactoryRegister() {                                     \
+            FactoriesFactory::getInstance()->insert(                           \
+                #ComponentName, new ComponentName##Factory());                 \
+        }                                                                      \
+    };                                                                         \
+    ComponentName##FactoryRegister ComponentName##FactoryRegisterGlobalVar;
 
 namespace Json {
     class Value;

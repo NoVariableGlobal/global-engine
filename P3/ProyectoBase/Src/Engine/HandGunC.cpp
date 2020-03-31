@@ -97,4 +97,4 @@ class HandGunCFactory final : public ComponentFactory {
     };
 };
 
-REGISTER_FACTORY("HandGunC", HandGunC);
+REGISTER_FACTORY(HandGunC);
