@@ -1,7 +1,11 @@
 #pragma once
 
 #include "RenderComponent.h"
+#include "Factory.h"
 #include <string>
+
+// FACTORY INFRASTRUCTURE DECLARATION
+DECLARE_FACTORY(TridimensionalObjectRC);
 
 class TridimensionalObjectRC : public RenderComponent {
 

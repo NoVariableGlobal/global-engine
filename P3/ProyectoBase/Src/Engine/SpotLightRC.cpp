@@ -2,11 +2,10 @@
 
 #include "ComponentsManager.h"
 #include "Entity.h"
-#include "FactoriesFactory.h"
-#include "Factory.h"
 #include "OgreEntity.h"
 #include "OgreSDLContext.h"
 #include "OgreSceneManager.h"
+#include "FactoriesFactory.h"
 #include "Scene.h"
 #include "SpotLightRC.h"
 #include "TransformComponent.h"
@@ -37,43 +36,40 @@ void SpotLightRC::setDirection(Ogre::Vector3 _dir) {
 
 void SpotLightRC::render() {}
 
-// FACTORY INFRASTRUCTURE
-class SpotLightRCFactory final : public ComponentFactory {
-  public:
-    SpotLightRCFactory() = default;
+// FACTORY INFRASTRUCTURE DEFINITION
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* _scene) override {
-        Ogre::SceneManager* mSM =
-            OgreSDLContext::getInstance()->getSceneManager();
-        SpotLightRC* light = new SpotLightRC();
-        _scene->getComponentsManager()->addRC(light);
+SpotLightRCFactory::SpotLightRCFactory() = default;
 
-        light->setFather(_father);
-        light->setScene(_scene);
+Component* SpotLightRCFactory::create(Entity* _father, Json::Value& _data,
+                                      Scene* _scene) {
+    Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
+    SpotLightRC* light = new SpotLightRC();
+    _scene->getComponentsManager()->addRC(light);
 
-        light->setLight(_father->getId());
+    light->setFather(_father);
+    light->setScene(_scene);
 
-        if (!_data["node"].isString())
-            throw std::exception("SpotLightRC: node is not a string");
-        light->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(
-            _data["node"].asString()));
-        light->getSceneNode()->attachObject(light->getLight());
+    light->setLight(_father->getId());
 
-        if (!_data["colour"].isArray())
-            throw std::exception("SpotLightRC: colour is not an array");
-        light->setColour(Ogre::Vector3(_data["colour"][0].asFloat(),
-                                       _data["colour"][1].asFloat(),
-                                       _data["colour"][2].asFloat()));
+    if (!_data["node"].isString())
+        throw std::exception("SpotLightRC: node is not a string");
+    light->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(
+        _data["node"].asString()));
+    light->getSceneNode()->attachObject(light->getLight());
 
-        if (!_data["direction"].isArray())
-            throw std::exception("SpotLightRC: direction is not an array");
-        light->setDirection(Ogre::Vector3(_data["direction"][0].asFloat(),
-                                          _data["direction"][1].asFloat(),
-                                          _data["direction"][2].asFloat()));
+    if (!_data["colour"].isArray())
+        throw std::exception("SpotLightRC: colour is not an array");
+    light->setColour(Ogre::Vector3(_data["colour"][0].asFloat(),
+                                   _data["colour"][1].asFloat(),
+                                   _data["colour"][2].asFloat()));
 
-        return light;
-    }
-};
+    if (!_data["direction"].isArray())
+        throw std::exception("SpotLightRC: direction is not an array");
+    light->setDirection(Ogre::Vector3(_data["direction"][0].asFloat(),
+                                      _data["direction"][1].asFloat(),
+                                      _data["direction"][2].asFloat()));
 
-REGISTER_FACTORY("SpotLightRC", SpotLightRC);
+    return light;
+}
+
+DEFINE_FACTORY(SpotLightRC);

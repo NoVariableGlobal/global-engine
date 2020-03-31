@@ -1,6 +1,10 @@
 #pragma once
 #include "PhysicsComponent.h"
+#include "Factory.h"
 #include <string>
+
+// FACTORY INFRASTRUCTURE DECLARATION
+DECLARE_FACTORY(RigidbodyPC);
 
 namespace Ogre {
     typedef float Real;

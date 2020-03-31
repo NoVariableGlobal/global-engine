@@ -1,11 +1,10 @@
 #include "RigidbodyPC.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
-#include "FactoriesFactory.h"
-#include "Factory.h"
 #include "OgreVector3.h"
 #include "PhysicsContext.h"
 #include "Scene.h"
+#include "FactoriesFactory.h"
 #include "TransformComponent.h"
 #include <BulletCollision/NarrowPhaseCollision/btGjkEpaPenetrationDepthSolver.h>
 #include <BulletCollision/NarrowPhaseCollision/btGjkPairDetector.h>
@@ -189,14 +188,13 @@ void RigidbodyPC::setPosition(Ogre::Vector3 newPos) {
 
     body->setWorldTransform(initialTransform);
 }
-// FACTORY INFRASTRUCTURE
-class RigidbodyPCFactory final : public ComponentFactory {
-  public:
-    RigidbodyPCFactory() = default;
+// FACTORY INFRASTRUCTURE DEFINITION
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* _scene) override {
-        if (!_data["position"].isArray() || !_data["shape"].isArray() ||
+RigidbodyPCFactory::RigidbodyPCFactory() = default;
+
+Component* RigidbodyPCFactory::create(Entity* _father, Json::Value& _data,
+                                      Scene* _scene) {
+ if (!_data["position"].isArray() || !_data["shape"].isArray() ||
             !_data["mass"].isInt())
             throw std::exception("RigidbodyPC: position/shape is not an array "
                                  "or mass is not an int");
@@ -245,7 +243,6 @@ class RigidbodyPCFactory final : public ComponentFactory {
         rb->setRestitution(_data["restitution"].asFloat());
 
         return rb;
-    };
 };
 
-REGISTER_FACTORY("RigidbodyPC", RigidbodyPC);
+DEFINE_FACTORY(RigidbodyPC);

@@ -1,8 +1,10 @@
 #pragma once
-
 #include "RenderComponent.h"
-
+#include "Factory.h"
 #include <string>
+
+// FACTORY INFRASTRUCTURE DECLARATION
+DECLARE_FACTORY(CameraRC);
 
 namespace Ogre {
     class Camera;

@@ -4,6 +4,11 @@
 #include "OgreSDLContext.h"
 #include "PhysicsContext.h"
 #include "Scene.h"
+#include "TransformComponent.h"
+#include "RigidbodyPC.h"
+#include "CameraRC.h"
+#include "SpotLightRC.h"
+#include "TridimensionalObjectRC.h"
 #include "Util.h"
 
 #include <SDL_events.h>
@@ -21,12 +26,21 @@ Game::~Game() {
     OgreSDLContext::getInstance()->erase();
 }
 
+
 // Inits all context
 void Game::initContext() {
     OgreSDLContext::init();
     PhysicsContext::init();
     OgreSDLContext::getInstance()->initApp("Test");
+
+    TransformComponentFactoryRegisterGlobalVar.noop();
+    RigidbodyPCFactoryRegisterGlobalVar.noop();
+    CameraRCFactoryRegisterGlobalVar.noop();
+    SpotLightRCFactoryRegisterGlobalVar.noop();
+    TridimensionalObjectRCFactoryRegisterGlobalVar.noop();
+
 }
+
 
 // Reads the scenes and sets the first one
 bool Game::init(std::string _firstScene) {

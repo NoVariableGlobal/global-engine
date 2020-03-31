@@ -1,8 +1,11 @@
 #pragma once
 
 #include "RenderComponent.h"
-
+#include "Factory.h"
 #include <string>
+
+// FACTORY INFRASTRUCTURE DECLARATION
+DECLARE_FACTORY(SpotLightRC);
 
 namespace Ogre {
     class SceneNode;

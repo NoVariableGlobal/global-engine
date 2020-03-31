@@ -1,8 +1,8 @@
 #include "CameraRC.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
-#include "FactoriesFactory.h"
 #include "Factory.h"
+#include "FactoriesFactory.h"
 #include "OgreSDLContext.h"
 #include "Scene.h"
 #include "TransformComponent.h"
@@ -93,71 +93,67 @@ void CameraRC::render() {
     lookAt(position);
 }
 
-// FACTORY INFRASTRUCTURE
-class CameraRCFactory final : public ComponentFactory {
-  public:
-    CameraRCFactory() = default;
+// FACTORY INFRASTRUCTURE DEFINITION
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* _scene) override {
-        Ogre::SceneManager* mSM =
-            OgreSDLContext::getInstance()->getSceneManager();
-        CameraRC* camera = new CameraRC();
-        _scene->getComponentsManager()->addRC(camera);
+CameraRCFactory::CameraRCFactory() = default;
 
-        camera->setFather(_father);
-        camera->setScene(_scene);
+Component* CameraRCFactory::create(Entity* _father, Json::Value& _data,
+                                   Scene* _scene) {
+    Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
+    CameraRC* camera = new CameraRC();
+    _scene->getComponentsManager()->addRC(camera);
 
-        camera->setCamera(_father->getId());
+    camera->setFather(_father);
+    camera->setScene(_scene);
 
-        if (!_data["node"].isString())
-            throw std::exception("CameraRC: node is not a string");
+    camera->setCamera(_father->getId());
 
-        camera->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(
-            _data["node"].asString()));
-        camera->getSceneNode()->attachObject(camera->getCamera());
+    if (!_data["node"].isString())
+        throw std::exception("CameraRC: node is not a string");
 
-        if (!_data["viewportColour"].isArray())
-            throw std::exception("CameraRC: viewportColour is not an array");
-        camera->setViewport(
-            Ogre::Vector3(_data["viewportColour"][0].asFloat(),
-                          _data["viewportColour"][1].asFloat(),
-                          _data["viewportColour"][2].asFloat()));
+    camera->setSceneNode(mSM->getRootSceneNode()->createChildSceneNode(
+        _data["node"].asString()));
+    camera->getSceneNode()->attachObject(camera->getCamera());
 
-        if (!_data["offset"].isArray())
-            throw std::exception("CameraRC: offset is not an array");
-        camera->setCameraOffset(Ogre::Vector3(_data["offset"][0].asFloat(),
-                                              _data["offset"][1].asFloat(),
-                                              _data["offset"][2].asFloat()));
+    if (!_data["viewportColour"].isArray())
+        throw std::exception("CameraRC: viewportColour is not an array");
+    camera->setViewport(Ogre::Vector3(_data["viewportColour"][0].asFloat(),
+                                      _data["viewportColour"][1].asFloat(),
+                                      _data["viewportColour"][2].asFloat()));
 
-        TransformComponent* transform = dynamic_cast<TransformComponent*>(
-            _father->getComponent("TransformComponent"));
-        camera->getSceneNode()->setPosition(transform->getPosition());
+    if (!_data["offset"].isArray())
+        throw std::exception("CameraRC: offset is not an array");
+    camera->setCameraOffset(Ogre::Vector3(_data["offset"][0].asFloat(),
+                                          _data["offset"][1].asFloat(),
+                                          _data["offset"][2].asFloat()));
 
-        if (!_data["lookAt"].isArray() && !_data["lookAt"].isString())
-            throw std::exception("CameraRC: lookAt is not an array. If you do "
-                                 "not want an array, use a string 'none'");
-        else if (_data["lookAt"].isArray())
-            camera->lookAt(Ogre::Vector3(_data["lookAt"][0].asFloat(),
-                                         _data["lookAt"][1].asFloat(),
-                                         _data["lookAt"][2].asFloat()));
+    TransformComponent* transform = dynamic_cast<TransformComponent*>(
+        _father->getComponent("TransformComponent"));
+    camera->getSceneNode()->setPosition(transform->getPosition());
 
-        if (!_data["targetId"].isString())
-            throw std::exception("CameraRC: targetId is not a string.");
-        else if (_data["targetId"].asString() != "none") {
-            camera->setTarget(_data["targetId"].asString());
+    if (!_data["lookAt"].isArray() && !_data["lookAt"].isString())
+        throw std::exception("CameraRC: lookAt is not an array. If you do "
+                             "not want an array, use a string 'none'");
+    else if (_data["lookAt"].isArray())
+        camera->lookAt(Ogre::Vector3(_data["lookAt"][0].asFloat(),
+                                     _data["lookAt"][1].asFloat(),
+                                     _data["lookAt"][2].asFloat()));
 
-            if (!_data["follow"].isArray() || !_data["follow"][0].isBool())
-                throw std::exception("CameraRC: follow is not an array or is "
-                                     "not a boolean array.");
-            else
-                camera->setFollow(Ogre::Vector3(_data["follow"][0].asBool(),
-                                                _data["follow"][1].asBool(),
-                                                _data["follow"][2].asBool()));
-        }
+    if (!_data["targetId"].isString())
+        throw std::exception("CameraRC: targetId is not a string.");
+    else if (_data["targetId"].asString() != "none") {
+        camera->setTarget(_data["targetId"].asString());
 
-        return camera;
+        if (!_data["follow"].isArray() || !_data["follow"][0].isBool())
+            throw std::exception("CameraRC: follow is not an array or is "
+                                 "not a boolean array.");
+        else
+            camera->setFollow(Ogre::Vector3(_data["follow"][0].asBool(),
+                                            _data["follow"][1].asBool(),
+                                            _data["follow"][2].asBool()));
     }
-};
 
-REGISTER_FACTORY("CameraRC", CameraRC);
+    return camera;
+}
+
+DEFINE_FACTORY(CameraRC);
