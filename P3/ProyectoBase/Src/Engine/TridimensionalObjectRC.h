@@ -2,7 +2,6 @@
 
 #include "RenderComponent.h"
 #include "Factory.h"
-#include "FactoriesFactory.h"
 #include <string>
 
 // FACTORY INFRASTRUCTURE DECLARATION

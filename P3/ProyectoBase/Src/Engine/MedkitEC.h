@@ -1,7 +1,11 @@
 #pragma once
 
 #include "PowerUpEC.h"
+#include "Factory.h"
 
+
+// FACTORY INFRASTRUCTURE DECLARATION
+DECLARE_FACTORY(MedkitEC);
 class LifeC;
 
 class MedkitEC : public PowerUpEC {

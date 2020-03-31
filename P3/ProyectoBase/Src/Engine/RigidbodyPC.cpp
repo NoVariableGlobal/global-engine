@@ -4,6 +4,7 @@
 #include "OgreVector3.h"
 #include "PhysicsContext.h"
 #include "Scene.h"
+#include "FactoriesFactory.h"
 #include "TransformComponent.h"
 #include <BulletCollision/NarrowPhaseCollision/btGjkEpaPenetrationDepthSolver.h>
 #include <BulletCollision/NarrowPhaseCollision/btGjkPairDetector.h>

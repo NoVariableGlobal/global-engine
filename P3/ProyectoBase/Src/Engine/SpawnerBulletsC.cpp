@@ -1,10 +1,9 @@
 #include "SpawnerBulletsC.h"
 
 #include "ComponentsManager.h"
-#include "FactoriesFactory.h"
-#include "Factory.h"
-#include "Scene.h"
 #include "Entity.h"
+#include "FactoriesFactory.h"
+#include "Scene.h"
 
 #include <json.h>
 
@@ -22,19 +21,16 @@ Entity* SpawnerBulletsC::getBullet(std::string _type) {
 }
 
 // FACTORY INFRASTRUCTURE
-class SpawnerBulletsCFactory : public ComponentFactory {
-  public:
-    SpawnerBulletsCFactory(){};
-    virtual Component* create(Entity* _father, Json::Value& _data,
-                              Scene* _scene) {
-        SpawnerBulletsC* spawner = new SpawnerBulletsC();
-        _scene->getComponentsManager()->addDC(spawner);
+SpawnerBulletsCFactory::SpawnerBulletsCFactory(){};
+Component* SpawnerBulletsCFactory::create(Entity* _father, Json::Value& _data,
+                                        Scene* _scene) {
+    SpawnerBulletsC* spawner = new SpawnerBulletsC();
+    _scene->getComponentsManager()->addDC(spawner);
 
-        spawner->setFather(_father);
-        spawner->setScene(_scene);
+    spawner->setFather(_father);
+    spawner->setScene(_scene);
 
-        return spawner;
-    };
+    return spawner;
 };
 
-REGISTER_FACTORY(SpawnerBulletsC);
+DEFINE_FACTORY(SpawnerBulletsC);

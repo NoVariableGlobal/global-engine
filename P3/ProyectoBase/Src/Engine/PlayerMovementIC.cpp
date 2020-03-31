@@ -2,10 +2,9 @@
 #include "Component.h"
 #include "ComponentsManager.h"
 #include "FactoriesFactory.h"
-#include "Factory.h"
 #include "OgreRoot.h"
-#include "Scene.h"
 #include "RigidbodyPC.h"
+#include "Scene.h"
 #include <Entity.h>
 #include <SDL.h>
 #include <iostream>
@@ -21,7 +20,8 @@ void PlayerMovementIC::destroy() {
 }
 
 void PlayerMovementIC::handleInput(const SDL_Event& _event) {
-    RigidbodyPC* body = dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"));
+    RigidbodyPC* body =
+        dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"));
 
     if (_event.type == SDL_KEYDOWN) {
         switch (_event.key.keysym.sym) {
@@ -86,24 +86,21 @@ float PlayerMovementIC::getMovementSpeed() { return _speed; }
 void PlayerMovementIC::setMovementSpeed(float speed) { _speed = speed; }
 
 // FACTORY INFRASTRUCTURE
-class PlayerMovementICFactory final : public ComponentFactory {
-  public:
-    PlayerMovementICFactory() = default;
+PlayerMovementICFactory::PlayerMovementICFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* _scene) override {
-        PlayerMovementIC* playerMovement = new PlayerMovementIC();
-        _scene->getComponentsManager()->addIC(playerMovement);
+Component* PlayerMovementICFactory::create(Entity* _father, Json::Value& _data,
+                                           Scene* _scene) {
+    PlayerMovementIC* playerMovement = new PlayerMovementIC();
+    _scene->getComponentsManager()->addIC(playerMovement);
 
-        playerMovement->setFather(_father);
-        playerMovement->setScene(_scene);
+    playerMovement->setFather(_father);
+    playerMovement->setScene(_scene);
 
-        if (!_data["speed"].asInt())
-            throw std::exception("PlayerMovementIC: speed is not an int");
-        playerMovement->setMovementSpeed(_data["speed"].asFloat());
+    if (!_data["speed"].asInt())
+        throw std::exception("PlayerMovementIC: speed is not an int");
+    playerMovement->setMovementSpeed(_data["speed"].asFloat());
 
-        return playerMovement;
-    };
+    return playerMovement;
 };
 
-REGISTER_FACTORY(PlayerMovementIC);
+DEFINE_FACTORY(PlayerMovementIC);

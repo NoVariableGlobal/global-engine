@@ -1,7 +1,5 @@
 #include "PowerUpEC.h"
 #include "ComponentsManager.h"
-#include "FactoriesFactory.h"
-#include "Factory.h"
 #include "OgreRoot.h"
 #include "RigidbodyPC.h"
 #include "Scene.h"

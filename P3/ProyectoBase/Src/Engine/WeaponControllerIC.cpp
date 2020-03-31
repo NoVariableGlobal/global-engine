@@ -1,10 +1,9 @@
-#include "FactoriesFactory.h"
-#include "Factory.h"
 #include "WeaponControllerIC.h"
-#include "Scene.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
+#include "FactoriesFactory.h"
 #include "HandGunC.h"
+#include "Scene.h"
 #include <SDL.h>
 #include <iostream>
 #include <json.h>
@@ -18,7 +17,9 @@ void WeaponControllerIC::destroy() {
     scene->getComponentsManager()->eraseIC(this);
 }
 
-void WeaponControllerIC::init() { currentGun = dynamic_cast<HandGunC*>(father->getComponent("HandGunC")); }
+void WeaponControllerIC::init() {
+    currentGun = dynamic_cast<HandGunC*>(father->getComponent("HandGunC"));
+}
 
 void WeaponControllerIC::handleInput(const SDL_Event& _event) {
 
@@ -33,23 +34,20 @@ void WeaponControllerIC::handleInput(const SDL_Event& _event) {
 
 GunC* WeaponControllerIC::getCurrentGun() { return currentGun; }
 
-
 // FACTORY INFRASTRUCTURE
-class WeaponControllerICFactory final : public ComponentFactory {
-  public:
-    WeaponControllerICFactory() = default;
+WeaponControllerICFactory::WeaponControllerICFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* _scene) override {
-        WeaponControllerIC* weaponControllerIC = new WeaponControllerIC();
-        _scene->getComponentsManager()->addIC(weaponControllerIC);
+Component* WeaponControllerICFactory::create(Entity* _father,
+                                             Json::Value& _data,
+                                             Scene* _scene) {
+    WeaponControllerIC* weaponControllerIC = new WeaponControllerIC();
+    _scene->getComponentsManager()->addIC(weaponControllerIC);
 
-        weaponControllerIC->setFather(_father);
-        weaponControllerIC->setScene(_scene);
-        weaponControllerIC->init();
+    weaponControllerIC->setFather(_father);
+    weaponControllerIC->setScene(_scene);
+    weaponControllerIC->init();
 
-        return weaponControllerIC;
-    };
+    return weaponControllerIC;
 };
 
-REGISTER_FACTORY(WeaponControllerIC);
+DEFINE_FACTORY(WeaponControllerIC);

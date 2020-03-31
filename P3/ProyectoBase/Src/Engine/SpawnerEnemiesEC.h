@@ -1,5 +1,9 @@
 #pragma once
-#include "SpawnerEC.h"
+#include "SpawnerEC.h" 
+#include "Factory.h"
+
+// FACTORY INFRASTRUCTURE DECLARATION
+DECLARE_FACTORY(SpawnerEnemiesEC);
 class TransformComponent;
 
 class SpawnerEnemiesEC : public SpawnerEC {

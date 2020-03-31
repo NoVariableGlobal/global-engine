@@ -1,6 +1,10 @@
 #pragma once
 
 #include "Component.h"
+#include "Factory.h"
+
+// FACTORY INFRASTRUCTURE DECLARATION
+DECLARE_FACTORY(LifeC);
 
 namespace Ogre {
     typedef float Real;

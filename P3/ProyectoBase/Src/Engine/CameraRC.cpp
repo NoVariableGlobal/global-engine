@@ -2,6 +2,7 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "Factory.h"
+#include "FactoriesFactory.h"
 #include "OgreSDLContext.h"
 #include "Scene.h"
 #include "TransformComponent.h"

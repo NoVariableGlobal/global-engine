@@ -1,5 +1,9 @@
 #pragma once
 #include "InputComponent.h"
+#include "Factory.h"
+
+// FACTORY INFRASTRUCTURE DECLARATION
+DECLARE_FACTORY(PlayerMovementIC);
 
 namespace Ogre {
     typedef float Real;

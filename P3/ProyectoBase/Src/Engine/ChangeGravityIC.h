@@ -4,8 +4,10 @@
 #include "Factory.h"
 #include <string>
 
+#include "Factory.h"
 
-
+// FACTORY INFRASTRUCTURE DECLARATION
+DECLARE_FACTORY(ChangeGravityIC);
 namespace Ogre {
     typedef float Real;
     template <int dims, typename T> class Vector;

@@ -6,7 +6,6 @@
 #include "Scene.h"
 #include "TransformComponent.h"
 
-#include "Factory.h"
 #include <json.h>
 
 void SpawnerEnemiesEC::destroy() {
@@ -20,7 +19,6 @@ void SpawnerEnemiesEC::checkEvent() {
         firstTime = false;
         _lastTimeSpawned = clock() / static_cast<float>(CLOCKS_PER_SEC);
     }
-
 
     // Spawnea un enemigo cada cierto tiempo en la posicion del spawn
     if (timeToSpawn()) {
@@ -37,50 +35,46 @@ void SpawnerEnemiesEC::setTransform(TransformComponent* trans) {
 }
 
 // FACTORY INFRASTRUCTURE
-class SpawnerEnemiesECFactory final : public ComponentFactory {
-  public:
-    SpawnerEnemiesECFactory() = default;
+SpawnerEnemiesECFactory::SpawnerEnemiesECFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
-        SpawnerEnemiesEC* spawnerEnemies = new SpawnerEnemiesEC();
+Component* SpawnerEnemiesECFactory::create(Entity* _father, Json::Value& _data,
+                                           Scene* scene) {
+    SpawnerEnemiesEC* spawnerEnemies = new SpawnerEnemiesEC();
 
-        spawnerEnemies->setFather(_father);
-        spawnerEnemies->setScene(scene);
+    spawnerEnemies->setFather(_father);
+    spawnerEnemies->setScene(scene);
 
-        spawnerEnemies->setTransform(dynamic_cast<TransformComponent*>(
-            _father->getComponent("TransformComponent")));
-        scene->getComponentsManager()->addEC(spawnerEnemies);
+    spawnerEnemies->setTransform(dynamic_cast<TransformComponent*>(
+        _father->getComponent("TransformComponent")));
+    scene->getComponentsManager()->addEC(spawnerEnemies);
 
-        if (!_data["spawnCooldown"].isDouble())
-            throw std::exception("Spawner: spawnCooldown is not a double");
-        spawnerEnemies->setSpawnCooldown(_data["spawnCooldown"].asDouble());
-        if (!_data["spawnID"].isArray())
-            throw std::exception("Spawner: spawnID is not an array");
-        else if (!_data["spawnID"][0].isString())
-            throw std::exception("Spawner: spawnID is not an array of strings");
+    if (!_data["spawnCooldown"].isDouble())
+        throw std::exception("Spawner: spawnCooldown is not a double");
+    spawnerEnemies->setSpawnCooldown(_data["spawnCooldown"].asDouble());
+    if (!_data["spawnID"].isArray())
+        throw std::exception("Spawner: spawnID is not an array");
+    else if (!_data["spawnID"][0].isString())
+        throw std::exception("Spawner: spawnID is not an array of strings");
 
-        if (!_data["spawnChances"].isArray())
-            throw std::exception("Spawner: spawnChances is not an array");
-        else if (!_data["spawnChances"][0].isDouble())
-            throw std::exception(
-                "Spawner: spawnChances is not an array of doubles");
+    if (!_data["spawnChances"].isArray())
+        throw std::exception("Spawner: spawnChances is not an array");
+    else if (!_data["spawnChances"][0].isDouble())
+        throw std::exception(
+            "Spawner: spawnChances is not an array of doubles");
 
-        for (int i = 0; i < _data["spawnID"].size(); ++i) {
-            if (!spawnerEnemies->addSpawn(
-                    _data["spawnID"][i].asString(),
-                    _data["spawnChances"][i].asDouble())) {
-                printf(("No se pudo a�adir " + _data["spawnID"][i].asString() +
-                        ": Ya se lleg� al 100% de probabilidad./n")
-                           .c_str());
-                break;
-            }
+    for (int i = 0; i < _data["spawnID"].size(); ++i) {
+        if (!spawnerEnemies->addSpawn(_data["spawnID"][i].asString(),
+                                      _data["spawnChances"][i].asDouble())) {
+            printf(("No se pudo a�adir " + _data["spawnID"][i].asString() +
+                    ": Ya se lleg� al 100% de probabilidad./n")
+                       .c_str());
+            break;
         }
+    }
 
-        spawnerEnemies->setActive(true);
+    spawnerEnemies->setActive(true);
 
-        return spawnerEnemies;
-    };
+    return spawnerEnemies;
 };
 
-REGISTER_FACTORY(SpawnerEnemiesEC);
+DEFINE_FACTORY(SpawnerEnemiesEC);

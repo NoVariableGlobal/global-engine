@@ -7,7 +7,6 @@
 #include "Scene.h"
 #include "TransformComponent.h"
 
-#include "Factory.h"
 #include <json.h>
 
 void SpawnerFloorRandomEC::destroy() {
@@ -21,7 +20,6 @@ void SpawnerFloorRandomEC::checkEvent() {
         firstTime = false;
         _lastTimeSpawned = clock() / static_cast<float>(CLOCKS_PER_SEC);
     }
-
 
     // Spawnea un prefab en una posicion random del mapa cada cierto tiempo
     if (timeToSpawn()) {
@@ -47,48 +45,45 @@ void SpawnerFloorRandomEC::checkEvent() {
 }
 
 // FACTORY INFRASTRUCTURE
-class SpawnerFloorRandomECFactory final : public ComponentFactory {
-  public:
-    SpawnerFloorRandomECFactory() = default;
+SpawnerFloorRandomECFactory::SpawnerFloorRandomECFactory() = default;
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* scene) override {
-        SpawnerFloorRandomEC* spawnerFloorRandomEC = new SpawnerFloorRandomEC();
+Component* SpawnerFloorRandomECFactory::create(Entity* _father,
+                                               Json::Value& _data,
+                                               Scene* scene) {
+    SpawnerFloorRandomEC* spawnerFloorRandomEC = new SpawnerFloorRandomEC();
 
-        spawnerFloorRandomEC->setFather(_father);
-        spawnerFloorRandomEC->setScene(scene);
-        scene->getComponentsManager()->addEC(spawnerFloorRandomEC);
+    spawnerFloorRandomEC->setFather(_father);
+    spawnerFloorRandomEC->setScene(scene);
+    scene->getComponentsManager()->addEC(spawnerFloorRandomEC);
 
-        if (!_data["spawnCooldown"].isDouble())
-            throw std::exception("Spawner: spawnCooldown is not a double");
-        spawnerFloorRandomEC->setSpawnCooldown(
-            _data["spawnCooldown"].asDouble());
-        if (!_data["spawnID"].isArray())
-            throw std::exception("Spawner: spawnID is not an array");
-        else if (!_data["spawnID"][0].isString())
-            throw std::exception("Spawner: spawnID is not an array of strings");
+    if (!_data["spawnCooldown"].isDouble())
+        throw std::exception("Spawner: spawnCooldown is not a double");
+    spawnerFloorRandomEC->setSpawnCooldown(_data["spawnCooldown"].asDouble());
+    if (!_data["spawnID"].isArray())
+        throw std::exception("Spawner: spawnID is not an array");
+    else if (!_data["spawnID"][0].isString())
+        throw std::exception("Spawner: spawnID is not an array of strings");
 
-        if (!_data["spawnChances"].isArray())
-            throw std::exception("Spawner: spawnChances is not an array");
-        else if (!_data["spawnChances"][0].isDouble())
-            throw std::exception(
-                "Spawner: spawnChances is not an array of doubles");
+    if (!_data["spawnChances"].isArray())
+        throw std::exception("Spawner: spawnChances is not an array");
+    else if (!_data["spawnChances"][0].isDouble())
+        throw std::exception(
+            "Spawner: spawnChances is not an array of doubles");
 
-        for (int i = 0; i < _data["spawnID"].size(); ++i) {
-            if (!spawnerFloorRandomEC->addSpawn(
-                    _data["spawnID"][i].asString(),
-                    _data["spawnChances"][i].asDouble())) {
-                printf(("No se pudo a�adir " + _data["spawnID"][i].asString() +
-                        ": Ya se lleg� al 100% de probabilidad./n")
-                           .c_str());
-                break;
-            }
+    for (int i = 0; i < _data["spawnID"].size(); ++i) {
+        if (!spawnerFloorRandomEC->addSpawn(
+                _data["spawnID"][i].asString(),
+                _data["spawnChances"][i].asDouble())) {
+            printf(("No se pudo a�adir " + _data["spawnID"][i].asString() +
+                    ": Ya se lleg� al 100% de probabilidad./n")
+                       .c_str());
+            break;
         }
+    }
 
-        spawnerFloorRandomEC->setActive(true);
+    spawnerFloorRandomEC->setActive(true);
 
-        return spawnerFloorRandomEC;
-    };
+    return spawnerFloorRandomEC;
 };
 
-REGISTER_FACTORY(SpawnerFloorRandomEC);
+DEFINE_FACTORY(SpawnerFloorRandomEC);

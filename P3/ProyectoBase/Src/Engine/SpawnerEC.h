@@ -2,7 +2,10 @@
 #include "EventComponent.h"
 #include <string>
 #include <vector>
+#include "Factory.h"
 
+// FACTORY INFRASTRUCTURE DECLARATION
+DECLARE_FACTORY(SpawnerEC);
 class Entity;
 
 struct Spawn {

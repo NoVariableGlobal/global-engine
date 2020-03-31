@@ -5,6 +5,7 @@
 #include "OgreSDLContext.h"
 #include "OgreSceneManager.h"
 #include "Scene.h"
+#include "FactoriesFactory.h"
 #include "TransformComponent.h"
 #include <json.h>
 

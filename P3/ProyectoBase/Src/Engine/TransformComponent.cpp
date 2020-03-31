@@ -2,6 +2,7 @@
 #include "TransformComponent.h"
 #include "ComponentsManager.h"
 #include "OgreRoot.h"
+#include "FactoriesFactory.h"
 #include "OgreVector3.h"
 #include "Scene.h"
 #include <json.h>
@@ -31,9 +32,6 @@ void TransformComponent::setOrientation(Ogre::Vector3 r) { *_orientation = r; }
 
 Ogre::Vector3 TransformComponent::getScale() { return *_scale; }
 void TransformComponent::setScale(Ogre::Vector3 s) { *_scale = s; }
-
-
-
 
 // FACTORY INFRASTRUCTURE DEFINITION
 

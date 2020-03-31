@@ -15,27 +15,18 @@
                                                                                \
     class ComponentName##FactoryRegister {                                     \
       public:                                                                  \
-        ComponentName##FactoryRegister() {                                     \
-            FactoriesFactory::getInstance()->insert(                           \
-                #ComponentName, new ComponentName##Factory());                 \
-        }                                                                      \
-        void noop(){};                                                         \
+        ComponentName##FactoryRegister();                                      \
+        void noop();                                                           \
     };                                                                         \
     extern ComponentName##FactoryRegister                                      \
         ComponentName##FactoryRegisterGlobalVar;
 
 #define DEFINE_FACTORY(ComponentName)                                          \
-    ComponentName##FactoryRegister ComponentName##FactoryRegisterGlobalVar;
-
-//ONLY FOR COMPONENTS NOT IMPLEMENTED IN ENGINE
-#define REGISTER_FACTORY(ComponentName)                                        \
-    class ComponentName##FactoryRegister {                                     \
-      public:                                                                  \
-        ComponentName##FactoryRegister() {                                     \
-            FactoriesFactory::getInstance()->insert(                           \
-                #ComponentName, new ComponentName##Factory());                 \
-        }                                                                      \
-    };                                                                         \
+    ComponentName##FactoryRegister::ComponentName##FactoryRegister() {         \
+        FactoriesFactory::getInstance()->insert(#ComponentName,                \
+                                                new ComponentName##Factory()); \
+    }                                                                          \
+    void ComponentName##FactoryRegister::noop() {}                             \
     ComponentName##FactoryRegister ComponentName##FactoryRegisterGlobalVar;
 
 namespace Json {

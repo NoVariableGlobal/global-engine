@@ -2,7 +2,6 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
-#include "Factory.h"
 #include "OgreSDLContext.h"
 #include "Scene.h"
 #include "TransformComponent.h"
@@ -67,20 +66,19 @@ void OrientateToMouseIC::handleInput(const SDL_Event& _event) {
 }
 
 // FACTORY INFRASTRUCTURE
-class OrientateToMouseICFactory : public ComponentFactory {
-  public:
-    OrientateToMouseICFactory() = default;
-    virtual Component* create(Entity* _father, Json::Value& _data,
-                              Scene* scene) {
-        // Create the component
-        OrientateToMouseIC* orientationIC = new OrientateToMouseIC();
-        scene->getComponentsManager()->addIC(orientationIC);
 
-        // Set the component's father as the entity it was instanced for
-        orientationIC->setFather(_father);
+OrientateToMouseICFactory::OrientateToMouseICFactory() = default;
 
-        return orientationIC;
-    };
+Component* OrientateToMouseICFactory::create(Entity* _father,
+                                             Json::Value& _data, Scene* scene) {
+    // Create the component
+    OrientateToMouseIC* orientationIC = new OrientateToMouseIC();
+    scene->getComponentsManager()->addIC(orientationIC);
+
+    // Set the component's father as the entity it was instanced for
+    orientationIC->setFather(_father);
+
+    return orientationIC;
 };
 
-REGISTER_FACTORY(OrientateToMouseIC);
+DEFINE_FACTORY(OrientateToMouseIC);

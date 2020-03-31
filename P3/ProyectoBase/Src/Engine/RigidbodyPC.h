@@ -1,7 +1,6 @@
 #pragma once
 #include "PhysicsComponent.h"
 #include "Factory.h"
-#include "FactoriesFactory.h"
 #include <string>
 
 // FACTORY INFRASTRUCTURE DECLARATION

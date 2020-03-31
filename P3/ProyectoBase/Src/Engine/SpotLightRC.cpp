@@ -5,6 +5,7 @@
 #include "OgreEntity.h"
 #include "OgreSDLContext.h"
 #include "OgreSceneManager.h"
+#include "FactoriesFactory.h"
 #include "Scene.h"
 #include "SpotLightRC.h"
 #include "TransformComponent.h"

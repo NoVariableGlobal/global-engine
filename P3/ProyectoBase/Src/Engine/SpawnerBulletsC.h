@@ -3,6 +3,10 @@
 #include "Component.h"
 
 #include <string>
+#include "Factory.h"
+
+// FACTORY INFRASTRUCTURE DECLARATION
+DECLARE_FACTORY(SpawnerBulletsC);
 
 class Entity;
 
