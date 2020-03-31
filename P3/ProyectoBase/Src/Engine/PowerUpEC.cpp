@@ -31,6 +31,10 @@ void PowerUpEC::setDuration(float duration) {
     time_ = 0;
 }
 
+void PowerUpEC::resetTime() {
+    time_ = clock() / static_cast<float>(CLOCKS_PER_SEC);
+}
+
 bool PowerUpEC::getPicked() { return picked_; }
 
 float PowerUpEC::getTime() { return time_; }

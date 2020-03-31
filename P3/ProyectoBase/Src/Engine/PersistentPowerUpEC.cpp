@@ -10,11 +10,15 @@
 void PersistentPowerUpEC::onDestroy() {
     PowerUpEC::onDestroy();
 
+    // If this power-up has been activated, call setEffect with false to remove
+    // them, as well as remove the power-up from the PowerUpTrackerC.
     if (activeEffect_) {
         activeEffect_ = false;
         setEffect(false);
+
+        Entity* player = scene->getEntitybyId("Player");
         reinterpret_cast<PowerUpTrackerC*>(
-            scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"))
+            player->getComponent("PowerUpTrackerC"))
             ->removePowerUp(getName());
     }
 }
@@ -33,8 +37,9 @@ void PersistentPowerUpEC::checkEvent() {
 
         // If the player already has this powerup refresh it
         if (previous == nullptr) {
-            activeEffect_ = true;
+            resetTime();
             setEffect(true);
+            activeEffect_ = true;
 
             father->getComponent("TridimensionalObjectRC")->setActive(false);
             father->getComponent("RigidbodyPC")->setActive(false);
@@ -45,15 +50,11 @@ void PersistentPowerUpEC::checkEvent() {
                 scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"))
                 ->addPowerUp(getName(), this);
         } else {
-            previous->setTime(clock() / static_cast<float>(CLOCKS_PER_SEC));
+            previous->resetTime();
             onDestroy();
         }
     } else if (timeDisappearEffect()) { // delete item when the effect has
                                         // passed
-        if (getPicked()) {
-            onDestroy();
-        } else {
-            onDestroy();
-        }
+        onDestroy();
     }
 }

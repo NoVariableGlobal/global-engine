@@ -20,6 +20,7 @@ class PowerUpEC : public EventComponent {
     void setPicked(bool picked);
     void setTime(float time);
     void setDuration(float duration);
+    void resetTime();
 
     float getTime();
     bool getPicked();
