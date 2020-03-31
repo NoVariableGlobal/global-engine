@@ -303,7 +303,7 @@
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain.lib;jsoncpp.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Codec_STBI.lib;OgreRTShaderSystem.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain_d.lib;jsoncpp.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Codec_STBI_d.lib;OgreRTShaderSystem_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain.lib;jsoncpp.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Codec_STBI.lib;OgreRTShaderSystem.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\bullet3-2.89\build\lib\$(Configuration);$(SolutionDir)lib\SDL2-2.0.10\lib\$(Platform);$(SolutionDir)lib\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)lib\fmod\lib;$(SolutionDir)lib\jsoncpp-master\build\src\lib_json\$(Configuration);$(LibraryPath)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
