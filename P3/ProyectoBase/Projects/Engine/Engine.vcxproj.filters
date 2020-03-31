@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\Src\Engine\RigidbodyPC.cpp" />
     <ClCompile Include="..\..\src\Engine\Component.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -173,9 +172,11 @@
     <ClCompile Include="..\..\Src\Engine\PersistentPowerUpEC.cpp">
       <Filter>Components\Events\PowerUps</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Engine\RigidbodyPC.cpp">
+      <Filter>Components\Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h" />
     <ClInclude Include="..\..\src\Engine\Component.h">
       <Filter>Components</Filter>
     </ClInclude>
@@ -352,6 +353,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\PersistentPowerUpEC.h">
       <Filter>Components\Events\PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h">
+      <Filter>Components\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

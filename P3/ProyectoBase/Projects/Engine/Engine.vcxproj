@@ -237,10 +237,10 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\libs</OutDir>
+    <OutDir>$(SolutionDir)libs</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
     <IntDir>$(SolutionDir)inter\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
-    <IncludePath>$(SolutionDir)lib\SDL2-2.0.10\include;$(SolutionDir)src\$(ProjectName);$(SolutionDir)lib\fmod\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\$(ProjectName);$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)lib\bullet3-2.89\build\lib\$(Configuration);$(SolutionDir)lib\SDL2-2.0.10\lib\$(Platform);$(SolutionDir)lib\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)lib\fmod\lib;$(SolutionDir)lib\jsoncpp-master\build\src\lib_json\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='AppDebug|x64'">
@@ -248,7 +248,7 @@
     <OutDir>$(SolutionDir)bin</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
     <IntDir>$(SolutionDir)inter\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
-    <IncludePath>$(SolutionDir)lib\SDL2-2.0.10\include;$(SolutionDir)src\$(ProjectName);$(SolutionDir)lib\fmod\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\$(ProjectName);$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)lib\bullet3-2.89\build\lib\Debug;$(SolutionDir)lib\SDL2-2.0.10\lib\$(Platform);$(SolutionDir)lib\ogre-1.12.5\Build\lib\Debug;$(SolutionDir)lib\fmod\lib;$(SolutionDir)lib\jsoncpp-master\build\src\lib_json\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -260,9 +260,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\libs</OutDir>
+    <OutDir>$(SolutionDir)libs</OutDir>
     <IntDir>$(SolutionDir)inter\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
-    <IncludePath>$(SolutionDir)lib\SDL2-2.0.10\include;$(SolutionDir)src\$(ProjectName);$(SolutionDir)lib\fmod\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\$(ProjectName);$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)lib\bullet3-2.89\build\lib\$(Configuration);$(SolutionDir)lib\SDL2-2.0.10\lib\$(Platform);$(SolutionDir)lib\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)lib\fmod\lib;$(SolutionDir)lib\jsoncpp-master\build\src\lib_json\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -305,13 +305,17 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\ogre-1.12.5\Components\RTShaderSystem\include;$(SolutionDir)lib\jsoncpp-master\include;$(SolutionDir)lib\ogre-1.12.5\OgreMain\include;$(SolutionDir)lib\ogre-1.12.5\Build\include;$(SolutionDir)lib\ogre-1.12.5\PlugIns\STBICodec\include;$(SolutionDir)lib\bullet3-2.89\src;$(SolutionDir)lib\build\libs\Debug;$(SolutionDir)lib\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\ogre-1.12.5\Components\RTShaderSystem\include;$(SolutionDir)lib\jsoncpp-master\include;$(SolutionDir)lib\ogre-1.12.5\OgreMain\include;$(SolutionDir)lib\ogre-1.12.5\Build\include;$(SolutionDir)lib\ogre-1.12.5\PlugIns\STBICodec\include;$(SolutionDir)lib\bullet3-2.89\src;$(SolutionDir)lib\build\libs\Debug;$(SolutionDir)lib\fmod\include;$(SolutionDir)lib\jsoncpp-master\include\json;$(SolutionDir)lib\SDL2-2.0.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain_d.lib;jsoncpp.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Codec_STBI_d.lib;OgreRTShaderSystem_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\bullet3-2.89\build\lib\$(Configuration);$(SolutionDir)lib\SDL2-2.0.10\lib\$(Platform);$(SolutionDir)lib\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)lib\fmod\lib;$(SolutionDir)lib\jsoncpp-master\build\src\lib_json\$(Configuration);$(LibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain_d.lib;jsoncpp.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Codec_STBI_d.lib;OgreRTShaderSystem_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='AppDebug|x64'">
     <ClCompile>
@@ -321,7 +325,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\ogre-1.12.5\Components\RTShaderSystem\include;$(SolutionDir)lib\jsoncpp-master\include;$(SolutionDir)lib\ogre-1.12.5\OgreMain\include;$(SolutionDir)lib\ogre-1.12.5\Build\include;$(SolutionDir)lib\ogre-1.12.5\PlugIns\STBICodec\include;$(SolutionDir)lib\bullet3-2.89\src;$(SolutionDir)lib\build\libs\Debug;$(SolutionDir)lib\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\ogre-1.12.5\Components\RTShaderSystem\include;$(SolutionDir)lib\jsoncpp-master\include;$(SolutionDir)lib\ogre-1.12.5\OgreMain\include;$(SolutionDir)lib\ogre-1.12.5\Build\include;$(SolutionDir)lib\ogre-1.12.5\PlugIns\STBICodec\include;$(SolutionDir)lib\SDL2-2.0.10\include;$(SolutionDir)lib\bullet3-2.89\src;$(SolutionDir)lib\fmod\include;$(SolutionDir)lib\build\libs\Debug;$(SolutionDir)lib\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -359,7 +363,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)lib\jsoncpp-master\include;$(SolutionDir)lib\ogre-1.12.5\OgreMain\include;$(SolutionDir)lib\ogre-1.12.5\Build\include;$(SolutionDir)lib\ogre-1.12.5\Components\RTShaderSystem\include;$(SolutionDir)lib\bullet3-2.89\src;$(SolutionDir)lib\ogre-1.12.5\PlugIns\STBICodec\include;$(SolutionDir)lib\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\jsoncpp-master\include;$(SolutionDir)lib\ogre-1.12.5\OgreMain\include;$(SolutionDir)lib\ogre-1.12.5\Build\include;$(SolutionDir)lib\ogre-1.12.5\Components\RTShaderSystem\include;$(SolutionDir)lib\bullet3-2.89\src;$(SolutionDir)lib\ogre-1.12.5\PlugIns\STBICodec\include;$(SolutionDir)lib\fmod\include;$(SolutionDir)lib\SDL2-2.0.10\include;$(SolutionDir)lib\jsoncpp-master\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -368,6 +372,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain.lib;jsoncpp.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Codec_STBI.lib;OgreRTShaderSystem.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain_d.lib;jsoncpp.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Codec_STBI_d.lib;OgreRTShaderSystem_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\bullet3-2.89\build\lib\$(Configuration);$(SolutionDir)lib\SDL2-2.0.10\lib\$(Platform);$(SolutionDir)lib\ogre-1.12.5\Build\lib\$(Configuration);$(SolutionDir)lib\fmod\lib;$(SolutionDir)lib\jsoncpp-master\build\src\lib_json\$(Configuration);$(LibraryPath)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
