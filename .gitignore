@@ -33,7 +33,7 @@
 .vscode/
 .vs/
 */**/build/
-*/**/libs
+*/**/libs/
 inter/
 test/
 
