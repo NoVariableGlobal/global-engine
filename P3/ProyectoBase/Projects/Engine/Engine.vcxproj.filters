@@ -10,20 +10,11 @@
     <ClCompile Include="..\..\src\Engine\PhysicsComponent.cpp">
       <Filter>Components\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\PlayerMovementIC.cpp">
-      <Filter>Components\Input</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Engine\SpotLightRC.cpp">
       <Filter>Components\Render</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Engine\TridimensionalObjectRC.cpp">
       <Filter>Components\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\LifeC.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\PlayerShotIC.cpp">
-      <Filter>Components\Input</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Engine\RigidbodyPC.cpp">
       <Filter>Components\Physics</Filter>
@@ -32,12 +23,6 @@
       <Filter>Components\Other</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Src\Engine\EventComponent.cpp">
-      <Filter>Components\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\SpawnerEnemiesEC.cpp">
-      <Filter>Components\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\SpawnerFloorRandomEC.cpp">
       <Filter>Components\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Engine\SoundComponent.cpp">
@@ -82,96 +67,6 @@
     <ClCompile Include="..\..\src\Engine\ComponentsManager.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\SpawnerEC.cpp">
-      <Filter>Components\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\ChangeGravityIC.cpp">
-      <Filter>Components\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\OrientateToMouseIC.cpp">
-      <Filter>Components\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\SpawnerBulletsC.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\WeaponControllerIC.cpp">
-      <Filter>Components\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\EnemyBehaviourEC.cpp">
-      <Filter>Components\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.cpp">
-      <Filter>Components\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\OnEPressPickUpIC.cpp">
-      <Filter>Components\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\GunC.cpp">
-      <Filter>Components\Guns</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\ShotgunC.cpp">
-      <Filter>Components\Guns</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\HandGunC.cpp">
-      <Filter>Components\Guns</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\DestroyAfterSecsEC.cpp">
-      <Filter>Components\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\ConstantMovementC.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\RangedEnemyBehaviourEC.cpp">
-      <Filter>Components\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\SniperGunC.cpp">
-      <Filter>Components\Guns</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\AutomaticRifleC.cpp">
-      <Filter>Components\Guns</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\AutomaticEC.cpp">
-      <Filter>Components\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\GunPowerUpC.cpp">
-      <Filter>Components\Guns</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\BulletC.cpp">
-      <Filter>Components\Guns</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\SniperBulletC.cpp">
-      <Filter>Components\Guns</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\PowerUpTrackerC.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\IncreaseSpeedEC.cpp">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\InfiniteAmmoEC.cpp">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\InstakillEC.cpp">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\InvulnerabilityShield.cpp">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\MedkitEC.cpp">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\NukeEC.cpp">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\PowerUpEC.cpp">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\ImmediatePowerUpEC.cpp">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Src\Engine\PersistentPowerUpEC.cpp">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Engine\RigidbodyPC.cpp">
       <Filter>Components\Physics</Filter>
     </ClCompile>
@@ -186,20 +81,11 @@
     <ClInclude Include="..\..\src\Engine\PhysicsComponent.h">
       <Filter>Components\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\PlayerMovementIC.h">
-      <Filter>Components\Input</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\SpotLightRC.h">
       <Filter>Components\Render</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\TridimensionalObjectRC.h">
       <Filter>Components\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\LifeC.h">
-      <Filter>Components\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\PlayerShotIC.h">
-      <Filter>Components\Input</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h">
       <Filter>Components\Physics</Filter>
@@ -208,12 +94,6 @@
       <Filter>Components\Other</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\EventComponent.h">
-      <Filter>Components\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\SpawnerEnemiesEC.h">
-      <Filter>Components\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\SpawnerFloorRandomEC.h">
       <Filter>Components\Events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Engine\SoundComponent.h">
@@ -261,98 +141,8 @@
     <ClInclude Include="..\..\src\Engine\ComponentsManager.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\SpawnerEC.h">
-      <Filter>Components\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\ChangeGravityIC.h">
-      <Filter>Components\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\OrientateToMouseIC.h">
-      <Filter>Components\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\SpawnerBulletsC.h">
-      <Filter>Components\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\WeaponControllerIC.h">
-      <Filter>Components\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\EnemyBehaviourEC.h">
-      <Filter>Components\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\MeleeEnemyBehaviourEC.h">
-      <Filter>Components\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\GunC.h">
-      <Filter>Components\Guns</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\ShotgunC.h">
-      <Filter>Components\Guns</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\HandGunC.h">
-      <Filter>Components\Guns</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\DestroyAfterSecsEC.h">
-      <Filter>Components\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\AutomaticRifleC.h">
-      <Filter>Components\Guns</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\AutomaticEC.h">
-      <Filter>Components\Events</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Src\Engine\Util.h">
       <Filter>Misc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\ConstantMovementC.h">
-      <Filter>Components\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\RangedEnemyBehaviourEC.h">
-      <Filter>Components\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\SniperGunC.h">
-      <Filter>Components\Guns</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\GunPowerUpC.h">
-      <Filter>Components\Guns</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\BulletC.h">
-      <Filter>Components\Guns</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\SniperBulletC.h">
-      <Filter>Components\Guns</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\OnEPressPickUpIC.h">
-      <Filter>Components\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\PowerUpTrackerC.h">
-      <Filter>Components\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\IncreaseSpeedEC.h">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\InfiniteAmmoEC.h">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\InstakillEC.h">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\InvulnerabilityShield.h">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\MedkitEC.h">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\NukeEC.h">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\PowerUpEC.h">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\ImmediatePowerUpEC.h">
-      <Filter>Components\Events\PowerUps</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\Engine\PersistentPowerUpEC.h">
-      <Filter>Components\Events\PowerUps</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\Engine\RigidbodyPC.h">
       <Filter>Components\Physics</Filter>
