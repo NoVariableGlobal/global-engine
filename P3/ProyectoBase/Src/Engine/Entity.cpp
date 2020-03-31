@@ -25,7 +25,7 @@ std::map<std::string, Component*>& Entity::getAllComponents() {
 std::string Entity::getId() { return id; }
 void Entity::setId(std::string _id) { id = _id; }
 
-const std::string & Entity::getTag() const { return tag; }
+const std::string& Entity::getTag() const { return tag; }
 
 void Entity::setTag(const std::string& _tag) { tag = _tag; }
 
