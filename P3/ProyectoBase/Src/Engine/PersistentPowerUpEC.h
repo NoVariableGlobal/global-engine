@@ -1,9 +1,10 @@
 #pragma once
 #include "PowerUpEC.h"
+#include <string>
 
 class PersistentPowerUpEC : public PowerUpEC {
   private:
-    bool effect_ = false;
+    bool activeEffect_ = false;
 
   protected:
     virtual void setEffect(bool value) = 0;

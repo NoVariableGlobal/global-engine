@@ -1,5 +1,4 @@
 #pragma once
-
 #include "EventComponent.h"
 
 class PowerUpEC : public EventComponent {
@@ -18,16 +17,12 @@ class PowerUpEC : public EventComponent {
     ~PowerUpEC();
     virtual void checkEvent();
 
-    void setPicked(bool picked) { picked_ = picked; }
-    void setTime(float time) { time_ = time; }
+    void setPicked(bool picked);
+    void setTime(float time);
     void setDuration(float duration);
 
-    bool getPicked() { return picked_; }
-    float getTime() { return time_; }
+    float getTime();
+    bool getPicked();
     bool getCollisionWithPlayer();
     bool timeDisappearEffect();
-
-    // Destroys the PhysicsComponent, setting itself as inactive and
-    // removing itself from the scene.
-    virtual void destroy();
 };

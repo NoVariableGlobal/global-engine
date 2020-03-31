@@ -8,7 +8,7 @@ class EnemyBehaviourEC : public EventComponent {
     float speed;
 
     // true if enemy is colliding with player
-    bool collisionWithPlayer = false;
+    bool collisionWithPlayer_ = false;
 
     // amount of damage the enemy deals to the player
     int attack;

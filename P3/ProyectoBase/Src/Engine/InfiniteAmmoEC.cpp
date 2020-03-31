@@ -10,7 +10,6 @@
 #include "ShotgunC.h"
 #include "SniperGunC.h"
 #include <json.h>
-#include <value.h>
 
 void InfiniteAmmoEC::setEffect(bool value) {
     Entity* player = scene->getEntitybyId("Player");

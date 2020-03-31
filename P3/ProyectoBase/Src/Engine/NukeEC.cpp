@@ -3,13 +3,7 @@
 #include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
-#include "LifeC.h"
-#include "OgreVector3.h"
-#include "RigidbodyPC.h"
 #include "Scene.h"
-#include "TransformComponent.h"
-#include "TridimensionalObjectRC.h"
-#include <iostream>
 #include <json.h>
 
 void NukeEC::onPick() {

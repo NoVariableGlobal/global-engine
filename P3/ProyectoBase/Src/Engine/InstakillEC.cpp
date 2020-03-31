@@ -10,7 +10,6 @@
 #include "ShotgunC.h"
 #include "SniperGunC.h"
 #include <json.h>
-#include <value.h>
 
 void InstakillEC::setEffect(bool effect) {
     Entity* player = scene->getEntitybyId("Player");

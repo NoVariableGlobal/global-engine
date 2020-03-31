@@ -10,7 +10,8 @@
 void PersistentPowerUpEC::onDestroy() {
     PowerUpEC::onDestroy();
 
-    if (effect_) {
+    if (activeEffect_) {
+        activeEffect_ = false;
         setEffect(false);
         reinterpret_cast<PowerUpTrackerC*>(
             scene->getEntitybyId("Player")->getComponent("PowerUpTrackerC"))
@@ -32,7 +33,7 @@ void PersistentPowerUpEC::checkEvent() {
 
         // If the player already has this powerup refresh it
         if (previous == nullptr) {
-            effect_ = true;
+            activeEffect_ = true;
             setEffect(true);
 
             father->getComponent("TridimensionalObjectRC")->setActive(false);

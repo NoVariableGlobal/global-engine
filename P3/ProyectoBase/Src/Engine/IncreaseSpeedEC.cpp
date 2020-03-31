@@ -6,7 +6,6 @@
 #include "PlayerMovementIC.h"
 #include "Scene.h"
 #include <json.h>
-#include <value.h>
 
 void IncreaseSpeedEC::setEffect(bool value) {
     Entity* player = scene->getEntitybyId("Player");

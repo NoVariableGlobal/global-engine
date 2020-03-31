@@ -40,11 +40,11 @@ void EnemyBehaviourEC::checkEvent() {
             .normalisedCopy();
 
     // check collision with player
-    collisionWithPlayer = rb->collidesWith("Player");
+    collisionWithPlayer_ = rb->collidesWith("Player");
 
     // if not colliding with player enemy moves towards player
     Ogre::Vector3 velocity;
-    if (!collisionWithPlayer) {
+    if (!collisionWithPlayer_) {
         velocity = Ogre::Vector3(directionToPlayer.x * speed, 0.0f,
                                  directionToPlayer.z * speed);
 
@@ -89,10 +89,10 @@ bool EnemyBehaviourEC::timeToAttack() {
     return false;
 }
 
-bool EnemyBehaviourEC::getCollisionWithPlayer() { return collisionWithPlayer; }
+bool EnemyBehaviourEC::getCollisionWithPlayer() { return collisionWithPlayer_; }
 
 void EnemyBehaviourEC::setCollisionWithPlayer(bool _collisionWithPlayer) {
-    collisionWithPlayer = _collisionWithPlayer;
+    collisionWithPlayer_ = _collisionWithPlayer;
 }
 
 float EnemyBehaviourEC::getSpeed() { return speed; }

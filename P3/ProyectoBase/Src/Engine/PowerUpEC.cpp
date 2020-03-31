@@ -22,10 +22,18 @@ void PowerUpEC::checkEvent() {
     }
 }
 
+void PowerUpEC::setPicked(bool picked) { picked_ = picked; }
+
+void PowerUpEC::setTime(float time) { time_ = time; }
+
 void PowerUpEC::setDuration(float duration) {
     durationTotal_ = duration;
     time_ = 0;
 }
+
+bool PowerUpEC::getPicked() { return picked_; }
+
+float PowerUpEC::getTime() { return time_; }
 
 bool PowerUpEC::getCollisionWithPlayer() { return collisionWithPlayer_; }
 
@@ -42,12 +50,6 @@ bool PowerUpEC::timeDisappearEffect() {
     }
 
     return false;
-}
-
-void PowerUpEC::destroy() {
-    EventComponent::destroy();
-    // TODO(kyranet): Add virtual method to enable/disable the power-up's
-    // effect, call it here with `false`.
 }
 
 void PowerUpEC::onDestroy() { scene->deleteEntity(father); }
