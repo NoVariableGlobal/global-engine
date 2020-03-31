@@ -37,4 +37,4 @@ class SpawnerBulletsCFactory : public ComponentFactory {
     };
 };
 
-REGISTER_FACTORY("SpawnerBulletsC", SpawnerBulletsC);
+REGISTER_FACTORY(SpawnerBulletsC);

@@ -83,4 +83,4 @@ class OrientateToMouseICFactory : public ComponentFactory {
     };
 };
 
-REGISTER_FACTORY("OrientateToMouseIC", OrientateToMouseIC);
+REGISTER_FACTORY(OrientateToMouseIC);

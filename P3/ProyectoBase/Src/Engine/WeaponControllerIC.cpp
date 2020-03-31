@@ -52,4 +52,4 @@ class WeaponControllerICFactory final : public ComponentFactory {
     };
 };
 
-REGISTER_FACTORY("WeaponControllerIC", WeaponControllerIC);
+REGISTER_FACTORY(WeaponControllerIC);

@@ -1,6 +1,11 @@
 #pragma once
-
 #include "Component.h"
+#include "Factory.h"
+#include "FactoriesFactory.h"
+
+// FACTORY INFRASTRUCTURE DECLARATION
+DECLARE_FACTORY(TransformComponent);
+
 
 namespace Ogre {
     typedef float Real;

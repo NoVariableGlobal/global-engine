@@ -2,7 +2,6 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
-#include "Factory.h"
 #include "RigidbodyPC.h"
 #include "TridimensionalObjectRC.h"
 #include "Scene.h"
@@ -76,4 +75,4 @@ class ChangeGravityICFactory final : public ComponentFactory {
     };
 };
 
-REGISTER_FACTORY("ChangeGravityIC", ChangeGravityIC);
+REGISTER_FACTORY(ChangeGravityIC);

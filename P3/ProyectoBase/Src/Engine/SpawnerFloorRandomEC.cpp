@@ -91,4 +91,4 @@ class SpawnerFloorRandomECFactory final : public ComponentFactory {
     };
 };
 
-REGISTER_FACTORY("SpawnerFloorRandomEC", SpawnerFloorRandomEC);
+REGISTER_FACTORY(SpawnerFloorRandomEC);

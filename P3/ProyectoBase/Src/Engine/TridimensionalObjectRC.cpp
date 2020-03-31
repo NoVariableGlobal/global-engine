@@ -1,8 +1,6 @@
 #include "TridimensionalObjectRC.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
-#include "FactoriesFactory.h"
-#include "Factory.h"
 #include "OgreEntity.h"
 #include "OgreSDLContext.h"
 #include "OgreSceneManager.h"
@@ -32,52 +30,46 @@ void TridimensionalObjectRC::setMaterial(std::string material) {
     entity->setMaterialName(material);
 }
 
-// FACTORY INFRASTRUCTURE
-class TridimensionalObjectRCFactory final : public ComponentFactory {
-  public:
-    TridimensionalObjectRCFactory() = default;
+// FACTORY INFRASTRUCTURE DEFINITION
 
-    Component* create(Entity* _father, Json::Value& _data,
-                      Scene* _scene) override {
-        Ogre::SceneManager* mSM =
-            OgreSDLContext::getInstance()->getSceneManager();
-        TridimensionalObjectRC* tridimensionalObject =
-            new TridimensionalObjectRC();
-        _scene->getComponentsManager()->addRC(tridimensionalObject);
+TridimensionalObjectRCFactory::TridimensionalObjectRCFactory() = default;
 
-        tridimensionalObject->setFather(_father);
-        tridimensionalObject->setScene(_scene);
+Component* TridimensionalObjectRCFactory::create(Entity* _father,
+                                                 Json::Value& _data,
+                                                 Scene* _scene) {
+    Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
+    TridimensionalObjectRC* tridimensionalObject = new TridimensionalObjectRC();
+    _scene->getComponentsManager()->addRC(tridimensionalObject);
 
-        if (!_data["mesh"].isString())
-            throw std::exception(
-                "TridimensionalObjectRC: mesh is not a string");
-        tridimensionalObject->setOgreEntity(
-            mSM->createEntity(_data["mesh"].asString()));
+    tridimensionalObject->setFather(_father);
+    tridimensionalObject->setScene(_scene);
 
-        if (!_data["node"].isString())
-            throw std::exception(
-                "TridimensionalObjectRC: node is not a string");
-        tridimensionalObject->setSceneNode(
-            mSM->getRootSceneNode()->createChildSceneNode(
-                _data["node"].asString() + _father->getId()));
+    if (!_data["mesh"].isString())
+        throw std::exception("TridimensionalObjectRC: mesh is not a string");
+    tridimensionalObject->setOgreEntity(
+        mSM->createEntity(_data["mesh"].asString()));
 
-        if (!_data["material"].isString())
-            throw std::exception(
-                "TridimensionalObjectRC: material is not a string");
-        else if (_data["material"].asString() != "none")
-            tridimensionalObject->setMaterial(_data["material"].asString());
+    if (!_data["node"].isString())
+        throw std::exception("TridimensionalObjectRC: node is not a string");
+    tridimensionalObject->setSceneNode(
+        mSM->getRootSceneNode()->createChildSceneNode(_data["node"].asString() +
+                                                      _father->getId()));
 
-        tridimensionalObject->getSceneNode()->attachObject(
-            tridimensionalObject->getOgreEntity());
+    if (!_data["material"].isString())
+        throw std::exception(
+            "TridimensionalObjectRC: material is not a string");
+    else if (_data["material"].asString() != "none")
+        tridimensionalObject->setMaterial(_data["material"].asString());
 
-        TransformComponent* transform = dynamic_cast<TransformComponent*>(
-            _father->getComponent("TransformComponent"));
-        tridimensionalObject->getSceneNode()->setPosition(
-            transform->getPosition());
-        tridimensionalObject->getSceneNode()->setScale(transform->getScale());
+    tridimensionalObject->getSceneNode()->attachObject(
+        tridimensionalObject->getOgreEntity());
 
-        return tridimensionalObject;
-    }
-};
+    TransformComponent* transform = dynamic_cast<TransformComponent*>(
+        _father->getComponent("TransformComponent"));
+    tridimensionalObject->getSceneNode()->setPosition(transform->getPosition());
+    tridimensionalObject->getSceneNode()->setScale(transform->getScale());
 
-REGISTER_FACTORY("TridimensionalObjectRC", TridimensionalObjectRC);
+    return tridimensionalObject;
+}
+
+DEFINE_FACTORY(TridimensionalObjectRC);

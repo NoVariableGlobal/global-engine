@@ -1,8 +1,10 @@
 #pragma once
 
 #include "InputComponent.h"
-
+#include "Factory.h"
 #include <string>
+
+
 
 namespace Ogre {
     typedef float Real;

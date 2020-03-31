@@ -146,4 +146,4 @@ class SpawnerECFactory final : public ComponentFactory {
     };
 };
 
-REGISTER_FACTORY("SpawnerEC", SpawnerEC);
+REGISTER_FACTORY(SpawnerEC);

@@ -50,4 +50,4 @@ class PlayerShotICFactory final : public ComponentFactory {
     };
 };
 
-REGISTER_FACTORY("PlayerShotIC", PlayerShotIC);
+REGISTER_FACTORY(PlayerShotIC);
