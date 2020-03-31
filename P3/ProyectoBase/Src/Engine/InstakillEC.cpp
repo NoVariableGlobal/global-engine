@@ -6,17 +6,11 @@
 #include "Factory.h"
 #include "GunC.h"
 #include "HandGunC.h"
-#include "LifeC.h"
-#include "OgreVector3.h"
-#include "RigidbodyPC.h"
 #include "Scene.h"
 #include "ShotgunC.h"
 #include "SniperGunC.h"
-#include "TransformComponent.h"
-#include "TridimensionalObjectRC.h"
-#include "WeaponControllerIC.h"
-#include <iostream>
 #include <json.h>
+#include <value.h>
 
 void InstakillEC::setEffect(bool effect) {
     Entity* player = scene->getEntitybyId("Player");
@@ -30,55 +24,7 @@ void InstakillEC::setEffect(bool effect) {
         ->setInstakill(effect);
 }
 
-InstakillEC::InstakillEC() {}
-
-InstakillEC::~InstakillEC() {}
-
-void InstakillEC::checkEvent() {
-    PowerUpEC::checkEvent();
-
-    if (!picked && getCollisionWithPlayer()) {
-        Entity* player = scene->getEntitybyId("Player");
-        setEffect(true);
-        picked = true;
-
-        dynamic_cast<TridimensionalObjectRC*>(
-            father->getComponent("TridimensionalObjectRC"))
-            ->setActive(false);
-
-        dynamic_cast<RigidbodyPC*>(father->getComponent("RigidbodyPC"))
-            ->setActive(false);
-
-        dynamic_cast<TransformComponent*>(
-            father->getComponent("TransformComponent"))
-            ->setActive(false);
-    }
-    if (!picked) { // delete item when the effect has passed
-        if (timeDisappear()) {
-            scene->deleteEntity(father);
-        }
-    } else if (timeDisappearEffect()) { // delete item when the effect has
-                                        // passed
-        setEffect(false);
-        scene->deleteEntity(father);
-    }
-}
-
-void InstakillEC::setTimeEffect(float _time) { timeEffect = _time; }
-
-bool InstakillEC::timeDisappearEffect() {
-    float seconds = clock() / static_cast<float>(CLOCKS_PER_SEC);
-
-    if (!startPicked) {
-        time = seconds;
-        startPicked = true;
-    }
-    if (time + timeEffect <= seconds) {
-        return true;
-    }
-
-    return false;
-}
+std::string InstakillEC::getName() { return "InstakillEC"; }
 
 // FACTORY INFRASTRUCTURE
 class InstakillECFactory final : public ComponentFactory {
@@ -99,7 +45,7 @@ class InstakillECFactory final : public ComponentFactory {
 
         if (!_data["timeEffect"].isDouble())
             throw std::exception("InstakillEC: timeEffect is not a double");
-        instakill->setTimeEffect(_data["timeEffect"].asDouble());
+        instakill->setDuration(_data["timeEffect"].asDouble());
 
         instakill->setActive(true);
 

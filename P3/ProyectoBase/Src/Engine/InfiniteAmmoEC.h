@@ -1,20 +1,8 @@
 #pragma once
-#include "PowerUpEC.h"
+#include "PersistentPowerUpEC.h"
 
-class GunC;
-
-class InfiniteAmmoEC : public PowerUpEC {
-  private:
-    GunC* gun_;
-    double time;
-    double timeEffect;
-    bool startPicked;
-
+class InfiniteAmmoEC final : public PersistentPowerUpEC {
   public:
-    InfiniteAmmoEC();
-    ~InfiniteAmmoEC();
-    virtual void checkEvent();
-    void setTimeEffect(float _time);
-    bool timeDisappearEffect();
-    void setPickedTime(float _time);
+    void setEffect(bool value) override;
+    std::string getName() override;
 };

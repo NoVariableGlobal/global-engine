@@ -1,5 +1,4 @@
 #include "MedkitEC.h"
-
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
@@ -10,36 +9,13 @@
 #include "Scene.h"
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
-
 #include <iostream>
 #include <json.h>
 
-MedkitEC::MedkitEC() {}
-MedkitEC::~MedkitEC() {}
-
-void MedkitEC::checkEvent() {
-    PowerUpEC::checkEvent();
-
-    if (!picked && getCollisionWithPlayer()) {
-        LifeC* playerHealth = dynamic_cast<LifeC*>(
-            scene->getEntitybyId("Player")->getComponent("LifeC"));
-        playerHealth->heal(playerHealth->getTotalLife());
-        picked = true;
-
-        scene->deleteEntity(father);
-    }
-    if (!picked) { // delete item when the effect has passed
-        if (timeDisappear()) {
-            // TODO: Delete the entire object
-            scene->deleteEntity(father);
-
-            /*RenderComponent* render = dynamic_cast<RenderComponent*>(
-                scene->getEntitybyId("Shield0")->getComponent(
-                    "TridimensionalObjectRC"));
-            compManager->deleteRC(render);
-            delete this;*/
-        }
-    }
+void MedkitEC::onPick() {
+    Entity* player = scene->getEntitybyId("Player");
+    auto playerHealth = reinterpret_cast<LifeC*>(player->getComponent("LifeC"));
+    playerHealth->heal(playerHealth->getTotalLife());
 }
 
 // FACTORY INFRASTRUCTURE

@@ -1,5 +1,4 @@
 #include "NukeEC.h"
-
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
@@ -10,31 +9,14 @@
 #include "Scene.h"
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
-
 #include <iostream>
 #include <json.h>
 
-NukeEC::NukeEC() {}
-NukeEC::~NukeEC() {}
+void NukeEC::onPick() {
+    std::vector<Entity*> enemies = scene->getEntitiesbyTag("Enemy");
 
-void NukeEC::checkEvent() {
-    PowerUpEC::checkEvent();
-
-    if (!picked && getCollisionWithPlayer()) {
-        picked = true;
-
-        std::vector<Entity*> enemies = scene->getEntitiesbyTag("Enemy");
-
-        for (auto it : enemies) {
-            scene->deleteEntity(it);
-        }
-
-        scene->deleteEntity(father);
-    }
-    if (!picked) { // delete item when the effect has passed
-        if (timeDisappear()) {
-            scene->deleteEntity(father);
-        }
+    for (auto it : enemies) {
+        scene->deleteEntity(it);
     }
 }
 

@@ -1,12 +1,7 @@
 #pragma once
+#include "ImmediatePowerUpEC.h"
 
-#include "PowerUpEC.h"
-
-class LifeC;
-
-class NukeEC : public PowerUpEC {
+class NukeEC final : public ImmediatePowerUpEC {
   public:
-    NukeEC();
-    virtual ~NukeEC();
-    virtual void checkEvent();
+    void onPick();
 };

@@ -4,23 +4,28 @@
 
 class PowerUpEC : public EventComponent {
   private:
-    float durationTotal;
-    float time;
-    float timeStart;
-    bool collisionWithPlayer;
-    bool start;
+    float durationTotal_ = 0.0f;
+    float time_ = 0.0f;
+    bool collisionWithPlayer_ = false;
+    bool start_ = false;
+    bool picked_ = false;
 
   protected:
-    bool picked;
+    virtual void onDestroy();
 
   public:
     PowerUpEC();
     ~PowerUpEC();
     virtual void checkEvent();
 
-    void setDuration(float _duration);
+    void setPicked(bool picked) { picked_ = picked; }
+    void setTime(float time) { time_ = time; }
+    void setDuration(float duration);
+
+    bool getPicked() { return picked_; }
+    float getTime() { return time_; }
     bool getCollisionWithPlayer();
-    bool timeDisappear();
+    bool timeDisappearEffect();
 
     // Destroys the PhysicsComponent, setting itself as inactive and
     // removing itself from the scene.

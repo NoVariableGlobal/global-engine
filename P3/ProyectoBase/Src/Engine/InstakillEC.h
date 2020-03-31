@@ -1,19 +1,8 @@
 #pragma once
-#include "PowerUpEC.h"
+#include "PersistentPowerUpEC.h"
 
-class InstakillEC : public PowerUpEC {
-  private:
-    double time;
-    double timeEffect;
-    bool startPicked;
-
-    void setEffect(bool effect);
-
+class InstakillEC final : public PersistentPowerUpEC {
   public:
-    InstakillEC();
-    ~InstakillEC();
-    virtual void checkEvent();
-
-    void setTimeEffect(float _time);
-    bool timeDisappearEffect();
+    void setEffect(bool value) override;
+    std::string getName() override;
 };
