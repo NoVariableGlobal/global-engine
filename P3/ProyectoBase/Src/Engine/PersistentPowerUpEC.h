@@ -3,8 +3,7 @@
 
 class PersistentPowerUpEC : public PowerUpEC {
   private:
-    double timeEffect;
-    bool startPicked;
+    bool effect_ = false;
 
   protected:
     virtual void setEffect(bool value) = 0;
