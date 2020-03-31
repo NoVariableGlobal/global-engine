@@ -22,10 +22,13 @@ jobs:
     - name: Build Project
       run: pwsh -File .\build.ps1 -EngineOnly -Release
       shell: pwsh
+    - name: Create Artifact
+      run: pwsh -File .\release.ps1
+      shell: pwsh
       env:
         RELEASE_OS: ${{ runner.os }}
         RELEASE_NAME: ${{ github.event.release.name }}
-    - name: artifact
+    - name: Upload Artifact
       uses: icrawl/action-artifact@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
