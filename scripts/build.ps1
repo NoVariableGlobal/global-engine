@@ -344,7 +344,7 @@ Try {
             $local:MsBuildParameters = @($Target, $Property, $VerbosityArgument, $BuildInParallelArgument, $MaxCpuCountArgument, $NoLogoArgument)
         }
 
-        # Build Global Engine
+        # Build One Thousand Years
         Step-VisualStudio "$RootFolder\one-thousand-years.sln"
     }
 
