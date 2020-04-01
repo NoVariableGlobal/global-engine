@@ -251,7 +251,7 @@ function Step-CMake([string] $Path, [string[]] $Arguments) {
     }
 }
 
-$local:RootFolder = "$($PSScriptRoot)"
+$local:RootFolder = Split-Path $PSScriptRoot -Parent
 $local:BinaryDirectory = "$RootFolder\bin"
 $local:DependenciesRoot = "$RootFolder\deps"
 

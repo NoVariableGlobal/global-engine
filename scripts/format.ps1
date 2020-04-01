@@ -128,10 +128,12 @@ function Test-Format([string[]] $Files) {
 }
 
 Try {
+    $private:RootFolder = Split-Path $PSScriptRoot -Parent
+
     # Scan the files
     Write-Host "Scanning files... " -ForegroundColor Blue -NoNewline
     $private:Duration = Measure-Command {
-        $FormatFiles = (Get-ChildItem src | Select-Object -ExpandProperty FullName)
+        $FormatFiles = (Get-ChildItem "$RootFolder\src" | Select-Object -ExpandProperty FullName)
     }
     Write-Host "Found "            -ForegroundColor Green -NoNewLine
     Write-Host $FormatFiles.Length -ForegroundColor Cyan  -NoNewLine

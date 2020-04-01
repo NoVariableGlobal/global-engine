@@ -68,7 +68,7 @@ function Find-7Zip {
 Try {
     $private:7Zip = Find-7Zip
 
-    $private:RootFolder = "$($PSScriptRoot)"
+    $private:RootFolder = Split-Path $PSScriptRoot -Parent
     $private:BinFolder = Join-Path -Path $RootFolder -ChildPath "bin"
 
     $private:ReleaseOS = If ($Env:RELEASE_OS) { $Env:RELEASE_OS } Else { "unknown" }
