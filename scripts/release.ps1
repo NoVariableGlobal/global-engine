@@ -69,7 +69,7 @@ Try {
     $private:7Zip = Find-7Zip
 
     $private:RootFolder = Split-Path $PSScriptRoot -Parent
-    $private:BinFolder = Join-Path -Path $RootFolder -ChildPath "bin"
+    $private:BinFolder = Join-Path -Path $RootFolder -ChildPath "libs"
 
     $private:ReleaseOS = If ($Env:RELEASE_OS) { $Env:RELEASE_OS } Else { "unknown" }
     $private:ReleaseName = If ($Env:RELEASE_NAME) { $Env:RELEASE_NAME } Else { "unknown" }
