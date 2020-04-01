@@ -1,7 +1,0 @@
-1. Abrir bin/cmake-gui.exe
-2. source code -> ProyectoBase/lib/jsoncpp-main
-3. build the binaries -> ProyectoBase/Dependencias/jsoncpp-main/build (si no existe la carpeta build se crea sola)
-4. configure -> no tocar nada en las opciones y finish
-5. Generate
-6. Ir a ProyectoBase/lib/jsoncpp-main/build, abrir OGRE.sln y compliar el proyecto en DEBUG y RELEASE
-7. Compilar nuestro proyecto. Si algo no funciona consultar a Miriam, gracias por vuestra colaboracion.

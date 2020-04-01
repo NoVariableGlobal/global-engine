@@ -32,17 +32,17 @@
 .idea/
 .vscode/
 .vs/
-*/**/build/
-*/**/libs/
-inter/
+.temp/
+build/
+libs/
 test/
 
-*/**/bin/*.exe
-*/**/bin/*.log
-*/**/bin/*.ilk
-*/**/bin/*.dll
-*/**/bin/*.iobj
-*/**/bin/*.ipdb
-*/**/bin/*.pdb
+bin/*.exe
+bin/*.log
+bin/*.ilk
+bin/*.dll
+bin/*.iobj
+bin/*.ipdb
+bin/*.pdb
 
-P3/ProyectoBase/bin/TaharezLook.looknfeel
+bin/TaharezLook.looknfeel

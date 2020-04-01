@@ -1,9 +1,0 @@
-1. Abrir cmake-gui.exe
-2. source code -> ProyectoBase/lib/bullet3-2.89
-3. build the binaries -> ProyectoBase/lib/bullet3-2.89/build (si no existe la carpeta build se crea)
-4. configure -> no tocar nada en las opciones y finish
-5. En las casillas rojas en el primer grupo de casillas SOLO debe estar marcada BUILD_BULLET3 y en el tecer grupo de casillas marcar
-	USE_MSCV_RUNTIME_LIBRARY_DLL
-6. Generate
-7. Ir a ProyectoBase/lib/bullet3-2.89/build, abrir el .sln y compliar el proyecto en DEBUG y RELEASE
-8. Compilar nuestro proyecto si algo no funciona consultar a Pablo, gracias por vuestra colaboración.
