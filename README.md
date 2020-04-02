@@ -31,7 +31,7 @@ Once you have your [PowerShell] window in this project's folder, run the followi
 and compile the project:
 
 ```ps1
-.\build.ps1
+.\scripts\build.ps1
 ```
 
 That's all!
@@ -44,8 +44,8 @@ shell of your preference.
 #### BulletPhysics
 
 1. Open CMake-GUI and set up the following parameters:
-    - Source Code: `P3/ProyectoBase/lib/bullet3-2.89`
-    - Build Folder: `P3/ProyectoBase/lib/bullet3-2.89/build`
+    - Source Code: `deps/bullet`
+    - Build Folder: `deps/bullet/build`
 1. Click on the `Configure` button.
 1. Set up the following values:
     - `BUILD_BULLET2_DEMOS`: `OFF`
@@ -65,8 +65,8 @@ shell of your preference.
 #### JsonCPP
 
 1. Open CMake-GUI and set up the following parameters:
-    - Source Code: `P3/ProyectoBase/jsoncpp-master`
-    - Build Folder: `P3/ProyectoBase/lib/jsoncpp-master/build`
+    - Source Code: `deps/jsoncpp`
+    - Build Folder: `deps/jsoncpp/build`
 1. Click on the `Configure` button.
 1. Click on the `Generate` button.
 1. Compile the project (`ALL_BUILD` by default) in `Debug` and `Release`.
@@ -74,30 +74,30 @@ shell of your preference.
 #### Ogre
 
 1. Open CMake-GUI and set up the following parameters:
-    - Source Code: `P3/ProyectoBase/lib/ogre-1.12.5`
-    - Build Folder: `P3/ProyectoBase/lib/ogre-1.12.5/build`
+    - Source Code: `deps/ogre`
+    - Build Folder: `deps/ogre/build`
 1. Click on the `Configure` button.
 1. Set up the following values:
     - `OGRE_BUILD_COMPONENT_OVERLAY`: `OFF`
 1. Click on the `Generate` button.
 1. Compile the project (`ALL_BUILD` by default) in `Debug` and `Release`.
-1. Copy the following files to `P3/ProyectoBase/bin/`:
-    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/debug/OgreMain_d.dll`
-    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/debug/RenderSystem_Direct3D11_d.dll`
-    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/debug/RenderSystem_GL_d.dll`
-    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/debug/OgreRTShaderSystem_d.dll`
-    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/debug/Codec_STBI_d.dll`
-    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/OgreMain.dll`
-    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/RenderSystem_Direct3D11.dll`
-    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/RenderSystem_GL.dll`
-    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/zlib.dll`
-    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/OgreRTShaderSystem.dll`
-    - `P3/ProyectoBase/lib/ogre-1.12.5/build/bin/release/Codec_STBI.dll`
+1. Copy the following files to `bin/`:
+    - `deps/ogre/build/bin/debug/OgreMain_d.dll`
+    - `deps/ogre/build/bin/debug/RenderSystem_Direct3D11_d.dll`
+    - `deps/ogre/build/bin/debug/RenderSystem_GL_d.dll`
+    - `deps/ogre/build/bin/debug/OgreRTShaderSystem_d.dll`
+    - `deps/ogre/build/bin/debug/Codec_STBI_d.dll`
+    - `deps/ogre/build/bin/release/OgreMain.dll`
+    - `deps/ogre/build/bin/release/RenderSystem_Direct3D11.dll`
+    - `deps/ogre/build/bin/release/RenderSystem_GL.dll`
+    - `deps/ogre/build/bin/release/zlib.dll`
+    - `deps/ogre/build/bin/release/OgreRTShaderSystem.dll`
+    - `deps/ogre/build/bin/release/Codec_STBI.dll`
 
 #### SDL2
 
-1. Copy the following files to `P3/ProyectoBase/bin/`:
-    - `P3/ProyectoBase/lib/SDL2-2.0.10/lib/x64/SDL2.dll`
+1. Copy the following files to `bin/`:
+    - `deps/SDL2/lib/x64/SDL2.dll`
 
 > If you encountered any issues, please open an issue including the steps taken and the warnings or errors you
 encountered. If you found no problem so far, you should be able to compile this project without problems.

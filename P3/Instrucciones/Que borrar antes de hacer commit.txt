@@ -1,7 +1,0 @@
-NO DEBERIA HACER FALTA PORQUE TENEMOS .gitignore
-
-1. borrar el contenido de ProyectoBase/build
-2. borrar el contenido de ProyectoBase/Dependencias/ogre-1.12.5/build
-3. borrar el contenido de ProyectoBase/Exes (Expecto plugins.cfg, plugins_d.cfg y las carpetas de recursos)
-4. borrar el contenido de ProyectoBase/inter
-5. Si el proyecto muere despues de seguir los pasos reclamar a Pablo, gracias por vuestra colaboracion.
