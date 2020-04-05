@@ -9,6 +9,8 @@ class Entity {
   private:
     // Shows if the entity is active or not
     bool active = false;
+	// Whether or not the entity should persist between scenes
+    bool persistent = false;
     // ID attached to the entity
     std::string id = "";
     // TAG attached to the entity
@@ -40,4 +42,7 @@ class Entity {
 
     void setActive(bool _active);
     bool isActive();
+
+	void setPersistent(bool _p);
+    bool isPersistent();
 };

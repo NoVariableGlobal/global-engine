@@ -106,6 +106,14 @@ void Loader::createEntity(Json::Value& _data, Scene* _scene) {
         entity->setTag("Default");
     }
 
+    try {
+        if (_data["persistent"].isBool())
+            entity->setPersistent(_data["persistent"].asBool());
+    } catch (std::exception e) {
+        entity->setPersistent(false);
+        std::cout << "ASD\n";
+    }
+
     _scene->addEntity(entity);
 
     if (!_data["components"].isArray())

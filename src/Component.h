@@ -27,6 +27,7 @@ class Component {
     virtual void setActive(bool active);
     void toggleActive();
 
+    Entity* getFather();
     void setFather(Entity* father);
     void setScene(Scene* scene);
 };

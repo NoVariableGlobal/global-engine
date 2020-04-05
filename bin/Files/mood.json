@@ -87,6 +87,7 @@
     {
       "id": "Player",
       "tag": "Player",
+      "persistent": true,
       "components": [
         {
           "type": "TransformComponent",

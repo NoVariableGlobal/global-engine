@@ -51,6 +51,8 @@ class Scene {
     void deleteEntity(Entity* entity);
     // clear the entities of the map.
     void clearEntities();
+    // clear the non scene persistant elements of the map.
+    void clearNonPersistantEntities();
 
     // returns a new instance of a prefab.
     Entity* getInstanceOf(std::string _prefab, std::string _id,

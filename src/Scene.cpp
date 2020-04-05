@@ -89,6 +89,14 @@ void Scene::clearEntities() {
     entities.clear();
 }
 
+void Scene::clearNonPersistantEntities() {
+    for (auto it : entities) {
+        if (!it.second->isPersistent()) {
+            deleteEntity(it.second);
+        }
+    }
+}
+
 Entity* Scene::getInstanceOf(std::string _prefab, std::string _id,
                              std::string _tag) {
     Entity* instance = new Entity();
@@ -113,13 +121,7 @@ void Scene::addPrefab(std::string id, Json::Value components) {
     prefabs.emplace(id, components);
 }
 
-void Scene::clearPrefabs() {
-    for (auto it : entities) {
-        delete it.second;
-    }
-
-    prefabs.clear();
-}
+void Scene::clearPrefabs() { prefabs.clear(); }
 
 ComponentsManager* Scene::getComponentsManager() { return componentManager; }
 
