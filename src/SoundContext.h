@@ -5,6 +5,7 @@
 #include <string>
 #include <OgreVector3.h>
 
+
 class Channel {
     FMOD::Channel* channel_;
 

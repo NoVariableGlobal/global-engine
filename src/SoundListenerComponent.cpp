@@ -27,6 +27,8 @@ Component* SoundListenerComponentFactory::create(Entity* _father,
     soundListenerComponent->setFather(_father);
     soundListenerComponent->setScene(_scene);
 
+    return soundListenerComponent;
+
 }
 
 DEFINE_FACTORY(SoundListenerComponent);

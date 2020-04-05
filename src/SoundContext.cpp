@@ -1,5 +1,5 @@
 #include "SoundContext.h"
-
+#include "fmod.h"
 #include "fmod_errors.h"
 #include <iostream>
 
@@ -36,7 +36,7 @@ SoundContext* SoundContext::getInstance() {
 }
 
 void SoundContext::init() {
-    auto result = System_Create(&system_);
+    auto result = FMOD::System_Create(&system_);
     ERRCHECK(result);
 
     try {
@@ -44,11 +44,11 @@ void SoundContext::init() {
         ERRCHECK(result);
         for (auto it = soundsToLoad_->begin(); it != soundsToLoad_->end();
              ++it) {
+            FMOD_MODE mode = ((*it)->loop) ? FMOD_LOOP_NORMAL
+                                           : (FMOD_DEFAULT | FMOD_LOOP_OFF);
 
-            FMOD_MODE mode = (it->loop) ? FMOD_LOOP_NORMAL : (FMOD_DEFAULT | FMOD_LOOP_OFF);
-
-            system_->createSound(it->filename_.c_str(), mode, 0,
-                                 &sounds_[it->id_]);
+            system_->createSound((*it)->filename_.c_str(), mode, 0,
+                                 &sounds_[(*it)->id_]);
             ERRCHECK(result);
         }
     } catch (std::exception& e) {
@@ -60,7 +60,13 @@ void SoundContext::init() {
 }
 
 
-FMOD::Sound* SoundContext::getSound(const std::string& id) { return sounds_[id]; }
+void SoundContext::addSoundToLoad(SoundInfo* info) {
+    soundsToLoad_->push_back(info);
+}
+
+FMOD::Sound* SoundContext::getSound(const std::string& id) {
+    return sounds_[id];
+}
 
 Channel* SoundContext::playSound(FMOD::Sound* sound) const {
     FMOD::Channel* channel;
@@ -116,4 +122,6 @@ void SoundContext::update() {
     }
 }
 
-Channel::Channel(FMOD::Channel* channel) : channel_(channel){}
+Channel::Channel(FMOD::Channel* channel) : channel_(channel) {}
+
+FMOD::Channel* Channel::getChannel() { return channel_; }
