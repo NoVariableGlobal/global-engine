@@ -30,6 +30,7 @@
     <ClCompile Include="..\src\Application.cpp" />
     <ClCompile Include="..\src\EventComponent.cpp" />
     <ClCompile Include="..\src\RigidbodyPC.cpp" />
+    <ClCompile Include="..\src\SoundContext.cpp" />
     <ClCompile Include="..\src\SpotLightRC.cpp" />
     <ClCompile Include="..\src\OgreSDLContext.cpp" />
     <ClCompile Include="..\src\CameraRC.cpp" />
@@ -53,6 +54,7 @@
   <ItemGroup>
     <ClInclude Include="..\src\EventComponent.h" />
     <ClInclude Include="..\src\RigidbodyPC.h" />
+    <ClInclude Include="..\src\SoundContext.h" />
     <ClInclude Include="..\src\SpotLightRC.h" />
     <ClInclude Include="..\src\OgreSDLContext.h" />
     <ClInclude Include="..\src\CameraRC.h" />

@@ -70,6 +70,7 @@
     <ClCompile Include="..\src\RigidbodyPC.cpp">
       <Filter>Components\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\SoundContext.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Component.h">
@@ -147,6 +148,7 @@
     <ClInclude Include="..\src\RigidbodyPC.h">
       <Filter>Components\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\SoundContext.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
