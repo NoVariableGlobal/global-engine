@@ -7,16 +7,19 @@ SoundContext* SoundContext::instance_ = nullptr;
 
 SoundContext::SoundContext() {
     sounds_ = std::map<std::string, FMOD::Sound*>();
-    soundsToLoad_ = new std::list<SoundInfo>();
+    soundsToLoad_ = new std::list<SoundInfo*>();
 }
 
 SoundContext::~SoundContext() {
-    system_->release();
     releaseSoundInfo();
+    auto result = system_->release();
+    ERRCHECK(result);
 
 }
 
 void SoundContext::releaseSoundInfo() {
+    for (auto it = soundsToLoad_->begin(); it != soundsToLoad_->end(); ++it)
+        delete *it;
     delete soundsToLoad_;
     soundsToLoad_ = nullptr;
    }
@@ -82,6 +85,15 @@ void SoundContext::stopSound(Channel** channel) {
         std::cerr << e.what() << std::endl;
         delete channel;
         *channel = nullptr;
+    }
+}
+
+void SoundContext::update() {
+    try {
+        auto result = system_->update();
+        ERRCHECK(result);
+    } catch(std::exception&e) {
+        std::cerr << e.what() << std::endl;
     }
 }
 

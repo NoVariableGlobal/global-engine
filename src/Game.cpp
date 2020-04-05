@@ -15,8 +15,12 @@
 #include <string>
 
 #include <iostream>
+#include "SoundContext.h"
 
-Game::Game() {}
+Game::Game() {
+    Loader loader;
+    loader.readSounds();
+}
 
 // Deletes the scene and clears the constexts
 Game::~Game() {
@@ -31,6 +35,7 @@ void Game::initContext() {
     OgreSDLContext::init();
     PhysicsContext::init();
     OgreSDLContext::getInstance()->initApp("Test");
+    SoundContext::getInstance()->init();
 
     TransformComponentFactoryRegisterGlobalVar.noop();
     RigidbodyPCFactoryRegisterGlobalVar.noop();
@@ -44,6 +49,7 @@ bool Game::init(std::string _firstScene) {
     try {
         initContext();
 
+        
         Loader loader;
         loader.readScenes(scenesQueue);
 

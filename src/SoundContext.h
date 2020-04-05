@@ -34,13 +34,16 @@ class SoundContext {
     FMOD::System* system_ = nullptr;
 
     std::map<std::string, FMOD::Sound*> sounds_;
-    std::list<SoundInfo>* soundsToLoad_;
+    std::list<SoundInfo*>* soundsToLoad_;
 
   public:
     static SoundContext* getInstance();
     void init();
 
+    void addSoundToLoad(SoundInfo * info);
     FMOD::Sound* getSound(const std::string& id);
     Channel* playSound(FMOD::Sound* sound) const;
     void stopSound(Channel** channel);
+
+    void update();
 };

@@ -5,6 +5,7 @@
 #include "RenderComponent.h"
 #include "SoundComponent.h"
 #include "Util.h"
+#include "SoundContext.h"
 
 #include <SDL_events.h>
 #include <iostream>
@@ -190,13 +191,7 @@ void ComponentsManager::render() {
     }
 }
 
-void ComponentsManager::updateSound() {
-    // TODO: updateSound method in SoundComponent
-    /* for (auto s : sound){
-        if (s->isActive())
-            s->updateSound()
-            }*/
-}
+void ComponentsManager::updateSound() { SoundContext::getInstance()->update(); }
 
 void ComponentsManager::updateEvent() {
     for (auto e : event) {
