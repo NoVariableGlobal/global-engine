@@ -1,10 +1,12 @@
 #include "SoundContext.h"
+
 #include "fmod_errors.h"
+#include <iostream>
 
 SoundContext* SoundContext::_instance = nullptr;
 
 SoundContext::SoundContext() {
-    _sounds = std::map<std::string, Sound>();
+    _sounds = std::map<std::string, Sound*>();
     _soundsToLoad = new std::list<SoundInfo>();
 }
 
@@ -43,4 +45,30 @@ void SoundContext::init() {
 
 }
 
-Sound* SoundContext::getSound(const std::string& id) { return nullptr; }
+Sound* SoundContext::getSound(const std::string& id) { return _sounds[id]; }
+
+Channel* SoundContext::playSound(Sound* sound) const {
+    Channel* channel;
+    try {
+        auto result = _system->playSound(sound, 0, false, &channel);
+        ERRCHECK(result);
+        return channel;
+    } catch (std::exception& e) {
+        std::cerr << e.what() << std::endl;
+        return nullptr;
+    }
+}
+
+void SoundContext::stopSound(Channel** channel) {
+    FMOD_RESULT result;
+    try {
+        result = (*channel)->stop();
+        ERRCHECK(result);
+        *channel = nullptr;
+    } catch (std::exception& e) {
+        std::cerr << e.what() << std::endl;
+        *channel = nullptr;
+    }
+
+}
+
