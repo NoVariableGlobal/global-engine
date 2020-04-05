@@ -90,10 +90,12 @@ void Scene::clearEntities() {
 }
 
 void Scene::clearNonPersistantEntities() {
-    for (auto it : entities) {
-        if (!it.second->isPersistent()) {
-            deleteEntity(it.second);
-        }
+    auto it = entities.begin();
+    while (it != entities.end()) {
+        if (!it->second->isPersistent())
+            it = entities.erase(it);
+        else
+            ++it;
     }
 }
 
