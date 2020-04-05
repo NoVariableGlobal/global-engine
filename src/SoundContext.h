@@ -4,17 +4,26 @@
 #include <map>
 #include <string>
 
-typedef FMOD::Sound Sound;
-typedef FMOD::Channel Channel;
+
+class Channel {
+    FMOD::Channel* channel_;
+
+public:
+    Channel(FMOD::Channel* channel);
+  FMOD::Channel* getChannel();
+};
+
+
+
 
 struct SoundInfo {
-    std::string _id;
-    std::string _filename;
+    std::string id_;
+    std::string filename_;
     bool loop;
 };
 
 class SoundContext {
-    static SoundContext* _instance;
+    static SoundContext* instance_;
 
     SoundContext();
     ~SoundContext();
@@ -22,16 +31,16 @@ class SoundContext {
 
     static void ERRCHECK(FMOD_RESULT result);
 
-    FMOD::System* _system = nullptr;
+    FMOD::System* system_ = nullptr;
 
-    std::map<std::string, Sound*> _sounds;
-    std::list<SoundInfo>* _soundsToLoad;
+    std::map<std::string, FMOD::Sound*> sounds_;
+    std::list<SoundInfo>* soundsToLoad_;
 
   public:
     static SoundContext* getInstance();
     void init();
 
-    Sound* getSound(const std::string& id);
-    Channel* playSound(Sound* sound) const;
+    FMOD::Sound* getSound(const std::string& id);
+    Channel* playSound(FMOD::Sound* sound) const;
     void stopSound(Channel** channel);
 };

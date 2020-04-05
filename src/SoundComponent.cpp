@@ -1,11 +1,17 @@
 #include "SoundComponent.h"
+#include "SoundContext.h"
 
 SoundComponent::SoundComponent() {
-    // TODO Auto-generated constructor stub
+    channels_ = std::map<std::string, Channel*>();
 }
 
-SoundComponent::~SoundComponent() {
-    // TODO Auto-generated destructor stub
+SoundComponent::~SoundComponent() = default;
+
+void SoundComponent::playSound(const std::string& id) {
+    channels_[id] = SoundContext::getInstance()->playSound(
+        SoundContext::getInstance()->getSound(id));
 }
 
-void SoundComponent::playSound(Sound* sound, bool loop) {}
+void SoundComponent::stopSound(const std::string& id) {
+    SoundContext::getInstance()->stopSound(&channels_[id]);
+}
