@@ -5,7 +5,7 @@
 // Sound es un objeto de la libreria de sonido
 class Sound;
 
-class SoundComponent :public Component {
+class SoundComponent /* : virtual public Component */ {
   public:
     SoundComponent();
     virtual ~SoundComponent();

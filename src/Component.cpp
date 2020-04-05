@@ -15,7 +15,5 @@ void Component::setActive(bool _active) { active = _active; }
 // Activates the component if it is deactivated, deactivates it otherwise
 void Component::toggleActive() { active = !active; }
 
-Entity* Component::getFather() { return father; }
-
 void Component::setFather(Entity* _father) { father = _father; }
 void Component::setScene(Scene* _scene) { scene = _scene; }
