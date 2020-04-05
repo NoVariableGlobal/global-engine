@@ -10,6 +10,17 @@ SoundContext::SoundContext() {
     _soundsToLoad = new std::list<SoundInfo>();
 }
 
+SoundContext::~SoundContext() {
+    _system->release();
+    releaseSoundInfo();
+
+}
+
+void SoundContext::releaseSoundInfo() {
+    delete _soundsToLoad;
+    _soundsToLoad = nullptr;
+   }
+
 void SoundContext::ERRCHECK(FMOD_RESULT result) {
     if (result != FMOD_OK)
         throw std::exception(FMOD_ErrorString(result));
@@ -45,6 +56,7 @@ void SoundContext::init() {
 
 }
 
+
 Sound* SoundContext::getSound(const std::string& id) { return _sounds[id]; }
 
 Channel* SoundContext::playSound(Sound* sound) const {
@@ -69,6 +81,5 @@ void SoundContext::stopSound(Channel** channel) {
         std::cerr << e.what() << std::endl;
         *channel = nullptr;
     }
-
 }
 
