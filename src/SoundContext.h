@@ -3,7 +3,7 @@
 #include <list>
 #include <map>
 #include <string>
-
+#include <OgreVector3.h>
 
 class Channel {
     FMOD::Channel* channel_;
@@ -35,6 +35,7 @@ class SoundContext {
 
     std::map<std::string, FMOD::Sound*> sounds_;
     std::list<SoundInfo*>* soundsToLoad_;
+    FMOD_VECTOR listenerPos_;
 
   public:
     static SoundContext* getInstance();
@@ -44,6 +45,6 @@ class SoundContext {
     FMOD::Sound* getSound(const std::string& id);
     Channel* playSound(FMOD::Sound* sound) const;
     void stopSound(Channel** channel);
-
+    void updatePosition(Ogre::Vector3 pos);
     void update();
 };

@@ -88,6 +88,25 @@ void SoundContext::stopSound(Channel** channel) {
     }
 }
 
+void SoundContext::updatePosition(Ogre::Vector3 _pos) {
+    listenerPos_ = {_pos.x, _pos.y, _pos.z};
+    FMOD_VECTOR vel = {0, 0, 0};
+    FMOD_VECTOR forward = {0, 0, 1};
+    FMOD_VECTOR up = {0, 1, 0};
+
+    FMOD_RESULT result;
+
+    try {
+        result = system_->set3DListenerAttributes(0, &listenerPos_, &vel, &forward,
+                                               &up);
+        ERRCHECK(result);
+    } catch (std::exception& e) {
+        result = system_->release();
+        ERRCHECK(result);
+        throw e;
+    }
+}
+
 void SoundContext::update() {
     try {
         auto result = system_->update();
