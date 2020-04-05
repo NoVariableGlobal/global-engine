@@ -71,14 +71,14 @@ void Scene::addEntity(Entity* entity) {
     entities.emplace(entity->getId(), entity);
 }
 
-void Scene::deleteEntity(Entity* entity) {
+std::map<std::string, Entity*>::iterator Scene::deleteEntity(Entity* entity) {
     std::map<std::string, Component*>& components = entity->getAllComponents();
     for (auto it : components) {
         it.second->destroy();
     }
     std::string id = entity->getId();
     delete entities.find(id)->second;
-    entities.erase(entities.find(id));
+    return entities.erase(entities.find(id));
 }
 
 void Scene::clearEntities() {
@@ -93,7 +93,7 @@ void Scene::clearNonPersistantEntities() {
     auto it = entities.begin();
     while (it != entities.end()) {
         if (!it->second->isPersistent())
-            it = entities.erase(it);
+            it = deleteEntity(it->second);
         else
             ++it;
     }
