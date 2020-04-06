@@ -1,21 +1,17 @@
 #pragma once
+#include <OgreVector3.h>
 #include <fmod.hpp>
 #include <list>
 #include <map>
 #include <string>
-#include <OgreVector3.h>
-
 
 class Channel {
     FMOD::Channel* channel_;
 
-public:
+  public:
     Channel(FMOD::Channel* channel);
-  FMOD::Channel* getChannel();
+    FMOD::Channel* getChannel();
 };
-
-
-
 
 struct SoundInfo {
     std::string id_;
@@ -43,7 +39,7 @@ class SoundContext {
     static void destroy();
     void init();
 
-    void addSoundToLoad(SoundInfo * info);
+    void addSoundToLoad(SoundInfo* info);
     FMOD::Sound* getSound(const std::string& id);
     Channel* playSound(FMOD::Sound* sound) const;
     void stopSound(Channel** channel);

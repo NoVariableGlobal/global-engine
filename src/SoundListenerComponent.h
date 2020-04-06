@@ -2,14 +2,13 @@
 #include "EventComponent.h"
 #include "TransformComponent.h"
 
-
 // FACTORY INFRASTRUCTURE DECLARATION
 DECLARE_FACTORY(SoundListenerComponent);
 
 class SoundListenerComponent : public EventComponent {
 
-  TransformComponent* transform_ = nullptr;
+    TransformComponent* transform_ = nullptr;
 
-public:
+  public:
     virtual void checkEvent();
 };

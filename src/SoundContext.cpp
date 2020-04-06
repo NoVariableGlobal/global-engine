@@ -16,7 +16,6 @@ SoundContext::~SoundContext() {
         it->second->release();
     auto result = system_->release();
     ERRCHECK(result);
-
 }
 
 void SoundContext::releaseSoundInfo() {
@@ -24,7 +23,7 @@ void SoundContext::releaseSoundInfo() {
         delete *it;
     delete soundsToLoad_;
     soundsToLoad_ = nullptr;
-   }
+}
 
 void SoundContext::ERRCHECK(FMOD_RESULT result) {
     if (result != FMOD_OK)
@@ -63,9 +62,7 @@ void SoundContext::init() {
         ERRCHECK(result);
         throw e;
     }
-
 }
-
 
 void SoundContext::addSoundToLoad(SoundInfo* info) {
     soundsToLoad_->push_back(info);
@@ -110,8 +107,8 @@ void SoundContext::updatePosition(Ogre::Vector3 _pos) {
     FMOD_RESULT result;
 
     try {
-        result = system_->set3DListenerAttributes(0, &listenerPos_, &vel, &forward,
-                                               &up);
+        result = system_->set3DListenerAttributes(0, &listenerPos_, &vel,
+                                                  &forward, &up);
         ERRCHECK(result);
     } catch (std::exception& e) {
         result = system_->release();
@@ -124,7 +121,7 @@ void SoundContext::update() {
     try {
         auto result = system_->update();
         ERRCHECK(result);
-    } catch(std::exception&e) {
+    } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
 }

@@ -14,8 +14,8 @@
 #include <SDL_events.h>
 #include <string>
 
-#include <iostream>
 #include "SoundContext.h"
+#include <iostream>
 
 Game::Game() {
     Loader loader;
@@ -50,7 +50,6 @@ bool Game::init(std::string _firstScene) {
     try {
         initContext();
 
-        
         Loader loader;
         loader.readScenes(scenesQueue);
 

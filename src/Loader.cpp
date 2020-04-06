@@ -121,8 +121,7 @@ void Loader::createSoundInfo(Json::Value& data) {
         throw std::exception(
             "Loader: files/sounds.json: filename is not an string. ");
     if (!data["loop"].isBool())
-        throw std::exception(
-            "Loader: files/sounds.json: loop is not a bool. ");
+        throw std::exception("Loader: files/sounds.json: loop is not a bool. ");
     SoundInfo* info = new SoundInfo;
     info->id_ = data["id"].asString();
     info->filename_ = data["filename"].asString();

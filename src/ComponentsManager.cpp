@@ -4,8 +4,8 @@
 #include "PhysicsComponent.h"
 #include "RenderComponent.h"
 #include "SoundComponent.h"
-#include "Util.h"
 #include "SoundContext.h"
+#include "Util.h"
 
 #include <SDL_events.h>
 #include <iostream>
