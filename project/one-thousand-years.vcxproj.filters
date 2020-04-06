@@ -70,8 +70,15 @@
     <ClCompile Include="..\src\RigidbodyPC.cpp">
       <Filter>Components\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\SoundContext.cpp" />
-    <ClCompile Include="..\src\SoundListenerComponent.cpp" />
+    <ClCompile Include="..\src\SoundContext.cpp">
+      <Filter>Components\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SoundListenerComponent.cpp">
+      <Filter>Components\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SoundTestIC.cpp">
+      <Filter>Components\Sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Component.h">
@@ -149,8 +156,15 @@
     <ClInclude Include="..\src\RigidbodyPC.h">
       <Filter>Components\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\SoundContext.h" />
-    <ClInclude Include="..\src\SoundListenerComponent.h" />
+    <ClInclude Include="..\src\SoundContext.h">
+      <Filter>Components\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SoundListenerComponent.h">
+      <Filter>Components\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SoundTestIC.h">
+      <Filter>Components\Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
