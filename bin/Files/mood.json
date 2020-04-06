@@ -35,52 +35,16 @@
     {
       "id": "GameManager",
       "components": [
+        
         {
-          "type": "SpawnerBulletsC",
+          "type": "SoundComponent",
           "attributes": {
+            "sounds": ["test"]
           }
         },
         {
-          "type": "SpawnerFloorRandomEC",
-          "attributes": {
-			"floorDimensions[x,y,z,w]": [ -100, -100, 200, 200 ],
-            "spawnCooldown": 5,
-            "spawnID": [ "Medkit", "IncreaseSpeed", "InfiniteAmmo", "InvulnerabilityShield", "Nuke", "Instakill" ],
-            "spawnTag": "PowerUp",
-            "spawnChances": [ 30, 20, 15, 20, 5, 10 ]
-          }
-        },
-        {
-          "type": "SpawnerFloorRandomEC",
-          "attributes": {
-			"floorDimensions[x,y,z,w]": [ -100, -100, 200, 200 ],
-            "spawnCooldown": 5,
-            "spawnID": [ "AutomaticRifle", "Shotgun", "SniperGun" ],
-            "spawnTag": "Gun",
-            "spawnChances": [ 50, 25, 25 ]
-          }
-        }
-      ]
-    },
-    {
-      "id": "GeneradorEnemigos",
-      "components": [
-        {
-          "type": "TransformComponent",
-          "attributes": {
-            "position": [ 0, 0, 100 ],
-            "orientation": [ 0, 0, 0 ],
-            "scale": [ 1, 1, 1 ]
-          }
-        },
-        {
-          "type": "SpawnerEnemiesEC",
-          "attributes": {
-            "spawnCooldown": 2,
-            "spawnID": [ "RangedHandgunEnemy", "RangedRifleEnemy", "RangedShotgunEnemy", "RangedSniperEnemy"],
-            "spawnTag": "Enemy",
-            "spawnChances": [ 25, 25, 25, 25 ]
-          }
+          "type": "SoundTestIC",
+          "attributes":{}
         }
       ]
     },
@@ -105,17 +69,6 @@
           }
         },
         {
-          "type": "PlayerMovementIC",
-          "attributes": {
-            "speed": 35
-          }
-        },
-        {
-          "type": "PlayerShotIC",
-          "attributes": {
-          }
-        },
-        {
           "type": "RigidbodyPC",
           "attributes": {
             "position": [ 0, 0, 0 ],
@@ -130,82 +83,11 @@
           }
         },
         {
-          "type": "LifeC",
-          "attributes": {
-            "life": 100
-          }
-        },
-        {
-          "type": "HandGunC",
-          "attributes": {
-            "bulletTag": "PlayerBullet",
-            "bulletchamberMax": 20,
-            "munition": 1000,
-            "bulletDamage": 15,
-            "bulletSpeed": 50,
-            "cadence": 1,
-            "automatic": false,
-            "instakill": false
-          }
-        },
-        {
-          "type": "ShotgunC",
-          "attributes": {
-            "bulletTag": "PlayerBullet",
-            "bulletchamberMax": 2,
-            "munition": 14,
-            "bulletDamage": 50,
-            "bulletSpeed": 50,
-            "cadence": 1,
-            "automatic": false,
-            "nPellets": 3,
-            "dispersion": 10,
-            "instakill": false
-          }
-        },
-        {
-          "type": "SniperGunC",
-          "attributes": {
-            "bulletTag": "PlayerBullet",
-            "bulletchamberMax": 1,
-            "munition": 5,
-            "bulletDamage": 100,
-            "bulletSpeed": 100,
-            "cadence": 1,
-            "instakill": false
-          }
-        },
-		    {
-          "type": "AutomaticRifleC",
-          "attributes": {
-            "bulletTag": "PlayerBullet",
-            "bulletchamberMax": 30,
-            "munition": 90,
-            "bulletDamage": 25,
-            "bulletSpeed": 50,
-            "cadence": 0.1,
-            "automatic": true,
-            "instakill": false
-          }
-        },
-		    {
-		      "type": "AutomaticEC",
+          "type": "SoundListenerComponent",
           "attributes": {}
-		    },
-        {
-          "type": "WeaponControllerIC",
-          "attributes": {}
-        },
-        {
-          "type": "OrientateToMouseIC",
-          "attributes": {}
-        },
-		{
-		  "type": "PowerUpTrackerC",
-		  "attributes": {}
-		}
+        }
       ]
-      },
+    },
     {
       "id": "Suelo",
       "components": [

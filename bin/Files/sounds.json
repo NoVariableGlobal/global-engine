@@ -1,0 +1,9 @@
+{
+  "sounds": [
+    {
+      "id": "test",
+      "filename": "media/sounds/ahaha.wav",
+      "loop": false
+    }
+  ]
+}
