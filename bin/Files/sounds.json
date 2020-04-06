@@ -2,7 +2,7 @@
   "sounds": [
     {
       "id": "test",
-      "filename": "media/sounds/ahaha.wav",
+      "filename": "ahaha.wav",
       "loop": false
     }
   ]

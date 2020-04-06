@@ -52,9 +52,8 @@ void SoundContext::init() {
              ++it) {
             FMOD_MODE mode = ((*it)->loop) ? FMOD_LOOP_NORMAL
                                            : (FMOD_DEFAULT | FMOD_LOOP_OFF);
-
-            system_->createSound((*it)->filename_.c_str(), mode, 0,
-                                 &sounds_[(*it)->id_]);
+            std::string path = "media/sounds/" + (*it)->filename_;
+            system_->createSound(path.c_str(), mode, 0, &sounds_[(*it)->id_]);
             ERRCHECK(result);
         }
     } catch (std::exception& e) {
