@@ -12,6 +12,8 @@ SoundContext::SoundContext() {
 
 SoundContext::~SoundContext() {
     releaseSoundInfo();
+    for (auto it = sounds_.begin(); it != sounds_.end(); ++it)
+        it->second->release();
     auto result = system_->release();
     ERRCHECK(result);
 
@@ -33,6 +35,11 @@ SoundContext* SoundContext::getInstance() {
     if (instance_ == nullptr)
         instance_ = new SoundContext();
     return instance_;
+}
+
+void SoundContext::destroy() {
+    delete instance_;
+    instance_ = nullptr;
 }
 
 void SoundContext::init() {
@@ -85,7 +92,7 @@ void SoundContext::stopSound(Channel** channel) {
     try {
         result = (*channel)->getChannel()->stop();
         ERRCHECK(result);
-        delete channel;
+        delete *channel;
         *channel = nullptr;
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;

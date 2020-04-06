@@ -5,6 +5,8 @@
 #include "SoundContext.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
+#include "ComponentsManager.h"
+#include "Scene.h"
 
 void SoundListenerComponent::checkEvent() {
     if (transform_ == nullptr)
@@ -24,9 +26,10 @@ Component* SoundListenerComponentFactory::create(Entity* _father,
                                          Scene* _scene) {
     SoundListenerComponent* soundListenerComponent = new SoundListenerComponent();
 
+    
     soundListenerComponent->setFather(_father);
     soundListenerComponent->setScene(_scene);
-
+    _scene->getComponentsManager()->addEC(soundListenerComponent);
     return soundListenerComponent;
 
 }

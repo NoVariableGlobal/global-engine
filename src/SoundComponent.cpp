@@ -10,9 +10,14 @@ SoundComponent::SoundComponent() : Component(){
     channels_ = std::map<std::string, Channel*>();
 }
 
-SoundComponent::~SoundComponent() = default;
+SoundComponent::~SoundComponent() {
+}
 
 void SoundComponent::playSound(const std::string& id) {
+
+    if (channels_[id] != nullptr) 
+        delete channels_[id];
+
     channels_[id] = SoundContext::getInstance()->playSound(
         SoundContext::getInstance()->getSound(id));
 }
@@ -21,7 +26,10 @@ void SoundComponent::stopSound(const std::string& id) {
     SoundContext::getInstance()->stopSound(&channels_[id]);
 }
 
-void SoundComponent::destroy() {}
+void SoundComponent::destroy() {
+    for (auto it = channels_.begin(); it != channels_.end(); ++it)
+        delete it->second;
+}
 
 void SoundComponent::addSoundToList(const std::string& id) {
     channels_[id] = nullptr;
@@ -39,6 +47,8 @@ Component* SoundComponentFactory::create(Entity* _father,
 
     soundComponent->setFather(_father);
     soundComponent->setScene(_scene);
+
+    _scene->getComponentsManager()->addDC(soundComponent);
 
     if (!_data["sounds"].isArray())
         throw std::exception("SoundComponent: sounds is not an array");

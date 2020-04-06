@@ -28,6 +28,7 @@ Game::~Game() {
 
     FactoriesFactory::getInstance()->clear();
     OgreSDLContext::getInstance()->erase();
+    SoundContext::destroy();
 }
 
 // Inits all context

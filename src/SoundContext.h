@@ -40,6 +40,7 @@ class SoundContext {
 
   public:
     static SoundContext* getInstance();
+    static void destroy();
     void init();
 
     void addSoundToLoad(SoundInfo * info);
