@@ -11,6 +11,8 @@ SoundComponent::SoundComponent() : Component(){
 }
 
 SoundComponent::~SoundComponent() {
+    for (auto it = channels_.begin(); it != channels_.end(); ++it)
+        delete it->second;
 }
 
 void SoundComponent::playSound(const std::string& id) {
@@ -27,8 +29,6 @@ void SoundComponent::stopSound(const std::string& id) {
 }
 
 void SoundComponent::destroy() {
-    for (auto it = channels_.begin(); it != channels_.end(); ++it)
-        delete it->second;
 }
 
 void SoundComponent::addSoundToList(const std::string& id) {
