@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "id": "Camera",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 3, 3, 3 ]
+          }
+        },
+        {
+          "type": "CameraRC",
+          "attributes": {
+            "node": "nCamera",
+            "viewportColour": [ 0, 0, 0 ],
+            "offset": [ 0, 300, 0 ],
+            "lookAt": [ 0, -1, 0 ],
+            "targetId": "Player",
+            "follow": [ true, true, true ]
+          }
+        },
+        {
+          "type": "SpotLightRC",
+          "attributes": {
+            "node": "nSpotLight",
+            "colour": [ 0.5, 0.5, 0.5 ],
+            "direction": [ 0, -1, 0 ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "GameManager",
+      "components": [
+        
+        {
+          "type": "SoundComponent",
+          "attributes": {
+            "sounds": ["test"]
+          }
+        },
+        {
+          "type": "SoundTestIC",
+          "attributes":{}
+        }
+      ]
+    },
+    {
+      "id": "Player",
+      "tag": "Player",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 3, 3, 3 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "Sinbad.mesh",
+            "node": "nPlayer",
+            "material": "none"
+          }
+        },
+        {
+          "type": "RigidbodyPC",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "shape": [ 5, 10, 5 ],
+            "mass": 1,
+            "gravity": [ 0, 0, 0 ],
+            "trigger": false,
+            "kinematic": false,
+            "static": false,
+            "friction": 0,
+            "restitution": 0
+          }
+        },
+        {
+          "type": "SoundListenerComponent",
+          "attributes": {}
+        }
+      ]
+    },
+    {
+      "id": "Suelo",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, -1, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 3, 0.0001, 3 ]
+          }
+        },
+        {
+          "type": "TridimensionalObjectRC",
+          "attributes": {
+            "mesh": "cube.mesh",
+            "node": "nSuelo",
+            "material": "GrassMaterial"
+          }
+        }
+      ]
+    }
+  ]
+}

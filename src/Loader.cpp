@@ -9,6 +9,8 @@
 #include <json.h>
 #include <string>
 
+#include "SoundContext.h"
+
 Loader::Loader() {}
 
 Loader::~Loader() {}
@@ -90,6 +92,42 @@ void Loader::readObjects(std::string _fileName, Scene* _scene) {
     int numEntities = entities.size();
     for (int i = 0; i < numEntities; i++)
         createEntity(entities[i], _scene);
+}
+
+void Loader::readSounds() {
+    std::fstream file;
+    file.open("files/sounds.json");
+    if (!file.is_open())
+        throw std::exception("Loader: sounds file not found");
+
+    Json::Value data;
+    file >> data;
+
+    if (!data["sounds"].isArray())
+        throw std::exception("Loader: scene file: sounds is not an array");
+
+    Json::Value sounds = data["sounds"];
+
+    int numSounds = sounds.size();
+    for (int i = 0; i < numSounds; ++i)
+        createSoundInfo(sounds[i]);
+}
+
+void Loader::createSoundInfo(Json::Value& data) {
+    if (!data["id"].isString())
+        throw std::exception(
+            "Loader: files/sounds.json: id is not an string. ");
+    if (!data["filename"].isString())
+        throw std::exception(
+            "Loader: files/sounds.json: filename is not an string. ");
+    if (!data["loop"].isBool())
+        throw std::exception("Loader: files/sounds.json: loop is not a bool. ");
+    SoundInfo* info = new SoundInfo;
+    info->id_ = data["id"].asString();
+    info->filename_ = data["filename"].asString();
+    info->loop = data["loop"].asBool();
+
+    SoundContext::getInstance()->addSoundToLoad(info);
 }
 
 void Loader::createEntity(Json::Value& _data, Scene* _scene) {

@@ -291,7 +291,10 @@ Try {
         Step-VisualStudioThirdPartyRelease "$BulletFolder\build\BULLET_PHYSICS.sln"
 
         # Build FMod
-        # $private:FModFolder = "$DependenciesRoot\fmod"
+        $private:FModFolder = "$DependenciesRoot\fmod"
+        Step-CopyToBinaryDirectory "FMod" @(
+            "$FModFolder\fmod64.dll"
+        )
 
         # Build JsonCPP
         $private:JsonFolder = "$DependenciesRoot\jsoncpp"

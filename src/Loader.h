@@ -26,6 +26,12 @@ class Loader {
 
     // Read the entities of the scene from the scene file
     void readObjects(std::string _fileName, Scene* scene);
+
+    // Read the sounds of the game from the sounds file
+    void readSounds();
+
+    void createSoundInfo(Json::Value& data);
+
     // Create an entity
     void createEntity(Json::Value& _data, Scene* scene);
     // Set the components to an entity

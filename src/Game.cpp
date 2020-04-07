@@ -14,9 +14,13 @@
 #include <SDL_events.h>
 #include <string>
 
+#include "SoundContext.h"
 #include <iostream>
 
-Game::Game() {}
+Game::Game() {
+    Loader loader;
+    loader.readSounds();
+}
 
 // Deletes the scene and clears the constexts
 Game::~Game() {
@@ -24,6 +28,7 @@ Game::~Game() {
 
     FactoriesFactory::getInstance()->clear();
     OgreSDLContext::getInstance()->erase();
+    SoundContext::destroy();
 }
 
 // Inits all context
@@ -31,6 +36,7 @@ void Game::initContext() {
     OgreSDLContext::init();
     PhysicsContext::init();
     OgreSDLContext::getInstance()->initApp("Test");
+    SoundContext::getInstance()->init();
 
     TransformComponentFactoryRegisterGlobalVar.noop();
     RigidbodyPCFactoryRegisterGlobalVar.noop();
