@@ -1,12 +1,8 @@
 {"scenes":
 	[
 		{
-			"name": "MOOD",
-			"file": "mood.json"
-		},
-		{
-			"name" : "GSHIFT",
-			"file" : "gshift.json"
+			"name": "Test",
+			"file": "test.json"
 		}
 	]
 
