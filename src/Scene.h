@@ -48,9 +48,11 @@ class Scene {
     // Add entity into the map.
     void addEntity(Entity* entity);
     // Delete entity
-    void deleteEntity(Entity* entity);
+    std::map<std::string, Entity*>::iterator deleteEntity(Entity* entity);
     // clear the entities of the map.
     void clearEntities();
+    // clear the non scene persistant elements of the map.
+    void clearNonPersistantEntities();
 
     // returns a new instance of a prefab.
     Entity* getInstanceOf(std::string _prefab, std::string _id,

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Component.h"
+
 // Sound es un objeto de la libreria de sonido
 class Sound;
 
