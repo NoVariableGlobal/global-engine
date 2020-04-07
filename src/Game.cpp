@@ -97,9 +97,7 @@ void Game::setChangeScene(bool _change, std::string _sceneName) {
 }
 
 void Game::setScene(std::string _sceneName) {
-    scene->clearComponentsManager();
-    scene->clearEntities();
-    PhysicsContext::getInstance()->destroyWorldContent();
+    scene->clearNonPersistantEntities();
 
     scene->load(assert_find(scenesQueue, _sceneName));
 

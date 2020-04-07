@@ -36,3 +36,7 @@ void Entity::setActive(bool _active) {
 }
 
 bool Entity::isActive() { return active; }
+
+void Entity::setPersistent(bool _p) { persistent = _p; }
+
+bool Entity::isPersistent() { return persistent; }

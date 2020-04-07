@@ -137,12 +137,11 @@ void Loader::createEntity(Json::Value& _data, Scene* _scene) {
         throw std::exception("Loader: id is not string");
     entity->setId(_data["id"].asString());
 
-    try {
-        if (_data["tag"].isString())
-            entity->setTag(_data["tag"].asString());
-    } catch (std::exception e) {
-        entity->setTag("Default");
-    }
+    if (_data["tag"].isString())
+        entity->setTag(_data["tag"].asString());
+
+    if (_data["persistent"].isBool())
+        entity->setPersistent(_data["persistent"].asBool());
 
     _scene->addEntity(entity);
 
