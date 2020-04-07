@@ -94,6 +94,11 @@ shell of your preference.
     - `deps/ogre/build/bin/release/OgreRTShaderSystem.dll`
     - `deps/ogre/build/bin/release/Codec_STBI.dll`
 
+#### FMod
+
+1. Copy the following files to `bin/`:
+    - `deps/fmod/fmod64.dll`
+
 #### SDL2
 
 1. Copy the following files to `bin/`:
