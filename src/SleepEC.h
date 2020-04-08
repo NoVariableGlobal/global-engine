@@ -20,7 +20,9 @@ struct InfoSleep {
 class SleepEC : public EventComponent {
   private:
     std::vector<std::string> generalSleepEntities;
-    std::priority_queue<InfoSleep, std::vector<InfoSleep>, std::greater<InfoSleep>> asleepEntities;
+    std::priority_queue<InfoSleep, std::vector<InfoSleep>,
+                        std::greater<InfoSleep>>
+        asleepEntities;
 
   public:
     SleepEC();

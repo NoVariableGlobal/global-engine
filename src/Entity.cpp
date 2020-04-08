@@ -40,8 +40,7 @@ bool Entity::isActive() { return active; }
 void Entity::setAsleep(bool _active) {
     asleep = _active;
     for (auto c : components)
-        if (c.first != "TridimensionalObjectRC" &&
-            c.first != "RigidbodyPC")
+        if (c.first != "TridimensionalObjectRC" && c.first != "RigidbodyPC")
             c.second->setActive(!asleep);
 }
 
