@@ -15,12 +15,25 @@ void SoundTestIC::handleInput(const SDL_Event& _event) {
         soundComponent_->playSound("test");
         dynamic_cast<AnimationComponent*>(
             scene->getEntitybyId("Player")->getComponent("AnimationComponent"))
+            ->stopAnimations();
+        dynamic_cast<AnimationComponent*>(
+            scene->getEntitybyId("Player")->getComponent("AnimationComponent"))
             ->startAnimation("Dance");
     } else if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_o) {
         //soundComponent_->stopSound("test");
         dynamic_cast<AnimationComponent*>(
             scene->getEntitybyId("Player")->getComponent("AnimationComponent"))
-            ->stopCurrentAnimation();
+            ->stopAnimations();
+    } else if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_i) {
+        dynamic_cast<AnimationComponent*>(
+            scene->getEntitybyId("Player")->getComponent("AnimationComponent"))
+            ->stopAnimations();
+        dynamic_cast<AnimationComponent*>(
+            scene->getEntitybyId("Player")->getComponent("AnimationComponent"))
+            ->startAnimation("RunBase");
+        dynamic_cast<AnimationComponent*>(
+            scene->getEntitybyId("Player")->getComponent("AnimationComponent"))
+            ->startAnimation("RunTop");
     }
 }
 

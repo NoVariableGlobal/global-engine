@@ -15,22 +15,23 @@ void AnimationComponent::destroy() {
 }
 
 void AnimationComponent::frameRendered(const Ogre::FrameEvent& evt) {
-    if (currentAnim != "")
-        animations.find(currentAnim)->second->addTime(evt.timeSinceLastFrame);
+    for (auto anim : animations)
+        if (anim.second->getEnabled())
+            anim.second->addTime(evt.timeSinceLastFrame);
 }
 
 void AnimationComponent::startAnimation(std::string name) {
-    stopCurrentAnimation();
-
-    currentAnim = name;
-    animations.find(currentAnim)->second->setEnabled(true);
+    animations.find(name)->second->setEnabled(true);
 }
 
-void AnimationComponent::stopCurrentAnimation() {
-    if (currentAnim != "") {
-        animations.find(currentAnim)->second->setEnabled(false);
-        currentAnim = "";
-    }
+void AnimationComponent::stopAnimations() {
+    for (auto anim : animations)
+        if (anim.second->getEnabled())
+            anim.second->setEnabled(false);
+}
+
+void AnimationComponent::stopAnimation(std::string name) {
+    animations.find(name)->second->setEnabled(false);
 }
 
 void AnimationComponent::addAnimation(std::string name, bool loop) {

@@ -13,8 +13,6 @@ class AnimationComponent : public Component {
   private:
     // name, animation
     std::map<std::string, Ogre::AnimationState*> animations;
-    // name of the current animation
-    std::string currentAnim = "";
 
   public:
     // Destroys the AnimationC, setting itself as inactive and
@@ -25,8 +23,10 @@ class AnimationComponent : public Component {
 
     // set as current animation the specify animation
     void startAnimation(std::string name);
-    // stop the current animation
-    void stopCurrentAnimation();
+    // stop all the enabled animations
+    void stopAnimations();
+    // stop the animation specified
+    void stopAnimation(std::string name);
     // add an animation to the map of animations
     void addAnimation(std::string name, bool loop);
 };

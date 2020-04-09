@@ -242,6 +242,7 @@ void ComponentsManager::deleteComponents() {
     deleteSC();
     deleteDC();
     deleteEC();
+    deleteAC();
 }
 void ComponentsManager::insertComponents() {
     insertPC();
@@ -250,4 +251,5 @@ void ComponentsManager::insertComponents() {
     insertSC();
     insertDC();
     insertEC();
+    insertAC();
 }
