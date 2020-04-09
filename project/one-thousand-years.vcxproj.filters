@@ -82,6 +82,9 @@
     <ClCompile Include="..\src\ListenerComponent.cpp">
       <Filter>Components\Listeners</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\SleepEC.cpp">
+      <Filter>Components\Events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Component.h">
@@ -171,6 +174,9 @@
     <ClInclude Include="..\src\ListenerComponent.h">
       <Filter>Components\Listeners</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\SleepEC.h">
+      <Filter>Components\Events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -194,6 +200,9 @@
     <Filter Include="Components\Events">
       <UniqueIdentifier>{0b4a8c60-a03a-496c-ae82-948633e9c95e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\Listeners">
+      <UniqueIdentifier>{9c815e32-8fdf-4c05-a3c6-9ff237437c7d}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Misc">
       <UniqueIdentifier>{b9b702a4-bc26-40cd-b833-7cc3d5c06469}</UniqueIdentifier>
     </Filter>
@@ -208,9 +217,6 @@
     </Filter>
     <Filter Include="Physics">
       <UniqueIdentifier>{9189077c-c1bd-4f40-a507-7ed3323e31ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Listeners">
-      <UniqueIdentifier>{9c815e32-8fdf-4c05-a3c6-9ff237437c7d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

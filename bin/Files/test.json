@@ -41,6 +41,12 @@
           "attributes": {
             "sounds": ["test"]
           }
+        },
+        {
+          "type": "SleepEC",
+          "attributes":{
+            "generalSleepTags":["Player"]
+          }
         }
       ]
     },
