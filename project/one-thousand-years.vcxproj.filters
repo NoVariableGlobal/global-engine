@@ -76,9 +76,6 @@
     <ClCompile Include="..\src\SoundListenerComponent.cpp">
       <Filter>Components\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\SoundTestIC.cpp">
-      <Filter>Components\Sound</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\AnimationLC.cpp">
       <Filter>Components\Listeners</Filter>
     </ClCompile>
@@ -166,9 +163,6 @@
       <Filter>Components\Sound</Filter>
     </ClInclude>
     <ClInclude Include="..\src\SoundListenerComponent.h">
-      <Filter>Components\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\SoundTestIC.h">
       <Filter>Components\Sound</Filter>
     </ClInclude>
     <ClInclude Include="..\src\AnimationLC.h">

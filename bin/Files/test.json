@@ -41,10 +41,6 @@
           "attributes": {
             "sounds": ["test"]
           }
-        },
-        {
-          "type": "SoundTestIC",
-          "attributes":{}
         }
       ]
     },

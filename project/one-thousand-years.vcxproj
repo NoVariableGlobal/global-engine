@@ -34,7 +34,6 @@
     <ClCompile Include="..\src\RigidbodyPC.cpp" />
     <ClCompile Include="..\src\SoundContext.cpp" />
     <ClCompile Include="..\src\SoundListenerComponent.cpp" />
-    <ClCompile Include="..\src\SoundTestIC.cpp" />
     <ClCompile Include="..\src\SpotLightRC.cpp" />
     <ClCompile Include="..\src\OgreSDLContext.cpp" />
     <ClCompile Include="..\src\CameraRC.cpp" />
@@ -62,7 +61,6 @@
     <ClInclude Include="..\src\RigidbodyPC.h" />
     <ClInclude Include="..\src\SoundContext.h" />
     <ClInclude Include="..\src\SoundListenerComponent.h" />
-    <ClInclude Include="..\src\SoundTestIC.h" />
     <ClInclude Include="..\src\SpotLightRC.h" />
     <ClInclude Include="..\src\OgreSDLContext.h" />
     <ClInclude Include="..\src\CameraRC.h" />
