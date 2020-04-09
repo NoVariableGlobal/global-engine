@@ -62,6 +62,25 @@ shell of your preference.
 1. Click on the `Generate` button.
 1. Compile the project (`ALL_BUILD` by default) in `Debug` and `Release`.
 
+#### CEGUI
+
+1. Open CMake-GUI and set up the following parameters:
+    - Source Code: `deps/cegui-dependencies`
+    - Build Folder: `deps/cegui-dependencies/build`
+1. Click on the `Configure` button.
+1. Click on the `Generate` button.
+1. Compile the project (`ALL_BUILD` by default) in `Debug` and `Release`.
+1. Copy the contents of `deps/cegui-dependencies/build/dependencies` to `deps/cegui/dependencies`.
+1. Open CMake-GUI and set up the following parameters:
+    - Source Code: `deps/cegui`
+    - Build Folder: `deps/cegui/build`
+1. Click on the `Configure` button.
+1. Set up the following values:
+    - `CEGUI_BUILD_RENDERER_OPENGL3`: `ON`
+    - `CEGUI_BUILD_RENDERER_OPENGLES`: `ON`
+1. Click on the `Generate` button.
+1. Compile the project (`ALL_BUILD` by default) in `Debug` and `Release`.
+
 #### JsonCPP
 
 1. Open CMake-GUI and set up the following parameters:

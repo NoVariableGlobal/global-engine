@@ -197,7 +197,7 @@ function Step-VisualStudioThirdPartyDebug([string] $Path) {
     Write-Host $Path              -ForegroundColor Cyan -NoNewline
     Write-Host "' as Debug."      -ForegroundColor Blue
 
-    Step-VisualStudioRaw -Path $Path -Arguments @("-t:build", "-p:Configuration=Debug;Platform=x64", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal")
+    Step-VisualStudioRaw -Path $Path -Arguments @("-t:build", "-p:Configuration=Debug;Platform=x64;WarningLevel=0", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal")
 }
 
 # Builds a third-party library as release, ignoring all warnings and verbosity
@@ -206,7 +206,7 @@ function Step-VisualStudioThirdPartyRelease([string] $Path) {
     Write-Host $Path              -ForegroundColor Cyan -NoNewline
     Write-Host "' as Release."    -ForegroundColor Blue
 
-    Step-VisualStudioRaw -Path $Path -Arguments @("-t:build", "-p:Configuration=Release;Platform=x64", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal")
+    Step-VisualStudioRaw -Path $Path -Arguments @("-t:build", "-p:Configuration=Release;Platform=x64;WarningLevel=0", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal")
 }
 
 # Builds the project library
@@ -229,7 +229,7 @@ function Step-CMake([string] $Path, [string[]] $Arguments) {
 
     New-Directory -Path "$Path\build"
     $private:startTime = Get-Date
-    & $CMake -S $Path -B "$Path\build" $Arguments
+    & $CMake -S $Path -B "$Path\build" $Arguments -Wno-dev
     $private:exitTime = Get-Date
 
     # Print information to the screen
@@ -272,9 +272,58 @@ function Step-CopyToBinaryDirectory([string] $From, [string[]] $Paths) {
 
 Try {
     If (!$EngineOnly.ToBool()) {
+        # Build CEGUI
+        $private:CeguiFolder = "$DependenciesRoot\cegui"
+        $private:CeguiDependenciesFolder = "$DependenciesRoot\cegui-dependencies"
+
+        # Build CEGUI's dependencies
+        Step-CMake $CeguiDependenciesFolder @()
+        Step-VisualStudioThirdPartyDebug "$CeguiDependenciesFolder\build\CEGUI-DEPS.sln"
+        Step-VisualStudioThirdPartyRelease "$CeguiDependenciesFolder\build\CEGUI-DEPS.sln"
+
+        # Copy all of CEGUI's dependencies (once compiled), this way CEGUI can find them
+        Copy-Item -Path "$CeguiDependenciesFolder\build\dependencies" -Destination "$CeguiFolder" -Recurse -Force
+        Step-CMake $CeguiFolder @(
+            "-DCEGUI_BUILD_RENDERER_OPENGL3:BOOL=ON",
+            "-DCEGUI_BUILD_RENDERER_OPENGLES:BOOL=ON"
+        )
+
+        # Let's be honest, I got done with MSBuild here. The world would be beautiful if it'd let me define constants
+        # via CLI, but looks like it's impossible without CMake, which apparently nobody at this team wants.
+        $private:Content = Get-Content -Path "$CeguiFolder\build\cegui\include\CEGUI\Config.h"
+        $private:Content = $Content -replace "define CEGUI_OGRE_VERSION_MAJOR 0", "define CEGUI_OGRE_VERSION_MAJOR 1"
+        $private:Content = $Content -replace "define CEGUI_OGRE_VERSION_MINOR 0", "define CEGUI_OGRE_VERSION_MINOR 9"
+        Set-Content -Path "$CeguiFolder\build\cegui\include\CEGUI\Config.h" -Value $Content
+        Remove-Variable Content
+
+        Step-VisualStudioThirdPartyDebug "$CeguiFolder\build\cegui.sln"
+        Step-VisualStudioThirdPartyRelease "$CeguiFolder\build\cegui.sln"
+        Step-CopyToBinaryDirectory "CEGUI" @(
+            "$CeguiFolder\build\bin\CEGUIBase-0.dll",
+            "$CeguiFolder\build\bin\CEGUIBase-0_d.dll",
+            "$CeguiFolder\build\bin\CEGUIOpenGLRenderer-0.dll",
+            "$CeguiFolder\build\bin\CEGUIOpenGLRenderer-0_d.dll",
+            "$CeguiFolder\dependencies\bin\freetype.dll",
+            "$CeguiFolder\dependencies\bin\freetype_d.dll",
+            "$CeguiFolder\dependencies\bin\glew.dll",
+            "$CeguiFolder\dependencies\bin\glew_d.dll",
+            "$CeguiFolder\dependencies\bin\glfw.dll",
+            "$CeguiFolder\dependencies\bin\glfw_d.dll",
+            "$CeguiFolder\dependencies\bin\jpeg.dll",
+            "$CeguiFolder\dependencies\bin\jpeg_d.dll",
+            "$CeguiFolder\dependencies\bin\libexpat.dll",
+            "$CeguiFolder\dependencies\bin\libexpat_d.dll",
+            "$CeguiFolder\dependencies\bin\libpng.dll",
+            "$CeguiFolder\dependencies\bin\libpng_d.dll",
+            "$CeguiFolder\dependencies\bin\pcre.dll",
+            "$CeguiFolder\dependencies\bin\pcre_d.dll",
+            "$CeguiFolder\dependencies\bin\SILLY.dll",
+            "$CeguiFolder\dependencies\bin\SILLY_d.dll"
+        )
+
         # Build Bullet
         $private:BulletFolder = "$DependenciesRoot\bullet"
-        Step-CMake $BulletFolder  @(
+        Step-CMake $BulletFolder @(
             "-DBUILD_BULLET2_DEMOS:BOOL=OFF",
             "-DBUILD_BULLET3:BOOL=ON",
             "-DBUILD_CLSOCKET:BOOL=OFF",
