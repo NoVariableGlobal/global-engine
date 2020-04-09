@@ -52,7 +52,7 @@ AnimationComponentFactory::AnimationComponentFactory() = default;
 
 Component* AnimationComponentFactory::create(Entity* _father,
                                              Json::Value& _data,
-                                      Scene* _scene) {
+                                             Scene* _scene) {
     AnimationComponent* animations = new AnimationComponent();
     _scene->getComponentsManager()->addAC(animations);
 
@@ -62,18 +62,19 @@ Component* AnimationComponentFactory::create(Entity* _father,
     if (_data["animations"].isArray()) {
         if (!_data["animations"][0].isObject())
             throw std::exception(
-                "AnimationEC: animations is not an array of objects. Every object must have this structure: \n {\nname: string\nloop: boolean\n}");
+                "AnimationEC: animations is not an array of objects. Every "
+                "object must have this structure: \n {\nname: string\nloop: "
+                "boolean\n}");
 
         Json::Value anim = _data["animations"];
         int size = anim.size();
         for (int i = 0; i < size; i++)
             if (!anim[i]["name"].isString() || !anim[i]["loop"].isBool())
-                throw std::exception(
-                    "AnimationEC: name is not a string or loop is not a boolean");
+                throw std::exception("AnimationEC: name is not a string or "
+                                     "loop is not a boolean");
             else
                 animations->addAnimation(anim[i]["name"].asString(),
                                          anim[i]["loop"].asBool());
-
     }
 
     return animations;

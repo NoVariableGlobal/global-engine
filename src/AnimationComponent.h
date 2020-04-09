@@ -21,7 +21,7 @@ class AnimationComponent : public Component {
 
     virtual void frameRendered(const Ogre::FrameEvent& evt);
 
-    // set as current animation the specify animation
+    // active the specify animation
     void startAnimation(std::string name);
     // stop all the enabled animations
     void stopAnimations();

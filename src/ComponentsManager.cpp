@@ -55,6 +55,12 @@ void ComponentsManager::clearComponents() {
         delete deleteable[i];
         deleteable.pop_back();
     }
+
+    size = anim.size();
+    for (int i = size - 1; i >= 0; i--) {
+        delete anim[i];
+        anim.pop_back();
+    }
 }
 
 void ComponentsManager::addPC(PhysicsComponent* _physicsComponent) {
