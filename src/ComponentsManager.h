@@ -2,8 +2,8 @@
 
 #include <vector>
 
-#include <SDL_events.h>
 #include <OgreFrameListener.h>
+#include <SDL_events.h>
 
 class InputComponent;
 class PhysicsComponent;
@@ -12,7 +12,6 @@ class SoundComponent;
 class Component;
 class EventComponent;
 class ListenerComponent;
-
 
 class ComponentsManager : public Ogre::FrameListener {
   private:

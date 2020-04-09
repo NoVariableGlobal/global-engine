@@ -1,10 +1,10 @@
 #pragma once
-#include "ListenerComponent.h"
 #include "Factory.h"
+#include "ListenerComponent.h"
 
-#include <vector>
 #include <map>
 #include <string>
+#include <vector>
 
 DECLARE_FACTORY(AnimationLC)
 

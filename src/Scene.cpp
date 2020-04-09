@@ -8,8 +8,8 @@
 #include "PhysicsContext.h"
 #include "Util.h"
 
-#include <json.h>
 #include <OgreFrameListener.h>
+#include <json.h>
 
 Scene::Scene(Game* _game) {
     componentManager = new ComponentsManager();

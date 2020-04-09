@@ -1,17 +1,17 @@
 #include "ComponentsManager.h"
+#include "AnimationLC.h"
 #include "EventComponent.h"
 #include "InputComponent.h"
+#include "OgreSDLContext.h"
 #include "PhysicsComponent.h"
 #include "RenderComponent.h"
 #include "SoundComponent.h"
 #include "SoundContext.h"
-#include "AnimationLC.h"
-#include "OgreSDLContext.h"
 
 #include "Util.h"
 
-#include <iostream>
 #include <OgreRoot.h>
+#include <iostream>
 
 ComponentsManager::ComponentsManager() {
     OgreSDLContext::getInstance()->getRoot()->addFrameListener(this);
@@ -194,7 +194,8 @@ void ComponentsManager::insertLC() {
 }
 
 void ComponentsManager::deleteLC() {
-    assert_deleteComponent(deleteListener, listener); }
+    assert_deleteComponent(deleteListener, listener);
+}
 
 void ComponentsManager::eraseLC(ListenerComponent* _listenerComponent) {
     deleteListener.push_back(_listenerComponent);
@@ -221,9 +222,7 @@ void ComponentsManager::render() {
     }
 }
 
-void ComponentsManager::updateSound() { 
-    SoundContext::getInstance()->update(); 
-}
+void ComponentsManager::updateSound() { SoundContext::getInstance()->update(); }
 
 void ComponentsManager::updateEvent() {
     for (auto e : event) {

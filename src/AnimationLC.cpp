@@ -45,9 +45,8 @@ void AnimationLC::addAnimation(std::string name, bool loop) {
 // FACTORY INFRASTRUCTURE
 AnimationLCFactory::AnimationLCFactory() = default;
 
-Component* AnimationLCFactory::create(Entity* _father,
-                                             Json::Value& _data,
-                                             Scene* _scene) {
+Component* AnimationLCFactory::create(Entity* _father, Json::Value& _data,
+                                      Scene* _scene) {
     AnimationLC* animations = new AnimationLC();
     _scene->getComponentsManager()->addLC(animations);
 
