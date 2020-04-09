@@ -40,10 +40,8 @@ void Scene::load(std::string name) {
 }
 
 void Scene::update() {
-    Ogre::FrameEvent evt;
-
     componentManager->update();
-    componentManager->updateEvent(evt);
+    componentManager->updateEvent();
     componentManager->updateSound();
 
     PhysicsContext::getInstance()->updateSimulation();

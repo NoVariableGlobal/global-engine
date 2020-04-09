@@ -1,4 +1,4 @@
-#include "AnimationEC.h"
+#include "AnimationComponent.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
@@ -7,29 +7,33 @@
 
 #include <OgreAnimationState.h>
 #include <OgreEntity.h>
-#include <OgreFrameListener.h>
 #include <json.h>
 
-void AnimationEC::checkEvent(const Ogre::FrameEvent& evt) {
+void AnimationComponent::destroy() {
+    setActive(false);
+    scene->getComponentsManager()->eraseAC(this);
+}
+
+void AnimationComponent::frameRendered(const Ogre::FrameEvent& evt) {
     if (currentAnim != "")
         animations.find(currentAnim)->second->addTime(evt.timeSinceLastFrame);
 }
 
-void AnimationEC::startAnimation(std::string name) {
+void AnimationComponent::startAnimation(std::string name) {
     stopCurrentAnimation();
 
     currentAnim = name;
     animations.find(currentAnim)->second->setEnabled(true);
 }
 
-void AnimationEC::stopCurrentAnimation() {
+void AnimationComponent::stopCurrentAnimation() {
     if (currentAnim != "") {
         animations.find(currentAnim)->second->setEnabled(false);
         currentAnim = "";
     }
 }
 
-void AnimationEC::addAnimation(std::string name, bool loop) {
+void AnimationComponent::addAnimation(std::string name, bool loop) {
     TridimensionalObjectRC* renderFather =
         reinterpret_cast<TridimensionalObjectRC*>(
             father->getComponent("TridimensionalObjectRC"));
@@ -43,12 +47,13 @@ void AnimationEC::addAnimation(std::string name, bool loop) {
 }
 
 // FACTORY INFRASTRUCTURE
-AnimationECFactory::AnimationECFactory() = default;
+AnimationComponentFactory::AnimationComponentFactory() = default;
 
-Component* AnimationECFactory::create(Entity* _father, Json::Value& _data,
+Component* AnimationComponentFactory::create(Entity* _father,
+                                             Json::Value& _data,
                                       Scene* _scene) {
-    AnimationEC* animations = new AnimationEC();
-    _scene->getComponentsManager()->addEC(animations);
+    AnimationComponent* animations = new AnimationComponent();
+    _scene->getComponentsManager()->addAC(animations);
 
     animations->setFather(_father);
     animations->setScene(_scene);
@@ -73,4 +78,4 @@ Component* AnimationECFactory::create(Entity* _father, Json::Value& _data,
     return animations;
 };
 
-DEFINE_FACTORY(AnimationEC);
+DEFINE_FACTORY(AnimationComponent);

@@ -83,7 +83,7 @@
           }
         },
         {
-          "type": "AnimationEC",
+          "type": "AnimationComponent",
           "attributes": {
             "animations":[
               {

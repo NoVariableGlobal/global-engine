@@ -10,5 +10,5 @@ class SoundListenerComponent : public EventComponent {
     TransformComponent* transform_ = nullptr;
 
   public:
-    virtual void checkEvent(const Ogre::FrameEvent& evt);
+    virtual void checkEvent();
 };

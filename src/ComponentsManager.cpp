@@ -5,11 +5,17 @@
 #include "RenderComponent.h"
 #include "SoundComponent.h"
 #include "SoundContext.h"
+#include "AnimationComponent.h"
+#include "OgreSDLContext.h"
+
 #include "Util.h"
 
 #include <iostream>
+#include <OgreRoot.h>
 
-ComponentsManager::ComponentsManager() {}
+ComponentsManager::ComponentsManager() {
+    OgreSDLContext::getInstance()->getRoot()->addFrameListener(this);
+}
 
 ComponentsManager::~ComponentsManager() { clearComponents(); }
 
@@ -169,6 +175,25 @@ void ComponentsManager::eraseEC(EventComponent* _eventComponent) {
     deleteEvent.push_back(_eventComponent);
 }
 
+void ComponentsManager::addAC(AnimationComponent* _animationComponent) {
+    insertAnim.push_back(_animationComponent);
+}
+
+void ComponentsManager::insertAC() {
+    int size = insertAnim.size();
+    for (int i = size - 1; i >= 0; i--) {
+        anim.push_back(insertAnim[i]);
+        insertAnim.pop_back();
+    }
+}
+
+void ComponentsManager::deleteAC() {
+    assert_deleteComponent(deleteAnim, anim); }
+
+void ComponentsManager::eraseAC(AnimationComponent* _animationComponent) {
+    deleteAnim.push_back(_animationComponent);
+}
+
 void ComponentsManager::update() {
     for (auto p : physics) {
         if (p->isActive())
@@ -190,13 +215,24 @@ void ComponentsManager::render() {
     }
 }
 
-void ComponentsManager::updateSound() { SoundContext::getInstance()->update(); }
+void ComponentsManager::updateSound() { 
+    SoundContext::getInstance()->update(); 
+}
 
-void ComponentsManager::updateEvent(const Ogre::FrameEvent& _evt) {
+void ComponentsManager::updateEvent() {
     for (auto e : event) {
         if (e->isActive())
-            e->checkEvent(_evt);
+            e->checkEvent();
     }
+}
+
+bool ComponentsManager::frameRenderingQueued(const Ogre::FrameEvent& _event) {
+    for (auto a : anim) {
+        if (a->isActive())
+            a->frameRendered(_event);
+    }
+
+    return true;
 }
 
 void ComponentsManager::deleteComponents() {

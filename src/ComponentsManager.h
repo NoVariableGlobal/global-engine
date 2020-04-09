@@ -11,9 +11,10 @@ class RenderComponent;
 class SoundComponent;
 class Component;
 class EventComponent;
+class AnimationComponent;
 
 
-class ComponentsManager {
+class ComponentsManager : public Ogre::FrameListener {
   private:
     // vectors for each component type
     std::vector<InputComponent*> input;
@@ -22,6 +23,7 @@ class ComponentsManager {
     std::vector<SoundComponent*> sound;
     std::vector<Component*> deleteable;
     std::vector<EventComponent*> event;
+    std::vector<AnimationComponent*> anim;
 
     std::vector<InputComponent*> deleteInput;
     std::vector<PhysicsComponent*> deletePhysics;
@@ -29,6 +31,7 @@ class ComponentsManager {
     std::vector<SoundComponent*> deleteSound;
     std::vector<Component*> deleteDeleteable;
     std::vector<EventComponent*> deleteEvent;
+    std::vector<AnimationComponent*> deleteAnim;
 
     std::vector<InputComponent*> insertInput;
     std::vector<PhysicsComponent*> insertPhysics;
@@ -36,10 +39,11 @@ class ComponentsManager {
     std::vector<SoundComponent*> insertSound;
     std::vector<Component*> insertDeleteable;
     std::vector<EventComponent*> insertEvent;
+    std::vector<AnimationComponent*> insertAnim;
 
   public:
-    ComponentsManager();
-    ~ComponentsManager();
+    explicit ComponentsManager();
+    virtual ~ComponentsManager();
 
     // removes all components from all vectors
     void clearComponents();
@@ -98,6 +102,15 @@ class ComponentsManager {
     // add event component to delete vector
     void eraseEC(EventComponent* _eventComponent);
 
+    // add animation component to vector
+    void addAC(AnimationComponent* _animationComponent);
+    // add animation component to insert
+    void insertAC();
+    // delete animation component from vector
+    void deleteAC();
+    // add animation component to delete vector
+    void eraseAC(AnimationComponent* _animationComponent);
+
     // call each physics component in the vector
     void update();
     // call each input component in the vector
@@ -107,7 +120,10 @@ class ComponentsManager {
     // call each sound component in the vector
     void updateSound();
     // call each event component in the vector
-    void updateEvent(const Ogre::FrameEvent& _evt);
+    void updateEvent();
+    // call each animation event component in the vector
+    virtual bool frameRenderingQueued(const Ogre::FrameEvent& _event);
+
     // delete all the components to delete
     void deleteComponents();
     // insert all the components to insert

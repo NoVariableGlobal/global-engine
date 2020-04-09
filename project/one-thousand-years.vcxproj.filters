@@ -79,8 +79,8 @@
     <ClCompile Include="..\src\SoundTestIC.cpp">
       <Filter>Components\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\AnimationEC.cpp">
-      <Filter>Components\Events</Filter>
+    <ClCompile Include="..\src\AnimationComponent.cpp">
+      <Filter>Components\Animations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -168,8 +168,8 @@
     <ClInclude Include="..\src\SoundTestIC.h">
       <Filter>Components\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\AnimationEC.h">
-      <Filter>Components\Events</Filter>
+    <ClInclude Include="..\src\AnimationComponent.h">
+      <Filter>Components\Animations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +214,9 @@
     </Filter>
     <Filter Include="Components\Events\PowerUps">
       <UniqueIdentifier>{f1978147-02ca-4615-8479-e8a3655df928}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Animations">
+      <UniqueIdentifier>{9c815e32-8fdf-4c05-a3c6-9ff237437c7d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

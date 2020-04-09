@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Scene.h"
+#include "AnimationComponent.h"
 
 void SoundTestIC::handleInput(const SDL_Event& _event) {
 
@@ -10,10 +11,17 @@ void SoundTestIC::handleInput(const SDL_Event& _event) {
         soundComponent_ = dynamic_cast<SoundComponent*>(
             father->getComponent("SoundComponent"));
 
-    if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_p)
+    if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_p) {
         soundComponent_->playSound("test");
-    else if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_o)
-        soundComponent_->stopSound("test");
+        dynamic_cast<AnimationComponent*>(
+            scene->getEntitybyId("Player")->getComponent("AnimationComponent"))
+            ->startAnimation("Dance");
+    } else if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_o) {
+        //soundComponent_->stopSound("test");
+        dynamic_cast<AnimationComponent*>(
+            scene->getEntitybyId("Player")->getComponent("AnimationComponent"))
+            ->stopCurrentAnimation();
+    }
 }
 
 // FACTORY INFRASTRUCTURE

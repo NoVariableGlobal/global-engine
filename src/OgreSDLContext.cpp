@@ -240,6 +240,8 @@ bool OgreSDLContext::pollEvents(const SDL_Event event) // from frameStarted
     return exit;
 }
 
+Ogre::Root* OgreSDLContext::getRoot() { return mRoot; }
+
 Ogre::SceneManager* OgreSDLContext::getSceneManager() { return mSM; }
 
 Ogre::RenderWindow* OgreSDLContext::getRenderWindow() { return mWindow.render; }
