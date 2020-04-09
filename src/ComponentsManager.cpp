@@ -5,7 +5,7 @@
 #include "RenderComponent.h"
 #include "SoundComponent.h"
 #include "SoundContext.h"
-#include "AnimationComponent.h"
+#include "AnimationLC.h"
 #include "OgreSDLContext.h"
 
 #include "Util.h"
@@ -56,10 +56,10 @@ void ComponentsManager::clearComponents() {
         deleteable.pop_back();
     }
 
-    size = anim.size();
+    size = listener.size();
     for (int i = size - 1; i >= 0; i--) {
-        delete anim[i];
-        anim.pop_back();
+        delete listener[i];
+        listener.pop_back();
     }
 }
 
@@ -181,23 +181,23 @@ void ComponentsManager::eraseEC(EventComponent* _eventComponent) {
     deleteEvent.push_back(_eventComponent);
 }
 
-void ComponentsManager::addAC(AnimationComponent* _animationComponent) {
-    insertAnim.push_back(_animationComponent);
+void ComponentsManager::addLC(ListenerComponent* _listenerComponent) {
+    insertListener.push_back(_listenerComponent);
 }
 
-void ComponentsManager::insertAC() {
-    int size = insertAnim.size();
+void ComponentsManager::insertLC() {
+    int size = insertListener.size();
     for (int i = size - 1; i >= 0; i--) {
-        anim.push_back(insertAnim[i]);
-        insertAnim.pop_back();
+        listener.push_back(insertListener[i]);
+        insertListener.pop_back();
     }
 }
 
-void ComponentsManager::deleteAC() {
-    assert_deleteComponent(deleteAnim, anim); }
+void ComponentsManager::deleteLC() {
+    assert_deleteComponent(deleteListener, listener); }
 
-void ComponentsManager::eraseAC(AnimationComponent* _animationComponent) {
-    deleteAnim.push_back(_animationComponent);
+void ComponentsManager::eraseLC(ListenerComponent* _listenerComponent) {
+    deleteListener.push_back(_listenerComponent);
 }
 
 void ComponentsManager::update() {
@@ -233,9 +233,9 @@ void ComponentsManager::updateEvent() {
 }
 
 bool ComponentsManager::frameRenderingQueued(const Ogre::FrameEvent& _event) {
-    for (auto a : anim) {
-        if (a->isActive())
-            a->frameRendered(_event);
+    for (auto l : listener) {
+        if (l->isActive())
+            l->frameRendered(_event);
     }
 
     return true;
@@ -248,7 +248,7 @@ void ComponentsManager::deleteComponents() {
     deleteSC();
     deleteDC();
     deleteEC();
-    deleteAC();
+    deleteLC();
 }
 void ComponentsManager::insertComponents() {
     insertPC();
@@ -257,5 +257,5 @@ void ComponentsManager::insertComponents() {
     insertSC();
     insertDC();
     insertEC();
-    insertAC();
+    insertLC();
 }

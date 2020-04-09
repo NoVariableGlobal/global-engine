@@ -1,4 +1,4 @@
-#include "AnimationComponent.h"
+#include "AnimationLC.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
@@ -9,32 +9,27 @@
 #include <OgreEntity.h>
 #include <json.h>
 
-void AnimationComponent::destroy() {
-    setActive(false);
-    scene->getComponentsManager()->eraseAC(this);
-}
-
-void AnimationComponent::frameRendered(const Ogre::FrameEvent& evt) {
+void AnimationLC::frameRendered(const Ogre::FrameEvent& evt) {
     for (auto anim : animations)
         if (anim.second->getEnabled())
             anim.second->addTime(evt.timeSinceLastFrame);
 }
 
-void AnimationComponent::startAnimation(std::string name) {
+void AnimationLC::startAnimation(std::string name) {
     animations.find(name)->second->setEnabled(true);
 }
 
-void AnimationComponent::stopAnimations() {
+void AnimationLC::stopAnimations() {
     for (auto anim : animations)
         if (anim.second->getEnabled())
             anim.second->setEnabled(false);
 }
 
-void AnimationComponent::stopAnimation(std::string name) {
+void AnimationLC::stopAnimation(std::string name) {
     animations.find(name)->second->setEnabled(false);
 }
 
-void AnimationComponent::addAnimation(std::string name, bool loop) {
+void AnimationLC::addAnimation(std::string name, bool loop) {
     TridimensionalObjectRC* renderFather =
         reinterpret_cast<TridimensionalObjectRC*>(
             father->getComponent("TridimensionalObjectRC"));
@@ -48,13 +43,13 @@ void AnimationComponent::addAnimation(std::string name, bool loop) {
 }
 
 // FACTORY INFRASTRUCTURE
-AnimationComponentFactory::AnimationComponentFactory() = default;
+AnimationLCFactory::AnimationLCFactory() = default;
 
-Component* AnimationComponentFactory::create(Entity* _father,
+Component* AnimationLCFactory::create(Entity* _father,
                                              Json::Value& _data,
                                              Scene* _scene) {
-    AnimationComponent* animations = new AnimationComponent();
-    _scene->getComponentsManager()->addAC(animations);
+    AnimationLC* animations = new AnimationLC();
+    _scene->getComponentsManager()->addLC(animations);
 
     animations->setFather(_father);
     animations->setScene(_scene);
@@ -80,4 +75,4 @@ Component* AnimationComponentFactory::create(Entity* _father,
     return animations;
 };
 
-DEFINE_FACTORY(AnimationComponent);
+DEFINE_FACTORY(AnimationLC);

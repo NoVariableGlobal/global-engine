@@ -1,24 +1,19 @@
 #pragma once
-#include "Component.h"
+#include "ListenerComponent.h"
 #include "Factory.h"
 
 #include <vector>
 #include <map>
 #include <string>
-#include <OgreFrameListener.h>
 
-DECLARE_FACTORY(AnimationComponent)
+DECLARE_FACTORY(AnimationLC)
 
-class AnimationComponent : public Component {
+class AnimationLC : public ListenerComponent {
   private:
     // name, animation
     std::map<std::string, Ogre::AnimationState*> animations;
 
   public:
-    // Destroys the AnimationC, setting itself as inactive and
-    // removing itself from the scene.
-    virtual void destroy();
-
     virtual void frameRendered(const Ogre::FrameEvent& evt);
 
     // active the specify animation

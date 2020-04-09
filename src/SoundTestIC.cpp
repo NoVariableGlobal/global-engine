@@ -3,7 +3,7 @@
 #include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Scene.h"
-#include "AnimationComponent.h"
+#include "AnimationLC.h"
 
 void SoundTestIC::handleInput(const SDL_Event& _event) {
 
@@ -13,26 +13,26 @@ void SoundTestIC::handleInput(const SDL_Event& _event) {
 
     if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_p) {
         soundComponent_->playSound("test");
-        dynamic_cast<AnimationComponent*>(
-            scene->getEntitybyId("Player")->getComponent("AnimationComponent"))
+        dynamic_cast<AnimationLC*>(
+            scene->getEntitybyId("Player")->getComponent("AnimationLC"))
             ->stopAnimations();
-        dynamic_cast<AnimationComponent*>(
-            scene->getEntitybyId("Player")->getComponent("AnimationComponent"))
+        dynamic_cast<AnimationLC*>(
+            scene->getEntitybyId("Player")->getComponent("AnimationLC"))
             ->startAnimation("Dance");
     } else if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_o) {
         //soundComponent_->stopSound("test");
-        dynamic_cast<AnimationComponent*>(
-            scene->getEntitybyId("Player")->getComponent("AnimationComponent"))
+        dynamic_cast<AnimationLC*>(
+            scene->getEntitybyId("Player")->getComponent("AnimationLC"))
             ->stopAnimations();
     } else if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_i) {
-        dynamic_cast<AnimationComponent*>(
-            scene->getEntitybyId("Player")->getComponent("AnimationComponent"))
+        dynamic_cast<AnimationLC*>(
+            scene->getEntitybyId("Player")->getComponent("AnimationLC"))
             ->stopAnimations();
-        dynamic_cast<AnimationComponent*>(
-            scene->getEntitybyId("Player")->getComponent("AnimationComponent"))
+        dynamic_cast<AnimationLC*>(
+            scene->getEntitybyId("Player")->getComponent("AnimationLC"))
             ->startAnimation("RunBase");
-        dynamic_cast<AnimationComponent*>(
-            scene->getEntitybyId("Player")->getComponent("AnimationComponent"))
+        dynamic_cast<AnimationLC*>(
+            scene->getEntitybyId("Player")->getComponent("AnimationLC"))
             ->startAnimation("RunTop");
     }
 }
