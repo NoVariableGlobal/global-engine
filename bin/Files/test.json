@@ -85,6 +85,25 @@
           }
         },
         {
+          "type": "AnimationLC",
+          "attributes": {
+            "animations":[
+              {
+                "name": "Dance",
+                "loop": true
+              },
+              {
+                "name": "RunBase",
+                "loop": true
+              },
+              {
+                "name": "RunTop",
+                "loop": true
+              }
+            ]
+          }
+        },
+        {
           "type": "SoundListenerComponent",
           "attributes": {}
         }

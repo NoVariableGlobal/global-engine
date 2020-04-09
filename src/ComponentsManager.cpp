@@ -1,16 +1,21 @@
 #include "ComponentsManager.h"
+#include "AnimationLC.h"
 #include "EventComponent.h"
 #include "InputComponent.h"
+#include "OgreSDLContext.h"
 #include "PhysicsComponent.h"
 #include "RenderComponent.h"
 #include "SoundComponent.h"
 #include "SoundContext.h"
+
 #include "Util.h"
 
-#include <SDL_events.h>
+#include <OgreRoot.h>
 #include <iostream>
 
-ComponentsManager::ComponentsManager() {}
+ComponentsManager::ComponentsManager() {
+    OgreSDLContext::getInstance()->getRoot()->addFrameListener(this);
+}
 
 ComponentsManager::~ComponentsManager() { clearComponents(); }
 
@@ -49,6 +54,12 @@ void ComponentsManager::clearComponents() {
     for (int i = size - 1; i >= 0; i--) {
         delete deleteable[i];
         deleteable.pop_back();
+    }
+
+    size = listener.size();
+    for (int i = size - 1; i >= 0; i--) {
+        delete listener[i];
+        listener.pop_back();
     }
 }
 
@@ -170,6 +181,26 @@ void ComponentsManager::eraseEC(EventComponent* _eventComponent) {
     deleteEvent.push_back(_eventComponent);
 }
 
+void ComponentsManager::addLC(ListenerComponent* _listenerComponent) {
+    insertListener.push_back(_listenerComponent);
+}
+
+void ComponentsManager::insertLC() {
+    int size = insertListener.size();
+    for (int i = size - 1; i >= 0; i--) {
+        listener.push_back(insertListener[i]);
+        insertListener.pop_back();
+    }
+}
+
+void ComponentsManager::deleteLC() {
+    assert_deleteComponent(deleteListener, listener);
+}
+
+void ComponentsManager::eraseLC(ListenerComponent* _listenerComponent) {
+    deleteListener.push_back(_listenerComponent);
+}
+
 void ComponentsManager::update() {
     for (auto p : physics) {
         if (p->isActive())
@@ -200,6 +231,15 @@ void ComponentsManager::updateEvent() {
     }
 }
 
+bool ComponentsManager::frameRenderingQueued(const Ogre::FrameEvent& _event) {
+    for (auto l : listener) {
+        if (l->isActive())
+            l->frameRendered(_event);
+    }
+
+    return true;
+}
+
 void ComponentsManager::deleteComponents() {
     deletePC();
     deleteIC();
@@ -207,6 +247,7 @@ void ComponentsManager::deleteComponents() {
     deleteSC();
     deleteDC();
     deleteEC();
+    deleteLC();
 }
 void ComponentsManager::insertComponents() {
     insertPC();
@@ -215,4 +256,5 @@ void ComponentsManager::insertComponents() {
     insertSC();
     insertDC();
     insertEC();
+    insertLC();
 }
