@@ -37,6 +37,15 @@ void Entity::setActive(bool _active) {
 
 bool Entity::isActive() { return active; }
 
+void Entity::setAsleep(bool _active) {
+    asleep = _active;
+    for (auto c : components)
+        if (c.first != "TridimensionalObjectRC" && c.first != "RigidbodyPC")
+            c.second->setActive(!asleep);
+}
+
+bool Entity::isAsleep() { return asleep; }
+
 void Entity::setPersistent(bool _p) { persistent = _p; }
 
 bool Entity::isPersistent() { return persistent; }

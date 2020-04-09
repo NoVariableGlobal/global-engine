@@ -9,6 +9,8 @@ class Entity {
   private:
     // Shows if the entity is active or not
     bool active = false;
+    // Shows if the entity is asleep or not
+    bool asleep = false;
     // Whether or not the entity should persist between scenes
     bool persistent = false;
     // ID attached to the entity
@@ -42,6 +44,9 @@ class Entity {
 
     void setActive(bool _active);
     bool isActive();
+
+    void setAsleep(bool _active);
+    bool isAsleep();
 
     void setPersistent(bool _p);
     bool isPersistent();

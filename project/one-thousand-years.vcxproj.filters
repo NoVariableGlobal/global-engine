@@ -76,8 +76,8 @@
     <ClCompile Include="..\src\SoundListenerComponent.cpp">
       <Filter>Components\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\SoundTestIC.cpp">
-      <Filter>Components\Sound</Filter>
+    <ClCompile Include="..\src\SleepEC.cpp">
+      <Filter>Components\Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,8 +162,8 @@
     <ClInclude Include="..\src\SoundListenerComponent.h">
       <Filter>Components\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\SoundTestIC.h">
-      <Filter>Components\Sound</Filter>
+    <ClInclude Include="..\src\SleepEC.h">
+      <Filter>Components\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -202,12 +202,6 @@
     </Filter>
     <Filter Include="Physics">
       <UniqueIdentifier>{9189077c-c1bd-4f40-a507-7ed3323e31ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Guns">
-      <UniqueIdentifier>{34232966-a7a6-422e-afb3-f2f5e4693e51}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components\Events\PowerUps">
-      <UniqueIdentifier>{f1978147-02ca-4615-8479-e8a3655df928}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
