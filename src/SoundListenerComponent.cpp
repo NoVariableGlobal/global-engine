@@ -7,7 +7,9 @@
 #include "Scene.h"
 #include "SoundContext.h"
 
-void SoundListenerComponent::checkEvent() {
+#include <OgreFrameListener.h>
+
+void SoundListenerComponent::checkEvent(const Ogre::FrameEvent& evt) {
     if (transform_ == nullptr)
         transform_ = dynamic_cast<TransformComponent*>(
             father->findComponent("TransformComponent"));

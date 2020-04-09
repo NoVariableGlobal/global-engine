@@ -9,6 +9,7 @@
 #include "Util.h"
 
 #include <json.h>
+#include <OgreFrameListener.h>
 
 Scene::Scene(Game* _game) {
     componentManager = new ComponentsManager();
@@ -39,8 +40,10 @@ void Scene::load(std::string name) {
 }
 
 void Scene::update() {
+    Ogre::FrameEvent evt;
+
     componentManager->update();
-    componentManager->updateEvent();
+    componentManager->updateEvent(evt);
     componentManager->updateSound();
 
     PhysicsContext::getInstance()->updateSimulation();

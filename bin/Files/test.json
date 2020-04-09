@@ -83,6 +83,21 @@
           }
         },
         {
+          "type": "AnimationEC",
+          "attributes": {
+            "animations":[
+              {
+                "name": "Dance",
+                "loop": true
+              },
+              {
+                "name": "RunBase",
+                "loop": true
+              }
+            ]
+          }
+        },
+        {
           "type": "SoundListenerComponent",
           "attributes": {}
         }

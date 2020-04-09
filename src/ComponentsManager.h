@@ -3,6 +3,7 @@
 #include <vector>
 
 #include <SDL_events.h>
+#include <OgreFrameListener.h>
 
 class InputComponent;
 class PhysicsComponent;
@@ -10,6 +11,7 @@ class RenderComponent;
 class SoundComponent;
 class Component;
 class EventComponent;
+
 
 class ComponentsManager {
   private:
@@ -105,7 +107,7 @@ class ComponentsManager {
     // call each sound component in the vector
     void updateSound();
     // call each event component in the vector
-    void updateEvent();
+    void updateEvent(const Ogre::FrameEvent& _evt);
     // delete all the components to delete
     void deleteComponents();
     // insert all the components to insert

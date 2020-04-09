@@ -7,7 +7,6 @@
 #include "SoundContext.h"
 #include "Util.h"
 
-#include <SDL_events.h>
 #include <iostream>
 
 ComponentsManager::ComponentsManager() {}
@@ -193,10 +192,10 @@ void ComponentsManager::render() {
 
 void ComponentsManager::updateSound() { SoundContext::getInstance()->update(); }
 
-void ComponentsManager::updateEvent() {
+void ComponentsManager::updateEvent(const Ogre::FrameEvent& _evt) {
     for (auto e : event) {
         if (e->isActive())
-            e->checkEvent();
+            e->checkEvent(_evt);
     }
 }
 
