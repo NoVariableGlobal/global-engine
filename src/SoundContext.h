@@ -41,7 +41,7 @@ class SoundContext {
 
     void addSoundToLoad(SoundInfo* info);
     FMOD::Sound* getSound(const std::string& id);
-    Channel* playSound(FMOD::Sound* sound) const;
+    Channel* playSound(FMOD::Sound* sound, float volume = 1) const;
     void stopSound(Channel** channel);
     void updatePosition(Ogre::Vector3 pos);
     void update();

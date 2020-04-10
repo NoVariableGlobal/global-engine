@@ -71,10 +71,14 @@ FMOD::Sound* SoundContext::getSound(const std::string& id) {
     return sounds_[id];
 }
 
-Channel* SoundContext::playSound(FMOD::Sound* sound) const {
+Channel* SoundContext::playSound(FMOD::Sound* sound, float volume) const {
     FMOD::Channel* channel;
     try {
-        auto result = system_->playSound(sound, 0, false, &channel);
+        auto result = system_->playSound(sound, 0, true, &channel);
+        ERRCHECK(result);
+        result = channel->setVolume(volume);
+        ERRCHECK(result);
+        result = channel->setPaused(false);
         ERRCHECK(result);
         return new Channel(channel);
     } catch (std::exception& e) {
