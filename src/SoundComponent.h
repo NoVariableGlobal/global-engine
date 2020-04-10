@@ -16,7 +16,7 @@ class SoundComponent : virtual public Component {
   public:
     SoundComponent();
     virtual ~SoundComponent();
-    virtual void playSound(const std::string& id, float volume = 1.0f);
+    virtual void playSound(const std::string& id);
     virtual void stopSound(const std::string& id);
     virtual void destroy();
     virtual void addSoundToList(const std::string& id);

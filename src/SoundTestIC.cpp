@@ -12,8 +12,6 @@ void SoundTestIC::handleInput(const SDL_Event& _event) {
 
     if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_p)
         soundComponent_->playSound("test");
-    else if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_PLUS)
-        soundComponent_->playSound("test", 0.1f);
     else if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_o)
         soundComponent_->stopSound("test");
 }
