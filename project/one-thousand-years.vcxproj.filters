@@ -85,6 +85,9 @@
     <ClCompile Include="..\src\SleepEC.cpp">
       <Filter>Components\Events</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\SoundTestIC.cpp">
+      <Filter>Components\Sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Component.h">
@@ -176,6 +179,9 @@
     </ClInclude>
     <ClInclude Include="..\src\SleepEC.h">
       <Filter>Components\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SoundTestIC.h">
+      <Filter>Components\Sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

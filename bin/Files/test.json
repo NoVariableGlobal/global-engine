@@ -43,6 +43,10 @@
           }
         },
         {
+          "type": "SoundTestIC",
+          "attributes":{}
+        },
+        {
           "type": "SleepEC",
           "attributes":{
             "generalSleepTags":["Player"]
