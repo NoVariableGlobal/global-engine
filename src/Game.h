@@ -4,6 +4,7 @@
 
 class Scene;
 class Loader;
+class GUI;
 
 class Game {
   private:
@@ -18,6 +19,8 @@ class Game {
     std::string sceneToChange;
     bool sceneChange = false;
     bool deleteAll = false;
+
+	GUI* m_gui;
 
   public:
     Game();

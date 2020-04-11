@@ -8,6 +8,7 @@ class RTSSDefaultTechniqueListener;
 
 namespace Ogre {
     class RenderWindow;
+    class RenderTarget;
     class Root;
     class Viewport;
     class SceneManager;
@@ -79,6 +80,7 @@ class OgreSDLContext {
 
     // return a pointer to the root
     Ogre::Root* getRoot();
+	Ogre::RenderTarget* getRenderTarget();
     // return a pointer to the SceneManager
     Ogre::SceneManager* getSceneManager();
     // return a pointer to the RenderWindow

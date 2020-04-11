@@ -15,6 +15,7 @@
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
 #include "Util.h"
+#include "GUI.h"
 
 #include <SDL_events.h>
 #include <string>
@@ -63,6 +64,23 @@ bool Game::init(std::string _firstScene) {
 
         scene = new Scene(this);
         setScene(_firstScene);
+
+		m_gui = new GUI();
+        try {
+            m_gui->init("GUI");
+            m_gui->loadScheme("TaharezLook.scheme");
+            m_gui->setFont("DejaVuSans-10");
+            
+            CEGUI::PushButton* testButton =
+                static_cast<CEGUI::PushButton*>(m_gui->createWidget(
+                    "TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f),
+                    glm::vec4(0.0f), "TestButton"));
+            testButton->setText("Hello World!");
+			
+        } catch (CEGUI::Exception& e) {
+            auto message = e.getMessage().c_str();
+            throw std::exception(message);
+        }
 
         return true;
     } catch (std::exception& e) {
