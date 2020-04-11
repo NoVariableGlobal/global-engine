@@ -62,25 +62,6 @@ shell of your preference.
 1. Click on the `Generate` button.
 1. Compile the project (`ALL_BUILD` by default) in `Debug` and `Release`.
 
-#### CEGUI
-
-1. Open CMake-GUI and set up the following parameters:
-    - Source Code: `deps/cegui-dependencies`
-    - Build Folder: `deps/cegui-dependencies/build`
-1. Click on the `Configure` button.
-1. Click on the `Generate` button.
-1. Compile the project (`ALL_BUILD` by default) in `Debug` and `Release`.
-1. Copy the contents of `deps/cegui-dependencies/build/dependencies` to `deps/cegui/dependencies`.
-1. Open CMake-GUI and set up the following parameters:
-    - Source Code: `deps/cegui`
-    - Build Folder: `deps/cegui/build`
-1. Click on the `Configure` button.
-1. Set up the following values:
-    - `CEGUI_BUILD_RENDERER_OPENGL3`: `ON`
-    - `CEGUI_BUILD_RENDERER_OPENGLES`: `ON`
-1. Click on the `Generate` button.
-1. Compile the project (`ALL_BUILD` by default) in `Debug` and `Release`.
-
 #### JsonCPP
 
 1. Open CMake-GUI and set up the following parameters:
@@ -122,6 +103,61 @@ shell of your preference.
 
 1. Copy the following files to `bin/`:
     - `deps/SDL2/lib/x64/SDL2.dll`
+
+#### CEGUI
+
+1. Open CMake-GUI and set up the following parameters:
+    - Source Code: `deps/cegui-dependencies`
+    - Build Folder: `deps/cegui-dependencies/build`
+1. Click on the `Configure` button.
+1. Click on the `Generate` button.
+1. Compile the project (`ALL_BUILD` by default) in `Debug` and `Release`.
+1. Copy the contents of `deps/cegui-dependencies/build/dependencies` to `deps/cegui/dependencies`.
+1. Open CMake-GUI and set up the following parameters:
+    - Source Code: `deps/cegui`
+    - Build Folder: `deps/cegui/build`
+1. Click on the `Configure` button.
+1. Set up the following values:
+    - `CEGUI_BUILD_RENDERER_DIRECT3D10`: `OFF`
+    - `CEGUI_BUILD_RENDERER_DIRECT3D11`: `OFF`
+    - `CEGUI_BUILD_RENDERER_DIRECT3D9`: `OFF`
+    - `CEGUI_BUILD_RENDERER_DIRECTFB`: `OFF`
+    - `CEGUI_BUILD_RENDERER_IRRLICHT`: `OFF`
+    - `CEGUI_BUILD_RENDERER_NULL`: `OFF`
+    - `CEGUI_BUILD_RENDERER_OGRE`: `ON`
+    - `CEGUI_BUILD_RENDERER_OPENGL`: `OFF`
+    - `CEGUI_BUILD_RENDERER_OPENGL3`: `OFF`
+    - `CEGUI_BUILD_RENDERER_OPENGLES`: `OFF`
+    - `OGRE_H_BUILD_SETTINGS_PATH`: `deps/ogre/build/include`
+    - `OGRE_H_PATH`: `deps/ogre/OgreMain/include`
+    - `OGRE_LIB`: `deps/ogre/build/lib/Release/OgreMain.lib`
+    - `OGRE_LIB_DBG`: `deps/ogre/build/lib/Release/OgreMain.lib`
+1. Click on the `Generate` button.
+1. Modify the file `deps/cegui/build/cegui/include/CEGUI/Config.h`, replacing the following values:
+    - `define CEGUI_OGRE_VERSION_MAJOR 0` -> `define CEGUI_OGRE_VERSION_MAJOR 1`
+    - `define CEGUI_OGRE_VERSION_MINOR 0` -> `define CEGUI_OGRE_VERSION_MINOR 9`
+1. Compile the project (`ALL_BUILD` by default) in `Debug` and `Release`.
+1. Copy the following files to `bin/`:
+    - `deps/cegui/build/bin/CEGUIBase-0.dll`
+    - `deps/cegui/build/bin/CEGUIBase-0_d.dll`
+    - `deps/cegui/build/bin/CEGUIOgreRenderer-0.dll`
+    - `deps/cegui/build/bin/CEGUIOgreRenderer-0_d.dll`
+    - `deps/cegui/dependencies/bin/freetype.dll`
+    - `deps/cegui/dependencies/bin/freetype_d.dll`
+    - `deps/cegui/dependencies/bin/glew.dll`
+    - `deps/cegui/dependencies/bin/glew_d.dll`
+    - `deps/cegui/dependencies/bin/glfw.dll`
+    - `deps/cegui/dependencies/bin/glfw_d.dll`
+    - `deps/cegui/dependencies/bin/jpeg.dll`
+    - `deps/cegui/dependencies/bin/jpeg_d.dll`
+    - `deps/cegui/dependencies/bin/libexpat.dll`
+    - `deps/cegui/dependencies/bin/libexpat_d.dll`
+    - `deps/cegui/dependencies/bin/libpng.dll`
+    - `deps/cegui/dependencies/bin/libpng_d.dll`
+    - `deps/cegui/dependencies/bin/pcre.dll`
+    - `deps/cegui/dependencies/bin/pcre_d.dll`
+    - `deps/cegui/dependencies/bin/SILLY.dll`
+    - `deps/cegui/dependencies/bin/SILLY_d.dll`
 
 > If you encountered any issues, please open an issue including the steps taken and the warnings or errors you
 encountered. If you found no problem so far, you should be able to compile this project without problems.

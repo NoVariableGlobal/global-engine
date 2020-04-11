@@ -20,7 +20,7 @@ class Game {
     bool sceneChange = false;
     bool deleteAll = false;
 
-	GUI* m_gui;
+    GUI* m_gui;
 
   public:
     Game();

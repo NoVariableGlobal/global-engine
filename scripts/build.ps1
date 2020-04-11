@@ -272,55 +272,6 @@ function Step-CopyToBinaryDirectory([string] $From, [string[]] $Paths) {
 
 Try {
     If (!$EngineOnly.ToBool()) {
-        # Build CEGUI
-        $private:CeguiFolder = "$DependenciesRoot\cegui"
-        $private:CeguiDependenciesFolder = "$DependenciesRoot\cegui-dependencies"
-
-        # Build CEGUI's dependencies
-        Step-CMake $CeguiDependenciesFolder @()
-        Step-VisualStudioThirdPartyDebug "$CeguiDependenciesFolder\build\CEGUI-DEPS.sln"
-        Step-VisualStudioThirdPartyRelease "$CeguiDependenciesFolder\build\CEGUI-DEPS.sln"
-
-        # Copy all of CEGUI's dependencies (once compiled), this way CEGUI can find them
-        Copy-Item -Path "$CeguiDependenciesFolder\build\dependencies" -Destination "$CeguiFolder" -Recurse -Force
-        Step-CMake $CeguiFolder @(
-            "-DCEGUI_BUILD_RENDERER_OPENGL3:BOOL=ON",
-            "-DCEGUI_BUILD_RENDERER_OPENGLES:BOOL=ON"
-        )
-
-        # Let's be honest, I got done with MSBuild here. The world would be beautiful if it'd let me define constants
-        # via CLI, but looks like it's impossible without CMake, which apparently nobody at this team wants.
-        $private:Content = Get-Content -Path "$CeguiFolder\build\cegui\include\CEGUI\Config.h"
-        $private:Content = $Content -replace "define CEGUI_OGRE_VERSION_MAJOR 0", "define CEGUI_OGRE_VERSION_MAJOR 1"
-        $private:Content = $Content -replace "define CEGUI_OGRE_VERSION_MINOR 0", "define CEGUI_OGRE_VERSION_MINOR 9"
-        Set-Content -Path "$CeguiFolder\build\cegui\include\CEGUI\Config.h" -Value $Content
-        Remove-Variable Content
-
-        Step-VisualStudioThirdPartyDebug "$CeguiFolder\build\cegui.sln"
-        Step-VisualStudioThirdPartyRelease "$CeguiFolder\build\cegui.sln"
-        Step-CopyToBinaryDirectory "CEGUI" @(
-            "$CeguiFolder\build\bin\CEGUIBase-0.dll",
-            "$CeguiFolder\build\bin\CEGUIBase-0_d.dll",
-            "$CeguiFolder\build\bin\CEGUIOpenGLRenderer-0.dll",
-            "$CeguiFolder\build\bin\CEGUIOpenGLRenderer-0_d.dll",
-            "$CeguiFolder\dependencies\bin\freetype.dll",
-            "$CeguiFolder\dependencies\bin\freetype_d.dll",
-            "$CeguiFolder\dependencies\bin\glew.dll",
-            "$CeguiFolder\dependencies\bin\glew_d.dll",
-            "$CeguiFolder\dependencies\bin\glfw.dll",
-            "$CeguiFolder\dependencies\bin\glfw_d.dll",
-            "$CeguiFolder\dependencies\bin\jpeg.dll",
-            "$CeguiFolder\dependencies\bin\jpeg_d.dll",
-            "$CeguiFolder\dependencies\bin\libexpat.dll",
-            "$CeguiFolder\dependencies\bin\libexpat_d.dll",
-            "$CeguiFolder\dependencies\bin\libpng.dll",
-            "$CeguiFolder\dependencies\bin\libpng_d.dll",
-            "$CeguiFolder\dependencies\bin\pcre.dll",
-            "$CeguiFolder\dependencies\bin\pcre_d.dll",
-            "$CeguiFolder\dependencies\bin\SILLY.dll",
-            "$CeguiFolder\dependencies\bin\SILLY_d.dll"
-        )
-
         # Build Bullet
         $private:BulletFolder = "$DependenciesRoot\bullet"
         Step-CMake $BulletFolder @(
@@ -374,6 +325,67 @@ Try {
         $private:Sdl2Folder = "$DependenciesRoot\SDL2"
         Step-CopyToBinaryDirectory "SDL2" @(
             "$Sdl2Folder\lib\x64\SDL2.dll"
+        )
+
+        # Build CEGUI
+        $private:CeguiFolder = "$DependenciesRoot\cegui"
+        $private:CeguiDependenciesFolder = "$DependenciesRoot\cegui-dependencies"
+
+        # Build CEGUI's dependencies
+        Step-CMake $CeguiDependenciesFolder @()
+        Step-VisualStudioThirdPartyDebug "$CeguiDependenciesFolder\build\CEGUI-DEPS.sln"
+        Step-VisualStudioThirdPartyRelease "$CeguiDependenciesFolder\build\CEGUI-DEPS.sln"
+
+        # Copy all of CEGUI's dependencies (once compiled), this way CEGUI can find them
+        Copy-Item -Path "$CeguiDependenciesFolder\build\dependencies" -Destination "$CeguiFolder" -Recurse -Force
+        Step-CMake $CeguiFolder @(
+            "-DCEGUI_BUILD_RENDERER_DIRECT3D10:BOOL=OFF",
+            "-DCEGUI_BUILD_RENDERER_DIRECT3D11:BOOL=OFF",
+            "-DCEGUI_BUILD_RENDERER_DIRECT3D9:BOOL=OFF",
+            "-DCEGUI_BUILD_RENDERER_DIRECTFB:BOOL=OFF",
+            "-DCEGUI_BUILD_RENDERER_IRRLICHT:BOOL=OFF",
+            "-DCEGUI_BUILD_RENDERER_NULL:BOOL=OFF",
+            "-DCEGUI_BUILD_RENDERER_OGRE:BOOL=ON",
+            "-DCEGUI_BUILD_RENDERER_OPENGL:BOOL=OFF",
+            "-DCEGUI_BUILD_RENDERER_OPENGL3:BOOL=OFF",
+            "-DCEGUI_BUILD_RENDERER_OPENGLES:BOOL=OFF",
+            "-DOGRE_H_BUILD_SETTINGS_PATH:PATH=$OgreFolder/build/include",
+            "-DOGRE_H_PATH:PATH=$OgreFolder/OgreMain/include",
+            "-DOGRE_LIB:FILEPATH=$OgreFolder/build/lib/Release/OgreMain.lib",
+            "-DOGRE_LIB_DBG:FILEPATH=$OgreFolder/build/lib/Release/OgreMain.lib"
+        )
+
+        # Let's be honest, I got done with MSBuild here. The world would be beautiful if it'd let me define constants
+        # via CLI, but looks like it's impossible without CMake.
+        $private:Content = Get-Content -Path "$CeguiFolder\build\cegui\include\CEGUI\Config.h"
+        $private:Content = $Content -replace "define CEGUI_OGRE_VERSION_MAJOR 0", "define CEGUI_OGRE_VERSION_MAJOR 1"
+        $private:Content = $Content -replace "define CEGUI_OGRE_VERSION_MINOR 0", "define CEGUI_OGRE_VERSION_MINOR 9"
+        Set-Content -Path "$CeguiFolder\build\cegui\include\CEGUI\Config.h" -Value $Content
+        Remove-Variable Content
+
+        Step-VisualStudioThirdPartyDebug "$CeguiFolder\build\cegui.sln"
+        Step-VisualStudioThirdPartyRelease "$CeguiFolder\build\cegui.sln"
+        Step-CopyToBinaryDirectory "CEGUI" @(
+            "$CeguiFolder\build\bin\CEGUIBase-0.dll",
+            "$CeguiFolder\build\bin\CEGUIBase-0_d.dll",
+            "$CeguiFolder\build\bin\CEGUIOgreRenderer-0.dll",
+            "$CeguiFolder\build\bin\CEGUIOgreRenderer-0_d.dll",
+            "$CeguiFolder\dependencies\bin\freetype.dll",
+            "$CeguiFolder\dependencies\bin\freetype_d.dll",
+            "$CeguiFolder\dependencies\bin\glew.dll",
+            "$CeguiFolder\dependencies\bin\glew_d.dll",
+            "$CeguiFolder\dependencies\bin\glfw.dll",
+            "$CeguiFolder\dependencies\bin\glfw_d.dll",
+            "$CeguiFolder\dependencies\bin\jpeg.dll",
+            "$CeguiFolder\dependencies\bin\jpeg_d.dll",
+            "$CeguiFolder\dependencies\bin\libexpat.dll",
+            "$CeguiFolder\dependencies\bin\libexpat_d.dll",
+            "$CeguiFolder\dependencies\bin\libpng.dll",
+            "$CeguiFolder\dependencies\bin\libpng_d.dll",
+            "$CeguiFolder\dependencies\bin\pcre.dll",
+            "$CeguiFolder\dependencies\bin\pcre_d.dll",
+            "$CeguiFolder\dependencies\bin\SILLY.dll",
+            "$CeguiFolder\dependencies\bin\SILLY_d.dll"
         )
     }
 

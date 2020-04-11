@@ -213,8 +213,8 @@ void OgreSDLContext::destroyRTShaderSystem() {
     }
 }
 
-Ogre::RenderTarget* OgreSDLContext::getRenderTarget() { 
-	return mRoot->getRenderTarget("Test");
+Ogre::RenderTarget* OgreSDLContext::getRenderTarget() {
+    return mRoot->getRenderTarget("Test");
 }
 
 bool OgreSDLContext::pollEvents(const SDL_Event event) // from frameStarted
