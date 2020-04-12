@@ -18,4 +18,5 @@ class TridimensionalObjectRC : public RenderComponent {
 
     // Sets a given material to the object
     void setMaterial(std::string material);
+    void setRotation(Ogre::Vector3 r);
 };

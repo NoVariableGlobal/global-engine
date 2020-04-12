@@ -20,10 +20,20 @@ void TridimensionalObjectRC::render() {
         father->getComponent("TransformComponent"));
     getSceneNode()->setPosition(transform->getPosition());
     getSceneNode()->setScale(transform->getScale());
+
+    setRotation(transform->getOrientation());
 }
 
 void TridimensionalObjectRC::setMaterial(std::string material) {
     entity->setMaterialName(material);
+}
+
+void TridimensionalObjectRC::setRotation(Ogre::Vector3 r) {
+    getSceneNode()->setOrientation(
+        Ogre::Quaternion(Ogre::Degree(0), Ogre::Vector3(1, 1, 1)));
+    getSceneNode()->pitch(Ogre::Degree(r.x), Ogre::Node::TS_LOCAL);
+    getSceneNode()->yaw(Ogre::Degree(r.y), Ogre::Node::TS_LOCAL);
+    getSceneNode()->roll(Ogre::Degree(r.z), Ogre::Node::TS_LOCAL);
 }
 
 // FACTORY INFRASTRUCTURE DEFINITION
