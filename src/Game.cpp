@@ -1,20 +1,24 @@
 #include "Game.h"
-#include "CameraRC.h"
-#include "FactoriesFactory.h"
+#include "Scene.h"
 #include "Loader.h"
+#include "Util.h"
+#include "FactoriesFactory.h"
 #include "OgreSDLContext.h"
 #include "PhysicsContext.h"
+#include "SoundContext.h"
+#include "CameraRC.h"
 #include "RigidbodyPC.h"
-#include "Scene.h"
 #include "SpotLightRC.h"
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
-#include "Util.h"
+#include "AnimationLC.h"
+#include "SleepEC.h"
+#include "SoundListenerComponent.h"
+#include "SoundComponent.h"
 
 #include <SDL_events.h>
 #include <string>
 
-#include "SoundContext.h"
 #include <iostream>
 
 Game::Game() {
@@ -43,6 +47,10 @@ void Game::initContext() {
     CameraRCFactoryRegisterGlobalVar.noop();
     SpotLightRCFactoryRegisterGlobalVar.noop();
     TridimensionalObjectRCFactoryRegisterGlobalVar.noop();
+    SoundComponentFactoryRegisterGlobalVar.noop();
+    SoundListenerComponentFactoryRegisterGlobalVar.noop();
+    SleepECFactoryRegisterGlobalVar.noop();
+    AnimationLCFactoryRegisterGlobalVar.noop();
 }
 
 // Reads the scenes and sets the first one
