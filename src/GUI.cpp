@@ -19,11 +19,6 @@ void GUI::init(const std::string& _resourceDirectory) {
         CEGUI::Scheme::setDefaultResourceGroup("Schemes");
         CEGUI::WidgetLookManager::setDefaultResourceGroup("LookNFeel");
         CEGUI::WindowManager::setDefaultResourceGroup("Layouts");
-
-        /*CEGUI::System::getSingleton()
-            .getDefaultGUIContext()
-            .getMouseCursor()
-            .setDefaultImage("TaharezLook/MouseArrow");*/
     }
 
     m_context = &CEGUI::System::getSingleton().createGUIContext(
@@ -34,16 +29,14 @@ void GUI::init(const std::string& _resourceDirectory) {
 }
 
 void GUI::destroy() {
+    CEGUI::System::getSingleton().destroyGUIContext(*m_context);
     m_renderer->destroySystem();
-    // CEGUI::System::getSingleton().destroyGUIContext(*m_context);
 }
 
 void GUI::draw() {
     m_renderer->beginRendering();
     m_context->draw();
     m_renderer->endRendering();
-    // TODO - Possible bug here
-    // glDisable(GL_SCISSOR_TEST);
 }
 
 void GUI::loadScheme(const std::string& schemeFile) {
@@ -72,6 +65,13 @@ void GUI::setWidgetDestRect(CEGUI::Window* widget, glm::vec4 destRectPerc,
                         CEGUI::UDim(destRectPerc.y, destRectPix.y)));
     widget->setSize(CEGUI::USize(CEGUI::UDim(destRectPerc.z, destRectPix.z),
                                  CEGUI::UDim(destRectPerc.w, destRectPix.w)));
+}
+
+void GUI::setMouseImage(const std::string& imageFile) {
+    CEGUI::System::getSingleton()
+        .getDefaultGUIContext()
+        .getMouseCursor()
+        .setDefaultImage(imageFile);
 }
 
 CEGUI::OgreRenderer* GUI::getRenderer() { return m_renderer; }
