@@ -44,4 +44,6 @@ class Game {
     void setChangeScene(bool _change, std::string _sceneName, bool _deleteAll);
     // change the current scene
     void setScene(std::string _sceneName);
+
+	void quit();
 };

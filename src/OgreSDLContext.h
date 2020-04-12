@@ -78,9 +78,10 @@ class OgreSDLContext {
     // destroy the RT Shader system.
     void destroyRTShaderSystem();
 
-    // return a pointer to the root
-    Ogre::Root* getRoot();
-	Ogre::RenderTarget* getRenderTarget();
+	// return a pointer to the OgreRoot
+	Ogre::Root* getOgreRoot();
+	// return a pointer to the RenderTarget
+    Ogre::RenderTarget* getRenderTarget();
     // return a pointer to the SceneManager
     Ogre::SceneManager* getSceneManager();
     // return a pointer to the RenderWindow

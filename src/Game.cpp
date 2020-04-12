@@ -16,6 +16,7 @@
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
 #include "Util.h"
+#include <CEGUI\CEGUI.h>
 
 #include <SDL_events.h>
 #include <string>
@@ -66,25 +67,29 @@ bool Game::init(std::string _firstScene) {
 
         scene = new Scene(this);
         setScene(_firstScene);
-        
-        m_gui = new GUI(); 
+
+        m_gui = new GUI();
         try {
             m_gui->init("GUI");
             m_gui->loadScheme("TaharezLook.scheme");
             m_gui->setFont("DejaVuSans-10");
             m_gui->setMouseImage("TaharezLook/MouseArrow");
-            
+
             CEGUI::PushButton* testButton =
                 static_cast<CEGUI::PushButton*>(m_gui->createWidget(
                     "TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f),
                     glm::vec4(0.0f), "TestButton"));
             testButton->setText("Hello World!");
 			
+			testButton->subscribeEvent(
+                CEGUI::PushButton::EventClicked,
+                CEGUI::Event::Subscriber(&Game::quit, this));
+
         } catch (CEGUI::Exception& e) {
             auto message = e.getMessage().c_str();
             throw std::exception(message);
         }
-		
+
         return true;
     } catch (std::exception& e) {
         std::cout << "ERROR: " << e.what();
@@ -98,6 +103,7 @@ void Game::run() {
         handleInput();
         scene->insertComponents();
         scene->deleteComponents();
+        m_gui->frameRenderingQueued();
         render();
 
         if (sceneChange)
@@ -140,3 +146,5 @@ void Game::setScene(std::string _sceneName) {
     sceneChange = false;
     deleteAll = false;
 }
+
+void Game::quit() { std::cout << "QUIT\n"; }
