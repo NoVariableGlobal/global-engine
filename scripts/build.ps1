@@ -8,13 +8,28 @@ param (
     [Alias("CMake")]
     [string] $CMakePath,
     [switch] $Build,
+    [switch] $Clean,
     [switch] $Release,
     [string] $Target,
     [string] $Property,
     [string] $Platform = "x64",
 
-    [switch] $DependenciesOnly,
-    [switch] $EngineOnly,
+    # Dependencies
+    [switch] $BuildDependencies,
+    [switch] $BuildBullet,
+    [switch] $BuildCegui,
+    [switch] $BuildCeguiDependencies,
+    [switch] $BuildFmod,
+    [switch] $BuildJsonCpp,
+    [switch] $BuildOgre,
+    [switch] $BuildOis,
+    [switch] $BuildSdl2,
+
+    # Project
+    [switch] $BuildProject,
+
+    # Misc
+    [switch] $BuildAll,
 
     [Alias("Parallel")]
     [switch] $SequentialBuild,
@@ -30,13 +45,104 @@ param (
 
 $ErrorActionPreference = "Stop"
 
-If ($DependenciesOnly -And $EngineOnly) {
-    Write-Host "You cannot specify " -ForegroundColor Red  -NoNewline
-    Write-Host "-DependenciesOnly"   -ForegroundColor Blue -NoNewline
-    Write-Host " and "               -ForegroundColor Red  -NoNewline
-    Write-Host "-EngineOnly"         -ForegroundColor Blue -NoNewline
-    Write-Host " at the same time."  -ForegroundColor Red
-    Exit 1
+$local:RootFolder = Split-Path $PSScriptRoot -Parent
+$local:BinaryDirectory = "$RootFolder\bin"
+$local:DependenciesRoot = "$RootFolder\deps"
+
+$local:BulletFolder = Join-Path -Path $DependenciesRoot -ChildPath "bullet"
+$local:FModFolder = Join-Path -Path $DependenciesRoot -ChildPath "fmod"
+$local:JsonFolder = Join-Path -Path $DependenciesRoot -ChildPath "jsoncpp"
+$local:OgreFolder = Join-Path -Path $DependenciesRoot -ChildPath "ogre"
+$local:Sdl2Folder = Join-Path -Path $DependenciesRoot -ChildPath "SDL2"
+$local:CeguiFolder = Join-Path -Path $DependenciesRoot -ChildPath "cegui"
+$local:CeguiDependenciesFolder = Join-Path -Path $DependenciesRoot -ChildPath "cegui-dependencies"
+$local:OisFolder = Join-Path -Path $DependenciesRoot -ChildPath "OIS"
+
+If ($Clean) {
+    $private:DllFiles = Get-ChildItem -Path $BinaryDirectory -Filter "*.dll";
+
+    Write-Host "# Now deleting " -ForegroundColor Blue -NoNewline
+    Write-Host $DllFiles.Length  -ForegroundColor Cyan -NoNewline
+    Write-Host " file(s) from "  -ForegroundColor Blue -NoNewline
+    Write-Host $BinaryDirectory  -ForegroundColor Cyan -NoNewline
+    Write-Host "'... "           -ForegroundColor Blue -NoNewLine
+
+    If (Test-Path -Path $Path) {
+        Remove-Item -LiteralPath $DllFiles -Force | Out-Null
+        Write-Host "Finished!"           -ForegroundColor Green
+    } Else {
+        Write-Host "Skipped."            -ForegroundColor DarkGray
+    }
+
+    Remove-Variable DllFiles
+
+    function Remove-Directory([string[]] $Path) {
+        Write-Host "# Now deleting folder '" -ForegroundColor Blue -NoNewline
+        Write-Host $Path                     -ForegroundColor Cyan -NoNewline
+        Write-Host "'... "                   -ForegroundColor Blue -NoNewLine
+
+        If (Test-Path -Path $Path) {
+            Remove-Item -LiteralPath $Path -Recurse | Out-Null
+            Write-Host "Finished!"           -ForegroundColor Green
+        } Else {
+            Write-Host "Skipped."            -ForegroundColor DarkGray
+        }
+    }
+
+    Remove-Directory -Path (Join-Path -Path $BulletFolder -ChildPath "build")
+    Remove-Directory -Path (Join-Path -Path $FModFolder -ChildPath "build")
+    Remove-Directory -Path (Join-Path -Path $JsonFolder -ChildPath "build")
+    Remove-Directory -Path (Join-Path -Path $OgreFolder -ChildPath "build")
+    Remove-Directory -Path (Join-Path -Path $Sdl2Folder -ChildPath "build")
+    Remove-Directory -Path (Join-Path -Path $CeguiFolder -ChildPath "build")
+    Remove-Directory -Path (Join-Path -Path $CeguiDependenciesFolder -ChildPath "build")
+    Remove-Directory -Path (Join-Path -Path $OisFolder -ChildPath "build")
+}
+
+# Whether any dependency was specified
+$private:BuildDependenciesSpecified = $BuildDependencies.ToBool() -Or
+    $BuildBullet.ToBool() -Or
+    $BuildCegui.ToBool() -Or
+    $BuildCeguiDependencies.ToBool() -Or
+    $BuildFmod.ToBool() -Or
+    $BuildJsonCpp.ToBool() -Or
+    $BuildOgre.ToBool() -Or
+    $BuildOis.ToBool() -Or
+    $BuildSdl2.ToBool()
+
+# Whether any build step was specified
+$private:BuildSpecified = $BuildDependenciesSpecified -Or
+    $BuildAll.ToBool() -Or
+    $BuildProject.ToBool()
+
+If ($BuildAll -Or !$BuildSpecified) {
+    # If BuildAll is set or no build step was specified, set defaults to build all dependencies and the project itself
+    # This will happen with the following cases:
+    #   ./scripts/build.ps1
+    #   ./scripts/build.ps1 -BuildAll
+
+    $BuildDependencies = $true
+    $BuildProject = $true
+} ElseIf (!$BuildProject.IsPresent -And !$BuildDependenciesSpecified) {
+    # If -BuildProject was not specified and no dependencies were as well
+    # This will happen with the following case:
+    #   ./scripts/build.ps1 -BuildProject
+    #
+    # This will *not* happen with the following case:
+    #   ./scripts/build.ps1 -BuildBullet
+
+    $BuildProject = $true
+}
+
+If ($BuildDependencies) {
+    If (!$BuildBullet.IsPresent) { $BuildBullet = $true }
+    If (!$BuildCegui.IsPresent) { $BuildCegui = $true }
+    If (!$BuildCeguiDependencies.IsPresent) { $BuildCeguiDependencies = $true }
+    If (!$BuildFmod.IsPresent) { $BuildFmod = $true }
+    If (!$BuildJsonCpp.IsPresent) { $BuildJsonCpp = $true }
+    If (!$BuildOgre.IsPresent) { $BuildOgre = $true }
+    If (!$BuildOis.IsPresent) { $BuildOis = $true }
+    If (!$BuildSdl2.IsPresent) { $BuildSdl2 = $true }
 }
 
 function New-Directory([string[]] $Path) {
@@ -251,10 +357,6 @@ function Step-CMake([string] $Path, [string[]] $Arguments) {
     }
 }
 
-$local:RootFolder = Split-Path $PSScriptRoot -Parent
-$local:BinaryDirectory = "$RootFolder\bin"
-$local:DependenciesRoot = "$RootFolder\deps"
-
 # Copies one or more files from one place to the project's binary directory
 function Step-CopyToBinaryDirectory([string] $From, [string[]] $Paths) {
     Write-Host "# Now copying " -ForegroundColor Blue -NoNewline
@@ -271,9 +373,8 @@ function Step-CopyToBinaryDirectory([string] $From, [string[]] $Paths) {
 }
 
 Try {
-    If (!$EngineOnly.ToBool()) {
-        # Build Bullet
-        $private:BulletFolder = "$DependenciesRoot\bullet"
+    # Build Bullet
+    If ($BuildBullet) {
         Step-CMake $BulletFolder @(
             "-DBUILD_BULLET2_DEMOS:BOOL=OFF",
             "-DBUILD_BULLET3:BOOL=ON",
@@ -289,21 +390,10 @@ Try {
         )
         Step-VisualStudioThirdPartyDebug "$BulletFolder\build\BULLET_PHYSICS.sln"
         Step-VisualStudioThirdPartyRelease "$BulletFolder\build\BULLET_PHYSICS.sln"
+    }
 
-        # Build FMod
-        $private:FModFolder = "$DependenciesRoot\fmod"
-        Step-CopyToBinaryDirectory "FMod" @(
-            "$FModFolder\fmod64.dll"
-        )
-
-        # Build JsonCPP
-        $private:JsonFolder = "$DependenciesRoot\jsoncpp"
-        Step-CMake $JsonFolder @()
-        Step-VisualStudioThirdPartyDebug "$JsonFolder\build\JSONCPP.sln"
-        Step-VisualStudioThirdPartyRelease "$JsonFolder\build\JSONCPP.sln"
-
-        # Build Ogre
-        $private:OgreFolder = "$DependenciesRoot\ogre"
+    # Build Ogre
+    If ($BuildOgre) {
         Step-CMake $OgreFolder @("-DOGRE_BUILD_COMPONENT_OVERLAY:BOOL=OFF")
         Step-VisualStudioThirdPartyDebug "$OgreFolder\build\OGRE.sln"
         Step-VisualStudioThirdPartyRelease "$OgreFolder\build\OGRE.sln"
@@ -320,22 +410,28 @@ Try {
             "$OgreFolder\build\bin\release\OgreRTShaderSystem.dll",
             "$OgreFolder\build\bin\release\Codec_STBI.dll"
         )
+    }
 
-        # Build SDL2
-        $private:Sdl2Folder = "$DependenciesRoot\SDL2"
-        Step-CopyToBinaryDirectory "SDL2" @(
-            "$Sdl2Folder\lib\x64\SDL2.dll"
+    # Build OIS
+    If ($BuildOis) {
+        Step-CMake $OisFolder @()
+        Step-VisualStudioThirdPartyDebug "$OisFolder\build\OIS.sln"
+        Step-VisualStudioThirdPartyRelease "$OisFolder\build\OIS.sln"
+        Step-CopyToBinaryDirectory "OIS" @(
+            "$OisFolder\build\Release\OIS.dll",
+            "$OisFolder\build\Debug\OIS_d.dll"
         )
+    }
 
-        # Build CEGUI
-        $private:CeguiFolder = "$DependenciesRoot\cegui"
-        $private:CeguiDependenciesFolder = "$DependenciesRoot\cegui-dependencies"
-
-        # Build CEGUI's dependencies
+    # Build CEGUI's dependencies
+    If ($BuildCeguiDependencies) {
         Step-CMake $CeguiDependenciesFolder @()
         Step-VisualStudioThirdPartyDebug "$CeguiDependenciesFolder\build\CEGUI-DEPS.sln"
         Step-VisualStudioThirdPartyRelease "$CeguiDependenciesFolder\build\CEGUI-DEPS.sln"
+    }
 
+    # Build CEGUI
+    If ($BuildCegui) {
         # Copy all of CEGUI's dependencies (once compiled), this way CEGUI can find them
         Copy-Item -Path "$CeguiDependenciesFolder\build\dependencies" -Destination "$CeguiFolder" -Recurse -Force
         Step-CMake $CeguiFolder @(
@@ -352,7 +448,10 @@ Try {
             "-DOGRE_H_BUILD_SETTINGS_PATH:PATH=$OgreFolder/build/include",
             "-DOGRE_H_PATH:PATH=$OgreFolder/OgreMain/include",
             "-DOGRE_LIB:FILEPATH=$OgreFolder/build/lib/Release/OgreMain.lib",
-            "-DOGRE_LIB_DBG:FILEPATH=$OgreFolder/build/lib/Release/OgreMain.lib"
+            "-DOGRE_LIB_DBG:FILEPATH=$OgreFolder/build/lib/Release/OgreMain.lib",
+            "-DOIS_H_PATH:PATH=$OisFolder/includes",
+            "-DOIS_LIB:FILEPATH=$OisFolder/build/Release/OIS.lib",
+            "-DOIS_LIB_DBG:FILEPATH=$OisFolder/build/Debug/OIS_d.lib"
         )
 
         # Let's be honest, I got done with MSBuild here. The world would be beautiful if it'd let me define constants
@@ -389,7 +488,28 @@ Try {
         )
     }
 
-    If (!$DependenciesOnly.ToBool()) {
+    # Build FMod
+    If ($BuildFmod) {
+        Step-CopyToBinaryDirectory "FMod" @(
+            "$FModFolder\fmod64.dll"
+        )
+    }
+
+    # Build JsonCPP
+    If ($BuildJsonCpp) {
+        Step-CMake $JsonFolder @()
+        Step-VisualStudioThirdPartyDebug "$JsonFolder\build\JSONCPP.sln"
+        Step-VisualStudioThirdPartyRelease "$JsonFolder\build\JSONCPP.sln"
+    }
+
+    # Build SDL2
+    If ($BuildSdl2) {
+        Step-CopyToBinaryDirectory "SDL2" @(
+            "$Sdl2Folder\lib\x64\SDL2.dll"
+        )
+    }
+
+    If ($BuildProject) {
         # Sets up $MsBuildParameters, building one from the other parameters
         If ($MsBuildParameters.Length -Eq 0) {
             If ($Target -Eq "" -And (!$Build.IsPresent -Or $Build.ToBool())) {
@@ -405,7 +525,7 @@ Try {
             $local:MaxCpuCountArgument = If (!$AllCores.IsPresent -Or $AllCores.ToBool()) { "-maxCpuCount" } Else { "" }
             $local:NoLogoArgument = If ($DisplayLogo.ToBool()) { "" } Else { "-noLogo" }
             $local:VerbosityArgument = "-verbosity:$Verbosity"
-            $local:MsBuildParameters = @($Target, $Property, $VerbosityArgument, $BuildInParallelArgument, $MaxCpuCountArgument, $NoLogoArgument)
+            $MsBuildParameters = @($Target, $Property, $VerbosityArgument, $BuildInParallelArgument, $MaxCpuCountArgument, $NoLogoArgument)
         }
 
         # Build One Thousand Years
@@ -421,3 +541,19 @@ Try {
 
     Exit 1
 }
+
+Remove-Variable RootFolder
+Remove-Variable BinaryDirectory
+Remove-Variable DependenciesRoot
+Remove-Variable BulletFolder
+Remove-Variable FModFolder
+Remove-Variable JsonFolder
+Remove-Variable OgreFolder
+Remove-Variable Sdl2Folder
+Remove-Variable CeguiFolder
+Remove-Variable CeguiDependenciesFolder
+Remove-Variable OisFolder
+Remove-Variable BuildInParallelArgument
+Remove-Variable MaxCpuCountArgument
+Remove-Variable NoLogoArgument
+Remove-Variable VerbosityArgument

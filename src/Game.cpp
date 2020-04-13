@@ -80,7 +80,7 @@ bool Game::init(std::string _firstScene) {
                     "TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f),
                     glm::vec4(0.0f), "TestButton"));
             testButton->setText("Hello World!");
-			
+
 			testButton->subscribeEvent(
                 CEGUI::PushButton::EventClicked,
                 CEGUI::Event::Subscriber(&Game::quit, this));

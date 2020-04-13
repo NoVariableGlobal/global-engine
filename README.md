@@ -94,6 +94,18 @@ shell of your preference.
     - `deps/ogre/build/bin/release/OgreRTShaderSystem.dll`
     - `deps/ogre/build/bin/release/Codec_STBI.dll`
 
+#### IOS
+
+1. Open CMake-GUI and set up the following parameters:
+    - Source Code: `deps/IOS`
+    - Build Folder: `deps/IOS/build`
+1. Click on the `Configure` button.
+1. Click on the `Generate` button.
+1. Compile the project (`ALL_BUILD` by default) in `Debug` and `Release`.
+1. Copy the following files to `bin/`:
+    - `deps/ogre/build/Release/OIS.dll`
+    - `deps/ogre/build/Debug/OIS_d.dll`
+
 #### FMod
 
 1. Copy the following files to `bin/`:
