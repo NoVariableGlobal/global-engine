@@ -7,6 +7,7 @@
 #include <CEGUI\CEGUI.h>
 #include <CEGUI\RendererModules\Ogre\Renderer.h>
 #include <CEGUI\RendererModules\Ogre\ResourceProvider.h>
+#include <CEGUI\MouseCursor.h>
 #include <iostream>
 
 void GUI::init(const std::string& _resourceDirectory) {
@@ -32,6 +33,8 @@ void GUI::init(const std::string& _resourceDirectory) {
     m_root = CEGUI::WindowManager::getSingleton().createWindow("DefaultWindow",
                                                                "root");
     m_context->setRootWindow(m_root);
+
+    createFrameListener();
 }
 
 void GUI::destroy() {
@@ -77,7 +80,7 @@ void GUI::setMouseImage(const std::string& imageFile) {
     CEGUI::System::getSingleton()
         .getDefaultGUIContext()
         .getMouseCursor()
-        .setDefaultImage(imageFile);
+        .setImage(imageFile);
 }
 
 void GUI::createFrameListener() {
@@ -104,12 +107,12 @@ void GUI::createFrameListener() {
     windowResized(mWindow);
 
     // TODO: Register as a Window listener
-    //Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
+    // Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
 
     OgreSDLContext::getInstance()->getOgreRoot()->addFrameListener(this);
 }
 
-bool GUI::frameRenderingQueued(const Ogre::FrameEvent& evt) {
+bool GUI::frameRenderingQueued(/*const Ogre::FrameEvent& evt*/) {
     if (mWindow->isClosed())
         return false;
 
@@ -118,7 +121,7 @@ bool GUI::frameRenderingQueued(const Ogre::FrameEvent& evt) {
     mMouse->capture();
 
     // Need to inject timestamps to CEGUI System.
-    CEGUI::System::getSingleton().injectTimePulse(evt.timeSinceLastFrame);
+    // CEGUI::System::getSingleton().injectTimePulse(evt.timeSinceLastFrame);
 
     return true;
 }
@@ -158,6 +161,7 @@ bool GUI::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id) {
     CEGUI::GUIContext& context =
         CEGUI::System::getSingleton().getDefaultGUIContext();
     context.injectMouseButtonDown(convertButton(id));
+    std::cout << arg.state.X.abs << " " << arg.state.Y.abs << "\n";
     return true;
 }
 

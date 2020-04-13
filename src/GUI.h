@@ -53,7 +53,7 @@ class GUI : public OIS::KeyListener,
 
     void createFrameListener();
 
-    bool frameRenderingQueued(const Ogre::FrameEvent& evt);
+    bool frameRenderingQueued(/*const Ogre::FrameEvent& evt*/);
 
     bool keyPressed(const OIS::KeyEvent& arg);
 
