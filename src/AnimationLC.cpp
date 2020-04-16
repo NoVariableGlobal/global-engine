@@ -39,7 +39,7 @@ void AnimationLC::stopAnimation(std::string name) {
     animations.find(name)->second->setEnabled(false);
 }
 
-bool AnimationLC::animationFinished(std::string name) { 
+bool AnimationLC::animationFinished(std::string name) {
     return animations.find(name)->second->hasEnded();
 }
 
