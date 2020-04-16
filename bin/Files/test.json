@@ -104,10 +104,6 @@
           }
         },
         {
-          "type": "ChangeGravityIC",
-          "attributes": {}
-        },
-        {
           "type": "SoundListenerComponent",
           "attributes": {}
         }

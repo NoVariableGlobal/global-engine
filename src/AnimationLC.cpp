@@ -9,19 +9,22 @@
 #include <OgreEntity.h>
 #include <json.h>
 
+#include <iostream>
+
 void AnimationLC::frameRendered(const Ogre::FrameEvent& evt) {
     for (auto anim : animations)
         if (anim.second->getEnabled()) {
-            if (anim.second->getLoop() && anim.second->hasEnded()) {
+            if (anim.second->hasEnded()) {
                 anim.second->setEnabled(false);
-                anim.second->setTimePosition(0.0);
-            }
-            else
+            } else {
                 anim.second->addTime(evt.timeSinceLastFrame);
+                std::cout << anim.second->getTimePosition() << '\n';
+            }
         }
 }
 
 void AnimationLC::startAnimation(std::string name) {
+    animations.find(name)->second->setTimePosition(0.0);
     animations.find(name)->second->setEnabled(true);
 }
 
@@ -29,19 +32,15 @@ void AnimationLC::stopAnimations() {
     for (auto anim : animations)
         if (anim.second->getEnabled()) {
             anim.second->setEnabled(false);
-            anim.second->setTimePosition(0.0);
         }
 }
 
 void AnimationLC::stopAnimation(std::string name) {
     animations.find(name)->second->setEnabled(false);
-    animations.find(name)->second->setTimePosition(0.0);
 }
 
 bool AnimationLC::animationFinished(std::string name) { 
-    return (animations.find(name)->second->getEnabled() &&
-            (animations.find(name)->second->getTimePosition() ==
-                animations.find(name)->second->getLength()));
+    return animations.find(name)->second->hasEnded();
 }
 
 void AnimationLC::addAnimation(std::string name, bool loop) {

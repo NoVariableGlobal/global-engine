@@ -29,7 +29,6 @@
   <ItemGroup>
     <ClCompile Include="..\src\AnimationLC.cpp" />
     <ClCompile Include="..\src\Application.cpp" />
-    <ClCompile Include="..\src\ChangeGravityIC.cpp" />
     <ClCompile Include="..\src\EventComponent.cpp" />
     <ClCompile Include="..\src\ListenerComponent.cpp" />
     <ClCompile Include="..\src\RigidbodyPC.cpp" />
@@ -58,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\AnimationLC.h" />
-    <ClInclude Include="..\src\ChangeGravityIC.h" />
     <ClInclude Include="..\src\EventComponent.h" />
     <ClInclude Include="..\src\ListenerComponent.h" />
     <ClInclude Include="..\src\RigidbodyPC.h" />
