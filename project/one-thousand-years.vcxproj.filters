@@ -85,6 +85,9 @@
     <ClCompile Include="..\src\SleepEC.cpp">
       <Filter>Components\Events</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\ChangeGravityIC.cpp">
+      <Filter>Components\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Component.h">
@@ -176,6 +179,9 @@
     </ClInclude>
     <ClInclude Include="..\src\SleepEC.h">
       <Filter>Components\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ChangeGravityIC.h">
+      <Filter>Components\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
