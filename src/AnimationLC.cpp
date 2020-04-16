@@ -9,8 +9,6 @@
 #include <OgreEntity.h>
 #include <json.h>
 
-#include <iostream>
-
 void AnimationLC::frameRendered(const Ogre::FrameEvent& evt) {
     for (auto anim : animations)
         if (anim.second->getEnabled()) {
@@ -18,7 +16,6 @@ void AnimationLC::frameRendered(const Ogre::FrameEvent& evt) {
                 anim.second->setEnabled(false);
             } else {
                 anim.second->addTime(evt.timeSinceLastFrame);
-                std::cout << anim.second->getTimePosition() << '\n';
             }
         }
 }
