@@ -11,22 +11,34 @@
 
 void AnimationLC::frameRendered(const Ogre::FrameEvent& evt) {
     for (auto anim : animations)
-        if (anim.second->getEnabled())
-            anim.second->addTime(evt.timeSinceLastFrame);
+        if (anim.second->getEnabled()) {
+            if (anim.second->hasEnded()) {
+                anim.second->setEnabled(false);
+            } else {
+                anim.second->addTime(evt.timeSinceLastFrame);
+            }
+        }
 }
 
 void AnimationLC::startAnimation(std::string name) {
-    animations.find(name)->second->setEnabled(true);
+    Ogre::AnimationState* anim = animations.find(name)->second;
+    anim->setTimePosition(0.0);
+    anim->setEnabled(true);
 }
 
 void AnimationLC::stopAnimations() {
     for (auto anim : animations)
-        if (anim.second->getEnabled())
+        if (anim.second->getEnabled()) {
             anim.second->setEnabled(false);
+        }
 }
 
 void AnimationLC::stopAnimation(std::string name) {
     animations.find(name)->second->setEnabled(false);
+}
+
+bool AnimationLC::animationFinished(std::string name) {
+    return animations.find(name)->second->hasEnded();
 }
 
 void AnimationLC::addAnimation(std::string name, bool loop) {

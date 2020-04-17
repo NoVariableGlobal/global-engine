@@ -87,10 +87,10 @@
         {
           "type": "AnimationLC",
           "attributes": {
-            "animations":[
+            "animations": [
               {
                 "name": "Dance",
-                "loop": true
+                "loop": false
               },
               {
                 "name": "RunBase",

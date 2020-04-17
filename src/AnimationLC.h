@@ -22,6 +22,8 @@ class AnimationLC : public ListenerComponent {
     void stopAnimations();
     // stop the animation specified
     void stopAnimation(std::string name);
+    // return true if the animation is enabled
+    bool animationFinished(std::string name);
     // add an animation to the map of animations
     void addAnimation(std::string name, bool loop);
 };
