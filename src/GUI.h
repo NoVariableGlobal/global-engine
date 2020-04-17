@@ -1,9 +1,9 @@
 #pragma once
 
+#include "CEGUI\InputEvent.h"
 #include "OISKeyboard.h"
 #include "OISMouse.h"
 #include "OgreFrameListener.h"
-#include "CEGUI\InputEvent.h"
 #include <glm\glm.hpp>
 #include <string>
 
@@ -42,12 +42,16 @@ class GUI : public OIS::KeyListener,
 
     void setFont(const std::string& fontFile);
 
-    CEGUI::Window* createWidget(const std::string& type, glm::vec4 destRectPerc,
-                                glm::vec4 destRectPix,
-                                const std::string& name = "");
+    CEGUI::PushButton* createPushButton(const std::string& text,
+                                        glm::vec2 position, glm::vec2 size,
+                                        const std::string& name = "");
 
-    static void setWidgetDestRect(CEGUI::Window* widget, glm::vec4 destRectPerc,
-                                  glm::vec4 destRectPix);
+    CEGUI::DefaultWindow* createFrameWindow(const std::string& text,
+                                            glm::vec2 position, glm::vec2 size,
+                                            const std::string& name = "");
+
+    static void setWidgetDestRect(CEGUI::Window* widget, glm::vec2 position,
+                                  glm::vec2 size);
 
     void setMouseImage(const std::string& imageFile);
 
@@ -55,12 +59,14 @@ class GUI : public OIS::KeyListener,
 
     bool frameRenderingQueued(/*const Ogre::FrameEvent& evt*/);
 
+    // OIS::KeyListener
     bool keyPressed(const OIS::KeyEvent& arg);
 
     bool keyReleased(const OIS::KeyEvent& arg);
 
     CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID);
 
+    // OIS::MouseListener
     bool mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id);
 
     bool mouseReleased(const OIS::MouseEvent& arg, OIS::MouseButtonID id);

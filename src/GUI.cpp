@@ -5,9 +5,9 @@
 #include "OgreRoot.h"
 #include "OgreSDLContext.h"
 #include <CEGUI\CEGUI.h>
+#include <CEGUI\MouseCursor.h>
 #include <CEGUI\RendererModules\Ogre\Renderer.h>
 #include <CEGUI\RendererModules\Ogre\ResourceProvider.h>
-#include <CEGUI\MouseCursor.h>
 #include <iostream>
 
 void GUI::init(const std::string& _resourceDirectory) {
@@ -57,23 +57,44 @@ void GUI::setFont(const std::string& fontFile) {
     m_context->setDefaultFont(fontFile);
 }
 
-CEGUI::Window* GUI::createWidget(const std::string& type,
-                                 glm::vec4 destRectPerc, glm::vec4 destRectPix,
-                                 const std::string& name) {
-    CEGUI::Window* newWindow =
-        CEGUI::WindowManager::getSingleton().createWindow(type, name);
-    m_root->addChild(newWindow);
-    setWidgetDestRect(newWindow, destRectPerc, destRectPix);
-    return newWindow;
+CEGUI::PushButton* GUI::createPushButton(const std::string& text,
+                                         glm::vec2 position, glm::vec2 size,
+                                         const std::string& name) {
+    CEGUI::PushButton* button = static_cast<CEGUI::PushButton*>(
+        CEGUI::WindowManager::getSingleton().createWindow("TaharezLook/Button",
+                                                          name));
+    setWidgetDestRect(button, position, size);
+
+    button->setText(text);
+
+    m_context->getRootWindow()->addChild(button);
+
+    return button;
 }
 
-void GUI::setWidgetDestRect(CEGUI::Window* widget, glm::vec4 destRectPerc,
-                            glm::vec4 destRectPix) {
-    widget->setPosition(
-        CEGUI::UVector2(CEGUI::UDim(destRectPerc.x, destRectPix.x),
-                        CEGUI::UDim(destRectPerc.y, destRectPix.y)));
-    widget->setSize(CEGUI::USize(CEGUI::UDim(destRectPerc.z, destRectPix.z),
-                                 CEGUI::UDim(destRectPerc.w, destRectPix.w)));
+CEGUI::DefaultWindow* GUI::createFrameWindow(const std::string& text,
+                                             glm::vec2 position, glm::vec2 size,
+                                             const std::string& name) {
+    CEGUI::DefaultWindow* statictext = static_cast<CEGUI::DefaultWindow*>(
+        CEGUI::WindowManager::getSingleton().createWindow(
+            "TaharezLook/StaticText", name));
+    setWidgetDestRect(statictext, position, size);
+
+    statictext->setText(text);
+    statictext->setProperty("FrameEnabled", "false");
+    statictext->setProperty("BackgroundEnabled", "false");
+
+    m_context->getRootWindow()->addChild(statictext);
+
+    return statictext;
+}
+
+void GUI::setWidgetDestRect(CEGUI::Window* widget, glm::vec2 position,
+                            glm::vec2 size) {
+    widget->setPosition(CEGUI::UVector2(CEGUI::UDim(position.x, 0),
+                                        CEGUI::UDim(position.y, 0)));
+    widget->setSize(
+        CEGUI::USize(CEGUI::UDim(0, size.x), CEGUI::UDim(0, size.y)));
 }
 
 void GUI::setMouseImage(const std::string& imageFile) {

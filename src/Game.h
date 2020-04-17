@@ -45,5 +45,5 @@ class Game {
     // change the current scene
     void setScene(std::string _sceneName);
 
-	void quit();
+    void quit();
 };

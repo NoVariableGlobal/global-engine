@@ -72,18 +72,18 @@ bool Game::init(std::string _firstScene) {
         try {
             m_gui->init("GUI");
             m_gui->loadScheme("TaharezLook.scheme");
-            m_gui->setFont("DejaVuSans-10");
             m_gui->setMouseImage("TaharezLook/MouseArrow");
+            m_gui->setFont("DejaVuSans-14");
 
-            CEGUI::PushButton* testButton =
-                static_cast<CEGUI::PushButton*>(m_gui->createWidget(
-                    "TaharezLook/Button", glm::vec4(0.5f, 0.5f, 0.1f, 0.05f),
-                    glm::vec4(0.0f), "TestButton"));
-            testButton->setText("Hello World!");
+            CEGUI::PushButton* button =
+                m_gui->createPushButton("QUIT", glm::vec2(0.5f, 0.5f),
+                                        glm::vec2(75.0f, 50.0f), "TestButton");
+            button->subscribeEvent(CEGUI::PushButton::EventClicked,
+                                   CEGUI::Event::Subscriber(&Game::quit, this));
 
-			testButton->subscribeEvent(
-                CEGUI::PushButton::EventClicked,
-                CEGUI::Event::Subscriber(&Game::quit, this));
+            CEGUI::DefaultWindow* editbox =
+                m_gui->createFrameWindow("Odio CeGUI", glm::vec2(0.5f, 0.0f),
+                                         glm::vec2(100.0f, 50.0f), "Text");
 
         } catch (CEGUI::Exception& e) {
             auto message = e.getMessage().c_str();
