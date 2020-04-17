@@ -21,8 +21,9 @@ void AnimationLC::frameRendered(const Ogre::FrameEvent& evt) {
 }
 
 void AnimationLC::startAnimation(std::string name) {
-    animations.find(name)->second->setTimePosition(0.0);
-    animations.find(name)->second->setEnabled(true);
+    Ogre::AnimationState* anim = animations.find(name)->second;
+    anim->setTimePosition(0.0);
+    anim->setEnabled(true);
 }
 
 void AnimationLC::stopAnimations() {
