@@ -99,7 +99,8 @@ void Game::handleInput() {
     }
 }
 
-void Game::setChangeScene(bool _change, std::string _sceneName, bool _deleteAll) {
+void Game::setChangeScene(bool _change, std::string _sceneName,
+                          bool _deleteAll) {
     sceneChange = _change;
     sceneToChange = _sceneName;
     deleteAll = _deleteAll;
