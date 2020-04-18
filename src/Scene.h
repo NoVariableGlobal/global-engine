@@ -28,7 +28,7 @@ class Scene {
     ~Scene();
 
     // calls to game->setScene()
-    void changeScene(std::string _sceneName);
+    void changeScene(std::string _sceneName, bool deleteAll = false);
 
     // Given the name of the scene, reads its respective file and tells the
     // Engine to create all entities and component

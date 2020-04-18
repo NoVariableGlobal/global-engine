@@ -30,8 +30,8 @@ Scene::~Scene() {
     PhysicsContext::getInstance()->destroyWorld();
 }
 
-void Scene::changeScene(std::string _sceneName) {
-    game->setChangeScene(true, _sceneName);
+void Scene::changeScene(std::string _sceneName, bool deleteAll) {
+    game->setChangeScene(true, _sceneName, deleteAll);
 }
 
 void Scene::load(std::string name) {
