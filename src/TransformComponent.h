@@ -20,6 +20,9 @@ class TransformComponent : public Component {
     // Scale of the entity in the 3 axis
     Ogre::Vector3* _scale = nullptr;
 
+    // Original rotation of the entity in the 3 axis
+    Ogre::Vector3* _originalOrientation = nullptr;
+
   public:
     TransformComponent();
     virtual ~TransformComponent();
@@ -35,4 +38,7 @@ class TransformComponent : public Component {
 
     Ogre::Vector3 getScale();
     void setScale(Ogre::Vector3 s);
+
+    Ogre::Vector3 getOriginalOrientation();
+    void setOriginalOrientation(Ogre::Vector3 r);
 };

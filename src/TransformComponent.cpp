@@ -11,12 +11,14 @@ TransformComponent::TransformComponent() {
     _position = new Ogre::Vector3();
     _scale = new Ogre::Vector3();
     _orientation = new Ogre::Vector3();
+    _originalOrientation = new Ogre::Vector3();
 }
 
 TransformComponent::~TransformComponent() {
     delete _position;
     delete _scale;
     delete _orientation;
+    delete _originalOrientation;
 }
 
 void TransformComponent::destroy() {
@@ -32,6 +34,14 @@ void TransformComponent::setOrientation(Ogre::Vector3 r) { *_orientation = r; }
 
 Ogre::Vector3 TransformComponent::getScale() { return *_scale; }
 void TransformComponent::setScale(Ogre::Vector3 s) { *_scale = s; }
+
+Ogre::Vector3 TransformComponent::getOriginalOrientation() {
+    return *_originalOrientation;
+}
+
+void TransformComponent::setOriginalOrientation(Ogre::Vector3 r) {
+    *_originalOrientation = r;
+}
 
 // FACTORY INFRASTRUCTURE DEFINITION
 
@@ -54,9 +64,11 @@ Component* TransformComponentFactory::create(Entity* _father,
 
     if (!_data["orientation"].isArray())
         throw std::exception("TransformComponent: orientation is not an array");
-    transformComponent->setOrientation(Ogre::Vector3(
+    transformComponent->setOriginalOrientation(Ogre::Vector3(
         _data["orientation"][0].asFloat(), _data["orientation"][1].asFloat(),
         _data["orientation"][2].asFloat()));
+    transformComponent->setOrientation(
+        transformComponent->getOriginalOrientation());
 
     if (!_data["scale"].isArray())
         throw std::exception("TransformComponent: scale is not an array");
