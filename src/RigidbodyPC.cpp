@@ -60,6 +60,10 @@ bool RigidbodyPC::collidesWith(std::string id) {
         return false;
     Entity* other = scene->getEntitybyId(id);
 
+    if (!reinterpret_cast<RigidbodyPC*>(
+            other->getComponent("RigidbodyPC")->isActive()))
+        return false;
+
     return collidesWithEntity(other);
 }
 

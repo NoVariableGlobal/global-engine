@@ -99,15 +99,21 @@ void Game::handleInput() {
     }
 }
 
-void Game::setChangeScene(bool _change, std::string _sceneName) {
+void Game::setChangeScene(bool _change, std::string _sceneName,
+                          bool _deleteAll) {
     sceneChange = _change;
     sceneToChange = _sceneName;
+    deleteAll = _deleteAll;
 }
 
 void Game::setScene(std::string _sceneName) {
-    scene->clearNonPersistantEntities();
+    if (!deleteAll)
+        scene->clearNonPersistantEntities();
+    else
+        scene->clearEntities();
 
     scene->load(assert_find(scenesQueue, _sceneName));
 
     sceneChange = false;
+    deleteAll = false;
 }

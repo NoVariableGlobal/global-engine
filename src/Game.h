@@ -17,6 +17,7 @@ class Game {
 
     std::string sceneToChange;
     bool sceneChange = false;
+    bool deleteAll = false;
 
   public:
     Game();
@@ -37,7 +38,7 @@ class Game {
     void handleInput();
 
     // tells if the scene is going to be change
-    void setChangeScene(bool _change, std::string _sceneName);
+    void setChangeScene(bool _change, std::string _sceneName, bool _deleteAll);
     // change the current scene
     void setScene(std::string _sceneName);
 };
