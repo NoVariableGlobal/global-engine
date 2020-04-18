@@ -29,11 +29,37 @@ void TridimensionalObjectRC::setMaterial(std::string material) {
 }
 
 void TridimensionalObjectRC::setRotation(Ogre::Vector3 r) {
-    getSceneNode()->setOrientation(
-        Ogre::Quaternion(Ogre::Degree(0), Ogre::Vector3(1, 1, 1)));
+    // Reset original orientation
+    resetRotation();
+
+    // Apply new rotation
     getSceneNode()->pitch(Ogre::Degree(r.x), Ogre::Node::TS_LOCAL);
     getSceneNode()->yaw(Ogre::Degree(r.y), Ogre::Node::TS_LOCAL);
     getSceneNode()->roll(Ogre::Degree(r.z), Ogre::Node::TS_LOCAL);
+
+    // Save new rotation in transform component
+    dynamic_cast<TransformComponent*>(
+        father->getComponent("TransformComponent"))
+        ->setOrientation(r);
+}
+
+void TridimensionalObjectRC::resetRotation() {
+    TransformComponent* transform = dynamic_cast<TransformComponent*>(
+        father->getComponent("TransformComponent"));
+    Ogre::SceneNode* node = getSceneNode();
+    Ogre::Vector3 r = transform->getOriginalOrientation();
+
+    // Set orientation to 0, 0, 0
+    node->setOrientation(
+        Ogre::Quaternion(Ogre::Degree(0), Ogre::Vector3(1, 1, 1)));
+
+    // Reset orientation to its original
+    node->pitch(Ogre::Degree(r.x), Ogre::Node::TS_LOCAL);
+    node->yaw(Ogre::Degree(r.y), Ogre::Node::TS_LOCAL);
+    node->roll(Ogre::Degree(r.z), Ogre::Node::TS_LOCAL);
+
+    // Save orientation in transform component
+    transform->setOrientation(transform->getOriginalOrientation());
 }
 
 // FACTORY INFRASTRUCTURE DEFINITION
