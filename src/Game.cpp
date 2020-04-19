@@ -112,6 +112,8 @@ void Game::setScene(std::string _sceneName) {
     else
         scene->clearEntities();
 
+    scene->deleteComponents();
+
     scene->load(assert_find(scenesQueue, _sceneName));
 
     sceneChange = false;
