@@ -10,98 +10,36 @@
 #include <CEGUI\RendererModules\Ogre\ResourceProvider.h>
 #include <iostream>
 
-void GUI::init(const std::string& _resourceDirectory) {
-    if (m_renderer == nullptr) {
+void GUI::init(std::string scheme) {
+    mRenderer = &CEGUI::OgreRenderer::bootstrapSystem(
+        *OgreSDLContext::getInstance()->getRenderTarget());           // CHECK
+    mRoot = OgreSDLContext::getInstance()->getOgreRoot();             // CHECK
+    mWindow = OgreSDLContext::getInstance()->getRenderWindow();       // CHECK
+    mContext = &CEGUI::System::getSingleton().getDefaultGUIContext(); // CHECK
 
-        m_renderer = &CEGUI::OgreRenderer::bootstrapSystem(
-            *OgreSDLContext::getInstance()->getRenderTarget());
+    CEGUI::ImageManager::setImagesetDefaultResourceGroup("Imagesets");
+    CEGUI::Font::setDefaultResourceGroup("Fonts");
+    CEGUI::Scheme::setDefaultResourceGroup("Schemes");
+    CEGUI::WidgetLookManager::setDefaultResourceGroup("LookNFeel");
+    CEGUI::WindowManager::setDefaultResourceGroup("Layouts");
 
-        CEGUI::OgreResourceProvider* rp =
-            dynamic_cast<CEGUI::OgreResourceProvider*>(
-                CEGUI::System::getSingleton().getResourceProvider());
+    loadScheme(scheme); // Leaves 2 lines of trash
+    setMouseImage("TaharezLook/MouseArrow");
+    setFont("DejaVuSans-14");
 
-        CEGUI::ImageManager::setImagesetDefaultResourceGroup("Imagesets");
-        CEGUI::Font::setDefaultResourceGroup("Fonts");
-        CEGUI::Scheme::setDefaultResourceGroup("Schemes");
-        CEGUI::WidgetLookManager::setDefaultResourceGroup("LookNFeel");
-        CEGUI::WindowManager::setDefaultResourceGroup("Layouts");
-    }
+    mWindowManager = &CEGUI::WindowManager::getSingleton();
+    sheet = mWindowManager->createWindow("DefaultWindow", "CEGUIDemo/Sheet");
 
-    mWindow = OgreSDLContext::getInstance()->getRenderWindow();
-    m_context = &CEGUI::System::getSingleton().createGUIContext(
-        m_renderer->getDefaultRenderTarget());
-    m_root = CEGUI::WindowManager::getSingleton().createWindow("DefaultWindow",
-                                                               "root");
-    m_context->setRootWindow(m_root);
-
+    CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(sheet);
     createFrameListener();
 }
 
 void GUI::destroy() {
-    CEGUI::System::getSingleton().destroyGUIContext(*m_context);
-    m_renderer->destroySystem();
-}
+    mInputManager->destroyInputObject(mMouse);
+    mInputManager->destroyInputObject(mKeyboard);
+    OIS::InputManager::destroyInputSystem(mInputManager);
 
-void GUI::draw() {
-    m_renderer->beginRendering();
-    m_context->draw();
-    m_renderer->endRendering();
-}
-
-void GUI::loadScheme(const std::string& schemeFile) {
-    CEGUI::SchemeManager::getSingleton().createFromFile(schemeFile);
-}
-
-void GUI::setFont(const std::string& fontFile) {
-    CEGUI::FontManager::getSingleton().createFromFile(fontFile + ".font");
-    m_context->setDefaultFont(fontFile);
-}
-
-CEGUI::PushButton* GUI::createPushButton(const std::string& text,
-                                         glm::vec2 position, glm::vec2 size,
-                                         const std::string& name) {
-    CEGUI::PushButton* button = static_cast<CEGUI::PushButton*>(
-        CEGUI::WindowManager::getSingleton().createWindow("TaharezLook/Button",
-                                                          name));
-    setWidgetDestRect(button, position, size);
-
-    button->setText(text);
-
-    m_context->getRootWindow()->addChild(button);
-
-    return button;
-}
-
-CEGUI::DefaultWindow* GUI::createFrameWindow(const std::string& text,
-                                             glm::vec2 position, glm::vec2 size,
-                                             const std::string& name) {
-    CEGUI::DefaultWindow* statictext = static_cast<CEGUI::DefaultWindow*>(
-        CEGUI::WindowManager::getSingleton().createWindow(
-            "TaharezLook/StaticText", name));
-    setWidgetDestRect(statictext, position, size);
-
-    statictext->setText(text);
-    statictext->setProperty("FrameEnabled", "false");
-    statictext->setProperty("BackgroundEnabled", "false");
-
-    m_context->getRootWindow()->addChild(statictext);
-
-    return statictext;
-}
-
-void GUI::setWidgetDestRect(CEGUI::Window* widget, glm::vec2 position,
-                            glm::vec2 size) {
-    widget->setPosition(CEGUI::UVector2(CEGUI::UDim(position.x, 0),
-                                        CEGUI::UDim(position.y, 0)));
-    widget->setSize(
-        CEGUI::USize(CEGUI::UDim(0, size.x), CEGUI::UDim(0, size.y)));
-}
-
-void GUI::setMouseImage(const std::string& imageFile) {
-    CEGUI::System::getSingleton()
-        .getDefaultGUIContext()
-        .getMouseCursor()
-        .setImage(imageFile);
+    mRenderer->destroySystem();
 }
 
 void GUI::createFrameListener() {
@@ -130,7 +68,7 @@ void GUI::createFrameListener() {
     // TODO: Register as a Window listener
     // Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
 
-    OgreSDLContext::getInstance()->getOgreRoot()->addFrameListener(this);
+    mRoot->addFrameListener(this);
 }
 
 bool GUI::frameRenderingQueued(/*const Ogre::FrameEvent& evt*/) {
@@ -146,6 +84,84 @@ bool GUI::frameRenderingQueued(/*const Ogre::FrameEvent& evt*/) {
 
     return true;
 }
+
+void GUI::windowResized(Ogre::RenderWindow* rw) {
+    unsigned int width, height, depth;
+    int left, top;
+    rw->getMetrics(width, height, depth, left, top);
+
+    const OIS::MouseState& ms = mMouse->getMouseState();
+    ms.width = width;
+    ms.height = height;
+}
+
+void GUI::draw() {
+    mRenderer->beginRendering();
+    mContext->draw();
+    mRenderer->endRendering();
+}
+
+// -------------- CEGUI RESOURCES --------------
+
+void GUI::loadScheme(const std::string& schemeFile) {
+    CEGUI::SchemeManager::getSingleton().createFromFile(schemeFile);
+}
+
+void GUI::setFont(const std::string& fontFile) {
+    CEGUI::FontManager::getSingleton().createFromFile(fontFile + ".font");
+    mContext->setDefaultFont(fontFile);
+}
+
+void GUI::setMouseImage(const std::string& imageFile) {
+    CEGUI::System::getSingleton()
+        .getDefaultGUIContext()
+        .getMouseCursor()
+        .setDefaultImage(imageFile);
+
+    CEGUI::System::getSingleton()
+        .getDefaultGUIContext()
+        .getMouseCursor()
+        .setImage(imageFile);
+}
+
+// -------------- GUI ELEMENTS --------------
+CEGUI::Window* GUI::createButton(const std::string& text, glm::vec2 position,
+                                 glm::vec2 size, const std::string& name) {
+    CEGUI::Window* button = CEGUI::WindowManager::getSingleton().createWindow(
+        "TaharezLook/Button", name);
+
+    setWidgetDestRect(button, position, size);
+    button->setText(text);
+    sheet->addChild(button);
+
+    return button;
+}
+
+CEGUI::Window* GUI::createLabel(const std::string& text,
+                                             glm::vec2 position, glm::vec2 size,
+                                             const std::string& name) {
+    CEGUI::Window* label = CEGUI::WindowManager::getSingleton().createWindow(
+        "TaharezLook/StaticText", name);
+    setWidgetDestRect(label, position, size);
+
+    label->setText(text);
+    label->setProperty("FrameEnabled", "false");
+    label->setProperty("BackgroundEnabled", "false");
+
+    sheet->addChild(label);
+
+    return label;
+}
+
+void GUI::setWidgetDestRect(CEGUI::Window* widget, glm::vec2 position,
+                            glm::vec2 size) {
+    widget->setPosition(CEGUI::UVector2(CEGUI::UDim(position.x, 0),
+                                        CEGUI::UDim(position.y, 0)));
+    widget->setSize(
+        CEGUI::USize(CEGUI::UDim(0, size.x), CEGUI::UDim(0, size.y)));
+}
+
+// ------------- INPUT -------------
 
 bool GUI::keyPressed(const OIS::KeyEvent& arg) {
     CEGUI::GUIContext& context =
@@ -182,7 +198,6 @@ bool GUI::mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id) {
     CEGUI::GUIContext& context =
         CEGUI::System::getSingleton().getDefaultGUIContext();
     context.injectMouseButtonDown(convertButton(id));
-    std::cout << arg.state.X.abs << " " << arg.state.Y.abs << "\n";
     return true;
 }
 
@@ -202,16 +217,8 @@ bool GUI::mouseMoved(const OIS::MouseEvent& arg) {
     return true;
 }
 
-void GUI::windowResized(Ogre::RenderWindow* rw) {
-    unsigned int width, height, depth;
-    int left, top;
-    rw->getMetrics(width, height, depth, left, top);
+// ------------- GETTERS AND SETTERS --------------
 
-    const OIS::MouseState& ms = mMouse->getMouseState();
-    ms.width = width;
-    ms.height = height;
-}
+CEGUI::OgreRenderer* GUI::getRenderer() { return mRenderer; }
 
-CEGUI::OgreRenderer* GUI::getRenderer() { return m_renderer; }
-
-CEGUI::GUIContext* GUI::getContext() { return m_context; }
+CEGUI::GUIContext* GUI::getContext() { return mContext; }

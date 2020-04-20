@@ -21,20 +21,23 @@ namespace OIS {
 
 class GUI : public OIS::KeyListener,
             public OIS::MouseListener,
+            //public Ogre::WindowEventListener,
             public Ogre::FrameListener {
   private:
     Ogre::RenderWindow* mWindow;
+    CEGUI::OgreRenderer* mRenderer = nullptr;
+    Ogre::Root* mRoot = nullptr;
+    CEGUI::GUIContext* mContext = nullptr;
 
-    CEGUI::OgreRenderer* m_renderer = nullptr;
-    CEGUI::GUIContext* m_context = nullptr;
-    CEGUI::Window* m_root = nullptr;
+	CEGUI::Window* sheet;
+    CEGUI::WindowManager* mWindowManager;
 
     OIS::InputManager* mInputManager;
     OIS::Mouse* mMouse;
     OIS::Keyboard* mKeyboard;
 
   public:
-    void init(const std::string& _resourceDirectory);
+    void init(std::string scheme);
     void destroy();
     void draw();
 
@@ -42,11 +45,10 @@ class GUI : public OIS::KeyListener,
 
     void setFont(const std::string& fontFile);
 
-    CEGUI::PushButton* createPushButton(const std::string& text,
-                                        glm::vec2 position, glm::vec2 size,
-                                        const std::string& name = "");
+    CEGUI::Window* createButton(const std::string& text, glm::vec2 position,
+                                glm::vec2 size, const std::string& name);
 
-    CEGUI::DefaultWindow* createFrameWindow(const std::string& text,
+    CEGUI::Window* createLabel(const std::string& text,
                                             glm::vec2 position, glm::vec2 size,
                                             const std::string& name = "");
 
