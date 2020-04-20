@@ -25,7 +25,7 @@ void SoundComponent::playSound(const std::string& id) {
 
 void SoundComponent::stopSound(const std::string& id) {
     if (channels_[id] != nullptr)
-      SoundContext::getInstance()->stopSound(&channels_[id]);
+        SoundContext::getInstance()->stopSound(&channels_[id]);
 }
 
 void SoundComponent::destroy() {}
