@@ -5,7 +5,6 @@
 #include "Scene.h"
 
 void SoundTestIC::handleInput(const SDL_Event& _event) {
-
     if (soundComponent_ == nullptr)
         soundComponent_ = reinterpret_cast<SoundComponent*>(
             father->getComponent("SoundComponent"));
