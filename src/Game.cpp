@@ -71,6 +71,8 @@ bool Game::init(std::string _firstScene) {
         m_gui = new GUI();
         try {
             m_gui->init("TaharezLook.scheme");
+            m_gui->setMouseImage("TaharezLook/MouseArrow");
+            m_gui->setFont("DejaVuSans-14");
 
             CEGUI::Window* quitButton =
                 m_gui->createButton("QUIT", glm::vec2(0.0f, 0.0f),

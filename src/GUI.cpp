@@ -23,15 +23,12 @@ void GUI::init(std::string scheme) {
     CEGUI::WidgetLookManager::setDefaultResourceGroup("LookNFeel");
     CEGUI::WindowManager::setDefaultResourceGroup("Layouts");
 
-    // TODO: Make this non scheme-dependant
     loadScheme(scheme);
-    setMouseImage("TaharezLook/MouseArrow");
-    setFont("DejaVuSans-14");
 
     mWindowManager = &CEGUI::WindowManager::getSingleton();
     sheet = mWindowManager->createWindow("DefaultWindow", "CEGUIDemo/Sheet");
-
     CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(sheet);
+
     createFrameListener();
 }
 
