@@ -1,9 +1,8 @@
 #include "SoundContext.h"
 #include "fmod.h"
 #include "fmod_errors.h"
-#include <iostream>
 #include <cstdlib>
-
+#include <iostream>
 
 SoundContext* SoundContext::instance_ = nullptr;
 
