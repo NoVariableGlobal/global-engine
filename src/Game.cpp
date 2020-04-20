@@ -76,8 +76,9 @@ bool Game::init(std::string _firstScene) {
                 m_gui->createButton("QUIT", glm::vec2(0.0f, 0.0f),
                                     glm::vec2(100.0f, 30.0f), "TestButton");
 
-            quitButton->subscribeEvent(CEGUI::PushButton::EventClicked,
-                                   CEGUI::Event::Subscriber(&Game::quit, this));
+            quitButton->subscribeEvent(
+                CEGUI::PushButton::EventClicked,
+                CEGUI::Event::Subscriber(&Game::quit, this));
 
             CEGUI::Window* editbox =
                 m_gui->createLabel("Odio CeGUI", glm::vec2(0.5f, 0.0f),
@@ -101,7 +102,7 @@ void Game::run() {
         handleInput();
         scene->insertComponents();
         scene->deleteComponents();
-        m_gui->frameRenderingQueued();
+        m_gui->captureInput();
         render();
 
         if (sceneChange)

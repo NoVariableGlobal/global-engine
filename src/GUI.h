@@ -21,7 +21,6 @@ namespace OIS {
 
 class GUI : public OIS::KeyListener,
             public OIS::MouseListener,
-            //public Ogre::WindowEventListener,
             public Ogre::FrameListener {
   private:
     Ogre::RenderWindow* mWindow;
@@ -29,7 +28,7 @@ class GUI : public OIS::KeyListener,
     Ogre::Root* mRoot = nullptr;
     CEGUI::GUIContext* mContext = nullptr;
 
-	CEGUI::Window* sheet;
+    CEGUI::Window* sheet;
     CEGUI::WindowManager* mWindowManager;
 
     OIS::InputManager* mInputManager;
@@ -48,9 +47,8 @@ class GUI : public OIS::KeyListener,
     CEGUI::Window* createButton(const std::string& text, glm::vec2 position,
                                 glm::vec2 size, const std::string& name);
 
-    CEGUI::Window* createLabel(const std::string& text,
-                                            glm::vec2 position, glm::vec2 size,
-                                            const std::string& name = "");
+    CEGUI::Window* createLabel(const std::string& text, glm::vec2 position,
+                               glm::vec2 size, const std::string& name = "");
 
     static void setWidgetDestRect(CEGUI::Window* widget, glm::vec2 position,
                                   glm::vec2 size);
@@ -59,7 +57,7 @@ class GUI : public OIS::KeyListener,
 
     void createFrameListener();
 
-    bool frameRenderingQueued(/*const Ogre::FrameEvent& evt*/);
+    void captureInput();
 
     // OIS::KeyListener
     bool keyPressed(const OIS::KeyEvent& arg);

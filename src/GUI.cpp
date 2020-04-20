@@ -12,10 +12,10 @@
 
 void GUI::init(std::string scheme) {
     mRenderer = &CEGUI::OgreRenderer::bootstrapSystem(
-        *OgreSDLContext::getInstance()->getRenderTarget());           // CHECK
-    mRoot = OgreSDLContext::getInstance()->getOgreRoot();             // CHECK
-    mWindow = OgreSDLContext::getInstance()->getRenderWindow();       // CHECK
-    mContext = &CEGUI::System::getSingleton().getDefaultGUIContext(); // CHECK
+        *OgreSDLContext::getInstance()->getRenderTarget());
+    mRoot = OgreSDLContext::getInstance()->getOgreRoot();
+    mWindow = OgreSDLContext::getInstance()->getRenderWindow();
+    mContext = &CEGUI::System::getSingleton().getDefaultGUIContext();
 
     CEGUI::ImageManager::setImagesetDefaultResourceGroup("Imagesets");
     CEGUI::Font::setDefaultResourceGroup("Fonts");
@@ -23,7 +23,8 @@ void GUI::init(std::string scheme) {
     CEGUI::WidgetLookManager::setDefaultResourceGroup("LookNFeel");
     CEGUI::WindowManager::setDefaultResourceGroup("Layouts");
 
-    loadScheme(scheme); // Leaves 2 lines of trash
+    // TODO: Make this non scheme-dependant
+    loadScheme(scheme);
     setMouseImage("TaharezLook/MouseArrow");
     setFont("DejaVuSans-14");
 
@@ -35,6 +36,8 @@ void GUI::init(std::string scheme) {
 }
 
 void GUI::destroy() {
+    // TODO: Remove memory leaks from loadScheme() and widgets
+
     mInputManager->destroyInputObject(mMouse);
     mInputManager->destroyInputObject(mKeyboard);
     OIS::InputManager::destroyInputSystem(mInputManager);
@@ -65,24 +68,12 @@ void GUI::createFrameListener() {
     // Set initial mouse clipping size
     windowResized(mWindow);
 
-    // TODO: Register as a Window listener
-    // Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
-
     mRoot->addFrameListener(this);
 }
 
-bool GUI::frameRenderingQueued(/*const Ogre::FrameEvent& evt*/) {
-    if (mWindow->isClosed())
-        return false;
-
-    // Need to capture/update each device
+void GUI::captureInput() {
     mKeyboard->capture();
     mMouse->capture();
-
-    // Need to inject timestamps to CEGUI System.
-    // CEGUI::System::getSingleton().injectTimePulse(evt.timeSinceLastFrame);
-
-    return true;
 }
 
 void GUI::windowResized(Ogre::RenderWindow* rw) {
@@ -137,9 +128,8 @@ CEGUI::Window* GUI::createButton(const std::string& text, glm::vec2 position,
     return button;
 }
 
-CEGUI::Window* GUI::createLabel(const std::string& text,
-                                             glm::vec2 position, glm::vec2 size,
-                                             const std::string& name) {
+CEGUI::Window* GUI::createLabel(const std::string& text, glm::vec2 position,
+                                glm::vec2 size, const std::string& name) {
     CEGUI::Window* label = CEGUI::WindowManager::getSingleton().createWindow(
         "TaharezLook/StaticText", name);
     setWidgetDestRect(label, position, size);
