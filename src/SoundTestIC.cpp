@@ -6,7 +6,7 @@
 
 void SoundTestIC::handleInput(const SDL_Event& _event) {
     if (soundComponent_ == nullptr)
-        soundComponent_ = reinterpret_cast<SoundComponent*>(
+        soundComponent_ = dynamic_cast<SoundComponent*>(
             father->getComponent("SoundComponent"));
 
     if (_event.type == SDL_KEYDOWN && _event.key.keysym.sym == SDLK_p)

@@ -2,6 +2,8 @@
 #include "fmod.h"
 #include "fmod_errors.h"
 #include <iostream>
+#include <cstdlib>
+
 
 SoundContext* SoundContext::instance_ = nullptr;
 
@@ -74,8 +76,12 @@ Channel* SoundContext::playSound(const std::string& id) const {
         auto result =
             system_->playSound(getInstance()->getSound(id), 0, true, &channel);
         ERRCHECK(result);
-        result = channel->setVolume((*soundsToLoad_)[id]->volume_);
-        ERRCHECK(result);
+        float volume = (*soundsToLoad_)[id]->volume_;
+        if (!abs(volume - 1.0) <= 0.001) {
+            result = channel->setVolume(volume);
+            ERRCHECK(result);
+        }
+
         result = channel->setPaused(false);
         ERRCHECK(result);
         return new Channel(channel);

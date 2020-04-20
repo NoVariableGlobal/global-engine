@@ -4,7 +4,7 @@
       "id": "test",
       "filename": "ahaha.wav",
       "loop": false,
-      "volume": 0.1
+      "volume": 1.0
     }
   ]
 }
