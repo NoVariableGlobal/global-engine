@@ -3,7 +3,8 @@
     {
       "id": "test",
       "filename": "ahaha.wav",
-      "loop": false
+      "loop": false,
+      "volume": 1.0
     }
   ]
 }

@@ -16,7 +16,8 @@ class Channel {
 struct SoundInfo {
     std::string id_;
     std::string filename_;
-    bool loop;
+    bool loop_;
+    float volume_;
 };
 
 class SoundContext {
@@ -31,7 +32,7 @@ class SoundContext {
     FMOD::System* system_ = nullptr;
 
     std::map<std::string, FMOD::Sound*> sounds_;
-    std::list<SoundInfo*>* soundsToLoad_;
+    std::map<std::string, SoundInfo*>* soundsToLoad_;
     FMOD_VECTOR listenerPos_;
 
   public:
@@ -40,8 +41,9 @@ class SoundContext {
     void init();
 
     void addSoundToLoad(SoundInfo* info);
+
     FMOD::Sound* getSound(const std::string& id);
-    Channel* playSound(FMOD::Sound* sound) const;
+    Channel* playSound(const std::string& id) const;
     void stopSound(Channel** channel);
     void updatePosition(Ogre::Vector3 pos);
     void update();

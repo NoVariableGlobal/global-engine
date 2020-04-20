@@ -1,13 +1,14 @@
 #include "SoundContext.h"
 #include "fmod.h"
 #include "fmod_errors.h"
+#include <cstdlib>
 #include <iostream>
 
 SoundContext* SoundContext::instance_ = nullptr;
 
 SoundContext::SoundContext() {
     sounds_ = std::map<std::string, FMOD::Sound*>();
-    soundsToLoad_ = new std::list<SoundInfo*>();
+    soundsToLoad_ = new std::map<std::string, SoundInfo*>();
 }
 
 SoundContext::~SoundContext() {
@@ -20,7 +21,7 @@ SoundContext::~SoundContext() {
 
 void SoundContext::releaseSoundInfo() {
     for (auto it = soundsToLoad_->begin(); it != soundsToLoad_->end(); ++it)
-        delete *it;
+        delete it->second;
     delete soundsToLoad_;
     soundsToLoad_ = nullptr;
 }
@@ -50,10 +51,11 @@ void SoundContext::init() {
         ERRCHECK(result);
         for (auto it = soundsToLoad_->begin(); it != soundsToLoad_->end();
              ++it) {
-            FMOD_MODE mode = ((*it)->loop) ? FMOD_LOOP_NORMAL
-                                           : (FMOD_DEFAULT | FMOD_LOOP_OFF);
-            std::string path = "media/sounds/" + (*it)->filename_;
-            system_->createSound(path.c_str(), mode, 0, &sounds_[(*it)->id_]);
+            FMOD_MODE mode = it->second->loop_ ? FMOD_LOOP_NORMAL
+                                               : (FMOD_DEFAULT | FMOD_LOOP_OFF);
+            std::string path = "media/sounds/" + it->second->filename_;
+            system_->createSound(path.c_str(), mode, 0,
+                                 &sounds_[it->second->id_]);
             ERRCHECK(result);
         }
     } catch (std::exception& e) {
@@ -64,23 +66,32 @@ void SoundContext::init() {
 }
 
 void SoundContext::addSoundToLoad(SoundInfo* info) {
-    soundsToLoad_->push_back(info);
+    (*soundsToLoad_)[info->id_] = info;
 }
 
-FMOD::Sound* SoundContext::getSound(const std::string& id) {
-    return sounds_[id];
-}
-
-Channel* SoundContext::playSound(FMOD::Sound* sound) const {
+Channel* SoundContext::playSound(const std::string& id) const {
     FMOD::Channel* channel;
     try {
-        auto result = system_->playSound(sound, 0, false, &channel);
+        auto result =
+            system_->playSound(getInstance()->getSound(id), 0, true, &channel);
+        ERRCHECK(result);
+        float volume = (*soundsToLoad_)[id]->volume_;
+        if (!abs(volume - 1.0) <= 0.001) {
+            result = channel->setVolume(volume);
+            ERRCHECK(result);
+        }
+
+        result = channel->setPaused(false);
         ERRCHECK(result);
         return new Channel(channel);
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
         return nullptr;
     }
+}
+
+FMOD::Sound* SoundContext::getSound(const std::string& id) {
+    return sounds_[id];
 }
 
 void SoundContext::stopSound(Channel** channel) {
