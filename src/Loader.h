@@ -13,19 +13,16 @@ namespace Json {
 
 class Loader {
   public:
-    Loader();
-    ~Loader();
-
-    // Read the scenes from secnes.json file
+    // Read the scenes from scenes.json file
     void readScenes(std::map<std::string, std::string>& _scenesQueue);
 
     // Read the prefabs from the prefab file
     void readPrefabs(Scene* scene);
     // Create a prefab
-    void createPrefab(Json::Value& _data, Scene* scene);
+    void createPrefab(Json::Value& data, Scene* scene);
 
     // Read the entities of the scene from the scene file
-    void readObjects(std::string _fileName, Scene* scene);
+    void readObjects(const std::string& fileName, Scene* scene);
 
     // Read the sounds of the game from the sounds file
     void readSounds();
@@ -33,7 +30,7 @@ class Loader {
     void createSoundInfo(Json::Value& data);
 
     // Create an entity
-    void createEntity(Json::Value& _data, Scene* scene);
+    void createEntity(Json::Value& data, Scene* scene);
     // Set the components to an entity
-    void setComponents(Json::Value& _data, Entity* _entity, Scene* scene);
+    void setComponents(Json::Value& data, Entity* entity, Scene* scene);
 };

@@ -73,7 +73,7 @@ void CameraRC::render() {
 
     if (target_ != "") {
         const auto* transformTarget = reinterpret_cast<TransformComponent*>(
-            scene_->getEntitybyId(target_)->getComponent("TransformComponent"));
+            scene_->getEntityById(target_)->getComponent("TransformComponent"));
         position = Ogre::Vector3(followX_ ? transformTarget->getPosition().x
                                           : transform->getPosition().x,
                                  followY_ ? transformTarget->getPosition().y

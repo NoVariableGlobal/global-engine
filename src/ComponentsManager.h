@@ -15,29 +15,29 @@ class ListenerComponent;
 
 class ComponentsManager final : public Ogre::FrameListener {
     // vectors for each component type
-    std::vector<InputComponent*> input_;
-    std::vector<PhysicsComponent*> physics_;
-    std::vector<RenderComponent*> rend_;
-    std::vector<SoundComponent*> sound_;
-    std::vector<Component*> deleteable_;
-    std::vector<EventComponent*> event_;
-    std::vector<ListenerComponent*> listener_;
+    std::vector<InputComponent*> input_{};
+    std::vector<PhysicsComponent*> physics_{};
+    std::vector<RenderComponent*> rend_{};
+    std::vector<SoundComponent*> sound_{};
+    std::vector<Component*> deleteable_{};
+    std::vector<EventComponent*> event_{};
+    std::vector<ListenerComponent*> listener_{};
 
-    std::vector<InputComponent*> deleteInput_;
-    std::vector<PhysicsComponent*> deletePhysics_;
-    std::vector<RenderComponent*> deleteRend_;
-    std::vector<SoundComponent*> deleteSound_;
-    std::vector<Component*> deleteDeleteable_;
-    std::vector<EventComponent*> deleteEvent_;
-    std::vector<ListenerComponent*> deleteListener_;
+    std::vector<InputComponent*> deleteInput_{};
+    std::vector<PhysicsComponent*> deletePhysics_{};
+    std::vector<RenderComponent*> deleteRend_{};
+    std::vector<SoundComponent*> deleteSound_{};
+    std::vector<Component*> deleteDeleteable_{};
+    std::vector<EventComponent*> deleteEvent_{};
+    std::vector<ListenerComponent*> deleteListener_{};
 
-    std::vector<InputComponent*> insertInput_;
-    std::vector<PhysicsComponent*> insertPhysics_;
-    std::vector<RenderComponent*> insertRend_;
-    std::vector<SoundComponent*> insertSound_;
-    std::vector<Component*> insertDeleteable_;
-    std::vector<EventComponent*> insertEvent_;
-    std::vector<ListenerComponent*> insertListener_;
+    std::vector<InputComponent*> insertInput_{};
+    std::vector<PhysicsComponent*> insertPhysics_{};
+    std::vector<RenderComponent*> insertRend_{};
+    std::vector<SoundComponent*> insertSound_{};
+    std::vector<Component*> insertDeleteable_{};
+    std::vector<EventComponent*> insertEvent_{};
+    std::vector<ListenerComponent*> insertListener_{};
 
   public:
     ComponentsManager();

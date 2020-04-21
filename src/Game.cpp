@@ -137,7 +137,7 @@ void Game::setChangeScene(const bool change, const std::string sceneName,
 
 void Game::setScene(const std::string sceneName) {
     if (!deleteAll_)
-        scene_->clearNonPersistantEntities();
+        scene_->clearNonPersistentEntities();
     else
         scene_->clearEntities();
 

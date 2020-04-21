@@ -59,7 +59,7 @@ bool RigidbodyPC::collidesWith(const std::string id) const {
     if (!active_)
         return false;
 
-    Entity* other = scene_->getEntitybyId(id);
+    Entity* other = scene_->getEntityById(id);
     return collidesWithEntity(other);
 }
 
@@ -88,7 +88,7 @@ bool RigidbodyPC::collidesWithEntity(Entity* other) const {
 }
 
 Entity* RigidbodyPC::collidesWithTag(const std::string tag) const {
-    std::vector<Entity*> tagEntities = scene_->getEntitiesbyTag(tag);
+    std::vector<Entity*> tagEntities = scene_->getEntitiesByTag(tag);
 
     for (auto it : tagEntities) {
         if (collidesWithEntity(it))
@@ -217,7 +217,7 @@ Component* RigidbodyPCFactory::create(Entity* _father, Json::Value& _data,
                       _data["position"][2].asFloat()),
         Ogre::Vector3(_data["shape"][0].asFloat(), _data["shape"][1].asFloat(),
                       _data["shape"][2].asFloat()),
-        mass);
+        static_cast<float>(mass));
     _scene->getComponentsManager()->addPC(rb);
 
     rb->setFather(_father);

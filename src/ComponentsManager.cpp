@@ -18,45 +18,48 @@ ComponentsManager::ComponentsManager() {
 ComponentsManager::~ComponentsManager() { clearComponents(); }
 
 void ComponentsManager::clearComponents() {
-    int size = physics_.size();
-    for (int i = size - 1; i >= 0; i--) {
-        delete physics_[i];
+    // We iterate from the size to 1, modifying `i` before we read it so the
+    // range it reads is size - 1 to 0. This is also more efficient and safe as
+    // it does not lose information by transforming a `size_t` into an `int`.
+    auto i = physics_.size();
+    while (i != 0) {
+        delete physics_[--i];
         physics_.pop_back();
     }
 
-    size = input_.size();
-    for (int i = size - 1; i >= 0; i--) {
-        delete input_[i];
+    i = input_.size();
+    while (i != 0) {
+        delete input_[--i];
         input_.pop_back();
     }
 
-    size = rend_.size();
-    for (int i = size - 1; i >= 0; i--) {
-        delete rend_[i];
+    i = rend_.size();
+    while (i != 0) {
+        delete rend_[--i];
         rend_.pop_back();
     }
 
-    size = sound_.size();
-    for (int i = size - 1; i >= 0; i--) {
-        delete sound_[i];
+    i = sound_.size();
+    while (i != 0) {
+        delete sound_[--i];
         sound_.pop_back();
     }
 
-    size = event_.size();
-    for (int i = size - 1; i >= 0; i--) {
-        delete event_[i];
+    i = event_.size();
+    while (i != 0) {
+        delete event_[--i];
         event_.pop_back();
     }
 
-    size = deleteable_.size();
-    for (int i = size - 1; i >= 0; i--) {
-        delete deleteable_[i];
+    i = deleteable_.size();
+    while (i != 0) {
+        delete deleteable_[--i];
         deleteable_.pop_back();
     }
 
-    size = listener_.size();
-    for (int i = size - 1; i >= 0; i--) {
-        delete listener_[i];
+    i = listener_.size();
+    while (i != 0) {
+        delete listener_[--i];
         listener_.pop_back();
     }
 }
@@ -66,9 +69,12 @@ void ComponentsManager::addPC(PhysicsComponent* physicsComponent) {
 }
 
 void ComponentsManager::insertPC() {
-    const int size = insertPhysics_.size();
-    for (int i = size - 1; i >= 0; i--) {
-        physics_.push_back(insertPhysics_[i]);
+    // We iterate from the size to 1, modifying `i` before we read it so the
+    // range it reads is size - 1 to 0. This is also more efficient and safe as
+    // it does not lose information by transforming a `size_t` into an `int`.
+    auto i = insertPhysics_.size();
+    while (i != 0) {
+        physics_.push_back(insertPhysics_[--i]);
         insertPhysics_.pop_back();
     }
 }
@@ -86,9 +92,12 @@ void ComponentsManager::addIC(InputComponent* inputComponent) {
 }
 
 void ComponentsManager::insertIC() {
-    const int size = insertInput_.size();
-    for (int i = size - 1; i >= 0; i--) {
-        input_.push_back(insertInput_[i]);
+    // We iterate from the size to 1, modifying `i` before we read it so the
+    // range it reads is size - 1 to 0. This is also more efficient and safe as
+    // it does not lose information by transforming a `size_t` into an `int`.
+    auto i = insertInput_.size();
+    while (i != 0) {
+        input_.push_back(insertInput_[--i]);
         insertInput_.pop_back();
     }
 }
@@ -106,9 +115,12 @@ void ComponentsManager::addRC(RenderComponent* renderComponent) {
 }
 
 void ComponentsManager::insertRC() {
-    const int size = insertRend_.size();
-    for (int i = size - 1; i >= 0; i--) {
-        rend_.push_back(insertRend_[i]);
+    // We iterate from the size to 1, modifying `i` before we read it so the
+    // range it reads is size - 1 to 0. This is also more efficient and safe as
+    // it does not lose information by transforming a `size_t` into an `int`.
+    auto i = insertRend_.size();
+    while (i != 0) {
+        rend_.push_back(insertRend_[--i]);
         insertRend_.pop_back();
     }
 }
@@ -126,9 +138,12 @@ void ComponentsManager::addSC(SoundComponent* soundComponent) {
 }
 
 void ComponentsManager::insertSC() {
-    const int size = insertSound_.size();
-    for (int i = size - 1; i >= 0; i--) {
-        sound_.push_back(insertSound_[i]);
+    // We iterate from the size to 1, modifying `i` before we read it so the
+    // range it reads is size - 1 to 0. This is also more efficient and safe as
+    // it does not lose information by transforming a `size_t` into an `int`.
+    auto i = insertSound_.size();
+    while (i != 0) {
+        sound_.push_back(insertSound_[--i]);
         insertSound_.pop_back();
     }
 }
@@ -146,9 +161,12 @@ void ComponentsManager::addDC(Component* deleteableComponent) {
 }
 
 void ComponentsManager::insertDC() {
-    const int size = insertDeleteable_.size();
-    for (int i = size - 1; i >= 0; i--) {
-        deleteable_.push_back(insertDeleteable_[i]);
+    // We iterate from the size to 1, modifying `i` before we read it so the
+    // range it reads is size - 1 to 0. This is also more efficient and safe as
+    // it does not lose information by transforming a `size_t` into an `int`.
+    auto i = insertDeleteable_.size();
+    while (i != 0) {
+        deleteable_.push_back(insertDeleteable_[--i]);
         insertDeleteable_.pop_back();
     }
 }
@@ -166,9 +184,12 @@ void ComponentsManager::addEC(EventComponent* eventComponent) {
 }
 
 void ComponentsManager::insertEC() {
-    const int size = insertEvent_.size();
-    for (int i = size - 1; i >= 0; i--) {
-        event_.push_back(insertEvent_[i]);
+    // We iterate from the size to 1, modifying `i` before we read it so the
+    // range it reads is size - 1 to 0. This is also more efficient and safe as
+    // it does not lose information by transforming a `size_t` into an `int`.
+    auto i = insertEvent_.size();
+    while (i != 0) {
+        event_.push_back(insertEvent_[--i]);
         insertEvent_.pop_back();
     }
 }
@@ -186,9 +207,9 @@ void ComponentsManager::addLC(ListenerComponent* listenerComponent) {
 }
 
 void ComponentsManager::insertLC() {
-    const int size = insertListener_.size();
-    for (int i = size - 1; i >= 0; i--) {
-        listener_.push_back(insertListener_[i]);
+    auto i = insertListener_.size();
+    while (i != 0) {
+        listener_.push_back(insertListener_[--i]);
         insertListener_.pop_back();
     }
 }

@@ -2,18 +2,14 @@
 #include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Factory.h"
-#include "Ogre.h"
 #include "Scene.h"
+#include <Ogre.h>
 
 #include <iostream>
 #include <json.h>
 #include <string>
 
 #include "SoundContext.h"
-
-Loader::Loader() {}
-
-Loader::~Loader() {}
 
 void Loader::readScenes(std::map<std::string, std::string>& _scenesQueue) {
     std::fstream file;
@@ -31,7 +27,7 @@ void Loader::readScenes(std::map<std::string, std::string>& _scenesQueue) {
 
     data = data["scenes"];
 
-    int numScenes = data.size();
+    const int numScenes = data.size();
     for (int i = 0; i < numScenes; i++) {
         if (!data[i]["name"].isString() || !data[i]["file"].isString())
             throw std::exception(
@@ -56,27 +52,27 @@ void Loader::readPrefabs(Scene* scene) {
             "Loader: files/prefabs.json: prefabs is not an array");
     Json::Value prefabs = data["prefabs"];
 
-    int numPrefabs = prefabs.size();
+    const int numPrefabs = prefabs.size();
     for (int i = 0; i < numPrefabs; i++)
         createPrefab(prefabs[i], scene);
 }
 
-void Loader::createPrefab(Json::Value& _data, Scene* _scene) {
-    if (!_data["id"].isString())
+void Loader::createPrefab(Json::Value& data, Scene* scene) {
+    if (!data["id"].isString())
         throw std::exception("Loader: files/prefabs.json: id is not a string");
-    std::string id = _data["id"].asString();
+    const std::string id = data["id"].asString();
 
-    if (!_data["components"].isArray())
+    if (!data["components"].isArray())
         throw std::exception(
             "Loader: files/prefabs.json: components is not an array");
-    Json::Value components = _data["components"];
+    const Json::Value components = data["components"];
 
-    _scene->addPrefab(id, components);
+    scene->addPrefab(id, components);
 }
 
-void Loader::readObjects(std::string _fileName, Scene* _scene) {
+void Loader::readObjects(const std::string& fileName, Scene* scene) {
     std::fstream file;
-    file.open("files/" + _fileName);
+    file.open("files/" + fileName);
 
     if (!file.is_open())
         throw std::exception("Loader: scene file not found");
@@ -89,9 +85,9 @@ void Loader::readObjects(std::string _fileName, Scene* _scene) {
 
     Json::Value entities = data["entities"];
 
-    int numEntities = entities.size();
+    const int numEntities = entities.size();
     for (int i = 0; i < numEntities; i++)
-        createEntity(entities[i], _scene);
+        createEntity(entities[i], scene);
 }
 
 void Loader::readSounds() {
@@ -125,7 +121,7 @@ void Loader::createSoundInfo(Json::Value& data) {
     if (!data["volume"].isDouble())
         throw std::exception(
             "Loader: files/sounds.json: loop is not a double. ");
-    SoundInfo* info = new SoundInfo;
+    auto* info = new SoundInfo();
     info->id = data["id"].asString();
     info->filename = data["filename"].asString();
     info->loop = data["loop"].asBool();
@@ -134,38 +130,38 @@ void Loader::createSoundInfo(Json::Value& data) {
     SoundContext::getInstance()->addSoundToLoad(info);
 }
 
-void Loader::createEntity(Json::Value& _data, Scene* _scene) {
-    Entity* entity = new Entity();
+void Loader::createEntity(Json::Value& data, Scene* scene) {
+    auto* entity = new Entity();
 
-    if (!_data["id"].isString())
+    if (!data["id"].isString())
         throw std::exception("Loader: id is not string");
-    entity->setId(_data["id"].asString());
+    entity->setId(data["id"].asString());
 
-    if (_data["tag"].isString())
-        entity->setTag(_data["tag"].asString());
+    if (data["tag"].isString())
+        entity->setTag(data["tag"].asString());
 
-    if (_data["persistent"].isBool())
-        entity->setPersistent(_data["persistent"].asBool());
+    if (data["persistent"].isBool())
+        entity->setPersistent(data["persistent"].asBool());
 
-    _scene->addEntity(entity);
+    scene->addEntity(entity);
 
-    if (!_data["components"].isArray())
+    if (!data["components"].isArray())
         throw std::exception("Loader: components is not an array");
-    Json::Value components = _data["components"];
+    Json::Value components = data["components"];
 
-    setComponents(components, entity, _scene);
+    setComponents(components, entity, scene);
 }
 
-void Loader::setComponents(Json::Value& _data, Entity* _entity, Scene* _scene) {
-    int numComponents = _data.size();
+void Loader::setComponents(Json::Value& data, Entity* entity, Scene* scene) {
+    const int numComponents = data.size();
     for (int i = 0; i < numComponents; i++) {
-        if (!_data[i]["type"].isString() || !_data[i]["attributes"].isObject())
+        if (!data[i]["type"].isString() || !data[i]["attributes"].isObject())
             throw std::exception(
                 "Loader: type is not a string or attributes is not an Object");
-        _entity->addComponent(
-            _data[i]["type"].asString(),
+        entity->addComponent(
+            data[i]["type"].asString(),
             FactoriesFactory::getInstance()
-                ->find(_data[i]["type"].asString())
-                ->create(_entity, _data[i]["attributes"], _scene));
+                ->find(data[i]["type"].asString())
+                ->create(entity, data[i]["attributes"], scene));
     }
 }

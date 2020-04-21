@@ -62,7 +62,7 @@ void SoundContext::init() {
                                  &sounds_[it->second->id]);
             checkError(result);
         }
-    } catch (std::exception& e) {
+    } catch (std::exception&) {
         result = system_->release();
         checkError(result);
         throw;

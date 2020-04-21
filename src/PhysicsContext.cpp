@@ -12,11 +12,11 @@ PhysicsContext* PhysicsContext::getInstance() { return _instance; }
 
 void PhysicsContext::init() { _instance = new PhysicsContext(); }
 
-PhysicsContext::PhysicsContext() {}
+PhysicsContext::PhysicsContext() = default;
 
-PhysicsContext::~PhysicsContext() {}
+PhysicsContext::~PhysicsContext() = default;
 
-void PhysicsContext::init(float _gravity) {
+void PhysicsContext::init(const float gravity) {
     defaultCollisionConfiguration = new btDefaultCollisionConfiguration();
     collisionDispatcher =
         new btCollisionDispatcher(defaultCollisionConfiguration);
@@ -27,7 +27,7 @@ void PhysicsContext::init(float _gravity) {
     discreteDynamicsWorld = new btDiscreteDynamicsWorld(
         collisionDispatcher, broadphaseInterface,
         sequentialImpulseConstraintSolver, defaultCollisionConfiguration);
-    discreteDynamicsWorld->setGravity(btVector3(0, _gravity, 0));
+    discreteDynamicsWorld->setGravity(btVector3(0, gravity, 0));
     mDebugDrawer =
         new OgreDebugDrawer(OgreSDLContext::getInstance()->getSceneManager());
     mDebugDrawer->setDebugMode(btIDebugDraw::DBG_DrawWireframe);
@@ -54,23 +54,27 @@ void PhysicsContext::destroyWorld() {
 }
 
 void PhysicsContext::destroyWorldContent() {
-    int size = ribs.size();
-    for (int i = size - 1; i >= 0; i--) {
+    // We iterate from the size to 1, modifying `i` before we read it so the
+    // range it reads is size - 1 to 0. This is also more efficient and safe as
+    // it does not lose information by transforming a `size_t` into an `int`.
+    auto i = ribs.size();
+    while (i != 0) {
+        --i;
         discreteDynamicsWorld->removeCollisionObject(ribs[i]);
 
         delete ribs[i];
         ribs.pop_back();
     }
 
-    size = shapes.size();
-    for (int i = size - 1; i >= 0; i--) {
-        delete shapes[i];
+    i = shapes.size();
+    while (i != 0) {
+        delete shapes[--i];
         shapes.pop_back();
     }
 
-    size = states.size();
-    for (int i = size - 1; i >= 0; i--) {
-        delete states[i];
+    i = states.size();
+    while (i != 0) {
+        delete states[--i];
         states.pop_back();
     }
 }
@@ -79,7 +83,7 @@ void PhysicsContext::destroyRigidBody(btRigidBody* body) {
     auto it = ribs.begin();
     bool erased = false;
     while (it != ribs.end() && !erased) {
-        if ((*it) == body) {
+        if (*it == body) {
             discreteDynamicsWorld->removeCollisionObject(*it);
             delete *it;
             erased = true;
@@ -99,12 +103,13 @@ void PhysicsContext::updateSimulation() {
     // TO DO: check collisions
 }
 
-btDiscreteDynamicsWorld* PhysicsContext::getWorld() {
+btDiscreteDynamicsWorld* PhysicsContext::getWorld() const {
     return discreteDynamicsWorld;
 }
 
-btRigidBody* PhysicsContext::createRB(Ogre::Vector3 pos, Ogre::Vector3 shape,
-                                      float mass) {
+btRigidBody* PhysicsContext::createRB(const Ogre::Vector3 pos,
+                                      const Ogre::Vector3 shape,
+                                      const float mass) {
     btTransform t;
     t.setIdentity();
     t.setOrigin(btVector3(pos.x, pos.y, pos.z));

@@ -22,7 +22,8 @@ void RenderComponent::setActive(const bool active) {
 }
 
 void RenderComponent::rotate(const int degree, const Ogre::Vector3 axis) {
-    sceneNode_->setOrientation(Ogre::Quaternion(Ogre::Degree(degree), axis));
+    sceneNode_->setOrientation(
+        Ogre::Quaternion(Ogre::Degree(static_cast<Ogre::Real>(degree)), axis));
 }
 
 // GETTERS AND SETTERS
