@@ -33,9 +33,8 @@ class RTSSDefaultTechniqueListener final
     target RT Shader System scheme name we will try to create shader generated
     technique for it.
     */
-    Ogre::Technique* handleSchemeNotFound(unsigned short schemeIndex,
-                                          const Ogre::String& schemeName,
-                                          Ogre::Material* originalMaterial,
-                                          unsigned short lodIndex,
-                                          const Ogre::Renderable* rend);
+    Ogre::Technique* handleSchemeNotFound(
+        unsigned short schemeIndex, const Ogre::String& schemeName,
+        Ogre::Material* originalMaterial, unsigned short lodIndex,
+        const Ogre::Renderable* rend) override;
 };

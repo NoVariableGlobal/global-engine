@@ -104,7 +104,7 @@ void Loader::readSounds() {
 
     Json::Value sounds = data["sounds"];
 
-    int numSounds = sounds.size();
+    const int numSounds = sounds.size();
     for (int i = 0; i < numSounds; ++i)
         createSoundInfo(sounds[i]);
 }

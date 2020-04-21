@@ -1,12 +1,9 @@
-#pragma once
-
 #include "SoundListenerComponent.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
 #include "Scene.h"
 #include "SoundContext.h"
-#include <Ogre.h>
 
 void SoundListenerComponent::checkEvent() {
     if (transform_ == nullptr)

@@ -22,7 +22,7 @@ class Entity {
   public:
     // Adds the component to the entity's list of components and to the
     // Component Manager's
-    void addComponent(std::string name, Component* c);
+    void addComponent(const std::string& name, Component* c);
 
     // Returns a component that is expected to exist, throws exception if not
     Component* getComponent(const std::string& name) const;
@@ -33,7 +33,7 @@ class Entity {
     std::map<std::string, Component*>& getAllComponents();
     // Getters and Setters
     std::string getId() const;
-    void setId(std::string id);
+    void setId(const std::string& id);
 
     const std::string& getTag() const;
     void setTag(const std::string& tag);

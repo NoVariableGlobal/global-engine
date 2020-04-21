@@ -20,7 +20,7 @@ void AnimationLC::frameRendered(const Ogre::FrameEvent& evt) {
         }
 }
 
-void AnimationLC::startAnimation(const std::string name) {
+void AnimationLC::startAnimation(const std::string& name) {
     Ogre::AnimationState* anim = animations_.find(name)->second;
     anim->setTimePosition(0.0);
     anim->setEnabled(true);
@@ -33,15 +33,15 @@ void AnimationLC::stopAnimations() {
         }
 }
 
-void AnimationLC::stopAnimation(const std::string name) {
+void AnimationLC::stopAnimation(const std::string& name) {
     animations_.find(name)->second->setEnabled(false);
 }
 
-bool AnimationLC::animationFinished(const std::string name) {
+bool AnimationLC::animationFinished(const std::string& name) {
     return animations_.find(name)->second->hasEnded();
 }
 
-void AnimationLC::addAnimation(const std::string name, const bool loop) {
+void AnimationLC::addAnimation(const std::string& name, const bool loop) {
     auto* renderFather = reinterpret_cast<TridimensionalObjectRC*>(
         father_->getComponent("TridimensionalObjectRC"));
 

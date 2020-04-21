@@ -83,9 +83,8 @@ bool Game::init(const std::string firstScene) {
                 CEGUI::PushButton::EventClicked,
                 CEGUI::Event::Subscriber(&Game::quit, this));
 
-            CEGUI::Window* editbox =
-                mGui_->createLabel("Odio CeGUI", glm::vec2(0.5f, 0.0f),
-                                   glm::vec2(100.0f, 50.0f), "Text");
+            mGui_->createLabel("Odio CeGUI", glm::vec2(0.5f, 0.0f),
+                               glm::vec2(100.0f, 50.0f), "Text");
 
         } catch (CEGUI::Exception& e) {
             auto* message = e.getMessage().c_str();

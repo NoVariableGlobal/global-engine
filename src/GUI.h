@@ -20,9 +20,9 @@ namespace OIS {
     class Mouse;
 } // namespace OIS
 
-class GUI : public OIS::KeyListener,
-            public OIS::MouseListener,
-            public Ogre::FrameListener {
+class GUI final : public OIS::KeyListener,
+                  public OIS::MouseListener,
+                  public Ogre::FrameListener {
     Ogre::RenderWindow* mWindow_ = nullptr;
     CEGUI::OgreRenderer* mRenderer_ = nullptr;
     Ogre::Root* mRoot_ = nullptr;
@@ -60,18 +60,20 @@ class GUI : public OIS::KeyListener,
     void captureInput();
 
     // OIS::KeyListener
-    bool keyPressed(const OIS::KeyEvent& arg);
+    bool keyPressed(const OIS::KeyEvent& arg) override;
 
-    bool keyReleased(const OIS::KeyEvent& arg);
+    bool keyReleased(const OIS::KeyEvent& arg) override;
 
     CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID);
 
     // OIS::MouseListener
-    bool mousePressed(const OIS::MouseEvent& arg, OIS::MouseButtonID id);
+    bool mousePressed(const OIS::MouseEvent& arg,
+                      OIS::MouseButtonID id) override;
 
-    bool mouseReleased(const OIS::MouseEvent& arg, OIS::MouseButtonID id);
+    bool mouseReleased(const OIS::MouseEvent& arg,
+                       OIS::MouseButtonID id) override;
 
-    bool mouseMoved(const OIS::MouseEvent& arg);
+    bool mouseMoved(const OIS::MouseEvent& arg) override;
 
     void windowResized(Ogre::RenderWindow* rw);
 

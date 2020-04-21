@@ -26,7 +26,7 @@ class SpotLightRC final : public RenderComponent {
     virtual ~SpotLightRC();
 
     // set light
-    void setLight(std::string entityId);
+    void setLight(const std::string& entityId);
     // get light
     Ogre::Light* getLight() const;
     // set the colour of the light

@@ -19,13 +19,13 @@ class AnimationLC final : public ListenerComponent {
     void frameRendered(const Ogre::FrameEvent& evt) override;
 
     // active the specify animation
-    void startAnimation(std::string name);
+    void startAnimation(const std::string& name);
     // stop all the enabled animations
     void stopAnimations();
     // stop the animation specified
-    void stopAnimation(std::string name);
+    void stopAnimation(const std::string& name);
     // return true if the animation is enabled
-    bool animationFinished(std::string name);
+    bool animationFinished(const std::string& name);
     // add an animation to the map of animations
-    void addAnimation(std::string name, bool loop);
+    void addAnimation(const std::string& name, bool loop);
 };

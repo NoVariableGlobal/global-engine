@@ -19,6 +19,8 @@ inline Ogre::Quaternion cvt(const btQuaternion& Q) {
 using namespace Ogre;
 
 OgreDebugDrawer::OgreDebugDrawer(SceneManager* scm) {
+    mContactPoints1_ = {};
+    mContactPoints2_ = {};
     mContactPoints_ = &mContactPoints1_;
     mLines_ = new ManualObject("physics lines");
     // ASSERT(mLines);

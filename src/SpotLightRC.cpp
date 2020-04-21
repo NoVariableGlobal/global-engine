@@ -15,7 +15,7 @@ SpotLightRC::SpotLightRC() = default;
 SpotLightRC::~SpotLightRC() { msM_->destroyLight(light_); }
 
 // Creates the light
-void SpotLightRC::setLight(const std::string entityId) {
+void SpotLightRC::setLight(const std::string& entityId) {
     msM_ = OgreSDLContext::getInstance()->getSceneManager();
 
     light_ = msM_->createLight(entityId + "Light");
@@ -28,8 +28,8 @@ void SpotLightRC::setColour(const Ogre::Vector3 colour) {
     light_->setDiffuseColour(colour.x, colour.y, colour.z);
 }
 
-void SpotLightRC::setDirection(Ogre::Vector3 _dir) {
-    sceneNode_->setDirection(Ogre::Vector3(_dir.x, _dir.y, _dir.z));
+void SpotLightRC::setDirection(const Ogre::Vector3 dir) {
+    sceneNode_->setDirection(Ogre::Vector3(dir.x, dir.y, dir.z));
 }
 
 void SpotLightRC::render() {}

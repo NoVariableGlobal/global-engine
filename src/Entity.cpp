@@ -2,7 +2,7 @@
 #include "Component.h"
 #include "Util.h"
 
-void Entity::addComponent(std::string name, Component* c) {
+void Entity::addComponent(const std::string& name, Component* c) {
     components_.insert({name, c});
 }
 
@@ -19,7 +19,7 @@ std::map<std::string, Component*>& Entity::getAllComponents() {
 }
 
 std::string Entity::getId() const { return id_; }
-void Entity::setId(const std::string id) { id_ = id; }
+void Entity::setId(const std::string& id) { id_ = id; }
 
 const std::string& Entity::getTag() const { return tag_; }
 

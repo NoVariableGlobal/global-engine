@@ -40,13 +40,13 @@ class CameraRC final : public RenderComponent {
     ~CameraRC();
 
     // set camera
-    void setCamera(std::string entityId);
+    void setCamera(const std::string& entityId);
     // get camera
     Ogre::Camera* getCamera() const;
     // set viewport
     void setViewport(Ogre::Vector3 colour);
     // set camera offset
-    void setCameraOffset(Ogre::Vector3(offset));
+    void setCameraOffset(Ogre::Vector3 offset);
     // set camera direction
     void lookAt(Ogre::Vector3 pos);
     // set target to follow

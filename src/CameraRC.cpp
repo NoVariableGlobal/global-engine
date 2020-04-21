@@ -24,7 +24,7 @@ CameraRC::~CameraRC() {
 }
 
 // Creates the camera
-void CameraRC::setCamera(const std::string entityId) {
+void CameraRC::setCamera(const std::string& entityId) {
     msM_ = OgreSDLContext::getInstance()->getSceneManager();
 
     camera_ = msM_->createCamera(entityId + "Cam");

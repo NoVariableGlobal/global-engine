@@ -99,7 +99,6 @@ void PhysicsContext::updateSimulation() {
     discreteDynamicsWorld_->debugDrawWorld();
 #endif
 
-    // TO DO: renders debug bodies
     // TO DO: check collisions
 }
 

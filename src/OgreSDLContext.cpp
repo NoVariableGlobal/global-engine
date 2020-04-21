@@ -125,7 +125,7 @@ void OgreSDLContext::createWindow(const std::string& appName) {
 }
 
 void OgreSDLContext::setWindowGrab(bool grab, const bool showCursor) {
-    SDL_bool g = SDL_bool(grab);
+    const auto g = SDL_bool(grab);
     SDL_SetWindowGrab(mWindow_.native, g);
     SDL_ShowCursor(showCursor);
 }

@@ -50,7 +50,7 @@ void SoundContext::init() {
     checkError(result);
 
     try {
-        result = system_->init(128, FMOD_INIT_NORMAL, 0);
+        result = system_->init(128, FMOD_INIT_NORMAL, nullptr);
         checkError(result);
         for (auto it = soundsToLoad_->begin(); it != soundsToLoad_->end();
              ++it) {
@@ -76,8 +76,8 @@ void SoundContext::addSoundToLoad(SoundInfo* info) {
 Channel* SoundContext::playSound(const std::string& id) const {
     FMOD::Channel* channel = nullptr;
     try {
-        auto result =
-            system_->playSound(getInstance()->getSound(id), 0, true, &channel);
+        auto result = system_->playSound(getInstance()->getSound(id), nullptr,
+                                         true, &channel);
         checkError(result);
         const float volume = (*soundsToLoad_)[id]->volume;
         if (abs(volume - 1.0) > 0.001) {
@@ -126,7 +126,7 @@ void SoundContext::updatePosition(const Ogre::Vector3 pos) {
     } catch (std::exception& e) {
         result = system_->release();
         checkError(result);
-        throw e;
+        throw;
     }
 }
 
