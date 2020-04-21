@@ -59,7 +59,7 @@ $local:CeguiDependenciesFolder = Join-Path -Path $DependenciesRoot -ChildPath "c
 $local:OisFolder = Join-Path -Path $DependenciesRoot -ChildPath "OIS"
 
 If ($Clean) {
-    $private:DllFiles = Get-ChildItem -Path $BinaryDirectory -Filter "*.dll";
+    $local:DllFiles = Get-ChildItem -Path $BinaryDirectory -Filter "*.dll";
 
     Write-Host "# Now deleting " -ForegroundColor Blue -NoNewline
     Write-Host $DllFiles.Length  -ForegroundColor Cyan -NoNewline
@@ -68,7 +68,7 @@ If ($Clean) {
     Write-Host "'... "           -ForegroundColor Blue -NoNewLine
 
     If ($DllFiles.Length -Ne 0) {
-        Remove-Item -LiteralPath $DllFiles -Force | Out-Null
+        $DllFiles | Remove-Item | Out-Null
         Write-Host "Finished!"           -ForegroundColor Green
     } Else {
         Write-Host "Skipped."            -ForegroundColor DarkGray
