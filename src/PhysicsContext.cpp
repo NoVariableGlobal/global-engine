@@ -91,7 +91,9 @@ void PhysicsContext::destroyRigidBody(btRigidBody* body) {
 
 void PhysicsContext::updateSimulation() {
     discreteDynamicsWorld->stepSimulation(1.f / 60.f, 10);
+#ifdef _DEBUG
     discreteDynamicsWorld->debugDrawWorld();
+#endif
 
     // TO DO: renders debug bodies
     // TO DO: check collisions
