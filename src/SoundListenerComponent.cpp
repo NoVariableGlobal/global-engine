@@ -6,11 +6,12 @@
 #include "FactoriesFactory.h"
 #include "Scene.h"
 #include "SoundContext.h"
+#include <Ogre.h>
 
 void SoundListenerComponent::checkEvent() {
     if (transform_ == nullptr)
-        transform_ = dynamic_cast<TransformComponent*>(
-            father->findComponent("TransformComponent"));
+        transform_ = reinterpret_cast<TransformComponent*>(
+            father_->findComponent("TransformComponent"));
     SoundContext::getInstance()->updatePosition(transform_->getPosition());
 }
 

@@ -4,9 +4,9 @@
 
 DECLARE_FACTORY(SoundTestIC);
 
-class SoundTestIC : public InputComponent {
+class SoundTestIC final : public InputComponent {
     SoundComponent* soundComponent_ = nullptr;
 
   public:
-    void handleInput(const SDL_Event& _event) override;
+    void handleInput(const SDL_Event& event) override;
 };

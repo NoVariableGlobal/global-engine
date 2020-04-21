@@ -13,27 +13,26 @@ namespace Ogre {
     class Light;
 
     typedef float Real;
-    template <int dims, typename T> class Vector;
+    template <int Dims, typename T> class Vector;
     typedef Vector<3, Real> Vector3;
 } // namespace Ogre
 
-class SpotLightRC : public RenderComponent {
-  private:
-    Ogre::SceneManager* _msM = nullptr;
-    Ogre::Light* light = nullptr;
+class SpotLightRC final : public RenderComponent {
+    Ogre::SceneManager* msM_ = nullptr;
+    Ogre::Light* light_ = nullptr;
 
   public:
     SpotLightRC();
     virtual ~SpotLightRC();
 
     // set light
-    void setLight(std::string _entityID);
+    void setLight(std::string entityId);
     // get light
-    Ogre::Light* getLight();
+    Ogre::Light* getLight() const;
     // set the colour of the light
-    void setColour(Ogre::Vector3 _colour);
+    void setColour(Ogre::Vector3 colour);
     // set the direction of the light
-    void setDirection(Ogre::Vector3 _dir);
+    void setDirection(Ogre::Vector3 dir);
 
     // called each frame
     virtual void render();

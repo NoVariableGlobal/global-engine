@@ -8,88 +8,84 @@
 #include "TransformComponent.h"
 
 #include <Ogre.h>
-#include <OgreSceneManager.h>
-
 #include <json.h>
 
 // Constructor, se crea la camara se le asocia el viewport y se asocian todos lo
 // sceneNode
-CameraRC::CameraRC() : RenderComponent() {}
+CameraRC::CameraRC() = default;
 
 CameraRC::~CameraRC() {
     // Destroys the camera and every viewport
-    _msM->destroyCamera(camera);
+    msM_->destroyCamera(camera_);
     OgreSDLContext::getInstance()->getRenderWindow()->removeAllViewports();
 
-    delete cameraOffset;
-    delete look;
+    delete cameraOffset_;
+    delete look_;
 }
 
 // Creates the camera
-void CameraRC::setCamera(std::string _entityID) {
-    _msM = OgreSDLContext::getInstance()->getSceneManager();
+void CameraRC::setCamera(const std::string entityId) {
+    msM_ = OgreSDLContext::getInstance()->getSceneManager();
 
-    camera = _msM->createCamera(_entityID + "Cam");
-    camera->setNearClipDistance(1);
-    camera->setFarClipDistance(10000);
-    camera->setAutoAspectRatio(true);
+    camera_ = msM_->createCamera(entityId + "Cam");
+    camera_->setNearClipDistance(1);
+    camera_->setFarClipDistance(10000);
+    camera_->setAutoAspectRatio(true);
 }
 
-Ogre::Camera* CameraRC::getCamera() { return camera; }
+Ogre::Camera* CameraRC::getCamera() const { return camera_; }
 
 // Sets the viewport
-void CameraRC::setViewport(Ogre::Vector3 _colour) {
-    vp = OgreSDLContext::getInstance()->getRenderWindow()->addViewport(camera);
-    vp->setBackgroundColour(Ogre::ColourValue(_colour.x, _colour.y, _colour.z));
+void CameraRC::setViewport(const Ogre::Vector3 colour) {
+    vp_ =
+        OgreSDLContext::getInstance()->getRenderWindow()->addViewport(camera_);
+    vp_->setBackgroundColour(Ogre::ColourValue(colour.x, colour.y, colour.z));
 
-    camera->setAspectRatio(Ogre::Real(vp->getActualWidth()) /
-                           Ogre::Real(vp->getActualHeight()));
+    camera_->setAspectRatio(Ogre::Real(vp_->getActualWidth()) /
+                            Ogre::Real(vp_->getActualHeight()));
 }
 
-void CameraRC::setCameraOffset(Ogre::Vector3(_offset)) {
-    if (cameraOffset != nullptr)
-        delete cameraOffset;
-    cameraOffset = new Ogre::Vector3(_offset);
+void CameraRC::setCameraOffset(const Ogre::Vector3 offset) {
+    delete cameraOffset_;
+    cameraOffset_ = new Ogre::Vector3(offset);
 }
 
-void CameraRC::lookAt(Ogre::Vector3 _pos) {
-    if (look != nullptr)
-        delete look;
-    look = new Ogre::Vector3(_pos);
+void CameraRC::lookAt(const Ogre::Vector3 pos) {
+    delete look_;
+    look_ = new Ogre::Vector3(pos);
 
-    sceneNode->lookAt(_pos, Ogre::Node::TS_WORLD);
+    sceneNode_->lookAt(pos, Ogre::Node::TS_WORLD);
 }
 
-void CameraRC::setTarget(std::string _target) { target = _target; }
+void CameraRC::setTarget(const std::string target) { target_ = target; }
 
-void CameraRC::setFollow(Ogre::Vector3 _follow) {
-    followX = _follow.x;
-    followY = _follow.y;
-    followZ = _follow.z;
+void CameraRC::setFollow(const Ogre::Vector3 follow) {
+    followX_ = follow.x;
+    followY_ = follow.y;
+    followZ_ = follow.z;
 }
 
 void CameraRC::render() {
-    const auto transform = dynamic_cast<TransformComponent*>(
-        father->getComponent("TransformComponent"));
+    const auto* transform = reinterpret_cast<TransformComponent*>(
+        father_->getComponent("TransformComponent"));
 
     Ogre::Vector3 position;
 
-    if (target != "") {
-        const auto transformTarget = dynamic_cast<TransformComponent*>(
-            scene->getEntitybyId(target)->getComponent("TransformComponent"));
-
-        position = Ogre::Vector3(followX ? transformTarget->getPosition().x
-                                         : transform->getPosition().x,
-                                 followY ? transformTarget->getPosition().y
-                                         : transform->getPosition().y,
-                                 followZ ? transformTarget->getPosition().z
-                                         : transform->getPosition().z);
+    if (target_ != "") {
+        const auto* transformTarget = reinterpret_cast<TransformComponent*>(
+            scene_->getEntitybyId(target_)->getComponent("TransformComponent"));
+        position = Ogre::Vector3(followX_ ? transformTarget->getPosition().x
+                                          : transform->getPosition().x,
+                                 followY_ ? transformTarget->getPosition().y
+                                          : transform->getPosition().y,
+                                 followZ_ ? transformTarget->getPosition().z
+                                          : transform->getPosition().z);
     } else
         position = transform->getPosition();
 
-    position += *cameraOffset;
+    position += *cameraOffset_;
 
-    sceneNode->setPosition(position.x, position.y, position.z);
+    sceneNode_->setPosition(position.x, position.y, position.z);
     lookAt(position);
 }
 
@@ -134,23 +130,22 @@ Component* CameraRCFactory::create(Entity* _father, Json::Value& _data,
     if (!_data["lookAt"].isArray() && !_data["lookAt"].isString())
         throw std::exception("CameraRC: lookAt is not an array. If you do "
                              "not want an array, use a string 'none'");
-    else if (_data["lookAt"].isArray())
+    if (_data["lookAt"].isArray())
         camera->lookAt(Ogre::Vector3(_data["lookAt"][0].asFloat(),
                                      _data["lookAt"][1].asFloat(),
                                      _data["lookAt"][2].asFloat()));
 
     if (!_data["targetId"].isString())
         throw std::exception("CameraRC: targetId is not a string.");
-    else if (_data["targetId"].asString() != "none") {
+    if (_data["targetId"].asString() != "none") {
         camera->setTarget(_data["targetId"].asString());
 
         if (!_data["follow"].isArray() || !_data["follow"][0].isBool())
             throw std::exception("CameraRC: follow is not an array or is "
                                  "not a boolean array.");
-        else
-            camera->setFollow(Ogre::Vector3(_data["follow"][0].asBool(),
-                                            _data["follow"][1].asBool(),
-                                            _data["follow"][2].asBool()));
+        camera->setFollow(Ogre::Vector3(_data["follow"][0].asBool(),
+                                        _data["follow"][1].asBool(),
+                                        _data["follow"][2].asBool()));
     }
 
     return camera;

@@ -2,45 +2,49 @@
 #include "TransformComponent.h"
 #include "ComponentsManager.h"
 #include "FactoriesFactory.h"
-#include "OgreRoot.h"
-#include "OgreVector3.h"
 #include "Scene.h"
+
+#include <Ogre.h>
 #include <json.h>
 
 TransformComponent::TransformComponent() {
-    _position = new Ogre::Vector3();
-    _scale = new Ogre::Vector3();
-    _orientation = new Ogre::Vector3();
-    _originalOrientation = new Ogre::Vector3();
+    position_ = new Ogre::Vector3();
+    scale_ = new Ogre::Vector3();
+    orientation_ = new Ogre::Vector3();
+    originalOrientation_ = new Ogre::Vector3();
 }
 
 TransformComponent::~TransformComponent() {
-    delete _position;
-    delete _scale;
-    delete _orientation;
-    delete _originalOrientation;
+    delete position_;
+    delete scale_;
+    delete orientation_;
+    delete originalOrientation_;
 }
 
 void TransformComponent::destroy() {
     setActive(false);
-    scene->getComponentsManager()->eraseDC(this);
+    scene_->getComponentsManager()->eraseDC(this);
 }
 
-Ogre::Vector3 TransformComponent::getPosition() const { return *_position; }
-void TransformComponent::setPosition(const Ogre::Vector3 p) { *_position = p; }
+Ogre::Vector3 TransformComponent::getPosition() const { return *position_; }
+void TransformComponent::setPosition(const Ogre::Vector3 p) { *position_ = p; }
 
-Ogre::Vector3 TransformComponent::getOrientation() { return *_orientation; }
-void TransformComponent::setOrientation(Ogre::Vector3 r) { *_orientation = r; }
-
-Ogre::Vector3 TransformComponent::getScale() { return *_scale; }
-void TransformComponent::setScale(Ogre::Vector3 s) { *_scale = s; }
-
-Ogre::Vector3 TransformComponent::getOriginalOrientation() {
-    return *_originalOrientation;
+Ogre::Vector3 TransformComponent::getOrientation() const {
+    return *orientation_;
+}
+void TransformComponent::setOrientation(const Ogre::Vector3 r) {
+    *orientation_ = r;
 }
 
-void TransformComponent::setOriginalOrientation(Ogre::Vector3 r) {
-    *_originalOrientation = r;
+Ogre::Vector3 TransformComponent::getScale() const { return *scale_; }
+void TransformComponent::setScale(const Ogre::Vector3 s) { *scale_ = s; }
+
+Ogre::Vector3 TransformComponent::getOriginalOrientation() const {
+    return *originalOrientation_;
+}
+
+void TransformComponent::setOriginalOrientation(const Ogre::Vector3 r) {
+    *originalOrientation_ = r;
 }
 
 // FACTORY INFRASTRUCTURE DEFINITION

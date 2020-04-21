@@ -126,10 +126,10 @@ void Loader::createSoundInfo(Json::Value& data) {
         throw std::exception(
             "Loader: files/sounds.json: loop is not a double. ");
     SoundInfo* info = new SoundInfo;
-    info->id_ = data["id"].asString();
-    info->filename_ = data["filename"].asString();
-    info->loop_ = data["loop"].asBool();
-    info->volume_ = data["volume"].asFloat();
+    info->id = data["id"].asString();
+    info->filename = data["filename"].asString();
+    info->loop = data["loop"].asBool();
+    info->volume = data["volume"].asFloat();
 
     SoundContext::getInstance()->addSoundToLoad(info);
 }

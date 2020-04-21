@@ -1,16 +1,17 @@
 #pragma once
 
-#include "CEGUI\InputEvent.h"
 #include "OISKeyboard.h"
 #include "OISMouse.h"
-#include "OgreFrameListener.h"
-#include <glm\glm.hpp>
+#include <Ogre.h>
+#include <glm/glm.hpp>
 #include <string>
 
 namespace CEGUI {
+    class WindowManager;
     class OgreRenderer;
     class GUIContext;
     class Window;
+    enum MouseButton;
 } // namespace CEGUI
 
 namespace OIS {
@@ -22,18 +23,17 @@ namespace OIS {
 class GUI : public OIS::KeyListener,
             public OIS::MouseListener,
             public Ogre::FrameListener {
-  private:
-    Ogre::RenderWindow* mWindow;
-    CEGUI::OgreRenderer* mRenderer = nullptr;
-    Ogre::Root* mRoot = nullptr;
-    CEGUI::GUIContext* mContext = nullptr;
+    Ogre::RenderWindow* mWindow_ = nullptr;
+    CEGUI::OgreRenderer* mRenderer_ = nullptr;
+    Ogre::Root* mRoot_ = nullptr;
+    CEGUI::GUIContext* mContext_ = nullptr;
 
-    CEGUI::Window* sheet;
-    CEGUI::WindowManager* mWindowManager;
+    CEGUI::Window* sheet_ = nullptr;
+    CEGUI::WindowManager* mWindowManager_ = nullptr;
 
-    OIS::InputManager* mInputManager;
-    OIS::Mouse* mMouse;
-    OIS::Keyboard* mKeyboard;
+    OIS::InputManager* mInputManager_ = nullptr;
+    OIS::Mouse* mMouse_ = nullptr;
+    OIS::Keyboard* mKeyboard_ = nullptr;
 
   public:
     void init(std::string scheme);
@@ -76,6 +76,6 @@ class GUI : public OIS::KeyListener,
     void windowResized(Ogre::RenderWindow* rw);
 
     // Getters and setters
-    CEGUI::OgreRenderer* getRenderer();
-    CEGUI::GUIContext* getContext();
+    CEGUI::OgreRenderer* getRenderer() const;
+    CEGUI::GUIContext* getContext() const;
 };

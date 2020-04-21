@@ -1,16 +1,14 @@
 #pragma once
-
 #include "Component.h"
 
-#include <OgreFrameListener.h>
+namespace Ogre {
+    struct FrameEvent;
+}
 
 // Abstract subcomponent from which every input component should inherit
 
 class ListenerComponent : public Component {
   public:
-    ListenerComponent();
-    virtual ~ListenerComponent();
-
     // Destroys the ListenerComponent, setting itself as inactive and
     // removing itself from the scene.
     virtual void destroy();

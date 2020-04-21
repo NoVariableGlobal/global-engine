@@ -13,7 +13,6 @@ class ComponentsManager;
 class Game;
 
 class Scene {
-  private:
     // id, entity
     std::map<std::string, Entity*> entities;
     // id, components

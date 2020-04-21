@@ -9,38 +9,34 @@
 #include <json.h>
 
 bool operator>(InfoSleep const& a, InfoSleep const& b) {
-    return a.timeEnd_ > b.timeEnd_ ||
-           (a.timeEnd_ == b.timeEnd_ && a.timeStart_ > b.timeStart_);
+    return a.timeEnd > b.timeEnd ||
+           (a.timeEnd == b.timeEnd && a.timeStart > b.timeStart);
 }
 
-SleepEC::SleepEC() {}
-
-SleepEC::~SleepEC() {}
-
 void SleepEC::checkEvent() {
-    if (!asleepEntities.empty()) {
+    if (!asleepEntities_.empty()) {
         float actualTime = SDL_GetTicks();
 
-        InfoSleep top = asleepEntities.top();
-        while (top.timeEnd_ <= actualTime) {
-            for (Entity* entity : top.entities_) {
+        InfoSleep top = asleepEntities_.top();
+        while (top.timeEnd <= actualTime) {
+            for (Entity* entity : top.entities) {
                 entity->setAsleep(false);
             }
 
-            asleepEntities.pop();
-            if (asleepEntities.empty())
+            asleepEntities_.pop();
+            if (asleepEntities_.empty())
                 break;
 
-            top = asleepEntities.top();
+            top = asleepEntities_.top();
         }
     }
 }
 
 void SleepEC::generalSleep(float time) {
     std::vector<Entity*> entitiesToPause;
-    for (std::string tag : generalSleepEntities) {
+    for (std::string tag : generalSleepEntities_) {
 
-        std::vector<Entity*> tmp = scene->getEntitiesbyTag(tag);
+        std::vector<Entity*> tmp = scene_->getEntitiesbyTag(tag);
         for (Entity* entity : tmp) {
             entity->setAsleep(true);
             entitiesToPause.push_back(entity);
@@ -48,32 +44,32 @@ void SleepEC::generalSleep(float time) {
     }
 
     float startTime = SDL_GetTicks();
-    asleepEntities.push({entitiesToPause, startTime, time * 1000 + startTime});
+    asleepEntities_.push({entitiesToPause, startTime, time * 1000 + startTime});
 }
 
 void SleepEC::sleepAnEntity(float time, std::string id) {
-    Entity* entity = scene->getEntitybyId(id);
+    Entity* entity = scene_->getEntitybyId(id);
     entity->setAsleep(true);
 
     std::vector<Entity*> entitiesToPause;
     entitiesToPause.push_back(entity);
 
     float startTime = SDL_GetTicks();
-    asleepEntities.push({entitiesToPause, startTime, time * 1000 + startTime});
+    asleepEntities_.push({entitiesToPause, startTime, time * 1000 + startTime});
 }
 
 void SleepEC::sleepTag(float time, std::string tag) {
-    std::vector<Entity*> entitiesToPause = scene->getEntitiesbyTag(tag);
+    std::vector<Entity*> entitiesToPause = scene_->getEntitiesbyTag(tag);
     for (Entity* entity : entitiesToPause) {
         entity->setAsleep(true);
     }
 
     float startTime = SDL_GetTicks();
-    asleepEntities.push({entitiesToPause, startTime, time * 1000 + startTime});
+    asleepEntities_.push({entitiesToPause, startTime, time * 1000 + startTime});
 }
 
 void SleepEC::setGeneralSleepEntities(std::string tag) {
-    generalSleepEntities.push_back(tag);
+    generalSleepEntities_.push_back(tag);
 }
 
 // FACTORY INFRASTRUCTURE DEFINITION

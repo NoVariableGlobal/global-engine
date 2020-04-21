@@ -7,11 +7,9 @@
 #include "RenderComponent.h"
 #include "SoundComponent.h"
 #include "SoundContext.h"
-
 #include "Util.h"
 
-#include <OgreRoot.h>
-#include <iostream>
+#include <Ogre.h>
 
 ComponentsManager::ComponentsManager() {
     OgreSDLContext::getInstance()->getRoot()->addFrameListener(this);
@@ -20,203 +18,205 @@ ComponentsManager::ComponentsManager() {
 ComponentsManager::~ComponentsManager() { clearComponents(); }
 
 void ComponentsManager::clearComponents() {
-    int size = physics.size();
+    int size = physics_.size();
     for (int i = size - 1; i >= 0; i--) {
-        delete physics[i];
-        physics.pop_back();
+        delete physics_[i];
+        physics_.pop_back();
     }
 
-    size = input.size();
+    size = input_.size();
     for (int i = size - 1; i >= 0; i--) {
-        delete input[i];
-        input.pop_back();
+        delete input_[i];
+        input_.pop_back();
     }
 
-    size = rend.size();
+    size = rend_.size();
     for (int i = size - 1; i >= 0; i--) {
-        delete rend[i];
-        rend.pop_back();
+        delete rend_[i];
+        rend_.pop_back();
     }
 
-    size = sound.size();
+    size = sound_.size();
     for (int i = size - 1; i >= 0; i--) {
-        delete sound[i];
-        sound.pop_back();
+        delete sound_[i];
+        sound_.pop_back();
     }
 
-    size = event.size();
+    size = event_.size();
     for (int i = size - 1; i >= 0; i--) {
-        delete event[i];
-        event.pop_back();
+        delete event_[i];
+        event_.pop_back();
     }
 
-    size = deleteable.size();
+    size = deleteable_.size();
     for (int i = size - 1; i >= 0; i--) {
-        delete deleteable[i];
-        deleteable.pop_back();
+        delete deleteable_[i];
+        deleteable_.pop_back();
     }
 
-    size = listener.size();
+    size = listener_.size();
     for (int i = size - 1; i >= 0; i--) {
-        delete listener[i];
-        listener.pop_back();
+        delete listener_[i];
+        listener_.pop_back();
     }
 }
 
-void ComponentsManager::addPC(PhysicsComponent* _physicsComponent) {
-    insertPhysics.push_back(_physicsComponent);
+void ComponentsManager::addPC(PhysicsComponent* physicsComponent) {
+    insertPhysics_.push_back(physicsComponent);
 }
 
 void ComponentsManager::insertPC() {
-    int size = insertPhysics.size();
+    const int size = insertPhysics_.size();
     for (int i = size - 1; i >= 0; i--) {
-        physics.push_back(insertPhysics[i]);
-        insertPhysics.pop_back();
+        physics_.push_back(insertPhysics_[i]);
+        insertPhysics_.pop_back();
     }
 }
 
 void ComponentsManager::deletePC() {
-    assert_deleteComponent(deletePhysics, physics);
+    assert_deleteComponent(deletePhysics_, physics_);
 }
 
-void ComponentsManager::erasePC(PhysicsComponent* _physicsComponent) {
-    deletePhysics.push_back(_physicsComponent);
+void ComponentsManager::erasePC(PhysicsComponent* physicsComponent) {
+    deletePhysics_.push_back(physicsComponent);
 }
 
-void ComponentsManager::addIC(InputComponent* _inputComponent) {
-    insertInput.push_back(_inputComponent);
+void ComponentsManager::addIC(InputComponent* inputComponent) {
+    insertInput_.push_back(inputComponent);
 }
 
 void ComponentsManager::insertIC() {
-    int size = insertInput.size();
+    const int size = insertInput_.size();
     for (int i = size - 1; i >= 0; i--) {
-        input.push_back(insertInput[i]);
-        insertInput.pop_back();
+        input_.push_back(insertInput_[i]);
+        insertInput_.pop_back();
     }
 }
 
 void ComponentsManager::deleteIC() {
-    assert_deleteComponent(deleteInput, input);
+    assert_deleteComponent(deleteInput_, input_);
 }
 
-void ComponentsManager::eraseIC(InputComponent* _inputComponent) {
-    deleteInput.push_back(_inputComponent);
+void ComponentsManager::eraseIC(InputComponent* inputComponent) {
+    deleteInput_.push_back(inputComponent);
 }
 
-void ComponentsManager::addRC(RenderComponent* _renderComponent) {
-    insertRend.push_back(_renderComponent);
+void ComponentsManager::addRC(RenderComponent* renderComponent) {
+    insertRend_.push_back(renderComponent);
 }
 
 void ComponentsManager::insertRC() {
-    int size = insertRend.size();
+    const int size = insertRend_.size();
     for (int i = size - 1; i >= 0; i--) {
-        rend.push_back(insertRend[i]);
-        insertRend.pop_back();
+        rend_.push_back(insertRend_[i]);
+        insertRend_.pop_back();
     }
 }
 
-void ComponentsManager::deleteRC() { assert_deleteComponent(deleteRend, rend); }
-
-void ComponentsManager::eraseRC(RenderComponent* _renderComponent) {
-    deleteRend.push_back(_renderComponent);
+void ComponentsManager::deleteRC() {
+    assert_deleteComponent(deleteRend_, rend_);
 }
 
-void ComponentsManager::addSC(SoundComponent* _soundComponent) {
-    insertSound.push_back(_soundComponent);
+void ComponentsManager::eraseRC(RenderComponent* renderComponent) {
+    deleteRend_.push_back(renderComponent);
+}
+
+void ComponentsManager::addSC(SoundComponent* soundComponent) {
+    insertSound_.push_back(soundComponent);
 }
 
 void ComponentsManager::insertSC() {
-    int size = insertSound.size();
+    const int size = insertSound_.size();
     for (int i = size - 1; i >= 0; i--) {
-        sound.push_back(insertSound[i]);
-        insertSound.pop_back();
+        sound_.push_back(insertSound_[i]);
+        insertSound_.pop_back();
     }
 }
 
 void ComponentsManager::deleteSC() {
-    assert_deleteComponent(deleteSound, sound);
+    assert_deleteComponent(deleteSound_, sound_);
 }
 
-void ComponentsManager::eraseSC(SoundComponent* _soundComponent) {
-    deleteSound.push_back(_soundComponent);
+void ComponentsManager::eraseSC(SoundComponent* soundComponent) {
+    deleteSound_.push_back(soundComponent);
 }
 
-void ComponentsManager::addDC(Component* _deleteableComponent) {
-    insertDeleteable.push_back(_deleteableComponent);
+void ComponentsManager::addDC(Component* deleteableComponent) {
+    insertDeleteable_.push_back(deleteableComponent);
 }
 
 void ComponentsManager::insertDC() {
-    int size = insertDeleteable.size();
+    const int size = insertDeleteable_.size();
     for (int i = size - 1; i >= 0; i--) {
-        deleteable.push_back(insertDeleteable[i]);
-        insertDeleteable.pop_back();
+        deleteable_.push_back(insertDeleteable_[i]);
+        insertDeleteable_.pop_back();
     }
 }
 
 void ComponentsManager::deleteDC() {
-    assert_deleteComponent(deleteDeleteable, deleteable);
+    assert_deleteComponent(deleteDeleteable_, deleteable_);
 }
 
-void ComponentsManager::eraseDC(Component* _deleteableComponent) {
-    deleteDeleteable.push_back(_deleteableComponent);
+void ComponentsManager::eraseDC(Component* deleteableComponent) {
+    deleteDeleteable_.push_back(deleteableComponent);
 }
 
-void ComponentsManager::addEC(EventComponent* _eventComponent) {
-    insertEvent.push_back(_eventComponent);
+void ComponentsManager::addEC(EventComponent* eventComponent) {
+    insertEvent_.push_back(eventComponent);
 }
 
 void ComponentsManager::insertEC() {
-    int size = insertEvent.size();
+    const int size = insertEvent_.size();
     for (int i = size - 1; i >= 0; i--) {
-        event.push_back(insertEvent[i]);
-        insertEvent.pop_back();
+        event_.push_back(insertEvent_[i]);
+        insertEvent_.pop_back();
     }
 }
 
 void ComponentsManager::deleteEC() {
-    assert_deleteComponent(deleteEvent, event);
+    assert_deleteComponent(deleteEvent_, event_);
 }
 
-void ComponentsManager::eraseEC(EventComponent* _eventComponent) {
-    deleteEvent.push_back(_eventComponent);
+void ComponentsManager::eraseEC(EventComponent* eventComponent) {
+    deleteEvent_.push_back(eventComponent);
 }
 
-void ComponentsManager::addLC(ListenerComponent* _listenerComponent) {
-    insertListener.push_back(_listenerComponent);
+void ComponentsManager::addLC(ListenerComponent* listenerComponent) {
+    insertListener_.push_back(listenerComponent);
 }
 
 void ComponentsManager::insertLC() {
-    int size = insertListener.size();
+    const int size = insertListener_.size();
     for (int i = size - 1; i >= 0; i--) {
-        listener.push_back(insertListener[i]);
-        insertListener.pop_back();
+        listener_.push_back(insertListener_[i]);
+        insertListener_.pop_back();
     }
 }
 
 void ComponentsManager::deleteLC() {
-    assert_deleteComponent(deleteListener, listener);
+    assert_deleteComponent(deleteListener_, listener_);
 }
 
-void ComponentsManager::eraseLC(ListenerComponent* _listenerComponent) {
-    deleteListener.push_back(_listenerComponent);
+void ComponentsManager::eraseLC(ListenerComponent* listenerComponent) {
+    deleteListener_.push_back(listenerComponent);
 }
 
 void ComponentsManager::update() {
-    for (auto p : physics) {
+    for (auto p : physics_) {
         if (p->isActive())
             p->update();
     }
 }
 
-void ComponentsManager::handleInput(const SDL_Event& _event) {
-    for (auto i : input) {
+void ComponentsManager::handleInput(const SDL_Event& event) {
+    for (auto i : input_) {
         if (i->isActive())
-            i->handleInput(_event);
+            i->handleInput(event);
     }
 }
 
 void ComponentsManager::render() {
-    for (auto r : rend) {
+    for (auto r : rend_) {
         if (r->isActive())
             r->render();
     }
@@ -225,14 +225,14 @@ void ComponentsManager::render() {
 void ComponentsManager::updateSound() { SoundContext::getInstance()->update(); }
 
 void ComponentsManager::updateEvent() {
-    for (auto e : event) {
+    for (auto e : event_) {
         if (e->isActive())
             e->checkEvent();
     }
 }
 
 bool ComponentsManager::frameRenderingQueued(const Ogre::FrameEvent& _event) {
-    for (auto l : listener) {
+    for (auto l : listener_) {
         if (l->isActive())
             l->frameRendered(_event);
     }
@@ -249,6 +249,7 @@ void ComponentsManager::deleteComponents() {
     deleteEC();
     deleteLC();
 }
+
 void ComponentsManager::insertComponents() {
     insertPC();
     insertIC();

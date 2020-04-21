@@ -2,33 +2,27 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
-#include "OgreEntity.h"
 #include "OgreSDLContext.h"
-#include "OgreSceneManager.h"
 #include "Scene.h"
 #include "TransformComponent.h"
+#include <Ogre.h>
 #include <json.h>
-
-// COMPONENT CODE
-TridimensionalObjectRC::TridimensionalObjectRC() {}
-
-TridimensionalObjectRC::~TridimensionalObjectRC() {}
 
 // Updates the node position as our father transform
 void TridimensionalObjectRC::render() {
-    TransformComponent* transform = dynamic_cast<TransformComponent*>(
-        father->getComponent("TransformComponent"));
+    auto* transform = reinterpret_cast<TransformComponent*>(
+        father_->getComponent("TransformComponent"));
     getSceneNode()->setPosition(transform->getPosition());
     getSceneNode()->setScale(transform->getScale());
 
     setRotation(transform->getOrientation());
 }
 
-void TridimensionalObjectRC::setMaterial(std::string material) {
-    entity->setMaterialName(material);
+void TridimensionalObjectRC::setMaterial(const std::string material) {
+    entity_->setMaterialName(material);
 }
 
-void TridimensionalObjectRC::setRotation(Ogre::Vector3 r) {
+void TridimensionalObjectRC::setRotation(const Ogre::Vector3 r) {
     // Reset original orientation
     resetRotation();
 
@@ -38,14 +32,14 @@ void TridimensionalObjectRC::setRotation(Ogre::Vector3 r) {
     getSceneNode()->roll(Ogre::Degree(r.z), Ogre::Node::TS_LOCAL);
 
     // Save new rotation in transform component
-    dynamic_cast<TransformComponent*>(
-        father->getComponent("TransformComponent"))
+    reinterpret_cast<TransformComponent*>(
+        father_->getComponent("TransformComponent"))
         ->setOrientation(r);
 }
 
 void TridimensionalObjectRC::resetRotation() {
-    TransformComponent* transform = dynamic_cast<TransformComponent*>(
-        father->getComponent("TransformComponent"));
+    TransformComponent* transform = reinterpret_cast<TransformComponent*>(
+        father_->getComponent("TransformComponent"));
     Ogre::SceneNode* node = getSceneNode();
     Ogre::Vector3 r = transform->getOriginalOrientation();
 

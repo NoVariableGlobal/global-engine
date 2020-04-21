@@ -1,37 +1,35 @@
-#include <json.h>
-
+#include "SpotLightRC.h"
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
-#include "OgreEntity.h"
 #include "OgreSDLContext.h"
-#include "OgreSceneManager.h"
 #include "Scene.h"
-#include "SpotLightRC.h"
 #include "TransformComponent.h"
+#include <Ogre.h>
+#include <json.h>
 
 // COMPONENT CODE
-SpotLightRC::SpotLightRC() {}
+SpotLightRC::SpotLightRC() = default;
 
 // Destroys the light
-SpotLightRC::~SpotLightRC() { _msM->destroyLight(light); }
+SpotLightRC::~SpotLightRC() { msM_->destroyLight(light_); }
 
 // Creates the light
-void SpotLightRC::setLight(std::string _entityID) {
-    _msM = OgreSDLContext::getInstance()->getSceneManager();
+void SpotLightRC::setLight(const std::string entityId) {
+    msM_ = OgreSDLContext::getInstance()->getSceneManager();
 
-    light = _msM->createLight(_entityID + "Light");
-    light->setType(Ogre::Light::LT_DIRECTIONAL);
+    light_ = msM_->createLight(entityId + "Light");
+    light_->setType(Ogre::Light::LT_DIRECTIONAL);
 }
 
-Ogre::Light* SpotLightRC::getLight() { return light; }
+Ogre::Light* SpotLightRC::getLight() const { return light_; }
 
-void SpotLightRC::setColour(Ogre::Vector3 _colour) {
-    light->setDiffuseColour(_colour.x, _colour.y, _colour.z);
+void SpotLightRC::setColour(const Ogre::Vector3 colour) {
+    light_->setDiffuseColour(colour.x, colour.y, colour.z);
 }
 
 void SpotLightRC::setDirection(Ogre::Vector3 _dir) {
-    sceneNode->setDirection(Ogre::Vector3(_dir.x, _dir.y, _dir.z));
+    sceneNode_->setDirection(Ogre::Vector3(_dir.x, _dir.y, _dir.z));
 }
 
 void SpotLightRC::render() {}

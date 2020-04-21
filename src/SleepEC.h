@@ -12,23 +12,18 @@ DECLARE_FACTORY(SleepEC);
 class Entity;
 
 struct InfoSleep {
-    std::vector<Entity*> entities_;
-    float timeStart_;
-    float timeEnd_;
+    std::vector<Entity*> entities;
+    float timeStart;
+    float timeEnd;
 };
 
-class SleepEC : public EventComponent {
-  private:
-    std::vector<std::string> generalSleepEntities;
-    std::priority_queue<InfoSleep, std::vector<InfoSleep>,
-                        std::greater<InfoSleep>>
-        asleepEntities;
+class SleepEC final : public EventComponent {
+    std::vector<std::string> generalSleepEntities_;
+    std::priority_queue<InfoSleep, std::vector<InfoSleep>, std::greater<>>
+        asleepEntities_;
 
   public:
-    SleepEC();
-    ~SleepEC();
-
-    virtual void checkEvent();
+    void checkEvent() override;
 
     // sleep the entities specified in the array of the json
     void generalSleep(float time);
