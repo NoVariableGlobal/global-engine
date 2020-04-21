@@ -8,6 +8,7 @@ class RTSSDefaultTechniqueListener;
 
 namespace Ogre {
     class RenderWindow;
+    class RenderTarget;
     class Root;
     class Viewport;
     class SceneManager;
@@ -77,8 +78,10 @@ class OgreSDLContext {
     // destroy the RT Shader system.
     void destroyRTShaderSystem();
 
-    // return a pointer to the root
+    // return a pointer to the OgreRoot
     Ogre::Root* getRoot();
+    // return a pointer to the RenderTarget
+    Ogre::RenderTarget* getRenderTarget();
     // return a pointer to the SceneManager
     Ogre::SceneManager* getSceneManager();
     // return a pointer to the RenderWindow

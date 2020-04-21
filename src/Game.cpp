@@ -2,6 +2,7 @@
 #include "AnimationLC.h"
 #include "CameraRC.h"
 #include "FactoriesFactory.h"
+#include "GUI.h"
 #include "Loader.h"
 #include "OgreSDLContext.h"
 #include "PhysicsContext.h"
@@ -15,6 +16,7 @@
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
 #include "Util.h"
+#include <CEGUI\CEGUI.h>
 
 #include <SDL_events.h>
 #include <string>
@@ -29,6 +31,8 @@ Game::Game() {
 // Deletes the scene and clears the constexts
 Game::~Game() {
     delete scene;
+    m_gui->destroy();
+    delete m_gui;
 
     FactoriesFactory::getInstance()->clear();
     OgreSDLContext::getInstance()->erase();
@@ -64,9 +68,32 @@ bool Game::init(std::string _firstScene) {
         scene = new Scene(this);
         setScene(_firstScene);
 
+        m_gui = new GUI();
+        try {
+            m_gui->init("TaharezLook.scheme");
+            m_gui->setMouseImage("TaharezLook/MouseArrow");
+            m_gui->setFont("DejaVuSans-14");
+
+            CEGUI::Window* quitButton =
+                m_gui->createButton("QUIT", glm::vec2(0.0f, 0.0f),
+                                    glm::vec2(100.0f, 30.0f), "TestButton");
+
+            quitButton->subscribeEvent(
+                CEGUI::PushButton::EventClicked,
+                CEGUI::Event::Subscriber(&Game::quit, this));
+
+            CEGUI::Window* editbox =
+                m_gui->createLabel("Odio CeGUI", glm::vec2(0.5f, 0.0f),
+                                   glm::vec2(100.0f, 50.0f), "Text");
+
+        } catch (CEGUI::Exception& e) {
+            auto message = e.getMessage().c_str();
+            throw std::exception(message);
+        }
+
         return true;
     } catch (std::exception& e) {
-        std::cout << "init ERROR: " << e.what();
+        std::cout << "ERROR: " << e.what();
         return false;
     }
 }
@@ -77,6 +104,7 @@ void Game::run() {
         handleInput();
         scene->insertComponents();
         scene->deleteComponents();
+        m_gui->captureInput();
         render();
 
         if (sceneChange)
@@ -119,3 +147,5 @@ void Game::setScene(std::string _sceneName) {
     sceneChange = false;
     deleteAll = false;
 }
+
+void Game::quit() { exit = true; }
