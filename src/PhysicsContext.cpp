@@ -6,97 +6,97 @@
 #include <btBulletCollisionCommon.h>
 #include <btBulletDynamicsCommon.h>
 
-PhysicsContext* PhysicsContext::_instance = nullptr;
+PhysicsContext* PhysicsContext::instance_ = nullptr;
 
-PhysicsContext* PhysicsContext::getInstance() { return _instance; }
+PhysicsContext* PhysicsContext::getInstance() { return instance_; }
 
-void PhysicsContext::init() { _instance = new PhysicsContext(); }
+void PhysicsContext::init() { instance_ = new PhysicsContext(); }
 
 PhysicsContext::PhysicsContext() = default;
 
 PhysicsContext::~PhysicsContext() = default;
 
 void PhysicsContext::init(const float gravity) {
-    defaultCollisionConfiguration = new btDefaultCollisionConfiguration();
-    collisionDispatcher =
-        new btCollisionDispatcher(defaultCollisionConfiguration);
-    broadphaseInterface = new btDbvtBroadphase();
-    sequentialImpulseConstraintSolver =
+    defaultCollisionConfiguration_ = new btDefaultCollisionConfiguration();
+    collisionDispatcher_ =
+        new btCollisionDispatcher(defaultCollisionConfiguration_);
+    broadphaseInterface_ = new btDbvtBroadphase();
+    sequentialImpulseConstraintSolver_ =
         new btSequentialImpulseConstraintSolver();
 
-    discreteDynamicsWorld = new btDiscreteDynamicsWorld(
-        collisionDispatcher, broadphaseInterface,
-        sequentialImpulseConstraintSolver, defaultCollisionConfiguration);
-    discreteDynamicsWorld->setGravity(btVector3(0, gravity, 0));
-    mDebugDrawer =
+    discreteDynamicsWorld_ = new btDiscreteDynamicsWorld(
+        collisionDispatcher_, broadphaseInterface_,
+        sequentialImpulseConstraintSolver_, defaultCollisionConfiguration_);
+    discreteDynamicsWorld_->setGravity(btVector3(0, gravity, 0));
+    mDebugDrawer_ =
         new OgreDebugDrawer(OgreSDLContext::getInstance()->getSceneManager());
-    mDebugDrawer->setDebugMode(btIDebugDraw::DBG_DrawWireframe);
-    discreteDynamicsWorld->setDebugDrawer(mDebugDrawer);
+    mDebugDrawer_->setDebugMode(btIDebugDraw::DBG_DrawWireframe);
+    discreteDynamicsWorld_->setDebugDrawer(mDebugDrawer_);
 }
 void PhysicsContext::destroyWorld() {
     destroyWorldContent();
 
-    delete discreteDynamicsWorld;
-    discreteDynamicsWorld = nullptr;
-    delete defaultCollisionConfiguration;
-    defaultCollisionConfiguration = nullptr;
-    delete collisionDispatcher;
-    collisionDispatcher = nullptr;
-    delete broadphaseInterface;
-    broadphaseInterface = nullptr;
-    delete sequentialImpulseConstraintSolver;
-    sequentialImpulseConstraintSolver = nullptr;
-    delete mDebugDrawer;
-    mDebugDrawer = nullptr;
+    delete discreteDynamicsWorld_;
+    discreteDynamicsWorld_ = nullptr;
+    delete defaultCollisionConfiguration_;
+    defaultCollisionConfiguration_ = nullptr;
+    delete collisionDispatcher_;
+    collisionDispatcher_ = nullptr;
+    delete broadphaseInterface_;
+    broadphaseInterface_ = nullptr;
+    delete sequentialImpulseConstraintSolver_;
+    sequentialImpulseConstraintSolver_ = nullptr;
+    delete mDebugDrawer_;
+    mDebugDrawer_ = nullptr;
 
-    delete _instance;
-    _instance = nullptr;
+    delete instance_;
+    instance_ = nullptr;
 }
 
 void PhysicsContext::destroyWorldContent() {
     // We iterate from the size to 1, modifying `i` before we read it so the
     // range it reads is size - 1 to 0. This is also more efficient and safe as
     // it does not lose information by transforming a `size_t` into an `int`.
-    auto i = ribs.size();
+    auto i = ribs_.size();
     while (i != 0) {
         --i;
-        discreteDynamicsWorld->removeCollisionObject(ribs[i]);
+        discreteDynamicsWorld_->removeCollisionObject(ribs_[i]);
 
-        delete ribs[i];
-        ribs.pop_back();
+        delete ribs_[i];
+        ribs_.pop_back();
     }
 
-    i = shapes.size();
+    i = shapes_.size();
     while (i != 0) {
-        delete shapes[--i];
-        shapes.pop_back();
+        delete shapes_[--i];
+        shapes_.pop_back();
     }
 
-    i = states.size();
+    i = states_.size();
     while (i != 0) {
-        delete states[--i];
-        states.pop_back();
+        delete states_[--i];
+        states_.pop_back();
     }
 }
 
 void PhysicsContext::destroyRigidBody(btRigidBody* body) {
-    auto it = ribs.begin();
+    auto it = ribs_.begin();
     bool erased = false;
-    while (it != ribs.end() && !erased) {
+    while (it != ribs_.end() && !erased) {
         if (*it == body) {
-            discreteDynamicsWorld->removeCollisionObject(*it);
+            discreteDynamicsWorld_->removeCollisionObject(*it);
             delete *it;
             erased = true;
         } else
             ++it;
     }
-    ribs.erase(it);
+    ribs_.erase(it);
 }
 
 void PhysicsContext::updateSimulation() {
-    discreteDynamicsWorld->stepSimulation(1.f / 60.f, 10);
+    discreteDynamicsWorld_->stepSimulation(1.f / 60.f, 10);
 #ifdef _DEBUG
-    discreteDynamicsWorld->debugDrawWorld();
+    discreteDynamicsWorld_->debugDrawWorld();
 #endif
 
     // TO DO: renders debug bodies
@@ -104,7 +104,7 @@ void PhysicsContext::updateSimulation() {
 }
 
 btDiscreteDynamicsWorld* PhysicsContext::getWorld() const {
-    return discreteDynamicsWorld;
+    return discreteDynamicsWorld_;
 }
 
 btRigidBody* PhysicsContext::createRB(const Ogre::Vector3 pos,
@@ -119,9 +119,9 @@ btRigidBody* PhysicsContext::createRB(const Ogre::Vector3 pos,
     btRigidBody* rb = new btRigidBody(info);
     rb->forceActivationState(DISABLE_DEACTIVATION);
 
-    discreteDynamicsWorld->addRigidBody(rb);
-    ribs.push_back(rb);
-    shapes.push_back(box);
-    states.push_back(motion);
+    discreteDynamicsWorld_->addRigidBody(rb);
+    ribs_.push_back(rb);
+    shapes_.push_back(box);
+    states_.push_back(motion);
     return rb;
 }
