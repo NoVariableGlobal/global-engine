@@ -13,7 +13,7 @@
 void GUI::init(std::string scheme) {
     mRenderer = &CEGUI::OgreRenderer::bootstrapSystem(
         *OgreSDLContext::getInstance()->getRenderTarget());
-    mRoot = OgreSDLContext::getInstance()->getOgreRoot();
+    mRoot = OgreSDLContext::getInstance()->getRoot();
     mWindow = OgreSDLContext::getInstance()->getRenderWindow();
     mContext = &CEGUI::System::getSingleton().getDefaultGUIContext();
 

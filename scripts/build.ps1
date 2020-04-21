@@ -67,7 +67,7 @@ If ($Clean) {
     Write-Host $BinaryDirectory  -ForegroundColor Cyan -NoNewline
     Write-Host "'... "           -ForegroundColor Blue -NoNewLine
 
-    If (Test-Path -Path $Path) {
+    If ($DllFiles.Length -Ne 0) {
         Remove-Item -LiteralPath $DllFiles -Force | Out-Null
         Write-Host "Finished!"           -ForegroundColor Green
     } Else {
@@ -432,8 +432,7 @@ Try {
 
     # Build CEGUI
     If ($BuildCegui) {
-        # Copy all of CEGUI's dependencies (once compiled), this way CEGUI can find them
-        Copy-Item -Path "$CeguiDependenciesFolder\build\dependencies" -Destination "$CeguiFolder" -Recurse -Force
+        $local:CeguiBuiltDependencies = Join-Path -Path $CeguiDependenciesFolder -ChildPath "build/dependencies"
         Step-CMake $CeguiFolder @(
             "-DCEGUI_BUILD_RENDERER_DIRECT3D10:BOOL=OFF",
             "-DCEGUI_BUILD_RENDERER_DIRECT3D11:BOOL=OFF",
@@ -445,10 +444,11 @@ Try {
             "-DCEGUI_BUILD_RENDERER_OPENGL:BOOL=OFF",
             "-DCEGUI_BUILD_RENDERER_OPENGL3:BOOL=OFF",
             "-DCEGUI_BUILD_RENDERER_OPENGLES:BOOL=OFF",
+            "-DCMAKE_PREFIX_PATH:PATH=$CeguiBuiltDependencies",
             "-DOGRE_H_BUILD_SETTINGS_PATH:PATH=$OgreFolder/build/include",
             "-DOGRE_H_PATH:PATH=$OgreFolder/OgreMain/include",
             "-DOGRE_LIB:FILEPATH=$OgreFolder/build/lib/Release/OgreMain.lib",
-            "-DOGRE_LIB_DBG:FILEPATH=$OgreFolder/build/lib/Release/OgreMain.lib",
+            "-DOGRE_LIB_DBG:FILEPATH=$OgreFolder/build/lib/Debug/OgreMain_d.lib",
             "-DOIS_H_PATH:PATH=$OisFolder/includes",
             "-DOIS_LIB:FILEPATH=$OisFolder/build/Release/OIS.lib",
             "-DOIS_LIB_DBG:FILEPATH=$OisFolder/build/Debug/OIS_d.lib"
@@ -469,23 +469,25 @@ Try {
             "$CeguiFolder\build\bin\CEGUIBase-0_d.dll",
             "$CeguiFolder\build\bin\CEGUIOgreRenderer-0.dll",
             "$CeguiFolder\build\bin\CEGUIOgreRenderer-0_d.dll",
-            "$CeguiFolder\dependencies\bin\freetype.dll",
-            "$CeguiFolder\dependencies\bin\freetype_d.dll",
-            "$CeguiFolder\dependencies\bin\glew.dll",
-            "$CeguiFolder\dependencies\bin\glew_d.dll",
-            "$CeguiFolder\dependencies\bin\glfw.dll",
-            "$CeguiFolder\dependencies\bin\glfw_d.dll",
-            "$CeguiFolder\dependencies\bin\jpeg.dll",
-            "$CeguiFolder\dependencies\bin\jpeg_d.dll",
-            "$CeguiFolder\dependencies\bin\libexpat.dll",
-            "$CeguiFolder\dependencies\bin\libexpat_d.dll",
-            "$CeguiFolder\dependencies\bin\libpng.dll",
-            "$CeguiFolder\dependencies\bin\libpng_d.dll",
-            "$CeguiFolder\dependencies\bin\pcre.dll",
-            "$CeguiFolder\dependencies\bin\pcre_d.dll",
-            "$CeguiFolder\dependencies\bin\SILLY.dll",
-            "$CeguiFolder\dependencies\bin\SILLY_d.dll"
+            "$CeguiBuiltDependencies\bin\freetype.dll",
+            "$CeguiBuiltDependencies\bin\freetype_d.dll",
+            "$CeguiBuiltDependencies\bin\glew.dll",
+            "$CeguiBuiltDependencies\bin\glew_d.dll",
+            "$CeguiBuiltDependencies\bin\glfw.dll",
+            "$CeguiBuiltDependencies\bin\glfw_d.dll",
+            "$CeguiBuiltDependencies\bin\jpeg.dll",
+            "$CeguiBuiltDependencies\bin\jpeg_d.dll",
+            "$CeguiBuiltDependencies\bin\libexpat.dll",
+            "$CeguiBuiltDependencies\bin\libexpat_d.dll",
+            "$CeguiBuiltDependencies\bin\libpng.dll",
+            "$CeguiBuiltDependencies\bin\libpng_d.dll",
+            "$CeguiBuiltDependencies\bin\pcre.dll",
+            "$CeguiBuiltDependencies\bin\pcre_d.dll",
+            "$CeguiBuiltDependencies\bin\SILLY.dll",
+            "$CeguiBuiltDependencies\bin\SILLY_d.dll"
         )
+
+        Remove-Variable CeguiBuiltDependencies
     }
 
     # Build FMod

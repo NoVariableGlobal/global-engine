@@ -213,8 +213,6 @@ void OgreSDLContext::destroyRTShaderSystem() {
     }
 }
 
-Ogre::Root* OgreSDLContext::getOgreRoot() { return mRoot; }
-
 Ogre::RenderTarget* OgreSDLContext::getRenderTarget() {
     return mRoot->getRenderTarget("Test");
 }
