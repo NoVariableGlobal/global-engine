@@ -5,7 +5,7 @@
 #include "OgreSDLContext.h"
 #include "Scene.h"
 #include <CEGUI/CEGUI.h>
-#include <CEGUI\Window.h>
+#include <CEGUI/Window.h>
 #include <iostream>
 #include <json.h>
 
