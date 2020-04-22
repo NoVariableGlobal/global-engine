@@ -4,72 +4,70 @@
 #include "Entity.h"
 #include "Game.h"
 #include "Loader.h"
-#include "OgreVector3.h"
 #include "PhysicsContext.h"
 #include "Util.h"
-
-#include <OgreFrameListener.h>
 #include <json.h>
 
-Scene::Scene(Game* _game) {
-    componentManager = new ComponentsManager();
+Scene::Scene(Game* game) {
+    componentManager_ = new ComponentsManager();
 
-    PhysicsContext::getInstance()->init(0);
+    PhysicsContext::getInstance()->init(0.0f);
 
     Loader loader;
     loader.readPrefabs(this);
 
-    game = _game;
+    game_ = game;
 }
 
 Scene::~Scene() {
     clearEntities();
     clearPrefabs();
 
-    delete componentManager;
+    delete componentManager_;
     PhysicsContext::getInstance()->destroyWorld();
 }
 
-void Scene::changeScene(std::string _sceneName, bool deleteAll) {
-    game->setChangeScene(true, _sceneName, deleteAll);
+void Scene::changeScene(const std::string& sceneName, const bool deleteAll) {
+    game_->setChangeScene(true, sceneName, deleteAll);
 }
 
-void Scene::load(std::string name) {
+void Scene::load(const std::string& name) {
     Loader loader;
     loader.readObjects(name, this);
 }
 
 void Scene::update() {
-    componentManager->update();
-    componentManager->updateEvent();
-    componentManager->updateSound();
+    componentManager_->update();
+    componentManager_->updateEvent();
+    componentManager_->updateSound();
 
     PhysicsContext::getInstance()->updateSimulation();
 }
 
-void Scene::render() { componentManager->render(); }
+void Scene::render() { componentManager_->render(); }
 
 void Scene::handleInput(const SDL_Event& _event) {
-    componentManager->handleInput(_event);
+    componentManager_->handleInput(_event);
 }
 
-Entity* Scene::getEntitybyId(std::string id) {
-    return assert_find(entities, id);
+Entity* Scene::getEntityById(const std::string& id) const {
+    return assert_find(entities_, id);
 }
 
-std::vector<Entity*> Scene::getEntitiesbyTag(std::string tag) {
+std::vector<Entity*> Scene::getEntitiesByTag(const std::string tag) {
     std::vector<Entity*> tagEntities;
 
-    for (auto it : entities) {
+    for (auto it : entities_) {
         if (it.second->getTag() == tag) {
             tagEntities.push_back(it.second);
         }
     }
+
     return tagEntities;
 }
 
 void Scene::addEntity(Entity* entity) {
-    entities.emplace(entity->getId(), entity);
+    entities_.emplace(entity->getId(), entity);
 }
 
 std::map<std::string, Entity*>::iterator Scene::deleteEntity(Entity* entity) {
@@ -77,22 +75,23 @@ std::map<std::string, Entity*>::iterator Scene::deleteEntity(Entity* entity) {
     for (auto it : components) {
         it.second->destroy();
     }
-    std::string id = entity->getId();
-    delete entities.find(id)->second;
-    return entities.erase(entities.find(id));
+
+    const std::string id = entity->getId();
+    delete entities_.find(id)->second;
+    return entities_.erase(entities_.find(id));
 }
 
 void Scene::clearEntities() {
-    for (auto it : entities) {
+    for (auto it : entities_) {
         delete it.second;
     }
 
-    entities.clear();
+    entities_.clear();
 }
 
-void Scene::clearNonPersistantEntities() {
-    auto it = entities.begin();
-    while (it != entities.end()) {
+void Scene::clearNonPersistentEntities() {
+    auto it = entities_.begin();
+    while (it != entities_.end()) {
         if (!it->second->isPersistent())
             it = deleteEntity(it->second);
         else
@@ -100,34 +99,36 @@ void Scene::clearNonPersistantEntities() {
     }
 }
 
-Entity* Scene::getInstanceOf(std::string _prefab, std::string _id,
-                             std::string _tag) {
+Entity* Scene::getInstanceOf(const std::string& prefab, const std::string& id,
+                             const std::string& tag) {
     Entity* instance = new Entity();
 
-    instance->setId(_id);
-    instance->setTag(_tag);
+    instance->setId(id);
+    instance->setTag(tag);
 
-    clonePrefabInfo(_prefab, instance);
+    clonePrefabInfo(prefab, instance);
 
-    entities.emplace(instance->getId(), instance);
+    entities_.emplace(instance->getId(), instance);
 
     return instance;
 }
 
-void Scene::clonePrefabInfo(std::string _prefab, Entity* _entity) {
+void Scene::clonePrefabInfo(const std::string& prefab, Entity* entity) {
     Loader loader;
-    Json::Value value = assert_find(prefabs, _prefab);
-    loader.setComponents(value, _entity, this);
+    Json::Value value = assert_find(prefabs_, prefab);
+    loader.setComponents(value, entity, this);
 }
 
-void Scene::addPrefab(std::string id, Json::Value components) {
-    prefabs.emplace(id, components);
+void Scene::addPrefab(const std::string& id, const Json::Value& components) {
+    prefabs_.emplace(id, components);
 }
 
-void Scene::clearPrefabs() { prefabs.clear(); }
+void Scene::clearPrefabs() { prefabs_.clear(); }
 
-ComponentsManager* Scene::getComponentsManager() { return componentManager; }
+ComponentsManager* Scene::getComponentsManager() const {
+    return componentManager_;
+}
 
-void Scene::clearComponentsManager() { componentManager->clearComponents(); }
-void Scene::deleteComponents() { componentManager->deleteComponents(); }
-void Scene::insertComponents() { componentManager->insertComponents(); }
+void Scene::clearComponentsManager() { componentManager_->clearComponents(); }
+void Scene::deleteComponents() { componentManager_->deleteComponents(); }
+void Scene::insertComponents() { componentManager_->insertComponents(); }

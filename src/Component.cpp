@@ -1,19 +1,19 @@
 #include "Component.h"
 
 // Constructor
-Component::Component() {}
+Component::Component() = default;
 
 // Destructor
-Component::~Component() {}
+Component::~Component() = default;
 
 // Returns true if the component is active, false otherwise
-bool Component::isActive() { return active; }
+bool Component::isActive() const { return active_; }
 
 // Sets whether or not the component should update
-void Component::setActive(bool _active) { active = _active; }
+void Component::setActive(const bool active) { active_ = active; }
 
 // Activates the component if it is deactivated, deactivates it otherwise
-void Component::toggleActive() { active = !active; }
+void Component::toggleActive() { active_ = !active_; }
 
-void Component::setFather(Entity* _father) { father = _father; }
-void Component::setScene(Scene* _scene) { scene = _scene; }
+void Component::setFather(Entity* father) { father_ = father; }
+void Component::setScene(Scene* scene) { scene_ = scene; }

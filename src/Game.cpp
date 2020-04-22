@@ -16,7 +16,7 @@
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
 #include "Util.h"
-#include <CEGUI\CEGUI.h>
+#include <CEGUI/CEGUI.h>
 
 #include <SDL_events.h>
 #include <string>
@@ -24,15 +24,16 @@
 #include <iostream>
 
 Game::Game() {
+    mGui_ = nullptr;
     Loader loader;
     loader.readSounds();
 }
 
 // Deletes the scene and clears the constexts
 Game::~Game() {
-    delete scene;
-    m_gui->destroy();
-    delete m_gui;
+    delete scene_;
+    mGui_->destroy();
+    delete mGui_;
 
     FactoriesFactory::getInstance()->clear();
     OgreSDLContext::getInstance()->erase();
@@ -58,36 +59,35 @@ void Game::initContext() {
 }
 
 // Reads the scenes and sets the first one
-bool Game::init(std::string _firstScene) {
+bool Game::init(const std::string firstScene) {
     try {
         initContext();
 
         Loader loader;
-        loader.readScenes(scenesQueue);
+        loader.readScenes(scenesQueue_);
 
-        scene = new Scene(this);
-        setScene(_firstScene);
+        scene_ = new Scene(this);
+        setScene(firstScene);
 
-        m_gui = new GUI();
+        mGui_ = new GUI();
         try {
-            m_gui->init("TaharezLook.scheme");
-            m_gui->setMouseImage("TaharezLook/MouseArrow");
-            m_gui->setFont("DejaVuSans-14");
+            mGui_->init("TaharezLook.scheme");
+            mGui_->setMouseImage("TaharezLook/MouseArrow");
+            mGui_->setFont("DejaVuSans-14");
 
             CEGUI::Window* quitButton =
-                m_gui->createButton("QUIT", glm::vec2(0.0f, 0.0f),
+                mGui_->createButton("QUIT", glm::vec2(0.0f, 0.0f),
                                     glm::vec2(100.0f, 30.0f), "TestButton");
 
             quitButton->subscribeEvent(
                 CEGUI::PushButton::EventClicked,
                 CEGUI::Event::Subscriber(&Game::quit, this));
 
-            CEGUI::Window* editbox =
-                m_gui->createLabel("Odio CeGUI", glm::vec2(0.5f, 0.0f),
-                                   glm::vec2(100.0f, 50.0f), "Text");
+            mGui_->createLabel("Odio CeGUI", glm::vec2(0.5f, 0.0f),
+                               glm::vec2(100.0f, 50.0f), "Text");
 
         } catch (CEGUI::Exception& e) {
-            auto message = e.getMessage().c_str();
+            auto* message = e.getMessage().c_str();
             throw std::exception(message);
         }
 
@@ -99,53 +99,53 @@ bool Game::init(std::string _firstScene) {
 }
 
 void Game::run() {
-    while (!exit) {
+    while (!exit_) {
         update();
         handleInput();
-        scene->insertComponents();
-        scene->deleteComponents();
-        m_gui->captureInput();
+        scene_->insertComponents();
+        scene_->deleteComponents();
+        mGui_->captureInput();
         render();
 
-        if (sceneChange)
-            setScene(sceneToChange);
+        if (sceneChange_)
+            setScene(sceneToChange_);
     }
 }
 
-void Game::update() { scene->update(); }
+void Game::update() { scene_->update(); }
 
 void Game::render() {
-    scene->render();
+    scene_->render();
     OgreSDLContext::getInstance()->renderLoop();
 }
 
 void Game::handleInput() {
     SDL_Event event;
-    while (SDL_PollEvent(&event) && !exit) {
-        scene->handleInput(event);
-        exit = OgreSDLContext::getInstance()->pollEvents(event);
+    while (SDL_PollEvent(&event) && !exit_) {
+        scene_->handleInput(event);
+        exit_ = OgreSDLContext::getInstance()->pollEvents(event);
     }
 }
 
-void Game::setChangeScene(bool _change, std::string _sceneName,
-                          bool _deleteAll) {
-    sceneChange = _change;
-    sceneToChange = _sceneName;
-    deleteAll = _deleteAll;
+void Game::setChangeScene(const bool change, const std::string sceneName,
+                          const bool deleteAll) {
+    sceneChange_ = change;
+    sceneToChange_ = sceneName;
+    deleteAll_ = deleteAll;
 }
 
-void Game::setScene(std::string _sceneName) {
-    if (!deleteAll)
-        scene->clearNonPersistantEntities();
+void Game::setScene(const std::string sceneName) {
+    if (!deleteAll_)
+        scene_->clearNonPersistentEntities();
     else
-        scene->clearEntities();
+        scene_->clearEntities();
 
-    scene->deleteComponents();
+    scene_->deleteComponents();
 
-    scene->load(assert_find(scenesQueue, _sceneName));
+    scene_->load(assert_find(scenesQueue_, sceneName));
 
-    sceneChange = false;
-    deleteAll = false;
+    sceneChange_ = false;
+    deleteAll_ = false;
 }
 
-void Game::quit() { exit = true; }
+void Game::quit() { exit_ = true; }

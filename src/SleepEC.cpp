@@ -9,71 +9,65 @@
 #include <json.h>
 
 bool operator>(InfoSleep const& a, InfoSleep const& b) {
-    return a.timeEnd_ > b.timeEnd_ ||
-           (a.timeEnd_ == b.timeEnd_ && a.timeStart_ > b.timeStart_);
+    return a.timeEnd > b.timeEnd ||
+           (a.timeEnd == b.timeEnd && a.timeStart > b.timeStart);
 }
 
-SleepEC::SleepEC() {}
-
-SleepEC::~SleepEC() {}
-
 void SleepEC::checkEvent() {
-    if (!asleepEntities.empty()) {
-        float actualTime = SDL_GetTicks();
+    if (!asleepEntities_.empty()) {
+        const int actualTime = SDL_GetTicks();
 
-        InfoSleep top = asleepEntities.top();
-        while (top.timeEnd_ <= actualTime) {
-            for (Entity* entity : top.entities_) {
+        InfoSleep top = asleepEntities_.top();
+        while (static_cast<int>(top.timeEnd) <= actualTime) {
+            for (Entity* entity : top.entities) {
                 entity->setAsleep(false);
             }
 
-            asleepEntities.pop();
-            if (asleepEntities.empty())
+            asleepEntities_.pop();
+            if (asleepEntities_.empty())
                 break;
 
-            top = asleepEntities.top();
+            top = asleepEntities_.top();
         }
     }
 }
 
-void SleepEC::generalSleep(float time) {
-    std::vector<Entity*> entitiesToPause;
-    for (std::string tag : generalSleepEntities) {
+void SleepEC::generalSleep(const float time) {
+    std::vector<Entity*> entitiesToPause = {};
+    for (const auto tag : generalSleepEntities_) {
 
-        std::vector<Entity*> tmp = scene->getEntitiesbyTag(tag);
+        std::vector<Entity*> tmp = scene_->getEntitiesByTag(tag);
         for (Entity* entity : tmp) {
             entity->setAsleep(true);
             entitiesToPause.push_back(entity);
         }
     }
 
-    float startTime = SDL_GetTicks();
-    asleepEntities.push({entitiesToPause, startTime, time * 1000 + startTime});
+    const auto startTime = static_cast<float>(SDL_GetTicks());
+    asleepEntities_.push({entitiesToPause, startTime, time * 1000 + startTime});
 }
 
-void SleepEC::sleepAnEntity(float time, std::string id) {
-    Entity* entity = scene->getEntitybyId(id);
+void SleepEC::sleepAnEntity(const float time, const std::string& id) {
+    Entity* entity = scene_->getEntityById(id);
     entity->setAsleep(true);
 
-    std::vector<Entity*> entitiesToPause;
-    entitiesToPause.push_back(entity);
-
-    float startTime = SDL_GetTicks();
-    asleepEntities.push({entitiesToPause, startTime, time * 1000 + startTime});
+    const std::vector<Entity*> entitiesToPause = {entity};
+    const auto startTime = static_cast<float>(SDL_GetTicks());
+    asleepEntities_.push({entitiesToPause, startTime, time * 1000 + startTime});
 }
 
-void SleepEC::sleepTag(float time, std::string tag) {
-    std::vector<Entity*> entitiesToPause = scene->getEntitiesbyTag(tag);
+void SleepEC::sleepTag(const float time, const std::string& tag) {
+    std::vector<Entity*> entitiesToPause = scene_->getEntitiesByTag(tag);
     for (Entity* entity : entitiesToPause) {
         entity->setAsleep(true);
     }
 
-    float startTime = SDL_GetTicks();
-    asleepEntities.push({entitiesToPause, startTime, time * 1000 + startTime});
+    const auto startTime = static_cast<float>(SDL_GetTicks());
+    asleepEntities_.push({entitiesToPause, startTime, time * 1000 + startTime});
 }
 
-void SleepEC::setGeneralSleepEntities(std::string tag) {
-    generalSleepEntities.push_back(tag);
+void SleepEC::setGeneralSleepEntities(const std::string& tag) {
+    generalSleepEntities_.push_back(tag);
 }
 
 // FACTORY INFRASTRUCTURE DEFINITION
@@ -95,7 +89,7 @@ Component* SleepECFactory::create(Entity* _father, Json::Value& _data,
 
         std::vector<std::string> tags;
 
-        int size = _data["generalSleepTags"].size();
+        const int size = _data["generalSleepTags"].size();
         for (int i = 0; i < size; i++)
             sleep->setGeneralSleepEntities(
                 _data["generalSleepTags"][i].asString());

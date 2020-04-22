@@ -5,33 +5,35 @@
 #include "OgreSceneManager.h"
 #include "Scene.h"
 
-RenderComponent::RenderComponent() : Component() {}
+RenderComponent::RenderComponent() = default;
 
 RenderComponent::~RenderComponent() {
-    if (entity != nullptr)
-        OgreSDLContext::getInstance()->getSceneManager()->destroyEntity(entity);
-    if (sceneNode != nullptr)
+    if (entity_ != nullptr)
+        OgreSDLContext::getInstance()->getSceneManager()->destroyEntity(
+            entity_);
+    if (sceneNode_ != nullptr)
         OgreSDLContext::getInstance()->getSceneManager()->destroySceneNode(
-            sceneNode);
+            sceneNode_);
 }
 
-void RenderComponent::setActive(bool active) {
+void RenderComponent::setActive(const bool active) {
     Component::setActive(active);
-    sceneNode->setVisible(active);
+    sceneNode_->setVisible(active);
 }
 
-void RenderComponent::rotate(int degree, Ogre::Vector3 axis) {
-    sceneNode->setOrientation(Ogre::Quaternion(Ogre::Degree(degree), axis));
+void RenderComponent::rotate(const int degree, const Ogre::Vector3 axis) {
+    sceneNode_->setOrientation(
+        Ogre::Quaternion(Ogre::Degree(static_cast<Ogre::Real>(degree)), axis));
 }
 
 // GETTERS AND SETTERS
-Ogre::Entity* RenderComponent::getOgreEntity() { return entity; }
-void RenderComponent::setOgreEntity(Ogre::Entity* e) { entity = e; }
+Ogre::Entity* RenderComponent::getOgreEntity() const { return entity_; }
+void RenderComponent::setOgreEntity(Ogre::Entity* e) { entity_ = e; }
 
-Ogre::SceneNode* RenderComponent::getSceneNode() { return sceneNode; }
-void RenderComponent::setSceneNode(Ogre::SceneNode* sn) { sceneNode = sn; }
+Ogre::SceneNode* RenderComponent::getSceneNode() const { return sceneNode_; }
+void RenderComponent::setSceneNode(Ogre::SceneNode* sn) { sceneNode_ = sn; }
 
 void RenderComponent::destroy() {
     setActive(false);
-    scene->getComponentsManager()->eraseRC(this);
+    scene_->getComponentsManager()->eraseRC(this);
 }
