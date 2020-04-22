@@ -1,12 +1,17 @@
-#include "GUI.h"
+#include "GuiEC.h"
+#include "ComponentsManager.h"
+#include "FactoriesFactory.h"
 #include "OIS.h"
 #include "OgreSDLContext.h"
+#include "Scene.h"
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/MouseCursor.h>
 #include <CEGUI/RendererModules/Ogre/Renderer.h>
 #include <Ogre.h>
+#include <iostream>
+#include <json.h>
 
-void GUI::init(const std::string scheme) {
+GuiComponent::GuiComponent() {
     mRenderer_ = &CEGUI::OgreRenderer::bootstrapSystem(
         *OgreSDLContext::getInstance()->getRenderTarget());
     mRoot_ = OgreSDLContext::getInstance()->getRoot();
@@ -19,8 +24,6 @@ void GUI::init(const std::string scheme) {
     CEGUI::WidgetLookManager::setDefaultResourceGroup("LookNFeel");
     CEGUI::WindowManager::setDefaultResourceGroup("Layouts");
 
-    loadScheme(scheme);
-
     mWindowManager_ = &CEGUI::WindowManager::getSingleton();
     sheet_ = mWindowManager_->createWindow("DefaultWindow", "CEGUIDemo/Sheet");
     CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(sheet_);
@@ -28,7 +31,9 @@ void GUI::init(const std::string scheme) {
     createFrameListener();
 }
 
-void GUI::destroy() {
+GuiComponent::~GuiComponent() { destroy(); }
+
+void GuiComponent::destroy() {
     // TODO: Remove memory leaks from loadScheme() and widgets
 
     mInputManager_->destroyInputObject(mMouse_);
@@ -37,7 +42,7 @@ void GUI::destroy() {
     CEGUI::OgreRenderer::destroySystem();
 }
 
-void GUI::createFrameListener() {
+void GuiComponent::createFrameListener() {
     Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
     OIS::ParamList pl;
     size_t windowHnd = 0;
@@ -63,12 +68,12 @@ void GUI::createFrameListener() {
     mRoot_->addFrameListener(this);
 }
 
-void GUI::captureInput() {
-    mKeyboard_->capture();
+void GuiComponent::checkEvent() {
     mMouse_->capture();
+    mKeyboard_->capture();
 }
 
-void GUI::windowResized(Ogre::RenderWindow* rw) {
+void GuiComponent::windowResized(Ogre::RenderWindow* rw) {
     unsigned int width = 0, height = 0, depth = 0;
     int left = 0, top = 0;
     rw->getMetrics(width, height, depth, left, top);
@@ -78,24 +83,18 @@ void GUI::windowResized(Ogre::RenderWindow* rw) {
     ms.height = static_cast<int>(height);
 }
 
-void GUI::draw() {
-    mRenderer_->beginRendering();
-    mContext_->draw();
-    mRenderer_->endRendering();
-}
-
 // -------------- CEGUI RESOURCES --------------
 
-void GUI::loadScheme(const std::string& schemeFile) {
+void GuiComponent::loadScheme(const std::string& schemeFile) {
     CEGUI::SchemeManager::getSingleton().createFromFile(schemeFile);
 }
 
-void GUI::setFont(const std::string& fontFile) {
+void GuiComponent::setFont(const std::string& fontFile) {
     CEGUI::FontManager::getSingleton().createFromFile(fontFile + ".font");
     mContext_->setDefaultFont(fontFile);
 }
 
-void GUI::setMouseImage(const std::string& imageFile) {
+void GuiComponent::setMouseImage(const std::string& imageFile) {
     CEGUI::System::getSingleton()
         .getDefaultGUIContext()
         .getMouseCursor()
@@ -108,9 +107,10 @@ void GUI::setMouseImage(const std::string& imageFile) {
 }
 
 // -------------- GUI ELEMENTS --------------
-CEGUI::Window* GUI::createButton(const std::string& text,
-                                 const glm::vec2 position, const glm::vec2 size,
-                                 const std::string& name) {
+CEGUI::Window* GuiComponent::createButton(const std::string& text,
+                                          const glm::vec2 position,
+                                          const glm::vec2 size,
+                                          const std::string& name) {
     CEGUI::Window* button = CEGUI::WindowManager::getSingleton().createWindow(
         "TaharezLook/Button", name);
 
@@ -121,9 +121,10 @@ CEGUI::Window* GUI::createButton(const std::string& text,
     return button;
 }
 
-CEGUI::Window* GUI::createLabel(const std::string& text,
-                                const glm::vec2 position, const glm::vec2 size,
-                                const std::string& name) {
+CEGUI::Window* GuiComponent::createLabel(const std::string& text,
+                                         const glm::vec2 position,
+                                         const glm::vec2 size,
+                                         const std::string& name) {
     CEGUI::Window* label = CEGUI::WindowManager::getSingleton().createWindow(
         "TaharezLook/StaticText", name);
     setWidgetDestRect(label, position, size);
@@ -137,8 +138,9 @@ CEGUI::Window* GUI::createLabel(const std::string& text,
     return label;
 }
 
-void GUI::setWidgetDestRect(CEGUI::Window* widget, const glm::vec2 position,
-                            const glm::vec2 size) {
+void GuiComponent::setWidgetDestRect(CEGUI::Window* widget,
+                                     const glm::vec2 position,
+                                     const glm::vec2 size) {
     widget->setPosition(CEGUI::UVector2(CEGUI::UDim(position.x, 0),
                                         CEGUI::UDim(position.y, 0)));
     widget->setSize(
@@ -147,22 +149,20 @@ void GUI::setWidgetDestRect(CEGUI::Window* widget, const glm::vec2 position,
 
 // ------------- INPUT -------------
 
-bool GUI::keyPressed(const OIS::KeyEvent& arg) {
-    CEGUI::GUIContext& context =
-        CEGUI::System::getSingleton().getDefaultGUIContext();
-    context.injectKeyDown(static_cast<CEGUI::Key::Scan>(arg.key));
-    context.injectChar(static_cast<CEGUI::Key::Scan>(arg.text));
+bool GuiComponent::keyPressed(const OIS::KeyEvent& arg) {
+    mContext_->injectKeyDown(static_cast<CEGUI::Key::Scan>(arg.key));
+    mContext_->injectChar(static_cast<CEGUI::Key::Scan>(arg.text));
 
     return true;
 }
 
-bool GUI::keyReleased(const OIS::KeyEvent& arg) {
-    CEGUI::System::getSingleton().getDefaultGUIContext().injectKeyUp(
-        static_cast<CEGUI::Key::Scan>(arg.key));
+bool GuiComponent::keyReleased(const OIS::KeyEvent& arg) {
+    mContext_->injectKeyUp(static_cast<CEGUI::Key::Scan>(arg.key));
     return true;
 }
 
-CEGUI::MouseButton GUI::convertButton(const OIS::MouseButtonID buttonID) {
+CEGUI::MouseButton
+GuiComponent::convertButton(const OIS::MouseButtonID buttonID) {
     switch (buttonID) {
     case OIS::MB_Left:
         return CEGUI::LeftButton;
@@ -178,35 +178,59 @@ CEGUI::MouseButton GUI::convertButton(const OIS::MouseButtonID buttonID) {
     }
 }
 
-bool GUI::mousePressed(const OIS::MouseEvent& /*arg*/,
-                       const OIS::MouseButtonID id) {
-    CEGUI::GUIContext& context =
-        CEGUI::System::getSingleton().getDefaultGUIContext();
-    context.injectMouseButtonDown(convertButton(id));
+bool GuiComponent::mousePressed(const OIS::MouseEvent&,
+                                const OIS::MouseButtonID id) {
+    mContext_->injectMouseButtonDown(convertButton(id));
     return true;
 }
 
-bool GUI::mouseReleased(const OIS::MouseEvent& /*arg*/,
-                        const OIS::MouseButtonID id) {
-    CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(
-        convertButton(id));
+bool GuiComponent::mouseReleased(const OIS::MouseEvent&,
+                                 const OIS::MouseButtonID id) {
+    mContext_->injectMouseButtonUp(convertButton(id));
     return true;
 }
 
-bool GUI::mouseMoved(const OIS::MouseEvent& arg) {
-    CEGUI::GUIContext& sys =
-        CEGUI::System::getSingleton().getDefaultGUIContext();
-    sys.injectMouseMove(static_cast<float>(arg.state.X.rel),
-                        static_cast<float>(arg.state.Y.rel));
+bool GuiComponent::mouseMoved(const OIS::MouseEvent& arg) {
+    mContext_->injectMouseMove(static_cast<float>(arg.state.X.rel),
+                               static_cast<float>(arg.state.Y.rel));
     // Scroll wheel.
     if (arg.state.Z.rel)
-        sys.injectMouseWheelChange(static_cast<float>(arg.state.Z.rel) /
-                                   120.0f);
+        mContext_->injectMouseWheelChange(static_cast<float>(arg.state.Z.rel) /
+                                          120.0f);
     return true;
 }
 
 // ------------- GETTERS AND SETTERS --------------
 
-CEGUI::OgreRenderer* GUI::getRenderer() const { return mRenderer_; }
+CEGUI::OgreRenderer* GuiComponent::getRenderer() const { return mRenderer_; }
 
-CEGUI::GUIContext* GUI::getContext() const { return mContext_; }
+CEGUI::GUIContext* GuiComponent::getContext() const { return mContext_; }
+
+// FACTORY INFRASTRUCTURE DEFINITION
+
+GuiComponentFactory::GuiComponentFactory() = default;
+
+Component* GuiComponentFactory::create(Entity* _father, Json::Value& _data,
+                                       Scene* _scene) {
+    GuiComponent* guiComponent = new GuiComponent();
+    _scene->getComponentsManager()->addEC(guiComponent);
+
+    guiComponent->setFather(_father);
+    guiComponent->setScene(_scene);
+
+    if (!_data["scheme"].isString())
+        throw std::exception("GuiComponent: scheme is not a string");
+    guiComponent->loadScheme(_data["scheme"].asString());
+
+    if (!_data["mouseImage"].isString())
+        throw std::exception("GuiComponent: mouseImage is not a string");
+    guiComponent->setMouseImage(_data["mouseImage"].asString());
+
+    if (!_data["font"].isString())
+        throw std::exception("GuiComponent: font is not a string");
+    guiComponent->setFont(_data["font"].asString());
+
+    return guiComponent;
+}
+
+DEFINE_FACTORY(GuiComponent);

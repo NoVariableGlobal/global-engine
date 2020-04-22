@@ -71,4 +71,6 @@ class Scene {
     void deleteComponents();
     // inserts components to insert
     void insertComponents();
+
+    Game* getGame();
 };

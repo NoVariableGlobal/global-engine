@@ -132,3 +132,5 @@ ComponentsManager* Scene::getComponentsManager() const {
 void Scene::clearComponentsManager() { componentManager_->clearComponents(); }
 void Scene::deleteComponents() { componentManager_->deleteComponents(); }
 void Scene::insertComponents() { componentManager_->insertComponents(); }
+
+Game* Scene::getGame() { return game_; }

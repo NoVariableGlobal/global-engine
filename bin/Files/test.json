@@ -1,5 +1,36 @@
 {
   "entities": [
+  {
+      "id": "GUI",
+      "components": [
+        {
+          "type": "GuiComponent",
+          "attributes": {
+            "scheme": "TaharezLook.scheme",
+            "mouseImage": "TaharezLook/MouseArrow",
+            "font": "DejaVuSans-14"
+          }
+        },
+		{
+          "type": "QuitButtonComponent",
+          "attributes": {
+            "text": "QUIT",
+            "position": [ 0.0, 0.0],
+            "size": [ 100.0, 30.0],
+			"name": "QuitButton"
+          }
+        },
+		{
+          "type": "GuiLabelComponent",
+          "attributes": {
+            "text": "Odio CEGUI",
+            "position": [ 0.5, 0.0],
+            "size": [ 100.0, 50.0],
+			"name": "OdioLabel"
+          }
+        }
+      ]
+    },
     {
       "id": "Camera",
       "components": [

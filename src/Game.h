@@ -4,7 +4,6 @@
 
 class Scene;
 class Loader;
-class GUI;
 
 class Game {
     // Save <scene name, scene file>
@@ -18,8 +17,6 @@ class Game {
     std::string sceneToChange_;
     bool sceneChange_ = false;
     bool deleteAll_ = false;
-
-    GUI* mGui_;
 
   public:
     Game();
