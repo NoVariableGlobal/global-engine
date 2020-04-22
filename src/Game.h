@@ -18,8 +18,6 @@ class Game {
     bool sceneChange_ = false;
     bool deleteAll_ = false;
 
-    //GuiComponent* mGui_;
-
   public:
     Game();
     ~Game();

@@ -1,13 +1,13 @@
 #include "QuitButtonC.h"
 #include "ComponentsManager.h"
 #include "FactoriesFactory.h"
+#include "Game.h"
 #include "OgreSDLContext.h"
 #include "Scene.h"
 #include <CEGUI/CEGUI.h>
 #include <CEGUI\Window.h>
-#include <json.h>
 #include <iostream>
-#include "Game.h"
+#include <json.h>
 
 void QuitButtonComponent::create() {
     CEGUI::Window* button =

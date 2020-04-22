@@ -26,9 +26,9 @@ namespace OIS {
 } // namespace OIS
 
 class GuiComponent final : public EventComponent,
-                  public OIS::KeyListener,
-                  public OIS::MouseListener,
-                  public Ogre::FrameListener {
+                           public OIS::KeyListener,
+                           public OIS::MouseListener,
+                           public Ogre::FrameListener {
     Ogre::RenderWindow* mWindow_ = nullptr;
     CEGUI::OgreRenderer* mRenderer_ = nullptr;
     Ogre::Root* mRoot_ = nullptr;

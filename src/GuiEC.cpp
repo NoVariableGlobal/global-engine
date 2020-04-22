@@ -70,7 +70,7 @@ void GuiComponent::createFrameListener() {
 
 void GuiComponent::checkEvent() {
     mMouse_->capture();
-//    mKeyboard_->capture();
+    mKeyboard_->capture();
 }
 
 void GuiComponent::windowResized(Ogre::RenderWindow* rw) {
