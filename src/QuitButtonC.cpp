@@ -7,6 +7,7 @@
 #include <CEGUI\Window.h>
 #include <json.h>
 #include <iostream>
+#include "Game.h"
 
 void QuitButtonComponent::create() {
     CEGUI::Window* button =
@@ -18,7 +19,7 @@ void QuitButtonComponent::create() {
 }
 
 void QuitButtonComponent::onClick() {
-	// TODO: Close game
+    scene_->getGame()->quit();
     std::cout << "It just works\n";
 }
 

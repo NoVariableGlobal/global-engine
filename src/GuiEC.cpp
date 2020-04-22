@@ -1,4 +1,4 @@
-#include "GUI.h"
+#include "GuiEC.h"
 #include "ComponentsManager.h"
 #include "FactoriesFactory.h"
 #include "OIS.h"

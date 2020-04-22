@@ -2,7 +2,6 @@
 #include "AnimationLC.h"
 #include "CameraRC.h"
 #include "FactoriesFactory.h"
-#include "GUI.h"
 #include "Loader.h"
 #include "OgreSDLContext.h"
 #include "PhysicsContext.h"

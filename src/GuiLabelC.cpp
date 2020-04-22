@@ -2,7 +2,7 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
-#include "GUI.h"
+#include "GuiEC.h"
 #include "OgreSDLContext.h"
 #include "Scene.h"
 #include <CEGUI/CEGUI.h>

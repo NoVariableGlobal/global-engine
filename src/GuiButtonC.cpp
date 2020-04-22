@@ -1,6 +1,6 @@
 #include "GuiButtonC.h"
 #include "Entity.h"
-#include "GUI.h"
+#include "GuiEC.h"
 #include <CEGUI/CEGUI.h>
 #include <CEGUI\Window.h>
 

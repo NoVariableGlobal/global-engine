@@ -88,9 +88,6 @@
     <ClCompile Include="..\src\SoundTestIC.cpp">
       <Filter>Components\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\GUI.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\GuiButtonC.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
@@ -99,6 +96,9 @@
     </ClCompile>
     <ClCompile Include="..\src\GuiLabelC.cpp">
       <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GuiEC.cpp">
+      <Filter>Components\Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -195,9 +195,6 @@
     <ClInclude Include="..\src\SoundTestIC.h">
       <Filter>Components\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\GUI.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\GuiButtonC.h">
       <Filter>Components\Other</Filter>
     </ClInclude>
@@ -206,6 +203,9 @@
     </ClInclude>
     <ClInclude Include="..\src\GuiLabelC.h">
       <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GuiEC.h">
+      <Filter>Components\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,6 @@
 
 class Scene;
 class Loader;
-//class GuiComponent;
 
 class Game {
     // Save <scene name, scene file>
