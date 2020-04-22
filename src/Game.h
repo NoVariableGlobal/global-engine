@@ -4,7 +4,7 @@
 
 class Scene;
 class Loader;
-class GUI;
+//class GuiComponent;
 
 class Game {
     // Save <scene name, scene file>
@@ -19,7 +19,7 @@ class Game {
     bool sceneChange_ = false;
     bool deleteAll_ = false;
 
-    GUI* mGui_;
+    //GuiComponent* mGui_;
 
   public:
     Game();

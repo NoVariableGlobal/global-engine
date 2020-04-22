@@ -24,7 +24,6 @@
 #include <iostream>
 
 Game::Game() {
-    mGui_ = nullptr;
     Loader loader;
     loader.readSounds();
 }
@@ -32,8 +31,6 @@ Game::Game() {
 // Deletes the scene and clears the constexts
 Game::~Game() {
     delete scene_;
-    mGui_->destroy();
-    delete mGui_;
 
     FactoriesFactory::getInstance()->clear();
     OgreSDLContext::getInstance()->erase();
@@ -68,29 +65,6 @@ bool Game::init(const std::string firstScene) {
 
         scene_ = new Scene(this);
         setScene(firstScene);
-
-        mGui_ = new GUI();
-        try {
-            mGui_->init("TaharezLook.scheme");
-            mGui_->setMouseImage("TaharezLook/MouseArrow");
-            mGui_->setFont("DejaVuSans-14");
-
-            CEGUI::Window* quitButton =
-                mGui_->createButton("QUIT", glm::vec2(0.0f, 0.0f),
-                                    glm::vec2(100.0f, 30.0f), "TestButton");
-
-            quitButton->subscribeEvent(
-                CEGUI::PushButton::EventClicked,
-                CEGUI::Event::Subscriber(&Game::quit, this));
-
-            mGui_->createLabel("Odio CeGUI", glm::vec2(0.5f, 0.0f),
-                               glm::vec2(100.0f, 50.0f), "Text");
-
-        } catch (CEGUI::Exception& e) {
-            auto* message = e.getMessage().c_str();
-            throw std::exception(message);
-        }
-
         return true;
     } catch (std::exception& e) {
         std::cout << "ERROR: " << e.what();
@@ -104,7 +78,6 @@ void Game::run() {
         handleInput();
         scene_->insertComponents();
         scene_->deleteComponents();
-        mGui_->captureInput();
         render();
 
         if (sceneChange_)

@@ -91,6 +91,15 @@
     <ClCompile Include="..\src\GUI.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\GuiButtonC.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuitButtonC.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GuiLabelC.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Component.h">
@@ -188,6 +197,15 @@
     </ClInclude>
     <ClInclude Include="..\src\GUI.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GuiButtonC.h">
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\QuitButtonC.h">
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GuiLabelC.h">
+      <Filter>Components\Other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
