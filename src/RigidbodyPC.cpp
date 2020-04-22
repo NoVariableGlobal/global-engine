@@ -74,9 +74,8 @@ bool RigidbodyPC::collidesWithEntity(Entity* other) const {
     btPointCollector gjkOutput;
 
     btGjkPairDetector convexConvex(
-        dynamic_cast<btConvexShape*>(body_->getCollisionShape()),
-        dynamic_cast<btConvexShape*>(
-            otherRigidBody->body_->getCollisionShape()),
+        static_cast<btConvexShape*>(body_->getCollisionShape()),
+        static_cast<btConvexShape*>(otherRigidBody->body_->getCollisionShape()),
         &sGjkSimplexSolver, &epaSolver);
 
     btGjkPairDetector::ClosestPointInput input;

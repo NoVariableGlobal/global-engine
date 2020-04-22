@@ -2,9 +2,12 @@
 #include "AnimationLC.h"
 #include "CameraRC.h"
 #include "FactoriesFactory.h"
+#include "GuiEC.h"
+#include "GuiLabelC.h"
 #include "Loader.h"
 #include "OgreSDLContext.h"
 #include "PhysicsContext.h"
+#include "QuitButtonC.h"
 #include "RigidbodyPC.h"
 #include "Scene.h"
 #include "SleepEC.h"
@@ -52,6 +55,9 @@ void Game::initContext() {
     SoundListenerComponentFactoryRegisterGlobalVar.noop();
     SleepECFactoryRegisterGlobalVar.noop();
     AnimationLCFactoryRegisterGlobalVar.noop();
+    GuiComponentFactoryRegisterGlobalVar.noop();
+    GuiLabelComponentFactoryRegisterGlobalVar.noop();
+    QuitButtonComponentFactoryRegisterGlobalVar.noop();
 }
 
 // Reads the scenes and sets the first one
