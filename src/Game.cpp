@@ -17,6 +17,7 @@
 #include "Util.h"
 
 #include <SDL_events.h>
+#include <SDL_timer.h>
 #include <string>
 
 #include <iostream>
@@ -72,6 +73,10 @@ bool Game::init(std::string _firstScene) {
 }
 
 void Game::run() {
+
+    startTime = SDL_GetTicks();
+    lag = 0;
+
     while (!exit) {
         update();
         handleInput();
@@ -84,7 +89,19 @@ void Game::run() {
     }
 }
 
-void Game::update() { scene->update(); }
+void Game::update() {
+
+    uint32_t current = SDL_GetTicks();
+    uint32_t elapsed = current - startTime;
+    startTime = current;
+    lag += elapsed;
+
+    while (lag >= frame_rate) {
+        scene->update();
+
+        lag -= frame_rate;
+    }
+}
 
 void Game::render() {
     scene->render();
