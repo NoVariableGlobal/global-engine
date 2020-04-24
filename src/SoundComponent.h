@@ -10,7 +10,7 @@ DECLARE_FACTORY(SoundComponent);
 class Sound;
 class Channel;
 
-class SoundComponent : virtual public Component {
+class SoundComponent : public Component {
     std::map<std::string, Channel*> channels_;
 
   public:

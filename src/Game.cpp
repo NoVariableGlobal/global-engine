@@ -2,9 +2,12 @@
 #include "AnimationLC.h"
 #include "CameraRC.h"
 #include "FactoriesFactory.h"
+#include "GuiEC.h"
+#include "GuiLabelC.h"
 #include "Loader.h"
 #include "OgreSDLContext.h"
 #include "PhysicsContext.h"
+#include "QuitButtonC.h"
 #include "RigidbodyPC.h"
 #include "Scene.h"
 #include "SleepEC.h"
@@ -15,6 +18,7 @@
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
 #include "Util.h"
+#include <CEGUI/CEGUI.h>
 
 #include <SDL_events.h>
 #include <SDL_timer.h>
@@ -29,7 +33,7 @@ Game::Game() {
 
 // Deletes the scene and clears the constexts
 Game::~Game() {
-    delete scene;
+    delete scene_;
 
     FactoriesFactory::getInstance()->clear();
     OgreSDLContext::getInstance()->erase();
@@ -52,22 +56,24 @@ void Game::initContext() {
     SoundListenerComponentFactoryRegisterGlobalVar.noop();
     SleepECFactoryRegisterGlobalVar.noop();
     AnimationLCFactoryRegisterGlobalVar.noop();
+    GuiComponentFactoryRegisterGlobalVar.noop();
+    GuiLabelComponentFactoryRegisterGlobalVar.noop();
+    QuitButtonComponentFactoryRegisterGlobalVar.noop();
 }
 
 // Reads the scenes and sets the first one
-bool Game::init(std::string _firstScene) {
+bool Game::init(const std::string firstScene) {
     try {
         initContext();
 
         Loader loader;
-        loader.readScenes(scenesQueue);
+        loader.readScenes(scenesQueue_);
 
-        scene = new Scene(this);
-        setScene(_firstScene);
-
+        scene_ = new Scene(this);
+        setScene(firstScene);
         return true;
     } catch (std::exception& e) {
-        std::cout << "init ERROR: " << e.what();
+        std::cout << "ERROR: " << e.what();
         return false;
     }
 }
@@ -77,15 +83,15 @@ void Game::run() {
     startTime = SDL_GetTicks();
     lag = 0;
 
-    while (!exit) {
+    while (!exit_) {
         update();
         handleInput();
-        scene->insertComponents();
-        scene->deleteComponents();
+        scene_->insertComponents();
+        scene_->deleteComponents();
         render();
 
-        if (sceneChange)
-            setScene(sceneToChange);
+        if (sceneChange_)
+            setScene(sceneToChange_);
     }
 }
 
@@ -97,42 +103,44 @@ void Game::update() {
     lag += elapsed;
 
     while (lag >= frame_rate) {
-        scene->update();
+        scene_->update();
 
         lag -= frame_rate;
     }
 }
 
 void Game::render() {
-    scene->render();
+    scene_->render();
     OgreSDLContext::getInstance()->renderLoop();
 }
 
 void Game::handleInput() {
     SDL_Event event;
-    while (SDL_PollEvent(&event) && !exit) {
-        scene->handleInput(event);
-        exit = OgreSDLContext::getInstance()->pollEvents(event);
+    while (SDL_PollEvent(&event) && !exit_) {
+        scene_->handleInput(event);
+        exit_ = OgreSDLContext::getInstance()->pollEvents(event);
     }
 }
 
-void Game::setChangeScene(bool _change, std::string _sceneName,
-                          bool _deleteAll) {
-    sceneChange = _change;
-    sceneToChange = _sceneName;
-    deleteAll = _deleteAll;
+void Game::setChangeScene(const bool change, const std::string sceneName,
+                          const bool deleteAll) {
+    sceneChange_ = change;
+    sceneToChange_ = sceneName;
+    deleteAll_ = deleteAll;
 }
 
-void Game::setScene(std::string _sceneName) {
-    if (!deleteAll)
-        scene->clearNonPersistantEntities();
+void Game::setScene(const std::string sceneName) {
+    if (!deleteAll_)
+        scene_->clearNonPersistentEntities();
     else
-        scene->clearEntities();
+        scene_->clearEntities();
 
-    scene->deleteComponents();
+    scene_->deleteComponents();
 
-    scene->load(assert_find(scenesQueue, _sceneName));
+    scene_->load(assert_find(scenesQueue_, sceneName));
 
-    sceneChange = false;
-    deleteAll = false;
+    sceneChange_ = false;
+    deleteAll_ = false;
 }
+
+void Game::quit() { exit_ = true; }

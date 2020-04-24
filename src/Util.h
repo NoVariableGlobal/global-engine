@@ -10,15 +10,15 @@ T try_find(std::map<std::string, T> map, std::string name) {
     auto it = map.find(name);
     if (it == map.end())
         return nullptr;
-    else
-        return it->second;
+
+    return it->second;
 }
 
 template <typename T>
 T assert_find(std::map<std::string, T> map, std::string name) {
     auto it = map.find(name);
     if (it == map.end()) {
-        std::string type = typeid(T).name();
+        const std::string type = typeid(T).name();
         std::cout << "ERROR: Resource '" + name + "' of type '" + type +
                          "' could not be found\n";
         throw std::exception("Resource could not be found");
@@ -46,7 +46,7 @@ void assert_deleteComponent(std::vector<T>& deleteVector,
             if (it != vector.end())
                 vector.erase(it);
             else {
-                std::string type = typeid(T).name();
+                const std::string type = typeid(T).name();
                 std::cout << "ERROR: Component of type '" + type +
                                  "' could not be deleted\n";
                 throw std::exception("Component could not be deleted, it "

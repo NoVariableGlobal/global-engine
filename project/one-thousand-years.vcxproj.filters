@@ -88,6 +88,18 @@
     <ClCompile Include="..\src\SoundTestIC.cpp">
       <Filter>Components\Sound</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\GuiButtonC.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuitButtonC.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GuiLabelC.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GuiEC.cpp">
+      <Filter>Components\Events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Component.h">
@@ -182,6 +194,18 @@
     </ClInclude>
     <ClInclude Include="..\src\SoundTestIC.h">
       <Filter>Components\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GuiButtonC.h">
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\QuitButtonC.h">
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GuiLabelC.h">
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GuiEC.h">
+      <Filter>Components\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

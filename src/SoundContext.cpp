@@ -1,6 +1,7 @@
 #include "SoundContext.h"
 #include "fmod.h"
 #include "fmod_errors.h"
+#include <Ogre.h>
 #include <cstdlib>
 #include <iostream>
 
@@ -9,14 +10,16 @@ SoundContext* SoundContext::instance_ = nullptr;
 SoundContext::SoundContext() {
     sounds_ = std::map<std::string, FMOD::Sound*>();
     soundsToLoad_ = new std::map<std::string, SoundInfo*>();
+    listenerPos_ = {0.0f, 0.0f, 0.0f};
 }
 
 SoundContext::~SoundContext() {
     releaseSoundInfo();
     for (auto it = sounds_.begin(); it != sounds_.end(); ++it)
         it->second->release();
-    auto result = system_->release();
-    ERRCHECK(result);
+
+    const auto result = system_->release();
+    checkError(result);
 }
 
 void SoundContext::releaseSoundInfo() {
@@ -26,7 +29,7 @@ void SoundContext::releaseSoundInfo() {
     soundsToLoad_ = nullptr;
 }
 
-void SoundContext::ERRCHECK(FMOD_RESULT result) {
+void SoundContext::checkError(const FMOD_RESULT result) {
     if (result != FMOD_OK)
         throw std::exception(FMOD_ErrorString(result));
 }
@@ -43,46 +46,47 @@ void SoundContext::destroy() {
 }
 
 void SoundContext::init() {
-    auto result = FMOD::System_Create(&system_);
-    ERRCHECK(result);
+    auto result = System_Create(&system_);
+    checkError(result);
 
     try {
-        result = system_->init(128, FMOD_INIT_NORMAL, 0);
-        ERRCHECK(result);
+        result = system_->init(128, FMOD_INIT_NORMAL, nullptr);
+        checkError(result);
         for (auto it = soundsToLoad_->begin(); it != soundsToLoad_->end();
              ++it) {
-            FMOD_MODE mode = it->second->loop_ ? FMOD_LOOP_NORMAL
-                                               : (FMOD_DEFAULT | FMOD_LOOP_OFF);
-            std::string path = "media/sounds/" + it->second->filename_;
-            system_->createSound(path.c_str(), mode, 0,
-                                 &sounds_[it->second->id_]);
-            ERRCHECK(result);
+            const FMOD_MODE mode = it->second->loop
+                                       ? FMOD_LOOP_NORMAL
+                                       : (FMOD_DEFAULT | FMOD_LOOP_OFF);
+            std::string path = "media/sounds/" + it->second->filename;
+            system_->createSound(path.c_str(), mode, nullptr,
+                                 &sounds_[it->second->id]);
+            checkError(result);
         }
-    } catch (std::exception& e) {
+    } catch (std::exception&) {
         result = system_->release();
-        ERRCHECK(result);
-        throw e;
+        checkError(result);
+        throw;
     }
 }
 
 void SoundContext::addSoundToLoad(SoundInfo* info) {
-    (*soundsToLoad_)[info->id_] = info;
+    (*soundsToLoad_)[info->id] = info;
 }
 
 Channel* SoundContext::playSound(const std::string& id) const {
-    FMOD::Channel* channel;
+    FMOD::Channel* channel = nullptr;
     try {
-        auto result =
-            system_->playSound(getInstance()->getSound(id), 0, true, &channel);
-        ERRCHECK(result);
-        float volume = (*soundsToLoad_)[id]->volume_;
-        if (!abs(volume - 1.0) <= 0.001) {
+        auto result = system_->playSound(getInstance()->getSound(id), nullptr,
+                                         true, &channel);
+        checkError(result);
+        const float volume = (*soundsToLoad_)[id]->volume;
+        if (abs(volume - 1.0) > 0.001) {
             result = channel->setVolume(volume);
-            ERRCHECK(result);
+            checkError(result);
         }
 
         result = channel->setPaused(false);
-        ERRCHECK(result);
+        checkError(result);
         return new Channel(channel);
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
@@ -95,10 +99,9 @@ FMOD::Sound* SoundContext::getSound(const std::string& id) {
 }
 
 void SoundContext::stopSound(Channel** channel) {
-    FMOD_RESULT result;
     try {
-        result = (*channel)->getChannel()->stop();
-        ERRCHECK(result);
+        const FMOD_RESULT result = (*channel)->getChannel()->stop();
+        checkError(result);
         delete *channel;
         *channel = nullptr;
     } catch (std::exception& e) {
@@ -108,8 +111,8 @@ void SoundContext::stopSound(Channel** channel) {
     }
 }
 
-void SoundContext::updatePosition(Ogre::Vector3 _pos) {
-    listenerPos_ = {_pos.x, _pos.y, _pos.z};
+void SoundContext::updatePosition(const Ogre::Vector3 pos) {
+    listenerPos_ = {pos.x, pos.y, pos.z};
     FMOD_VECTOR vel = {0, 0, 0};
     FMOD_VECTOR forward = {0, 0, 1};
     FMOD_VECTOR up = {0, 1, 0};
@@ -119,18 +122,18 @@ void SoundContext::updatePosition(Ogre::Vector3 _pos) {
     try {
         result = system_->set3DListenerAttributes(0, &listenerPos_, &vel,
                                                   &forward, &up);
-        ERRCHECK(result);
+        checkError(result);
     } catch (std::exception& e) {
         result = system_->release();
-        ERRCHECK(result);
-        throw e;
+        checkError(result);
+        throw;
     }
 }
 
 void SoundContext::update() {
     try {
-        auto result = system_->update();
-        ERRCHECK(result);
+        const auto result = system_->update();
+        checkError(result);
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
@@ -138,4 +141,4 @@ void SoundContext::update() {
 
 Channel::Channel(FMOD::Channel* channel) : channel_(channel) {}
 
-FMOD::Channel* Channel::getChannel() { return channel_; }
+FMOD::Channel* Channel::getChannel() const { return channel_; }

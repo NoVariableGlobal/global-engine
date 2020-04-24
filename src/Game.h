@@ -6,18 +6,17 @@ class Scene;
 class Loader;
 
 class Game {
-  private:
     // Save <scene name, scene file>
-    std::map<std::string, std::string> scenesQueue;
-    Scene* scene = nullptr;
+    std::map<std::string, std::string> scenesQueue_;
+    Scene* scene_ = nullptr;
 
-    bool exit = false;
-    bool end = false;
-    bool win = false;
+    bool exit_ = false;
+    bool end_ = false;
+    bool win_ = false;
 
-    std::string sceneToChange;
-    bool sceneChange = false;
-    bool deleteAll = false;
+    std::string sceneToChange_;
+    bool sceneChange_ = false;
+    bool deleteAll_ = false;
 
     const uint32_t frame_rate = 1000 / 60;
     uint32_t startTime;
@@ -33,7 +32,7 @@ class Game {
     void initContext();
 
     // initialise the game
-    bool init(std::string _firstScene);
+    bool init(std::string firstScene);
     // loop of the game
     void run();
     // update the game
@@ -44,7 +43,9 @@ class Game {
     void handleInput();
 
     // tells if the scene is going to be change
-    void setChangeScene(bool _change, std::string _sceneName, bool _deleteAll);
+    void setChangeScene(bool change, std::string sceneName, bool deleteAll);
     // change the current scene
-    void setScene(std::string _sceneName);
+    void setScene(std::string sceneName);
+
+    void quit();
 };

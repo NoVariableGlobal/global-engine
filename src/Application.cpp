@@ -1,6 +1,5 @@
 #ifdef _APP
 #include "Game.h"
-#include <fstream>
 #include <iostream>
 #endif
 #ifdef _DEBUG

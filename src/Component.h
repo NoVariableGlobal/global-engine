@@ -11,11 +11,11 @@ class Component {
 
   protected:
     // A pointer to the entity that has the component attached
-    Entity* father = nullptr;
+    Entity* father_ = nullptr;
 
     // A pointer to the game scene
-    Scene* scene = nullptr;
-    bool active = true;
+    Scene* scene_ = nullptr;
+    bool active_ = true;
 
   public:
     Component();
@@ -23,7 +23,7 @@ class Component {
     virtual void destroy() = 0;
 
     // Getters and setters
-    bool isActive();
+    bool isActive() const;
     virtual void setActive(bool active);
     void toggleActive();
 
