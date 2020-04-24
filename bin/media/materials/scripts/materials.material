@@ -1,3 +1,23 @@
+material SmokeTexture
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_write off
+			diffuse vertexcolour
+
+			texture_unit
+			{
+				texture smoke.png
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
 material GrassMaterial
 {
     technique 
@@ -86,10 +106,10 @@ material PenguinMaterial
 {
     technique 
     {
-        diffuse 0.61 0.61 0.61 1.00
-
         pass 
         {
+            diffuse 0.61 0.61 0.61 1.00
+            
             texture_unit 
             {
                 texture penguin.jpg
