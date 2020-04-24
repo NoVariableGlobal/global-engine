@@ -18,6 +18,12 @@ class Game {
     bool sceneChange_ = false;
     bool deleteAll_ = false;
 
+    const uint32_t frame_rate = 1000 / 60;
+    uint32_t startTime;
+    uint32_t lag;
+
+    float _timestep = frame_rate / 1000.0f;
+
   public:
     Game();
     ~Game();
