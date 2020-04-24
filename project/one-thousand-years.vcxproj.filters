@@ -88,6 +88,9 @@
     <ClCompile Include="..\src\SoundTestIC.cpp">
       <Filter>Components\Sound</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\ParticleC.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Component.h">
@@ -182,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="..\src\SoundTestIC.h">
       <Filter>Components\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ParticleC.h">
+      <Filter>Components\Other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
