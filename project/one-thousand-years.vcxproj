@@ -31,7 +31,7 @@
     <ClCompile Include="..\src\Application.cpp" />
     <ClCompile Include="..\src\EventComponent.cpp" />
     <ClCompile Include="..\src\GuiButtonC.cpp" />
-    <ClCompile Include="..\src\GuiEC.cpp" />
+    <ClCompile Include="..\src\GuiContext.cpp" />
     <ClCompile Include="..\src\GuiLabelC.cpp" />
     <ClCompile Include="..\src\ListenerComponent.cpp" />
     <ClCompile Include="..\src\QuitButtonC.cpp" />
@@ -64,7 +64,7 @@
     <ClInclude Include="..\src\AnimationLC.h" />
     <ClInclude Include="..\src\EventComponent.h" />
     <ClInclude Include="..\src\GuiButtonC.h" />
-    <ClInclude Include="..\src\GuiEC.h" />
+    <ClInclude Include="..\src\GuiContext.h" />
     <ClInclude Include="..\src\GuiLabelC.h" />
     <ClInclude Include="..\src\ListenerComponent.h" />
     <ClInclude Include="..\src\QuitButtonC.h" />

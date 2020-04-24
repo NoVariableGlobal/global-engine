@@ -2,7 +2,7 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
-#include "GuiEC.h"
+#include "GuiContext.h"
 #include "OgreSDLContext.h"
 #include "Scene.h"
 #include <CEGUI/CEGUI.h>
@@ -11,8 +11,7 @@
 #include <json.h>
 
 void GuiLabelComponent::create() {
-    static_cast<GuiComponent*>(father_->getComponent("GuiComponent"))
-        ->createLabel(text, position, size, name);
+    GuiContext::getInstance()->createLabel(text, position, size, name);
 }
 
 void GuiLabelComponent::destroy() {

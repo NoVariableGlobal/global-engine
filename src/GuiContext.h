@@ -1,15 +1,10 @@
 #pragma once
 
-#include "EventComponent.h"
-#include "Factory.h"
 #include "OISKeyboard.h"
 #include "OISMouse.h"
 #include <Ogre.h>
 #include <glm/glm.hpp>
 #include <string>
-
-// FACTORY INFRASTRUCTURE DECLARATION
-DECLARE_FACTORY(GuiComponent);
 
 namespace CEGUI {
     class WindowManager;
@@ -25,10 +20,11 @@ namespace OIS {
     class Mouse;
 } // namespace OIS
 
-class GuiComponent final : public EventComponent,
-                           public OIS::KeyListener,
-                           public OIS::MouseListener,
-                           public Ogre::FrameListener {
+class GuiContext : public OIS::KeyListener,
+                   public OIS::MouseListener,
+                   public Ogre::FrameListener {
+    static GuiContext* instance_;
+
     Ogre::RenderWindow* mWindow_ = nullptr;
     CEGUI::OgreRenderer* mRenderer_ = nullptr;
     Ogre::Root* mRoot_ = nullptr;
@@ -41,12 +37,15 @@ class GuiComponent final : public EventComponent,
     OIS::Mouse* mMouse_ = nullptr;
     OIS::Keyboard* mKeyboard_ = nullptr;
 
+    GuiContext();
+
   public:
-    GuiComponent();
-    virtual ~GuiComponent();
+    static GuiContext* getInstance();
+
+    static void init();
     void destroy();
 
-    virtual void checkEvent();
+    void captureInput();
 
     void loadScheme(const std::string& schemeFile);
 

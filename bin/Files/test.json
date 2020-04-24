@@ -3,14 +3,6 @@
   {
       "id": "GUI",
       "components": [
-        {
-          "type": "GuiComponent",
-          "attributes": {
-            "scheme": "TaharezLook.scheme",
-            "mouseImage": "TaharezLook/MouseArrow",
-            "font": "DejaVuSans-14"
-          }
-        },
 		{
           "type": "QuitButtonComponent",
           "attributes": {

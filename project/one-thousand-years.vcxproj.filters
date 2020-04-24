@@ -97,8 +97,8 @@
     <ClCompile Include="..\src\GuiLabelC.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\GuiEC.cpp">
-      <Filter>Components\Events</Filter>
+    <ClCompile Include="..\src\GuiContext.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -204,8 +204,8 @@
     <ClInclude Include="..\src\GuiLabelC.h">
       <Filter>Components\Other</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\GuiEC.h">
-      <Filter>Components\Events</Filter>
+    <ClInclude Include="..\src\GuiContext.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

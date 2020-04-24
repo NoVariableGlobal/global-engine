@@ -2,8 +2,7 @@
 #include "AnimationLC.h"
 #include "CameraRC.h"
 #include "FactoriesFactory.h"
-#include "GuiEC.h"
-#include "GuiLabelC.h"
+#include "GuiContext.h"
 #include "Loader.h"
 #include "OgreSDLContext.h"
 #include "PhysicsContext.h"
@@ -35,6 +34,7 @@ Game::Game() {
 Game::~Game() {
     delete scene_;
 
+    GuiContext::getInstance()->destroy();
     FactoriesFactory::getInstance()->clear();
     OgreSDLContext::getInstance()->erase();
     SoundContext::destroy();
@@ -46,6 +46,7 @@ void Game::initContext() {
     PhysicsContext::init();
     OgreSDLContext::getInstance()->initApp("Test");
     SoundContext::getInstance()->init();
+    GuiContext::getInstance()->init();
 
     TransformComponentFactoryRegisterGlobalVar.noop();
     RigidbodyPCFactoryRegisterGlobalVar.noop();
@@ -56,15 +57,18 @@ void Game::initContext() {
     SoundListenerComponentFactoryRegisterGlobalVar.noop();
     SleepECFactoryRegisterGlobalVar.noop();
     AnimationLCFactoryRegisterGlobalVar.noop();
-    GuiComponentFactoryRegisterGlobalVar.noop();
-    GuiLabelComponentFactoryRegisterGlobalVar.noop();
     QuitButtonComponentFactoryRegisterGlobalVar.noop();
 }
 
 // Reads the scenes and sets the first one
-bool Game::init(const std::string firstScene) {
+bool Game::init(const std::string firstScene, const std::string scheme,
+                const std::string mouseImage, const std::string font) {
     try {
         initContext();
+
+        GuiContext::getInstance()->loadScheme(scheme);
+        GuiContext::getInstance()->setMouseImage(mouseImage);
+        GuiContext::getInstance()->setFont(font);
 
         Loader loader;
         loader.readScenes(scenesQueue_);
@@ -89,6 +93,7 @@ void Game::run() {
         scene_->insertComponents();
         scene_->deleteComponents();
         render();
+        GuiContext::getInstance()->captureInput();
 
         if (sceneChange_)
             setScene(sceneToChange_);
