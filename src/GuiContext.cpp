@@ -62,24 +62,20 @@ void GuiContext::captureInput(const SDL_Event& event) {
     if (event.type == SDL_MOUSEBUTTONDOWN) {
         if (event.button.button == SDL_BUTTON_LEFT)
             mContext_->injectMouseButtonDown(CEGUI::LeftButton);
-        else if (event.button.button == SDL_BUTTON_RIGHT) {
-
+        else if (event.button.button == SDL_BUTTON_RIGHT)
             mContext_->injectMouseButtonDown(CEGUI::RightButton);
-            windowResized(mWindow_);
-        }
 
     } else if (event.type == SDL_MOUSEBUTTONUP) {
         if (event.button.button == SDL_BUTTON_LEFT)
             mContext_->injectMouseButtonUp(CEGUI::LeftButton);
         else if (event.button.button == SDL_BUTTON_RIGHT)
             mContext_->injectMouseButtonUp(CEGUI::RightButton);
+
     } else if (event.type == SDL_MOUSEMOTION) {
         mContext_->injectMousePosition((event.motion.x), (event.motion.y));
-    }
-    //  mContext_->injectMouseButtonDown(convertButton(id));
-    // mContext_->injectMouseButtonUp(convertButton(id));
-    //  mContext_->injectMouseMove(static_cast<float>(arg.state.X.rel),
-    //                           static_cast<float>(arg.state.Y.rel));
+
+    } else if (event.window.event == SDL_WINDOWEVENT_MAXIMIZED)
+        windowResized(mWindow_);
 }
 
 void GuiContext::windowResized(Ogre::RenderWindow* rw) {
