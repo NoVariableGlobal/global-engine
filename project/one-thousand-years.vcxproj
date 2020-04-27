@@ -34,7 +34,6 @@
     <ClCompile Include="..\src\GuiContext.cpp" />
     <ClCompile Include="..\src\GuiLabelC.cpp" />
     <ClCompile Include="..\src\ListenerComponent.cpp" />
-    <ClCompile Include="..\src\QuitButtonC.cpp" />
     <ClCompile Include="..\src\RigidbodyPC.cpp" />
     <ClCompile Include="..\src\SleepEC.cpp" />
     <ClCompile Include="..\src\SoundContext.cpp" />
@@ -67,7 +66,6 @@
     <ClInclude Include="..\src\GuiContext.h" />
     <ClInclude Include="..\src\GuiLabelC.h" />
     <ClInclude Include="..\src\ListenerComponent.h" />
-    <ClInclude Include="..\src\QuitButtonC.h" />
     <ClInclude Include="..\src\RigidbodyPC.h" />
     <ClInclude Include="..\src\SleepEC.h" />
     <ClInclude Include="..\src\SoundContext.h" />

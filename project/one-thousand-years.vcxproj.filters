@@ -91,9 +91,6 @@
     <ClCompile Include="..\src\GuiButtonC.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\QuitButtonC.cpp">
-      <Filter>Components\Other</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\GuiLabelC.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
@@ -196,9 +193,6 @@
       <Filter>Components\Sound</Filter>
     </ClInclude>
     <ClInclude Include="..\src\GuiButtonC.h">
-      <Filter>Components\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\QuitButtonC.h">
       <Filter>Components\Other</Filter>
     </ClInclude>
     <ClInclude Include="..\src\GuiLabelC.h">

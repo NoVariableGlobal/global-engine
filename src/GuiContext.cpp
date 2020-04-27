@@ -33,39 +33,23 @@ GuiContext::GuiContext() {
     mWindowManager_ = &CEGUI::WindowManager::getSingleton();
     sheet_ = mWindowManager_->createWindow("DefaultWindow", "CEGUIDemo/Sheet");
     CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(sheet_);
-
+    
     createFrameListener();
 }
 
 void GuiContext::destroy() {
     // TODO: Remove memory leaks from loadScheme() and widgets
-
-    mInputManager_->destroyInputObject(mMouse_);
-    mInputManager_->destroyInputObject(mKeyboard_);
-    OIS::InputManager::destroyInputSystem(mInputManager_);
     CEGUI::OgreRenderer::destroySystem();
     delete instance_;
 }
 
 void GuiContext::createFrameListener() {
     Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
-    OIS::ParamList pl;
     size_t windowHnd = 0;
     std::ostringstream windowHndStr;
 
     mWindow_->getCustomAttribute("WINDOW", &windowHnd);
     windowHndStr << windowHnd;
-    pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
-
-    mInputManager_ = OIS::InputManager::createInputSystem(pl);
-
-    mKeyboard_ = reinterpret_cast<OIS::Keyboard*>(
-        mInputManager_->createInputObject(OIS::OISKeyboard, true));
-    mMouse_ = reinterpret_cast<OIS::Mouse*>(
-        mInputManager_->createInputObject(OIS::OISMouse, true));
-
-    mMouse_->setEventCallback(this);
-    mKeyboard_->setEventCallback(this);
 
     // Set initial mouse clipping size
     windowResized(mWindow_);
@@ -73,19 +57,39 @@ void GuiContext::createFrameListener() {
     mRoot_->addFrameListener(this);
 }
 
-void GuiContext::captureInput() {
-    mMouse_->capture();
-    mKeyboard_->capture();
+void GuiContext::captureInput(const SDL_Event& event) {
+
+    if (event.type == SDL_MOUSEBUTTONDOWN) {
+        if (event.button.button == SDL_BUTTON_LEFT)
+            mContext_->injectMouseButtonDown(CEGUI::LeftButton);
+        else if (event.button.button == SDL_BUTTON_RIGHT) {
+
+            mContext_->injectMouseButtonDown(CEGUI::RightButton);
+            windowResized(mWindow_);
+        }
+
+    } else if (event.type == SDL_MOUSEBUTTONUP) {
+        if (event.button.button == SDL_BUTTON_LEFT)
+            mContext_->injectMouseButtonUp(CEGUI::LeftButton);
+        else if (event.button.button == SDL_BUTTON_RIGHT)
+            mContext_->injectMouseButtonUp(CEGUI::RightButton);
+    } else if (event.type == SDL_MOUSEMOTION) {
+        mContext_->injectMousePosition((event.motion.x), (event.motion.y));
+    }
+    //  mContext_->injectMouseButtonDown(convertButton(id));
+    // mContext_->injectMouseButtonUp(convertButton(id));
+    //  mContext_->injectMouseMove(static_cast<float>(arg.state.X.rel),
+    //                           static_cast<float>(arg.state.Y.rel));
 }
 
 void GuiContext::windowResized(Ogre::RenderWindow* rw) {
     unsigned int width = 0, height = 0, depth = 0;
     int left = 0, top = 0;
     rw->getMetrics(width, height, depth, left, top);
+    CEGUI::Sizef newSize(width, height);
 
-    const OIS::MouseState& ms = mMouse_->getMouseState();
-    ms.width = static_cast<int>(width);
-    ms.height = static_cast<int>(height);
+    //mRenderer_->setDisplaySize(newSize);
+    CEGUI::System::getSingleton().notifyDisplaySizeChanged(newSize);
 }
 
 // -------------- CEGUI RESOURCES --------------
@@ -97,6 +101,9 @@ void GuiContext::loadScheme(const std::string& schemeFile) {
 void GuiContext::setFont(const std::string& fontFile) {
     CEGUI::FontManager::getSingleton().createFromFile(fontFile + ".font");
     mContext_->setDefaultFont(fontFile);
+
+    mContext_->getDefaultFont()->setAutoScaled(
+        CEGUI::AutoScaledMode::ASM_Disabled);
 }
 
 void GuiContext::setMouseImage(const std::string& imageFile) {
@@ -150,59 +157,6 @@ void GuiContext::setWidgetDestRect(CEGUI::Window* widget,
                                         CEGUI::UDim(position.y, 0)));
     widget->setSize(
         CEGUI::USize(CEGUI::UDim(0, size.x), CEGUI::UDim(0, size.y)));
-}
-
-// ------------- INPUT -------------
-
-bool GuiContext::keyPressed(const OIS::KeyEvent& arg) {
-    mContext_->injectKeyDown(static_cast<CEGUI::Key::Scan>(arg.key));
-    mContext_->injectChar(static_cast<CEGUI::Key::Scan>(arg.text));
-
-    return true;
-}
-
-bool GuiContext::keyReleased(const OIS::KeyEvent& arg) {
-    mContext_->injectKeyUp(static_cast<CEGUI::Key::Scan>(arg.key));
-    return true;
-}
-
-CEGUI::MouseButton
-GuiContext::convertButton(const OIS::MouseButtonID buttonID) {
-    switch (buttonID) {
-    case OIS::MB_Left:
-        return CEGUI::LeftButton;
-
-    case OIS::MB_Right:
-        return CEGUI::RightButton;
-
-    case OIS::MB_Middle:
-        return CEGUI::MiddleButton;
-
-    default:
-        return CEGUI::LeftButton;
-    }
-}
-
-bool GuiContext::mousePressed(const OIS::MouseEvent&,
-                              const OIS::MouseButtonID id) {
-    mContext_->injectMouseButtonDown(convertButton(id));
-    return true;
-}
-
-bool GuiContext::mouseReleased(const OIS::MouseEvent&,
-                               const OIS::MouseButtonID id) {
-    mContext_->injectMouseButtonUp(convertButton(id));
-    return true;
-}
-
-bool GuiContext::mouseMoved(const OIS::MouseEvent& arg) {
-    mContext_->injectMouseMove(static_cast<float>(arg.state.X.rel),
-                               static_cast<float>(arg.state.Y.rel));
-    // Scroll wheel.
-    if (arg.state.Z.rel)
-        mContext_->injectMouseWheelChange(static_cast<float>(arg.state.Z.rel) /
-                                          120.0f);
-    return true;
 }
 
 // ------------- GETTERS AND SETTERS --------------

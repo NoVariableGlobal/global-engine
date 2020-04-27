@@ -1,10 +1,9 @@
 #pragma once
 
-#include "OISKeyboard.h"
-#include "OISMouse.h"
 #include <Ogre.h>
 #include <glm/glm.hpp>
 #include <string>
+#include <SDL_events.h>
 
 namespace CEGUI {
     class WindowManager;
@@ -14,15 +13,9 @@ namespace CEGUI {
     enum MouseButton;
 } // namespace CEGUI
 
-namespace OIS {
-    class InputManager;
-    class Keyboard;
-    class Mouse;
-} // namespace OIS
 
-class GuiContext : public OIS::KeyListener,
-                   public OIS::MouseListener,
-                   public Ogre::FrameListener {
+
+class GuiContext : public Ogre::FrameListener {
     static GuiContext* instance_;
 
     Ogre::RenderWindow* mWindow_ = nullptr;
@@ -33,10 +26,6 @@ class GuiContext : public OIS::KeyListener,
     CEGUI::Window* sheet_ = nullptr;
     CEGUI::WindowManager* mWindowManager_ = nullptr;
 
-    OIS::InputManager* mInputManager_ = nullptr;
-    OIS::Mouse* mMouse_ = nullptr;
-    OIS::Keyboard* mKeyboard_ = nullptr;
-
     GuiContext();
 
   public:
@@ -45,7 +34,7 @@ class GuiContext : public OIS::KeyListener,
     static void init();
     void destroy();
 
-    void captureInput();
+    void captureInput(const SDL_Event& event);
 
     void loadScheme(const std::string& schemeFile);
 
@@ -63,22 +52,6 @@ class GuiContext : public OIS::KeyListener,
     void setMouseImage(const std::string& imageFile);
 
     void createFrameListener();
-
-    // OIS::KeyListener
-    bool keyPressed(const OIS::KeyEvent& arg) override;
-
-    bool keyReleased(const OIS::KeyEvent& arg) override;
-
-    CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID);
-
-    // OIS::MouseListener
-    bool mousePressed(const OIS::MouseEvent& arg,
-                      OIS::MouseButtonID id) override;
-
-    bool mouseReleased(const OIS::MouseEvent& arg,
-                       OIS::MouseButtonID id) override;
-
-    bool mouseMoved(const OIS::MouseEvent& arg) override;
 
     void windowResized(Ogre::RenderWindow* rw);
 

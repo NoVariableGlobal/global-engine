@@ -3,10 +3,10 @@
 #include "CameraRC.h"
 #include "FactoriesFactory.h"
 #include "GuiContext.h"
+#include "GuiLabelC.h"
 #include "Loader.h"
 #include "OgreSDLContext.h"
 #include "PhysicsContext.h"
-#include "QuitButtonC.h"
 #include "RigidbodyPC.h"
 #include "Scene.h"
 #include "SleepEC.h"
@@ -57,7 +57,7 @@ void Game::initContext() {
     SoundListenerComponentFactoryRegisterGlobalVar.noop();
     SleepECFactoryRegisterGlobalVar.noop();
     AnimationLCFactoryRegisterGlobalVar.noop();
-    QuitButtonComponentFactoryRegisterGlobalVar.noop();
+    GuiLabelComponentFactoryRegisterGlobalVar.noop();
 }
 
 // Reads the scenes and sets the first one
@@ -93,7 +93,6 @@ void Game::run() {
         scene_->insertComponents();
         scene_->deleteComponents();
         render();
-        GuiContext::getInstance()->captureInput();
 
         if (sceneChange_)
             setScene(sceneToChange_);
@@ -121,10 +120,14 @@ void Game::render() {
 
 void Game::handleInput() {
     SDL_Event event;
-    while (SDL_PollEvent(&event) && !exit_) {
+    bool exit = false;
+    while (SDL_PollEvent(&event) && !exit) {
         scene_->handleInput(event);
-        exit_ = OgreSDLContext::getInstance()->pollEvents(event);
+        GuiContext::getInstance()->captureInput(event);
+        exit = OgreSDLContext::getInstance()->pollEvents(event);
     }
+    if (exit)
+        exit_ = exit;
 }
 
 void Game::setChangeScene(const bool change, const std::string sceneName,
