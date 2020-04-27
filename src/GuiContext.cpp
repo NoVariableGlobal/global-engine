@@ -33,7 +33,7 @@ GuiContext::GuiContext() {
     mWindowManager_ = &CEGUI::WindowManager::getSingleton();
     sheet_ = mWindowManager_->createWindow("DefaultWindow", "CEGUIDemo/Sheet");
     CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(sheet_);
-    
+
     createFrameListener();
 }
 
@@ -88,7 +88,7 @@ void GuiContext::windowResized(Ogre::RenderWindow* rw) {
     rw->getMetrics(width, height, depth, left, top);
     CEGUI::Sizef newSize(width, height);
 
-    //mRenderer_->setDisplaySize(newSize);
+    // mRenderer_->setDisplaySize(newSize);
     CEGUI::System::getSingleton().notifyDisplaySizeChanged(newSize);
 }
 

@@ -1,9 +1,9 @@
 #pragma once
 
 #include <Ogre.h>
+#include <SDL_events.h>
 #include <glm/glm.hpp>
 #include <string>
-#include <SDL_events.h>
 
 namespace CEGUI {
     class WindowManager;
@@ -12,8 +12,6 @@ namespace CEGUI {
     class Window;
     enum MouseButton;
 } // namespace CEGUI
-
-
 
 class GuiContext : public Ogre::FrameListener {
     static GuiContext* instance_;
