@@ -1,18 +1,12 @@
 #include "OgreSDLContext.h"
 #include "RTSSDefaultTechniqueListener.h"
 
-#include <OgreConfigFile.h>
-#include <OgreMaterialManager.h>
-#include <OgreRoot.h>
-#include <OgreSceneManager.h>
-#include <OgreShaderGenerator.h>
+#include <Ogre.h>
 
 #include <SDL.h>
 #include <SDL_syswm.h>
 #include <iostream>
 
-#include <OgreEntity.h>
-#include <OgreRenderWindow.h>
 #pragma warning(disable : 4996)
 #include <OgreSTBICodec.h>
 
