@@ -22,8 +22,8 @@ void SkyPlaneObjectC::setActive(bool active) {
         active_);
 }
 
-void SkyPlaneObjectC::setSkyPlane(std::string normal, float distance,
-                                     float bow, std::string material) {
+void SkyPlaneObjectC::setSkyPlane(std::string normal, float distance, float bow,
+                                  std::string material) {
     Ogre::Vector3 n;
     if (normal == "X")
         n = Ogre::Vector3::UNIT_X;

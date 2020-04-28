@@ -20,5 +20,5 @@ class SkyPlaneObjectC : public Component {
 
     // Sets a given material to the object
     void setSkyPlane(std::string normal, float distance, float bow,
-                        std::string material);
+                     std::string material);
 };
