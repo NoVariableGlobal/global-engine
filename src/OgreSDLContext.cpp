@@ -1,7 +1,9 @@
 #include "OgreSDLContext.h"
+#include "RTSSDefaultTechniqueListener.h"
 
 #include <OgreConfigFile.h>
 #include <OgreMaterialManager.h>
+//#include <OgreParticleSystemManager.h>
 #include <OgreRoot.h>
 #include <OgreSceneManager.h>
 #include <OgreShaderGenerator.h>
@@ -11,11 +13,10 @@
 
 #include <iostream>
 
-#include "OgreEntity.h"
-#include "OgreRenderWindow.h"
-#include "RTSSDefaultTechniqueListener.h"
+#include <OgreEntity.h>
+#include <OgreRenderWindow.h>
 #pragma warning(disable : 4996)
-#include "OgreSTBICodec.h"
+#include <OgreSTBICodec.h>
 
 OgreSDLContext* OgreSDLContext::_instance = nullptr;
 
@@ -28,8 +29,8 @@ void OgreSDLContext::init() { _instance = new OgreSDLContext(); }
 
 void OgreSDLContext::initApp(std::string appName) {
     createRoot();
-    settingResources();
     createWindow(appName);
+    settingResources();
     setWindowGrab(grab, showCursor);
     initialiseRTShaderSystem();
 }
@@ -56,11 +57,14 @@ void OgreSDLContext::settingResources() {
     // create a Ogre::ConfigFile object and use it to parse our cfg file
     Ogre::ConfigFile cf;
     cf.load(mResourcesCfg);
-
     // Filesystem, Zip, etc.)
 
     // allow us to iterate through all of the sections discovered by the parser
     Ogre::ConfigFile::SettingsBySection_ secIt = cf.getSettingsBySection();
+
+    //Ogre::MaterialManager::getSingleton().initialise();
+   // Ogre::ParticleSystemManager::getSingleton()._createRenderer(
+       // mRoot->getRenderSystem()->getName());
 
     // iterate through all of the results.
     for (auto it : secIt) {

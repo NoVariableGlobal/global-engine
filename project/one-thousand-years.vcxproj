@@ -249,7 +249,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\build\libs\Debug;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\build\libs\Debug;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\ogre\PlugIns\ParticleFX\include;$(SolutionDir)deps\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -269,7 +269,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_APP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\build\libs\Debug;$(SolutionDir)deps\jsoncpp\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\build\libs\Debug;$(SolutionDir)deps\ogre\PlugIns\ParticleFX\include;$(SolutionDir)deps\jsoncpp\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -307,7 +307,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\jsoncpp\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\ogre\PlugIns\ParticleFX\include;$(SolutionDir)deps\jsoncpp\include\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
