@@ -1,13 +1,13 @@
 #pragma once
 
-#include <string>
-
 #include <SDL_events.h>
+#include <string>
 
 class RTSSDefaultTechniqueListener;
 
 namespace Ogre {
     class RenderWindow;
+    class RenderTarget;
     class Root;
     class Viewport;
     class SceneManager;
@@ -27,26 +27,29 @@ struct NativeWindowPair {
 };
 
 class OgreSDLContext {
-  private:
-    static OgreSDLContext* _instance;
+    static OgreSDLContext* instance_;
 
-    Ogre::Root* mRoot = nullptr;
-    Ogre::String mResourcesCfg;
-    Ogre::String mPluginsCfg;
+    Ogre::Root* mRoot_ = nullptr;
+    Ogre::String mResourcesCfg_;
+    Ogre::String mPluginsCfg_;
 
-    Ogre::SceneManager* mSM = nullptr;
+    Ogre::SceneManager* mSM_ = nullptr;
 
-    NativeWindowPair mWindow;
+    NativeWindowPair mWindow_;
 
-    Ogre::String mRTShaderLibPath;
-    Ogre::RTShader::ShaderGenerator* mShaderGenerator =
-        nullptr; // The Shader generator instance.
-    RTSSDefaultTechniqueListener* mMaterialListener =
-        nullptr; // Shader generator material manager listener.
+    Ogre::String mRTShaderLibPath_;
 
-    bool grab = false, showCursor = true, ambientLight = false;
+    // The Shader generator instance.
+    Ogre::RTShader::ShaderGenerator* mShaderGenerator_ = nullptr;
 
-    bool exit = false;
+    // Shader generator material manager listener.
+    RTSSDefaultTechniqueListener* mMaterialListener_ = nullptr;
+
+    bool grab_ = false;
+    bool showCursor_ = false;
+    bool ambientLight_ = false;
+
+    bool exit_ = false;
 
     OgreSDLContext();
 
@@ -57,16 +60,16 @@ class OgreSDLContext {
     void erase();
 
     // initialize the application
-    void initApp(std::string appName);
+    void initApp(const std::string& appName);
     // create mRoot and initialize the strings mResourcesCfg and mPluginsCfg
     // according to the configuration
     void createRoot();
     // lets Ogre know where to look for the resources
-    void settingResources();
+    void settingResources() const;
     // create the render window
-    void createWindow(std::string appName);
+    void createWindow(const std::string& appName);
     // keep (or not) the mouse inside the window
-    void setWindowGrab(bool _grab, bool _showCursor);
+    void setWindowGrab(bool grab, bool showCursor);
     // initialize the RT Shader system.
     void initialiseRTShaderSystem();
 
@@ -77,16 +80,18 @@ class OgreSDLContext {
     // destroy the RT Shader system.
     void destroyRTShaderSystem();
 
-    // return a pointer to the root
-    Ogre::Root* getRoot();
+    // return a pointer to the OgreRoot
+    Ogre::Root* getRoot() const;
+    // return a pointer to the RenderTarget
+    Ogre::RenderTarget* getRenderTarget() const;
     // return a pointer to the SceneManager
-    Ogre::SceneManager* getSceneManager();
+    Ogre::SceneManager* getSceneManager() const;
     // return a pointer to the RenderWindow
-    Ogre::RenderWindow* getRenderWindow();
+    Ogre::RenderWindow* getRenderWindow() const;
     // return a pointer to the SDLWindow
-    SDL_Window* getSDLWindow();
+    SDL_Window* getSDLWindow() const;
     // process all window events since last call
     bool pollEvents(SDL_Event event);
 
-    void renderLoop();
+    void renderLoop() const;
 };

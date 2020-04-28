@@ -7,14 +7,11 @@
 // FACTORY INFRASTRUCTURE DECLARATION
 DECLARE_FACTORY(TridimensionalObjectRC);
 
-class TridimensionalObjectRC : public RenderComponent {
+class TridimensionalObjectRC final : public RenderComponent {
 
   public:
-    TridimensionalObjectRC();
-    virtual ~TridimensionalObjectRC();
-
     // Updates the position and scale of the object
-    virtual void render();
+    void render() override;
 
     // Sets a given material to the object
     void setMaterial(std::string material);

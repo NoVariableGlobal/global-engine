@@ -2,27 +2,27 @@
 #include "Factory.h"
 #include "Util.h"
 
-FactoriesFactory* FactoriesFactory::_instance = nullptr;
+FactoriesFactory* FactoriesFactory::instance_ = nullptr;
 
-FactoriesFactory::FactoriesFactory() {}
+FactoriesFactory::FactoriesFactory() = default;
 
 void FactoriesFactory::clear() {
-    for (auto it : factory) {
+    for (const auto& it : factory_) {
         delete it.second;
     }
-    delete _instance;
+    delete instance_;
 }
 
 FactoriesFactory* FactoriesFactory::getInstance() {
-    if (_instance == nullptr)
-        _instance = new FactoriesFactory();
-    return _instance;
+    if (instance_ == nullptr)
+        instance_ = new FactoriesFactory();
+    return instance_;
 }
 
-void FactoriesFactory::insert(std::string name, ComponentFactory* fac) {
-    factory.insert({name, fac});
+void FactoriesFactory::insert(const std::string& name, ComponentFactory* fac) {
+    factory_.insert({name, fac});
 }
 
-ComponentFactory* FactoriesFactory::find(std::string name) {
-    return assert_find(factory, name);
+ComponentFactory* FactoriesFactory::find(const std::string& name) const {
+    return assert_find(factory_, name);
 }

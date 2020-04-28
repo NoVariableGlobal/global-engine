@@ -2,11 +2,7 @@
 #include "ComponentsManager.h"
 #include "Scene.h"
 
-InputComponent::InputComponent() : Component() {}
-
-InputComponent::~InputComponent() {}
-
 void InputComponent::destroy() {
     setActive(false);
-    scene->getComponentsManager()->eraseIC(this);
+    scene_->getComponentsManager()->eraseIC(this);
 }

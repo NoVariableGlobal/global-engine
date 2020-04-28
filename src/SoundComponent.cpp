@@ -51,11 +51,11 @@ Component* SoundComponentFactory::create(Entity* _father, Json::Value& _data,
         throw std::exception("SoundComponent: sounds is not an array");
 
     auto sounds = _data["sounds"];
-    int soundsSize = sounds.size();
+    const int soundsSize = sounds.size();
     for (int i = 0; i < soundsSize; ++i) {
         if (!sounds[i].isString()) {
-            std::string str = "SoundComponent: sounds[" + std::to_string(i) +
-                              "] is not an array";
+            const std::string str = "SoundComponent: sounds[" +
+                                    std::to_string(i) + "] is not an array";
             throw std::exception(str.c_str());
         }
         soundComponent->addSoundToList(sounds[i].asString());

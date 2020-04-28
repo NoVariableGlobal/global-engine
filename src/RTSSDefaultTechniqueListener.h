@@ -17,10 +17,10 @@ namespace Ogre {
     }
 } // namespace Ogre
 
-class RTSSDefaultTechniqueListener : public Ogre::MaterialManager::Listener {
-  private:
+class RTSSDefaultTechniqueListener final
+    : public Ogre::MaterialManager::Listener {
     Ogre::RTShader::ShaderGenerator*
-        m_ShaderGenerator; // The shader generator instance.
+        mShaderGenerator_; // The shader generator instance.
 
   public:
     RTSSDefaultTechniqueListener(
@@ -33,9 +33,8 @@ class RTSSDefaultTechniqueListener : public Ogre::MaterialManager::Listener {
     target RT Shader System scheme name we will try to create shader generated
     technique for it.
     */
-    virtual Ogre::Technique*
-    handleSchemeNotFound(unsigned short schemeIndex,
-                         const Ogre::String& schemeName,
-                         Ogre::Material* originalMaterial,
-                         unsigned short lodIndex, const Ogre::Renderable* rend);
+    Ogre::Technique* handleSchemeNotFound(
+        unsigned short schemeIndex, const Ogre::String& schemeName,
+        Ogre::Material* originalMaterial, unsigned short lodIndex,
+        const Ogre::Renderable* rend) override;
 };

@@ -7,15 +7,15 @@ namespace Ogre {
     class Entity;
     class SceneNode;
     typedef float Real;
-    template <int dims, typename T> class Vector;
+    template <int Dims, typename T> class Vector;
     typedef Vector<3, Real> Vector3;
 } // namespace Ogre
 
 class RenderComponent : public Component {
   protected:
     // entity and scene node of the object this render component belongs to
-    Ogre::Entity* entity = nullptr;
-    Ogre::SceneNode* sceneNode = nullptr;
+    Ogre::Entity* entity_ = nullptr;
+    Ogre::SceneNode* sceneNode_ = nullptr;
 
   public:
     RenderComponent();
@@ -28,10 +28,10 @@ class RenderComponent : public Component {
     void rotate(int degree, Ogre::Vector3 axis);
 
     // Getters and setters
-    Ogre::Entity* getOgreEntity();
+    Ogre::Entity* getOgreEntity() const;
     void setOgreEntity(Ogre::Entity* e);
 
-    Ogre::SceneNode* getSceneNode();
+    Ogre::SceneNode* getSceneNode() const;
     void setSceneNode(Ogre::SceneNode* sn);
 
     // Destroys the PhysicsComponent, setting itself as inactive and

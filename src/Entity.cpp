@@ -2,50 +2,46 @@
 #include "Component.h"
 #include "Util.h"
 
-Entity::Entity() {}
-
-Entity::~Entity() {}
-
-void Entity::addComponent(std::string name, Component* c) {
-    components.insert({name, c});
+void Entity::addComponent(const std::string& name, Component* c) {
+    components_.insert({name, c});
 }
 
-Component* Entity::getComponent(std::string name) {
-    return assert_find(components, name);
+Component* Entity::getComponent(const std::string& name) const {
+    return assert_find(components_, name);
 }
 
-Component* Entity::findComponent(std::string name) {
-    return try_find(components, name);
+Component* Entity::findComponent(const std::string& name) const {
+    return try_find(components_, name);
 }
 
 std::map<std::string, Component*>& Entity::getAllComponents() {
-    return components;
+    return components_;
 }
 
-std::string Entity::getId() { return id; }
-void Entity::setId(std::string _id) { id = _id; }
+std::string Entity::getId() const { return id_; }
+void Entity::setId(const std::string& id) { id_ = id; }
 
-const std::string& Entity::getTag() const { return tag; }
+const std::string& Entity::getTag() const { return tag_; }
 
-void Entity::setTag(const std::string& _tag) { tag = _tag; }
+void Entity::setTag(const std::string& tag) { tag_ = tag; }
 
-void Entity::setActive(bool _active) {
-    active = _active;
-    for (auto c : components)
-        c.second->setActive(active);
+void Entity::setActive(const bool active) {
+    active_ = active;
+    for (auto c : components_)
+        c.second->setActive(active_);
 }
 
-bool Entity::isActive() { return active; }
+bool Entity::isActive() const { return active_; }
 
-void Entity::setAsleep(bool _active) {
-    asleep = _active;
-    for (auto c : components)
+void Entity::setAsleep(const bool active) {
+    asleep_ = active;
+    for (auto c : components_)
         if (c.first != "TridimensionalObjectRC" && c.first != "RigidbodyPC")
-            c.second->setActive(!asleep);
+            c.second->setActive(!asleep_);
 }
 
-bool Entity::isAsleep() { return asleep; }
+bool Entity::isAsleep() const { return asleep_; }
 
-void Entity::setPersistent(bool _p) { persistent = _p; }
+void Entity::setPersistent(const bool p) { persistent_ = p; }
 
-bool Entity::isPersistent() { return persistent; }
+bool Entity::isPersistent() const { return persistent_; }

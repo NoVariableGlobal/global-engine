@@ -13,26 +13,25 @@ class ComponentsManager;
 class Game;
 
 class Scene {
-  private:
     // id, entity
-    std::map<std::string, Entity*> entities;
+    std::map<std::string, Entity*> entities_;
     // id, components
-    std::map<std::string, Json::Value> prefabs;
+    std::map<std::string, Json::Value> prefabs_;
 
-    ComponentsManager* componentManager;
+    ComponentsManager* componentManager_;
 
-    Game* game = nullptr;
+    Game* game_ = nullptr;
 
   public:
-    Scene(Game* _game);
+    Scene(Game* game);
     ~Scene();
 
     // calls to game->setScene()
-    void changeScene(std::string _sceneName, bool deleteAll = false);
+    void changeScene(const std::string& sceneName, bool deleteAll = false);
 
     // Given the name of the scene, reads its respective file and tells the
     // Engine to create all entities and component
-    void load(std::string name);
+    void load(const std::string& name);
 
     // update the scene
     void update();
@@ -42,9 +41,9 @@ class Scene {
     void handleInput(const SDL_Event& _event);
 
     // Search the entity in map and returns a reference to it.
-    Entity* getEntitybyId(std::string id);
+    Entity* getEntityById(const std::string& id) const;
     // Search entities in map and returns references to them.
-    std::vector<Entity*> getEntitiesbyTag(std::string tag);
+    std::vector<Entity*> getEntitiesByTag(std::string tag);
     // Add entity into the map.
     void addEntity(Entity* entity);
     // Delete entity
@@ -52,24 +51,26 @@ class Scene {
     // clear the entities of the map.
     void clearEntities();
     // clear the non scene persistant elements of the map.
-    void clearNonPersistantEntities();
+    void clearNonPersistentEntities();
 
     // returns a new instance of a prefab.
-    Entity* getInstanceOf(std::string _prefab, std::string _id,
-                          std::string _tag = "Default");
+    Entity* getInstanceOf(const std::string& prefab, const std::string& id,
+                          const std::string& tag = "Default");
     // Search the prefab in the map and equals its info the entity
-    void clonePrefabInfo(std::string _prefab, Entity* _entity);
+    void clonePrefabInfo(const std::string& prefab, Entity* entity);
     // Add prefab into the map.
-    void addPrefab(std::string id, Json::Value components);
+    void addPrefab(const std::string& id, const Json::Value& components);
     // clear the entities of the map.
     void clearPrefabs();
 
     // Get ComponentsManager.
-    ComponentsManager* getComponentsManager();
+    ComponentsManager* getComponentsManager() const;
     // Clear the Components Manager
     void clearComponentsManager();
     // delete the components to delete
     void deleteComponents();
     // inserts components to insert
     void insertComponents();
+
+    Game* getGame();
 };

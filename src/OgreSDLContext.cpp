@@ -3,14 +3,12 @@
 
 #include <OgreConfigFile.h>
 #include <OgreMaterialManager.h>
-//#include <OgreParticleSystemManager.h>
 #include <OgreRoot.h>
 #include <OgreSceneManager.h>
 #include <OgreShaderGenerator.h>
 
 #include <SDL.h>
 #include <SDL_syswm.h>
-
 #include <iostream>
 
 #include <OgreEntity.h>
@@ -18,16 +16,18 @@
 #pragma warning(disable : 4996)
 #include <OgreSTBICodec.h>
 
-OgreSDLContext* OgreSDLContext::_instance = nullptr;
+#include <OgreShaderGenerator.h>
+
+OgreSDLContext* OgreSDLContext::instance_ = nullptr;
 
 OgreSDLContext::OgreSDLContext()
-    : mResourcesCfg(Ogre::BLANKSTRING), mPluginsCfg(Ogre::BLANKSTRING) {}
+    : mResourcesCfg_(Ogre::BLANKSTRING), mPluginsCfg_(Ogre::BLANKSTRING) {}
 
-OgreSDLContext* OgreSDLContext::getInstance() { return _instance; }
+OgreSDLContext* OgreSDLContext::getInstance() { return instance_; }
 
-void OgreSDLContext::init() { _instance = new OgreSDLContext(); }
+void OgreSDLContext::init() { instance_ = new OgreSDLContext(); }
 
-void OgreSDLContext::initApp(std::string appName) {
+void OgreSDLContext::initApp(const std::string& appName) {
     createRoot();
     createWindow(appName);
     settingResources();
@@ -39,24 +39,25 @@ void OgreSDLContext::createRoot() {
     // define the strings that identify the resource and plugin configuration
     // files
 #ifdef _DEBUG
-    mResourcesCfg = "resources_d.cfg";
-    mPluginsCfg = "plugins_d.cfg";
+    mResourcesCfg_ = "resources_d.cfg";
+    mPluginsCfg_ = "plugins_d.cfg";
 #else
-    mResourcesCfg = "resources.cfg";
-    mPluginsCfg = "plugins.cfg";
+    mResourcesCfg_ = "resources.cfg";
+    mPluginsCfg_ = "plugins.cfg";
 #endif
 
     // create an instance of the root object
-    mRoot = new Ogre::Root(mPluginsCfg, "ogre.cfg");
+    mRoot_ = new Ogre::Root(mPluginsCfg_, "ogre.cfg");
     Ogre::STBIImageCodec::startup();
-    mRoot->restoreConfig();
-    mRoot->initialise(false);
+    mRoot_->restoreConfig();
+    mRoot_->initialise(false);
 }
 
-void OgreSDLContext::settingResources() {
+void OgreSDLContext::settingResources() const {
     // create a Ogre::ConfigFile object and use it to parse our cfg file
     Ogre::ConfigFile cf;
-    cf.load(mResourcesCfg);
+    cf.load(mResourcesCfg_);
+
     // Filesystem, Zip, etc.)
 
     // allow us to iterate through all of the sections discovered by the parser
@@ -88,14 +89,14 @@ void OgreSDLContext::settingResources() {
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
-void OgreSDLContext::createWindow(std::string appName) {
-    Ogre::ConfigOptionMap ropts = mRoot->getRenderSystem()->getConfigOptions();
+void OgreSDLContext::createWindow(const std::string& appName) {
+    Ogre::ConfigOptionMap ropts = mRoot_->getRenderSystem()->getConfigOptions();
 
     std::istringstream mode(ropts["Video Mode"].currentValue);
     Ogre::String token;
     uint32_t w, h;
     mode >> w;     // width
-    mode >> token; // 'x' as seperator between width and height
+    mode >> token; // 'x' as separator between width and height
     mode >> h;     // height
 
     std::cout << '\n' << w << " " << h << '\n';
@@ -116,36 +117,36 @@ void OgreSDLContext::createWindow(std::string appName) {
     if (ropts["Full Screen"].currentValue == "Yes")
         flags = SDL_WINDOW_FULLSCREEN;
 
-    mWindow.native = SDL_CreateWindow(appName.c_str(), SDL_WINDOWPOS_CENTERED,
-                                      SDL_WINDOWPOS_CENTERED, w, h, flags);
+    mWindow_.native = SDL_CreateWindow(appName.c_str(), SDL_WINDOWPOS_CENTERED,
+                                       SDL_WINDOWPOS_CENTERED, w, h, flags);
 
     SDL_SysWMinfo wmInfo;
     SDL_VERSION(&wmInfo.version);
-    SDL_GetWindowWMInfo(mWindow.native, &wmInfo);
+    SDL_GetWindowWMInfo(mWindow_.native, &wmInfo);
 
     miscParams["externalWindowHandle"] =
         Ogre::StringConverter::toString(size_t(wmInfo.info.win.window));
 
-    mWindow.render =
-        mRoot->createRenderWindow(appName, w, h, false, &miscParams);
+    mWindow_.render =
+        mRoot_->createRenderWindow(appName, w, h, false, &miscParams);
 
     // create a SceneManager instance
-    mSM = mRoot->createSceneManager();
-    if (ambientLight)
-        mSM->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
+    mSM_ = mRoot_->createSceneManager();
+    if (ambientLight_)
+        mSM_->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
 }
 
-void OgreSDLContext::setWindowGrab(bool _grab, bool _showCursor) {
-    SDL_bool g = SDL_bool(_grab);
-    SDL_SetWindowGrab(mWindow.native, g);
-    SDL_ShowCursor(_showCursor);
+void OgreSDLContext::setWindowGrab(bool grab, const bool showCursor) {
+    const auto g = SDL_bool(grab);
+    SDL_SetWindowGrab(mWindow_.native, g);
+    SDL_ShowCursor(showCursor);
 }
 
 void OgreSDLContext::initialiseRTShaderSystem() {
     try {
         if (Ogre::RTShader::ShaderGenerator::initialize()) {
             // Grab the shader generator pointer.
-            mShaderGenerator =
+            mShaderGenerator_ =
                 Ogre::RTShader::ShaderGenerator::getSingletonPtr();
 
             // Add the shader libs resource location.
@@ -153,12 +154,12 @@ void OgreSDLContext::initialiseRTShaderSystem() {
                 "media", "FileSystem");
 
             // Set the scene manager.
-            mShaderGenerator->addSceneManager(mSM);
+            mShaderGenerator_->addSceneManager(mSM_);
 
-            mMaterialListener =
-                new RTSSDefaultTechniqueListener(mShaderGenerator);
+            mMaterialListener_ =
+                new RTSSDefaultTechniqueListener(mShaderGenerator_);
             Ogre::MaterialManager::getSingleton().addListener(
-                mMaterialListener);
+                mMaterialListener_);
         } else {
             throw std::runtime_error("Ogre could not initialize correctly");
         }
@@ -169,22 +170,21 @@ void OgreSDLContext::initialiseRTShaderSystem() {
 
 void OgreSDLContext::erase() {
     closeApp();
-    delete _instance;
+    delete instance_;
 }
 
 void OgreSDLContext::closeApp() {
-    if (mRoot != nullptr)
-        mRoot->saveConfig();
+    if (mRoot_ != nullptr)
+        mRoot_->saveConfig();
 
     shutdown();
 
-    mRoot->destroySceneManager(mSM);
+    mRoot_->destroySceneManager(mSM_);
 
-    delete mRoot;
-    mRoot = nullptr;
+    delete mRoot_;
+    mRoot_ = nullptr;
 
-    if (mMaterialListener != nullptr)
-        delete mMaterialListener;
+    delete mMaterialListener_;
 
     Ogre::STBIImageCodec::shutdown();
 
@@ -193,15 +193,15 @@ void OgreSDLContext::closeApp() {
 void OgreSDLContext::shutdown() {
     destroyRTShaderSystem();
 
-    if (mWindow.render != nullptr) {
-        mRoot->destroyRenderTarget(mWindow.render);
-        mWindow.render = nullptr;
+    if (mWindow_.render != nullptr) {
+        mRoot_->destroyRenderTarget(mWindow_.render);
+        mWindow_.render = nullptr;
     }
 
-    if (mWindow.native != nullptr) {
-        SDL_DestroyWindow(mWindow.native);
+    if (mWindow_.native != nullptr) {
+        SDL_DestroyWindow(mWindow_.native);
         SDL_QuitSubSystem(SDL_INIT_VIDEO | SDL_INIT_TIMER);
-        mWindow.native = nullptr;
+        mWindow_.native = nullptr;
     }
 }
 
@@ -211,27 +211,31 @@ void OgreSDLContext::destroyRTShaderSystem() {
         Ogre::MaterialManager::DEFAULT_SCHEME_NAME);
 
     // destroy RTShader system.
-    if (mShaderGenerator != nullptr) {
+    if (mShaderGenerator_ != nullptr) {
         Ogre::RTShader::ShaderGenerator::getSingleton().destroy();
-        mShaderGenerator = nullptr;
+        mShaderGenerator_ = nullptr;
     }
+}
+
+Ogre::RenderTarget* OgreSDLContext::getRenderTarget() const {
+    return mRoot_->getRenderTarget("Test");
 }
 
 bool OgreSDLContext::pollEvents(const SDL_Event event) // from frameStarted
 {
-    if (mWindow.native == nullptr)
-        return exit; // SDL events not initialized
+    if (mWindow_.native == nullptr)
+        return exit_; // SDL events not initialized
 
     switch (event.type) {
     case SDL_QUIT:
-        mRoot->queueEndRendering();
-        exit = true;
+        mRoot_->queueEndRendering();
+        exit_ = true;
         break;
 
     case SDL_WINDOWEVENT:
-        if (event.window.windowID == SDL_GetWindowID(mWindow.native)) {
+        if (event.window.windowID == SDL_GetWindowID(mWindow_.native)) {
             if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
-                Ogre::RenderWindow* win = mWindow.render;
+                Ogre::RenderWindow* win = mWindow_.render;
                 win->windowMovedOrResized();
             }
         }
@@ -241,15 +245,17 @@ bool OgreSDLContext::pollEvents(const SDL_Event event) // from frameStarted
         break;
     }
 
-    return exit;
+    return exit_;
 }
 
-Ogre::Root* OgreSDLContext::getRoot() { return mRoot; }
+Ogre::Root* OgreSDLContext::getRoot() const { return mRoot_; }
 
-Ogre::SceneManager* OgreSDLContext::getSceneManager() { return mSM; }
+Ogre::SceneManager* OgreSDLContext::getSceneManager() const { return mSM_; }
 
-Ogre::RenderWindow* OgreSDLContext::getRenderWindow() { return mWindow.render; }
+Ogre::RenderWindow* OgreSDLContext::getRenderWindow() const {
+    return mWindow_.render;
+}
 
-SDL_Window* OgreSDLContext::getSDLWindow() { return mWindow.native; }
+SDL_Window* OgreSDLContext::getSDLWindow() const { return mWindow_.native; }
 
-void OgreSDLContext::renderLoop() { mRoot->renderOneFrame(); }
+void OgreSDLContext::renderLoop() const { mRoot_->renderOneFrame(); }

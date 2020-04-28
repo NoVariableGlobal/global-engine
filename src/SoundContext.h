@@ -1,23 +1,27 @@
 #pragma once
-#include <OgreVector3.h>
 #include <fmod.hpp>
-#include <list>
 #include <map>
 #include <string>
+
+namespace Ogre {
+    typedef float Real;
+    template <int Dims, typename T> class Vector;
+    typedef Vector<3, Real> Vector3;
+} // namespace Ogre
 
 class Channel {
     FMOD::Channel* channel_;
 
   public:
-    Channel(FMOD::Channel* channel);
-    FMOD::Channel* getChannel();
+    explicit Channel(FMOD::Channel* channel);
+    FMOD::Channel* getChannel() const;
 };
 
 struct SoundInfo {
-    std::string id_;
-    std::string filename_;
-    bool loop_;
-    float volume_;
+    std::string id;
+    std::string filename;
+    bool loop;
+    float volume;
 };
 
 class SoundContext {
@@ -27,7 +31,7 @@ class SoundContext {
     ~SoundContext();
     void releaseSoundInfo();
 
-    static void ERRCHECK(FMOD_RESULT result);
+    static void checkError(FMOD_RESULT result);
 
     FMOD::System* system_ = nullptr;
 
