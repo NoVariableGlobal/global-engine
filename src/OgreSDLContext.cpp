@@ -1,12 +1,14 @@
 #include "OgreSDLContext.h"
-
 #include "RTSSDefaultTechniqueListener.h"
+
 #include <Ogre.h>
+
 #include <SDL.h>
 #include <SDL_syswm.h>
 #include <iostream>
+
 #pragma warning(disable : 4996)
-#include "OgreSTBICodec.h"
+#include <OgreSTBICodec.h>
 
 #include <OgreShaderGenerator.h>
 
@@ -21,8 +23,8 @@ void OgreSDLContext::init() { instance_ = new OgreSDLContext(); }
 
 void OgreSDLContext::initApp(const std::string& appName) {
     createRoot();
-    settingResources();
     createWindow(appName);
+    settingResources();
     setWindowGrab(grab_, showCursor_);
     initialiseRTShaderSystem();
 }
@@ -54,6 +56,10 @@ void OgreSDLContext::settingResources() const {
 
     // allow us to iterate through all of the sections discovered by the parser
     Ogre::ConfigFile::SettingsBySection_ secIt = cf.getSettingsBySection();
+
+    // Ogre::MaterialManager::getSingleton().initialise();
+    // Ogre::ParticleSystemManager::getSingleton()._createRenderer(
+    // mRoot->getRenderSystem()->getName());
 
     // iterate through all of the results.
     for (auto it : secIt) {

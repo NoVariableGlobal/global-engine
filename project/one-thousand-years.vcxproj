@@ -27,6 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\AmbientLightC.cpp" />
     <ClCompile Include="..\src\AnimationLC.cpp" />
     <ClCompile Include="..\src\Application.cpp" />
     <ClCompile Include="..\src\EventComponent.cpp" />
@@ -34,7 +35,9 @@
     <ClCompile Include="..\src\GuiContext.cpp" />
     <ClCompile Include="..\src\GuiLabelC.cpp" />
     <ClCompile Include="..\src\ListenerComponent.cpp" />
+    <ClCompile Include="..\src\ParticleC.cpp" />
     <ClCompile Include="..\src\RigidbodyPC.cpp" />
+    <ClCompile Include="..\src\SkyPlaneObjectC.cpp" />
     <ClCompile Include="..\src\SleepEC.cpp" />
     <ClCompile Include="..\src\SoundContext.cpp" />
     <ClCompile Include="..\src\SoundListenerComponent.cpp" />
@@ -60,13 +63,16 @@
     <ClCompile Include="..\src\TridimensionalObjectRC.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\AmbientLightC.h" />
     <ClInclude Include="..\src\AnimationLC.h" />
     <ClInclude Include="..\src\EventComponent.h" />
     <ClInclude Include="..\src\GuiButtonC.h" />
     <ClInclude Include="..\src\GuiContext.h" />
     <ClInclude Include="..\src\GuiLabelC.h" />
     <ClInclude Include="..\src\ListenerComponent.h" />
+    <ClInclude Include="..\src\ParticleC.h" />
     <ClInclude Include="..\src\RigidbodyPC.h" />
+    <ClInclude Include="..\src\SkyPlaneObjectC.h" />
     <ClInclude Include="..\src\SleepEC.h" />
     <ClInclude Include="..\src\SoundContext.h" />
     <ClInclude Include="..\src\SoundListenerComponent.h" />
@@ -253,7 +259,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\build\libs\Debug;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\cegui-dependencies\build\dependencies\include;$(SolutionDir)deps\cegui\cegui\include;$(SolutionDir)deps\cegui\build\cegui\include;$(SolutionDir)deps\OIS\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\build\libs\Debug;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\ogre\PlugIns\ParticleFX\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\cegui-dependencies\build\dependencies\include;$(SolutionDir)deps\cegui\cegui\include;$(SolutionDir)deps\cegui\build\cegui\include;$(SolutionDir)deps\OIS\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -273,7 +279,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_APP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\build\libs\Debug;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\cegui-dependencies\build\dependencies\include;$(SolutionDir)deps\cegui\cegui\include;$(SolutionDir)deps\cegui\build\cegui\include;$(SolutionDir)deps\OIS\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\build\libs\Debug;$(SolutionDir)deps\ogre\PlugIns\ParticleFX\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\cegui-dependencies\build\dependencies\include;$(SolutionDir)deps\cegui\cegui\include;$(SolutionDir)deps\cegui\build\cegui\include;$(SolutionDir)deps\OIS\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -311,7 +317,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\cegui-dependencies\build\dependencies\include;$(SolutionDir)deps\cegui\cegui\include;$(SolutionDir)deps\cegui\build\cegui\include;$(SolutionDir)deps\OIS\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\PlugIns\ParticleFX\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\cegui-dependencies\build\dependencies\include;$(SolutionDir)deps\cegui\cegui\include;$(SolutionDir)deps\cegui\build\cegui\include;$(SolutionDir)deps\OIS\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

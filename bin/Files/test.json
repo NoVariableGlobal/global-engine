@@ -36,6 +36,25 @@
             "targetId": "Player",
             "follow": [ true, true, true ]
           }
+        }
+      ]
+    },
+    {
+      "id": "Light",
+      "components": [
+        {
+          "type": "TransformComponent",
+          "attributes": {
+            "position": [ 0, 0, 0 ],
+            "orientation": [ 0, 0, 0 ],
+            "scale": [ 3, 3, 3 ]
+          }
+        },
+        {
+          "type": "AmbientLightC",
+          "attributes": {
+            "colour": [ 0.0, 0.0, 0.0 ]
+          }
         },
         {
           "type": "SpotLightRC",
@@ -123,6 +142,17 @@
           }
         },
         {
+          "type": "ParticleC",
+          "attributes": {
+            "particles": [
+              {
+                "name": "Smoke",
+                "particleName": "SmokeParticle"
+              }
+            ]
+          }
+        },
+        {
           "type": "SoundListenerComponent",
           "attributes": {}
         }
@@ -136,7 +166,7 @@
           "attributes": {
             "position": [ 0, -1, 0 ],
             "orientation": [ 0, 0, 0 ],
-            "scale": [ 3, 0.0001, 3 ]
+            "scale": [ 2, 0.0001, 2 ]
           }
         },
         {
