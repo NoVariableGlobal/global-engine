@@ -46,7 +46,7 @@ class OgreSDLContext {
     RTSSDefaultTechniqueListener* mMaterialListener_ = nullptr;
 
     bool grab_ = false;
-    bool showCursor_ = true;
+    bool showCursor_ = false;
     bool ambientLight_ = false;
 
     bool exit_ = false;

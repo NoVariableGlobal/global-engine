@@ -1,15 +1,9 @@
 #pragma once
 
-#include "EventComponent.h"
-#include "Factory.h"
-#include "OISKeyboard.h"
-#include "OISMouse.h"
 #include <Ogre.h>
+#include <SDL_events.h>
 #include <glm/glm.hpp>
 #include <string>
-
-// FACTORY INFRASTRUCTURE DECLARATION
-DECLARE_FACTORY(GuiComponent);
 
 namespace CEGUI {
     class WindowManager;
@@ -19,16 +13,9 @@ namespace CEGUI {
     enum MouseButton;
 } // namespace CEGUI
 
-namespace OIS {
-    class InputManager;
-    class Keyboard;
-    class Mouse;
-} // namespace OIS
+class GuiContext : public Ogre::FrameListener {
+    static GuiContext* instance_;
 
-class GuiComponent final : public EventComponent,
-                           public OIS::KeyListener,
-                           public OIS::MouseListener,
-                           public Ogre::FrameListener {
     Ogre::RenderWindow* mWindow_ = nullptr;
     CEGUI::OgreRenderer* mRenderer_ = nullptr;
     Ogre::Root* mRoot_ = nullptr;
@@ -37,16 +24,15 @@ class GuiComponent final : public EventComponent,
     CEGUI::Window* sheet_ = nullptr;
     CEGUI::WindowManager* mWindowManager_ = nullptr;
 
-    OIS::InputManager* mInputManager_ = nullptr;
-    OIS::Mouse* mMouse_ = nullptr;
-    OIS::Keyboard* mKeyboard_ = nullptr;
+    GuiContext();
 
   public:
-    GuiComponent();
-    virtual ~GuiComponent();
+    static GuiContext* getInstance();
+
+    static void init();
     void destroy();
 
-    virtual void checkEvent();
+    void captureInput(const SDL_Event& event);
 
     void loadScheme(const std::string& schemeFile);
 
@@ -64,22 +50,6 @@ class GuiComponent final : public EventComponent,
     void setMouseImage(const std::string& imageFile);
 
     void createFrameListener();
-
-    // OIS::KeyListener
-    bool keyPressed(const OIS::KeyEvent& arg) override;
-
-    bool keyReleased(const OIS::KeyEvent& arg) override;
-
-    CEGUI::MouseButton convertButton(OIS::MouseButtonID buttonID);
-
-    // OIS::MouseListener
-    bool mousePressed(const OIS::MouseEvent& arg,
-                      OIS::MouseButtonID id) override;
-
-    bool mouseReleased(const OIS::MouseEvent& arg,
-                       OIS::MouseButtonID id) override;
-
-    bool mouseMoved(const OIS::MouseEvent& arg) override;
 
     void windowResized(Ogre::RenderWindow* rw);
 
