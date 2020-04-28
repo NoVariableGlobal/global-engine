@@ -100,6 +100,12 @@
     <ClCompile Include="..\src\GuiContext.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\AmbientLightC.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SkyPlaneObjectC.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Component.h">
@@ -205,6 +211,12 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="..\src\ParticleC.h">
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\AmbientLightC.h">
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SkyPlaneObjectC.h">
       <Filter>Components\Other</Filter>
     </ClInclude>
   </ItemGroup>
