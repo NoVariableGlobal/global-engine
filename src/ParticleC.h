@@ -1,6 +1,6 @@
 #pragma once
-#include "Factory.h"
 #include "Component.h"
+#include "Factory.h"
 
 #include <map>
 #include <string>

@@ -31,7 +31,7 @@ void OgreSDLContext::initApp(const std::string& appName) {
     createRoot();
     createWindow(appName);
     settingResources();
-    setWindowGrab(grab, showCursor);
+    setWindowGrab(grab_, showCursor_);
     initialiseRTShaderSystem();
 }
 
@@ -63,9 +63,9 @@ void OgreSDLContext::settingResources() const {
     // allow us to iterate through all of the sections discovered by the parser
     Ogre::ConfigFile::SettingsBySection_ secIt = cf.getSettingsBySection();
 
-    //Ogre::MaterialManager::getSingleton().initialise();
-   // Ogre::ParticleSystemManager::getSingleton()._createRenderer(
-       // mRoot->getRenderSystem()->getName());
+    // Ogre::MaterialManager::getSingleton().initialise();
+    // Ogre::ParticleSystemManager::getSingleton()._createRenderer(
+    // mRoot->getRenderSystem()->getName());
 
     // iterate through all of the results.
     for (auto it : secIt) {
