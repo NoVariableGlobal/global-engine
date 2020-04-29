@@ -110,7 +110,7 @@
       <Filter>Components\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\src\SkyPlaneObjectC.cpp">
-      <Filter>Components\GUI</Filter>
+      <Filter>Components\Other</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

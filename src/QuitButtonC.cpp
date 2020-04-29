@@ -18,9 +18,7 @@ void QuitButtonComponent::create() {
         CEGUI::Event::Subscriber(&QuitButtonComponent::onClick, this));
 }
 
-void QuitButtonComponent::onClick() {
-    scene_->getGame()->quit();
-}
+void QuitButtonComponent::onClick() { scene_->getGame()->quit(); }
 
 void QuitButtonComponent::destroy() {
     CEGUI::WindowManager::getSingleton().destroyWindow(myself);

@@ -36,7 +36,9 @@ void ChangeSceneButtonComponent::setSize(glm::vec2 s) { size = s; }
 
 void ChangeSceneButtonComponent::setName(std::string n) { name = n; }
 
-void ChangeSceneButtonComponent::setChangeScene(std::string s) { changeScene = s; }
+void ChangeSceneButtonComponent::setChangeScene(std::string s) {
+    changeScene = s;
+}
 
 // FACTORY INFRASTRUCTURE DEFINITION
 
@@ -44,8 +46,8 @@ ChangeSceneButtonComponentFactory::ChangeSceneButtonComponentFactory() =
     default;
 
 Component* ChangeSceneButtonComponentFactory::create(Entity* _father,
-                                              Json::Value& _data,
-                                              Scene* _scene) {
+                                                     Json::Value& _data,
+                                                     Scene* _scene) {
     ChangeSceneButtonComponent* changeSceneButtonComponent =
         new ChangeSceneButtonComponent();
     _scene->getComponentsManager()->addDC(changeSceneButtonComponent);
@@ -54,25 +56,30 @@ Component* ChangeSceneButtonComponentFactory::create(Entity* _father,
     changeSceneButtonComponent->setScene(_scene);
 
     if (!_data["text"].isString())
-        throw std::exception("ChangeSceneButtonComponent: text is not a string");
+        throw std::exception(
+            "ChangeSceneButtonComponent: text is not a string");
     changeSceneButtonComponent->setText(_data["text"].asString());
 
     if (!_data["position"].isArray())
-        throw std::exception("ChangeSceneButtonComponent: position is not an array");
-    changeSceneButtonComponent->setPosition(glm::vec2(_data["position"][0].asFloat(),
-                                               _data["position"][1].asFloat()));
+        throw std::exception(
+            "ChangeSceneButtonComponent: position is not an array");
+    changeSceneButtonComponent->setPosition(glm::vec2(
+        _data["position"][0].asFloat(), _data["position"][1].asFloat()));
 
     if (!_data["size"].isArray())
-        throw std::exception("ChangeSceneButtonComponent: size is not an array");
+        throw std::exception(
+            "ChangeSceneButtonComponent: size is not an array");
     changeSceneButtonComponent->setSize(
         glm::vec2(_data["size"][0].asFloat(), _data["size"][1].asFloat()));
 
     if (!_data["name"].isString())
-        throw std::exception("ChangeSceneButtonComponent: name is not a string");
+        throw std::exception(
+            "ChangeSceneButtonComponent: name is not a string");
     changeSceneButtonComponent->setName(_data["name"].asString());
 
-	if (!_data["scene"].isString())
-        throw std::exception("ChangeSceneButtonComponent: scene is not a string");
+    if (!_data["scene"].isString())
+        throw std::exception(
+            "ChangeSceneButtonComponent: scene is not a string");
     changeSceneButtonComponent->setChangeScene(_data["scene"].asString());
 
     changeSceneButtonComponent->create();
