@@ -9,6 +9,9 @@ namespace CEGUI {
 }
 
 class GuiButtonComponent : public Component {
+  protected:
+    CEGUI::Window* myself;
+
   public:
     CEGUI::Window* create(const std::string& text, const glm::vec2 position,
                           const glm::vec2 size, const std::string& name);
