@@ -101,19 +101,19 @@ If ($Clean) {
 
 # Whether any dependency was specified
 $private:BuildDependenciesSpecified = $BuildDependencies.ToBool() -Or
-    $BuildBullet.ToBool() -Or
-    $BuildCegui.ToBool() -Or
-    $BuildCeguiDependencies.ToBool() -Or
-    $BuildFmod.ToBool() -Or
-    $BuildJsonCpp.ToBool() -Or
-    $BuildOgre.ToBool() -Or
-    $BuildOis.ToBool() -Or
-    $BuildSdl2.ToBool()
+$BuildBullet.ToBool() -Or
+$BuildCegui.ToBool() -Or
+$BuildCeguiDependencies.ToBool() -Or
+$BuildFmod.ToBool() -Or
+$BuildJsonCpp.ToBool() -Or
+$BuildOgre.ToBool() -Or
+$BuildOis.ToBool() -Or
+$BuildSdl2.ToBool()
 
 # Whether any build step was specified
 $private:BuildSpecified = $BuildDependenciesSpecified -Or
-    $BuildAll.ToBool() -Or
-    $BuildProject.ToBool()
+$BuildAll.ToBool() -Or
+$BuildProject.ToBool()
 
 If ($BuildAll -Or !$BuildSpecified) {
     # If BuildAll is set or no build step was specified, set defaults to build all dependencies and the project itself
@@ -403,12 +403,14 @@ Try {
             "$OgreFolder\build\bin\debug\RenderSystem_GL_d.dll",
             "$OgreFolder\build\bin\debug\OgreRTShaderSystem_d.dll",
             "$OgreFolder\build\bin\debug\Codec_STBI_d.dll",
+            "$OgreFolder\build\bin\debug\Plugin_ParticleFX_d.dll",
             "$OgreFolder\build\bin\release\OgreMain.dll",
             "$OgreFolder\build\bin\release\RenderSystem_Direct3D11.dll",
             "$OgreFolder\build\bin\release\RenderSystem_GL.dll",
             "$OgreFolder\build\bin\release\zlib.dll",
             "$OgreFolder\build\bin\release\OgreRTShaderSystem.dll",
-            "$OgreFolder\build\bin\release\Codec_STBI.dll"
+            "$OgreFolder\build\bin\release\Codec_STBI.dll",
+            "$OgreFolder\build\bin\release\Plugin_ParticleFX.dll"
         )
     }
 

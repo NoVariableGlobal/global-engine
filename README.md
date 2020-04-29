@@ -87,12 +87,14 @@ shell of your preference.
     - `deps/ogre/build/bin/debug/RenderSystem_GL_d.dll`
     - `deps/ogre/build/bin/debug/OgreRTShaderSystem_d.dll`
     - `deps/ogre/build/bin/debug/Codec_STBI_d.dll`
+    - `deps/ogre/build/bin/debug/Plugin_ParticleFX_d.dll`
     - `deps/ogre/build/bin/release/OgreMain.dll`
     - `deps/ogre/build/bin/release/RenderSystem_Direct3D11.dll`
     - `deps/ogre/build/bin/release/RenderSystem_GL.dll`
     - `deps/ogre/build/bin/release/zlib.dll`
     - `deps/ogre/build/bin/release/OgreRTShaderSystem.dll`
     - `deps/ogre/build/bin/release/Codec_STBI.dll`
+    - `deps/ogre/build/bin/release/Plugin_ParticleFX.dll`
 
 #### OIS
 
