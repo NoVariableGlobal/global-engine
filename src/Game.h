@@ -32,8 +32,8 @@ class Game {
     void initContext();
 
     // initialise the game
-    bool init(std::string firstScene, std::string scheme,
-              std::string mouseImage, std::string font);
+    bool init(std::string firstScene, const std::string schemeName,
+              std::string scheme, std::string mouseImage, std::string font);
     // loop of the game
     void run();
     // update the game

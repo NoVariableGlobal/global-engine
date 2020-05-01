@@ -112,6 +112,9 @@
     <ClCompile Include="..\src\SkyPlaneObjectC.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\GuiImageC.cpp">
+      <Filter>Components\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Component.h">
@@ -229,6 +232,9 @@
       <Filter>Components\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\src\GuiLabelC.h">
+      <Filter>Components\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GuiImageC.h">
       <Filter>Components\GUI</Filter>
     </ClInclude>
   </ItemGroup>

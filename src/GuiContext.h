@@ -15,6 +15,7 @@ namespace CEGUI {
 
 class GuiContext : public Ogre::FrameListener {
     static GuiContext* instance_;
+    std::string schemeName_;
 
     Ogre::RenderWindow* mWindow_ = nullptr;
     CEGUI::OgreRenderer* mRenderer_ = nullptr;
@@ -34,7 +35,8 @@ class GuiContext : public Ogre::FrameListener {
 
     void captureInput(const SDL_Event& event);
 
-    void loadScheme(const std::string& schemeFile);
+    void loadScheme(const std::string& schemeName,
+                    const std::string& schemeFile);
 
     void setFont(const std::string& fontFile);
 
@@ -42,6 +44,9 @@ class GuiContext : public Ogre::FrameListener {
                                 glm::vec2 size, const std::string& name);
 
     CEGUI::Window* createLabel(const std::string& text, glm::vec2 position,
+                               glm::vec2 size, const std::string& name = "");
+
+    CEGUI::Window* createImage(const std::string& image, glm::vec2 position,
                                glm::vec2 size, const std::string& name = "");
 
     static void setWidgetDestRect(CEGUI::Window* widget, glm::vec2 position,

@@ -34,6 +34,7 @@
     <ClCompile Include="..\src\EventComponent.cpp" />
     <ClCompile Include="..\src\GuiButtonC.cpp" />
     <ClCompile Include="..\src\GuiContext.cpp" />
+    <ClCompile Include="..\src\GuiImageC.cpp" />
     <ClCompile Include="..\src\GuiLabelC.cpp" />
     <ClCompile Include="..\src\ListenerComponent.cpp" />
     <ClCompile Include="..\src\ParticleC.cpp" />
@@ -71,6 +72,7 @@
     <ClInclude Include="..\src\EventComponent.h" />
     <ClInclude Include="..\src\GuiButtonC.h" />
     <ClInclude Include="..\src\GuiContext.h" />
+    <ClInclude Include="..\src\GuiImageC.h" />
     <ClInclude Include="..\src\GuiLabelC.h" />
     <ClInclude Include="..\src\ListenerComponent.h" />
     <ClInclude Include="..\src\ParticleC.h" />
