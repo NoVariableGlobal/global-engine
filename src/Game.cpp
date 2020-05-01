@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "AmbientLightC.h"
 #include "AnimationLC.h"
 #include "CameraRC.h"
 #include "FactoriesFactory.h"
@@ -6,9 +7,11 @@
 #include "GuiLabelC.h"
 #include "Loader.h"
 #include "OgreSDLContext.h"
+#include "ParticleC.h"
 #include "PhysicsContext.h"
 #include "RigidbodyPC.h"
 #include "Scene.h"
+#include "SkyPlaneObjectC.h"
 #include "SleepEC.h"
 #include "SoundComponent.h"
 #include "SoundContext.h"
@@ -17,8 +20,8 @@
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
 #include "Util.h"
-#include <CEGUI/CEGUI.h>
 
+#include <CEGUI/CEGUI.h>
 #include <SDL_events.h>
 #include <SDL_timer.h>
 #include <string>
@@ -58,6 +61,9 @@ void Game::initContext() {
     SleepECFactoryRegisterGlobalVar.noop();
     AnimationLCFactoryRegisterGlobalVar.noop();
     GuiLabelComponentFactoryRegisterGlobalVar.noop();
+    AmbientLightCFactoryRegisterGlobalVar.noop();
+    SkyPlaneObjectCFactoryRegisterGlobalVar.noop();
+    ParticleCFactoryRegisterGlobalVar.noop();
 }
 
 // Reads the scenes and sets the first one
