@@ -16,9 +16,12 @@
 #include "SpotLightRC.h"
 #include "TransformComponent.h"
 #include "TridimensionalObjectRC.h"
+#include "SkyPlaneObjectC.h"
+#include "AmbientLightC.h"
+#include "TridimensionalObjectRC.h"
 #include "Util.h"
-#include <CEGUI/CEGUI.h>
 
+#include <CEGUI/CEGUI.h>
 #include <SDL_events.h>
 #include <SDL_timer.h>
 #include <string>
@@ -58,6 +61,8 @@ void Game::initContext() {
     SleepECFactoryRegisterGlobalVar.noop();
     AnimationLCFactoryRegisterGlobalVar.noop();
     GuiLabelComponentFactoryRegisterGlobalVar.noop();
+    AmbientLightCFactoryRegisterGlobalVar.noop();
+    SkyPlaneObjectCFactoryRegisterGlobalVar.noop();
 }
 
 // Reads the scenes and sets the first one
