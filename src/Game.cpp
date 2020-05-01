@@ -7,6 +7,7 @@
 #include "GuiLabelC.h"
 #include "Loader.h"
 #include "OgreSDLContext.h"
+#include "ParticleC.h"
 #include "PhysicsContext.h"
 #include "RigidbodyPC.h"
 #include "Scene.h"
@@ -62,6 +63,7 @@ void Game::initContext() {
     GuiLabelComponentFactoryRegisterGlobalVar.noop();
     AmbientLightCFactoryRegisterGlobalVar.noop();
     SkyPlaneObjectCFactoryRegisterGlobalVar.noop();
+    ParticleCFactoryRegisterGlobalVar.noop();
 }
 
 // Reads the scenes and sets the first one
