@@ -14,8 +14,8 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE prevInstance, LPSTR lmCmdLine,
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     try {
         Game game;
-        if (game.init("Test", "TaharezLook.scheme", "TaharezLook/MouseArrow",
-                      "DejaVuSans-14"))
+        if (game.init("Test", "TaharezLook", "TaharezLook.scheme",
+                      "TaharezLook/MouseArrow", "DejaVuSans-14"))
             game.run();
     } catch (std::exception& e) {
         std::cout << "\n"

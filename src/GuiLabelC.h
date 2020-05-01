@@ -5,11 +5,17 @@
 #include <glm/glm.hpp>
 #include <string>
 
+namespace CEGUI {
+    class Window;
+}
+
 // FACTORY INFRASTRUCTURE DECLARATION
 DECLARE_FACTORY(GuiLabelComponent);
 
 class GuiLabelComponent final : public Component {
   private:
+    CEGUI::Window* myself;
+
     std::string text;
     glm::vec2 position;
     glm::vec2 size;

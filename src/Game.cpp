@@ -61,12 +61,13 @@ void Game::initContext() {
 }
 
 // Reads the scenes and sets the first one
-bool Game::init(const std::string firstScene, const std::string scheme,
-                const std::string mouseImage, const std::string font) {
+bool Game::init(const std::string firstScene, const std::string schemeName,
+                const std::string scheme, const std::string mouseImage,
+                const std::string font) {
     try {
         initContext();
 
-        GuiContext::getInstance()->loadScheme(scheme);
+        GuiContext::getInstance()->loadScheme(schemeName, scheme);
         GuiContext::getInstance()->setMouseImage(mouseImage);
         GuiContext::getInstance()->setFont(font);
 

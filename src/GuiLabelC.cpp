@@ -11,10 +11,11 @@
 #include <json.h>
 
 void GuiLabelComponent::create() {
-    GuiContext::getInstance()->createLabel(text, position, size, name);
+    myself = GuiContext::getInstance()->createLabel(text, position, size, name);
 }
 
 void GuiLabelComponent::destroy() {
+    CEGUI::WindowManager::getSingleton().destroyWindow(myself);
     setActive(false);
     scene_->getComponentsManager()->eraseDC(this);
 }

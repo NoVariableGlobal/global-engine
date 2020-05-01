@@ -90,7 +90,9 @@ void GuiContext::windowResized(Ogre::RenderWindow* rw) {
 
 // -------------- CEGUI RESOURCES --------------
 
-void GuiContext::loadScheme(const std::string& schemeFile) {
+void GuiContext::loadScheme(const std::string& schemeName,
+                            const std::string& schemeFile) {
+    schemeName_ = schemeName;
     CEGUI::SchemeManager::getSingleton().createFromFile(schemeFile);
 }
 
@@ -120,7 +122,7 @@ CEGUI::Window* GuiContext::createButton(const std::string& text,
                                         const glm::vec2 size,
                                         const std::string& name) {
     CEGUI::Window* button = CEGUI::WindowManager::getSingleton().createWindow(
-        "TaharezLook/Button", name);
+        schemeName_ + "/Button", name);
 
     setWidgetDestRect(button, position, size);
     button->setText(text);
@@ -134,7 +136,7 @@ CEGUI::Window* GuiContext::createLabel(const std::string& text,
                                        const glm::vec2 size,
                                        const std::string& name) {
     CEGUI::Window* label = CEGUI::WindowManager::getSingleton().createWindow(
-        "TaharezLook/StaticText", name);
+        schemeName_ + "/StaticText", name);
     setWidgetDestRect(label, position, size);
 
     label->setText(text);
@@ -144,6 +146,23 @@ CEGUI::Window* GuiContext::createLabel(const std::string& text,
     sheet_->addChild(label);
 
     return label;
+}
+
+CEGUI::Window* GuiContext::createImage(const std::string& image,
+                                       glm::vec2 position, glm::vec2 size,
+                                       const std::string& name) {
+    CEGUI::Window* staticImage =
+        CEGUI::WindowManager::getSingleton().createWindow(
+            schemeName_ + "/StaticImage", name);
+    setWidgetDestRect(staticImage, position, size);
+
+    staticImage->setProperty("FrameEnabled", "false");
+    staticImage->setProperty("BackgroundEnabled", "false");
+    staticImage->setProperty("Image", image);
+
+    sheet_->addChild(staticImage);
+
+    return staticImage;
 }
 
 void GuiContext::setWidgetDestRect(CEGUI::Window* widget,
