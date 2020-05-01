@@ -2,13 +2,16 @@
 #include "AmbientLightC.h"
 #include "AnimationLC.h"
 #include "CameraRC.h"
+#include "ChangeSceneButtonC.h"
 #include "FactoriesFactory.h"
 #include "GuiContext.h"
+#include "GuiImageC.h"
 #include "GuiLabelC.h"
 #include "Loader.h"
 #include "OgreSDLContext.h"
 #include "ParticleC.h"
 #include "PhysicsContext.h"
+#include "QuitButtonC.h"
 #include "RigidbodyPC.h"
 #include "Scene.h"
 #include "SkyPlaneObjectC.h"
@@ -61,6 +64,9 @@ void Game::initContext() {
     SleepECFactoryRegisterGlobalVar.noop();
     AnimationLCFactoryRegisterGlobalVar.noop();
     GuiLabelComponentFactoryRegisterGlobalVar.noop();
+    QuitButtonComponentFactoryRegisterGlobalVar.noop();
+    ChangeSceneButtonComponentFactoryRegisterGlobalVar.noop();
+    GuiImageComponentFactoryRegisterGlobalVar.noop();
     AmbientLightCFactoryRegisterGlobalVar.noop();
     SkyPlaneObjectCFactoryRegisterGlobalVar.noop();
     ParticleCFactoryRegisterGlobalVar.noop();
