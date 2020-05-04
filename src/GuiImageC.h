@@ -13,7 +13,7 @@ namespace CEGUI {
 DECLARE_FACTORY(GuiImageComponent);
 
 class GuiImageComponent : public Component {
-  private:
+  protected:
     CEGUI::Window* myself;
 
     std::string image;
