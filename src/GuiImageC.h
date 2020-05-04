@@ -26,6 +26,9 @@ class GuiImageComponent : public Component {
 
     void destroy();
 
+    //Getters
+    CEGUI::Window getWindow();
+
     // Setters
     void setImage(std::string t);
     void setPosition(glm::vec2 p);
