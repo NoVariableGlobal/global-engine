@@ -26,7 +26,7 @@ class GuiImageComponent : public Component {
 
     void destroy();
 
-    //Getters
+    // Getters
     CEGUI::Window* getWindow();
 
     // Setters
