@@ -12,8 +12,8 @@ namespace CEGUI {
 // FACTORY INFRASTRUCTURE DECLARATION
 DECLARE_FACTORY(GuiImageComponent);
 
-class GuiImageComponent final : public Component {
-  private:
+class GuiImageComponent : public Component {
+  protected:
     CEGUI::Window* myself;
 
     std::string image;
@@ -25,6 +25,9 @@ class GuiImageComponent final : public Component {
     void create();
 
     void destroy();
+
+    // Getters
+    CEGUI::Window* getWindow();
 
     // Setters
     void setImage(std::string t);

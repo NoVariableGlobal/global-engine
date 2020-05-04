@@ -21,6 +21,8 @@ void GuiImageComponent::destroy() {
     scene_->getComponentsManager()->eraseDC(this);
 }
 
+CEGUI::Window* GuiImageComponent::getWindow() { return myself; }
+
 // Setters
 
 void GuiImageComponent::setImage(std::string t) { image = t; }
