@@ -12,7 +12,7 @@ namespace CEGUI {
 // FACTORY INFRASTRUCTURE DECLARATION
 DECLARE_FACTORY(GuiLabelComponent);
 
-class GuiLabelComponent final : public Component {
+class GuiLabelComponent : public Component {
   private:
     CEGUI::Window* myself;
 
@@ -22,13 +22,14 @@ class GuiLabelComponent final : public Component {
     std::string name;
 
   public:
-    void create();
+    virtual void create();
 
-    void destroy();
+    virtual void destroy();
 
     // Setters
-    void setText(std::string t);
-    void setPosition(glm::vec2 p);
-    void setSize(glm::vec2 s);
-    void setName(std::string n);
+    virtual void setText(std::string t);
+    virtual void setPosition(glm::vec2 p);
+    virtual void setSize(glm::vec2 s);
+    virtual void setName(std::string n);
+    void changeText(std::string newText);
 };
