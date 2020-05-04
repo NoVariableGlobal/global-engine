@@ -27,7 +27,7 @@ class GuiImageComponent : public Component {
     void destroy();
 
     //Getters
-    CEGUI::Window getWindow();
+    CEGUI::Window* getWindow();
 
     // Setters
     void setImage(std::string t);
