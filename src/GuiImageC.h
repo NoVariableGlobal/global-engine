@@ -12,7 +12,7 @@ namespace CEGUI {
 // FACTORY INFRASTRUCTURE DECLARATION
 DECLARE_FACTORY(GuiImageComponent);
 
-class GuiImageComponent final : public Component {
+class GuiImageComponent : public Component {
   private:
     CEGUI::Window* myself;
 
