@@ -74,7 +74,9 @@ void GuiContext::captureInput(const SDL_Event& event) {
     } else if (event.type == SDL_MOUSEMOTION) {
         mContext_->injectMousePosition((event.motion.x), (event.motion.y));
 
-    } else if (event.window.event == SDL_WINDOWEVENT_MAXIMIZED)
+    } else if (event.window.event == SDL_WINDOWEVENT_MAXIMIZED ||
+               event.window.event == SDL_WINDOWEVENT_RESIZED ||
+               event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
         windowResized(mWindow_);
 }
 
