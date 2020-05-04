@@ -30,6 +30,10 @@ void GuiLabelComponent::setSize(glm::vec2 s) { size = s; }
 
 void GuiLabelComponent::setName(std::string n) { name = n; }
 
+void GuiLabelComponent::changeText(std::string newText) {
+    myself->setText(newText);
+}
+
 // FACTORY INFRASTRUCTURE DEFINITION
 
 GuiLabelComponentFactory::GuiLabelComponentFactory() = default;

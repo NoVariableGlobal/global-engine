@@ -31,4 +31,5 @@ class GuiLabelComponent : public Component {
     virtual void setPosition(glm::vec2 p);
     virtual void setSize(glm::vec2 s);
     virtual void setName(std::string n);
+    void changeText(std::string newText);
 };
