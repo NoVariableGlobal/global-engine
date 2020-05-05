@@ -33,6 +33,10 @@ void GuiImageComponent::setSize(glm::vec2 s) { size = s; }
 
 void GuiImageComponent::setName(std::string n) { name = n; }
 
+void GuiImageComponent::changeImage(std::string image) {
+    myself->setProperty("Image", image);
+}
+
 // FACTORY INFRASTRUCTURE DEFINITION
 
 GuiImageComponentFactory::GuiImageComponentFactory() = default;

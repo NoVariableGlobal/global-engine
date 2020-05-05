@@ -34,4 +34,6 @@ class GuiImageComponent : public Component {
     void setPosition(glm::vec2 p);
     void setSize(glm::vec2 s);
     void setName(std::string n);
+
+    void changeImage(std::string image);
 };
