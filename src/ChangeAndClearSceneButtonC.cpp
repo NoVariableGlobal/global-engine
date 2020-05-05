@@ -48,12 +48,11 @@ void ChangeAndClearSceneButtonComponent::setChangeScene(std::string s) {
 // FACTORY INFRASTRUCTURE DEFINITION
 
 ChangeAndClearSceneButtonComponentFactory::
-    ChangeAndClearSceneButtonComponentFactory() =
-    default;
+    ChangeAndClearSceneButtonComponentFactory() = default;
 
 Component* ChangeAndClearSceneButtonComponentFactory::create(Entity* _father,
-                                                     Json::Value& _data,
-                                                     Scene* _scene) {
+                                                             Json::Value& _data,
+                                                             Scene* _scene) {
     ChangeAndClearSceneButtonComponent* changeAndClearSceneButtonComponent =
         new ChangeAndClearSceneButtonComponent();
     _scene->getComponentsManager()->addDC(changeAndClearSceneButtonComponent);
