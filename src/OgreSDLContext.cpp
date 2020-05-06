@@ -107,9 +107,8 @@ void OgreSDLContext::createWindow(const std::string& appName) {
             /*EXCEPCION*/
         }
 
-    int flags = SDL_WINDOW_RESIZABLE;
-    if (ropts["Full Screen"].currentValue == "Yes")
-        flags = SDL_WINDOW_FULLSCREEN;
+
+    flags = SDL_WINDOW_FULLSCREEN;
 
     mWindow_.native = SDL_CreateWindow(appName.c_str(), SDL_WINDOWPOS_CENTERED,
                                        SDL_WINDOWPOS_CENTERED, w, h, flags);
