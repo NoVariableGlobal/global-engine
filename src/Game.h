@@ -48,5 +48,7 @@ class Game {
     // change the current scene
     void setScene(std::string sceneName);
 
+    void setFullScreen();
+
     void quit();
 };

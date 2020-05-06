@@ -241,7 +241,7 @@ bool OgreSDLContext::pollEvents(const SDL_Event event) // from frameStarted
 }
 
 void OgreSDLContext::setFullScreen() {
-    SDL_SetWindowFullscreen(mWindow_.native, SDL_WINDOW_FULLSCREEN);
+    SDL_SetWindowFullscreen(mWindow_.native, SDL_WINDOW_FULLSCREEN_DESKTOP);
 }
 
 Ogre::Root* OgreSDLContext::getRoot() const { return mRoot_; }
