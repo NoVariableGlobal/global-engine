@@ -93,5 +93,7 @@ class OgreSDLContext {
     // process all window events since last call
     bool pollEvents(SDL_Event event);
 
+    void setFullScreen();
+
     void renderLoop() const;
 };
