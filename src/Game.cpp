@@ -164,4 +164,6 @@ void Game::setScene(const std::string sceneName) {
     deleteAll_ = false;
 }
 
+void Game::setFullScreen() { OgreSDLContext::getInstance()->setFullScreen(); }
+
 void Game::quit() { exit_ = true; }

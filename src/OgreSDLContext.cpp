@@ -107,9 +107,7 @@ void OgreSDLContext::createWindow(const std::string& appName) {
             /*EXCEPCION*/
         }
 
-    int flags = SDL_WINDOW_RESIZABLE;
-    if (ropts["Full Screen"].currentValue == "Yes")
-        flags = SDL_WINDOW_FULLSCREEN;
+    int flags = SDL_WINDOW_FULLSCREEN_DESKTOP;
 
     mWindow_.native = SDL_CreateWindow(appName.c_str(), SDL_WINDOWPOS_CENTERED,
                                        SDL_WINDOWPOS_CENTERED, w, h, flags);
@@ -240,6 +238,10 @@ bool OgreSDLContext::pollEvents(const SDL_Event event) // from frameStarted
     }
 
     return exit_;
+}
+
+void OgreSDLContext::setFullScreen() {
+    SDL_SetWindowFullscreen(mWindow_.native, SDL_WINDOW_FULLSCREEN_DESKTOP);
 }
 
 Ogre::Root* OgreSDLContext::getRoot() const { return mRoot_; }
