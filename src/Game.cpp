@@ -3,6 +3,7 @@
 #include "AnimationLC.h"
 #include "CameraRC.h"
 #include "ChangeSceneButtonC.h"
+#include "ChangeAndClearSceneButtonC.h"
 #include "FactoriesFactory.h"
 #include "GuiContext.h"
 #include "GuiImageC.h"
@@ -66,6 +67,7 @@ void Game::initContext() {
     GuiLabelComponentFactoryRegisterGlobalVar.noop();
     QuitButtonComponentFactoryRegisterGlobalVar.noop();
     ChangeSceneButtonComponentFactoryRegisterGlobalVar.noop();
+    ChangeAndClearSceneButtonComponentFactoryRegisterGlobalVar.noop();
     GuiImageComponentFactoryRegisterGlobalVar.noop();
     AmbientLightCFactoryRegisterGlobalVar.noop();
     SkyPlaneObjectCFactoryRegisterGlobalVar.noop();
