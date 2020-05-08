@@ -31,7 +31,8 @@ void ParticleC::stopParticles(const std::string& name) {
 }
 
 void ParticleC::addParticle(const std::string& name,
-                            const std::string& particleName) {
+                            const std::string& particleName,
+                            const std::string& attached) {
 
     Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
 
@@ -39,8 +40,15 @@ void ParticleC::addParticle(const std::string& name,
         mSM->createParticleSystem(name, particleName);
     newParticle->setEmitting(false);
 
-    auto* renderFather = reinterpret_cast<TridimensionalObjectRC*>(
-        father_->getComponent("TridimensionalObjectRC"));
+    TridimensionalObjectRC* renderFather;
+    if (attached == "none")
+        renderFather = reinterpret_cast<TridimensionalObjectRC*>(
+            father_->getComponent("TridimensionalObjectRC"));
+    else
+        renderFather = reinterpret_cast<TridimensionalObjectRC*>(
+            scene_->getEntityById("attached")
+                ->getComponent("TridimensionalObjectRC"));
+
     renderFather->getSceneNode()->attachObject(newParticle);
 
     particles_.emplace(name, newParticle);
@@ -72,8 +80,13 @@ Component* ParticleCFactory::create(Entity* _father, Json::Value& _data,
                 !array[i]["particleName"].isString())
                 throw std::exception(
                     "ParticleC: name or particleName are not a string");
+
+            std::string attached = "none";
+            if (_data["attachedTo"].isString())
+                attached = _data["attachedTo"].asString();
             particles->addParticle(array[i]["name"].asString(),
-                                   array[i]["particleName"].asString());
+                                   array[i]["particleName"].asString(),
+                                   attached);
         }
     }
 

@@ -27,5 +27,6 @@ class ParticleC final : public Component {
     // stop the particle specified
     void stopParticles(const std::string& name);
     // add a particle to the map of particles
-    void addParticle(const std::string& name, const std::string& particleName);
+    void addParticle(const std::string& name, const std::string& particleName,
+                     const std::string& attached);
 };
