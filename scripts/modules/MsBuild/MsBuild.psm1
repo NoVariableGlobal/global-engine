@@ -77,7 +77,22 @@ function Find-MsBuild {
 }
 
 # Build a MSVC project given a path and optional arguments
-function Step-VisualStudio([string] $MsBuild, [string] $Path, [bool] $ThrowOnError, [string[]] $Arguments) {
+function Step-VisualStudio {
+    param (
+        [string] $MsBuild,
+        [string] $Path,
+        [string] $Type = "build",
+        [string] $Configuration = "Debug",
+        [string] $Platform = "x64",
+        [string] $WarningLevel = "0",
+        [string] $Verbosity = "minimal",
+        [bool] $ThrowOnError = $false
+    )
+
+    Write-Host "# Now building '"     -ForegroundColor Blue -NoNewline
+    Write-Host $Path                  -ForegroundColor Cyan -NoNewline
+    Write-Host "' as $Configuration." -ForegroundColor Blue
+
     # Run the process
     $private:startTime = Get-Date
     & $MsBuild $Path $Arguments
@@ -104,27 +119,5 @@ function Step-VisualStudio([string] $MsBuild, [string] $Path, [bool] $ThrowOnErr
     }
 }
 
-# Builds a library as debug, ignoring all warnings and verbosity
-function Step-VisualStudioDebug([string] $MsBuild, [string] $Path, [bool] $ThrowOnError = $false) {
-    Write-Host "# Now building '" -ForegroundColor Blue -NoNewline
-    Write-Host $Path              -ForegroundColor Cyan -NoNewline
-    Write-Host "' as Debug."      -ForegroundColor Blue
-
-    Step-VisualStudio $MsBuild $Path $ThrowOnError
-                      @("-t:build", "-p:Configuration=Debug;Platform=x64;WarningLevel=0", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal")
-}
-
-# Builds a library as release, ignoring all warnings and verbosity
-function Step-VisualStudioRelease([string] $MsBuild, [string] $Path, [bool] $ThrowOnError = $false) {
-    Write-Host "# Now building '" -ForegroundColor Blue -NoNewline
-    Write-Host $Path              -ForegroundColor Cyan -NoNewline
-    Write-Host "' as Release."    -ForegroundColor Blue
-
-    Step-VisualStudio $MsBuild $Path $ThrowOnError
-                      @("-t:build", "-p:Configuration=Release;Platform=x64;WarningLevel=0", "-m", "-maxCpuCount", "-noLogo", "-verbosity:minimal")
-}
-
 Export-ModuleMember -Function Find-MsBuild
 Export-ModuleMember -Function Step-VisualStudio
-Export-ModuleMember -Function Step-VisualStudioDebug
-Export-ModuleMember -Function Step-VisualStudioRelease

@@ -145,21 +145,6 @@ If (!$BuildTypeSpecified) {
 $local:MsBuild = Find-MsBuild -MsBuildPath $MsBuildPath
 $local:CMake = Find-CMake -CMakePath $CMakePath
 
-# Copies one or more files from one place to the project's binary directory
-function Step-CopyToBinaryDirectory([string] $From, [string[]] $Paths) {
-    Write-Host "# Now copying " -ForegroundColor Blue -NoNewline
-    Write-Host $Paths.Length    -ForegroundColor Cyan -NoNewline
-    Write-Host " file(s) from " -ForegroundColor Blue -NoNewline
-    Write-Host $From            -ForegroundColor Cyan -NoNewline
-    Write-Host " to '"          -ForegroundColor Blue -NoNewline
-    Write-Host $BinaryDirectory -ForegroundColor Cyan -NoNewline
-    Write-Host "'... "          -ForegroundColor Blue -NoNewLine
-
-    Copy-Item -Path $Paths -Destination $BinaryDirectory
-
-    Write-Host "Finished!"      -ForegroundColor Green
-}
-
 Try {
     # Build Bullet
     If ($BuildBullet) {
@@ -178,11 +163,11 @@ Try {
         )
 
         If ($NDebug) {
-            Step-VisualStudioDebug $MsBuild "$BulletFolder\build\BULLET_PHYSICS.sln"
+            Step-VisualStudio -MsBuild $MsBuild -Path "$BulletFolder\build\BULLET_PHYSICS.sln" -Configuration "Debug"
         }
 
         If ($NRelease) {
-            Step-VisualStudioRelease $MsBuild "$BulletFolder\build\BULLET_PHYSICS.sln"
+            Step-VisualStudio -MsBuild $MsBuild -Path "$BulletFolder\build\BULLET_PHYSICS.sln" -Configuration "Release"
         }
     }
 
@@ -191,8 +176,8 @@ Try {
         Step-CMake $CMake $OgreFolder @("-DOGRE_BUILD_COMPONENT_OVERLAY:BOOL=OFF")
 
         If ($NDebug) {
-            Step-VisualStudioDebug $MsBuild "$OgreFolder\build\OGRE.sln"
-            Step-CopyToBinaryDirectory "Ogre" @(
+            Step-VisualStudio -MsBuild $MsBuild -Path "$OgreFolder\build\OGRE.sln" -Configuration "Debug"
+            Step-CopyToFolder -To $BinaryDirectory -From "Ogre" -Paths @(
                 "$OgreFolder\build\bin\debug\OgreMain_d.dll",
                 "$OgreFolder\build\bin\debug\RenderSystem_Direct3D11_d.dll",
                 "$OgreFolder\build\bin\debug\RenderSystem_GL_d.dll",
@@ -204,8 +189,8 @@ Try {
         }
 
         If ($NRelease) {
-            Step-VisualStudioRelease $MsBuild "$OgreFolder\build\OGRE.sln"
-            Step-CopyToBinaryDirectory "Ogre" @(
+            Step-VisualStudio -MsBuild $MsBuild -Path "$OgreFolder\build\OGRE.sln" -Configuration "Release"
+            Step-CopyToFolder -To $BinaryDirectory -From "Ogre" -Paths @(
                 "$OgreFolder\build\bin\release\OgreMain.dll",
                 "$OgreFolder\build\bin\release\RenderSystem_Direct3D11.dll",
                 "$OgreFolder\build\bin\release\RenderSystem_GL.dll",
@@ -222,11 +207,11 @@ Try {
         Step-CMake $CMake $CeguiDependenciesFolder @()
 
         If ($NDebug) {
-            Step-VisualStudioDebug $MsBuild "$CeguiDependenciesFolder\build\CEGUI-DEPS.sln"
+            Step-VisualStudio -MsBuild $MsBuild -Path "$CeguiDependenciesFolder\build\CEGUI-DEPS.sln" -Configuration "Debug"
         }
 
         If ($NRelease) {
-            Step-VisualStudioRelease $MsBuild "$CeguiDependenciesFolder\build\CEGUI-DEPS.sln"
+            Step-VisualStudio -MsBuild $MsBuild -Path "$CeguiDependenciesFolder\build\CEGUI-DEPS.sln" -Configuration "Release"
         }
     }
 
@@ -260,8 +245,8 @@ Try {
         Remove-Variable Content
 
         If ($NDebug) {
-            Step-VisualStudioDebug $MsBuild "$CeguiFolder\build\cegui.sln"
-            Step-CopyToBinaryDirectory "CEGUI" @(
+            Step-VisualStudio -MsBuild $MsBuild -Path "$CeguiFolder\build\cegui.sln" -Configuration "Debug"
+            Step-CopyToFolder -To $BinaryDirectory -From "CEGUI" -Paths @(
                 "$CeguiFolder\build\bin\CEGUIBase-0_d.dll",
                 "$CeguiFolder\build\bin\CEGUIOgreRenderer-0_d.dll",
                 "$CeguiBuiltDependencies\bin\freetype_d.dll",
@@ -276,8 +261,8 @@ Try {
         }
 
         If ($NRelease) {
-            Step-VisualStudioRelease $MsBuild "$CeguiFolder\build\cegui.sln"
-            Step-CopyToBinaryDirectory "CEGUI" @(
+            Step-VisualStudio -MsBuild $MsBuild -Path "$CeguiFolder\build\cegui.sln" -Configuration "Release"
+            Step-CopyToFolder -To $BinaryDirectory -From "CEGUI" -Paths @(
                 "$CeguiFolder\build\bin\CEGUIBase-0.dll",
                 "$CeguiFolder\build\bin\CEGUIOgreRenderer-0.dll",
                 "$CeguiBuiltDependencies\bin\freetype.dll",
@@ -296,7 +281,7 @@ Try {
 
     # Build FMod
     If ($BuildFmod) {
-        Step-CopyToBinaryDirectory "FMod" @(
+        Step-CopyToFolder -To $BinaryDirectory -From "FMod" -Paths @(
             "$FModFolder\fmod64.dll"
         )
     }
@@ -306,17 +291,17 @@ Try {
         Step-CMake $CMake $JsonFolder @()
 
         If ($NDebug) {
-            Step-VisualStudioDebug $MsBuild "$JsonFolder\build\JSONCPP.sln"
+            Step-VisualStudio -MsBuild $MsBuild -Path "$JsonFolder\build\JSONCPP.sln" -Configuration "Debug"
         }
 
         If ($NRelease) {
-            Step-VisualStudioRelease $MsBuild "$JsonFolder\build\JSONCPP.sln"
+            Step-VisualStudio -MsBuild $MsBuild -Path "$JsonFolder\build\JSONCPP.sln" -Configuration "Release"
         }
     }
 
     # Build SDL2
     If ($BuildSdl2) {
-        Step-CopyToBinaryDirectory "SDL2" @(
+        Step-CopyToFolder -To $BinaryDirectory -From "SDL2" -Paths @(
             "$Sdl2Folder\lib\x64\SDL2.dll"
         )
     }
@@ -324,11 +309,11 @@ Try {
     # Build project
     If ($BuildProject) {
         If ($NDebug) {
-            Step-VisualStudio $MsBuild "$RootFolder\one-thousand-years.sln" -ThrowOnError $True
+            Step-VisualStudio $MsBuild "$RootFolder\one-thousand-years.sln" -ThrowOnError $True -Configuration "Debug" -WarningLevel "3"
         }
 
         If ($NRelease) {
-            Step-VisualStudio $MsBuild "$RootFolder\one-thousand-years.sln" -ThrowOnError $True
+            Step-VisualStudio $MsBuild "$RootFolder\one-thousand-years.sln" -ThrowOnError $True -Configuration "Release" -WarningLevel "3"
         }
     }
 
