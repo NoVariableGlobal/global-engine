@@ -82,11 +82,9 @@ std::map<std::string, Entity*>::iterator Scene::deleteEntity(Entity* entity) {
 }
 
 void Scene::clearEntities() {
-    for (auto it : entities_) {
-        delete it.second;
-    }
-
-    entities_.clear();
+    auto it = entities_.begin();
+    while (it != entities_.end())
+        it = deleteEntity(it->second);
 }
 
 void Scene::clearNonPersistentEntities() {
