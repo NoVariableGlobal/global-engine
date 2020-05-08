@@ -93,12 +93,12 @@ function Step-VisualStudio([string] $MsBuild, [string] $Path, [bool] $ThrowOnErr
         Write-Host "."                     -ForegroundColor Green
     }
     Else {
-        Write-Host "# Errored when building '"         -ForegroundColor Red  -NoNewLine
-        Write-Host $Path                               -ForegroundColor Cyan -NoNewLine
+        Write-Host "# Errored when building '"        -ForegroundColor Red  -NoNewLine
+        Write-Host $Path                              -ForegroundColor Cyan -NoNewLine
         Write-Host "' with code $LastExitCode Took: " -ForegroundColor Red  -NoNewLine
-        Write-Host ("{0:g}" -f $duration)              -ForegroundColor Cyan -NoNewLine
-        Write-Host "."                                 -ForegroundColor Red
-        If ($ThrowOnError.ToBool()) {
+        Write-Host ("{0:g}" -f $duration)             -ForegroundColor Cyan -NoNewLine
+        Write-Host "."                                -ForegroundColor Red
+        If ($ThrowOnError) {
             Throw "Failed to build project project, please read the logs above.";
         }
     }

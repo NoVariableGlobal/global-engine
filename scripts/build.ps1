@@ -136,7 +136,7 @@ If ($BuildDependencies) {
     If (!$BuildSdl2.IsPresent) { $BuildSdl2 = $true }
 }
 
-If ($BuildTypeSpecified) {
+If (!$BuildTypeSpecified) {
     If (!$NDebug.IsPresent) { $NDebug = $true }
     If (!$NRelease.IsPresent) { $NRelease = $true }
 }
@@ -339,4 +339,9 @@ Try {
     Write-Host -Object $_.ScriptStackTrace
 
     Exit 1
+} Finally {
+    # Unregister modules
+    Remove-Module MsBuild
+    Remove-Module CMake
+    Remove-Module Shared
 }
