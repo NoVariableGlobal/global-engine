@@ -95,7 +95,7 @@ function Step-VisualStudio {
 
     # Run the process
     $private:startTime = Get-Date
-    & $MsBuild $Path $Arguments
+    & $MsBuild $Path @("-t:$Type", "-p:Configuration=$Configuration;Platform=$Platform;WarningLevel=$WarningLevel", "-verbosity:$Verbosity", "-m", "-noLogo")
     $private:exitTime = Get-Date
 
     # Print information to the screen
