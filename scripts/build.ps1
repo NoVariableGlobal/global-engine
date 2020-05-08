@@ -198,7 +198,8 @@ Try {
                 "$OgreFolder\build\bin\debug\RenderSystem_GL_d.dll",
                 "$OgreFolder\build\bin\debug\OgreRTShaderSystem_d.dll",
                 "$OgreFolder\build\bin\debug\Codec_STBI_d.dll",
-                "$OgreFolder\build\bin\debug\Plugin_ParticleFX_d.dll"
+                "$OgreFolder\build\bin\debug\Plugin_ParticleFX_d.dll",
+                "$OgreFolder\build\bin\debug\zlib.dll"
             )
         }
 
@@ -208,10 +209,10 @@ Try {
                 "$OgreFolder\build\bin\release\OgreMain.dll",
                 "$OgreFolder\build\bin\release\RenderSystem_Direct3D11.dll",
                 "$OgreFolder\build\bin\release\RenderSystem_GL.dll",
-                "$OgreFolder\build\bin\release\zlib.dll",
                 "$OgreFolder\build\bin\release\OgreRTShaderSystem.dll",
                 "$OgreFolder\build\bin\release\Codec_STBI.dll",
-                "$OgreFolder\build\bin\release\Plugin_ParticleFX.dll"
+                "$OgreFolder\build\bin\release\Plugin_ParticleFX.dll",
+                "$OgreFolder\build\bin\release\zlib.dll"
             )
         }
     }
