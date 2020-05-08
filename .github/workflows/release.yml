@@ -12,7 +12,7 @@ jobs:
     - name: Checkout Project
       uses: actions/checkout@v2
     - name: Build Project
-      run: pwsh -File .\scripts\build.ps1 -Release
+      run: pwsh -File .\scripts\build.ps1 -NRelease
       shell: pwsh
     - name: Create Artifact
       run: pwsh -File .\release.ps1

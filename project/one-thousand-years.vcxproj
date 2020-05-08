@@ -203,7 +203,7 @@
     <TargetName>$(ProjectName)_d</TargetName>
     <IntDir>$(SolutionDir).temp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir)src\$(ProjectName);$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\src\lib_json\$(Configuration);$(SolutionDir)deps\OIS\build\Debug;$(SolutionDir)deps\cegui\build\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\src\lib_json\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='AppDebug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -211,7 +211,7 @@
     <TargetName>$(ProjectName)_d</TargetName>
     <IntDir>$(SolutionDir).temp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir)src\$(ProjectName);$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)deps\bullet\build\lib\Debug;$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\Debug;$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\src\lib_json\Debug;$(SolutionDir)deps\cegui\build\lib;$(SolutionDir)deps\OIS\build\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)deps\bullet\build\lib\Debug;$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\Debug;$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\src\lib_json\Debug;$(SolutionDir)deps\cegui\build\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -225,7 +225,7 @@
     <OutDir>$(SolutionDir)libs\</OutDir>
     <IntDir>$(SolutionDir).temp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir)src\$(ProjectName);$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\src\lib_json\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(SolutionDir)deps\OIS\build\Release;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\src\lib_json\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -267,7 +267,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\build\libs\Debug;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\ogre\PlugIns\ParticleFX\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\cegui-dependencies\build\dependencies\include;$(SolutionDir)deps\cegui\cegui\include;$(SolutionDir)deps\cegui\build\cegui\include;$(SolutionDir)deps\OIS\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\build\libs\Debug;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\ogre\PlugIns\ParticleFX\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\cegui-dependencies\build\dependencies\include;$(SolutionDir)deps\cegui\cegui\include;$(SolutionDir)deps\cegui\build\cegui\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -275,8 +275,8 @@
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain_d.lib;jsoncpp.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Codec_STBI_d.lib;OgreRTShaderSystem_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\src\lib_json\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(SolutionDir)deps\OIS\build\Debug;$(LibraryPath)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain_d.lib;jsoncpp.lib;fmod64_vc.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Codec_STBI_d.lib;OgreRTShaderSystem_d.lib;CEGUIBase-0_d.lib;CEGUIOgreRenderer-0_d.lib;OIS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\src\lib_json\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(LibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain_d.lib;jsoncpp.lib;fmod64_vc.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Codec_STBI_d.lib;OgreRTShaderSystem_d.lib;CEGUIBase-0_d.lib;CEGUIOgreRenderer-0_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='AppDebug|x64'">
@@ -287,12 +287,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_APP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\build\libs\Debug;$(SolutionDir)deps\ogre\PlugIns\ParticleFX\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\cegui-dependencies\build\dependencies\include;$(SolutionDir)deps\cegui\cegui\include;$(SolutionDir)deps\cegui\build\cegui\include;$(SolutionDir)deps\OIS\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\build\libs\Debug;$(SolutionDir)deps\ogre\PlugIns\ParticleFX\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\cegui-dependencies\build\dependencies\include;$(SolutionDir)deps\cegui\cegui\include;$(SolutionDir)deps\cegui\build\cegui\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain_d.lib;jsoncpp.lib;fmod64_vc.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Codec_STBI_d.lib;OgreRTShaderSystem_d.lib;CEGUIBase-0_d.lib;CEGUIOgreRenderer-0_d.lib;OIS_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain_d.lib;jsoncpp.lib;fmod64_vc.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Codec_STBI_d.lib;OgreRTShaderSystem_d.lib;CEGUIBase-0_d.lib;CEGUIOgreRenderer-0_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -325,7 +325,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\PlugIns\ParticleFX\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\cegui-dependencies\build\dependencies\include;$(SolutionDir)deps\cegui\cegui\include;$(SolutionDir)deps\cegui\build\cegui\include;$(SolutionDir)deps\OIS\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\PlugIns\ParticleFX\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\cegui-dependencies\build\dependencies\include;$(SolutionDir)deps\cegui\cegui\include;$(SolutionDir)deps\cegui\build\cegui\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -335,8 +335,8 @@
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain.lib;jsoncpp.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Codec_STBI.lib;OgreRTShaderSystem.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain.lib;jsoncpp.lib;fmod64_vc.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Codec_STBI.lib;OgreRTShaderSystem.lib;CEGUIBase-0.lib;CEGUIOgreRenderer-0.lib;OIS.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\src\lib_json\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(SolutionDir)deps\OIS\build\Release;$(LibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain.lib;jsoncpp.lib;fmod64_vc.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Codec_STBI.lib;OgreRTShaderSystem.lib;CEGUIBase-0.lib;CEGUIOgreRenderer-0.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\src\lib_json\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(LibraryPath)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
