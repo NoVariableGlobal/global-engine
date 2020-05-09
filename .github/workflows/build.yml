@@ -19,13 +19,17 @@ jobs:
         with:
           path: deps
           key: ${{ runner.os }}-${{ hashFiles('**/build.ps1') }}
-      - name: Build Dependencies
+      - name: Build Dependencies (Debug)
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: pwsh -File .\scripts\build.ps1 -BuildDependencies
+        run: pwsh -File .\scripts\build.ps1 -BuildDependencies -NDebug
         shell: pwsh
       - name: Build Project (Debug)
-        run: pwsh -File .\scripts\build.ps1 -BuildProject
+        run: pwsh -File .\scripts\build.ps1 -BuildProject -NDebug
+        shell: pwsh
+      - name: Build Dependencies (Release)
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: pwsh -File .\scripts\build.ps1 -BuildDependencies -NRelease
         shell: pwsh
       - name: Build Project (Release)
-        run: pwsh -File .\scripts\build.ps1 -BuildProject -Release
+        run: pwsh -File .\scripts\build.ps1 -BuildProject -NRelease
         shell: pwsh

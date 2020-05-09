@@ -1,7 +1,6 @@
 #include "GuiContext.h"
 #include "ComponentsManager.h"
 #include "FactoriesFactory.h"
-#include "OIS.h"
 #include "OgreSDLContext.h"
 #include "Scene.h"
 #include <CEGUI/CEGUI.h>
@@ -44,7 +43,6 @@ void GuiContext::destroy() {
 }
 
 void GuiContext::createFrameListener() {
-    Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
     size_t windowHnd = 0;
     std::ostringstream windowHndStr;
 
