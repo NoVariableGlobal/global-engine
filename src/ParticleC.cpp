@@ -13,7 +13,7 @@
 void ParticleC::destroy() {
     Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
 
-	particles_.clear();
+    particles_.clear();
     mSM->destroyAllParticleSystems();
 
     setActive(false);
