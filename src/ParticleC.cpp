@@ -52,7 +52,6 @@ void ParticleC::addParticle(const std::string& name,
     renderFather->getSceneNode()->attachObject(newParticle);
 
     particles_.emplace(name, newParticle);
-    emitParticles("Smoke");
 }
 
 // FACTORY INFRASTRUCTURE
