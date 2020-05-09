@@ -142,17 +142,6 @@
           }
         },
         {
-          "type": "ParticleC",
-          "attributes": {
-            "particles": [
-              {
-                "name": "Smoke",
-                "particleName": "SmokeParticle"
-              }
-            ]
-          }
-        },
-        {
           "type": "SoundListenerComponent",
           "attributes": {}
         }
@@ -175,6 +164,18 @@
             "mesh": "cube.mesh",
             "node": "nSuelo",
             "material": "GrassMaterial"
+          }
+        },
+        {
+          "type": "ParticleC",
+          "attributes": {
+            "particles": [
+              {
+                "name": "Smoke",
+                "particleName": "SmokeParticle",
+		            "attachedTo": "Player"
+              }
+            ]
           }
         }
       ]
