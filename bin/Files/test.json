@@ -165,18 +165,6 @@
             "node": "nSuelo",
             "material": "GrassMaterial"
           }
-        },
-        {
-          "type": "ParticleC",
-          "attributes": {
-            "particles": [
-              {
-                "name": "Smoke",
-                "particleName": "SmokeParticle",
-		            "attachedTo": "Player"
-              }
-            ]
-          }
         }
       ]
     }

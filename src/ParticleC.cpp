@@ -46,12 +46,13 @@ void ParticleC::addParticle(const std::string& name,
             father_->getComponent("TridimensionalObjectRC"));
     else
         renderFather = reinterpret_cast<TridimensionalObjectRC*>(
-            scene_->getEntityById("attached")
+            scene_->getEntityById(attached)
                 ->getComponent("TridimensionalObjectRC"));
 
     renderFather->getSceneNode()->attachObject(newParticle);
 
     particles_.emplace(name, newParticle);
+    emitParticles("Smoke");
 }
 
 // FACTORY INFRASTRUCTURE
@@ -82,8 +83,8 @@ Component* ParticleCFactory::create(Entity* _father, Json::Value& _data,
                     "ParticleC: name or particleName are not a string");
 
             std::string attached = "none";
-            if (_data["attachedTo"].isString())
-                attached = _data["attachedTo"].asString();
+            if (array[i]["attachedTo"].isString())
+                attached = array[i]["attachedTo"].asString();
             particles->addParticle(array[i]["name"].asString(),
                                    array[i]["particleName"].asString(),
                                    attached);
