@@ -61,6 +61,9 @@ void SoundContext::init() {
             system_->createSound(path.c_str(), mode, nullptr,
                                  &sounds_[it->second->id]);
             checkError(result);
+
+            result = system_->getMasterChannelGroup(&masterGroup_);
+            checkError(result);
         }
     } catch (std::exception&) {
         result = system_->release();
@@ -136,6 +139,25 @@ void SoundContext::update() {
         checkError(result);
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
+    }
+}
+
+void SoundContext::setVolume(float volume) const {
+    try {
+        const auto result = masterGroup_->setVolume(volume);
+    } catch (std::exception& e) {
+        std::cerr << e.what() << std::endl;
+    }
+}
+
+const float SoundContext::getVolume() const {
+    float volume;
+    try {
+        const auto result = masterGroup_->getVolume(&volume);
+        return volume;
+    } catch (std::exception& e) {
+        std::cerr << e.what() << std::endl;
+        return 0;
     }
 }
 
