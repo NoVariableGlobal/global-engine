@@ -28,4 +28,6 @@ class ParticleC final : public Component {
     void stopParticles(const std::string& name);
     // add a particle to the map of particles
     void addParticle(const std::string& name, const std::string& particleName);
+    // clear the particle systems
+    void clearParticleSystems();
 };
