@@ -160,10 +160,10 @@ void Game::setScene(const std::string sceneName) {
 
     scene_->deleteComponents();
 
-    scene_->load(assert_find(scenesQueue_, sceneName));
-
     sceneChange_ = false;
     deleteAll_ = false;
+
+    scene_->load(assert_find(scenesQueue_, sceneName));
 }
 
 void Game::setFullScreen() { OgreSDLContext::getInstance()->setFullScreen(); }
