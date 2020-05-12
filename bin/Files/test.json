@@ -142,17 +142,6 @@
           }
         },
         {
-          "type": "ParticleC",
-          "attributes": {
-            "particles": [
-              {
-                "name": "Smoke",
-                "particleName": "SmokeParticle"
-              }
-            ]
-          }
-        },
-        {
           "type": "SoundListenerComponent",
           "attributes": {}
         }
