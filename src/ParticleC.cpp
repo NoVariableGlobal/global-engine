@@ -11,6 +11,11 @@
 #include <json.h>
 
 void ParticleC::destroy() {
+    Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
+
+    particles_.clear();
+    mSM->destroyAllParticleSystems();
+
     setActive(false);
     scene_->getComponentsManager()->eraseDC(this);
 }
