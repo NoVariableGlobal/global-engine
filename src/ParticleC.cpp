@@ -51,8 +51,8 @@ void ParticleC::addParticle(const std::string& name,
             father_->getComponent("TridimensionalObjectRC"));
     else
         renderFather = reinterpret_cast<TridimensionalObjectRC*>(
-            scene_->getEntityById(attached)
-                ->getComponent("TridimensionalObjectRC"));
+            scene_->getEntityById(attached)->getComponent(
+                "TridimensionalObjectRC"));
 
     renderFather->getSceneNode()->attachObject(newParticle);
 
