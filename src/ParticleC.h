@@ -29,4 +29,6 @@ class ParticleC final : public Component {
     // add a particle to the map of particles
     void addParticle(const std::string& name, const std::string& particleName,
                      const std::string& attached);
+    // destroy all the particle systems that exist in this component
+    void destroyAllParticleSystem();
 };

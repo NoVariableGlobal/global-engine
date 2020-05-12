@@ -11,10 +11,7 @@
 #include <json.h>
 
 void ParticleC::destroy() {
-    Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
-
-    particles_.clear();
-    mSM->destroyAllParticleSystems();
+    destroyAllParticleSystem();
 
     setActive(false);
     scene_->getComponentsManager()->eraseDC(this);
@@ -57,6 +54,14 @@ void ParticleC::addParticle(const std::string& name,
     renderFather->getSceneNode()->attachObject(newParticle);
 
     particles_.emplace(name, newParticle);
+}
+
+void ParticleC::destroyAllParticleSystem() {
+    Ogre::SceneManager* mSM = OgreSDLContext::getInstance()->getSceneManager();
+    for (auto ps : particles_)
+        mSM->destroyParticleSystem(ps.second);
+
+    particles_.clear();
 }
 
 // FACTORY INFRASTRUCTURE
