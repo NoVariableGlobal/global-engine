@@ -107,7 +107,11 @@ void OgreSDLContext::createWindow(const std::string& appName) {
             /*EXCEPCION*/
         }
 
+#ifdef _DEBUG
+    int flags = 0;
+#else
     int flags = SDL_WINDOW_FULLSCREEN_DESKTOP;
+#endif
 
     mWindow_.native = SDL_CreateWindow(appName.c_str(), SDL_WINDOWPOS_CENTERED,
                                        SDL_WINDOWPOS_CENTERED, w, h, flags);
