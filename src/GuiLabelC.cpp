@@ -34,6 +34,10 @@ void GuiLabelComponent::changeText(std::string newText) {
     myself->setText(newText);
 }
 
+void GuiLabelComponent::setAlpha(float alpha) { myself->setAlpha(alpha); }
+
+float GuiLabelComponent::getAlpha() { return myself->getAlpha(); }
+
 // FACTORY INFRASTRUCTURE DEFINITION
 
 GuiLabelComponentFactory::GuiLabelComponentFactory() = default;
