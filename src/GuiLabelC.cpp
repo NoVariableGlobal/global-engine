@@ -36,7 +36,15 @@ void GuiLabelComponent::changeText(std::string newText) {
 
 void GuiLabelComponent::setAlpha(float alpha) { myself->setAlpha(alpha); }
 
+CEGUI::Window* GuiLabelComponent::getWindow() { return myself; }
+
 float GuiLabelComponent::getAlpha() { return myself->getAlpha(); }
+
+void GuiLabelComponent::moveToFront() { myself->moveToFront(); }
+
+void GuiLabelComponent::moveToBack() { myself->moveToBack(); }
+
+void GuiLabelComponent::AlwaysOnTop() { myself->setAlwaysOnTop(true); }
 
 // FACTORY INFRASTRUCTURE DEFINITION
 
@@ -69,6 +77,15 @@ Component* GuiLabelComponentFactory::create(Entity* _father, Json::Value& _data,
     guiLabelComponent->setName(_data["name"].asString());
 
     guiLabelComponent->create();
+
+    if (_data["onTop"].isBool())
+        if (_data["onTop"].asBool())
+            guiLabelComponent->moveToFront();
+        else
+            guiLabelComponent->moveToBack();
+
+    if (_data["alwaysOnTop"].isBool() && _data["alwaysOnTop"].asBool())
+        guiLabelComponent->AlwaysOnTop();
 
     return guiLabelComponent;
 }

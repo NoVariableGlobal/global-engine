@@ -26,12 +26,21 @@ class GuiLabelComponent : public Component {
 
     virtual void destroy();
 
+    // Getters
+    CEGUI::Window* getWindow();
+    float getAlpha();
+
     // Setters
     virtual void setText(std::string t);
     virtual void setPosition(glm::vec2 p);
     virtual void setSize(glm::vec2 s);
     virtual void setName(std::string n);
-    void changeText(std::string newText);
     void setAlpha(float alpha);
-    float getAlpha();
+
+    void changeText(std::string newText);
+
+    virtual void moveToFront();
+    virtual void moveToBack();
+
+    virtual void AlwaysOnTop();
 };

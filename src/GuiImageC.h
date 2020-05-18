@@ -36,4 +36,9 @@ class GuiImageComponent : public Component {
     void setName(std::string n);
 
     void changeImage(std::string image);
+
+    virtual void moveToFront();
+    virtual void moveToBack();
+
+    virtual void AlwaysOnTop();
 };
