@@ -16,6 +16,49 @@
       ]
     },
     {
+      "id": "VolumeSlider",
+      "components": [
+        {
+          "type": "GuiLabelComponent",
+          "attributes": {
+            "text": "",
+            "position": [ 0.5, 0.3 ],
+            "size": [ 100.0, 50.0 ],
+            "name": "VolumeLabel"
+          }
+        },
+		    {
+          "type": "GuiBarComponent",
+          "attributes": {
+            "text": "Prueba",
+            "position": [ 0.44, 0.6 ],
+            "size": [ 20.0, 200.0 ],
+            "name": "PruebaDeLaBuena"
+          }
+        },
+        {
+          "type": "SliderHandlerComponent",
+          "attributes":{}
+        }
+      ]
+    },
+    {
+      "id": "QuitButton",
+      "components": [
+		{
+          "type": "QuitButtonComponent",
+          "attributes": {
+            "text": "Quit",
+            "position": [ 0.44, 0.7 ],
+            "size": [ 120.0, 40.0 ],
+            "name": "OptionsQuit"
+          }
+        }
+      ]
+    },
+
+
+    {
       "id": "Camera",
       "components": [
         {
