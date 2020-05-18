@@ -9,6 +9,7 @@
 #include <CEGUI\Window.h>
 #include <iostream>
 #include <json.h>
+#include "GuiLabelC.h"
 
 void GuiLabelComponent::create() {
     myself = GuiContext::getInstance()->createLabel(text, position, size, name);
@@ -22,15 +23,13 @@ void GuiLabelComponent::destroy() {
 
 // Setters
 
-void GuiLabelComponent::setText(std::string t) { text = t; }
+void GuiLabelComponent::setText(const std::string & t) { text = t; }
 
 void GuiLabelComponent::setPosition(glm::vec2 p) { position = p; }
 
 void GuiLabelComponent::setSize(glm::vec2 s) { size = s; }
 
-void GuiLabelComponent::setName(std::string n) { name = n; }
-
-void GuiLabelComponent::changeText(std::string newText) {
+void GuiLabelComponent::changeText(const std::string& newText) {
     myself->setText(newText);
 }
 

@@ -31,7 +31,7 @@ class GuiLabelComponent : public Component {
     float getAlpha();
 
     // Setters
-    virtual void setText(std::string t);
+    virtual void setText(const std::string& t);
     virtual void setPosition(glm::vec2 p);
     virtual void setSize(glm::vec2 s);
     virtual void setName(std::string n);
