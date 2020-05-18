@@ -118,6 +118,8 @@
     <ClCompile Include="..\src\ChangeAndClearSceneButtonC.cpp">
       <Filter>Components\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\global-engine\src\GuiBarComponent.cpp" />
+    <ClCompile Include="..\..\..\..\global-engine\src\SliderHandlerComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Component.h">
@@ -225,9 +227,6 @@
     <ClInclude Include="..\src\SkyPlaneObjectC.h">
       <Filter>Components\Other</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\QuitButtonC.h">
-      <Filter>Components\Other</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\ChangeSceneButtonC.h">
       <Filter>Components\GUI</Filter>
     </ClInclude>
@@ -243,6 +242,11 @@
     <ClInclude Include="..\src\ChangeAndClearSceneButtonC.h">
       <Filter>Components\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\QuitButtonC.h">
+      <Filter>Components\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\global-engine\src\GuiBarComponent.h" />
+    <ClInclude Include="..\..\..\..\global-engine\src\SliderHandlerComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">

@@ -27,6 +27,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\global-engine\src\GuiBarComponent.cpp" />
+    <ClCompile Include="..\..\..\..\global-engine\src\SliderHandlerComponent.cpp" />
     <ClCompile Include="..\src\AmbientLightC.cpp" />
     <ClCompile Include="..\src\AnimationLC.cpp" />
     <ClCompile Include="..\src\Application.cpp" />
@@ -67,6 +69,8 @@
     <ClCompile Include="..\src\TridimensionalObjectRC.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\global-engine\src\GuiBarComponent.h" />
+    <ClInclude Include="..\..\..\..\global-engine\src\SliderHandlerComponent.h" />
     <ClInclude Include="..\src\AmbientLightC.h" />
     <ClInclude Include="..\src\AnimationLC.h" />
     <ClInclude Include="..\src\ChangeAndClearSceneButtonC.h" />
