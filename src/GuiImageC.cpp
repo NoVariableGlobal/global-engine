@@ -37,6 +37,12 @@ void GuiImageComponent::changeImage(std::string image) {
     myself->setProperty("Image", image);
 }
 
+void GuiImageComponent::moveToFront() { myself->moveToFront(); }
+
+void GuiImageComponent::moveToBack() { myself->moveToBack(); }
+
+void GuiImageComponent::AlwaysOnTop() { myself->setAlwaysOnTop(true); }
+
 // FACTORY INFRASTRUCTURE DEFINITION
 
 GuiImageComponentFactory::GuiImageComponentFactory() = default;
@@ -68,6 +74,15 @@ Component* GuiImageComponentFactory::create(Entity* _father, Json::Value& _data,
     guiImageComponent->setName(_data["name"].asString());
 
     guiImageComponent->create();
+
+    if (_data["onTop"].isBool())
+        if (_data["onTop"].asBool())
+            guiImageComponent->moveToFront();
+        else
+            guiImageComponent->moveToBack();
+
+    if (_data["alwaysOnTop"].isBool() && _data["alwaysOnTop"].asBool())
+        guiImageComponent->AlwaysOnTop();
 
     return guiImageComponent;
 }

@@ -116,6 +116,19 @@ void GuiContext::setMouseImage(const std::string& imageFile) {
         .setImage(imageFile);
 }
 
+void GuiContext::setMouseVisibility(bool b) {
+    if (b)
+        CEGUI::System::getSingleton()
+            .getDefaultGUIContext()
+            .getMouseCursor()
+            .show();
+    else
+        CEGUI::System::getSingleton()
+            .getDefaultGUIContext()
+            .getMouseCursor()
+            .hide();
+}
+
 // -------------- GUI ELEMENTS --------------
 CEGUI::Window* GuiContext::createButton(const std::string& text,
                                         const glm::vec2 position,

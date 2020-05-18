@@ -54,6 +54,8 @@ class GuiContext : public Ogre::FrameListener {
 
     void setMouseImage(const std::string& imageFile);
 
+    void setMouseVisibility(bool b);
+
     void createFrameListener();
 
     void windowResized(Ogre::RenderWindow* rw);
