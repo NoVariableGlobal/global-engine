@@ -15,11 +15,10 @@
 #include "GuiContext.h"
 #include "SliderHandlerComponent.h"
 
-CEGUI::Slider* GuiBarComponent::create(const std::string& text,
-                                       const glm::vec2 position, const glm::vec2 size,
+CEGUI::Slider* GuiBarComponent::create(const glm::vec2 position, const glm::vec2 size,
                                        const std::string& name) {
     myself = dynamic_cast<CEGUI::Slider*>(
-        GuiContext::getInstance()->createBar(text, position, size, name));
+        GuiContext::getInstance()->createSlider(position, size, name));
     myself->setCurrentValue(1.0f);
     return myself;
 }
@@ -52,27 +51,17 @@ Component* GuiBarComponentFactory::create(Entity* _father, Json::Value& _data,
     guiBarComponent->setFather(_father);
     guiBarComponent->setScene(_scene);
 
-    if (!_data["text"].isString())
-        throw std::exception("QuitButtonComponent: text is not a string");
-    // guiBarComponent->setText(_data["text"].asString());
 
     if (!_data["position"].isArray())
         throw std::exception("QuitButtonComponent: position is not an array");
-    // guiBarComponent->setPosition(glm::vec2(_data["position"][0].asFloat(),
-    // _data["position"][1].asFloat()));
 
     if (!_data["size"].isArray())
         throw std::exception("QuitButtonComponent: size is not an array");
-    // guiBarComponent->setSize(glm::vec2(_data["size"][0].asFloat(),
-    // _data["size"][1].asFloat()));
 
     if (!_data["name"].isString())
         throw std::exception("QuitButtonComponent: name is not a string");
-    // guiBarComponent->setName(_data["name"].asString());
 
-    guiBarComponent->create(
-        _data["text"].asString(),
-        glm::vec2(_data["position"][0].asFloat(),
+    guiBarComponent->create(glm::vec2(_data["position"][0].asFloat(),
                   _data["position"][1].asFloat()),
         glm::vec2(_data["size"][0].asFloat(), _data["size"][1].asFloat()),
         _data["name"].asString());

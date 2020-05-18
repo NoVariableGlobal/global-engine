@@ -19,7 +19,7 @@ class GuiBarComponent : public Component {
     CEGUI::Slider* myself = nullptr;
 
   public:
-    CEGUI::Slider* create(const std::string& text, const glm::vec2 position,
+    CEGUI::Slider* create(const glm::vec2 position,
                           const glm::vec2 size, const std::string& name);
 
     void subscribeEvent(const CEGUI::String& event, CEGUI::SubscriberSlot  subscriber);

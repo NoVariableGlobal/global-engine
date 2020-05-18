@@ -43,7 +43,7 @@ class GuiContext : public Ogre::FrameListener {
     CEGUI::Window* createButton(const std::string& text, glm::vec2 position,
                                 glm::vec2 size, const std::string& name);
 
-    CEGUI::Window* createBar(const std::string& text, glm::vec2 position,
+    CEGUI::Window* createSlider(glm::vec2 position,
                                 glm::vec2 size, const std::string& name);
 
     CEGUI::Window* createLabel(const std::string& text, glm::vec2 position,
