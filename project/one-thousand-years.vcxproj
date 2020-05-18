@@ -33,7 +33,7 @@
     <ClCompile Include="..\src\ChangeAndClearSceneButtonC.cpp" />
     <ClCompile Include="..\src\ChangeSceneButtonC.cpp" />
     <ClCompile Include="..\src\EventComponent.cpp" />
-    <ClCompile Include="..\src\GuiBarComponent.cpp" />
+    <ClCompile Include="..\src\GuiSliderC.cpp" />
     <ClCompile Include="..\src\GuiButtonC.cpp" />
     <ClCompile Include="..\src\GuiContext.cpp" />
     <ClCompile Include="..\src\GuiImageC.cpp" />
@@ -74,7 +74,7 @@
     <ClInclude Include="..\src\ChangeAndClearSceneButtonC.h" />
     <ClInclude Include="..\src\ChangeSceneButtonC.h" />
     <ClInclude Include="..\src\EventComponent.h" />
-    <ClInclude Include="..\src\GuiBarComponent.h" />
+    <ClInclude Include="..\src\GuiSliderC.h" />
     <ClInclude Include="..\src\GuiButtonC.h" />
     <ClInclude Include="..\src\GuiContext.h" />
     <ClInclude Include="..\src\GuiImageC.h" />

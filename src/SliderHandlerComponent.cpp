@@ -5,7 +5,7 @@
 #include <CEGUI\Event.h>
 #include <CEGUI\widgets/Slider.h>
 #include "Entity.h"
-#include "GuiBarComponent.h"
+#include "GuiSliderC.h"
 #include "GuiLabelC.h"
 
 void SliderHandlerComponent::destroy() {
@@ -18,7 +18,7 @@ void SliderHandlerComponent::init() {
     _label->changeText("100%");
 }
 
-void SliderHandlerComponent::setSlider(GuiBarComponent* slider) {
+void SliderHandlerComponent::setSlider(GuiSliderComponent* slider) {
     _slider = slider;
 }
 
@@ -44,7 +44,7 @@ Component* SliderHandlerComponentFactory::create(Entity* _father,
 
     sliderHandlerComponent->setFather(_father);
     sliderHandlerComponent->setScene(_scene);
-    auto slider = dynamic_cast<GuiBarComponent*>(_father->getComponent("GuiBarComponent"));
+    auto slider = dynamic_cast<GuiSliderComponent*>(_father->getComponent("GuiSliderComponent"));
     sliderHandlerComponent->setSlider(slider);
     auto label = dynamic_cast<GuiLabelComponent*>(
         _father->getComponent("GuiLabelComponent"));

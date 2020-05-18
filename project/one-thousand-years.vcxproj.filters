@@ -118,11 +118,11 @@
     <ClCompile Include="..\src\ChangeAndClearSceneButtonC.cpp">
       <Filter>Components\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\GuiBarComponent.cpp">
-      <Filter>Components</Filter>
+    <ClCompile Include="..\src\GuiSliderC.cpp">
+      <Filter>Components\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\src\SliderHandlerComponent.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Other</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -249,11 +249,11 @@
     <ClInclude Include="..\src\QuitButtonC.h">
       <Filter>Components\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\GuiBarComponent.h">
-      <Filter>Components</Filter>
+    <ClInclude Include="..\src\GuiSliderC.h">
+      <Filter>Components\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\src\SliderHandlerComponent.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

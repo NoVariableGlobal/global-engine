@@ -28,9 +28,8 @@
           }
         },
 		    {
-          "type": "GuiBarComponent",
+          "type": "GuiSliderComponent",
           "attributes": {
-            "text": "Prueba",
             "position": [ 0.44, 0.6 ],
             "size": [ 20.0, 200.0 ],
             "name": "PruebaDeLaBuena"

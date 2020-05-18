@@ -1,4 +1,4 @@
-#include "GuiBarComponent.h"
+#include "GuiSliderC.h"
 #include <json.h>
 #include "Scene.h"
 #include "ComponentsManager.h"
@@ -15,7 +15,7 @@
 #include "GuiContext.h"
 #include "SliderHandlerComponent.h"
 
-CEGUI::Slider* GuiBarComponent::create(const glm::vec2 position, const glm::vec2 size,
+CEGUI::Slider* GuiSliderComponent::create(const glm::vec2 position, const glm::vec2 size,
                                        const std::string& name) {
     myself = dynamic_cast<CEGUI::Slider*>(
         GuiContext::getInstance()->createSlider(position, size, name));
@@ -23,7 +23,7 @@ CEGUI::Slider* GuiBarComponent::create(const glm::vec2 position, const glm::vec2
     return myself;
 }
 
-void GuiBarComponent::subscribeEvent(const CEGUI::String& event,
+void GuiSliderComponent::subscribeEvent(const CEGUI::String& event,
                                      CEGUI::SubscriberSlot subscriber) {
 
     myself->subscribeEvent(
@@ -31,9 +31,9 @@ void GuiBarComponent::subscribeEvent(const CEGUI::String& event,
         subscriber);
 }
 
-float GuiBarComponent::getValue() { return myself->getCurrentValue(); }
+float GuiSliderComponent::getValue() { return myself->getCurrentValue(); }
 
-void GuiBarComponent::destroy() {
+void GuiSliderComponent::destroy() {
     CEGUI::WindowManager::getSingleton().destroyWindow(myself);
     setActive(false);
     scene_->getComponentsManager()->eraseDC(this);
@@ -41,15 +41,16 @@ void GuiBarComponent::destroy() {
 
 // FACTORY INFRASTRUCTURE DEFINITION
 
-GuiBarComponentFactory::GuiBarComponentFactory() = default;
+GuiSliderComponentFactory::GuiSliderComponentFactory() = default;
 
-Component* GuiBarComponentFactory::create(Entity* _father, Json::Value& _data,
+Component* GuiSliderComponentFactory::create(Entity* _father,
+                                             Json::Value& _data,
                                           Scene* _scene) {
-    GuiBarComponent* guiBarComponent = new GuiBarComponent();
-    _scene->getComponentsManager()->addDC(guiBarComponent);
+    GuiSliderComponent* guiSliderComponent = new GuiSliderComponent();
+    _scene->getComponentsManager()->addDC(guiSliderComponent);
 
-    guiBarComponent->setFather(_father);
-    guiBarComponent->setScene(_scene);
+    guiSliderComponent->setFather(_father);
+    guiSliderComponent->setScene(_scene);
 
 
     if (!_data["position"].isArray())
@@ -61,12 +62,12 @@ Component* GuiBarComponentFactory::create(Entity* _father, Json::Value& _data,
     if (!_data["name"].isString())
         throw std::exception("QuitButtonComponent: name is not a string");
 
-    guiBarComponent->create(glm::vec2(_data["position"][0].asFloat(),
+    guiSliderComponent->create(glm::vec2(_data["position"][0].asFloat(),
                   _data["position"][1].asFloat()),
         glm::vec2(_data["size"][0].asFloat(), _data["size"][1].asFloat()),
         _data["name"].asString());
 
-    return guiBarComponent;
+    return guiSliderComponent;
 }
 
-DEFINE_FACTORY(GuiBarComponent);
+DEFINE_FACTORY(GuiSliderComponent);

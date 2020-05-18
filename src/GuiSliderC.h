@@ -6,7 +6,7 @@
 #include <string>
 
 // FACTORY INFRASTRUCTURE DECLARATION
-DECLARE_FACTORY(GuiBarComponent);
+DECLARE_FACTORY(GuiSliderComponent);
 
 namespace CEGUI {
     class Slider;
@@ -14,7 +14,7 @@ namespace CEGUI {
     class String;
 }
 
-class GuiBarComponent : public Component {
+class GuiSliderComponent : public Component {
   protected:
     CEGUI::Slider* myself = nullptr;
 
