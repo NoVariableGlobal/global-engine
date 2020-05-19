@@ -19,6 +19,10 @@
       "id": "VolumeSlider",
       "components": [
         {
+          "type": "VolumeHandlerComponent",
+          "attributes":{}
+        },
+        {
           "type": "GuiLabelComponent",
           "attributes": {
             "text": "",
@@ -37,7 +41,9 @@
         },
         {
           "type": "SliderHandlerComponent",
-          "attributes":{}
+          "attributes":{
+            "floatHandler": "VolumeHandlerComponent"
+          }
         }
       ]
     },
