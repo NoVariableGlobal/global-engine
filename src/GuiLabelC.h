@@ -37,7 +37,7 @@ class GuiLabelComponent : public Component {
     virtual void setName(const std::string& n);
     void setAlpha(float alpha);
 
-    void changeText(const std::string &newText);
+    void changeText(const std::string& newText);
 
     virtual void moveToFront();
     virtual void moveToBack();
