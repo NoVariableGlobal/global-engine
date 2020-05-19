@@ -34,7 +34,7 @@ class SoundContext {
     static void checkError(FMOD_RESULT result);
 
     FMOD::System* system_ = nullptr;
-
+    FMOD::ChannelGroup* masterGroup_ = nullptr;
     std::map<std::string, FMOD::Sound*> sounds_;
     std::map<std::string, SoundInfo*>* soundsToLoad_;
     FMOD_VECTOR listenerPos_;
@@ -51,4 +51,6 @@ class SoundContext {
     void stopSound(Channel** channel);
     void updatePosition(Ogre::Vector3 pos);
     void update();
+    void setVolume(float volume) const;
+    const float getVolume() const;
 };

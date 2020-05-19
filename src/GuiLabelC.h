@@ -31,13 +31,13 @@ class GuiLabelComponent : public Component {
     float getAlpha();
 
     // Setters
-    virtual void setText(std::string t);
+    virtual void setText(const std::string& t);
     virtual void setPosition(glm::vec2 p);
     virtual void setSize(glm::vec2 s);
-    virtual void setName(std::string n);
+    virtual void setName(const std::string& n);
     void setAlpha(float alpha);
 
-    void changeText(std::string newText);
+    void changeText(const std::string& newText);
 
     virtual void moveToFront();
     virtual void moveToBack();

@@ -118,6 +118,18 @@
     <ClCompile Include="..\src\ChangeAndClearSceneButtonC.cpp">
       <Filter>Components\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\GuiSliderC.cpp">
+      <Filter>Components\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SliderHandlerComponent.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SpecialFloatHandlerC.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\VolumeHandlerC.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Component.h">
@@ -225,9 +237,6 @@
     <ClInclude Include="..\src\SkyPlaneObjectC.h">
       <Filter>Components\Other</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\QuitButtonC.h">
-      <Filter>Components\Other</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\ChangeSceneButtonC.h">
       <Filter>Components\GUI</Filter>
     </ClInclude>
@@ -242,6 +251,21 @@
     </ClInclude>
     <ClInclude Include="..\src\ChangeAndClearSceneButtonC.h">
       <Filter>Components\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\QuitButtonC.h">
+      <Filter>Components\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GuiSliderC.h">
+      <Filter>Components\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SliderHandlerComponent.h">
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SpecialFloatHandlerC.h">
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\VolumeHandlerC.h">
+      <Filter>Components\Other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "FactoriesFactory.h"
 #include "GuiContext.h"
+#include "GuiLabelC.h"
 #include "OgreSDLContext.h"
 #include "Scene.h"
 #include <CEGUI/CEGUI.h>
@@ -22,15 +23,15 @@ void GuiLabelComponent::destroy() {
 
 // Setters
 
-void GuiLabelComponent::setText(std::string t) { text = t; }
+void GuiLabelComponent::setText(const std::string& t) { text = t; }
 
 void GuiLabelComponent::setPosition(glm::vec2 p) { position = p; }
 
 void GuiLabelComponent::setSize(glm::vec2 s) { size = s; }
 
-void GuiLabelComponent::setName(std::string n) { name = n; }
+void GuiLabelComponent::setName(const std::string& n) { name = n; }
 
-void GuiLabelComponent::changeText(std::string newText) {
+void GuiLabelComponent::changeText(const std::string& newText) {
     myself->setText(newText);
 }
 

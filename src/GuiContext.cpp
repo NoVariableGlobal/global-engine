@@ -144,6 +144,18 @@ CEGUI::Window* GuiContext::createButton(const std::string& text,
     return button;
 }
 
+CEGUI::Window* GuiContext::createSlider(glm::vec2 position, glm::vec2 size,
+                                        const std::string& name) {
+    CEGUI::Window* slider = CEGUI::WindowManager::getSingleton().createWindow(
+        schemeName_ + "/Slider");
+    setWidgetDestRect(slider, position, size);
+    slider->setRotation(CEGUI::Quaternion(1, 0, 0, 0.71));
+    slider->setName(name);
+    sheet_->addChild(slider);
+
+    return slider;
+}
+
 CEGUI::Window* GuiContext::createLabel(const std::string& text,
                                        const glm::vec2 position,
                                        const glm::vec2 size,
