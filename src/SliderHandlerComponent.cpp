@@ -11,7 +11,7 @@
 #include "SpecialFloatHandlerC.h"
 
 void SliderHandlerComponent::destroy() {
-
+    scene_->getComponentsManager()->eraseDC(this);
 }
 
 void SliderHandlerComponent::init() {

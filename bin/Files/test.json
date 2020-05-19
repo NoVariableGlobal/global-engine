@@ -41,7 +41,7 @@
         },
         {
           "type": "SliderHandlerComponent",
-          "attributes":{
+          "attributes": {
             "floatHandler": "VolumeHandlerComponent"
           }
         }

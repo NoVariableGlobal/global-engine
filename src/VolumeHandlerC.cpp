@@ -19,6 +19,8 @@ Component* VolumeHandlerComponentFactory::create(Entity* _father,
     VolumeHandlerComponent* volumeHandlerComponent =
         new VolumeHandlerComponent();
 
+    _scene->getComponentsManager()->addDC(volumeHandlerComponent);
+
 
     volumeHandlerComponent->setFather(_father);
     volumeHandlerComponent->setScene(_scene);
