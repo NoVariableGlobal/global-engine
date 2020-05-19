@@ -3,13 +3,13 @@
 #include "Entity.h"
 #include "FactoriesFactory.h"
 #include "GuiContext.h"
+#include "GuiLabelC.h"
 #include "OgreSDLContext.h"
 #include "Scene.h"
 #include <CEGUI/CEGUI.h>
 #include <CEGUI\Window.h>
 #include <iostream>
 #include <json.h>
-#include "GuiLabelC.h"
 
 void GuiLabelComponent::create() {
     myself = GuiContext::getInstance()->createLabel(text, position, size, name);
@@ -23,7 +23,7 @@ void GuiLabelComponent::destroy() {
 
 // Setters
 
-void GuiLabelComponent::setText(const std::string & t) { text = t; }
+void GuiLabelComponent::setText(const std::string& t) { text = t; }
 
 void GuiLabelComponent::setPosition(glm::vec2 p) { position = p; }
 

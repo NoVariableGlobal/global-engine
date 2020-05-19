@@ -145,7 +145,7 @@ CEGUI::Window* GuiContext::createButton(const std::string& text,
 }
 
 CEGUI::Window* GuiContext::createSlider(glm::vec2 position, glm::vec2 size,
-                                     const std::string& name) {
+                                        const std::string& name) {
     CEGUI::Window* slider = CEGUI::WindowManager::getSingleton().createWindow(
         schemeName_ + "/Slider");
     setWidgetDestRect(slider, position, size);

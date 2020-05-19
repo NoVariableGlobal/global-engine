@@ -1,10 +1,7 @@
 #include "Component.h"
 
-
 class SpecialFloatHandlerComponent : public Component {
-public:
+  public:
     virtual void updateFloat(float value) = 0;
     void destroy() override;
 };
-
-

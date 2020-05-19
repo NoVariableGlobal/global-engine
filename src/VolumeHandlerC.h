@@ -2,11 +2,10 @@
 #include "Factory.h"
 #include "SpecialFloatHandlerC.h"
 
-
 // FACTORY INFRASTRUCTURE DECLARATION
 DECLARE_FACTORY(VolumeHandlerComponent);
 
 class VolumeHandlerComponent final : public SpecialFloatHandlerComponent {
-public:
+  public:
     void updateFloat(float value) override;
 };

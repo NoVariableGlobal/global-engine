@@ -16,9 +16,9 @@ class SliderHandlerComponent : public Component {
 
   public:
     virtual void destroy();
-  void init();
-  virtual void setSlider(GuiSliderComponent* slider);
+    void init();
+    virtual void setSlider(GuiSliderComponent* slider);
     virtual void setLabel(GuiLabelComponent* label);
-  void setFloatHandler(SpecialFloatHandlerComponent* floatHandler);
+    void setFloatHandler(SpecialFloatHandlerComponent* floatHandler);
     virtual void onSliderChange();
 };

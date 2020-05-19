@@ -1,9 +1,9 @@
 #include "VolumeHandlerC.h"
-#include "SoundContext.h"
-#include "FactoriesFactory.h"
-#include "ComponentsManager.h"
-#include "Scene.h"
 #include "Component.h"
+#include "ComponentsManager.h"
+#include "FactoriesFactory.h"
+#include "Scene.h"
+#include "SoundContext.h"
 
 void VolumeHandlerComponent::updateFloat(float value) {
     SoundContext::getInstance()->setVolume(value);
@@ -21,10 +21,8 @@ Component* VolumeHandlerComponentFactory::create(Entity* _father,
 
     _scene->getComponentsManager()->addDC(volumeHandlerComponent);
 
-
     volumeHandlerComponent->setFather(_father);
     volumeHandlerComponent->setScene(_scene);
-   
 
     return volumeHandlerComponent;
 }

@@ -12,19 +12,20 @@ namespace CEGUI {
     class Slider;
     class SubscriberSlot;
     class String;
-}
+} // namespace CEGUI
 
 class GuiSliderComponent : public Component {
   protected:
     CEGUI::Slider* myself = nullptr;
 
   public:
-    CEGUI::Slider* create(const glm::vec2 position,
-                          const glm::vec2 size, const std::string& name);
+    CEGUI::Slider* create(const glm::vec2 position, const glm::vec2 size,
+                          const std::string& name);
 
-    void subscribeEvent(const CEGUI::String& event, CEGUI::SubscriberSlot  subscriber);
+    void subscribeEvent(const CEGUI::String& event,
+                        CEGUI::SubscriberSlot subscriber);
     float getValue();
 
     virtual void destroy();
-    //virtual void onClick() = 0;
+    // virtual void onClick() = 0;
 };
