@@ -8,4 +8,5 @@ DECLARE_FACTORY(VolumeHandlerComponent);
 class VolumeHandlerComponent final : public SpecialFloatHandlerComponent {
   public:
     void updateFloat(float value) override;
+    float getFloat() override;
 };
