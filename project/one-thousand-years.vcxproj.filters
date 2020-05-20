@@ -130,6 +130,7 @@
     <ClCompile Include="..\src\VolumeHandlerC.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\BrightnessHandlerC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Component.h">
@@ -267,6 +268,7 @@
     <ClInclude Include="..\src\VolumeHandlerC.h">
       <Filter>Components\Other</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\BrightnessHandlerC.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">

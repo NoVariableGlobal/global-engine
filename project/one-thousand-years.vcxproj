@@ -30,6 +30,7 @@
     <ClCompile Include="..\src\AmbientLightC.cpp" />
     <ClCompile Include="..\src\AnimationLC.cpp" />
     <ClCompile Include="..\src\Application.cpp" />
+    <ClCompile Include="..\src\BrightnessHandlerC.cpp" />
     <ClCompile Include="..\src\ChangeAndClearSceneButtonC.cpp" />
     <ClCompile Include="..\src\ChangeSceneButtonC.cpp" />
     <ClCompile Include="..\src\EventComponent.cpp" />
@@ -73,6 +74,7 @@
   <ItemGroup>
     <ClInclude Include="..\src\AmbientLightC.h" />
     <ClInclude Include="..\src\AnimationLC.h" />
+    <ClInclude Include="..\src\BrightnessHandlerC.h" />
     <ClInclude Include="..\src\ChangeAndClearSceneButtonC.h" />
     <ClInclude Include="..\src\ChangeSceneButtonC.h" />
     <ClInclude Include="..\src\EventComponent.h" />

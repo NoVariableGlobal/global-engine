@@ -9,7 +9,9 @@ void VolumeHandlerComponent::updateFloat(float value) {
     SoundContext::getInstance()->setVolume(value);
 }
 
-float VolumeHandlerComponent::getFloat() { SoundContext::getInstance()->getVolume(); }
+float VolumeHandlerComponent::getFloat() {
+    return SoundContext::getInstance()->getVolume();
+}
 
 // FACTORY INFRASTRUCTURE DEFINITION
 
