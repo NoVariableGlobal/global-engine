@@ -32,6 +32,10 @@ void GuiSliderComponent::subscribeEvent(const CEGUI::String& event,
 
 float GuiSliderComponent::getValue() { return myself->getCurrentValue(); }
 
+void GuiSliderComponent::setValue(float value) {
+    myself->setCurrentValue(value);
+}
+
 void GuiSliderComponent::destroy() {
     CEGUI::WindowManager::getSingleton().destroyWindow(myself);
     setActive(false);
