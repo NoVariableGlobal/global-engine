@@ -26,6 +26,8 @@ class GuiSliderComponent : public Component {
                         CEGUI::SubscriberSlot subscriber);
     float getValue();
 
+    void setValue(float value);
+
     virtual void destroy();
     // virtual void onClick() = 0;
 };

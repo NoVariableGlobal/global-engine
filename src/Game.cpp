@@ -32,6 +32,11 @@
 
 #include <iostream>
 
+#include "BrightnessHandlerC.h"
+#include "GuiSliderC.h"
+#include "SliderHandlerComponent.h"
+#include "VolumeHandlerC.h"
+
 Game::Game() {
     Loader loader;
     loader.readSounds();
@@ -72,6 +77,10 @@ void Game::initContext() {
     AmbientLightCFactoryRegisterGlobalVar.noop();
     SkyPlaneObjectCFactoryRegisterGlobalVar.noop();
     ParticleCFactoryRegisterGlobalVar.noop();
+    GuiSliderComponentFactoryRegisterGlobalVar.noop();
+    BrightnessHandlerComponentFactoryRegisterGlobalVar.noop();
+    VolumeHandlerComponentFactoryRegisterGlobalVar.noop();
+    SliderHandlerComponentFactoryRegisterGlobalVar.noop();
 }
 
 // Reads the scenes and sets the first one

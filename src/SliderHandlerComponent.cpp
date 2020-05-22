@@ -18,7 +18,9 @@ void SliderHandlerComponent::init() {
     _slider->subscribeEvent(CEGUI::Slider::EventValueChanged,
                             CEGUI::Event::Subscriber(
                                 &SliderHandlerComponent::onSliderChange, this));
-    float value = _floatHandler->getFloat() * 100;
+    float value = _floatHandler->getFloat();
+    _slider->setValue(value);
+    value *= 100;
     int naturalValue = (int)value;
     _label->changeText(std::to_string(naturalValue) + "%");
 }
