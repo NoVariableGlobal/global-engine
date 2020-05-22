@@ -19,7 +19,7 @@
       "id": "VolumeSlider",
       "components": [
         {
-          "type": "VolumeHandlerComponent",
+          "type": "BrightnessHandlerComponent",
           "attributes":{}
         },
         {
@@ -42,7 +42,7 @@
         {
           "type": "SliderHandlerComponent",
           "attributes": {
-            "floatHandler": "VolumeHandlerComponent"
+            "floatHandler": "BrightnessHandlerComponent"
           }
         }
       ]

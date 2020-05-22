@@ -130,6 +130,9 @@
     <ClCompile Include="..\src\VolumeHandlerC.cpp">
       <Filter>Components\Other</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\BrightnessHandlerC.cpp">
+      <Filter>Components\Other</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Component.h">
@@ -265,6 +268,9 @@
       <Filter>Components\Other</Filter>
     </ClInclude>
     <ClInclude Include="..\src\VolumeHandlerC.h">
+      <Filter>Components\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\BrightnessHandlerC.h">
       <Filter>Components\Other</Filter>
     </ClInclude>
   </ItemGroup>
