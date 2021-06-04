@@ -46,7 +46,7 @@ function Step-VisualStudio
 
 	# Print information to the screen
 	$private:duration = $exitTime - $startTime
-	if ($?)
+	if ($LastExitCode -eq 0)
 	{
 		Write-Host "# Finished building '" -ForegroundColor Green -NoNewLine
 		Write-Host $Path                   -ForegroundColor Cyan  -NoNewLine

@@ -213,7 +213,7 @@
     <TargetName>$(ProjectName)_d</TargetName>
     <IntDir>$(SolutionDir).temp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir)src\$(ProjectName);$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\src\lib_json\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(SolutionDir)deps\drakhtar-i18n\build\src\$(Configuration)\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\lib\$(Configuration);$(SolutionDir)deps\drakhtar-i18n\build\src\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='AppDebug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -221,7 +221,7 @@
     <TargetName>$(ProjectName)_d</TargetName>
     <IntDir>$(SolutionDir).temp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir)src\$(ProjectName);$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)deps\bullet\build\lib\Debug;$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\Debug;$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\lib\Debug;$(SolutionDir)deps\cegui\build\lib;$(SolutionDir)deps\drakhtar-i18n\build\src\$(Configuration)\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)deps\bullet\build\lib\Debug;$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\Debug;$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\lib\Debug;$(SolutionDir)deps\drakhtar-i18n\build\src\Debug;$(SolutionDir)deps\cegui\build\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -235,7 +235,7 @@
     <OutDir>$(SolutionDir)libs\</OutDir>
     <IntDir>$(SolutionDir).temp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir)src\$(ProjectName);$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\src\lib_json\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(SolutionDir)deps\drakhtar-i18n\build\src\$(Configuration)\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\lib\$(Configuration);$(SolutionDir)deps\drakhtar-i18n\build\src\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -285,8 +285,8 @@
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain_d.lib;jsoncpp.lib;i18n_d.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Codec_STBI_d.lib;OgreRTShaderSystem_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\lib\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(SolutionDir)deps\drakhtar-i18n\build\src\$(Configuration)\lib;$(LibraryPath)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain_d.lib;jsoncpp.lib;i18n_d.lib;fmod64_vc.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Codec_STBI_d.lib;OgreRTShaderSystem_d.lib;CEGUIBase-0_d.lib;CEGUIOgreRenderer-0_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\lib\$(Configuration);$(SolutionDir)deps\drakhtar-i18n\build\src\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(LibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain_d.lib;jsoncpp_d.lib;i18n_d.lib;fmod64_vc.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Codec_STBI_d.lib;OgreRTShaderSystem_d.lib;CEGUIBase-0_d.lib;CEGUIOgreRenderer-0_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='AppDebug|x64'">
@@ -346,7 +346,7 @@
     </Link>
     <Lib>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain.lib;jsoncpp.lib;i18n.lib;fmod64_vc.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Codec_STBI.lib;OgreRTShaderSystem.lib;CEGUIBase-0.lib;CEGUIOgreRenderer-0.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\lib\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(SolutionDir)deps\drakhtar-i18n\build\src\$(Configuration)\lib;$(LibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\lib\$(Configuration);$(SolutionDir)deps\drakhtar-i18n\build\src\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(LibraryPath)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

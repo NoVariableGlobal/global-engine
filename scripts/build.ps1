@@ -29,3 +29,5 @@ if ($BuildProject)
 {
 	& "$PSScriptRoot/build-project.ps1" -Configuration $Configuration
 }
+
+exit $LastExitCode

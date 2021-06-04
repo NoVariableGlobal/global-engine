@@ -20,7 +20,7 @@ $private:end = Get-Date
 
 # Print information to the screen
 $private:duration = $end - $start
-if ($?)
+if ($LastExitCode -eq 0)
 {
 	Write-Host "# Finished building '" -ForegroundColor Green -NoNewLine
 	Write-Host $BuildDirectory         -ForegroundColor Cyan  -NoNewLine

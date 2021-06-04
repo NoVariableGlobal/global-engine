@@ -4,6 +4,8 @@ param (
 	[string[]] $Configuration
 )
 
+$ErrorActionPreference = "Stop"
+
 & "$PSScriptRoot/build-bullet.ps1" @args
 & "$PSScriptRoot/build-ogre.ps1" @args
 & "$PSScriptRoot/build-cegui-dependencies.ps1" @args
@@ -12,3 +14,5 @@ param (
 & "$PSScriptRoot/build-jsoncpp.ps1" @args
 & "$PSScriptRoot/build-SDL2.ps1" @args
 & "$PSScriptRoot/build-drakhtar-i18n.ps1" @args
+
+exit $LastExitCode
