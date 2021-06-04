@@ -285,7 +285,7 @@
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain_d.lib;jsoncpp.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Codec_STBI_d.lib;OgreRTShaderSystem_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\src\lib_json\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(LibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\lib\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(LibraryPath)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain_d.lib;jsoncpp.lib;fmod64_vc.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;Codec_STBI_d.lib;OgreRTShaderSystem_d.lib;CEGUIBase-0_d.lib;CEGUIOgreRenderer-0_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
@@ -346,7 +346,7 @@
     </Link>
     <Lib>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;OgreMain.lib;jsoncpp.lib;fmod64_vc.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;Codec_STBI.lib;OgreRTShaderSystem.lib;CEGUIBase-0.lib;CEGUIOgreRenderer-0.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\src\lib_json\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(LibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)deps\bullet\build\lib\$(Configuration);$(SolutionDir)deps\SDL2\lib\$(Platform);$(SolutionDir)deps\ogre\Build\lib\$(Configuration);$(SolutionDir)deps\fmod\lib;$(SolutionDir)deps\jsoncpp\build\lib\$(Configuration);$(SolutionDir)deps\cegui\build\lib;$(LibraryPath)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

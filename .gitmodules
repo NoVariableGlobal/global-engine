@@ -1,0 +1,9 @@
+[submodule "deps/drakhtar-i18n"]
+	path = deps/drakhtar-i18n
+	url = git@github.com:kyranet/drakhtar-i18n.git
+[submodule "deps/jsoncpp"]
+	path = deps/jsoncpp
+	url = git@github.com:open-source-parsers/jsoncpp.git
+[submodule "deps/bullet"]
+	path = deps/bullet
+	url = git@github.com:bulletphysics/bullet3.git

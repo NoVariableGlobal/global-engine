@@ -3,7 +3,7 @@
 param (
     [Alias("MsBuild")]
     [Parameter(Position = 0)]
-    [ValidateScript( { Test-Path -LiteralPath $_ -PathType Leaf })]
+    [ValidateScript({ Test-Path -LiteralPath $_ -PathType Leaf })]
     [string]
     $MsBuildPath = "",
 
@@ -20,6 +20,7 @@ param (
     [switch] $BuildBullet,
     [switch] $BuildCegui,
     [switch] $BuildCeguiDependencies,
+    [switch] $BuildDrakhtarI18n,
     [switch] $BuildFmod,
     [switch] $BuildJsonCpp,
     [switch] $BuildOgre,
@@ -44,12 +45,13 @@ Import-Module -Name (Join-Path -Path $ModulesFolder -ChildPath "CMake")
 Import-Module -Name (Join-Path -Path $ModulesFolder -ChildPath "Shared")
 
 $local:BulletFolder = Join-Path -Path $DependenciesRoot -ChildPath "bullet"
+$local:CeguiFolder = Join-Path -Path $DependenciesRoot -ChildPath "cegui"
+$local:CeguiDependenciesFolder = Join-Path -Path $DependenciesRoot -ChildPath "cegui-dependencies"
+$local:DrakhtarI18nFolder = Join-Path -Path $DependenciesRoot -ChildPath "drakhtar-i18n"
 $local:FModFolder = Join-Path -Path $DependenciesRoot -ChildPath "fmod"
 $local:JsonFolder = Join-Path -Path $DependenciesRoot -ChildPath "jsoncpp"
 $local:OgreFolder = Join-Path -Path $DependenciesRoot -ChildPath "ogre"
 $local:Sdl2Folder = Join-Path -Path $DependenciesRoot -ChildPath "SDL2"
-$local:CeguiFolder = Join-Path -Path $DependenciesRoot -ChildPath "cegui"
-$local:CeguiDependenciesFolder = Join-Path -Path $DependenciesRoot -ChildPath "cegui-dependencies"
 
 If ($Clean) {
     $local:DllFiles = Get-ChildItem -Path $BinaryDirectory -Filter "*.dll";
@@ -83,12 +85,13 @@ If ($Clean) {
     }
 
     Remove-Directory -Path (Join-Path -Path $BulletFolder -ChildPath "build")
+    Remove-Directory -Path (Join-Path -Path $CeguiFolder -ChildPath "build")
+    Remove-Directory -Path (Join-Path -Path $CeguiDependenciesFolder -ChildPath "build")
+    Remove-Directory -Path (Join-Path -Path $DrakhtarI18nFolder -ChildPath "build")
     Remove-Directory -Path (Join-Path -Path $FModFolder -ChildPath "build")
     Remove-Directory -Path (Join-Path -Path $JsonFolder -ChildPath "build")
     Remove-Directory -Path (Join-Path -Path $OgreFolder -ChildPath "build")
     Remove-Directory -Path (Join-Path -Path $Sdl2Folder -ChildPath "build")
-    Remove-Directory -Path (Join-Path -Path $CeguiFolder -ChildPath "build")
-    Remove-Directory -Path (Join-Path -Path $CeguiDependenciesFolder -ChildPath "build")
 }
 
 # Whether or not any dependency was specified
@@ -96,6 +99,7 @@ $private:BuildDependenciesSpecified = $BuildDependencies.ToBool() -Or
     $BuildBullet.ToBool() -Or
     $BuildCegui.ToBool() -Or
     $BuildCeguiDependencies.ToBool() -Or
+    $BuildDrakhtarI18n.ToBool() -Or
     $BuildFmod.ToBool() -Or
     $BuildJsonCpp.ToBool() -Or
     $BuildOgre.ToBool() -Or
@@ -130,6 +134,7 @@ If ($BuildDependencies) {
     If (!$BuildBullet.IsPresent) { $BuildBullet = $true }
     If (!$BuildCegui.IsPresent) { $BuildCegui = $true }
     If (!$BuildCeguiDependencies.IsPresent) { $BuildCeguiDependencies = $true }
+    If (!$BuildDrakhtarI18n.IsPresent) { $BuildDrakhtarI18n = $true }
     If (!$BuildFmod.IsPresent) { $BuildFmod = $true }
     If (!$BuildJsonCpp.IsPresent) { $BuildJsonCpp = $true }
     If (!$BuildOgre.IsPresent) { $BuildOgre = $true }
@@ -304,6 +309,25 @@ Try {
         Step-CopyToFolder -To $BinaryDirectory -From "SDL2" -Paths @(
             "$Sdl2Folder\lib\x64\SDL2.dll"
         )
+    }
+
+    # Build Drakhtar i18n
+    if ($BuildDrakhtarI18n) {
+        Step-CMake $CMake $DrakhtarI18nFolder @("-DI18N_LANGUAGE_ALL=ON")
+
+        If ($NDebug) {
+            Step-VisualStudio -MsBuild $MsBuild -Path "$DrakhtarI18nFolder\build\i18n.sln" -Configuration "Debug"
+            Step-CopyToFolder -To $BinaryDirectory -From "Drakhtar-i18n" -Paths @(
+                "$DrakhtarI18nFolder\build\src\Debug\i18n.dll"
+            )
+        }
+
+        If ($NRelease) {
+            Step-VisualStudio -MsBuild $MsBuild -Path "$DrakhtarI18nFolder\build\i18n.sln" -Configuration "Release"
+            Step-CopyToFolder -To $BinaryDirectory -From "Drakhtar-i18n" -Paths @(
+                "$DrakhtarI18nFolder\build\src\Release\i18n.dll"
+            )
+        }
     }
 
     # Build project
