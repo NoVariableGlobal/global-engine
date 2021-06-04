@@ -325,15 +325,15 @@ Try {
         Step-CMake $CMake $DrakhtarI18nFolder @("-DI18N_LANGUAGE_ALL=ON")
 
         If ($NDebug) {
-            Step-Build -Path $DrakhtarI18nFolder -ChildPath "build" -Configuration "Debug"
+            Step-Build -Path $DrakhtarI18nFolder -ChildPath "build" -TargetName "i18n_d" -Configuration "Debug"
             Step-CopyToFolder -To (Join-Path -Path $BinaryDirectory -ChildPath "i18n_d.dll") -From "i18n" -Paths @(
-                "$DrakhtarI18nFolder\build\src\Debug\i18n_d.dll"
+                "$DrakhtarI18nFolder\build\src\Debug\i18n.dll"
             )
         }
 
         If ($NRelease) {
-            Step-Build -Path $DrakhtarI18nFolder -ChildPath "build" -Configuration "Release"
-            Step-CopyToFolder -To (Join-Path -Path $BinaryDirectory -ChildPath "i18n.dll") -From "i18n" -Paths @(
+            Step-Build -Path $DrakhtarI18nFolder -ChildPath "build" -TargetName "i18n" -Configuration "Release"
+            Step-CopyToFolder -To $BinaryDirectory -From "JSON" -Paths @(
                 "$DrakhtarI18nFolder\build\src\Release\i18n.dll"
             )
         }
