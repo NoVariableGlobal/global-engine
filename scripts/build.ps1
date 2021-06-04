@@ -24,6 +24,7 @@ If ($Clean)
 
 if ($BuildDependencies)
 {
+	$local:OutputDirectory ??= Join-Path -Path (Split-Path $PSScriptRoot -Parent) -ChildPath "bin"
 	& "$PSScriptRoot/dependencies/build-all.ps1" -Configuration $Configuration -OutputDirectory $OutputDirectory
 }
 

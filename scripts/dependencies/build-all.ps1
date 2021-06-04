@@ -8,6 +8,8 @@ param (
 
 $ErrorActionPreference = "Stop"
 
+$local:OutputDirectory ??= Join-Path -Path (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent) -ChildPath "bin"
+
 & "$PSScriptRoot/build-bullet.ps1" -Configuration $Configuration
 & "$PSScriptRoot/build-ogre.ps1" -Configuration $Configuration -OutputDirectory $OutputDirectory
 & "$PSScriptRoot/build-cegui-dependencies.ps1" -Configuration $Configuration
