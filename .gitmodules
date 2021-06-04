@@ -13,3 +13,6 @@
 [submodule "deps/cegui-dependencies"]
 	path = deps/cegui-dependencies
 	url = git@github.com:cegui/cegui-dependencies.git
+[submodule "deps/ogre"]
+	path = deps/ogre
+	url = git@github.com:OGRECave/ogre.git

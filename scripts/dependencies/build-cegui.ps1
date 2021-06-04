@@ -38,7 +38,7 @@ cmake -S $ProjectDirectory -B $BuildDirectory -Wno-dev @(
 $private:Content = Get-Content -Path "$BuildDirectory\cegui\include\CEGUI\Config.h"
 $private:Content = $Content -replace "define CEGUI_OGRE_VERSION_MAJOR 0", "define CEGUI_OGRE_VERSION_MAJOR 1"
 $private:Content = $Content -replace "define CEGUI_OGRE_VERSION_MINOR 0", "define CEGUI_OGRE_VERSION_MINOR 12"
-$private:Content = $Content -replace "define CEGUI_OGRE_VERSION_PATCH 0", "define CEGUI_OGRE_VERSION_PATCH 5"
+$private:Content = $Content -replace "define CEGUI_OGRE_VERSION_PATCH 0", "define CEGUI_OGRE_VERSION_PATCH 13"
 Set-Content -Path "$BuildDirectory\cegui\include\CEGUI\Config.h" -Value $Content
 Remove-Variable Content
 
