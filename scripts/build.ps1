@@ -10,7 +10,9 @@ param (
 	[bool] $BuildDependencies = $true,
 
 	# Project
-	[bool] $BuildProject = $true
+	[bool] $BuildProject = $true,
+
+	[string] $OutputDirectory
 )
 
 $ErrorActionPreference = "Stop"
@@ -22,7 +24,7 @@ If ($Clean)
 
 if ($BuildDependencies)
 {
-	& "$PSScriptRoot/dependencies/build-all.ps1" -Configuration $Configuration
+	& "$PSScriptRoot/dependencies/build-all.ps1" -Configuration $Configuration -OutputDirectory $OutputDirectory
 }
 
 if ($BuildProject)

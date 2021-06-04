@@ -4,9 +4,7 @@ param (
 	[string] $Configuration,
 
 	[Parameter(Mandatory = $true)]
-	[string] $BuildDirectory,
-
-	[string[]] $CompilerOptions
+	[string] $BuildDirectory
 )
 
 Write-Host "# Now building '"     -ForegroundColor Blue -NoNewline
@@ -15,7 +13,7 @@ Write-Host "' as $Configuration." -ForegroundColor Blue
 
 # Run the process
 $private:start = Get-Date
-& cmake --build $BuildDirectory --config $Configuration -j -- -m -noLogo "-p:WarningLevel=0" $CompilerOptions
+& cmake --build $BuildDirectory --config $Configuration -j -- -m -noLogo "-p:WarningLevel=0"
 $private:end = Get-Date
 
 # Print information to the screen
