@@ -23,15 +23,15 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/build.ps1') }}
       - name: Build Dependencies (Debug)
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: pwsh -File .\scripts\build.ps1 -BuildDependencies -NDebug
+        run: pwsh -File ./scripts/dependencies/build-all.ps1 -Configuration Debug
         shell: pwsh
       - name: Build Project (Debug)
-        run: pwsh -File .\scripts\build.ps1 -BuildProject -NDebug
+        run: pwsh -File ./scripts/build-project.ps1 -Configuration Debug
         shell: pwsh
       - name: Build Dependencies (Release)
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: pwsh -File .\scripts\build.ps1 -BuildDependencies -NRelease
+        run: pwsh -File ./scripts/dependencies/build-all.ps1 -Configuration Release
         shell: pwsh
       - name: Build Project (Release)
-        run: pwsh -File .\scripts\build.ps1 -BuildProject -NRelease
+        run: pwsh -File ./scripts/build-project.ps1 -Configuration Release
         shell: pwsh
