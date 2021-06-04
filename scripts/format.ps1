@@ -165,7 +165,7 @@ try
         # Scan the files
         Write-Host "Scanning files... " -ForegroundColor Blue -NoNewline
 
-        $Files = (Get-ChildItem "$RootFolder/src", "$RootFolder/include", "$RootFolder/tests" -Include ('*.h', '*.hpp', '*.c', '*.cpp') -Recurse -File | Select-Object -ExpandProperty FullName)
+        $Files = (Get-ChildItem "$RootFolder/src" -Include ('*.h', '*.hpp', '*.c', '*.cpp') -Recurse -File | Select-Object -ExpandProperty FullName)
         Write-Host "Found "      -ForegroundColor Green -NoNewLine
         Write-Host $Files.Length -ForegroundColor Cyan  -NoNewLine
         Write-Host " files."     -ForegroundColor Green
