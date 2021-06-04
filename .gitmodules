@@ -7,3 +7,9 @@
 [submodule "deps/bullet"]
 	path = deps/bullet
 	url = git@github.com:bulletphysics/bullet3.git
+[submodule "deps/cegui"]
+	path = deps/cegui
+	url = git@github.com:cegui/cegui.git
+[submodule "deps/cegui-dependencies"]
+	path = deps/cegui-dependencies
+	url = git@github.com:cegui/cegui-dependencies.git

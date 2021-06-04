@@ -326,8 +326,8 @@ Try {
 
         If ($NDebug) {
             Step-Build -Path $DrakhtarI18nFolder -ChildPath "build" -TargetName "i18n_d" -Configuration "Debug"
-            Step-CopyToFolder -To (Join-Path -Path $BinaryDirectory -ChildPath "i18n_d.dll") -From "i18n" -Paths @(
-                "$DrakhtarI18nFolder\build\src\Debug\i18n.dll"
+            Step-CopyToFolder -To $BinaryDirectory -From "JSON" -Paths @(
+                "$DrakhtarI18nFolder\build\src\Debug\i18n_d.dll"
             )
         }
 
