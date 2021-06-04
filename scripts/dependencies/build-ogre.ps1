@@ -10,7 +10,6 @@ $ErrorActionPreference = "Stop"
 
 $local:Name = "ogre"
 $local:RootDirectory = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
-$local:OutputDirectory ??= Join-Path -Path $RootDirectory -ChildPath "bin"
 $local:DepsDirectory = Join-Path -Path $RootDirectory -ChildPath "deps"
 $local:ProjectDirectory = Join-Path -Path $DepsDirectory -ChildPath $Name
 $local:BuildDirectory = Join-Path -Path $ProjectDirectory -ChildPath "build"
@@ -18,6 +17,11 @@ $local:BuildDirectory = Join-Path -Path $ProjectDirectory -ChildPath "build"
 cmake -S $ProjectDirectory -B $BuildDirectory -Wno-dev @(
 	"-DOGRE_BUILD_COMPONENT_OVERLAY:BOOL=OFF"
 )
+
+if ([string]::IsNullOrEmpty($OutputDirectory))
+{
+	$OutputDirectory = Join-Path -Path $RootDirectory -ChildPath "bin"
+}
 
 if ($Configuration.Length -eq 0 -or $Configuration.Contains("Debug"))
 {

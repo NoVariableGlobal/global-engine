@@ -10,7 +10,6 @@ $ErrorActionPreference = "Stop"
 
 $local:Name = "jsoncpp"
 $local:RootDirectory = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
-$local:OutputDirectory ??= Join-Path -Path $RootDirectory -ChildPath "bin"
 $local:DepsDirectory = Join-Path -Path $RootDirectory -ChildPath "deps"
 $local:ProjectDirectory = Join-Path -Path $DepsDirectory -ChildPath $Name
 $local:BuildDirectory = Join-Path -Path $ProjectDirectory -ChildPath "build"
@@ -20,6 +19,11 @@ cmake -S $ProjectDirectory -B $BuildDirectory -Wno-dev @(
 	"-DJSONCPP_WITH_TESTS:BOOL=OFF",
 	"-DJSONCPP_WITH_PKGCONFIG_SUPPORT:BOOL=OFF"
 )
+
+if ([string]::IsNullOrEmpty($OutputDirectory))
+{
+	$OutputDirectory = Join-Path -Path $RootDirectory -ChildPath "bin"
+}
 
 if ($Configuration.Length -eq 0 -or $Configuration.Contains("Debug"))
 {

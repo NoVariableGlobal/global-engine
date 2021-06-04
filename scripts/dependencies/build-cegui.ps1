@@ -10,7 +10,6 @@ $ErrorActionPreference = "Stop"
 
 $local:Name = "cegui"
 $local:RootDirectory = Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
-$local:OutputDirectory ??= Join-Path -Path $RootDirectory -ChildPath "bin"
 $local:DepsDirectory = Join-Path -Path $RootDirectory -ChildPath "deps"
 $local:ProjectDirectory = Join-Path -Path $DepsDirectory -ChildPath $Name
 $local:BuildDirectory = Join-Path -Path $ProjectDirectory -ChildPath "build"
@@ -43,6 +42,11 @@ $private:Content = $Content -replace "define CEGUI_OGRE_VERSION_MINOR 0", "defin
 $private:Content = $Content -replace "define CEGUI_OGRE_VERSION_PATCH 0", "define CEGUI_OGRE_VERSION_PATCH 13"
 Set-Content -Path "$BuildDirectory\cegui\include\CEGUI\Config.h" -Value $Content
 Remove-Variable Content
+
+if ([string]::IsNullOrEmpty($OutputDirectory))
+{
+	$OutputDirectory = Join-Path -Path $RootDirectory -ChildPath "bin"
+}
 
 if ($Configuration.Length -eq 0 -or $Configuration.Contains("Debug"))
 {

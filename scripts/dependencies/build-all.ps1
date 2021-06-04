@@ -8,7 +8,9 @@ param (
 
 $ErrorActionPreference = "Stop"
 
-$local:OutputDirectory ??= Join-Path -Path (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent) -ChildPath "bin"
+if ([string]::IsNullOrEmpty($OutputDirectory)) {
+	$OutputDirectory = Join-Path -Path (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent) -ChildPath "bin"
+}
 
 & "$PSScriptRoot/build-bullet.ps1" -Configuration $Configuration
 & "$PSScriptRoot/build-ogre.ps1" -Configuration $Configuration -OutputDirectory $OutputDirectory
