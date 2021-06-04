@@ -1,11 +1,14 @@
 param(
     [Alias("ClangFormat")]
-    [Parameter(Position = 0)]
     [ValidateScript( { Test-Path -LiteralPath $_ -PathType Leaf })]
     [string]
     $ClangFormatPath = "",
 
-    [switch] $Test
+    [switch] $Test,
+
+    [Parameter(Position = 0)]
+    [string[]]
+    $Files
 )
 
 $ErrorActionPreference = "Stop"
@@ -14,11 +17,14 @@ $ErrorActionPreference = "Stop"
 #  - Environmental Variable
 #  - Get-Command (PATH)
 #  - Program Files typical installation path scan
-function Find-ClangFormat {
+function Find-ClangFormat
+{
     # Check if a path was given:
-    if ($ClangFormatPath.Length -Eq 0) {
+    if ($ClangFormatPath.Length -Eq 0)
+    {
         # Find from environmental variable:
-        If ($Env:ClangFormat) {
+        if ($Env:ClangFormat)
+        {
             $ClangFormat = (Resolve-Path $Env:ClangFormat)[0].Path
             Write-Host "ClangFormat not provided, using '"       -ForegroundColor Blue -NoNewline
             Write-Host $ClangFormat                              -ForegroundColor Cyan -NoNewline
@@ -27,7 +33,8 @@ function Find-ClangFormat {
         }
 
         # Find from PATH environmental variables:
-        If (Get-Command "clang-format.exe" -ErrorAction SilentlyContinue) {
+        if (Get-Command "clang-format.exe" -ErrorAction SilentlyContinue)
+        {
             $ClangFormat = (Get-Command "clang-format.exe").Path;
             Write-Host "ClangFormat not provided, using '" -ForegroundColor Blue -NoNewline
             Write-Host $ClangFormat                        -ForegroundColor Cyan -NoNewline
@@ -37,22 +44,27 @@ function Find-ClangFormat {
 
         # Find from ProgramFiles:
         $local:PossibleClangFormat = Resolve-Path "${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2019\*\VC\Tools\Llvm\bin\clang-format.exe" -ErrorAction SilentlyContinue
-        If (($PossibleClangFormat) -And ($PossibleClangFormat.Length -Ge 0)) {
+        if (($PossibleClangFormat) -And ($PossibleClangFormat.Length -Ge 0))
+        {
             $ClangFormat = $PossibleClangFormat[0].Path
             Write-Host "ClangFormat not provided, using '" -ForegroundColor Blue -NoNewline
             Write-Host $ClangFormat                        -ForegroundColor Cyan -NoNewline
             Write-Host "' from file detection instead."    -ForegroundColor Blue
             return $ClangFormat;
         }
-    } Else {
+    }
+    else
+    {
         $ClangFormat = $ClangFormatPath;
         return $ClangFormat;
     }
 }
 
 # Asserts that the variable assigned to $ClangFormat is a valid file path, discarding files that do not exist and folders.
-function Assert-ClangFormatPath([string] $private:ClangFormat) {
-    If (($ClangFormat -Eq "") -Or !(Test-Path -LiteralPath $ClangFormat -PathType Leaf)) {
+function Assert-ClangFormatPath([string] $private:ClangFormat)
+{
+    if (($ClangFormat -Eq "") -Or !(Test-Path -LiteralPath $ClangFormat -PathType Leaf))
+    {
         Write-Host "I was not able to find clang-format.exe, please check https://docs.microsoft.com/en-us/visualstudio/?view=vs-2019 for more information." -ForegroundColor Red
         Write-Host "  # Please specify the route to the clang-format.exe by doing " -ForegroundColor Yellow -NoNewline
         Write-Host ".\scripts\format.ps1 `"Path\To\clang-format.exe`""              -ForegroundColor Cyan   -NoNewline
@@ -72,21 +84,25 @@ $ClangFormat = Find-ClangFormat
 Assert-ClangFormatPath $ClangFormat
 
 # Formats all files in-place.
-function Step-Format([string[]] $Files) {
+function Step-Format([string[]] $Files)
+{
     # Prints information about the step being taken
     Write-Host "Formatting... " -ForegroundColor Blue -NoNewLine
 
     # Run the process
     $private:duration = Measure-Command {
-        & $ClangFormat -style=file -i $FormatFiles
+        & $ClangFormat -style=file -i $Files
     }
 
     # Print information to the screen
-    If ($LastExitCode -Eq 0) {
+    if ($LastExitCode -Eq 0)
+    {
         Write-Host "Took: "               -ForegroundColor Green -NoNewLine
         Write-Host ("{0:g}" -f $duration) -ForegroundColor Cyan  -NoNewLine
         Write-Host "."                    -ForegroundColor Green
-    } Else {
+    }
+    else
+    {
         Write-Host "Errored with code $LastExitCode. Took: " -ForegroundColor Red  -NoNewLine
         Write-Host ("{0:g}" -f $duration)                    -ForegroundColor Cyan -NoNewLine
         Write-Host "."                                       -ForegroundColor Red
@@ -95,21 +111,25 @@ function Step-Format([string[]] $Files) {
 }
 
 # Tests if any of the files need formatting.
-function Test-Format([string[]] $Files) {
+function Test-Format([string[]] $Files)
+{
     # Prints information about the step being taken
     Write-Host "Testing style... " -ForegroundColor Blue -NoNewLine
 
     # Run the process
     $private:duration = Measure-Command {
-        $Replacements = & $ClangFormat -style=file -output-replacements-xml $FormatFiles
+        $Replacements = & $ClangFormat -style=file -output-replacements-xml $Files
     }
 
     # Print information to the screen
-    If ($LastExitCode -Eq 0) {
+    if ($LastExitCode -Eq 0)
+    {
         Write-Host "Took: "               -ForegroundColor Green -NoNewLine
         Write-Host ("{0:g}" -f $duration) -ForegroundColor Cyan  -NoNewLine
         Write-Host ". "                   -ForegroundColor Green -NoNewLine
-    } Else {
+    }
+    else
+    {
         Write-Host "Errored with code $LastExitCode. Took: " -ForegroundColor Red  -NoNewLine
         Write-Host ("{0:g}" -f $duration)                    -ForegroundColor Cyan -NoNewLine
         Write-Host "."                                       -ForegroundColor Red
@@ -118,41 +138,58 @@ function Test-Format([string[]] $Files) {
 
     # Count the amount of replacements
     $Changes = $Replacements | grep -c "<replacement "
-    If ($Changes -Eq "0") {
+    if ($Changes -Eq "0")
+    {
         Write-Host "No replacements needed!" -ForegroundColor Green
-    } Else {
+    }
+    else
+    {
         Write-Host "$Changes replacements needed!" -ForegroundColor Red
         Write-Host $Replacements                   -ForegroundColor Magenta
         Throw "$Changes replacements needed!"
     }
 }
 
-Try {
-    $private:RootFolder = Split-Path $PSScriptRoot -Parent
-
-    # Scan the files
-    Write-Host "Scanning files... " -ForegroundColor Blue -NoNewline
-    $private:Duration = Measure-Command {
-        $FormatFiles = (Get-ChildItem "$RootFolder\src" | Select-Object -ExpandProperty FullName)
+try
+{
+    if ($PSBoundParameters.ContainsKey('Files'))
+    {
+        Write-Host "Received "   -ForegroundColor Green -NoNewLine
+        Write-Host $Files.Length -ForegroundColor Cyan  -NoNewLine
+        Write-Host " file(s)."   -ForegroundColor Green
     }
-    Write-Host "Found "            -ForegroundColor Green -NoNewLine
-    Write-Host $FormatFiles.Length -ForegroundColor Cyan  -NoNewLine
-    Write-Host " files."           -ForegroundColor Green
+    else
+    {
+        $private:RootFolder = Split-Path $PSScriptRoot -Parent
 
-    # If -Test is present, test if the formatting is correct,
+        # Scan the files
+        Write-Host "Scanning files... " -ForegroundColor Blue -NoNewline
+
+        $Files = (Get-ChildItem "$RootFolder/src", "$RootFolder/include", "$RootFolder/tests" -Include ('*.h', '*.hpp', '*.c', '*.cpp') -Recurse -File | Select-Object -ExpandProperty FullName)
+        Write-Host "Found "      -ForegroundColor Green -NoNewLine
+        Write-Host $Files.Length -ForegroundColor Cyan  -NoNewLine
+        Write-Host " files."     -ForegroundColor Green
+    }
+
+    # if -Test is present, test if the formatting is correct,
     # else format the files in-place.
-    If ($Test) {
-        Test-Format -Files $FormatFiles
-    } Else {
-        Step-Format -Files $FormatFiles
+    if ($Test)
+    {
+        Test-Format -Files $Files
+    }
+    else
+    {
+        Step-Format -Files $Files
     }
 
-    Exit 0
-} Catch {
+    exit 0
+}
+catch
+{
     # Write the exception
     Write-Host -Object $_
     Write-Host -Object $_.Exception
     Write-Host -Object $_.ScriptStackTrace
 
-    Exit 1
+    exit 1
 }
