@@ -168,11 +168,11 @@ Try {
         )
 
         If ($NDebug) {
-            Step-VisualStudio -MsBuild $MsBuild -Path "$BulletFolder\build\BULLET_PHYSICS.sln" -Configuration "Debug"
+            Step-Build -Path $BulletFolder -ChildPath "build" -Configuration "Debug"
         }
 
         If ($NRelease) {
-            Step-VisualStudio -MsBuild $MsBuild -Path "$BulletFolder\build\BULLET_PHYSICS.sln" -Configuration "Release"
+            Step-Build -Path $BulletFolder -ChildPath "build" -Configuration "Release"
         }
     }
 
@@ -181,7 +181,7 @@ Try {
         Step-CMake $CMake $OgreFolder @("-DOGRE_BUILD_COMPONENT_OVERLAY:BOOL=OFF")
 
         If ($NDebug) {
-            Step-VisualStudio -MsBuild $MsBuild -Path "$OgreFolder\build\OGRE.sln" -Configuration "Debug"
+            Step-Build -Path $OgreFolder -ChildPath "build" -Configuration "Debug"
             Step-CopyToFolder -To $BinaryDirectory -From "Ogre" -Paths @(
                 "$OgreFolder\build\bin\debug\OgreMain_d.dll",
                 "$OgreFolder\build\bin\debug\RenderSystem_Direct3D11_d.dll",
@@ -194,7 +194,7 @@ Try {
         }
 
         If ($NRelease) {
-            Step-VisualStudio -MsBuild $MsBuild -Path "$OgreFolder\build\OGRE.sln" -Configuration "Release"
+            Step-Build -Path $OgreFolder -ChildPath "build" -Configuration "Release"
             Step-CopyToFolder -To $BinaryDirectory -From "Ogre" -Paths @(
                 "$OgreFolder\build\bin\release\OgreMain.dll",
                 "$OgreFolder\build\bin\release\RenderSystem_Direct3D11.dll",
@@ -212,11 +212,11 @@ Try {
         Step-CMake $CMake $CeguiDependenciesFolder @()
 
         If ($NDebug) {
-            Step-VisualStudio -MsBuild $MsBuild -Path "$CeguiDependenciesFolder\build\CEGUI-DEPS.sln" -Configuration "Debug"
+            Step-Build -Path $CeguiDependenciesFolder -ChildPath "build" -Configuration "Debug"
         }
 
         If ($NRelease) {
-            Step-VisualStudio -MsBuild $MsBuild -Path "$CeguiDependenciesFolder\build\CEGUI-DEPS.sln" -Configuration "Release"
+            Step-Build -Path $CeguiDependenciesFolder -ChildPath "build" -Configuration "Release"
         }
     }
 
@@ -250,7 +250,7 @@ Try {
         Remove-Variable Content
 
         If ($NDebug) {
-            Step-VisualStudio -MsBuild $MsBuild -Path "$CeguiFolder\build\cegui.sln" -Configuration "Debug"
+            Step-Build -Path $CeguiFolder -ChildPath "build" -Configuration "Debug"
             Step-CopyToFolder -To $BinaryDirectory -From "CEGUI" -Paths @(
                 "$CeguiFolder\build\bin\CEGUIBase-0_d.dll",
                 "$CeguiFolder\build\bin\CEGUIOgreRenderer-0_d.dll",
@@ -266,7 +266,7 @@ Try {
         }
 
         If ($NRelease) {
-            Step-VisualStudio -MsBuild $MsBuild -Path "$CeguiFolder\build\cegui.sln" -Configuration "Release"
+            Step-Build -Path $CeguiFolder -ChildPath "build" -Configuration "Release"
             Step-CopyToFolder -To $BinaryDirectory -From "CEGUI" -Paths @(
                 "$CeguiFolder\build\bin\CEGUIBase-0.dll",
                 "$CeguiFolder\build\bin\CEGUIOgreRenderer-0.dll",
@@ -293,14 +293,23 @@ Try {
 
     # Build JsonCPP
     If ($BuildJsonCpp) {
-        Step-CMake $CMake $JsonFolder @()
+        Step-CMake $CMake $JsonFolder @(
+            "-DJSONCPP_WITH_TESTS:BOOL=OFF",
+            "-DJSONCPP_WITH_PKGCONFIG_SUPPORT:BOOL=OFF"
+        )
 
         If ($NDebug) {
-            Step-VisualStudio -MsBuild $MsBuild -Path "$JsonFolder\build\JSONCPP.sln" -Configuration "Debug"
+            Step-Build -Path $JsonFolder -ChildPath "build" -TargetName "jsoncpp_d" -Configuration "Debug"
+            Step-CopyToFolder -To $BinaryDirectory -From "JSON" -Paths @(
+                "$JsonFolder\build\bin\Debug\jsoncpp_d.dll"
+            )
         }
 
         If ($NRelease) {
-            Step-VisualStudio -MsBuild $MsBuild -Path "$JsonFolder\build\JSONCPP.sln" -Configuration "Release"
+            Step-Build -Path $JsonFolder -ChildPath "build" -TargetName "jsoncpp" -Configuration "Release"
+            Step-CopyToFolder -To $BinaryDirectory -From "JSON" -Paths @(
+                "$JsonFolder\build\bin\Release\jsoncpp.dll"
+            )
         }
     }
 
@@ -316,15 +325,15 @@ Try {
         Step-CMake $CMake $DrakhtarI18nFolder @("-DI18N_LANGUAGE_ALL=ON")
 
         If ($NDebug) {
-            Step-VisualStudio -MsBuild $MsBuild -Path "$DrakhtarI18nFolder\build\i18n.sln" -Configuration "Debug"
-            Step-CopyToFolder -To $BinaryDirectory -From "Drakhtar-i18n" -Paths @(
-                "$DrakhtarI18nFolder\build\src\Debug\i18n.dll"
+            Step-Build -Path $DrakhtarI18nFolder -ChildPath "build" -Configuration "Debug"
+            Step-CopyToFolder -To (Join-Path -Path $BinaryDirectory -ChildPath "i18n_d.dll") -From "i18n" -Paths @(
+                "$DrakhtarI18nFolder\build\src\Debug\i18n_d.dll"
             )
         }
 
         If ($NRelease) {
-            Step-VisualStudio -MsBuild $MsBuild -Path "$DrakhtarI18nFolder\build\i18n.sln" -Configuration "Release"
-            Step-CopyToFolder -To $BinaryDirectory -From "Drakhtar-i18n" -Paths @(
+            Step-Build -Path $DrakhtarI18nFolder -ChildPath "build" -Configuration "Release"
+            Step-CopyToFolder -To (Join-Path -Path $BinaryDirectory -ChildPath "i18n.dll") -From "i18n" -Paths @(
                 "$DrakhtarI18nFolder\build\src\Release\i18n.dll"
             )
         }

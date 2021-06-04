@@ -91,5 +91,56 @@ function Step-CMake([string] $CMake, [string] $Path, [string[]] $Arguments) {
 	}
 }
 
+# Build a CMake project given a path and optional arguments
+function Step-Build {
+	param (
+		[string] $Path,
+		[string] $ChildPath = "",
+		[string] $Configuration = "Debug",
+		[string] $WarningLevel = "0",
+		[string] $Verbosity = "minimal",
+		[string] $TargetName = "",
+		[bool] $ThrowOnError = $false
+	)
+
+	if (![string]::IsNullOrEmpty($ChildPath)) {
+		$Path = Join-Path -Path $Path -ChildPath $ChildPath
+	}
+
+	Write-Host "# Now building '"     -ForegroundColor Blue -NoNewline
+	Write-Host $Path                  -ForegroundColor Cyan -NoNewline
+	Write-Host "' as $Configuration." -ForegroundColor Blue
+
+	$local:properties = "-p:WarningLevel=$WarningLevel"
+	if (![string]::IsNullOrEmpty($TargetName)) {
+		$properties += ";TargetName=$TargetName"
+	}
+
+	# Run the process
+	$private:startTime = Get-Date
+	& cmake @("--build", "$Path", "--config", "$Configuration", "-j", "--", "-m", "-noLogo", $properties)
+	$private:exitTime = Get-Date
+
+	# Print information to the screen
+	$private:duration = $exitTime - $startTime
+	If ($LastExitCode -Eq 0) {
+		Write-Host "# Finished building '" -ForegroundColor Green -NoNewLine
+		Write-Host $Path                   -ForegroundColor Cyan  -NoNewLine
+		Write-Host "'. Took: "             -ForegroundColor Green -NoNewLine
+		Write-Host ("{0:g}" -f $duration)  -ForegroundColor Cyan  -NoNewLine
+		Write-Host "."                     -ForegroundColor Green
+	} Else {
+		Write-Host "# Errored when building '"        -ForegroundColor Red  -NoNewLine
+		Write-Host $Path                              -ForegroundColor Cyan -NoNewLine
+		Write-Host "' with code $LastExitCode Took: " -ForegroundColor Red  -NoNewLine
+		Write-Host ("{0:g}" -f $duration)             -ForegroundColor Cyan -NoNewLine
+		Write-Host "."                                -ForegroundColor Red
+		If ($ThrowOnError) {
+			Throw "Failed to build project project, please read the logs above.";
+		}
+	}
+}
+
 Export-ModuleMember -Function Find-CMake
 Export-ModuleMember -Function Step-CMake
+Export-ModuleMember -Function Step-Build
