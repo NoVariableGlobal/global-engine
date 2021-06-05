@@ -11,11 +11,13 @@ jobs:
     steps:
     - name: Checkout Project
       uses: actions/checkout@v2
+      with:
+          submodules: 'true'
     - name: Build Project
-      run: pwsh -File .\scripts\build.ps1 -NRelease
+      run: pwsh -File ./scripts/build.ps1 -Configuration Release
       shell: pwsh
     - name: Create Artifact
-      run: pwsh -File .\release.ps1
+      run: pwsh -File ./release.ps1
       shell: pwsh
       env:
         RELEASE_OS: ${{ runner.os }}
