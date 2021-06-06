@@ -1,7 +1,7 @@
 #pragma once
+#include "LocaleManager.h"
 #include <map>
 #include <string>
-#include "LocaleManager.h"
 
 class Scene;
 class Loader;
@@ -25,7 +25,6 @@ class Game {
 
     float _timestep = frame_rate / 1000.0f;
 
-    
     LocaleManager localeManager_{};
     Locale locale_{localeManager_};
 

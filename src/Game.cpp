@@ -37,8 +37,6 @@
 #include "SliderHandlerComponent.h"
 #include "VolumeHandlerC.h"
 
-
-
 Game::Game() {
     Loader loader;
     loader.readSounds();
@@ -101,7 +99,6 @@ bool Game::init(const std::string firstScene, const std::string schemeName,
 
         Loader loader;
         loader.readScenes(scenesQueue_);
-
 
         scene_ = new Scene(this);
         setScene(firstScene);

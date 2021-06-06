@@ -2,11 +2,11 @@
 #include "ComponentsManager.h"
 #include "Entity.h"
 #include "FactoriesFactory.h"
+#include "Game.h"
 #include "GuiContext.h"
 #include "GuiLabelC.h"
 #include "OgreSDLContext.h"
 #include "Scene.h"
-#include "Game.h"
 #include <CEGUI/CEGUI.h>
 #include <CEGUI\Window.h>
 #include <iostream>
