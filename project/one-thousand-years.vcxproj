@@ -243,7 +243,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions); _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)src\Saluda;$(SolutionDir)deps\ogre-1.12.4\OgreMain\include;$(SolutionDir)deps\ogre-1.12.4\Build\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\drakhtar-i18n\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -277,7 +277,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\build\libs\Debug;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\drakhtar-i18n\include;$(SolutionDir)deps\ogre\PlugIns\ParticleFX\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\cegui-dependencies\build\dependencies\include;$(SolutionDir)deps\cegui\cegui\include;$(SolutionDir)deps\cegui\build\cegui\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -317,7 +317,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions); _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)src\Saluda;$(SolutionDir)deps\ogre-1.12.4\OgreMain\include;$(SolutionDir)deps\ogre-1.12.4\Build\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\drakhtar-i18n\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -338,7 +338,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions); _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)deps\jsoncpp\include;$(SolutionDir)deps\ogre\OgreMain\include;$(SolutionDir)deps\ogre\PlugIns\ParticleFX\include;$(SolutionDir)deps\ogre\Build\include;$(SolutionDir)deps\ogre\Components\RTShaderSystem\include;$(SolutionDir)deps\bullet\src;$(SolutionDir)deps\ogre\PlugIns\STBICodec\include;$(SolutionDir)deps\fmod\include;$(SolutionDir)deps\SDL2\include;$(SolutionDir)deps\jsoncpp\include\json;$(SolutionDir)deps\drakhtar-i18n\include;$(SolutionDir)deps\cegui-dependencies\build\dependencies\include;$(SolutionDir)deps\cegui\cegui\include;$(SolutionDir)deps\cegui\build\cegui\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>

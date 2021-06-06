@@ -56,5 +56,5 @@ class Game {
 
     void quit();
 
-    Locale& getLocale() const { return locale_; }
+    const Locale& getLocale() const { return locale_; }
 };
