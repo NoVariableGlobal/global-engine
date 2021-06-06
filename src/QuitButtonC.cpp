@@ -51,7 +51,8 @@ Component* QuitButtonComponentFactory::create(Entity* _father,
 
     if (!_data["text"].isString())
         throw std::exception("QuitButtonComponent: text is not a string");
-    quitButtonComponent->setText(_data["text"].asString());
+    auto text = _scene->getGame()->getLocale().format(_data["text"].asString());
+    quitButtonComponent->setText(text);
 
     if (!_data["position"].isArray())
         throw std::exception("QuitButtonComponent: position is not an array");

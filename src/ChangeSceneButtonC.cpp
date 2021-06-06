@@ -58,7 +58,8 @@ Component* ChangeSceneButtonComponentFactory::create(Entity* _father,
     if (!_data["text"].isString())
         throw std::exception(
             "ChangeSceneButtonComponent: text is not a string");
-    changeSceneButtonComponent->setText(_data["text"].asString());
+    auto text = _scene->getGame()->getLocale().format(_data["text"].asString());
+    changeSceneButtonComponent->setText(text);
 
     if (!_data["position"].isArray())
         throw std::exception(

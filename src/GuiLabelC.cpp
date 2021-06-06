@@ -6,6 +6,7 @@
 #include "GuiLabelC.h"
 #include "OgreSDLContext.h"
 #include "Scene.h"
+#include "Game.h"
 #include <CEGUI/CEGUI.h>
 #include <CEGUI\Window.h>
 #include <iostream>
@@ -61,7 +62,8 @@ Component* GuiLabelComponentFactory::create(Entity* _father, Json::Value& _data,
 
     if (!_data["text"].isString())
         throw std::exception("QuitButtonComponent: text is not a string");
-    guiLabelComponent->setText(_data["text"].asString());
+    auto text = _scene->getGame()->getLocale().format(_data["text"].asString());
+    guiLabelComponent->setText(text);
 
     if (!_data["position"].isArray())
         throw std::exception("QuitButtonComponent: position is not an array");

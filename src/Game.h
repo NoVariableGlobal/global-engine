@@ -1,6 +1,7 @@
 #pragma once
 #include <map>
 #include <string>
+#include "LocaleManager.h"
 
 class Scene;
 class Loader;
@@ -23,6 +24,10 @@ class Game {
     uint32_t lag;
 
     float _timestep = frame_rate / 1000.0f;
+
+    
+    LocaleManager localeManager_{};
+    Locale locale_{localeManager_};
 
   public:
     Game();
@@ -51,4 +56,6 @@ class Game {
     void setFullScreen();
 
     void quit();
+
+    Locale& getLocale() const { return locale_; }
 };

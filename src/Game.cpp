@@ -37,6 +37,8 @@
 #include "SliderHandlerComponent.h"
 #include "VolumeHandlerC.h"
 
+
+
 Game::Game() {
     Loader loader;
     loader.readSounds();
@@ -94,8 +96,12 @@ bool Game::init(const std::string firstScene, const std::string schemeName,
         GuiContext::getInstance()->setMouseImage(mouseImage);
         GuiContext::getInstance()->setFont(font);
 
+        locale_.init("es");
+        locale_.load();
+
         Loader loader;
         loader.readScenes(scenesQueue_);
+
 
         scene_ = new Scene(this);
         setScene(firstScene);
