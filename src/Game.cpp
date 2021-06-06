@@ -94,6 +94,9 @@ bool Game::init(const std::string firstScene, const std::string schemeName,
         GuiContext::getInstance()->setMouseImage(mouseImage);
         GuiContext::getInstance()->setFont(font);
 
+        locale_.init("es");
+        locale_.load();
+
         Loader loader;
         loader.readScenes(scenesQueue_);
 
